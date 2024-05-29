@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\petsiLogo.png" />
+    <None Remove="Images\petsiLogoNoBackground.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MahApps.Metro.IconPacks" Version="4.11.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Petsi\Petsi.csproj" />
+    <ProjectReference Include="..\Square.Service\Square.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\petsiLogo.png" />
+    <Resource Include="Images\petsiLogoNoBackground.png" />
+  </ItemGroup>
+
+</Project>

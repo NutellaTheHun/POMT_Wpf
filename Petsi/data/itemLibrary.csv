@@ -1,0 +1,10 @@
+﻿name,category,id,size3,size5,size8,size10
+apple,pie,1,TRUE,TRUE,TRUE,FALSE
+crumb,pie,2,TRUE,TRUE,TRUE,FALSE
+pecan,pie,3,TRUE,TRUE,TRUE,FALSE
+cbp,pie,4,TRUE,TRUE,TRUE,FALSE
+apc,pie,5,TRUE,TRUE,TRUE,FALSE
+blue,pie,6,TRUE,TRUE,TRUE,FALSE
+ham,pie,7,FALSE,TRUE,FALSE,TRUE
+bacon,pie,8,FALSE,TRUE,FALSE,TRUE
+veg,pie,9,FALSE,TRUE,FALSE,TRUE

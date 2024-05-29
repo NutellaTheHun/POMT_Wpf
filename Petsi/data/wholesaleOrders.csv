@@ -1,0 +1,27 @@
+﻿WholesaleName,Day,CatalogObjectId,ItemName,Amount3,Amount5,Amount8,Amount10
+volante,tue,U2JEQPZ4NIIPI4KTSHHTDDSR,Blueberry Pie,3,10,50,0
+volante,tue,XI3XCRCDMPOPILIMWSMPHXGZ,Classic Apple Pie,3,20,60,0
+volante,tue,LTLXE3ZSP6DACWGUSMQ5KDJE,walden local ham & cheddar with tarragon potatoes & dijon,0,30,0,70
+volante,tue,5FN34FCDEUPFGWZVO5J62MM4,Apple Crumb Pie,0,40,80,0
+volante,fri,Y4RKXZ2QML43POAYWKHB53FE,Brown Butter Pecan Pie,6,10,50,0
+volante,fri,UBPPQ6W6QJE2EUNXMXE6CYGY,Chocolate Bourbon Pecan Pie,3,20,60,0
+volante,fri,XI3XCRCDMPOPILIMWSMPHXGZ,Classic Apple Pie,0,30,70,0
+volante,fri,WB7XAPY5CIR4OBVGQU3HZ5IW,Bacon Corn & Jalapeno Pie,0,40,0,80
+cityfeed,tue,U2JEQPZ4NIIPI4KTSHHTDDSR,Blueberry Pie,3,10,50,0
+cityfeed,tue,XI3XCRCDMPOPILIMWSMPHXGZ,Classic Apple Pie,3,20,60,0
+cityfeed,tue,LTLXE3ZSP6DACWGUSMQ5KDJE,walden local ham & cheddar with tarragon potatoes & dijon,0,30,0,70
+cityfeed,tue,5FN34FCDEUPFGWZVO5J62MM4,Apple Crumb Pie,0,40,80,0
+cityfeed,fri,Y4RKXZ2QML43POAYWKHB53FE,Brown Butter Pecan Pie,3,10,50,0
+cityfeed,fri,UBPPQ6W6QJE2EUNXMXE6CYGY,Chocolate Bourbon Pecan Pie,0,20,60,0
+cityfeed,fri,XI3XCRCDMPOPILIMWSMPHXGZ,Classic Apple Pie,3,30,70,0
+cityfeed,fri,WB7XAPY5CIR4OBVGQU3HZ5IW,Bacon Corn & Jalapeno Pie,0,40,0,80
+blacksheep,mon,U2JEQPZ4NIIPI4KTSHHTDDSR,Blueberry Pie,6,10,50,0
+blacksheep,mon,XI3XCRCDMPOPILIMWSMPHXGZ,Classic Apple Pie,0,20,60,0
+blacksheep,mon,LTLXE3ZSP6DACWGUSMQ5KDJE,walden local ham & cheddar with tarragon potatoes & dijon,0,30,0,70
+blacksheep,mon,5FN34FCDEUPFGWZVO5J62MM4,Apple Crumb Pie,3,40,80,0
+blacksheep,mon,Y4RKXZ2QML43POAYWKHB53FE,Brown Butter Pecan Pie,0,50,90,0
+blacksheep,mon,UBPPQ6W6QJE2EUNXMXE6CYGY,Chocolate Bourbon Pecan Pie,0,60,100,0
+idylwide,thu,XI3XCRCDMPOPILIMWSMPHXGZ,Classic Apple Pie,3,10,50,0
+idylwide,thu,WB7XAPY5CIR4OBVGQU3HZ5IW,Bacon Corn & Jalapeno Pie,0,20,0,60
+idylwide,thu,Y4RKXZ2QML43POAYWKHB53FE,Brown Butter Pecan Pie,3,30,70,0
+idylwide,thu,UBPPQ6W6QJE2EUNXMXE6CYGY,Chocolate Bourbon Pecan Pie,0,40,80,0

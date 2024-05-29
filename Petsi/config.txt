@@ -1,0 +1,10 @@
+hardPath=D:/Git-Repos/Petsi/
+onOrderPath=Petsi/data/wholesaleOrders.csv
+fileServicePath=Petsi/bin/fileService/
+environFileServicePath=Petsi/bin/fileService/environ/
+environPeriod=30
+reportCount=Petsi/Reports/reportCount.txt
+createdReportPath=
+cutieDirectory=Petsi/Labels/Files/Cuties/
+standardDirectory=Petsi/Labels/Files/Pie/
+labelDirectory=Petsi/Labels/Files/

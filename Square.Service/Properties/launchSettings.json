@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "Square.Service": {
+      "commandName": "Project"
+    }
+  }
+}
