@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using POMT_WPF.MVVM.ViewModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace POMT_WPF.MVVM.View
 {
@@ -22,6 +11,7 @@ namespace POMT_WPF.MVVM.View
         public SettingsWindow()
         {
             InitializeComponent();
+            DataContext = new SettingsWindowViewModel();
         }
 
         private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)

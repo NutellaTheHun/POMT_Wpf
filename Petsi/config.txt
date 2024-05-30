@@ -1,4 +1,4 @@
-hardPath=D:/Git-Repos/Petsi/
+hardPath=D:/Git-Repos/POMT_WPF/
 onOrderPath=Petsi/data/wholesaleOrders.csv
 fileServicePath=Petsi/bin/fileService/
 environFileServicePath=Petsi/bin/fileService/environ/
@@ -8,3 +8,7 @@ createdReportPath=
 cutieDirectory=Petsi/Labels/Files/Cuties/
 standardDirectory=Petsi/Labels/Files/Pie/
 labelDirectory=Petsi/Labels/Files/
+rolloPrinter=rolloTest
+standardPrinter=Standardtest
+pieTemplateName=PieTemplateTest
+pastryTemplateName=PastryTemplateTest

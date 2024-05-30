@@ -29,9 +29,9 @@ namespace Petsi.Reports
             int number = 0;
             try
             {
-                if (File.Exists(PetsiConfig.GetInstance().GetVariable("reportCount")))
+                if (File.Exists(PetsiConfig.GetInstance().GetFilepath("reportCount")))
                 {
-                    string content = File.ReadAllText(PetsiConfig.GetInstance().GetVariable("reportCount"));
+                    string content = File.ReadAllText(PetsiConfig.GetInstance().GetFilepath("reportCount"));
                     int.TryParse(content, out number);
                 }
             }
@@ -48,7 +48,7 @@ namespace Petsi.Reports
             int num = number + 1;
             try
             {
-                File.WriteAllText(PetsiConfig.GetInstance().GetVariable("reportCount"), num.ToString());
+                File.WriteAllText(PetsiConfig.GetInstance().GetFilepath("reportCount"), num.ToString());
             }
             catch (Exception ex)
             {

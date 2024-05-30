@@ -21,7 +21,7 @@ namespace Petsi.Input
         public WholesaleInput()
         {
             items = new List<WholesaleItem>();
-            csvh = new CSVHandler(PetsiConfig.GetInstance().GetVariable("onOrderPath"));
+            csvh = new CSVHandler(PetsiConfig.GetInstance().GetFilepath("onOrderPath"));
             LoggerWholesaleInputCount = 0;
             LoggerWholesaleCSVLinesProcessedCount = 0;
             frameBehavior = new WholesaleInputFrameBehavior(this);

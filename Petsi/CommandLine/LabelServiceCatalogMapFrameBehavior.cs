@@ -92,7 +92,7 @@ namespace Petsi.CommandLine
 
         private List<string> GetFileDirectoryList(string directoryName)
         {
-            string path = PetsiConfig.GetInstance().GetVariable("labelDirectory");
+            string path = PetsiConfig.GetInstance().GetFilepath("labelDirectory");
             if (!Directory.Exists(path + directoryName))
             {
                 Directory.CreateDirectory(path + directoryName);

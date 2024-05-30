@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POMT_WPF.MVVM.View.Controls"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:viewModel="clr-namespace:POMT_WPF.MVVM.ViewModel"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         WindowStyle = "None"
@@ -13,6 +14,10 @@
         Background="Transparent"       
         Title="SettingsWindow" Height="720" Width="600">
 
+    <Window.DataContext>
+        <viewModel:SettingsWindowViewModel />
+    </Window.DataContext>
+    
     <Border Background="{StaticResource SecWinPrimary}" CornerRadius="20">
         <Grid>
             <Grid.RowDefinitions>
@@ -31,31 +36,37 @@
             <StackPanel Orientation="Vertical" Grid.Row="1" HorizontalAlignment="Left" Margin="20">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBlock Text="Rollo Printer" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
-                    <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="getListOfPrinters()" IsReadOnly="true"/>
+                    <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="getListOfPrinters()"
+                                           IsReadOnly="true" Text="{Binding RolloPrinter}"/>
                     <Button Click="ConfigureLabelsWin_BtnClk" Content="Set" Style="{StaticResource secondaryButton}" Width="50" Margin="10 0 0 0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBlock Text="StandardPrinter" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
-                    <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="getListOfPrinters()" IsReadOnly="true"/>
+                    <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="getListOfPrinters()"
+                                           IsReadOnly="true" Text="{Binding StandardPrinter, UpdateSourceTrigger=PropertyChanged}"/>
                     <Button Click="ConfigureLabelsWin_BtnClk" Content="Set" Style="{StaticResource secondaryButton}" Width="50" Margin="10 0 0 0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBlock Text="Labels Filepath" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
-                    <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="selectFolderPath()" IsReadOnly="true"/>
+                    <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="selectFolderPath()"
+                                           IsReadOnly="true" Text="{Binding LabelsFilepath}"/>
                     <Button Click="ConfigureLabelsWin_BtnClk" Content="Set" Style="{StaticResource secondaryButton}" Width="50" Margin="10 0 0 0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 60 0">
                     <TextBlock Text="NumberOfDays" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
-                    <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill=".."/>
+                    <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill=".."
+                                           IsReadOnly="true" Text="{Binding NumberOfDays}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBlock Text="Select Pie Template" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
-                    <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="SelectFromListBox()" IsReadOnly="true"/>
+                    <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="SelectFromListBox()"
+                                           IsReadOnly="true" Text="{Binding PieTemplate}" />
                     <Button Click="ConfigureLabelsWin_BtnClk" Content="Set" Style="{StaticResource secondaryButton}" Width="50" Margin="10 0 0 0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBlock Text="Select PastryTemplate" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
-                    <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="SelectFromListBox()" IsReadOnly="true"/>
+                    <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="SelectFromListBox()"
+                                           IsReadOnly="true" Text="{Binding PastryTemplate}"/>
                     <Button Click="ConfigureLabelsWin_BtnClk" Content="Set" Style="{StaticResource secondaryButton}" Width="50" Margin="10 0 0 0"/>
                 </StackPanel>
             </StackPanel>
