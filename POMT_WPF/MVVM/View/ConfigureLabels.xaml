@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POMT_WPF.MVVM.View"
+        xmlns:vm="clr-namespace:POMT_WPF.MVVM.ViewModel"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
@@ -12,6 +13,7 @@
         AllowsTransparency="True"
         Background="Transparent"       
         Title="ConfigureLabels" Height="720" Width="600">
+
     
     <Border Background="{StaticResource SecWinPrimary}" CornerRadius="20">
         <Grid>
@@ -30,8 +32,14 @@
                     <Icon:PackIconMaterial Kind="Close" Style="{StaticResource menuButtonIcon}"/>
                 </StackPanel>
             </Button>
-            <DataGrid Grid.Row="1" Height="300" Width="450" Margin="50">
-                
+            <DataGrid Grid.Row="1" Margin="50"
+                      Height="300" Width="450" 
+                      x:Name="labelDataGrid" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Item Name" Binding="{Binding ItemName, UpdateSourceTrigger=PropertyChanged}"/>
+                    <DataGridTextColumn Header="Standard Label" Binding="{Binding StandardLabelFilePath, UpdateSourceTrigger=PropertyChanged}"/>
+                    <DataGridTextColumn Header="Cutie Label" Binding="{Binding CutieLabelFilePath, UpdateSourceTrigger=PropertyChanged}"/>
+                </DataGrid.Columns>
             </DataGrid>
             <Grid Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 50 0 0">
                 <StackPanel Orientation="Horizontal">

@@ -43,11 +43,11 @@ namespace Petsi.Services
             {
                 if(item.StandardLabelFilePath != null)
                 {
-                    _standardLabelMap[item.catalogObjectId] = item.StandardLabelFilePath;
+                    _standardLabelMap[item.CatalogObjectId] = item.StandardLabelFilePath;
                 }
                 if(item.CutieLabelFilePath != null)
                 {
-                    _cutieLabelMap[item.catalogObjectId] = item.CutieLabelFilePath;
+                    _cutieLabelMap[item.CatalogObjectId] = item.CutieLabelFilePath;
                 }
             }
         }

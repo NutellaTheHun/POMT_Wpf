@@ -93,7 +93,7 @@ namespace Petsi.CommandLine
                         {
                             foreach (CatalogItemPetsi searchResult in _searchList)
                             {
-                                PrintModel(searchResult.itemName);
+                                PrintModel(searchResult.ItemName);
                             }
                         }
                     }
@@ -131,9 +131,9 @@ namespace Petsi.CommandLine
             int i = 0;
             foreach (CatalogItemPetsi item in _cmp.GetItems())
             {
-                if(searchItemName == null || searchItemName.ToLower() == item.itemName.ToLower())
+                if(searchItemName == null || searchItemName.ToLower() == item.ItemName.ToLower())
                 {
-                    Console.WriteLine("[" + i + "]: " + item.itemName + " " + item.catalogObjectId);
+                    Console.WriteLine("[" + i + "]: " + item.ItemName + " " + item.CatalogObjectId);
                 }
                 i++;
             }

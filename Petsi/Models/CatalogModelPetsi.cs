@@ -178,7 +178,7 @@ namespace Petsi.Models
             string itemName;
             foreach (CatalogItemPetsi item in items)
             {
-                itemName = item.itemName;
+                itemName = item.ItemName;
                 if (itemName.Contains(searchTerm.ToLower()) || item.NaturalNameContains(searchTerm.ToLower()))
                 {
                     result.Add(item);
@@ -201,7 +201,7 @@ namespace Petsi.Models
             {
                 foreach((string id, string filename) entry in cuties)
                 {
-                    if (item.catalogObjectId == entry.id)
+                    if (item.CatalogObjectId == entry.id)
                     {
                         item.CutieLabelFilePath = entry.filename;
                     }
@@ -209,7 +209,7 @@ namespace Petsi.Models
                 }
                 foreach ((string id, string filename) entry in pie)
                 {
-                    if (item.catalogObjectId == entry.id)
+                    if (item.CatalogObjectId == entry.id)
                     {
                         item.StandardLabelFilePath = entry.filename;
                     }

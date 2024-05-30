@@ -114,7 +114,7 @@ namespace Petsi.Input
                         var newCatalogItem = new CatalogItemPetsi(categoryId, sqrCatalogItem.Id, sqrCatalogItem.ItemData.Name);
                         foreach (var variation in sqrCatalogItem.ItemData.Variations)
                         {
-                            newCatalogItem.variations.Add(variation.Id, variation.ItemVariationData.Name);
+                            newCatalogItem.Variations.Add(variation.Id, variation.ItemVariationData.Name);
                             result.Add(newCatalogItem);
                         }
                         LoggerCatalogObjectsProcessedCount++;
@@ -161,7 +161,7 @@ namespace Petsi.Input
                             var newCatalogItem = new CatalogItemPetsi(categoryId, sqrCatalogItem.Id, sqrCatalogItem.ItemData.Name);
                             foreach (var variation in sqrCatalogItem.ItemData.Variations)
                             {
-                                newCatalogItem.variations.Add(variation.Id, variation.ItemVariationData.Name);
+                                newCatalogItem.Variations.Add(variation.Id, variation.ItemVariationData.Name);
                                 catalogItems.Add(newCatalogItem);
                             }
                             LoggerCatalogObjectsProcessedCount++;

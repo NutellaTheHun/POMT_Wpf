@@ -37,7 +37,7 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBlock Text="Rollo Printer" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
                     <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="getListOfPrinters()"
-                                           IsReadOnly="true" Text="{Binding RolloPrinter}"/>
+                                           IsReadOnly="true" Text="{Binding RolloPrinter, UpdateSourceTrigger=PropertyChanged}"/>
                     <Button Click="ConfigureLabelsWin_BtnClk" Content="Set" Style="{StaticResource secondaryButton}" Width="50" Margin="10 0 0 0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
