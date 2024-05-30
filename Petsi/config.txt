@@ -10,5 +10,5 @@ standardDirectory=Petsi/Labels/Files/Pie/
 labelDirectory=Petsi/Labels/Files/
 rolloPrinter=rolloTest
 standardPrinter=Standardtest
-pieTemplateName=PieTemplateTest
-pastryTemplateName=PastryTemplateTest
+pieTemplateName=Standard Pies
+pastryTemplateName=Standard Pastry

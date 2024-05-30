@@ -1,7 +1,6 @@
 ﻿using ClosedXML.Excel;
 using Petsi.Units;
 using Petsi.Utils;
-using System.Collections.Generic;
 
 namespace Petsi.Reports.TableBuilder
 {
@@ -16,7 +15,7 @@ namespace Petsi.Reports.TableBuilder
         {
             List<PetsiOrderLineItem> items = tableOrders as List<PetsiOrderLineItem>;
             List<PetsiOrderLineItem> itemTracker = new List<PetsiOrderLineItem>(items);
-            List <BackListItem> listFormat = BacklistPageFormatSelector.GetPastryFormat();
+            List <BackListItem> listFormat = BacklistTemplateFormatSelector.GetInstance().GetPastryFormat();
             string amountReg;
 
             foreach (BackListItem item in listFormat)
