@@ -1,4 +1,5 @@
-﻿using System;
+﻿using POMT_WPF.MVVM.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,8 @@ namespace POMT_WPF.MVVM.View
         public CatalogListViewWindow()
         {
             InitializeComponent();
+            CatalogListViewWindowModel model = new CatalogListViewWindowModel();
+            catalogListDataGrid.ItemsSource = model.Items;
         }
         private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)
         {
