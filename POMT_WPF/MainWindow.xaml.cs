@@ -1,13 +1,8 @@
-﻿using Petsi.Managers;
-using Petsi.Models;
-using Petsi.Units;
-using Petsi.Utils;
-using POMT_WPF.MVVM.View;
-using System.Collections.ObjectModel;
+﻿using POMT_WPF.MVVM.View;
+using POMT_WPF.MVVM.ViewModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 
 namespace POMT_WPF
 {
@@ -19,12 +14,10 @@ namespace POMT_WPF
         public MainWindow()
         {
             InitializeComponent();
-
-            ObservableCollection<PetsiOrder> orders = new ObservableCollection<PetsiOrder>();
-
-            OrderModelPetsi omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
-            orders = new ObservableCollection<PetsiOrder>(omp.GetOrders() as List<PetsiOrder>);
-            dashboardDataGrid.ItemsSource = orders;
+            MainWindowViewModel mwvm = new MainWindowViewModel();
+            //this.DataContext = mwvm;
+            //DataContext = new MainWindowViewModel();
+            dashboardDataGrid.ItemsSource = mwvm.Orders;
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -84,16 +77,5 @@ namespace POMT_WPF
         {
             Application.Current.Shutdown();
         }
-    }
-
-    public class Member
-    {
-        public string Character { get; set; }
-        public string Number { get; set; }
-        public string Name { get; set; }
-        public string Position { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public Brush BgColor { get; set; }
     }
 }

@@ -180,6 +180,11 @@ namespace Petsi.Models
         {
             reportFb.DataListToFile(Identifiers.ENV_OMP, Orders);
         }
+
+        public void RemoveItem(PetsiOrder order)
+        {
+            Orders.Remove(order);
+        }
     }   
 }
 

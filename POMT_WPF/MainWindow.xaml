@@ -1,5 +1,5 @@
 ﻿<Window x:Class="POMT_WPF.MainWindow"
-         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -143,10 +143,10 @@
                           Grid.Row="5"
                           x:Name="dashboardDataGrid">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Type" Binding="{Binding InputOriginType}"/>
-                        <DataGridTextColumn Header="Name" Binding="{Binding Recipient}"/>
-                        <DataGridTextColumn Header="Due Date" Binding="{Binding OrderDueDate}"/>
-                        <DataGridTextColumn Header="Fulfillment" Binding="{Binding FulfillmentType}"/>
+                        <DataGridTextColumn Header="Type" Binding="{Binding InputOriginType, UpdateSourceTrigger=PropertyChanged}"/>
+                        <DataGridTextColumn Header="Name" Binding="{Binding Recipient, UpdateSourceTrigger=PropertyChanged}"/>
+                        <DataGridTextColumn Header="Due Date" Binding="{Binding OrderDueDate, UpdateSourceTrigger=PropertyChanged}"/>
+                        <DataGridTextColumn Header="Fulfillment" Binding="{Binding FulfillmentType, UpdateSourceTrigger=PropertyChanged}"/>
                     </DataGrid.Columns>
                     <!--<DataGrid.Columns>
                         <DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">

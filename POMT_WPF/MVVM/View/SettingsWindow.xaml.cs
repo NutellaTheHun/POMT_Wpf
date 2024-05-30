@@ -45,5 +45,30 @@ namespace POMT_WPF.MVVM.View
             ConfigureTemplates ConfigureTemplatesWin = new ConfigureTemplates();
             ConfigureTemplatesWin.Show();
         }
+        private void ManageCatalogWin_BtnClk(object sender, RoutedEventArgs e)
+        {
+            CatalogListViewWindow clvw = new CatalogListViewWindow();
+            clvw.Show();
+        }
+        private void SetRolloPrinter_BtnClk(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void SetStandardPrinter_BtnClk(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void SetLabelsFilePath_BtnClk(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void SetPieTemplate_BtnClk(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void SetpastryTemplate_BtnClk(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

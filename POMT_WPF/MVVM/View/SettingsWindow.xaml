@@ -31,39 +31,47 @@
             <StackPanel Orientation="Vertical" Grid.Row="1" HorizontalAlignment="Left" Margin="20">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBlock Text="Rollo Printer" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
-                    <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="getListOfPrinters()"/>
+                    <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="getListOfPrinters()" IsReadOnly="true"/>
+                    <Button Click="ConfigureLabelsWin_BtnClk" Content="Set" Style="{StaticResource secondaryButton}" Width="50" Margin="10 0 0 0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBlock Text="StandardPrinter" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
-                    <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="getListOfPrinters()"/>
+                    <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="getListOfPrinters()" IsReadOnly="true"/>
+                    <Button Click="ConfigureLabelsWin_BtnClk" Content="Set" Style="{StaticResource secondaryButton}" Width="50" Margin="10 0 0 0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBlock Text="Labels Filepath" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
-                    <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="selectFolderPath()"/>
+                    <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="selectFolderPath()" IsReadOnly="true"/>
+                    <Button Click="ConfigureLabelsWin_BtnClk" Content="Set" Style="{StaticResource secondaryButton}" Width="50" Margin="10 0 0 0"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 60 0">
                     <TextBlock Text="NumberOfDays" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
                     <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill=".."/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBlock Text="Select Pie Template" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
-                    <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="SelectFromListBox()"/>
+                    <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="SelectFromListBox()" IsReadOnly="true"/>
+                    <Button Click="ConfigureLabelsWin_BtnClk" Content="Set" Style="{StaticResource secondaryButton}" Width="50" Margin="10 0 0 0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBlock Text="Select PastryTemplate" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
-                    <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="SelectFromListBox()"/>
+                    <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="SelectFromListBox()" IsReadOnly="true"/>
+                    <Button Click="ConfigureLabelsWin_BtnClk" Content="Set" Style="{StaticResource secondaryButton}" Width="50" Margin="10 0 0 0"/>
                 </StackPanel>
             </StackPanel>
             <Grid Grid.Row="2">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="30">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="30">
                     <Button Click="ConfigureLabelsWin_BtnClk" Content="Configure Labels"
-                            Style="{StaticResource secondaryButton}" Width="125"/>
+                            Style="{StaticResource secondaryButton}" Width="125" Margin="0 5 0 5"/>
+                    <Button Click="ConfigureTemplatesWin_BtnClk" Content="Configure Templates"
+                            Style="{StaticResource secondaryButton}" Width="125" Margin="0 5 0 5"/>
+                    <Button Click="ManageCatalogWin_BtnClk" Content="Manage Catalog"
+                            Style="{StaticResource secondaryButton}" Width="125" Margin="0 5 0 5"/>
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="3">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="30">
-                    <Button Click="ConfigureTemplatesWin_BtnClk" Content="Configure Templates"
-                            Style="{StaticResource secondaryButton}" Width="125"/>
+                   
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="4" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 50 0 0">
