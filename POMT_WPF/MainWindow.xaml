@@ -142,8 +142,13 @@
                           RowStyle="{DynamicResource dashboardDataGridRowStyle}"  
                           Grid.Row="5"
                           x:Name="dashboardDataGrid">
-
                     <DataGrid.Columns>
+                        <DataGridTextColumn Header="Type" Binding="{Binding InputOriginType}"/>
+                        <DataGridTextColumn Header="Name" Binding="{Binding Recipient}"/>
+                        <DataGridTextColumn Header="Due Date" Binding="{Binding OrderDueDate}"/>
+                        <DataGridTextColumn Header="Fulfillment" Binding="{Binding FulfillmentType}"/>
+                    </DataGrid.Columns>
+                    <!--<DataGrid.Columns>
                         <DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
                             <DataGridCheckBoxColumn.HeaderTemplate>
                                 <DataTemplate>
@@ -187,7 +192,7 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
 
-                    </DataGrid.Columns>
+                    </DataGrid.Columns>-->
                 </DataGrid>
             </Grid>
         </Grid>

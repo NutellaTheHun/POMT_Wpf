@@ -5235,11 +5235,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nbril\\source\\repos\\POMT_WPF\\Petsi\\Petsi.csproj",
+      "projectUniqueName": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Petsi.csproj",
       "projectName": "Petsi",
-      "projectPath": "C:\\Users\\nbril\\source\\repos\\POMT_WPF\\Petsi\\Petsi.csproj",
+      "projectPath": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Petsi.csproj",
       "packagesPath": "C:\\Users\\nbril\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nbril\\source\\repos\\POMT_WPF\\Petsi\\obj\\",
+      "outputPath": "D:\\Git-Repos\\POMT_WPF\\Petsi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\nbril\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -5256,8 +5256,8 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "C:\\Users\\nbril\\source\\repos\\POMT_WPF\\Square.Service\\Square.Service.csproj": {
-              "projectPath": "C:\\Users\\nbril\\source\\repos\\POMT_WPF\\Square.Service\\Square.Service.csproj"
+            "D:\\Git-Repos\\POMT_WPF\\Square.Service\\Square.Service.csproj": {
+              "projectPath": "D:\\Git-Repos\\POMT_WPF\\Square.Service\\Square.Service.csproj"
             }
           }
         }

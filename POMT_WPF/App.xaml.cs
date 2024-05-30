@@ -3,8 +3,6 @@ using Petsi.Models;
 using Petsi.Reports;
 using Petsi.Services;
 using Square.Service;
-using System.Configuration;
-using System.Data;
 using System.Windows;
 
 namespace POMT_WPF

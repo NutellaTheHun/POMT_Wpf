@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nbril\\source\\repos\\POMT_WPF\\Square.Service\\Square.Service.csproj": {}
+    "D:\\Git-Repos\\POMT_WPF\\Square.Service\\Square.Service.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nbril\\source\\repos\\POMT_WPF\\Square.Service\\Square.Service.csproj": {
+    "D:\\Git-Repos\\POMT_WPF\\Square.Service\\Square.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nbril\\source\\repos\\POMT_WPF\\Square.Service\\Square.Service.csproj",
+        "projectUniqueName": "D:\\Git-Repos\\POMT_WPF\\Square.Service\\Square.Service.csproj",
         "projectName": "Square.Service",
-        "projectPath": "C:\\Users\\nbril\\source\\repos\\POMT_WPF\\Square.Service\\Square.Service.csproj",
+        "projectPath": "D:\\Git-Repos\\POMT_WPF\\Square.Service\\Square.Service.csproj",
         "packagesPath": "C:\\Users\\nbril\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nbril\\source\\repos\\POMT_WPF\\Square.Service\\obj\\",
+        "outputPath": "D:\\Git-Repos\\POMT_WPF\\Square.Service\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\nbril\\AppData\\Roaming\\NuGet\\NuGet.Config",
