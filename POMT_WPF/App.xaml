@@ -19,6 +19,9 @@
         <SolidColorBrush x:Key="SecWinPrimary" Color="#2F4858" />
         <SolidColorBrush x:Key="purple" Color="#7A578B" />
         <SolidColorBrush x:Key="niceDark" Color="#353340" />
+        <SolidColorBrush x:Key="LightBlu" Color="#A8D0DB" />
+        <SolidColorBrush x:Key="AtomicTangerine" Color="#E49273" />
+        <SolidColorBrush x:Key="DarkSpringGreen" Color="#157145" />
         <!--#endregion-->
 
         <!--#region Buttons/Boxes-->

@@ -2,7 +2,6 @@
 using Petsi.Models;
 using Petsi.Units;
 using Petsi.Utils;
-using Square.Models;
 
 namespace POMT_WPF.MVVM.ViewModel
 {
@@ -22,39 +21,84 @@ namespace POMT_WPF.MVVM.ViewModel
             }
         }
 
-        public string PickupDate
+        private string _VMPickupDate;
+        public string VMPickupDate
         {
-            get { return DateTime.Parse(Order.OrderDueDate).ToShortDateString(); }
+            get 
+            {
+                if(_VMPickupDate != null)
+                {
+                    return _VMPickupDate;
+                }
+                return ""; 
+            }
             set
             {
-                DateTime test;
-                if (DateTime.TryParse(value, out test))
+                if (_VMPickupDate != value)
                 {
-                    Order.OrderDueDate = value;
-                    OnPropertyChanged(nameof(Order.OrderDueDate));
+                    _VMPickupDate = value;
+                    OnPropertyChanged(nameof(_VMPickupDate));
                 }
             }
         }
-        public string PickupTime
+
+        private string _VMPickupTime;
+        public string VMPickupTime
         {
-            get { return DateTime.Parse(Order.OrderDueDate).ToLocalTime().ToString(); }
+            get 
+            {
+                if (_VMPickupTime != null)
+                {
+                    return _VMPickupTime;
+                }
+                return "";
+            }
             set
             {
-                DateTime test;
-                if (DateTime.TryParse(value, out test))
+                if (_VMPickupTime != value)
                 {
-                    if(test.ToLocalTime() != default)
-                    Order.OrderDueDate = value;
-                    OnPropertyChanged(nameof(Order.OrderDueDate));
+                    _VMPickupTime = value;
+                    OnPropertyChanged(nameof(_VMPickupTime));
                 }
             }
         }
+
+        private bool _isPeriodic;
+        public bool IsPeriodic
+        {
+            get { return _isPeriodic; }
+            set 
+            {
+                if(_isPeriodic != value)
+                {
+                    _isPeriodic = value;
+                    OnPropertyChanged(nameof(_isPeriodic));
+                }
+            }
+        }
+
+        private bool _isOneTime;
+        public bool IsOneTime
+        {
+            get { return _isOneTime; }
+            set 
+            { 
+                if(_isOneTime != value)
+                {
+                    _isOneTime = value;
+                    OnPropertyChanged(nameof(_isOneTime));
+                }
+            }
+        }
+
 
         public PetsiOrderWindowViewModel(PetsiOrder? petsiOrder)
         {
             if (petsiOrder != null)
             {
                 Order = petsiOrder;
+                VMPickupDate = DateTime.Parse(Order.OrderDueDate).ToShortDateString();
+                VMPickupTime = DateTime.Parse(Order.OrderDueDate).ToLocalTime().ToString();
             }
             else
             {
@@ -67,6 +111,7 @@ namespace POMT_WPF.MVVM.ViewModel
         {
             Order.LineItems.Add(newLine);
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -74,13 +119,14 @@ namespace POMT_WPF.MVVM.ViewModel
         /// <param name="oneTime"></param>
         /// <param name="pickupDay"></param>
         /// <param name="pickupTime"></param>
-        public void AddOrder(bool fulfillPickup, bool oneTime, string pickupDay, string pickupTime)
+        public void AddOrder(string pickupTime)
         {
-            Order.FulfillmentType = fulfillPickup ? "Pickup" : "Delivery";
-            Order.OrderDueDate = pickupDay + " " + pickupTime;
+            string Date = DateTime.Parse(VMPickupDate).ToShortDateString();
+            Order.OrderDueDate = DateTime.Parse(Date + " " + pickupTime).ToString();
+            Order.IsPeriodic = IsPeriodic;
             OrderModelPetsi omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
             Order.OrderId = Order.InputOriginType+"-"+omp.GenerateOrderId();
-            omp.AddItem(Order);
+            //omp.AddItem(Order);
         }
     }
 }

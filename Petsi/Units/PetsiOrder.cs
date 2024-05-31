@@ -14,7 +14,8 @@ namespace Petsi.Units
         public string DeliveryAddress { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
-        public bool isPeriodic { get; set; }
+        public bool IsPeriodic { get; set; }
+        /*
         public string OrderDueDayOfWeek { get; set; }
 
         public string OrderDueValue
@@ -41,7 +42,7 @@ namespace Petsi.Units
                     OrderDueDate = value;
                 }
             }
-        }
+        }*/
     
         public List<PetsiOrderLineItem> LineItems { get; set; }
         public PetsiOrder()

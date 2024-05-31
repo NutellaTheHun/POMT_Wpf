@@ -15,8 +15,8 @@ namespace POMT_WPF.MVVM.View
         public PetsiOrderWindow(PetsiOrder? existingOrder)
         {
             InitializeComponent();
-            PetsiOrderWindowViewModel vm = new PetsiOrderWindowViewModel(existingOrder);
-            DataContext = vm.Order;
+            vm = new PetsiOrderWindowViewModel(existingOrder);
+            DataContext = vm;
             orderFormDataGrid.ItemsSource = vm.Order.LineItems;
         }
 
@@ -45,30 +45,36 @@ namespace POMT_WPF.MVVM.View
                 //Error message
                 return;
             }
-            if(WeeklyRadioButton.IsChecked == false && OneTimeRadioButton.IsChecked == false)
-            {
-                //error message
-                return;
-            }
-            if (OneTimeRadioButton.IsChecked == true && orderTimeTextBox.Text == null)
-            {
-                //error message
-                return;
-            }
-            //test day will be set to Sunday if tryparse fails
-            DayOfWeek testDay;
-            if (WeeklyRadioButton.IsChecked == true && !Enum.TryParse(orderDateTextBox.Text, true, out testDay)) 
-            {
-                //error message
-                return;
-            }
             if (OrderTypeTextBox.Text == null)
             {
                 //error message
                 return;
             }
 
-            vm.AddOrder((bool)PickupRadioButton.IsChecked, (bool)OneTimeRadioButton.IsChecked, orderDateTextBox.Text, orderTimeTextBox.Text);
+            if (WeeklyRadioButton.IsChecked == false && OneTimeRadioButton.IsChecked == false)
+            {
+                //error message
+                return;
+            }
+
+            if (orderDatePicker.Text == null)
+            {
+                //error message
+                return;
+            }
+
+            DateTime testDate;
+            if (OneTimeRadioButton.IsChecked == true
+                && !DateTime.TryParse(orderTimeTextBox.Text + orderTimeComboBox.Text, out testDate))
+            {
+                //error message
+                return;
+            }
+
+            
+            
+            //ADD ORDER IF NEW!! CAN DELETE IF EXISTS
+            vm.AddOrder(orderTimeTextBox.Text + orderTimeComboBox.Text);
             Close();
         }
 
@@ -81,6 +87,11 @@ namespace POMT_WPF.MVVM.View
         private void AddLineItem_BtnClk(object sender, RoutedEventArgs e)
         {
             vm.AddLineItem(new PetsiOrderLineItem());
+        }
+
+        private void orderDateTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+
         }
     }
 }
