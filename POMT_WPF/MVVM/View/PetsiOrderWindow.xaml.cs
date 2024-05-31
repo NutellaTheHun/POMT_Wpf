@@ -28,38 +28,50 @@ namespace POMT_WPF.MVVM.View
         private void ConfirmCloseWin_BtnClk(object sender, RoutedEventArgs e)
         {
             //Validate
-            if(recipientTextBox.Text == null)
+            if(recipientTextBox.Text == "")
             {
-                //error message
+                PetsiOrderFormErrorWindow errorWindow = 
+                    new PetsiOrderFormErrorWindow("Recipient is required.");
+                errorWindow.Show();
                 return;
             }
             if(PickupRadioButton.IsChecked == false && DeliveryRadioButton.IsChecked == false)
             {
-                //error message
+                PetsiOrderFormErrorWindow errorWindow =
+                    new PetsiOrderFormErrorWindow("Please select a pickup or delivery option.");
+                errorWindow.Show();
                 return;
             }
             if(DeliveryRadioButton.IsChecked == true 
-                && DeliveryAddressTextBox.Text == null 
-                && phoneTextBox.Text == null)
+                && DeliveryAddressTextBox.Text == ""
+                && phoneTextBox.Text == "")
             {
-                //Error message
+                PetsiOrderFormErrorWindow errorWindow =
+                    new PetsiOrderFormErrorWindow("Deliveries require a delivery address and phone number.");
+                errorWindow.Show();
                 return;
             }
-            if (OrderTypeTextBox.Text == null)
+            if (OrderTypeTextBox.Text == "")
             {
-                //error message
+                PetsiOrderFormErrorWindow errorWindow =
+                    new PetsiOrderFormErrorWindow("Order type is required.");
+                errorWindow.Show();
                 return;
             }
 
             if (WeeklyRadioButton.IsChecked == false && OneTimeRadioButton.IsChecked == false)
             {
-                //error message
+                PetsiOrderFormErrorWindow errorWindow =
+                    new PetsiOrderFormErrorWindow("Please select a weekly or one-time order.");
+                errorWindow.Show();
                 return;
             }
 
-            if (orderDatePicker.Text == null)
+            if (orderDatePicker.Text == "")
             {
-                //error message
+                PetsiOrderFormErrorWindow errorWindow =
+                    new PetsiOrderFormErrorWindow("Order date is required.");
+                errorWindow.Show();
                 return;
             }
 
@@ -67,15 +79,28 @@ namespace POMT_WPF.MVVM.View
             if (OneTimeRadioButton.IsChecked == true
                 && !DateTime.TryParse(orderTimeTextBox.Text + orderTimeComboBox.Text, out testDate))
             {
-                //error message
+                PetsiOrderFormErrorWindow errorWindow =
+                    new PetsiOrderFormErrorWindow("Order time input was not accepted.");
+                errorWindow.Show();
                 return;
             }
-
+            if(orderFormDataGrid.Items.Count == 0 || !AllLineItemsComplete())
+            {
+                PetsiOrderFormErrorWindow errorWindow =
+                    new PetsiOrderFormErrorWindow("Order must have at least one item, and all items filled in.");
+                errorWindow.Show();
+                return;
+            }
             
             
             //ADD ORDER IF NEW!! CAN DELETE IF EXISTS
             vm.AddOrder(orderTimeTextBox.Text + orderTimeComboBox.Text);
             Close();
+        }
+
+        private bool AllLineItemsComplete()
+        {
+            throw new NotImplementedException();
         }
 
         private void Delete_BtnClk(object sender, RoutedEventArgs e)

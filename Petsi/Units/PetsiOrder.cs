@@ -15,34 +15,6 @@ namespace Petsi.Units
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public bool IsPeriodic { get; set; }
-        /*
-        public string OrderDueDayOfWeek { get; set; }
-
-        public string OrderDueValue
-        {
-            get
-            {
-                if (isPeriodic)
-                {
-                    return OrderDueDayOfWeek;
-                }
-                else
-                {
-                    return OrderDueDate;
-                }
-            }
-            set
-            {
-                if (isPeriodic)
-                {
-                    OrderDueDayOfWeek = value;
-                }
-                else
-                {
-                    OrderDueDate = value;
-                }
-            }
-        }*/
     
         public List<PetsiOrderLineItem> LineItems { get; set; }
         public PetsiOrder()

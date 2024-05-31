@@ -213,3 +213,5 @@ D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows\refint\POMT_WPF.dll
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows\POMT_WPF.pdb
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows\POMT_WPF.genruntimeconfig.cache
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows\ref\POMT_WPF.dll
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows\MVVM\View\PetsiOrderFormErrorWindow.g.cs
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows\MVVM\View\PetsiOrderFormErrorWindow.baml

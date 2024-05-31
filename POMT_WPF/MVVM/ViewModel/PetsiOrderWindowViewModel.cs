@@ -126,7 +126,7 @@ namespace POMT_WPF.MVVM.ViewModel
             Order.IsPeriodic = IsPeriodic;
             OrderModelPetsi omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
             Order.OrderId = Order.InputOriginType+"-"+omp.GenerateOrderId();
-            //omp.AddItem(Order);
+            omp.AddItem(Order); //doesnt update the dashboard
         }
     }
 }
