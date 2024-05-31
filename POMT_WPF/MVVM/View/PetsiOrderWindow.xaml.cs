@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using Petsi.Units;
+using POMT_WPF.MVVM.ViewModel;
 using System.Windows;
 
 
@@ -9,18 +10,14 @@ namespace POMT_WPF.MVVM.View
     /// </summary>
     public partial class PetsiOrderWindow : Window
     {
-        public ObservableCollection<Item> Items { get; set; } = new ObservableCollection<Item>();
+        PetsiOrderWindowViewModel vm;
 
-
-        public PetsiOrderWindow()
+        public PetsiOrderWindow(PetsiOrder? existingOrder)
         {
             InitializeComponent();
-            DataContext = this;
-            Items.Add(new Item("A", "1", "2", "3", "4"));
-            Items.Add(new Item());
-
-            //orderFormDataGrid.ItemsSource = Items;
-            
+            PetsiOrderWindowViewModel vm = new PetsiOrderWindowViewModel(existingOrder);
+            DataContext = vm.Order;
+            orderFormDataGrid.ItemsSource = vm.Order.LineItems;
         }
 
         private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)
@@ -30,31 +27,60 @@ namespace POMT_WPF.MVVM.View
 
         private void ConfirmCloseWin_BtnClk(object sender, RoutedEventArgs e)
         {
-            //Do something
+            //Validate
+            if(recipientTextBox.Text == null)
+            {
+                //error message
+                return;
+            }
+            if(PickupRadioButton.IsChecked == false && DeliveryRadioButton.IsChecked == false)
+            {
+                //error message
+                return;
+            }
+            if(DeliveryRadioButton.IsChecked == true 
+                && DeliveryAddressTextBox.Text == null 
+                && phoneTextBox.Text == null)
+            {
+                //Error message
+                return;
+            }
+            if(WeeklyRadioButton.IsChecked == false && OneTimeRadioButton.IsChecked == false)
+            {
+                //error message
+                return;
+            }
+            if (OneTimeRadioButton.IsChecked == true && orderTimeTextBox.Text == null)
+            {
+                //error message
+                return;
+            }
+            //test day will be set to Sunday if tryparse fails
+            DayOfWeek testDay;
+            if (WeeklyRadioButton.IsChecked == true && !Enum.TryParse(orderDateTextBox.Text, true, out testDay)) 
+            {
+                //error message
+                return;
+            }
+            if (OrderTypeTextBox.Text == null)
+            {
+                //error message
+                return;
+            }
+
+            vm.AddOrder((bool)PickupRadioButton.IsChecked, (bool)OneTimeRadioButton.IsChecked, orderDateTextBox.Text, orderTimeTextBox.Text);
+            Close();
+        }
+
+        private void Delete_BtnClk(object sender, RoutedEventArgs e)
+        {
+            //Are you sure window?
+            //delete
             Close();
         }
         private void AddLineItem_BtnClk(object sender, RoutedEventArgs e)
         {
-            Items.Add(new Item());
-        }
-    }
-    public class Item
-    {
-        public string ItemName { get; set; }
-        public string Amount3 { get; set; }
-        public string Amount5 { get; set; }
-        public string Amount8 { get; set; }
-        public string Amount10 { get; set; }
-
-        public Item() { }
-
-        public Item(string itemName, string amount3, string amount5, string amount8, string amount10)
-        {
-            ItemName = itemName;
-            Amount3 = amount3;
-            Amount5 = amount5;
-            Amount8 = amount8;
-            Amount10 = amount10;
+            vm.AddLineItem(new PetsiOrderLineItem());
         }
     }
 }

@@ -207,7 +207,7 @@ D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows\POMT_WPF.AssemblyInfoInp
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows\POMT_WPF.AssemblyInfo.cs
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows\POMT_WPF.csproj.CoreCompileInputs.cache
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows\POMT_WPF.sourcelink.json
-D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows\POMT_WPF.csproj.CopyComplete
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows\POMT_WPF.csproj.Up2Date
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows\POMT_WPF.dll
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows\refint\POMT_WPF.dll
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows\POMT_WPF.pdb

@@ -50,14 +50,22 @@ namespace Petsi.Reports
             return element.template;
         }
 
+        public List<(string name, List<bli> template)> GetTemplates()
+        {
+            return templates;
+        }
+
         private void InitTemplates()
         {
             templates = fileBehavior.BuildDataListFile<(string, List<bli>)>("templates");
             if(templates == null)
             {
-                templates.Add(BootSummerFormat());
-                templates.Add(BootPieFormat());
-                templates.Add(BootPastryFormat());
+                templates = new List<(string name, List<bli> template)>
+                {
+                    BootSummerFormat(),
+                    BootPieFormat(),
+                    BootPastryFormat()
+                };
                 fileBehavior.DataListToFile("templates", templates);
             }
         }

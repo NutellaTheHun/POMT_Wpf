@@ -1,4 +1,5 @@
-﻿using POMT_WPF.MVVM.View;
+﻿using Petsi.Units;
+using POMT_WPF.MVVM.View;
 using POMT_WPF.MVVM.ViewModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,9 +16,9 @@ namespace POMT_WPF
         {
             InitializeComponent();
             MainWindowViewModel mwvm = new MainWindowViewModel();
-            //this.DataContext = mwvm;
-            //DataContext = new MainWindowViewModel();
+
             dashboardDataGrid.ItemsSource = mwvm.Orders;
+            dashboardDataGrid.SelectionChanged += DashboardDataGrid_SelectionChanged;
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -46,14 +47,23 @@ namespace POMT_WPF
             }
         }
 
-        private void membersDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DashboardDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            var dashboardDataGrid = sender as DataGrid;
+            if (dashboardDataGrid != null)
+            {
+                var selectedItem = dashboardDataGrid.SelectedItem;
+                if (selectedItem != null)
+                {
+                    PetsiOrderWindow petsiOrderWin = new PetsiOrderWindow(selectedItem as PetsiOrder);
+                    petsiOrderWin.Show();
+                }
+            }
         }
 
         private void AddOrder_ButtonClick(object sender, RoutedEventArgs e)
         {
-            PetsiOrderWindow petsiOrderWin = new PetsiOrderWindow();
+            PetsiOrderWindow petsiOrderWin = new PetsiOrderWindow(null);
             petsiOrderWin.Show();
         }
         private void ReportWindow_ButtonClick(object sender, RoutedEventArgs e)

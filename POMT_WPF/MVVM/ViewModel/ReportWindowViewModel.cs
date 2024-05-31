@@ -5,9 +5,6 @@ namespace POMT_WPF.MVVM.ViewModel
 {
     public class ReportWindowViewModel : ViewModelBase
     {
-        ReportDirector rd;
-        DateTime dt1;
-        DateTime dt2;
         bool frontlist;
         bool backList;
         bool wsAgg;
@@ -15,12 +12,7 @@ namespace POMT_WPF.MVVM.ViewModel
 
         public ReportWindowViewModel()
         {
-            ReportDirector rd = new ReportDirector();
-            dt1 = default;
-            frontlist = false;
-            backList = false;
-            wsAgg = false;
-            ws = false;
+
         }
         public void SetFrontList()
         {
@@ -51,7 +43,8 @@ namespace POMT_WPF.MVVM.ViewModel
         }
         public void ProduceReport(DateTime dt1)
         {
-           if(frontlist)
+            ReportDirector rd = new ReportDirector();
+            if (frontlist)
            {
                 rd.CreateFrontList(dt1);
            }
