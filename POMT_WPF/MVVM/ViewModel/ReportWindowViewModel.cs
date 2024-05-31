@@ -15,8 +15,8 @@ namespace POMT_WPF.MVVM.ViewModel
 
         public ReportWindowViewModel()
         {
-            ReportDirector director = new ReportDirector();
-            dt1 = null;
+            ReportDirector rd = new ReportDirector();
+            dt1 = default;
             frontlist = false;
             backList = false;
             wsAgg = false;
