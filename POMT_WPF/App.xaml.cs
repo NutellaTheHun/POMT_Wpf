@@ -23,7 +23,7 @@ namespace POMT_WPF
             CatalogService catalogIdService = new CatalogService();
             LabelService labelService = new LabelService();
 
-            ReportDirector director = new ReportDirector();
+            //ReportDirector director = new ReportDirector();
 
             SquareCatalogInput sci = new SquareCatalogInput(scf);
             SquareOrderInput soi = new SquareOrderInput(scf);

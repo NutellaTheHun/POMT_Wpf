@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using POMT_WPF.MVVM.ViewModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace POMT_WPF.MVVM.View
 {
@@ -19,15 +8,11 @@ namespace POMT_WPF.MVVM.View
     /// </summary>
     public partial class ReportWindow : Window
     {
-        DateTime dt1;
-        DateTime dt2;
-        bool frontList;
-        bool backList;
-        bool wholesaleAgg;
-        bool wholesale;
+        ReportWindowViewModel rwvm;
         public ReportWindow()
         {
             InitializeComponent();
+            rwvm = new ReportWindowViewModel();
         }
 
         private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)
@@ -37,24 +22,29 @@ namespace POMT_WPF.MVVM.View
 
         private void Print_ButtonClick(Object sender, RoutedEventArgs e)
         {
+            DateTime? selectedDate = datePickerStart.SelectedDate;
 
+            if (selectedDate.HasValue)
+            {
+                rwvm.ProduceReport((DateTime)selectedDate);
+            }
         }
 
-        private void selectFrontList_ButtonClick(Object sender, RoutedEventArgs e)
+        private void SelectFrontList_ButtonClick(Object sender, RoutedEventArgs e)
         {
-
+            rwvm.SetFrontList();
         }
-        private void selectBackList_ButtonClick(Object sender, RoutedEventArgs e)
+        private void SelectBackList_ButtonClick(Object sender, RoutedEventArgs e)
         {
-
+            rwvm.SetBackList();
         }
-        private void selectWsAggList_ButtonClick(Object sender, RoutedEventArgs e)
+        private void SelectWsAggList_ButtonClick(Object sender, RoutedEventArgs e)
         {
-
+            rwvm.SetWsAggList();
         }
-        private void selectWsList_ButtonClick(Object sender, RoutedEventArgs e)
+        private void SelectWsList_ButtonClick(Object sender, RoutedEventArgs e)
         {
-
+            rwvm.SetWsList();
         }
     }
 }

@@ -31,7 +31,6 @@ namespace Petsi.Reports
             report.FinalizeReport();
 
             return report.Wb;
-
         }
         public IXLWorkbook CreateBackList(DateTime? targetDate, DateTime? endDate)
         {

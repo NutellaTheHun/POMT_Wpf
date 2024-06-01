@@ -1,67 +1,38 @@
-﻿using POMT_WPF.Core;
-using System;
+﻿using Petsi.Units;
+using POMT_WPF.MVVM.ObsModels;
+using System.Collections.ObjectModel;
 
 namespace POMT_WPF.MVVM.ViewModel
 {
-    public class MainViewModel : ObservableObject
+    public class MainWindowViewModel : ViewModelBase
     {
-        public RelayCommand HomeViewCommand { get; set; }
-        public RelayCommand LabelViewCommand { get; set; }
-        public RelayCommand OrderViewCommand { get; set; }
-        public RelayCommand ReportViewCommand { get; set; }
-        public RelayCommand SettingsViewCommand { get; set; }
-        public HomeViewModel HomeVM { get; set; }
-        public LabelViewModel LabelVM { get; set; }
-        public OrderViewModel OrderVM { get; set; }
-        public ReportViewModel ReportVM { get; set; }
-        public SettingsViewModel SettingsVM { get; set; }
 
-        private object _currentView;
-
-		public object CurrentView
-		{
-			get { return _currentView; }
-			set
-			{ 
-				_currentView = value;
-				OnPropertyChanged();
-			}
-		}
-
-		public MainViewModel()
-		{
-			HomeVM = new HomeViewModel();
-			LabelVM = new LabelViewModel();
-			OrderVM = new OrderViewModel();
-			ReportVM = new ReportViewModel();
-			SettingsVM = new SettingsViewModel();
-
-			CurrentView = HomeVM;
-
-			HomeViewCommand = new RelayCommand(o =>
-			{
-				CurrentView = HomeVM;
-			});
-
-            LabelViewCommand = new RelayCommand(o =>
+        private ObservableCollection<PetsiOrder> _orders;
+        public ObservableCollection<PetsiOrder> Orders 
+        { 
+            get { return _orders; } 
+            set
             {
-                CurrentView = LabelVM;
-            });
+                if(_orders != value)
+                {
+                    _orders = value;
+                    OnPropertyChanged(nameof(_orders));
+                }
+            }
+        }
+        public MainWindowViewModel()
+        {
+            Orders = ObsOrderModelSingleton.Instance.Orders;
+        }
 
-            OrderViewCommand = new RelayCommand(o =>
-            {
-                CurrentView = OrderVM;
-            });
+        public void AddOrder(PetsiOrder order)
+        {
+            Orders.Add(order);
+        }
 
-            ReportViewCommand = new RelayCommand(o =>
-            {
-                CurrentView = ReportVM;
-            });
-
-            SettingsViewCommand = new RelayCommand(o =>
-            {
-                CurrentView = SettingsVM;
-            });
+        public void RemoveOrder(PetsiOrder order)
+        {
+            Orders.Remove(order);
         }
     }
 }

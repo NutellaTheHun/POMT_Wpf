@@ -11,8 +11,6 @@ namespace Petsi.Input
     {
         List<WholesaleItem> items;
         CSVHandler csvh;
-        public static int LoggerWholesaleInputCount;
-        public static int LoggerWholesaleCSVLinesProcessedCount;
         WholesaleInputFrameBehavior frameBehavior;
         FileBehavior fileBehavior;
         bool isFileExecute;
@@ -21,9 +19,7 @@ namespace Petsi.Input
         public WholesaleInput()
         {
             items = new List<WholesaleItem>();
-            csvh = new CSVHandler(PetsiConfig.GetInstance().GetVariable("onOrderPath"));
-            LoggerWholesaleInputCount = 0;
-            LoggerWholesaleCSVLinesProcessedCount = 0;
+            csvh = new CSVHandler(PetsiConfig.GetInstance().GetFilepath("onOrderPath"));
             frameBehavior = new WholesaleInputFrameBehavior(this);
             fileBehavior = new FileBehavior("WholesaleInput");
             isFileExecute = false;
@@ -40,7 +36,6 @@ namespace Petsi.Input
             if(!isFileExecute)
             {
                 items = csvh.LoadWholesaleData();
-                LoggerWholesaleCSVLinesProcessedCount = CSVHandler.wholesaleLinesProcessed;
             }
             
             foreach (PetsiOrder item in WholesaleItemsToPetsiOrders())

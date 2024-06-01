@@ -73,11 +73,11 @@ namespace Petsi.Services
 
             foreach (CatalogItemPetsi item in cmp.GetItems())
             {
-                categoryMap.TryAdd(item.itemName, item.categoryId);
-                categoryMap.TryAdd(item.catalogObjectId, item.categoryId);
-                foreach (DictionaryEntry entry in item.variations)
+                categoryMap.TryAdd(item.ItemName, item.CategoryId);
+                categoryMap.TryAdd(item.CatalogObjectId, item.CategoryId);
+                foreach (DictionaryEntry entry in item.Variations)
                 {
-                    categoryMap.TryAdd((string)entry.Key, item.categoryId);
+                    categoryMap.TryAdd((string)entry.Key, item.CategoryId);
                 }
             }
         }

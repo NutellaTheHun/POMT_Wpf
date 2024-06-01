@@ -59,5 +59,12 @@ namespace Petsi.Utils
         public readonly static string ENV_CMP = "env_catalog_model";
         public readonly static string ENV_CATA_S = "env_catalog_serv";
         public readonly static string ENV_CATE_S = "env_category_serv";
+
+        public readonly static string SETTING_ROLLO_PRINTER = "rolloPrinter";
+        public readonly static string SETTING_STD_PRINTER = "standardPrinter";
+        public readonly static string SETTING_PIE_TEMPLATE = "pieTemplateName";
+        public readonly static string SETTING_PASTRY_TEMPLATE = "pastryTemplateName";
+        public readonly static string SETTING_LABEL_FP = "labelDirectory";
+        public readonly static string SETTING_DAYNUM = "environPeriod";
     }
 }

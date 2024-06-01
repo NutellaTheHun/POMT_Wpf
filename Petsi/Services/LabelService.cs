@@ -27,8 +27,8 @@ namespace Petsi.Services
             frameBehavior = new LabelServiceFrameBehavior(this);
             _standardLabelMap = new Dictionary<string, string>();
             _cutieLabelMap = new Dictionary<string, string>();
-            cutieDirectoryPath = PetsiConfig.GetInstance().GetVariable("cutieDirectory");
-            pieDirectoryPath = PetsiConfig.GetInstance().GetVariable("standardDirectory");
+            cutieDirectoryPath = PetsiConfig.GetInstance().GetFilepath("cutieDirectory");
+            pieDirectoryPath = PetsiConfig.GetInstance().GetFilepath("standardDirectory");
             SetServiceName(Identifiers.SERVICE_LABEL);
             ServiceManagerSingleton.GetInstance().Register(this);
             CommandFrame.GetInstance().RegisterFrame("lbl", frameBehavior);
@@ -43,11 +43,11 @@ namespace Petsi.Services
             {
                 if(item.StandardLabelFilePath != null)
                 {
-                    _standardLabelMap[item.catalogObjectId] = item.StandardLabelFilePath;
+                    _standardLabelMap[item.CatalogObjectId] = item.StandardLabelFilePath;
                 }
                 if(item.CutieLabelFilePath != null)
                 {
-                    _cutieLabelMap[item.catalogObjectId] = item.CutieLabelFilePath;
+                    _cutieLabelMap[item.CatalogObjectId] = item.CutieLabelFilePath;
                 }
             }
         }

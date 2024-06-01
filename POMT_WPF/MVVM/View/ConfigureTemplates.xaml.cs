@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Petsi.Reports;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +21,14 @@ namespace POMT_WPF.MVVM.View
     /// </summary>
     public partial class ConfigureTemplates : Window
     {
+        ObservableCollection<string> templateNames = new ObservableCollection<string>();
         public ConfigureTemplates()
         {
             InitializeComponent();
+            templateNames = new ObservableCollection<string>(
+                BacklistTemplateFormatSelector.GetInstance().GetTemplates()
+                .Select(x => x.name).ToList());
+            templateListbox.ItemsSource = templateNames;
         }
         private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)
         {

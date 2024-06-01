@@ -65,9 +65,9 @@ namespace Petsi.Services
 
             foreach (CatalogItemPetsi item in catalog)
             {
-                if (item.itemName.ToLower().Contains(name.ToLower()) || item.NaturalNameContains(name.ToLower()))
+                if (item.ItemName.ToLower().Contains(name.ToLower()) || item.NaturalNameContains(name.ToLower()))
                 {
-                    results.Add(item.itemName);
+                    results.Add(item.ItemName);
                 }
             }
             if (results.Count == 0)
@@ -114,10 +114,10 @@ namespace Petsi.Services
             catalog = cmp.GetItems();
             foreach (CatalogItemPetsi item in cmp.GetItems())
             {
-                catalogIdDict.TryAdd(item.itemName, item.catalogObjectId);
-                foreach (DictionaryEntry entry in item.variations)
+                catalogIdDict.TryAdd(item.ItemName, item.CatalogObjectId);
+                foreach (DictionaryEntry entry in item.Variations)
                 {
-                    catalogIdDict.TryAdd((string)entry.Key, item.catalogObjectId);
+                    catalogIdDict.TryAdd((string)entry.Key, item.CatalogObjectId);
                 }
             }
         }
@@ -134,7 +134,7 @@ namespace Petsi.Services
             }
             return false;
             */
-            return catalog.Any(item => item.itemName.ToLower().Contains(input.ToLower()));  
+            return catalog.Any(item => item.ItemName.ToLower().Contains(input.ToLower()));  
         }
 
         public string GenerateCatalogId()
@@ -155,8 +155,8 @@ namespace Petsi.Services
             }
             */
             results.AddRange(catalog
-                .Where(item => item.itemName.ToLower().Contains(inputName.ToLower()))
-                .Select(item => item.itemName));
+                .Where(item => item.ItemName.ToLower().Contains(inputName.ToLower()))
+                .Select(item => item.ItemName));
             return results;
         }
 
@@ -183,15 +183,15 @@ namespace Petsi.Services
                 }
             }
             */
-            searchItem = catalog.FirstOrDefault(item => item.itemName.ToLower() == searchItemName.ToLower());
+            searchItem = catalog.FirstOrDefault(item => item.ItemName.ToLower() == searchItemName.ToLower());
 
             if(searchItem == null) { SystemLogger.Log("CatalogSerivce GetItem() did not find item: " + searchItemName); }
 
-            result.ItemName = searchItem.itemName;
-            result.CatalogObjectId = searchItem.catalogObjectId;
+            result.ItemName = searchItem.ItemName;
+            result.CatalogObjectId = searchItem.CatalogObjectId;
             result.VariationName = Identifiers.SIZE_REGULAR;
             result.Quantity = quantity.ToString();
-            result.VariationId = searchItem.catalogObjectId;
+            result.VariationId = searchItem.CatalogObjectId;
 
             return result;
         }

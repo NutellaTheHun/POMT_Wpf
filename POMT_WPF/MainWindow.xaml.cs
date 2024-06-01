@@ -1,13 +1,9 @@
-﻿using Petsi.Managers;
-using Petsi.Models;
-using Petsi.Units;
-using Petsi.Utils;
+﻿using Petsi.Units;
 using POMT_WPF.MVVM.View;
-using System.Collections.ObjectModel;
+using POMT_WPF.MVVM.ViewModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 
 namespace POMT_WPF
 {
@@ -19,12 +15,10 @@ namespace POMT_WPF
         public MainWindow()
         {
             InitializeComponent();
+            MainWindowViewModel mwvm = new MainWindowViewModel();
 
-            ObservableCollection<PetsiOrder> orders = new ObservableCollection<PetsiOrder>();
-
-            OrderModelPetsi omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
-            orders = new ObservableCollection<PetsiOrder>(omp.GetOrders() as List<PetsiOrder>);
-            dashboardDataGrid.ItemsSource = orders;
+            dashboardDataGrid.ItemsSource = mwvm.Orders;
+            dashboardDataGrid.SelectionChanged += DashboardDataGrid_SelectionChanged;
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -53,14 +47,23 @@ namespace POMT_WPF
             }
         }
 
-        private void membersDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DashboardDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            var dashboardDataGrid = sender as DataGrid;
+            if (dashboardDataGrid != null)
+            {
+                var selectedItem = dashboardDataGrid.SelectedItem;
+                if (selectedItem != null)
+                {
+                    PetsiOrderWindow petsiOrderWin = new PetsiOrderWindow(selectedItem as PetsiOrder);
+                    petsiOrderWin.Show();
+                }
+            }
         }
 
         private void AddOrder_ButtonClick(object sender, RoutedEventArgs e)
         {
-            PetsiOrderWindow petsiOrderWin = new PetsiOrderWindow();
+            PetsiOrderWindow petsiOrderWin = new PetsiOrderWindow(null);
             petsiOrderWin.Show();
         }
         private void ReportWindow_ButtonClick(object sender, RoutedEventArgs e)
@@ -84,16 +87,5 @@ namespace POMT_WPF
         {
             Application.Current.Shutdown();
         }
-    }
-
-    public class Member
-    {
-        public string Character { get; set; }
-        public string Number { get; set; }
-        public string Name { get; set; }
-        public string Position { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public Brush BgColor { get; set; }
     }
 }

@@ -58,7 +58,7 @@ namespace Petsi.Units
 
         public bool Equals(PetsiOrderLineItem? other)
         {
-            if(ItemName.ToLower() != other.ItemName.ToLower()) {  return false; }
+            if(other.ItemName != null && ItemName.ToLower() != other.ItemName.ToLower()) {  return false; }
             if (CatalogObjectId != other.CatalogObjectId) { return false; }
             if (Amount3 != other.Amount3) {  return false; }
             if(Amount5 != other.Amount5) {  return false; }

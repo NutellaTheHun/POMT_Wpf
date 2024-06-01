@@ -1,120 +1,247 @@
-﻿<Window x:Class="POMT_WPF.MVVM.View.PetsiOrderWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:POMT_WPF.MVVM.View.Controls"
-        xmlns:helper="clr-namespace:POMT_WPF.MVVM.Other"
-        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        mc:Ignorable="d"
-        WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize"
-        WindowStyle="None"
-        Background="Transparent"
-        AllowsTransparency="True"
-        Title="PetsiOrderWindow" Height="720" Width="600">
-    
+﻿<Window
+    x:Class="POMT_WPF.MVVM.View.PetsiOrderWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:convert="clr-namespace:POMT_WPF.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helper="clr-namespace:POMT_WPF.MVVM.Other"
+    xmlns:local="clr-namespace:POMT_WPF.MVVM.View.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:POMT_WPF.MVVM.ViewModel"
+    Title="PetsiOrderWindow"
+    Width="600"
+    Height="720"
+    AllowsTransparency="True"
+    Background="Transparent"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+
+    <Window.Resources>
+        <convert:StringToBoolConverter x:Key="StringToBoolConverter" />
+    </Window.Resources>
+
     <Border Background="{StaticResource SecWinPrimary}" CornerRadius="20">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
- 
-            <Button Click="CloseWindow_ButtonClick" Grid.Row="0"  Style="{StaticResource menuButton}" VerticalAlignment="Bottom" HorizontalAlignment="Right" DockPanel.Dock="Bottom" Margin="5">
+
+            <Button
+                Grid.Row="0"
+                Margin="5"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Click="CloseWindow_ButtonClick"
+                DockPanel.Dock="Bottom"
+                Style="{StaticResource menuButton}">
                 <StackPanel Orientation="Horizontal">
-                    <Icon:PackIconMaterial Kind="Close" Style="{StaticResource menuButtonIcon}"/>
+                    <Icon:PackIconMaterial Kind="Close" Style="{StaticResource menuButtonIcon}" />
                 </StackPanel>
             </Button>
-            <TextBlock Grid.Row="1" Text="Order Form" FontSize="24" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock
+                Grid.Row="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="24"
+                Foreground="White"
+                Text="Order Form" />
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="15"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="15" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <StackPanel Orientation="Vertical" Grid.Column="0">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="Recipient ..."/>
+                <StackPanel Grid.Column="0" Orientation="Vertical">
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <local:TextFillTextBox
+                            x:Name="recipientTextBox"
+                            Style="{StaticResource textFillTextBox}"
+                            Text="{Binding Order.Recipient}"
+                            TextFill="Recipient ..." />
+
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <RadioButton Style="{StaticResource reportLabelsRadioButtonTheme}" Content="Pickup" Margin="0 5 20 5" Foreground="#efefef"/>
-                        <RadioButton Style="{StaticResource reportLabelsRadioButtonTheme}" Content="Delivery" Foreground="#efefef"/>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <RadioButton
+                            x:Name="PickupRadioButton"
+                            Margin="0,5,20,5"
+                            Content="Pickup"
+                            Foreground="#efefef"
+                            IsChecked="{Binding Order.FulfillmentType, Converter={StaticResource StringToBoolConverter}, ConverterParameter=PICKUP}"
+                            Style="{StaticResource reportLabelsRadioButtonTheme}" />
+                        <RadioButton
+                            x:Name="DeliveryRadioButton"
+                            Content="Delivery"
+                            Foreground="#efefef"
+                            IsChecked="{Binding Order.FulfillmentType, Converter={StaticResource StringToBoolConverter}, ConverterParameter=DELIVERY}"
+                            Style="{StaticResource reportLabelsRadioButtonTheme}" />
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="Delivery Address(optional) ..."/>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <local:TextFillTextBox
+                            x:Name="DeliveryAddressTextBox"
+                            Style="{StaticResource textFillTextBox}"
+                            Text="{Binding Order.DeliveryAddress}"
+                            TextFill="Delivery Address(optional) ..." />
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <local:TextFillTextBox
+                            x:Name="OrderTypeTextBox"
+                            Style="{StaticResource textFillTextBox}"
+                            Text="{Binding Order.InputOriginType}"
+                            TextFill="Order Type ..." />
                     </StackPanel>
                 </StackPanel>
-                <StackPanel Orientation="Vertical" Grid.Column="4">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="Due Date or Frequency ..."/>
+                <StackPanel Grid.Column="4" Orientation="Vertical">
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <RadioButton
+                            x:Name="WeeklyRadioButton"
+                            Margin="0,5,20,5"
+                            Content="Weekly"
+                            Foreground="#efefef"
+                            IsChecked="{Binding IsPeriodic, UpdateSourceTrigger=PropertyChanged}"
+                            Style="{StaticResource reportLabelsRadioButtonTheme}" />
+                        <RadioButton
+                            x:Name="OneTimeRadioButton"
+                            Content="One Time"
+                            Foreground="#efefef"
+                            IsChecked="{Binding IsOneTime, UpdateSourceTrigger=PropertyChanged}"
+                            Style="{StaticResource reportLabelsRadioButtonTheme}" />
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="DatePicker or FrequencyPicker ..."/>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <DatePicker
+                            x:Name="orderDatePicker"
+                            Width="200"
+                            Height="40"
+                            Foreground="Black"
+                            SelectedDate="{Binding VMPickupDate}" />
+                        <!--<local:TextFillTextBox
+                            x:Name="orderDateTextBox"
+                            Style="{StaticResource textFillTextBox}"
+                            Text="{Binding OrderDueDate}"
+                            TextFill="mm/dd/yy or day of week ..." TextChanged="orderDateTextBox_TextChanged" />-->
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <local:TextFillTextBox
+                            x:Name="orderTimeTextBox"
+                            Style="{StaticResource textFillTextBox}"
+                            Text="{Binding VMPickupTime}"
+                            TextFill="Pickup Time ..." />
+                        <ComboBox
+                            x:Name="orderTimeComboBox"
+                            Width="50"
+                            Height="40"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Foreground="Black"
+                            SelectedIndex="1">
+                            <ComboBoxItem Content="AM" />
+                            <ComboBoxItem Content="PM" />
+                        </ComboBox>
                     </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="h ..."/>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <local:TextFillTextBox
+                            x:Name="phoneTextBox"
+                            Style="{StaticResource textFillTextBox}"
+                            Text="{Binding Order.PhoneNumber}"
+                            TextFill="phone .. " />
+                    </StackPanel>
+
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <local:TextFillTextBox
+                            x:Name="emailTextBox"
+                            Style="{StaticResource textFillTextBox}"
+                            Text="{Binding Order.Email}"
+                            TextFill="email ..." />
                     </StackPanel>
                 </StackPanel>
             </Grid>
-            <Label Grid.Row="3" Content="Items" FontSize="18" Foreground="#efefef" Margin="45 20 0 0"/>
-            <Separator Grid.Row="4" Width="500"/>
-            <Grid Grid.Row="5" Margin="0 10 0 0">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="40 0 0 0 ">
-                    <DataGrid x:Name="orderFormDataGrid"  
-                              BorderBrush="Transparent"
-                              RowStyle="{DynamicResource orderFormDataGridRowStyle}" 
-                              CellStyle="{DynamicResource orderFormDataGridCellStyle}"
-                              ColumnHeaderStyle="{DynamicResource orderFormDataGridColumnHeaderStyle}" 
-                              Style="{DynamicResource orderFormGridStyle}" 
-                              Height="300" Width="500"
-                              ItemsSource="{Binding Items}">
+            <Label
+                Grid.Row="3"
+                Margin="45,10,0,0"
+                Content="Items"
+                FontSize="18"
+                Foreground="#efefef" />
+            <Separator Grid.Row="4" Width="500" />
+            <Grid Grid.Row="5" Margin="0,10,0,0">
+                <StackPanel
+                    Margin="20,0,0,0"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+                    <DataGrid
+                        x:Name="orderFormDataGrid"
+                        Width="500"
+                        Height="250"
+                        BorderBrush="Transparent"
+                        CellStyle="{DynamicResource orderFormDataGridCellStyle}"
+                        ColumnHeaderStyle="{DynamicResource orderFormDataGridColumnHeaderStyle}"
+                        ItemsSource="{Binding Order.LineItems}"
+                        RowStyle="{DynamicResource orderFormDataGridRowStyle}"
+                        Style="{DynamicResource orderFormGridStyle}">
                         <DataGrid.Columns>
-                            <DataGridTemplateColumn Header="Item Name" Width="*">
+                            <DataGridTemplateColumn Width="*" Header="Item Name">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <local:TextFillTextBox Text="{Binding ItemName}" Style="{StaticResource orderFormTextFillTextBox}"  TextFill="Item Name ..."/>
+                                        <local:TextFillTextBox
+                                            Style="{StaticResource orderFormTextFillTextBox}"
+                                            Text="{Binding ItemName}"
+                                            TextFill="Item Name ..." />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Header="Amount 3" Width="*">
+                            <DataGridTemplateColumn Width="*" Header="Amount 3">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <local:TextFillTextBox Text="{Binding Amount3}" Style="{StaticResource orderFormTextFillTextBox}"  TextFill="Amount 3 ..."/>
+                                        <local:TextFillTextBox
+                                            Style="{StaticResource orderFormTextFillTextBox}"
+                                            Text="{Binding Amount3}"
+                                            TextFill="Amount 3 ..." />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Header="Amount 5" Width="*">
+                            <DataGridTemplateColumn Width="*" Header="Amount 5">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <local:TextFillTextBox Text="{Binding Amount5}" Style="{StaticResource orderFormTextFillTextBox}" TextFill="Amount 5 ..."/>
+                                        <local:TextFillTextBox
+                                            Style="{StaticResource orderFormTextFillTextBox}"
+                                            Text="{Binding Amount5}"
+                                            TextFill="Amount 5 ..." />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Header="Amount 8" Width="*">
+                            <DataGridTemplateColumn Width="*" Header="Amount 8">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <local:TextFillTextBox Text="{Binding Amount8}" Style="{StaticResource orderFormTextFillTextBox}" TextFill="Amount 8 ..."/>
+                                        <local:TextFillTextBox
+                                            Style="{StaticResource orderFormTextFillTextBox}"
+                                            Text="{Binding Amount8}"
+                                            TextFill="Amount 8 ..." />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Header="Amount 10" Width="*">
+                            <DataGridTemplateColumn Width="*" Header="Amount 10">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <local:TextFillTextBox Text="{Binding Amount10}" Style="{StaticResource orderFormTextFillTextBox}" TextFill="Amount 10 ..."/>
+                                        <local:TextFillTextBox
+                                            Style="{StaticResource orderFormTextFillTextBox}"
+                                            Text="{Binding Amount10}"
+                                            TextFill="Amount 10 ..." />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            
+
                             <!--<DataGridTextColumn Header="Item Name" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding ItemName}"/>
                             <DataGridTextColumn Header="Amount 3" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding Amount3}" />
                             <DataGridTextColumn Header="Amount 5" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding Amount5}" />
@@ -122,23 +249,61 @@
                             <DataGridTextColumn Header="Amount 10" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding Amount10}" />-->
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Click="AddLineItem_BtnClk" Margin="5 0 5 5" Style="{StaticResource secondaryButton}"  Width="30" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right">
-                        <Icon:PackIconMaterial Kind="Plus"/>
+                    <Button
+                        Width="30"
+                        Height="30"
+                        Margin="5,0,5,5"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Click="AddLineItem_BtnClk"
+                        Style="{StaticResource secondaryButton}">
+                        <Icon:PackIconMaterial Kind="Plus" />
                     </Button>
                 </StackPanel>
-               
+
             </Grid>
             <Grid Grid.Row="6">
-                <StackPanel Margin="20" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <local:TextFillTextBox TextWrapping="Wrap" Style="{StaticResource textFillTextBox}" TextFill="notes ..."/>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    <local:TextFillTextBox
+                        Style="{StaticResource textFillTextBox}"
+                        TextFill="notes ..."
+                        TextWrapping="Wrap" />
                 </StackPanel>
             </Grid>
-            <Grid Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <StackPanel Orientation="Horizontal">
-                    <Button Click="ConfirmCloseWin_BtnClk" Width="80" Margin="0 0 60 0" Style="{StaticResource secondaryButton}" Content="Confirm"/>
-                    <Button Click="CloseWindow_ButtonClick" Width="80"  Style="{StaticResource secondaryButton}" Content="Cancel"/>
-                    <!--Delete button for pre-existing items if arg(injection) is null gate?-->
+            <Grid
+                Grid.Row="7"
+                Margin="150,0,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+                <StackPanel Margin="0,15,0,0" Orientation="Vertical">
+                    <StackPanel
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+                        <Button
+                            Width="80"
+                            Margin="10,0,10,0"
+                            Click="ConfirmCloseWin_BtnClk"
+                            Content="Confirm"
+                            Style="{StaticResource secondaryButton}" />
+                        <Button
+                            Width="80"
+                            Margin="10,0,10,0"
+                            Click="CloseWindow_ButtonClick"
+                            Content="Cancel"
+                            Style="{StaticResource secondaryButton}" />
+                        <Button
+                            Margin="100,10,0,0"
+                            HorizontalAlignment="Right"
+                            Background="#E5446D"
+                            Click="Delete_BtnClk"
+                            Content="Delete"
+                            Style="{StaticResource secondaryButton}" />
+
+                    </StackPanel>
+                    <StackPanel />
                 </StackPanel>
+
             </Grid>
         </Grid>
     </Border>

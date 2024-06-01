@@ -38,9 +38,9 @@ namespace Petsi.CommandLine
             string[] args;
             foreach(var item in itemList)
             {
-                if(item.categoryId == Identifiers.CATEGORY_PIE)
+                if(item.CategoryId == Identifiers.CATEGORY_PIE)
                 {
-                    Console.WriteLine(item.itemName + ": ");
+                    Console.WriteLine(item.ItemName + ": ");
                     Console.WriteLine("n: next, p: pie, c: cutie");
                     input = Console.ReadLine();
                     args = input.ToLower().Split(' ');
@@ -92,7 +92,7 @@ namespace Petsi.CommandLine
 
         private List<string> GetFileDirectoryList(string directoryName)
         {
-            string path = PetsiConfig.GetInstance().GetVariable("labelDirectory");
+            string path = PetsiConfig.GetInstance().GetFilepath("labelDirectory");
             if (!Directory.Exists(path + directoryName))
             {
                 Directory.CreateDirectory(path + directoryName);

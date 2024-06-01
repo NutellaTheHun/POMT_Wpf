@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using Petsi.Units;
+using POMT_WPF.MVVM.ViewModel;
 using System.Windows;
 
 
@@ -9,18 +10,14 @@ namespace POMT_WPF.MVVM.View
     /// </summary>
     public partial class PetsiOrderWindow : Window
     {
-        public ObservableCollection<Item> Items { get; set; } = new ObservableCollection<Item>();
+        PetsiOrderWindowViewModel vm;
 
-
-        public PetsiOrderWindow()
+        public PetsiOrderWindow(PetsiOrder? existingOrder)
         {
             InitializeComponent();
-            DataContext = this;
-            Items.Add(new Item("A", "1", "2", "3", "4"));
-            Items.Add(new Item());
-
-            //orderFormDataGrid.ItemsSource = Items;
-            
+            vm = new PetsiOrderWindowViewModel(existingOrder);
+            DataContext = vm;
+            orderFormDataGrid.ItemsSource = vm.Order.LineItems;
         }
 
         private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)
@@ -30,31 +27,97 @@ namespace POMT_WPF.MVVM.View
 
         private void ConfirmCloseWin_BtnClk(object sender, RoutedEventArgs e)
         {
-            //Do something
+            //Validate
+            if(recipientTextBox.Text == "")
+            {
+                PetsiOrderFormErrorWindow errorWindow = 
+                    new PetsiOrderFormErrorWindow("Recipient is required.");
+                errorWindow.Show();
+                return;
+            }
+            if(PickupRadioButton.IsChecked == false && DeliveryRadioButton.IsChecked == false)
+            {
+                PetsiOrderFormErrorWindow errorWindow =
+                    new PetsiOrderFormErrorWindow("Please select a pickup or delivery option.");
+                errorWindow.Show();
+                return;
+            }
+            if(DeliveryRadioButton.IsChecked == true 
+                && DeliveryAddressTextBox.Text == ""
+                && phoneTextBox.Text == "")
+            {
+                PetsiOrderFormErrorWindow errorWindow =
+                    new PetsiOrderFormErrorWindow("Deliveries require a delivery address and phone number.");
+                errorWindow.Show();
+                return;
+            }
+            if (OrderTypeTextBox.Text == "")
+            {
+                PetsiOrderFormErrorWindow errorWindow =
+                    new PetsiOrderFormErrorWindow("Order type is required.");
+                errorWindow.Show();
+                return;
+            }
+
+            if (WeeklyRadioButton.IsChecked == false && OneTimeRadioButton.IsChecked == false)
+            {
+                PetsiOrderFormErrorWindow errorWindow =
+                    new PetsiOrderFormErrorWindow("Please select a weekly or one-time order.");
+                errorWindow.Show();
+                return;
+            }
+
+            if (orderDatePicker.Text == "")
+            {
+                PetsiOrderFormErrorWindow errorWindow =
+                    new PetsiOrderFormErrorWindow("Order date is required.");
+                errorWindow.Show();
+                return;
+            }
+
+            DateTime testDate;
+            if (OneTimeRadioButton.IsChecked == true
+                && !DateTime.TryParse(orderTimeTextBox.Text + orderTimeComboBox.Text, out testDate))
+            {
+                PetsiOrderFormErrorWindow errorWindow =
+                    new PetsiOrderFormErrorWindow("Order time input was not accepted.");
+                errorWindow.Show();
+                return;
+            }
+            /*
+            if(orderFormDataGrid.Items.Count == 0 || !AllLineItemsComplete())
+            {
+                PetsiOrderFormErrorWindow errorWindow =
+                    new PetsiOrderFormErrorWindow("Order must have at least one item, and all items filled in.");
+                errorWindow.Show();
+                return;
+            }
+            */
+            
+            //ADD ORDER IF NEW!! CAN DELETE IF EXISTS
+            vm.AddOrder(orderTimeTextBox.Text + orderTimeComboBox.Text);
+            Close();
+        }
+
+        private bool AllLineItemsComplete()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Delete_BtnClk(object sender, RoutedEventArgs e)
+        {
+            //Are you sure window?
+            //delete
             Close();
         }
         private void AddLineItem_BtnClk(object sender, RoutedEventArgs e)
         {
-            Items.Add(new Item());
+            vm.AddLineItem(new PetsiOrderLineItem());
         }
-    }
-    public class Item
-    {
-        public string ItemName { get; set; }
-        public string Amount3 { get; set; }
-        public string Amount5 { get; set; }
-        public string Amount8 { get; set; }
-        public string Amount10 { get; set; }
 
-        public Item() { }
-
-        public Item(string itemName, string amount3, string amount5, string amount8, string amount10)
+        private void orderDateTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-            ItemName = itemName;
-            Amount3 = amount3;
-            Amount5 = amount5;
-            Amount8 = amount8;
-            Amount10 = amount10;
+
         }
     }
 }

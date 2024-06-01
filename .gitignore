@@ -1,3 +1,4 @@
 *.xlsx
 Square.Service/config.txt
 Petsi/bin/fileService
+.vs

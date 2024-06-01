@@ -29,7 +29,8 @@ namespace Petsi.Models
         public void SetOrders(List<PetsiOrder> newOrders) { Orders = newOrders; }
         public FileBehavior GetFileBehavior() { return fileBehavior; }
         public override void ClearModel() { Orders.Clear(); }
-        public override void AddItem(ModelUnitBase item) { Orders.Add((PetsiOrder)item); SortOrders(); }
+        public override void AddOrder(ModelUnitBase order) { Orders.Add((PetsiOrder)order); SortOrders(); }
+        public void RemoveOrder(ModelUnitBase item) { Orders.Remove((PetsiOrder)item);}
         public override void Complete() 
         {
            SortOrders();
@@ -42,6 +43,15 @@ namespace Petsi.Models
         }
         public override string GetModelName() { return ModelName; }
         public override void SetModelName(string modelName) { ModelName = modelName; }
+
+        /// <summary>
+        /// Generates a new order ID, use inputOrigin as prefix
+        /// </summary>
+        /// <returns></returns>
+        public string GenerateOrderId()
+        {
+            return Guid.NewGuid().ToString();
+        }
         //----------
         private List<PetsiOrderLineItem> AggregatePetsiOrders(List<PetsiOrder> orders)
         {
@@ -179,6 +189,11 @@ namespace Petsi.Models
         public override void CaptureEnvironment(FileBehavior reportFb)
         {
             reportFb.DataListToFile(Identifiers.ENV_OMP, Orders);
+        }
+
+        public void RemoveItem(PetsiOrder order)
+        {
+            Orders.Remove(order);
         }
     }   
 }

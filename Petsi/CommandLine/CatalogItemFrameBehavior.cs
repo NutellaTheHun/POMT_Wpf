@@ -42,9 +42,9 @@ namespace Petsi.CommandLine
         public override void CommandFrameView()
         {
             Console.WriteLine(
-                "Item Name: " + item.itemName +
-                "\nCatalog Object Id: " + item.catalogObjectId +
-                "\ncategory Id: " + item.categoryId +
+                "Item Name: " + item.ItemName +
+                "\nCatalog Object Id: " + item.CatalogObjectId +
+                "\ncategory Id: " + item.CategoryId +
                 "\nnatural names: ");
             PrintNaturalNames();
             Console.WriteLine("variations: ");

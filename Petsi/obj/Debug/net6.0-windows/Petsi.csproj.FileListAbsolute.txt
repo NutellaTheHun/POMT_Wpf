@@ -133,7 +133,7 @@ D:\Git-Repos\POMT_WPF\Petsi\obj\Debug\net6.0-windows\Petsi.AssemblyInfoInputs.ca
 D:\Git-Repos\POMT_WPF\Petsi\obj\Debug\net6.0-windows\Petsi.AssemblyInfo.cs
 D:\Git-Repos\POMT_WPF\Petsi\obj\Debug\net6.0-windows\Petsi.csproj.CoreCompileInputs.cache
 D:\Git-Repos\POMT_WPF\Petsi\obj\Debug\net6.0-windows\Petsi.sourcelink.json
-D:\Git-Repos\POMT_WPF\Petsi\obj\Debug\net6.0-windows\Petsi.csproj.CopyComplete
+D:\Git-Repos\POMT_WPF\Petsi\obj\Debug\net6.0-windows\Petsi.csproj.Up2Date
 D:\Git-Repos\POMT_WPF\Petsi\obj\Debug\net6.0-windows\Petsi.dll
 D:\Git-Repos\POMT_WPF\Petsi\obj\Debug\net6.0-windows\refint\Petsi.dll
 D:\Git-Repos\POMT_WPF\Petsi\obj\Debug\net6.0-windows\Petsi.pdb

@@ -27,7 +27,7 @@ namespace Petsi.Filing
         }
         public List<T> BuildDataListFile<T>(string fileName)
         {
-            return FileService.BuildDataList<T>(directoryName, fileName);
+            return FileService.FileToDataList<T>(directoryName, fileName);
         }
         public void DataListToFile<T>(string fileName, List<T> dataList)
         {

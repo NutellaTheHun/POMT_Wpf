@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using POMT_WPF.MVVM.ViewModel;
+using System.Windows;
 
 namespace POMT_WPF.MVVM.View
 {
@@ -10,6 +11,8 @@ namespace POMT_WPF.MVVM.View
         public ConfigureLabels()
         {
             InitializeComponent();
+            ConfigureLabelsViewModel cmv= new ConfigureLabelsViewModel();
+            labelDataGrid.ItemsSource = cmv.Items;
         }
         private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)
         {

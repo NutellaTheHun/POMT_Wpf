@@ -16,7 +16,7 @@ namespace Petsi.Reports.TableBuilder
         {
             List<PetsiOrderLineItem> items = tableOrders as List<PetsiOrderLineItem>;
             List<PetsiOrderLineItem> itemTracker = new List<PetsiOrderLineItem>(items);
-            List<BackListItem> listFormat = BacklistPageFormatSelector.GetStandardFormat();
+            List<BackListItem> listFormat = BacklistTemplateFormatSelector.GetInstance().GetPieFormat();
             
             //Header
             AddLine(page, ref _rowIndex, _rootPosition.col, "", "3\"", "5\"", "8\"", "10\"");

@@ -7,7 +7,7 @@ namespace Petsi.Filing
     {
         private static string ServicePath()
         {
-            return PetsiConfig.GetInstance().GetVariable("fileServicePath");
+            return PetsiConfig.GetInstance().GetFilepath("fileServicePath");
         }
         public static void DataObjectToFile<T>(string directory, string fileName, List<T> target)
         {
@@ -34,10 +34,18 @@ namespace Petsi.Filing
             ValidateDirectory(directory);
             File.WriteAllText(ServicePath() + directory + "/" + fileName, JsonConvert.SerializeObject(target));
         }
-        public static List<T> BuildDataList<T>(string directory, string fileName)
+        public static List<T> FileToDataList<T>(string directory, string fileName)
         {
             ValidateDirectory(directory);
-            string input = File.ReadAllText(ServicePath() + directory + "/" + fileName);
+            string input;
+            try
+            {
+                input = File.ReadAllText(ServicePath() + directory + "/" + fileName);
+            }catch(FileNotFoundException ex)
+            {
+                return null;
+            }
+            
             return JsonConvert.DeserializeObject<List<T>>(input);
         }
 
