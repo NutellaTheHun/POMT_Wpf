@@ -83,25 +83,35 @@
                         Orientation="Horizontal">
                         <StackPanel Margin="0,0,40,0" Orientation="Vertical">
                             <CheckBox
-                                Margin="0,0,0,10"
                                 Content="Small"
                                 FontSize="16"
-                                Foreground="White" />
+                                Foreground="White"
+                                IsChecked="{Binding IsSmall}" />
                             <CheckBox
+                                Margin="0,10,0,10"
                                 Content="Medium"
                                 FontSize="16"
-                                Foreground="White" />
-                        </StackPanel>
-                        <StackPanel Orientation="Vertical">
+                                Foreground="White"
+                                IsChecked="{Binding IsMedium}" />
                             <CheckBox
-                                Margin="0,0,0,10"
                                 Content="Large"
                                 FontSize="16"
-                                Foreground="White" />
+                                Foreground="White"
+                                IsChecked="{Binding IsLarge}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+
                             <CheckBox
+                                Margin="0,10,0,10"
                                 Content="Regular"
                                 FontSize="16"
-                                Foreground="White" />
+                                Foreground="White"
+                                IsChecked="{Binding IsRegular}" />
+                            <CheckBox
+                                Content="Cutie"
+                                FontSize="16"
+                                Foreground="White"
+                                IsChecked="{Binding IsCutie}" />
                         </StackPanel>
 
 
@@ -109,10 +119,7 @@
                 </StackPanel>
                 <StackPanel Grid.Column="4" Orientation="Vertical">
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                        <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="natural names ..." />
-                    </StackPanel>
-                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                        <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="variations ..." />
+                        <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="Make List Box? natural names ..." />
                     </StackPanel>
 
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">

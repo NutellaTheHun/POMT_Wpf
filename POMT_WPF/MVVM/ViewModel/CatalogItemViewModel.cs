@@ -116,6 +116,6 @@ namespace POMT_WPF.MVVM.ViewModel
         public void AddCatalogItem()
         {
            Item = new CatalogItemPetsi();
-        }}
+        }
     }
 }
