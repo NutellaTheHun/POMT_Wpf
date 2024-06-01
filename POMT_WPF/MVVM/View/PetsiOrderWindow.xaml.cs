@@ -84,6 +84,7 @@ namespace POMT_WPF.MVVM.View
                 errorWindow.Show();
                 return;
             }
+            /*
             if(orderFormDataGrid.Items.Count == 0 || !AllLineItemsComplete())
             {
                 PetsiOrderFormErrorWindow errorWindow =
@@ -91,7 +92,7 @@ namespace POMT_WPF.MVVM.View
                 errorWindow.Show();
                 return;
             }
-            
+            */
             
             //ADD ORDER IF NEW!! CAN DELETE IF EXISTS
             vm.AddOrder(orderTimeTextBox.Text + orderTimeComboBox.Text);

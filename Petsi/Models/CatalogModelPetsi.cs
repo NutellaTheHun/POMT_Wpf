@@ -62,7 +62,7 @@ namespace Petsi.Models
         public FileBehavior GetFileBehavior(){ return fileBehavior; }
         public override void ClearModel() { items.Clear(); }
 
-        public override void AddItem(ModelUnitBase item)
+        public override void AddOrder(ModelUnitBase item)
         {
             items.Add((CatalogItemPetsi)item);
             SaveMainModel();

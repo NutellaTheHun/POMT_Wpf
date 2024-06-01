@@ -29,7 +29,8 @@ namespace Petsi.Models
         public void SetOrders(List<PetsiOrder> newOrders) { Orders = newOrders; }
         public FileBehavior GetFileBehavior() { return fileBehavior; }
         public override void ClearModel() { Orders.Clear(); }
-        public override void AddItem(ModelUnitBase item) { Orders.Add((PetsiOrder)item); SortOrders(); }
+        public override void AddOrder(ModelUnitBase order) { Orders.Add((PetsiOrder)order); SortOrders(); }
+        public void RemoveOrder(ModelUnitBase item) { Orders.Remove((PetsiOrder)item);}
         public override void Complete() 
         {
            SortOrders();

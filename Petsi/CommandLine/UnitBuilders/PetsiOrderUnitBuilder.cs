@@ -109,7 +109,7 @@ namespace Petsi.CommandLine.UnitBuilders
                         }
                         break;
                     case 5:
-                        orderModel.AddItem(new PetsiOrder(
+                        orderModel.AddOrder(new PetsiOrder(
                             "frame_input",
                             Recipient,
                             catalogService.GenerateCatalogId(), //GenerateCatalogId Method's output isnt unqique to the catalog.

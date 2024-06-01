@@ -2,6 +2,7 @@
 using Petsi.Models;
 using Petsi.Units;
 using Petsi.Utils;
+using POMT_WPF.MVVM.ObsModels;
 
 namespace POMT_WPF.MVVM.ViewModel
 {
@@ -126,7 +127,7 @@ namespace POMT_WPF.MVVM.ViewModel
             Order.IsPeriodic = IsPeriodic;
             OrderModelPetsi omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
             Order.OrderId = Order.InputOriginType+"-"+omp.GenerateOrderId();
-            omp.AddItem(Order); //doesnt update the dashboard
+            ObsOrderModelSingleton.AddOrder(Order);
         }
     }
 }

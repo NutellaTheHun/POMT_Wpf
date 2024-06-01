@@ -45,21 +45,21 @@ namespace POMT_WPF.MVVM.ViewModel
         {
             ReportDirector rd = new ReportDirector();
             if (frontlist)
-           {
+            {
                 rd.CreateFrontList(dt1);
-           }
-           else if(backList)
-           {
+            }
+            else if (backList)
+            {
                 rd.CreateBackList(dt1, null);
-           }
-           else if (wsAgg)
-           {
+            }
+            else if (wsAgg)
+            {
                 rd.CreateWsDay(dt1);
-           }
-           else if (ws)
-           {
+            }
+            else if (ws)
+            {
                 rd.CreateWsDayName(dt1);
-           }
+            }
         }
     }
 }

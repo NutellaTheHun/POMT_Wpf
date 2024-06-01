@@ -1,30 +1,38 @@
-﻿using POMT_WPF.Core;
-using System;
+﻿using Petsi.Units;
+using POMT_WPF.MVVM.ObsModels;
+using System.Collections.ObjectModel;
 
 namespace POMT_WPF.MVVM.ViewModel
 {
-    public class MainViewModel : ObservableObject
+    public class MainWindowViewModel : ViewModelBase
     {
-        public RelayCommand HomeViewCommand { get; set; }
-        public RelayCommand LabelViewCommand { get; set; }
-        public RelayCommand OrderViewCommand { get; set; }
-        public RelayCommand ReportViewCommand { get; set; }
-        public RelayCommand SettingsViewCommand { get; set; }
-        private object _currentView;
 
-		public object CurrentView
-		{
-			get { return _currentView; }
-			set
-			{ 
-				_currentView = value;
-				OnPropertyChanged();
-			}
-		}
+        private ObservableCollection<PetsiOrder> _orders;
+        public ObservableCollection<PetsiOrder> Orders 
+        { 
+            get { return _orders; } 
+            set
+            {
+                if(_orders != value)
+                {
+                    _orders = value;
+                    OnPropertyChanged(nameof(_orders));
+                }
+            }
+        }
+        public MainWindowViewModel()
+        {
+            Orders = ObsOrderModelSingleton.Instance.Orders;
+        }
 
-		public MainViewModel()
-		{
+        public void AddOrder(PetsiOrder order)
+        {
+            Orders.Add(order);
+        }
 
+        public void RemoveOrder(PetsiOrder order)
+        {
+            Orders.Remove(order);
         }
     }
 }

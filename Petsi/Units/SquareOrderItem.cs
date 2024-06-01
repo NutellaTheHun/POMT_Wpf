@@ -41,6 +41,7 @@ namespace Petsi.Units
             o.FulfillmentType = FulfillmentType;
             o.Note = Note;
             o.LineItems = ToPetsiOrderLineItemList();
+            o.IsPeriodic = false;
             return o;
         }
         private List<PetsiOrderLineItem> ToPetsiOrderLineItemList()
