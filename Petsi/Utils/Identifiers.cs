@@ -6,6 +6,7 @@ namespace Petsi.Utils
         public readonly static string SQUARE_ORDER_INPUT = "SquareOrderInput";
         public readonly static string WHOLESALE_INPUT = "WholesaleInput";
         public readonly static string SQUARE_CATALOG_INPUT = "SquareCatalogInput";
+        public readonly static string ONE_SHOT_INPUT = "OneShotInput";
 
         public readonly static string MODEL_ORDERS = "ORDERMODEL";
 
@@ -55,6 +56,7 @@ namespace Petsi.Utils
         public readonly static string ENV_SCI = "env_square_catalog_input";
         public readonly static string ENV_SOI = "env_square_order_input";
         public readonly static string ENV_WSI = "env_wholesale_input";
+        public readonly static string ENV_OSI = "env_oneShot_input";
         public readonly static string ENV_OMP = "env_order_model";
         public readonly static string ENV_CMP = "env_catalog_model";
         public readonly static string ENV_CATA_S = "env_catalog_serv";

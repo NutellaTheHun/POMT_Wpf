@@ -129,5 +129,25 @@ namespace POMT_WPF.MVVM.ViewModel
             Order.OrderId = Order.InputOriginType+"-"+omp.GenerateOrderId();
             ObsOrderModelSingleton.AddOrder(Order);
         }
+
+        public bool IsValidLineItems()
+        {
+            foreach (PetsiOrderLineItem lineItem in Order.LineItems)
+            {
+                if (lineItem.ItemName == "")
+                {
+                    return false;
+                }
+                if (lineItem.AmountRegular == 0
+                       && lineItem.Amount3 == 0
+                       && lineItem.Amount5 == 0
+                       && lineItem.Amount8 == 0
+                      && lineItem.Amount10 == 0)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }

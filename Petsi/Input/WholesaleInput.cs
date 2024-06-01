@@ -59,6 +59,7 @@ namespace Petsi.Input
                 {
                     PetsiOrder ooi = item.ToOnOrderItemHeader();
                     ooi.LineItems.Add(item.ToOnOrderLineItem());
+                    ooi.IsPeriodic = true;
                     dict.Add(onOrderId, ooi);
                 }
             }

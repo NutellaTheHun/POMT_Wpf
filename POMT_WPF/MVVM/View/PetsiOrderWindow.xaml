@@ -23,7 +23,7 @@
         <convert:StringToBoolConverter x:Key="StringToBoolConverter" />
     </Window.Resources>
 
-    <Border Background="{StaticResource SecWinPrimary}" CornerRadius="20">
+    <Border Background="{StaticResource Charcoal}" CornerRadius="20">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
@@ -295,7 +295,7 @@
                         <Button
                             Margin="100,10,0,0"
                             HorizontalAlignment="Right"
-                            Background="#E5446D"
+                            Background="{StaticResource ChiliRed}"
                             Click="Delete_BtnClk"
                             Content="Delete"
                             Style="{StaticResource secondaryButton}" />

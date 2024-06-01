@@ -84,24 +84,18 @@ namespace POMT_WPF.MVVM.View
                 errorWindow.Show();
                 return;
             }
-            /*
-            if(orderFormDataGrid.Items.Count == 0 || !AllLineItemsComplete())
+            
+            if(!vm.IsValidLineItems())
             {
                 PetsiOrderFormErrorWindow errorWindow =
-                    new PetsiOrderFormErrorWindow("Order must have at least one item, and all items filled in.");
+                    new PetsiOrderFormErrorWindow("Order must have at least one item, and all items filled in. (Needs a name and a quantity)");
                 errorWindow.Show();
                 return;
             }
-            */
             
             //ADD ORDER IF NEW!! CAN DELETE IF EXISTS
             vm.AddOrder(orderTimeTextBox.Text + orderTimeComboBox.Text);
             Close();
-        }
-
-        private bool AllLineItemsComplete()
-        {
-            throw new NotImplementedException();
         }
 
         private void Delete_BtnClk(object sender, RoutedEventArgs e)

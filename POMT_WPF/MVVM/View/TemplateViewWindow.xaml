@@ -17,7 +17,7 @@
     WindowStyle="None"
     mc:Ignorable="d">
 
-    <Border Background="{StaticResource SecWinPrimary}" CornerRadius="20">
+    <Border Background="{StaticResource Charcoal}" CornerRadius="20">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
@@ -51,7 +51,8 @@
                 <Border
                     Width="520"
                     Height="520"
-                    Background="{StaticResource niceDark}"
+                    BorderBrush="{StaticResource RaisinBlack}"
+                    BorderThickness="10"
                     CornerRadius="20">
                     <DataGrid
                         x:Name="templateViewDataGrid"
@@ -69,7 +70,7 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <local:TextFillTextBox
-                                            Style="{StaticResource orderFormTextFillTextBox}"
+                                            Style="{StaticResource TemplateViewTextFillTextBox}"
                                             Text="{Binding ItemName}"
                                             TextFill="Item Name ..." />
                                     </DataTemplate>
@@ -86,7 +87,7 @@
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
                     Click="AddLineItem_BtnClk"
-                    Style="{StaticResource secondaryButton}">
+                    Style="{StaticResource templateViewButton}">
                     <Icon:PackIconMaterial Kind="Plus" />
                 </Button>
 
@@ -102,12 +103,12 @@
                         Margin="0,0,60,0"
                         Click="ConfirmCloseWin_BtnClk"
                         Content="Done"
-                        Style="{StaticResource secondaryButton}" />
+                        Style="{StaticResource templateViewButton}" />
                     <Button
                         Width="80"
                         Click="CloseWindow_ButtonClick"
                         Content="Cancel"
-                        Style="{StaticResource secondaryButton}" />
+                        Style="{StaticResource templateViewButton}" />
                 </StackPanel>
             </Grid>
         </Grid>

@@ -21,7 +21,7 @@
         <viewModel:SettingsWindowViewModel />
     </Window.DataContext>
 
-    <Border Background="{StaticResource SecWinPrimary}" CornerRadius="20">
+    <Border Background="{StaticResource LapisLazuli}" CornerRadius="20">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
@@ -53,7 +53,9 @@
                         Margin="10"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Foreground="White"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Foreground="{StaticResource maybeDark}"
                         Text="Rollo Printer" />
                     <local:TextFillTextBox
                         IsReadOnly="true"
@@ -65,14 +67,16 @@
                         Margin="10,0,0,0"
                         Click="ConfigureLabelsWin_BtnClk"
                         Content="Set"
-                        Style="{StaticResource secondaryButton}" />
+                        Style="{StaticResource settingsButton}" />
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                     <TextBlock
                         Margin="10"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Foreground="White"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Foreground="{StaticResource maybeDark}"
                         Text="StandardPrinter" />
                     <local:TextFillTextBox
                         IsReadOnly="true"
@@ -84,14 +88,16 @@
                         Margin="10,0,0,0"
                         Click="ConfigureLabelsWin_BtnClk"
                         Content="Set"
-                        Style="{StaticResource secondaryButton}" />
+                        Style="{StaticResource settingsButton}" />
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                     <TextBlock
                         Margin="10"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Foreground="White"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Foreground="{StaticResource maybeDark}"
                         Text="Labels Filepath" />
                     <local:TextFillTextBox
                         IsReadOnly="true"
@@ -103,7 +109,7 @@
                         Margin="10,0,0,0"
                         Click="ConfigureLabelsWin_BtnClk"
                         Content="Set"
-                        Style="{StaticResource secondaryButton}" />
+                        Style="{StaticResource settingsButton}" />
                 </StackPanel>
                 <StackPanel
                     Margin="0,0,60,0"
@@ -113,7 +119,9 @@
                         Margin="10"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Foreground="White"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Foreground="{StaticResource maybeDark}"
                         Text="NumberOfDays" />
                     <local:TextFillTextBox
                         IsReadOnly="true"
@@ -126,7 +134,9 @@
                         Margin="10"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Foreground="White"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Foreground="{StaticResource maybeDark}"
                         Text="Select Pie Template" />
                     <local:TextFillTextBox
                         IsReadOnly="true"
@@ -138,14 +148,16 @@
                         Margin="10,0,0,0"
                         Click="ConfigureLabelsWin_BtnClk"
                         Content="Set"
-                        Style="{StaticResource secondaryButton}" />
+                        Style="{StaticResource settingsButton}" />
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                     <TextBlock
                         Margin="10"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Foreground="White"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Foreground="{StaticResource maybeDark}"
                         Text="Select PastryTemplate" />
                     <local:TextFillTextBox
                         IsReadOnly="true"
@@ -157,7 +169,7 @@
                         Margin="10,0,0,0"
                         Click="ConfigureLabelsWin_BtnClk"
                         Content="Set"
-                        Style="{StaticResource secondaryButton}" />
+                        Style="{StaticResource settingsButton}" />
                 </StackPanel>
             </StackPanel>
             <Grid Grid.Row="2">
@@ -166,23 +178,23 @@
                     HorizontalAlignment="Left"
                     Orientation="Vertical">
                     <Button
-                        Width="125"
+                        Width="140"
                         Margin="0,5,0,5"
                         Click="ConfigureLabelsWin_BtnClk"
                         Content="Configure Labels"
-                        Style="{StaticResource secondaryButton}" />
+                        Style="{StaticResource settingsButton}" />
                     <Button
-                        Width="125"
+                        Width="140"
                         Margin="0,5,0,5"
                         Click="ConfigureTemplatesWin_BtnClk"
                         Content="Configure Templates"
-                        Style="{StaticResource secondaryButton}" />
+                        Style="{StaticResource settingsButton}" />
                     <Button
-                        Width="125"
+                        Width="140"
                         Margin="0,5,0,5"
                         Click="ManageCatalogWin_BtnClk"
                         Content="Manage Catalog"
-                        Style="{StaticResource secondaryButton}" />
+                        Style="{StaticResource settingsButton}" />
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="3">
@@ -202,12 +214,12 @@
                         Margin="0,0,60,0"
                         Click="ConfirmCloseWin_BtnClk"
                         Content="Done"
-                        Style="{StaticResource secondaryButton}" />
+                        Style="{StaticResource settingsButton}" />
                     <Button
                         Width="80"
                         Click="CloseWindow_ButtonClick"
                         Content="Cancel"
-                        Style="{StaticResource secondaryButton}" />
+                        Style="{StaticResource settingsButton}" />
                 </StackPanel>
             </Grid>
         </Grid>

@@ -12,16 +12,35 @@
     <Application.Resources>
 
         <!--#region Colors-->
-        <SolidColorBrush x:Key="PrimaryColor" Color="#CCD7E1" />
-        <SolidColorBrush x:Key="SecondaryColor" Color="#2D6587" />
+        <SolidColorBrush x:Key="ColumbiaBlue" Color="#CCD7E1" />
+        <SolidColorBrush x:Key="LapisLazuli" Color="#2D6587" />
         <SolidColorBrush x:Key="TextFont" Color="#40474C" />
         <SolidColorBrush x:Key="Orange" Color="#E37B34" />
-        <SolidColorBrush x:Key="SecWinPrimary" Color="#2F4858" />
+        <SolidColorBrush x:Key="Charcoal" Color="#2F4858" />
         <SolidColorBrush x:Key="purple" Color="#7A578B" />
-        <SolidColorBrush x:Key="niceDark" Color="#353340" />
+        <SolidColorBrush x:Key="RaisinBlack" Color="#353340" />
         <SolidColorBrush x:Key="LightBlu" Color="#A8D0DB" />
         <SolidColorBrush x:Key="AtomicTangerine" Color="#E49273" />
         <SolidColorBrush x:Key="DarkSpringGreen" Color="#157145" />
+        <SolidColorBrush x:Key="maybeDark" Color="#1E152A" />
+        <SolidColorBrush x:Key="maybeYello" Color="#F5A65B" />
+        <SolidColorBrush x:Key="NaplesYello" Color="#FFDF64" />
+        <SolidColorBrush x:Key="BattleshipGray" Color="#877B66" />
+        <SolidColorBrush x:Key="CoralPink" Color="#D78A76" />
+        <SolidColorBrush x:Key="ChiliRed" Color="#D64933" />
+        <SolidColorBrush x:Key="MoonStone" Color="#58A4B0" />
+        <SolidColorBrush x:Key="MintCream" Color="#F7FFF7" />
+        <SolidColorBrush x:Key="AirSuperiorityBlue" Color="#6CA6C1" />
+        <SolidColorBrush x:Key="CambridgeBlue" Color="#7C9885" />
+        <SolidColorBrush x:Key="Sage" Color="#B5B682" />
+        <SolidColorBrush x:Key="PeachYellow" Color="#FEDC97" />
+        <SolidColorBrush x:Key="MountbattenPink" Color="#93748A" />
+        <SolidColorBrush x:Key="SeaGreen" Color="#0A8754" />
+        <SolidColorBrush x:Key="Salmon" Color="#FF8E72" />
+        <SolidColorBrush x:Key="BitterSweet" Color="#ED6A5E" />
+        <SolidColorBrush x:Key="Puce" Color="#C6878F" />
+        <SolidColorBrush x:Key="BurntSienna" Color="#EC774C" />
+
         <!--#endregion-->
 
         <!--#region Buttons/Boxes-->
@@ -366,6 +385,64 @@
             </Style.Triggers>
         </Style>
 
+        <Style x:Key="templateViewButton" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource Orange}" />
+            <Setter Property="Foreground" Value="{StaticResource maybeDark}" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Width" Value="50" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="7">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseCaptured" Value="True">
+                    <Setter Property="Background" Value="#E37B34" />
+                    <Setter Property="Foreground" Value="#ffffff" />
+                </Trigger>
+                <!--<Trigger Property="IsMouseOver" Value="True">
+             <Setter Property="Background" Value="{StaticResource SecondaryColor}"/>
+         </Trigger>-->
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="settingsButton" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource purple}" />
+            <Setter Property="Foreground" Value="{StaticResource maybeDark}" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Width" Value="50" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="7">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseCaptured" Value="True">
+                    <Setter Property="Background" Value="#E37B34" />
+                    <Setter Property="Foreground" Value="#ffffff" />
+                </Trigger>
+                <!--<Trigger Property="IsMouseOver" Value="True">
+             <Setter Property="Background" Value="{StaticResource SecondaryColor}"/>
+         </Trigger>-->
+            </Style.Triggers>
+        </Style>
+
         <Style x:Key="topButton" TargetType="Button">
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="Foreground" Value="#6e7783" />
@@ -492,7 +569,63 @@
                         <Border
                             Width="80"
                             Height="40"
-                            Background="#353340"
+                            Background="{StaticResource MintCream}"
+                            BorderBrush="Transparent"
+                            BorderThickness="0"
+                            CornerRadius="10">
+                            <Grid>
+
+                                <Rectangle IsHitTestVisible="False" StrokeThickness="1" />
+
+                                <TextBox
+                                    x:Name="Text_Box"
+                                    Margin="10,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    Foreground="#CFCFCF"
+                                    Text="{TemplateBinding Text}" />
+
+                                <TextBlock
+                                    x:Name="PlaceholderTextBlock"
+                                    Margin="10,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    FontSize="11"
+                                    Foreground="DarkGray"
+                                    IsHitTestVisible="False"
+                                    Text="{TemplateBinding TextFill}"
+                                    Visibility="Hidden" />
+                            </Grid>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Text" Value="">
+                                <Setter TargetName="PlaceholderTextBlock" Property="Visibility" Value="Visible" />
+                            </Trigger>
+                            <Trigger Property="Text" Value="{x:Null}">
+                                <Setter TargetName="PlaceholderTextBlock" Property="Visibility" Value="Visible" />
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                                <Setter TargetName="Text_Box" Property="FocusManager.FocusedElement" Value="{Binding ElementName=Text_Box}" />
+                                <Setter TargetName="PlaceholderTextBlock" Property="Visibility" Value="Hidden" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="TemplateViewTextFillTextBox" TargetType="{x:Type local:TextFillTextBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type local:TextFillTextBox}">
+                        <Border
+                            Width="80"
+                            Height="40"
+                            Background="{StaticResource Charcoal}"
                             BorderBrush="Transparent"
                             BorderThickness="0"
                             CornerRadius="10">
@@ -549,7 +682,7 @@
                             Width="200"
                             Height="40"
                             Margin="5"
-                            Background="#353340"
+                            Background="{StaticResource ColumbiaBlue}"
                             CornerRadius="10">
                             <Grid>
                                 <Rectangle StrokeThickness="1" />
@@ -561,7 +694,7 @@
                                     VerticalAlignment="Center"
                                     Background="Transparent"
                                     BorderThickness="0"
-                                    Foreground="#CFCFCF"
+                                    Foreground="{StaticResource maybeDark}"
                                     Text="{TemplateBinding Text}" />
 
                                 <TextBlock
@@ -570,7 +703,7 @@
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Center"
                                     FontSize="11"
-                                    Foreground="DarkGray"
+                                    Foreground="{StaticResource maybeDark}"
                                     IsHitTestVisible="False"
                                     Text="{TemplateBinding TextFill}"
                                     Visibility="Hidden" />
