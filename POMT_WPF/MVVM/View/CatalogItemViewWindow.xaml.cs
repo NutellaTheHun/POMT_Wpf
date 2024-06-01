@@ -1,6 +1,7 @@
 ﻿using Petsi.Units;
 using POMT_WPF.MVVM.ViewModel;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace POMT_WPF.MVVM.View
 {
@@ -32,6 +33,19 @@ namespace POMT_WPF.MVVM.View
             //Are you sure window?
             //delete
             Close();
+        }
+        private void DashboardDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var dashboardDataGrid = sender as DataGrid;
+            if (dashboardDataGrid != null)
+            {
+                var selectedItem = dashboardDataGrid.SelectedItem;
+                if (selectedItem != null)
+                {
+                    PetsiOrderWindow petsiOrderWin = new PetsiOrderWindow(selectedItem as PetsiOrder);
+                    petsiOrderWin.Show();
+                }
+            }
         }
     }
 }
