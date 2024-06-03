@@ -115,8 +115,10 @@ namespace Petsi.Input
                         foreach (var variation in sqrCatalogItem.ItemData.Variations)
                         {
                             newCatalogItem.Variations.Add(variation.Id, variation.ItemVariationData.Name);
-                            result.Add(newCatalogItem);
+                            newCatalogItem.VariationList.Add((variation.Id, variation.ItemVariationData.Name));
+                            //result.Add(newCatalogItem);
                         }
+                        result.Add(newCatalogItem);
                         LoggerCatalogObjectsProcessedCount++;
                     }
                     else
@@ -134,54 +136,54 @@ namespace Petsi.Input
         /// <param name="cursor">ListCatalog returns 100 listings max, if there're more items, a cursor string is returned, 
         /// if ListCatalog is called with cursor string as param the next batch is returned</param>
         /// <returns></returns>
-        private async Task AsyncGetSquareCatalog(SquareClientFactory scf, string? cursor) //add cursor repeat
-        {
-            string currentCursor = cursor;
-            do
-            {
-                try
-                {
-                    ListCatalogResponse result = await scf.SqClient.CatalogApi.ListCatalogAsync(currentCursor);
+        //private async Task AsyncGetSquareCatalog(SquareClientFactory scf, string? cursor) //add cursor repeat
+        //{
+        //    string currentCursor = cursor;
+        //    do
+        //    {
+        //        try
+        //        {
+        //            ListCatalogResponse result = await scf.SqClient.CatalogApi.ListCatalogAsync(currentCursor);
 
-                    //Used to get ListCatalogResponse as a file for testing.
-                    //ToFile.Send(result, "D:/Git-Repos/Petsi/Petsi/tests/lcr.txt");
+        //            //Used to get ListCatalogResponse as a file for testing.
+        //            //ToFile.Send(result, "D:/Git-Repos/Petsi/Petsi/tests/lcr.txt");
 
-                    currentCursor = result.Cursor;
-                    foreach (var sqrCatalogItem in result.Objects)
-                    {
-                        if (sqrCatalogItem.ItemData != null)
-                        {
-                            //--
-                            string categoryId = "";
-                            if (sqrCatalogItem.ItemData.Categories != null)
-                            {
-                                categoryId = sqrCatalogItem.ItemData.Categories[0].Id;
-                            }
-                            //--
-                            var newCatalogItem = new CatalogItemPetsi(categoryId, sqrCatalogItem.Id, sqrCatalogItem.ItemData.Name);
-                            foreach (var variation in sqrCatalogItem.ItemData.Variations)
-                            {
-                                newCatalogItem.Variations.Add(variation.Id, variation.ItemVariationData.Name);
-                                catalogItems.Add(newCatalogItem);
-                            }
-                            LoggerCatalogObjectsProcessedCount++;
-                        }
-                        else
-                        {
-                            LoggerCatalogObjectsNullItemDataCount++;
-                        }
-                    }
-                }
-                catch (ApiException e)
-                {
-                    Console.WriteLine("Failed to make the request");
-                    Console.WriteLine($"Response Code: {e.ResponseCode}");
-                    Console.WriteLine($"Exception: {e.Message}");
-                }
-                LoggerPaginations++;
-            } while (currentCursor != null);
+        //            currentCursor = result.Cursor;
+        //            foreach (var sqrCatalogItem in result.Objects)
+        //            {
+        //                if (sqrCatalogItem.ItemData != null)
+        //                {
+        //                    //--
+        //                    string categoryId = "";
+        //                    if (sqrCatalogItem.ItemData.Categories != null)
+        //                    {
+        //                        categoryId = sqrCatalogItem.ItemData.Categories[0].Id;
+        //                    }
+        //                    //--
+        //                    var newCatalogItem = new CatalogItemPetsi(categoryId, sqrCatalogItem.Id, sqrCatalogItem.ItemData.Name);
+        //                    foreach (var variation in sqrCatalogItem.ItemData.Variations)
+        //                    {
+        //                        newCatalogItem.Variations.Add(variation.Id, variation.ItemVariationData.Name);
+        //                        catalogItems.Add(newCatalogItem);
+        //                    }
+        //                    LoggerCatalogObjectsProcessedCount++;
+        //                }
+        //                else
+        //                {
+        //                    LoggerCatalogObjectsNullItemDataCount++;
+        //                }
+        //            }
+        //        }
+        //        catch (ApiException e)
+        //        {
+        //            Console.WriteLine("Failed to make the request");
+        //            Console.WriteLine($"Response Code: {e.ResponseCode}");
+        //            Console.WriteLine($"Exception: {e.Message}");
+        //        }
+        //        LoggerPaginations++;
+        //    } while (currentCursor != null);
+        //}
 
-        }
         public List<ListCatalogResponse> GetSquareResponses() { return squareResponses; }
         public List<CatalogItemPetsi> GetCatalogItems(){ return catalogItems; }
         public void SetIsFileExecute(bool v){ isFileExecute = v; }

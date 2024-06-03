@@ -112,12 +112,16 @@ namespace Petsi.Services
             CatalogModelPetsi cmp = model as CatalogModelPetsi;
 
             catalog = cmp.GetItems();
-            foreach (CatalogItemPetsi item in cmp.GetItems())
+            foreach (CatalogItemPetsi item in catalog)
             {
                 catalogIdDict.TryAdd(item.ItemName, item.CatalogObjectId);
-                foreach (DictionaryEntry entry in item.Variations)
+                //foreach (DictionaryEntry entry in item.Variations)
+                //{
+                //    catalogIdDict.TryAdd((string)entry.Key, item.CatalogObjectId);
+                //}
+                foreach ((string variationId, string variationName) in item.VariationList)
                 {
-                    catalogIdDict.TryAdd((string)entry.Key, item.CatalogObjectId);
+                    catalogIdDict.TryAdd(variationId, item.CatalogObjectId);
                 }
             }
         }
