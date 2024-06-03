@@ -5,7 +5,7 @@ namespace Petsi.CommandLine
 {
     public class OneShotModelFrameBehavior : FrameBehaviorBase
     {
-        public OneShotModelFrameBehavior(OneShotModel model)
+        public OneShotModelFrameBehavior()
         {
         }
         public override Task Actions(Stack<ICommandable> contextChain, string actionIdentifier)

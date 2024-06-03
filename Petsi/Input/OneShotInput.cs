@@ -2,23 +2,21 @@
 using Petsi.Filing;
 using Petsi.Managers;
 using Petsi.Units;
-using Petsi.Util;
 using Petsi.Utils;
-using System;
 
 namespace Petsi.Input
 {
     public class OneShotInput : ModelInputBase
     {
         List<PetsiOrder> Items { get; set;}
-        CSVHandler csvh;
+        //CSVHandler csvh;
         OneShotInputFrameBehavior frameBehavior;
         FileBehavior fileBehavior;
 
         public OneShotInput()
         {
             Items = new List<PetsiOrder>();
-            csvh = new CSVHandler(PetsiConfig.GetInstance().GetFilepath("onOrderPath"));
+            //csvh = new CSVHandler(PetsiConfig.GetInstance().GetFilepath("onOrderPath"));
             frameBehavior = new OneShotInputFrameBehavior(this);
             fileBehavior = new FileBehavior("OneShotInput");
 
@@ -36,7 +34,7 @@ namespace Petsi.Input
 
         public override async Task Execute()
         {
-            Items = fileBehavior.BuildDataListFile<PetsiOrder>("mainOneShotModel");
+            Items = fileBehavior.BuildDataListFile<PetsiOrder>("mainOneShotInput");
             foreach (PetsiOrder item in Items)
             {
                 Model.AddData(item);
@@ -45,7 +43,7 @@ namespace Petsi.Input
 
         public void SaveModel()
         {
-            fileBehavior.DataListToFile("mainOneShotModel", Items);
+            fileBehavior.DataListToFile("mainOneShotInput", Items);
         }
 
         public override FrameBehaviorBase GetFrameBehavior()

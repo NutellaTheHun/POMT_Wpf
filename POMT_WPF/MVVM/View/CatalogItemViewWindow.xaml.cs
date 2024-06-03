@@ -34,18 +34,6 @@ namespace POMT_WPF.MVVM.View
             //delete
             Close();
         }
-        private void DashboardDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var dashboardDataGrid = sender as DataGrid;
-            if (dashboardDataGrid != null)
-            {
-                var selectedItem = dashboardDataGrid.SelectedItem;
-                if (selectedItem != null)
-                {
-                    PetsiOrderWindow petsiOrderWin = new PetsiOrderWindow(selectedItem as PetsiOrder);
-                    petsiOrderWin.Show();
-                }
-            }
-        }
+        
     }
 }

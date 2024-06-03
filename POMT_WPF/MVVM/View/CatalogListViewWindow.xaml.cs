@@ -1,5 +1,7 @@
-﻿using POMT_WPF.MVVM.ViewModel;
+﻿using Petsi.Units;
+using POMT_WPF.MVVM.ViewModel;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace POMT_WPF.MVVM.View
 {
@@ -13,7 +15,9 @@ namespace POMT_WPF.MVVM.View
             InitializeComponent();
             CatalogListViewWindowModel model = new CatalogListViewWindowModel();
             catalogListDataGrid.ItemsSource = model.Items;
+            catalogListDataGrid.SelectionChanged += CatalogListDataGrid_SelectionChanged;
         }
+
         private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)
         {
             Close();
@@ -24,9 +28,24 @@ namespace POMT_WPF.MVVM.View
             //Do something
             Close();
         }
+
         private void AddLineItem_BtnClk(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void CatalogListDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var catalogListDataGrid = sender as DataGrid;
+            if (catalogListDataGrid != null)
+            {
+                var selectedItem = catalogListDataGrid.SelectedItem;
+                if (selectedItem != null)
+                {
+                    CatalogItemViewWindow civw = new CatalogItemViewWindow(selectedItem as CatalogItemPetsi);
+                    civw.Show();
+                }
+            }
         }
     }
 }

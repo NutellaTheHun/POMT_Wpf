@@ -23,6 +23,7 @@ namespace Petsi.Units
         /// catalogObjectId in Orders api equates to variation id of catalog object id in catalog api
         /// </summary>
         public ListDictionary Variations { get; set; }
+        public List<(string variationId, string variationName)> VariationList { get; set; }
 
         public string StandardLabelFilePath { get; set; }
         public string CutieLabelFilePath { get; set; }
@@ -34,6 +35,7 @@ namespace Petsi.Units
             Variations = new ListDictionary();
             frameBehavior = new CatalogItemFrameBehavior(this);
             NaturalNames = new List<string>();
+            VariationList = new List<(string variationName, string variationId)>();
         }
         public CatalogItemPetsi(string categoryId, string catalogObjectId, string itemName, ListDictionary variations, List<string> naturalNames)
         {
@@ -43,12 +45,14 @@ namespace Petsi.Units
             this.Variations = variations;
             frameBehavior = new CatalogItemFrameBehavior(this);
             this.NaturalNames = naturalNames;
+            VariationList = new List<(string variationName, string variationId)>();
         }
         public CatalogItemPetsi()
         {
             Variations = new ListDictionary();
             frameBehavior = new CatalogItemFrameBehavior(this);
             NaturalNames = new List<string>();
+            VariationList = new List<(string variationName, string variationId)>();
         }
         public override FrameBehaviorBase GetFrameBehavior()
         {

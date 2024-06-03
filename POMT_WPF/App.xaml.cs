@@ -28,10 +28,10 @@ namespace POMT_WPF
             SquareCatalogInput sci = new SquareCatalogInput(scf);
             SquareOrderInput soi = new SquareOrderInput(scf);
             WholesaleInput wsi = new WholesaleInput();
-            /*
+            
             sci.Execute().Wait();
             soi.Execute().Wait();
-            wsi.Execute().Wait();*/
+            wsi.Execute().Wait();
         }
     }
 

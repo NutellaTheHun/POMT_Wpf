@@ -90,27 +90,49 @@ namespace POMT_WPF.MVVM.ViewModel
         {
             Item = item;
             if(Item == null){ return; }
-
-            if (Item.Variations.Contains(Identifiers.SIZE_CUTIE))
+            foreach((string key, string value) in Item.VariationList)
             {
-                IsCutie = true;
+                if (value.Contains(Identifiers.SIZE_CUTIE))
+                {
+                    IsCutie = true;
+                }
+                if (value.Contains(Identifiers.SIZE_SMALL))
+                {
+                    IsSmall = true;
+                }
+                if (value.Contains(Identifiers.SIZE_MEDIUM))
+                {
+                    IsMedium = true;
+                }
+                if (value.Contains(Identifiers.SIZE_LARGE))
+                {
+                    IsLarge = true;
+                }
+                if (value.Contains(Identifiers.SIZE_REGULAR))
+                {
+                    IsRegular = true;
+                }
             }
-            if (Item.Variations.Contains(Identifiers.SIZE_SMALL))
-            {
-                IsSmall = true;
-            }
-            if (Item.Variations.Contains(Identifiers.SIZE_MEDIUM))
-            {
-                IsMedium = true;
-            }
-            if (Item.Variations.Contains(Identifiers.SIZE_LARGE))
-            {
-                IsLarge = true;
-            }
-            if (Item.Variations.Contains(Identifiers.SIZE_REGULAR))
-            {
-                IsRegular = true;
-            }
+            //if (Item.Variations.Contains(Identifiers.SIZE_CUTIE))
+            //{
+            //    IsCutie = true;
+            //}
+            //if (Item.Variations.Contains(Identifiers.SIZE_SMALL))
+            //{
+            //    IsSmall = true;
+            //}
+            //if (Item.Variations.Contains(Identifiers.SIZE_MEDIUM))
+            //{
+            //    IsMedium = true;
+            //}
+            //if (Item.Variations.Contains(Identifiers.SIZE_LARGE))
+            //{
+            //    IsLarge = true;
+            //}
+            //if (Item.Variations.Contains(Identifiers.SIZE_REGULAR))
+            //{
+            //    IsRegular = true;
+            //}
         }
 
         public void AddCatalogItem()

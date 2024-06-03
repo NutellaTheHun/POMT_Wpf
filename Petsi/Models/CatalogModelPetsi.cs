@@ -6,6 +6,7 @@ using Petsi.Managers;
 using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
+using System.Collections;
 
 namespace Petsi.Models
 {
@@ -104,6 +105,13 @@ namespace Petsi.Models
                 {
                     newList.Add(squareItem);
                 }
+                //foreach (CatalogItemPetsi newItem in newList)
+                //{
+                //    if (newItem.CatalogObjectId == squareItem.CatalogObjectId)
+                //    {
+                //        MigrateVariationList(newItem, squareItem);
+                //    }
+                //}
             }
                 /*
                 foreach(CatalogItemPetsi mainItem in mainList)
@@ -155,6 +163,22 @@ namespace Petsi.Models
             }
             */
             SetItemList(newList);
+        }
+
+        private void MigrateVariationList(CatalogItemPetsi newItem, CatalogItemPetsi squareItem)
+        {
+            /*foreach (KeyValuePair<string, string> kvp in squareItem.Variations)
+            {
+                newItem.VariationList.Add((kvp.Key, kvp.Value));
+            }*/
+            foreach (KeyValuePair<string, string> kvp in squareItem.Variations.OfType<DictionaryEntry>()
+                .Select(de => new KeyValuePair<string, string>((string)de.Key, (string)de.Value)))
+            {
+                if(!newItem.VariationList.Contains((kvp.Key, kvp.Value)))
+                {
+                    newItem.VariationList.Add((kvp.Key, kvp.Value));
+                }
+            }
         }
 
         public override string GetModelName()

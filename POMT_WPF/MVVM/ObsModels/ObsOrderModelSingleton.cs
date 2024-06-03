@@ -1,5 +1,4 @@
-﻿
-using Petsi.Managers;
+﻿using Petsi.Managers;
 using Petsi.Models;
 using Petsi.Units;
 using Petsi.Utils;
