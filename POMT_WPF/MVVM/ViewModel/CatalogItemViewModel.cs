@@ -6,10 +6,7 @@ namespace POMT_WPF.MVVM.ViewModel
 {
     public class CatalogItemViewModel : ViewModelBase
     { 
-        private CatalogItemPetsi? _item;
-
         private bool _isSmall;
-
         public bool IsSmall
         {
             get { return _isSmall; }
@@ -74,6 +71,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }
+        private CatalogItemPetsi? _item;
         public CatalogItemPetsi? Item
         {
             get { return _item; }
@@ -89,30 +87,37 @@ namespace POMT_WPF.MVVM.ViewModel
         public CatalogItemViewModel(CatalogItemPetsi? item)
         {
             Item = item;
-            if(Item == null){ return; }
-            foreach((string key, string value) in Item.VariationList)
+            if(Item == null)
             {
-                if (value.Contains(Identifiers.SIZE_CUTIE))
+                Item = new CatalogItemPetsi();
+            }
+            else
+            {
+                foreach ((string key, string value) in Item.VariationList)
                 {
-                    IsCutie = true;
-                }
-                if (value.Contains(Identifiers.SIZE_SMALL))
-                {
-                    IsSmall = true;
-                }
-                if (value.Contains(Identifiers.SIZE_MEDIUM))
-                {
-                    IsMedium = true;
-                }
-                if (value.Contains(Identifiers.SIZE_LARGE))
-                {
-                    IsLarge = true;
-                }
-                if (value.Contains(Identifiers.SIZE_REGULAR))
-                {
-                    IsRegular = true;
+                    if (value.Contains(Identifiers.SIZE_CUTIE))
+                    {
+                        IsCutie = true;
+                    }
+                    if (value.Contains(Identifiers.SIZE_SMALL))
+                    {
+                        IsSmall = true;
+                    }
+                    if (value.Contains(Identifiers.SIZE_MEDIUM))
+                    {
+                        IsMedium = true;
+                    }
+                    if (value.Contains(Identifiers.SIZE_LARGE))
+                    {
+                        IsLarge = true;
+                    }
+                    if (value.Contains(Identifiers.SIZE_REGULAR))
+                    {
+                        IsRegular = true;
+                    }
                 }
             }
+           
             //if (Item.Variations.Contains(Identifiers.SIZE_CUTIE))
             //{
             //    IsCutie = true;
@@ -137,7 +142,7 @@ namespace POMT_WPF.MVVM.ViewModel
 
         public void AddCatalogItem()
         {
-           Item = new CatalogItemPetsi();
+           
         }
     }
 }

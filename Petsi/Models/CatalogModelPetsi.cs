@@ -241,5 +241,10 @@ namespace Petsi.Models
             }
             SaveMainModel();
         }
+
+        public void RemoveItem(CatalogItemPetsi order)
+        {
+            items.Remove(order);
+        }
     }
 }

@@ -146,7 +146,7 @@
                             x:Name="VariationNames"
                             Width="200"
                             Height="100"
-                            ItemsSource="{Binding Item.VariationList.Item1}" />
+                            ItemsSource="{Binding Item.VariationList.variationName}" />
                     </StackPanel>
                 </StackPanel>
             </Grid>
