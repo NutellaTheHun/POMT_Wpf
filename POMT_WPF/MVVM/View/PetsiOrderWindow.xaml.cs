@@ -1,4 +1,6 @@
-﻿using Petsi.Units;
+﻿using DocumentFormat.OpenXml.Packaging;
+using Petsi.Units;
+using Petsi.Utils;
 using POMT_WPF.MVVM.ViewModel;
 using System.Windows;
 
@@ -10,14 +12,53 @@ namespace POMT_WPF.MVVM.View
     /// </summary>
     public partial class PetsiOrderWindow : Window
     {
-        PetsiOrderWindowViewModel vm;
-
-        public PetsiOrderWindow(PetsiOrder? existingOrder)
+        PetsiOrderWindowViewModel _vm;
+        public PetsiOrderWindowViewModel ViewModel 
+        { 
+            get { return _vm; }
+            set
+            {
+                if (_vm != value)
+                {
+                    _vm = value;
+                }
+            }
+        }
+        bool _isExistingOrder;
+        public bool IsExistingOrder 
+        {
+            get { return _isExistingOrder; }
+            set
+            {
+                if (_isExistingOrder != value)
+                {
+                    _isExistingOrder = value;
+                    if(ViewModel.Order.InputOriginType == Identifiers.WHOLESALE_INPUT 
+                        || ViewModel.Order.InputOriginType == Identifiers.ONE_SHOT_INPUT) 
+                    { CanDelete = true; }
+                    else { CanDelete = false; }
+                }
+            }
+        }
+        bool _canDelete;
+        public bool CanDelete
+        {
+            get { return _canDelete; }
+            set
+            {
+                if (_canDelete != value)
+                {
+                    _canDelete = value;
+                }
+            }
+        }
+        public PetsiOrderWindow(PetsiOrder? existingOrder, bool isExistingOrder)
         {
             InitializeComponent();
-            vm = new PetsiOrderWindowViewModel(existingOrder);
-            DataContext = vm;
-            orderFormDataGrid.ItemsSource = vm.Order.LineItems;
+            ViewModel = new PetsiOrderWindowViewModel(existingOrder);
+            IsExistingOrder = isExistingOrder;
+            DataContext = this;
+            orderFormDataGrid.ItemsSource = ViewModel.Order.LineItems;
         }
 
         private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)
@@ -85,16 +126,16 @@ namespace POMT_WPF.MVVM.View
                 return;
             }
             
-            if(!vm.IsValidLineItems())
+            if(!ViewModel.IsValidLineItems())
             {
                 PetsiOrderFormErrorWindow errorWindow =
                     new PetsiOrderFormErrorWindow("Order must have at least one item, and all items filled in. (Needs a name and a quantity)");
                 errorWindow.Show();
                 return;
             }
-            
+
             //ADD ORDER IF NEW!! CAN DELETE IF EXISTS
-            vm.AddOrder(orderTimeTextBox.Text + orderTimeComboBox.Text);
+            ViewModel.AddOrder(orderTimeTextBox.Text + orderTimeComboBox.Text);
             Close();
         }
 
@@ -106,7 +147,7 @@ namespace POMT_WPF.MVVM.View
         }
         private void AddLineItem_BtnClk(object sender, RoutedEventArgs e)
         {
-            vm.AddLineItem(new PetsiOrderLineItem());
+            ViewModel.AddLineItem(new PetsiOrderLineItem());
         }
 
         private void orderDateTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)

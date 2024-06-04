@@ -7,6 +7,9 @@ namespace Petsi.Utils
         public readonly static string WHOLESALE_INPUT = "WholesaleInput";
         public readonly static string SQUARE_CATALOG_INPUT = "SquareCatalogInput";
         public readonly static string ONE_SHOT_INPUT = "OneShotInput";
+        public readonly static string USER_ENTERED_INPUT = "UserEntered";
+        public readonly static string PERIODIC_ORDERS = "periodicOrder";
+        public readonly static string ONE_SHOT_ORDERS = "oneShotOrder";
 
         public readonly static string MODEL_ORDERS = "ORDERMODEL";
 

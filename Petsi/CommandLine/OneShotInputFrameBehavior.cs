@@ -5,7 +5,7 @@ namespace Petsi.CommandLine
 {
     public class OneShotInputFrameBehavior : FrameBehaviorBase
     {
-        public OneShotInputFrameBehavior(OneShotInput input)
+        public OneShotInputFrameBehavior(OneShotOrderInput input)
         {
 
         }

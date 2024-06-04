@@ -99,7 +99,9 @@ namespace POMT_WPF.MVVM.ViewModel
             {
                 Order = petsiOrder;
                 VMPickupDate = DateTime.Parse(Order.OrderDueDate).ToShortDateString();
-                VMPickupTime = DateTime.Parse(Order.OrderDueDate).ToLocalTime().ToString();
+                VMPickupTime = DateTime.Parse(Order.OrderDueDate).ToShortTimeString();
+                IsPeriodic = Order.IsPeriodic;
+                IsOneTime = !Order.IsPeriodic;
             }
             else
             {
@@ -124,7 +126,10 @@ namespace POMT_WPF.MVVM.ViewModel
         {
             string Date = DateTime.Parse(VMPickupDate).ToShortDateString();
             Order.OrderDueDate = DateTime.Parse(Date + " " + pickupTime).ToString();
+            Order.InputOriginType = Identifiers.USER_ENTERED_INPUT; 
             Order.IsPeriodic = IsPeriodic;
+            Order.IsPeriodic = !IsOneTime;
+            Order.IsUserEntered = true;
             OrderModelPetsi omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
             Order.OrderId = Order.InputOriginType+"-"+omp.GenerateOrderId();
             ObsOrderModelSingleton.AddOrder(Order);

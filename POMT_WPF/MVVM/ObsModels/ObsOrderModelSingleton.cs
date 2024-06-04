@@ -45,7 +45,7 @@ namespace POMT_WPF.MVVM.ObsModels
         private ObsOrderModelSingleton()
         {
             _omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
-            _orders = new ObservableCollection<PetsiOrder>(_omp.GetOrders());
+            Orders = new ObservableCollection<PetsiOrder>(_omp.GetOrders());
         }
 
         public static void AddOrder(PetsiOrder order)

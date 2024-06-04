@@ -10,12 +10,16 @@ namespace Petsi.Models
     public class OrderModelPetsi : ModelBase, IModelInput
     {
         List<PetsiOrder> Orders;
+        List<PetsiOrder> OneShotOrders;
+        List<PetsiOrder> PeriodicOrders;
 
         OrderModelFrameBehavior frameBehavior;
         FileBehavior fileBehavior;
         public OrderModelPetsi()
         {
             Orders = new List<PetsiOrder>();
+            OneShotOrders = new List<PetsiOrder>();
+            PeriodicOrders = new List<PetsiOrder>();
             frameBehavior = new OrderModelFrameBehavior(this);
             fileBehavior = new FileBehavior("OrderModel");
             SetModelName(Identifiers.MODEL_ORDERS);
@@ -23,13 +27,37 @@ namespace Petsi.Models
             CommandFrame.GetInstance().RegisterFrame("omp", frameBehavior);
             EnvironCaptureRegistrySingleton.GetInstance().Register(this);
         }
-        public override void AddData(ModelUnitBase unit){ Orders.Add((PetsiOrder)unit);}
+        public override void AddData(ModelUnitBase unit)
+        {
+            PetsiOrder order = (PetsiOrder)unit;
+            Orders.Add(order);
+            if(order.IsPeriodic)
+            {
+                PeriodicOrders.Add(order);
+            }
+            if(order.IsOneShot)
+            {
+                OneShotOrders.Add(order);
+            }
+        }
         public override FrameBehaviorBase GetFrameBehavior() { return frameBehavior; }
         public List<PetsiOrder> GetOrders() { return Orders; }
         public void SetOrders(List<PetsiOrder> newOrders) { Orders = newOrders; }
         public FileBehavior GetFileBehavior() { return fileBehavior; }
         public override void ClearModel() { Orders.Clear(); }
-        public override void AddOrder(ModelUnitBase order) { Orders.Add((PetsiOrder)order); SortOrders(); }
+        public override void AddOrder(ModelUnitBase order) 
+        { 
+            PetsiOrder o = (PetsiOrder)order;
+            Orders.Add(o); SortOrders(); 
+            if(o.IsPeriodic)
+            {
+                fileBehavior.DataListToFile(Identifiers.PERIODIC_ORDERS, PeriodicOrders);
+            }
+            else if(o.IsOneShot)
+            {
+                fileBehavior.DataListToFile(Identifiers.ONE_SHOT_ORDERS, OneShotOrders);
+            }
+        }
         public void RemoveOrder(ModelUnitBase item) { Orders.Remove((PetsiOrder)item);}
         public override void Complete() 
         {

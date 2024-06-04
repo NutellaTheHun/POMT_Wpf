@@ -584,7 +584,7 @@
                                     VerticalAlignment="Center"
                                     Background="Transparent"
                                     BorderThickness="0"
-                                    Foreground="#CFCFCF"
+                                    Foreground="{StaticResource maybeDark}"
                                     Text="{TemplateBinding Text}" />
 
                                 <TextBlock
@@ -593,7 +593,7 @@
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Center"
                                     FontSize="11"
-                                    Foreground="DarkGray"
+                                    Foreground="{StaticResource maybeDark}"
                                     IsHitTestVisible="False"
                                     Text="{TemplateBinding TextFill}"
                                     Visibility="Hidden" />
