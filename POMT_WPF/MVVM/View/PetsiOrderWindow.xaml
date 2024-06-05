@@ -187,12 +187,6 @@
                                             Text="{Binding ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                             TextChanged="ItemNameTextBox_TextChanged"
                                             TextFill="Item Name ..." />
-
-                                        <DataTemplate.Triggers>
-                                            <DataTrigger Binding="{Binding IsInvalid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Value="True">
-                                                <Setter TargetName="ItemNameTextBox" Property="Background" Value="{StaticResource ChiliRed}" />
-                                            </DataTrigger>
-                                        </DataTemplate.Triggers>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
