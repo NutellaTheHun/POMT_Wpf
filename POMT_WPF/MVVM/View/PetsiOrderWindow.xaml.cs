@@ -33,8 +33,8 @@ namespace POMT_WPF.MVVM.View
                 if (_isExistingOrder != value)
                 {
                     _isExistingOrder = value;
-                    if(ViewModel.Order.InputOriginType == Identifiers.WHOLESALE_INPUT 
-                        || ViewModel.Order.InputOriginType == Identifiers.ONE_SHOT_INPUT) 
+                    if(ViewModel.InputOriginType == Identifiers.WHOLESALE_INPUT 
+                        || ViewModel.InputOriginType == Identifiers.ONE_SHOT_INPUT) 
                     { CanDelete = true; }
                     else { CanDelete = false; }
                 }

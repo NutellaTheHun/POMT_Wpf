@@ -3,110 +3,117 @@ using System.ComponentModel;
 
 namespace Petsi.Units
 {
-    public class PetsiOrderLineItem : IEquatable<PetsiOrderLineItem>, INotifyPropertyChanged
+    public class PetsiOrderLineItem : IEquatable<PetsiOrderLineItem>/*, INotifyPropertyChanged*/
     {
-        private string _itemName;
-        public string ItemName
-        { get { return _itemName; }
-            set
-            {
-                if (_itemName != value)
-                {
-                    _itemName = value;
-                    OnPropertyChanged(nameof(ItemName));
-                }
-            }
-        }
+        //private string _itemName;
+        //public string ItemName
+        //{ get { return _itemName; }
+        //    set
+        //    {
+        //        if (_itemName != value)
+        //        {
+        //            _itemName = value;
+        //            OnPropertyChanged(nameof(ItemName));
+        //        }
+        //    }
+        //}
 
-        private string _catalogObjectid;
-        public string CatalogObjectId
-        {
-            get { return _catalogObjectid; }
-            set
-            {
-                if (_catalogObjectid != value)
-                {
-                    _catalogObjectid = value;
-                    OnPropertyChanged(nameof(_catalogObjectid));
-                }
-            }
-        }
+        //private string _catalogObjectid;
+        //public string CatalogObjectId
+        //{
+        //    get { return _catalogObjectid; }
+        //    set
+        //    {
+        //        if (_catalogObjectid != value)
+        //        {
+        //            _catalogObjectid = value;
+        //            OnPropertyChanged(nameof(_catalogObjectid));
+        //        }
+        //    }
+        //}
 
-        private int _amount3;
-        public int Amount3
-        {
-            get { return _amount3; }
-            set
-            {
-                if (_amount3 != value)
-                {
-                    _amount3 = value;
-                    OnPropertyChanged(nameof(_amount3));
-                }
-            }
-        }
+        //private int _amount3;
+        //public int Amount3
+        //{
+        //    get { return _amount3; }
+        //    set
+        //    {
+        //        if (_amount3 != value)
+        //        {
+        //            _amount3 = value;
+        //            OnPropertyChanged(nameof(_amount3));
+        //        }
+        //    }
+        //}
 
-        private int _amount5;
-        public int Amount5
-        {
-            get { return _amount5; }
-            set
-            {
-                if (_amount5 != value)
-                {
-                    _amount5 = value;
-                    OnPropertyChanged(nameof(_amount5));
-                }
-            }
-        }
+        //private int _amount5;
+        //public int Amount5
+        //{
+        //    get { return _amount5; }
+        //    set
+        //    {
+        //        if (_amount5 != value)
+        //        {
+        //            _amount5 = value;
+        //            OnPropertyChanged(nameof(_amount5));
+        //        }
+        //    }
+        //}
 
-        private int _amount8;
-        public int Amount8
-        {
-            get { return _amount8; }
-            set
-            {
-                if (_amount8 != value)
-                {
-                    _amount8 = value;
-                    OnPropertyChanged(nameof(_amount8));
-                }
-            }
-        }
+        //private int _amount8;
+        //public int Amount8
+        //{
+        //    get { return _amount8; }
+        //    set
+        //    {
+        //        if (_amount8 != value)
+        //        {
+        //            _amount8 = value;
+        //            OnPropertyChanged(nameof(_amount8));
+        //        }
+        //    }
+        //}
 
-        private int _amount10;
-        public int Amount10
-        {
-            get { return _amount10; }
-            set
-            {
-                if (_amount10 != value)
-                {
-                    _amount10 = value;
-                    OnPropertyChanged(nameof(_amount10));
-                }
-            }
-        }
+        //private int _amount10;
+        //public int Amount10
+        //{
+        //    get { return _amount10; }
+        //    set
+        //    {
+        //        if (_amount10 != value)
+        //        {
+        //            _amount10 = value;
+        //            OnPropertyChanged(nameof(_amount10));
+        //        }
+        //    }
+        //}
 
-        private int _amountRegular;
-        public int AmountRegular
-        {
-            get { return _amountRegular; }
-            set
-            {
-                if (_amountRegular != value)
-                {
-                    _amountRegular = value;
-                    OnPropertyChanged(nameof(_amountRegular));
-                }
-            }
-        }
+        //private int _amountRegular;
+        //public int AmountRegular
+        //{
+        //    get { return _amountRegular; }
+        //    set
+        //    {
+        //        if (_amountRegular != value)
+        //        {
+        //            _amountRegular = value;
+        //            OnPropertyChanged(nameof(_amountRegular));
+        //        }
+        //    }
+        //}
 
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        //public event PropertyChangedEventHandler? PropertyChanged;
+        //protected virtual void OnPropertyChanged(string propertyName)
+        //{
+        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        //}
+        public string ItemName { get; set; }
+        public string CatalogObjectId { get; set; }
+        public int Amount3 { get; set; }
+        public int Amount5 { get; set; }
+        public int Amount8 { get; set; }
+        public int Amount10 { get; set; }
+        public int AmountRegular { get; set; }
         public PetsiOrderLineItem() 
         {
             ItemName = "";

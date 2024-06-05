@@ -22,5 +22,16 @@ namespace POMT_WPF.MVVM.View.Controls
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(TextFillTextBox), new FrameworkPropertyMetadata(typeof(TextFillTextBox)));
         }
+
+        public TextFillTextBox()
+        {
+            this.TextChanged += TextFillTextBox_TextChanged;
+        }
+
+        private void TextFillTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            // Explicitly notify property change
+            SetCurrentValue(TextProperty, this.Text);
+        }
     }
 }
