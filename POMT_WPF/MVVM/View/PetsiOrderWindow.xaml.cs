@@ -1,5 +1,4 @@
-﻿using DocumentFormat.OpenXml.Packaging;
-using Petsi.Units;
+﻿using Petsi.Units;
 using Petsi.Utils;
 using POMT_WPF.MVVM.ViewModel;
 using System.Windows;
@@ -159,6 +158,11 @@ namespace POMT_WPF.MVVM.View
         private void orderDateTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
 
+        }
+
+        private void orderTimeTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ViewModel.VMPickupTime = orderTimeTextBox.Text;
         }
     }
 }

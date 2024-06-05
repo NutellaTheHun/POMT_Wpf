@@ -88,16 +88,16 @@ namespace Petsi.Units
             }
         }
 
-        private int _amountRegualr;
+        private int _amountRegular;
         public int AmountRegular
         {
-            get { return _amountRegualr; }
+            get { return _amountRegular; }
             set
             {
-                if (_amountRegualr != value)
+                if (_amountRegular != value)
                 {
-                    _amountRegualr = value;
-                    OnPropertyChanged(nameof(_amountRegualr));
+                    _amountRegular = value;
+                    OnPropertyChanged(nameof(_amountRegular));
                 }
             }
         }

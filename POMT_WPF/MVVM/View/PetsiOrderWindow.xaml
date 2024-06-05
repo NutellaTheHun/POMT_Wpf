@@ -71,7 +71,7 @@
                         <local:TextFillTextBox
                             x:Name="recipientTextBox"
                             Style="{StaticResource textFillTextBox}"
-                            Text="{Binding ViewModel.Order.Recipient, UpdateSourceTrigger=PropertyChanged}"
+                            Text="{Binding ViewModel.Order.Recipient, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                             TextFill="Recipient ..." />
 
                     </StackPanel>
@@ -94,14 +94,14 @@
                         <local:TextFillTextBox
                             x:Name="DeliveryAddressTextBox"
                             Style="{StaticResource textFillTextBox}"
-                            Text="{Binding ViewModel.Order.DeliveryAddress}"
+                            Text="{Binding ViewModel.Order.DeliveryAddress, Mode=TwoWay}"
                             TextFill="Delivery Address(optional) ..." />
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                         <local:TextFillTextBox
                             x:Name="OrderTypeTextBox"
                             Style="{StaticResource textFillTextBox}"
-                            Text="{Binding ViewModel.Order.InputOriginType}"
+                            Text="{Binding ViewModel.Order.InputOriginType, Mode=TwoWay}"
                             TextFill="Order Type ..." />
                     </StackPanel>
                 </StackPanel>
@@ -138,7 +138,8 @@
                         <local:TextFillTextBox
                             x:Name="orderTimeTextBox"
                             Style="{StaticResource textFillTextBox}"
-                            Text="{Binding ViewModel.VMPickupTime}"
+                            Text="{Binding ViewModel.VMPickupTime, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                            TextChanged="orderTimeTextBox_TextChanged"
                             TextFill="Pickup Time ..." />
                         <ComboBox
                             x:Name="orderTimeComboBox"
@@ -157,7 +158,7 @@
                         <local:TextFillTextBox
                             x:Name="phoneTextBox"
                             Style="{StaticResource textFillTextBox}"
-                            Text="{Binding ViewModel.Order.PhoneNumber}"
+                            Text="{Binding ViewModel.Order.PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             TextFill="phone ... " />
                     </StackPanel>
 
@@ -165,7 +166,7 @@
                         <local:TextFillTextBox
                             x:Name="emailTextBox"
                             Style="{StaticResource textFillTextBox}"
-                            Text="{Binding ViewModel.Order.Email}"
+                            Text="{Binding ViewModel.Order.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             TextFill="email ..." />
                     </StackPanel>
                 </StackPanel>
@@ -198,7 +199,7 @@
                                         <local:TextFillTextBox
                                             x:Name="ItemNameTextBox"
                                             Style="{StaticResource orderFormTextFillTextBox}"
-                                            Text="{Binding ItemName}"
+                                            Text="{Binding ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                             TextFill="Item Name ..." />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
@@ -209,7 +210,7 @@
                                         <local:TextFillTextBox
                                             x:Name="amount3TextBox"
                                             Style="{StaticResource orderFormTextFillTextBox}"
-                                            Text="{Binding Amount3, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}}"
+                                            Text="{Binding Amount3, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}, Mode=TwoWay}"
                                             TextChanged="textChangedEventHandler"
                                             TextFill="Amount 3 ..." />
                                     </DataTemplate>
@@ -221,7 +222,7 @@
                                         <local:TextFillTextBox
                                             x:Name="amount5TextBox"
                                             Style="{StaticResource orderFormTextFillTextBox}"
-                                            Text="{Binding Amount5, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}}"
+                                            Text="{Binding Amount5, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}, Mode=TwoWay}"
                                             TextFill="Amount 5 ..." />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
@@ -232,7 +233,7 @@
                                         <local:TextFillTextBox
                                             x:Name="amount8TextBox"
                                             Style="{StaticResource orderFormTextFillTextBox}"
-                                            Text="{Binding Amount8, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}}"
+                                            Text="{Binding Amount8, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}, Mode=TwoWay}"
                                             TextFill="Amount 8 ..." />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
@@ -243,7 +244,7 @@
                                         <local:TextFillTextBox
                                             x:Name="amount10TextBox"
                                             Style="{StaticResource orderFormTextFillTextBox}"
-                                            Text="{Binding Amount10, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}}"
+                                            Text="{Binding Amount10, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}, Mode=TwoWay}"
                                             TextFill="Amount 10 ..." />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
@@ -271,9 +272,10 @@
             </Grid>
             <Grid Grid.Row="6">
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    <!--  Textboxmode=multiline  -->
                     <local:TextFillTextBox
                         Style="{StaticResource textFillTextBox}"
-                        Text="{Binding ViewModel.Note}"
+                        Text="{Binding ViewModel.Order.Note, Mode=TwoWay}"
                         TextFill="notes ..."
                         TextWrapping="Wrap" />
                 </StackPanel>

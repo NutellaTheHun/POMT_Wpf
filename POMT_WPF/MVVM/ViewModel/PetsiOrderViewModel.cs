@@ -14,27 +14,20 @@ namespace POMT_WPF.MVVM.ViewModel
             get { return _order; }
             set
             {
-                if (_order != value)
-                {
-                    _order = value;
-                    OnPropertyChanged(nameof(_order));
-                }
-            }
-        }
-        private List<PetsiOrderLineItem> _lineItems;
-        public List<PetsiOrderLineItem> LineItems
-        {
-            get => _lineItems;
-            set
-            {
-                if (_lineItems != value)
-                {
-                    _lineItems = value;
-                    OnPropertyChanged(nameof(_lineItems));
-                }
+                _order = value;
+                OnPropertyChanged(nameof(_order));
             }
         }
 
+        public List<PetsiOrderLineItem> LineItems
+        {
+            get { return Order.LineItems; }
+            set
+            {
+                Order.LineItems = value;
+                OnPropertyChanged(nameof(LineItems));
+            }
+        }
         private string _VMPickupDate;
         public string VMPickupDate
         {
@@ -69,7 +62,7 @@ namespace POMT_WPF.MVVM.ViewModel
             }
             set
             {
-                if (_VMPickupTime != value)
+          if (_VMPickupTime != value)
                 {
                     _VMPickupTime = value;
                     OnPropertyChanged(nameof(_VMPickupTime));
@@ -111,7 +104,6 @@ namespace POMT_WPF.MVVM.ViewModel
             if (petsiOrder != null)
             {
                 Order = petsiOrder;
-                LineItems = petsiOrder.LineItems;
                 VMPickupDate = DateTime.Parse(Order.OrderDueDate).ToShortDateString();
                 VMPickupTime = DateTime.Parse(Order.OrderDueDate).ToShortTimeString();
                 IsPeriodic = Order.IsPeriodic;
@@ -121,7 +113,6 @@ namespace POMT_WPF.MVVM.ViewModel
             {
                 Order = new PetsiOrder();
                 Order.LineItems.Add(new PetsiOrderLineItem());
-                LineItems = Order.LineItems;
             }
         }
 
@@ -147,7 +138,6 @@ namespace POMT_WPF.MVVM.ViewModel
             Order.IsUserEntered = true;
             OrderModelPetsi omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
             Order.OrderId = Order.InputOriginType+"-"+omp.GenerateOrderId();
-            Order.LineItems = LineItems;
             ObsOrderModelSingleton.AddOrder(Order);
         }
 
