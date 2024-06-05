@@ -59,6 +59,26 @@ namespace Petsi.Services
             }
             return false;
         }
+        //For ItemName form validating
+        public bool TryValidateItemName(string name, out string catalogId)
+        {
+            List<CatalogItemPetsi> results = new List<CatalogItemPetsi>();
+
+            foreach (CatalogItemPetsi item in catalog)
+            {
+                if (item.ItemName.ToLower().Contains(name.ToLower()) || item.NaturalNameContains(name.ToLower()))
+                {
+                    results.Add(item);
+                }
+            }
+            if(results.Count == 1)
+            {
+                catalogId = results[0].CatalogObjectId;
+                return true;
+            }
+            catalogId = "";
+            return false;
+        }
         public string ValidateModifyItemName(string name)
         {
             List<string> results = new List<string>();

@@ -1,8 +1,10 @@
 ﻿using Petsi.Units;
 using Petsi.Utils;
+using POMT_WPF.MVVM.View.Controls;
 using POMT_WPF.MVVM.ViewModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 
 namespace POMT_WPF.MVVM.View
@@ -59,11 +61,6 @@ namespace POMT_WPF.MVVM.View
             IsExistingOrder = isExistingOrder;
             DataContext = this;
             orderFormDataGrid.ItemsSource = ViewModel.LineItems;
-        }
-
-        private void textChangedEventHandler(object sender, TextChangedEventArgs args)
-        {
-            
         }
 
         private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)
@@ -139,8 +136,7 @@ namespace POMT_WPF.MVVM.View
                 return;
             }
 
-            //ADD ORDER IF NEW!! CAN DELETE IF EXISTS
-            ViewModel.AddOrder(orderTimeTextBox.Text /*+ orderTimeComboBox.Text*/);
+            ViewModel.AddOrder(orderTimeTextBox.Text);
             Close();
         }
 
@@ -155,14 +151,27 @@ namespace POMT_WPF.MVVM.View
             ViewModel.AddLineItem(new PetsiOrderLineItem());
         }
 
-        private void orderDateTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
-
-        }
-
         private void orderTimeTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             ViewModel.VMPickupTime = orderTimeTextBox.Text;
+        }
+
+        private void ItemNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextFillTextBox itemNameTextBox = (TextFillTextBox)sender;
+            string itemName = itemNameTextBox.Text;
+           if(!ViewModel.ValidateItemName(itemName))
+           {
+                BrushConverter brushConverter = new BrushConverter();
+                Brush brush = (Brush)brushConverter.ConvertFromString("#D64933");
+                itemNameTextBox.Background = brush;
+           }
+           else
+           {
+                BrushConverter brushConverter = new BrushConverter();
+                Brush brush = (Brush)brushConverter.ConvertFromString("#F7FFF7");
+                itemNameTextBox.Background = brush;
+           }
         }
     }
 }

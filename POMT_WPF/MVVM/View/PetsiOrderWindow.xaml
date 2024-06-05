@@ -128,11 +128,6 @@
                             Height="40"
                             Foreground="Black"
                             SelectedDate="{Binding ViewModel.VMPickupDate}" />
-                        <!--<local:TextFillTextBox
-                            x:Name="orderDateTextBox"
-                            Style="{StaticResource textFillTextBox}"
-                            Text="{Binding OrderDueDate}"
-                            TextFill="mm/dd/yy or day of week ..." TextChanged="orderDateTextBox_TextChanged" />-->
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                         <local:TextFillTextBox
@@ -141,17 +136,6 @@
                             Text="{Binding ViewModel.VMPickupTime, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                             TextChanged="orderTimeTextBox_TextChanged"
                             TextFill="Pickup Time AM/PM ..." />
-                        <!--<ComboBox
-                            x:Name="orderTimeComboBox"
-                            Width="50"
-                            Height="40"
-                            HorizontalContentAlignment="Center"
-                            VerticalContentAlignment="Center"
-                            Foreground="Black"
-                            SelectedIndex="1">
-                            <ComboBoxItem Content="AM" />
-                            <ComboBoxItem Content="PM" />
-                        </ComboBox>-->
                     </StackPanel>
 
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
@@ -198,9 +182,17 @@
                                     <DataTemplate>
                                         <local:TextFillTextBox
                                             x:Name="ItemNameTextBox"
+                                            Background="{StaticResource MintCream}"
                                             Style="{StaticResource orderFormTextFillTextBox}"
                                             Text="{Binding ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            TextChanged="ItemNameTextBox_TextChanged"
                                             TextFill="Item Name ..." />
+
+                                        <DataTemplate.Triggers>
+                                            <DataTrigger Binding="{Binding IsInvalid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                                                <Setter TargetName="ItemNameTextBox" Property="Background" Value="{StaticResource ChiliRed}" />
+                                            </DataTrigger>
+                                        </DataTemplate.Triggers>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -211,7 +203,6 @@
                                             x:Name="amount3TextBox"
                                             Style="{StaticResource orderFormTextFillTextBox}"
                                             Text="{Binding Amount3, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}, Mode=TwoWay}"
-                                            TextChanged="textChangedEventHandler"
                                             TextFill="Amount 3 ..." />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>

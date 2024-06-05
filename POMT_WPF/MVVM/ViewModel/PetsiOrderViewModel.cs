@@ -1,5 +1,6 @@
 ﻿using Petsi.Managers;
 using Petsi.Models;
+using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
 using POMT_WPF.MVVM.ObsModels;
@@ -131,6 +132,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }
+
         public ObservableCollection<PetsiOrderLineItem> LineItems { get; set; }
 
         private string _VMPickupDate;
@@ -241,8 +243,10 @@ namespace POMT_WPF.MVVM.ViewModel
 
         public bool IsValidLineItems()
         {
+            
             foreach (PetsiOrderLineItem lineItem in LineItems)
             {
+                
                 if (lineItem.ItemName == "" || lineItem.ItemName == null)
                 {
                     return false;
@@ -257,6 +261,22 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
             return true;
+        }
+
+        public bool ValidateItemName(string text)
+        {
+            CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
+            PetsiOrderLineItem lineItem = LineItems.First(x => x.ItemName == text);
+            if (lineItem == null) { return false; }
+            string id;
+            if (cs.TryValidateItemName(text, out id))
+            {
+                lineItem.CatalogObjectId = id;
+                lineItem.IsInvalid = false;
+                return true;    
+            }
+            lineItem.IsInvalid = true;
+            return false;
         }
     }
 }

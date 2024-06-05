@@ -561,7 +561,6 @@
             </Setter>
 
         </Style>
-
         <Style x:Key="orderFormTextFillTextBox" TargetType="{x:Type local:TextFillTextBox}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -569,7 +568,7 @@
                         <Border
                             Width="80"
                             Height="40"
-                            Background="{StaticResource MintCream}"
+                            Background="{TemplateBinding Background}"
                             BorderBrush="Transparent"
                             BorderThickness="0"
                             CornerRadius="10">
@@ -599,7 +598,6 @@
                                     Visibility="Hidden" />
                             </Grid>
                         </Border>
-
                         <ControlTemplate.Triggers>
                             <Trigger Property="Text" Value="">
                                 <Setter TargetName="PlaceholderTextBlock" Property="Visibility" Value="Visible" />
