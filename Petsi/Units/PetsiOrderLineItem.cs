@@ -1,16 +1,122 @@
 ﻿
+using System.ComponentModel;
+
 namespace Petsi.Units
 {
-    public class PetsiOrderLineItem : IEquatable<PetsiOrderLineItem>
+    public class PetsiOrderLineItem : IEquatable<PetsiOrderLineItem>, INotifyPropertyChanged
     {
-        public string ItemName { get; set; }
-        public string CatalogObjectId { get; set; }
-        public int Amount3 { get; set; }
-        public int Amount5 { get; set; }
-        public int Amount8 { get; set; }
-        public int Amount10 { get; set; }
-        public int AmountRegular {  get; set; }
-        public PetsiOrderLineItem() { }
+        private string _itemName;
+        public string ItemName
+        { get { return _itemName; }
+            set
+            {
+                if (_itemName != value)
+                {
+                    _itemName = value;
+                    OnPropertyChanged(nameof(ItemName));
+                }
+            }
+        }
+
+        private string _catalogObjectid;
+        public string CatalogObjectId
+        {
+            get { return _catalogObjectid; }
+            set
+            {
+                if (_catalogObjectid != value)
+                {
+                    _catalogObjectid = value;
+                    OnPropertyChanged(nameof(_catalogObjectid));
+                }
+            }
+        }
+
+        private int _amount3;
+        public int Amount3
+        {
+            get { return _amount3; }
+            set
+            {
+                if (_amount3 != value)
+                {
+                    _amount3 = value;
+                    OnPropertyChanged(nameof(_amount3));
+                }
+            }
+        }
+
+        private int _amount5;
+        public int Amount5
+        {
+            get { return _amount5; }
+            set
+            {
+                if (_amount5 != value)
+                {
+                    _amount5 = value;
+                    OnPropertyChanged(nameof(_amount5));
+                }
+            }
+        }
+
+        private int _amount8;
+        public int Amount8
+        {
+            get { return _amount8; }
+            set
+            {
+                if (_amount8 != value)
+                {
+                    _amount8 = value;
+                    OnPropertyChanged(nameof(_amount8));
+                }
+            }
+        }
+
+        private int _amount10;
+        public int Amount10
+        {
+            get { return _amount10; }
+            set
+            {
+                if (_amount10 != value)
+                {
+                    _amount10 = value;
+                    OnPropertyChanged(nameof(_amount10));
+                }
+            }
+        }
+
+        private int _amountRegualr;
+        public int AmountRegular
+        {
+            get { return _amountRegualr; }
+            set
+            {
+                if (_amountRegualr != value)
+                {
+                    _amountRegualr = value;
+                    OnPropertyChanged(nameof(_amountRegualr));
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        public PetsiOrderLineItem() 
+        {
+            ItemName = "";
+            CatalogObjectId = "";
+            Amount10 = 0;
+            Amount3 = 0;
+            Amount5 = 0;
+            Amount8 = 0;
+            AmountRegular = 0;
+        }
         public PetsiOrderLineItem(string itemName, string catalogObjectId, int amount3, int amount5, int amount8, int amount10, int regular)
         {
             ItemName = itemName;

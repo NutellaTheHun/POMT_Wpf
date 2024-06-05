@@ -22,6 +22,7 @@
     <Window.Resources>
         <convert:StringToBoolConverter x:Key="StringToBoolConverter" />
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <convert:StringToIntConverter x:Key="StringToIntConverter" />
     </Window.Resources>
 
     <Border Background="{StaticResource Charcoal}" CornerRadius="20">
@@ -70,7 +71,7 @@
                         <local:TextFillTextBox
                             x:Name="recipientTextBox"
                             Style="{StaticResource textFillTextBox}"
-                            Text="{Binding ViewModel.Order.Recipient}"
+                            Text="{Binding ViewModel.Order.Recipient, UpdateSourceTrigger=PropertyChanged}"
                             TextFill="Recipient ..." />
 
                     </StackPanel>
@@ -157,7 +158,7 @@
                             x:Name="phoneTextBox"
                             Style="{StaticResource textFillTextBox}"
                             Text="{Binding ViewModel.Order.PhoneNumber}"
-                            TextFill="phone .. " />
+                            TextFill="phone ... " />
                     </StackPanel>
 
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
@@ -188,7 +189,6 @@
                         BorderBrush="Transparent"
                         CellStyle="{DynamicResource orderFormDataGridCellStyle}"
                         ColumnHeaderStyle="{DynamicResource orderFormDataGridColumnHeaderStyle}"
-                        ItemsSource="{Binding ViewModel.Order.LineItems}"
                         RowStyle="{DynamicResource orderFormDataGridRowStyle}"
                         Style="{DynamicResource orderFormGridStyle}">
                         <DataGrid.Columns>
@@ -196,6 +196,7 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <local:TextFillTextBox
+                                            x:Name="ItemNameTextBox"
                                             Style="{StaticResource orderFormTextFillTextBox}"
                                             Text="{Binding ItemName}"
                                             TextFill="Item Name ..." />
@@ -206,8 +207,10 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <local:TextFillTextBox
+                                            x:Name="amount3TextBox"
                                             Style="{StaticResource orderFormTextFillTextBox}"
-                                            Text="{Binding Amount3}"
+                                            Text="{Binding Amount3, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}}"
+                                            TextChanged="textChangedEventHandler"
                                             TextFill="Amount 3 ..." />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
@@ -216,8 +219,9 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <local:TextFillTextBox
+                                            x:Name="amount5TextBox"
                                             Style="{StaticResource orderFormTextFillTextBox}"
-                                            Text="{Binding Amount5}"
+                                            Text="{Binding Amount5, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}}"
                                             TextFill="Amount 5 ..." />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
@@ -226,8 +230,9 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <local:TextFillTextBox
+                                            x:Name="amount8TextBox"
                                             Style="{StaticResource orderFormTextFillTextBox}"
-                                            Text="{Binding Amount8}"
+                                            Text="{Binding Amount8, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}}"
                                             TextFill="Amount 8 ..." />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
@@ -236,8 +241,9 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <local:TextFillTextBox
+                                            x:Name="amount10TextBox"
                                             Style="{StaticResource orderFormTextFillTextBox}"
-                                            Text="{Binding Amount10}"
+                                            Text="{Binding Amount10, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}}"
                                             TextFill="Amount 10 ..." />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>

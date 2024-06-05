@@ -3,6 +3,7 @@ using Petsi.Units;
 using Petsi.Utils;
 using POMT_WPF.MVVM.ViewModel;
 using System.Windows;
+using System.Windows.Controls;
 
 
 namespace POMT_WPF.MVVM.View
@@ -58,7 +59,12 @@ namespace POMT_WPF.MVVM.View
             ViewModel = new PetsiOrderWindowViewModel(existingOrder);
             IsExistingOrder = isExistingOrder;
             DataContext = this;
-            orderFormDataGrid.ItemsSource = ViewModel.Order.LineItems;
+            orderFormDataGrid.ItemsSource = ViewModel.LineItems;
+        }
+
+        private void textChangedEventHandler(object sender, TextChangedEventArgs args)
+        {
+            
         }
 
         private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)

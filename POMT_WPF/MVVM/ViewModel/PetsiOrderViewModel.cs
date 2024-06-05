@@ -9,15 +9,28 @@ namespace POMT_WPF.MVVM.ViewModel
     public class PetsiOrderWindowViewModel : ViewModelBase
     {
         private PetsiOrder _order;
-        public PetsiOrder Order 
+        public PetsiOrder Order
         {
-            get { return _order;}
+            get { return _order; }
             set
             {
                 if (_order != value)
                 {
                     _order = value;
                     OnPropertyChanged(nameof(_order));
+                }
+            }
+        }
+        private List<PetsiOrderLineItem> _lineItems;
+        public List<PetsiOrderLineItem> LineItems
+        {
+            get => _lineItems;
+            set
+            {
+                if (_lineItems != value)
+                {
+                    _lineItems = value;
+                    OnPropertyChanged(nameof(_lineItems));
                 }
             }
         }
@@ -98,6 +111,7 @@ namespace POMT_WPF.MVVM.ViewModel
             if (petsiOrder != null)
             {
                 Order = petsiOrder;
+                LineItems = petsiOrder.LineItems;
                 VMPickupDate = DateTime.Parse(Order.OrderDueDate).ToShortDateString();
                 VMPickupTime = DateTime.Parse(Order.OrderDueDate).ToShortTimeString();
                 IsPeriodic = Order.IsPeriodic;
@@ -107,6 +121,7 @@ namespace POMT_WPF.MVVM.ViewModel
             {
                 Order = new PetsiOrder();
                 Order.LineItems.Add(new PetsiOrderLineItem());
+                LineItems = Order.LineItems;
             }
         }
 
@@ -132,14 +147,15 @@ namespace POMT_WPF.MVVM.ViewModel
             Order.IsUserEntered = true;
             OrderModelPetsi omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
             Order.OrderId = Order.InputOriginType+"-"+omp.GenerateOrderId();
+            Order.LineItems = LineItems;
             ObsOrderModelSingleton.AddOrder(Order);
         }
 
         public bool IsValidLineItems()
         {
-            foreach (PetsiOrderLineItem lineItem in Order.LineItems)
+            foreach (PetsiOrderLineItem lineItem in LineItems)
             {
-                if (lineItem.ItemName == "")
+                if (lineItem.ItemName == "" || lineItem.ItemName == null)
                 {
                     return false;
                 }
