@@ -10,15 +10,6 @@ namespace POMT_WPF.MVVM.ViewModel
     public class PetsiOrderWindowViewModel : ViewModelBase
     {
         private PetsiOrder _order;
-        //public PetsiOrder Order
-        //{
-        //    get { return _order; }
-        //    set
-        //    {
-        //        _order = value;
-        //        OnPropertyChanged(nameof(_order));
-        //    }
-        //}
 
         public string Recipient
         {
@@ -166,7 +157,7 @@ namespace POMT_WPF.MVVM.ViewModel
         private string _VMPickupTime;
         public string VMPickupTime
         {
-            get 
+            get
             {
                 if (_VMPickupTime != null)
                 {
@@ -176,10 +167,31 @@ namespace POMT_WPF.MVVM.ViewModel
             }
             set
             {
-          if (_VMPickupTime != value)
+                if (_VMPickupTime != value)
                 {
                     _VMPickupTime = value;
                     OnPropertyChanged(nameof(_VMPickupTime));
+                }
+            }
+        }
+
+        private string _VMOrderType;
+        public string VMOrderType
+        {
+            get
+            {
+                if (_VMOrderType != null)
+                {
+                    return _VMOrderType;
+                }
+                return "";
+            }
+            set
+            {
+                if (_VMOrderType != value)
+                {
+                    _VMOrderType = value;
+                    OnPropertyChanged(nameof(_VMOrderType));
                 }
             }
         }
@@ -194,8 +206,6 @@ namespace POMT_WPF.MVVM.ViewModel
                 VMPickupTime = DateTime.Parse(_order.OrderDueDate).ToShortTimeString();
                 LineItems = new ObservableCollection<PetsiOrderLineItem>(_order.LineItems);
                 LineItems.CollectionChanged += (s, e) => _order.LineItems = LineItems.ToList();
-                //IsPeriodic = _order.IsPeriodic;
-                //IsOneTime = !_order.IsPeriodic;
             }
             else
             {
@@ -222,9 +232,7 @@ namespace POMT_WPF.MVVM.ViewModel
         {
             string Date = DateTime.Parse(VMPickupDate).ToShortDateString();
             _order.OrderDueDate = DateTime.Parse(Date + " " + pickupTime).ToString();
-            _order.InputOriginType = Identifiers.USER_ENTERED_INPUT;
-            //_order.IsPeriodic = IsPeriodic;
-            //_order.IsPeriodic = !IsOneTime;
+            _order.InputOriginType = Identifiers.USER_ENTERED_INPUT+"-"+VMOrderType;
             _order.IsUserEntered = true;
             OrderModelPetsi omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
             _order.OrderId = _order.InputOriginType+"-"+omp.GenerateOrderId();

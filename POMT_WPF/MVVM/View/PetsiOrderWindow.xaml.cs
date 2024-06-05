@@ -123,10 +123,10 @@ namespace POMT_WPF.MVVM.View
 
             DateTime testDate;
             if (OneTimeRadioButton.IsChecked == true
-                && !DateTime.TryParse(orderTimeTextBox.Text + orderTimeComboBox.Text, out testDate))
+                && !DateTime.TryParse(orderTimeTextBox.Text, out testDate))
             {
                 PetsiOrderFormErrorWindow errorWindow =
-                    new PetsiOrderFormErrorWindow("Order time input was not accepted.");
+                    new PetsiOrderFormErrorWindow("fulfillment time was not valid. make sure to use AM/PM");
                 errorWindow.Show();
                 return;
             }
@@ -140,7 +140,7 @@ namespace POMT_WPF.MVVM.View
             }
 
             //ADD ORDER IF NEW!! CAN DELETE IF EXISTS
-            ViewModel.AddOrder(orderTimeTextBox.Text + orderTimeComboBox.Text);
+            ViewModel.AddOrder(orderTimeTextBox.Text /*+ orderTimeComboBox.Text*/);
             Close();
         }
 

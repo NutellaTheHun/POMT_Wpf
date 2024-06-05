@@ -101,7 +101,7 @@
                         <local:TextFillTextBox
                             x:Name="OrderTypeTextBox"
                             Style="{StaticResource textFillTextBox}"
-                            Text="{Binding ViewModel.InputOriginType, Mode=TwoWay}"
+                            Text="{Binding ViewModel.VMOrderType, Mode=TwoWay}"
                             TextFill="Order Type ..." />
                     </StackPanel>
                 </StackPanel>
@@ -118,7 +118,7 @@
                             x:Name="OneTimeRadioButton"
                             Content="One Time"
                             Foreground="#efefef"
-                            IsChecked="{Binding ViewModel.IsOneTime, UpdateSourceTrigger=PropertyChanged}"
+                            IsChecked="{Binding ViewModel.IsOneShot, UpdateSourceTrigger=PropertyChanged}"
                             Style="{StaticResource reportLabelsRadioButtonTheme}" />
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
@@ -140,8 +140,8 @@
                             Style="{StaticResource textFillTextBox}"
                             Text="{Binding ViewModel.VMPickupTime, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                             TextChanged="orderTimeTextBox_TextChanged"
-                            TextFill="Pickup Time ..." />
-                        <ComboBox
+                            TextFill="Pickup Time AM/PM ..." />
+                        <!--<ComboBox
                             x:Name="orderTimeComboBox"
                             Width="50"
                             Height="40"
@@ -151,7 +151,7 @@
                             SelectedIndex="1">
                             <ComboBoxItem Content="AM" />
                             <ComboBoxItem Content="PM" />
-                        </ComboBox>
+                        </ComboBox>-->
                     </StackPanel>
 
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
@@ -275,7 +275,7 @@
                     <!--  Textboxmode=multiline  -->
                     <local:TextFillTextBox
                         Style="{StaticResource textFillTextBox}"
-                        Text="{Binding ViewModel.Order.Note, Mode=TwoWay}"
+                        Text="{Binding ViewModel.Note, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextFill="notes ..."
                         TextWrapping="Wrap" />
                 </StackPanel>

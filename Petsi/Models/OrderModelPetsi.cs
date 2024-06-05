@@ -17,28 +17,43 @@ namespace Petsi.Models
         FileBehavior fileBehavior;
         public OrderModelPetsi()
         {
-            Orders = new List<PetsiOrder>();
-            OneShotOrders = new List<PetsiOrder>();
-            PeriodicOrders = new List<PetsiOrder>();
+
             frameBehavior = new OrderModelFrameBehavior(this);
             fileBehavior = new FileBehavior("OrderModel");
             SetModelName(Identifiers.MODEL_ORDERS);
             ModelManagerSingleton.GetInstance().Register(this);
             CommandFrame.GetInstance().RegisterFrame("omp", frameBehavior);
             EnvironCaptureRegistrySingleton.GetInstance().Register(this);
+            Orders = new List<PetsiOrder>();
+            OneShotOrders = new List<PetsiOrder>();
+            PeriodicOrders = new List<PetsiOrder>();
+            InitSerializedOrders();
         }
+
+        private void InitSerializedOrders()
+        {
+            OneShotOrders = fileBehavior.BuildDataListFile<PetsiOrder>(Identifiers.ONE_SHOT_ORDERS);
+            PeriodicOrders = fileBehavior.BuildDataListFile<PetsiOrder>(Identifiers.PERIODIC_ORDERS);
+            Orders.AddRange(OneShotOrders);
+            Orders.AddRange(PeriodicOrders);
+        }
+
         public override void AddData(ModelUnitBase unit)
         {
             PetsiOrder order = (PetsiOrder)unit;
             Orders.Add(order);
-            if(order.IsPeriodic)
+            if (order.IsUserEntered)
             {
-                PeriodicOrders.Add(order);
+                if (order.IsPeriodic)
+                {
+                    PeriodicOrders.Add(order);
+                }
+                else if (order.IsOneShot)
+                {
+                    OneShotOrders.Add(order);
+                }
             }
-            if(order.IsOneShot)
-            {
-                OneShotOrders.Add(order);
-            }
+           
         }
         public override FrameBehaviorBase GetFrameBehavior() { return frameBehavior; }
         public List<PetsiOrder> GetOrders() { return Orders; }
@@ -51,10 +66,12 @@ namespace Petsi.Models
             Orders.Add(o); SortOrders(); 
             if(o.IsPeriodic)
             {
+                PeriodicOrders.Add(o);
                 fileBehavior.DataListToFile(Identifiers.PERIODIC_ORDERS, PeriodicOrders);
             }
             else if(o.IsOneShot)
             {
+                OneShotOrders.Add(o);
                 fileBehavior.DataListToFile(Identifiers.ONE_SHOT_ORDERS, OneShotOrders);
             }
         }

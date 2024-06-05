@@ -9,7 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="data\" />
     <Folder Include="controllers\" />
     <Folder Include="Labels\Files\Cuties\" />
     <Folder Include="views\" />
