@@ -23,6 +23,27 @@
         <convert:StringToBoolConverter x:Key="StringToBoolConverter" />
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
         <convert:StringToIntConverter x:Key="StringToIntConverter" />
+
+        <DataTemplate x:Key="OrderFormItemNameTemplate">
+            <Grid>
+                <ComboBox
+                    x:Name="itemNameComboBox"
+                    Width="190"
+                    Height="40"
+                    IsEditable="True"
+                    IsReadOnly="False"
+                    StaysOpenOnEdit="True"
+                    Text="{Binding ElementName=ItemNameTextBox, Path=Text}" />
+                <local:TextFillTextBox
+                    x:Name="ItemNameTextBox"
+                    Background="{StaticResource MintCream}"
+                    Style="{StaticResource orderFormTextFillTextBox}"
+                    Text="{Binding ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    TextChanged="ItemNameTextBox_TextChanged"
+                    TextFill="Item Name ..." />
+            </Grid>
+        </DataTemplate>
+
     </Window.Resources>
 
     <Border Background="{StaticResource Charcoal}" CornerRadius="20">
@@ -194,19 +215,11 @@
                         RowStyle="{DynamicResource orderFormDataGridRowStyle}"
                         Style="{DynamicResource orderFormGridStyle}">
                         <DataGrid.Columns>
-                            <DataGridTemplateColumn Width="*" Header="Item Name">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <local:TextFillTextBox
-                                            x:Name="ItemNameTextBox"
-                                            Background="{StaticResource MintCream}"
-                                            Style="{StaticResource orderFormTextFillTextBox}"
-                                            Text="{Binding ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                            TextChanged="ItemNameTextBox_TextChanged"
-                                            TextFill="Item Name ..." />
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn
+                                x:Name="orderFormTemplate"
+                                Width="*"
+                                CellTemplate="{StaticResource OrderFormItemNameTemplate}"
+                                Header="Item Name" />
                             <DataGridTemplateColumn Width="*" Header="Amount 3">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>

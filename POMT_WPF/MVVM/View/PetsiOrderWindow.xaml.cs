@@ -172,14 +172,23 @@ namespace POMT_WPF.MVVM.View
 
         private void ItemNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            TextFillTextBox itemNameTextBox = (TextFillTextBox)sender;
             bool isValidItem = false;
             bool hasListofResults = false;
+
+            TextFillTextBox itemNameTextBox = (TextFillTextBox)sender;
+            Grid grid = itemNameTextBox.Parent as Grid;
+
+            ComboBox itemNameCb = grid.FindName("itemNameComboBox") as ComboBox;
+
             string itemName = itemNameTextBox.Text;
             List<CatalogItemPetsi> results = ViewModel.GetItemMatchResults(itemName);
-            if(results.Count == 0)
-            {
 
+            itemNameCb.ItemsSource = results.Select(x => x.ItemName);
+            itemNameCb.IsDropDownOpen = true;
+
+            if (results.Count == 0)
+            {
+                itemNameCb.IsDropDownOpen = false;
             }
             else if(results.Count == 1)
             {
@@ -188,9 +197,8 @@ namespace POMT_WPF.MVVM.View
             else
             {
                 hasListofResults = true;
-                //combo box selection?
             }
-            if(!ViewModel.ValidateItemName(itemName))
+            if(itemNameTextBox.IsFocused == false && isValidItem == false)
             {
                 BrushConverter brushConverter = new BrushConverter();
                 Brush brush = (Brush)brushConverter.ConvertFromString("#D64933");
@@ -209,6 +217,6 @@ namespace POMT_WPF.MVVM.View
             List<CatalogItemPetsi> result = ViewModel.GetItemMatchResults(SelectedTextBoxText);
             testComboBox.ItemsSource = result.Select(x => x.ItemName);
             testComboBox.IsDropDownOpen = true;
-        }
+        } 
     }
 }
