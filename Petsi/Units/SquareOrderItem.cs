@@ -41,7 +41,7 @@ namespace Petsi.Units
             o.FulfillmentType = FulfillmentType;
             o.Note = Note;
             o.LineItems = ToPetsiOrderLineItemList();
-            o.IsPeriodic = false;
+            o.IsPeriodic = false; 
             return o;
         }
         private List<PetsiOrderLineItem> ToPetsiOrderLineItemList()
@@ -79,6 +79,7 @@ namespace Petsi.Units
                     PetsiLineItem.CatalogObjectId = ChannelLineItem.CatalogObjectId;
                     PetsiLineItem.ItemName = ChannelLineItem.ItemName;
                     PetsiLineItem.Amount3 = 0;
+                    PetsiLineItem.IsValid = true;
 
                     if (ChannelLineItem.VariationName.Contains("Small"))
                     {

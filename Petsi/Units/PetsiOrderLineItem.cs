@@ -12,7 +12,7 @@ namespace Petsi.Units
         public int Amount8 { get; set; }
         public int Amount10 { get; set; }
         public int AmountRegular { get; set; }
-        public bool IsInvalid { get; set; }
+        public bool IsValid { get; set; }
         public PetsiOrderLineItem() 
         {
             ItemName = "";

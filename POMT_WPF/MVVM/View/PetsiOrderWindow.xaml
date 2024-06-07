@@ -28,16 +28,19 @@
             <Grid>
                 <ComboBox
                     x:Name="itemNameComboBox"
-                    Width="190"
+                    Width="120"
                     Height="40"
                     IsEditable="True"
+                    IsHitTestVisible="False"
                     IsReadOnly="False"
+                    SelectionChanged="itemNameComboBox_SelectionChanged"
                     StaysOpenOnEdit="True"
                     Text="{Binding ElementName=ItemNameTextBox, Path=Text}" />
                 <local:TextFillTextBox
                     x:Name="ItemNameTextBox"
                     Background="{StaticResource MintCream}"
-                    Style="{StaticResource orderFormTextFillTextBox}"
+                    LostFocus="ItemNameTextBox_LostFocus"
+                    Style="{StaticResource orderFormItemnameTextFillTextBox}"
                     Text="{Binding ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     TextChanged="ItemNameTextBox_TextChanged"
                     TextFill="Item Name ..." />
@@ -125,22 +128,7 @@
                             Text="{Binding ViewModel.VMOrderType, Mode=TwoWay}"
                             TextFill="Order Type ..." />
                     </StackPanel>
-                    <Grid>
-                        <ComboBox
-                            x:Name="testComboBox"
-                            Width="190"
-                            Height="40"
-                            IsEditable="True"
-                            IsReadOnly="False"
-                            StaysOpenOnEdit="True"
-                            Text="{Binding ElementName=testTextBox, Path=Text}" />
-                        <local:TextFillTextBox
-                            x:Name="testTextBox"
-                            Style="{StaticResource textFillTextBox}"
-                            Text="{Binding SelectedTextBoxText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                            TextChanged="testTextBox_TextChanged"
-                            TextFill="test dropdown ..." />
-                    </Grid>
+
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" />
                 </StackPanel>
                 <StackPanel Grid.Column="4" Orientation="Vertical">
@@ -217,7 +205,7 @@
                         <DataGrid.Columns>
                             <DataGridTemplateColumn
                                 x:Name="orderFormTemplate"
-                                Width="*"
+                                Width="auto"
                                 CellTemplate="{StaticResource OrderFormItemNameTemplate}"
                                 Header="Item Name" />
                             <DataGridTemplateColumn Width="*" Header="Amount 3">

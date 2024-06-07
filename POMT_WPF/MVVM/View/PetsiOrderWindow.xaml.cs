@@ -1,7 +1,9 @@
-﻿using Petsi.Units;
+﻿using DocumentFormat.OpenXml.Office2010.Excel;
+using Petsi.Units;
 using Petsi.Utils;
 using POMT_WPF.MVVM.View.Controls;
 using POMT_WPF.MVVM.ViewModel;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -54,20 +56,6 @@ namespace POMT_WPF.MVVM.View
                 }
             }
         }
-
-        private string _selectedTextBoxText;
-        public string SelectedTextBoxText
-        {
-            get { return _selectedTextBoxText; }
-            set
-            {
-                if(_selectedTextBoxText != value)
-                {
-                    _selectedTextBoxText = value;
-                }
-            }
-        }
-
         public PetsiOrderWindow(PetsiOrder? existingOrder, bool isExistingOrder)
         {
             InitializeComponent();
@@ -172,33 +160,64 @@ namespace POMT_WPF.MVVM.View
 
         private void ItemNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            //if text == catalogItemName
+            //  set catalog Obj Id
+            //else
+            //  get list of matches
+            //  click match => textChangedEvent?
+
             bool isValidItem = false;
             bool hasListofResults = false;
 
+
             TextFillTextBox itemNameTextBox = (TextFillTextBox)sender;
-            Grid grid = itemNameTextBox.Parent as Grid;
-
-            ComboBox itemNameCb = grid.FindName("itemNameComboBox") as ComboBox;
-
-            string itemName = itemNameTextBox.Text;
-            List<CatalogItemPetsi> results = ViewModel.GetItemMatchResults(itemName);
-
-            itemNameCb.ItemsSource = results.Select(x => x.ItemName);
-            itemNameCb.IsDropDownOpen = true;
-
-            if (results.Count == 0)
-            {
-                itemNameCb.IsDropDownOpen = false;
-            }
-            else if(results.Count == 1)
+            Trace.WriteLine(itemNameTextBox.Text);
+            if (ViewModel.ValidateItemName(itemNameTextBox.Text))
             {
                 isValidItem = true;
             }
             else
             {
-                hasListofResults = true;
+                Grid grid = itemNameTextBox.Parent as Grid;
+                ComboBox itemNameCb = grid.FindName("itemNameComboBox") as ComboBox;
+                string itemName = itemNameTextBox.Text;
+                List<CatalogItemPetsi> results = ViewModel.GetItemMatchResults(itemName);
+
+                itemNameCb.ItemsSource = results.Select(x => x.ItemName);
+                
+                if (results.Count != 0)
+                {
+                    itemNameCb.IsDropDownOpen = true;
+                }
+                if (results.Count == 0)
+                {
+                    
+                }
+                else
+                {
+                    hasListofResults = true;
+                }
             }
-            if(itemNameTextBox.IsFocused == false && isValidItem == false)
+
+            //if(itemNameTextBox.IsFocused == false && !isValidItem)
+            //{
+            //    BrushConverter brushConverter = new BrushConverter();
+            //    Brush brush = (Brush)brushConverter.ConvertFromString("#D64933");
+            //    itemNameTextBox.Background = brush;
+            //}
+            //else
+            //{
+            //    BrushConverter brushConverter = new BrushConverter();
+            //    Brush brush = (Brush)brushConverter.ConvertFromString("#F7FFF7");
+            //    itemNameTextBox.Background = brush;
+            //}
+        }
+
+        private void ItemNameTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            //# D64933 chili red
+            TextFillTextBox itemNameTextBox = (TextFillTextBox)sender;
+            if (!ViewModel.IsValidItem(itemNameTextBox.Text))
             {
                 BrushConverter brushConverter = new BrushConverter();
                 Brush brush = (Brush)brushConverter.ConvertFromString("#D64933");
@@ -207,16 +226,50 @@ namespace POMT_WPF.MVVM.View
             else
             {
                 BrushConverter brushConverter = new BrushConverter();
-                Brush brush = (Brush)brushConverter.ConvertFromString("#F7FFF7");
+                Brush brush = (Brush)brushConverter.ConvertFromString("#CCD7E1");
                 itemNameTextBox.Background = brush;
             }
         }
 
-        private void testTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void itemNameComboBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            List<CatalogItemPetsi> result = ViewModel.GetItemMatchResults(SelectedTextBoxText);
-            testComboBox.ItemsSource = result.Select(x => x.ItemName);
-            testComboBox.IsDropDownOpen = true;
-        } 
+             //#D64933 chili red
+            ComboBox comboBox = (ComboBox)sender;
+            Grid grid = comboBox.Parent as Grid;
+            TextFillTextBox itemNameTextBox = grid.FindName("ItemNameTextBox") as TextFillTextBox;
+
+            if(!ViewModel.IsValidItem((string)comboBox.SelectedItem))
+            {
+                BrushConverter brushConverter = new BrushConverter();
+                Brush brush = (Brush)brushConverter.ConvertFromString("#D64933");
+                itemNameTextBox.Background = brush;
+            }
+            else
+            {
+                BrushConverter brushConverter = new BrushConverter();
+                Brush brush = (Brush)brushConverter.ConvertFromString("#CCD7E1");
+                itemNameTextBox.Background = brush;
+            }
+        }
+
+        private void itemNameComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //#D64933 chili red
+            //ComboBox comboBox = (ComboBox)sender;
+            //Grid grid = comboBox.Parent as Grid;
+            //TextFillTextBox itemNameTextBox = grid.FindName("ItemNameTextBox") as TextFillTextBox;
+            //if (!ViewModel.IsValidItem((string)comboBox.SelectedItem))
+            //{
+            //    BrushConverter brushConverter = new BrushConverter();
+            //    Brush brush = (Brush)brushConverter.ConvertFromString("#D64933");
+            //    itemNameTextBox.Background = brush;
+            //}
+            //else
+            //{
+            //    BrushConverter brushConverter = new BrushConverter();
+            //    Brush brush = (Brush)brushConverter.ConvertFromString("#CCD7E1");
+            //    itemNameTextBox.Background = brush;
+            //}
+        }
     }
 }

@@ -264,6 +264,12 @@ namespace POMT_WPF.MVVM.ViewModel
             return true;
         }
 
+        /// <summary>
+        /// If item name returns one catalog item, the lineitem's catalog id will be completed and function returns true.
+        /// If catalog service returns 0 items or more than 1 item, function returns false
+        /// </summary>
+        /// <param name="text">item name</param>
+        /// <returns></returns>
         public bool ValidateItemName(string text)
         {
             PetsiOrderLineItem lineItem = LineItems.First(x => x.ItemName == text);
@@ -272,10 +278,21 @@ namespace POMT_WPF.MVVM.ViewModel
             if (cs.TryValidateItemName(text, out id))
             {
                 lineItem.CatalogObjectId = id;
-                lineItem.IsInvalid = false;
+                lineItem.IsValid = true;
                 return true;    
             }
-            lineItem.IsInvalid = true;
+            lineItem.IsValid = false;
+            return false;
+        }
+
+        public bool IsValidItem(string itemName)
+        {
+            PetsiOrderLineItem lineItem = LineItems.First(x => x.ItemName == itemName);
+            if (lineItem == null) { return false; }
+            if(lineItem.IsValid)
+            {
+                return true;
+            }
             return false;
         }
 

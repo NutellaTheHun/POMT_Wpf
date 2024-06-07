@@ -76,7 +76,7 @@ namespace Petsi.Services
 
             foreach (CatalogItemPetsi item in catalog)
             {
-                if (item.ItemName.ToLower().Contains(name.ToLower()) || item.NaturalNameContains(name.ToLower()))
+                if (item.ItemName.ToLower().Equals(name.ToLower()) || item.NaturalNameEquals(name.ToLower()))
                 {
                     results.Add(item);
                 }
