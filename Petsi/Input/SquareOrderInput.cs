@@ -154,6 +154,7 @@ namespace Petsi.Input
                 string catalogObjId, varId;
                 foreach (var modifier in squareOrderlineItem.Modifiers)
                 {
+                    if(modifier.Name == "Add your note in \"notes\" section in checkout") { continue; }
                     LineItem boxedli = new LineItem();
                     boxedli.ItemName = catalogLookup.ValidateModifyItemName(modifier.Name);
                     

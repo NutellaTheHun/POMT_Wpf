@@ -105,80 +105,29 @@ namespace Petsi.Models
                 {
                     newList.Add(squareItem);
                 }
-                //foreach (CatalogItemPetsi newItem in newList)
-                //{
-                //    if (newItem.CatalogObjectId == squareItem.CatalogObjectId)
-                //    {
-                //        MigrateVariationList(newItem, squareItem);
-                //    }
-                //}
             }
-                /*
-                foreach(CatalogItemPetsi mainItem in mainList)
-                {
-                    if(squareList.Contains(mainItem))
-                    {
-                        squareList.Remove(mainItem);
-                    }
-                    newList.Add(mainItem);
-                }
-                */
-                /*
-                foreach (CatalogItemPetsi squareItem in items)
-                {
-                    if (mainList.Contains(squareItem))
-                    {
-                        newList.Add(squareItem);
-                        mainList.Remove(squareItem);
-                        squareList.Remove(squareItem);
-                    }
-                }
-                */
-                //If items not matched in otherModel, new or modified catalog items are present,
-                //must be distinguished from the user made catalog items in main model
-            /*
-            if (squareList.Count > 0)
-            {
-                foreach (CatalogItemPetsi item in mainList)
-                {
-                    //User created items (such as items from modified catalog items) distinguished
-                    if (!item.catalogObjectId.Contains(Identifiers.USER_BASED_ID_TAG))
-                    {
-                        SystemLogger.Log("Possible new catalog item or modification:\n   " + item.itemName + " " + item.catalogObjectId);
-                    }
-                }
-                SystemLogger.Log("Remaining items in otherModel, added to merged model:");
-                //Handle remaining other items
-                foreach (CatalogItemPetsi item in squareList)
-                {
-                    newList.Add(item);
-                    SystemLogger.Log("  " + item.itemName + " " + item.catalogObjectId);
-                }
-            }
-            /*
-            //Handle remaining serialized items (atleast user created catalog items
-            foreach (CatalogItemPetsi item in mainList)
-            {
-                newList.Add(item);
-            }
-            */
-            SetItemList(newList);
+            SetItemList(RemoveDuplicates(newList));
         }
 
-        private void MigrateVariationList(CatalogItemPetsi newItem, CatalogItemPetsi squareItem)
+        private List<CatalogItemPetsi> RemoveDuplicates(List<CatalogItemPetsi> newList)
         {
-            /*foreach (KeyValuePair<string, string> kvp in squareItem.Variations)
+            Dictionary<string, CatalogItemPetsi> dict = new Dictionary<string, CatalogItemPetsi>();
+            foreach(CatalogItemPetsi item in newList)
             {
-                newItem.VariationList.Add((kvp.Key, kvp.Value));
-            }*/
-            foreach (KeyValuePair<string, string> kvp in squareItem.Variations.OfType<DictionaryEntry>()
-                .Select(de => new KeyValuePair<string, string>((string)de.Key, (string)de.Value)))
-            {
-                if(!newItem.VariationList.Contains((kvp.Key, kvp.Value)))
+                if(item.ItemName.Contains("(1)"))
                 {
-                    newItem.VariationList.Add((kvp.Key, kvp.Value));
+                    continue;
+                }
+                if (dict.ContainsKey(item.ItemName))
+                {
+                    dict[item.ItemName].Alt_CatalogObjId.Add(item.CatalogObjectId);
+                }
+                else
+                {
+                    dict[item.ItemName] = item;
                 }
             }
+            return dict.Values.ToList();
         }
 
         public override string GetModelName()

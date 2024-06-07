@@ -3,44 +3,48 @@
   "WorkspaceRootPath": "D:\\Git-Repos\\POMT_WPF\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|d:\\git-repos\\pomt_wpf\\pomt_wpf\\mvvm\\view\\petsiorderwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|solutionrelative:pomt_wpf\\mvvm\\view\\petsiorderwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|d:\\git-repos\\pomt_wpf\\pomt_wpf\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|solutionrelative:pomt_wpf\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|d:\\git-repos\\pomt_wpf\\pomt_wpf\\mvvm\\view\\petsiorderwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|solutionrelative:pomt_wpf\\mvvm\\view\\petsiorderwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|d:\\git-repos\\pomt_wpf\\pomt_wpf\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|solutionrelative:pomt_wpf\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|d:\\git-repos\\pomt_wpf\\pomt_wpf\\mvvm\\viewmodel\\petsiorderviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|solutionrelative:pomt_wpf\\mvvm\\viewmodel\\petsiorderviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\units\\petsiorderlineitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\units\\petsiorderlineitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\input\\squareorderinput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\input\\squareorderinput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\services\\catalogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\services\\catalogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|d:\\git-repos\\pomt_wpf\\pomt_wpf\\mvvm\\view\\controls\\textfilltextbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|solutionrelative:pomt_wpf\\mvvm\\view\\controls\\textfilltextbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\commandline\\errorhandlers\\catalogserviceerrorframebehavior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\commandline\\errorhandlers\\catalogserviceerrorframebehavior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|d:\\git-repos\\pomt_wpf\\pomt_wpf\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|solutionrelative:pomt_wpf\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\commandline\\errorhandlers\\catalogmodelmodifynatnameerrorframe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\commandline\\errorhandlers\\catalogmodelmodifynatnameerrorframe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|d:\\git-repos\\pomt_wpf\\pomt_wpf\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|solutionrelative:pomt_wpf\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\utils\\systemlogger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\utils\\systemlogger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|d:\\git-repos\\pomt_wpf\\pomt_wpf\\mvvm\\viewmodel\\petsiorderviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|solutionrelative:pomt_wpf\\mvvm\\viewmodel\\petsiorderviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\models\\catalogmodelpetsi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\models\\catalogmodelpetsi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\input\\wholesaleinput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\input\\wholesaleinput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\units\\catalogitempetsi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\units\\catalogitempetsi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\input\\squarecataloginput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\input\\squarecataloginput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\units\\petsiorderlineitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\units\\petsiorderlineitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,26 +58,54 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PetsiOrderWindow.xaml",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\View\\PetsiOrderWindow.xaml",
-              "RelativeDocumentMoniker": "POMT_WPF\\MVVM\\View\\PetsiOrderWindow.xaml",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\View\\PetsiOrderWindow.xaml",
-              "RelativeToolTip": "POMT_WPF\\MVVM\\View\\PetsiOrderWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-06-04T20:01:03.32Z",
+              "DocumentIndex": 2,
+              "Title": "CatalogServiceErrorFrameBehavior.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\CommandLine\\ErrorHandlers\\CatalogServiceErrorFrameBehavior.cs",
+              "RelativeDocumentMoniker": "Petsi\\CommandLine\\ErrorHandlers\\CatalogServiceErrorFrameBehavior.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\CommandLine\\ErrorHandlers\\CatalogServiceErrorFrameBehavior.cs",
+              "RelativeToolTip": "Petsi\\CommandLine\\ErrorHandlers\\CatalogServiceErrorFrameBehavior.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAADwvyQAAAB4AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T16:00:28.782Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "App.xaml",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\App.xaml",
-              "RelativeDocumentMoniker": "POMT_WPF\\App.xaml",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\App.xaml",
-              "RelativeToolTip": "POMT_WPF\\App.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-06-05T19:46:33.563Z",
+              "DocumentIndex": 3,
+              "Title": "CatalogModelModifyNatNameErrorFrame.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\CommandLine\\ErrorHandlers\\CatalogModelModifyNatNameErrorFrame.cs",
+              "RelativeDocumentMoniker": "Petsi\\CommandLine\\ErrorHandlers\\CatalogModelModifyNatNameErrorFrame.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\CommandLine\\ErrorHandlers\\CatalogModelModifyNatNameErrorFrame.cs",
+              "RelativeToolTip": "Petsi\\CommandLine\\ErrorHandlers\\CatalogModelModifyNatNameErrorFrame.cs",
+              "ViewState": "AQIAAAIAAAAAAAAAAADgvxcAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T15:55:24.414Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CatalogModelPetsi.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Models\\CatalogModelPetsi.cs",
+              "RelativeDocumentMoniker": "Petsi\\Models\\CatalogModelPetsi.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Models\\CatalogModelPetsi.cs",
+              "RelativeToolTip": "Petsi\\Models\\CatalogModelPetsi.cs",
+              "ViewState": "AQIAAF4AAAAAAAAAAAAQwGwAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-06T19:45:29.452Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "SquareCatalogInput.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Input\\SquareCatalogInput.cs",
+              "RelativeDocumentMoniker": "Petsi\\Input\\SquareCatalogInput.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Input\\SquareCatalogInput.cs",
+              "RelativeToolTip": "Petsi\\Input\\SquareCatalogInput.cs",
+              "ViewState": "AQIAADkAAAAAAAAAAAAowG8AAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-06T18:46:07.612Z",
               "EditorCaption": ""
             }
           ]
@@ -99,79 +131,67 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "TextFillTextBox.cs",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\View\\Controls\\TextFillTextBox.cs",
-              "RelativeDocumentMoniker": "POMT_WPF\\MVVM\\View\\Controls\\TextFillTextBox.cs",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\View\\Controls\\TextFillTextBox.cs",
-              "RelativeToolTip": "POMT_WPF\\MVVM\\View\\Controls\\TextFillTextBox.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAJAAAA",
+              "DocumentIndex": 4,
+              "Title": "SystemLogger.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Utils\\SystemLogger.cs",
+              "RelativeDocumentMoniker": "Petsi\\Utils\\SystemLogger.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Utils\\SystemLogger.cs",
+              "RelativeToolTip": "Petsi\\Utils\\SystemLogger.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-05T20:05:48.87Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "CatalogService.cs",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Services\\CatalogService.cs",
-              "RelativeDocumentMoniker": "Petsi\\Services\\CatalogService.cs",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Services\\CatalogService.cs",
-              "RelativeToolTip": "Petsi\\Services\\CatalogService.cs",
-              "ViewState": "AQIAACoAAAAAAAAAAAAowE4AAAAbAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-05T18:45:01.028Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PetsiOrderWindow.xaml.cs",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\View\\PetsiOrderWindow.xaml.cs",
-              "RelativeDocumentMoniker": "POMT_WPF\\MVVM\\View\\PetsiOrderWindow.xaml.cs",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\View\\PetsiOrderWindow.xaml.cs",
-              "RelativeToolTip": "POMT_WPF\\MVVM\\View\\PetsiOrderWindow.xaml.cs",
-              "ViewState": "AQIAAJAAAAAAAAAAAAAMwKwAAAAzAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-05T18:15:25.107Z",
+              "WhenOpened": "2024-06-07T15:59:13.637Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "POMT_WPF\\MainWindow.xaml.cs",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MainWindow.xaml.cs",
-              "RelativeToolTip": "POMT_WPF\\MainWindow.xaml.cs",
-              "ViewState": "AQIAACsAAAAAAAAAAAAYwEIAAAAMAAAA",
+              "Title": "CatalogItemPetsi.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Units\\CatalogItemPetsi.cs",
+              "RelativeDocumentMoniker": "Petsi\\Units\\CatalogItemPetsi.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Units\\CatalogItemPetsi.cs",
+              "RelativeToolTip": "Petsi\\Units\\CatalogItemPetsi.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADsAAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-05T18:15:10.252Z",
+              "WhenOpened": "2024-06-07T15:41:31.088Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "POMT_WPF\\MainWindow.xaml",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MainWindow.xaml",
-              "RelativeToolTip": "POMT_WPF\\MainWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-06-05T18:15:09.756Z",
+              "DocumentIndex": 7,
+              "Title": "WholesaleInput.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Input\\WholesaleInput.cs",
+              "RelativeDocumentMoniker": "Petsi\\Input\\WholesaleInput.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Input\\WholesaleInput.cs",
+              "RelativeToolTip": "Petsi\\Input\\WholesaleInput.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-06T21:04:03.673Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "App.xaml.cs",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\App.xaml.cs",
-              "RelativeDocumentMoniker": "POMT_WPF\\App.xaml.cs",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\App.xaml.cs",
-              "RelativeToolTip": "POMT_WPF\\App.xaml.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB8AAAAhAAAA",
+              "DocumentIndex": 0,
+              "Title": "SquareOrderInput.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Input\\SquareOrderInput.cs",
+              "RelativeDocumentMoniker": "Petsi\\Input\\SquareOrderInput.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Input\\SquareOrderInput.cs",
+              "RelativeToolTip": "Petsi\\Input\\SquareOrderInput.cs",
+              "ViewState": "AQIAAIEAAAAAAAAAAAAWwJwAAABnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-05T17:22:45.832Z",
+              "WhenOpened": "2024-06-06T20:58:30.64Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CatalogService.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Services\\CatalogService.cs",
+              "RelativeDocumentMoniker": "Petsi\\Services\\CatalogService.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Services\\CatalogService.cs",
+              "RelativeToolTip": "Petsi\\Services\\CatalogService.cs",
+              "ViewState": "AQIAADYAAAAAAAAAAAAtwGMAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-05T18:45:01.028Z",
               "EditorCaption": ""
             }
           ]
@@ -184,8 +204,8 @@
       "FloatingWindowState": {
         "Id": "61c40d98-51ec-4204-a575-4697111d6bc6",
         "Display": 1,
-        "X": 111,
-        "Y": 551,
+        "X": -30,
+        "Y": 245,
         "Width": 1645,
         "Height": 1082,
         "WindowState": 2
@@ -197,20 +217,20 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "PetsiOrderViewModel.cs",
               "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\ViewModel\\PetsiOrderViewModel.cs",
               "RelativeDocumentMoniker": "POMT_WPF\\MVVM\\ViewModel\\PetsiOrderViewModel.cs",
               "ToolTip": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\ViewModel\\PetsiOrderViewModel.cs",
               "RelativeToolTip": "POMT_WPF\\MVVM\\ViewModel\\PetsiOrderViewModel.cs",
-              "ViewState": "AQIAAMkAAAAAAAAAAAAgwAsBAAAMAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsBAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-05T18:16:19.416Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 10,
               "Title": "PetsiOrderLineItem.cs",
               "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Units\\PetsiOrderLineItem.cs",
               "RelativeDocumentMoniker": "Petsi\\Units\\PetsiOrderLineItem.cs",
@@ -218,8 +238,7 @@
               "RelativeToolTip": "Petsi\\Units\\PetsiOrderLineItem.cs",
               "ViewState": "AQIAAAcAAAAAAAAAAAA1wBgAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-05T19:19:47.326Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-05T19:19:47.326Z"
             }
           ]
         }
