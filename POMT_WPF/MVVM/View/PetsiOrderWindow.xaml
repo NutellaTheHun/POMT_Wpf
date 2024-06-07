@@ -112,13 +112,11 @@
                             IsEditable="True"
                             IsReadOnly="False"
                             StaysOpenOnEdit="True"
-                            Text="{Binding ElementName=testTextBox, Path=Text}">
-                            <ComboBoxItem Content="Test1" />
-                            <ComboBoxItem Content="Test2" />
-                        </ComboBox>
+                            Text="{Binding ElementName=testTextBox, Path=Text}" />
                         <local:TextFillTextBox
                             x:Name="testTextBox"
                             Style="{StaticResource textFillTextBox}"
+                            Text="{Binding SelectedTextBoxText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                             TextChanged="testTextBox_TextChanged"
                             TextFill="test dropdown ..." />
                     </Grid>

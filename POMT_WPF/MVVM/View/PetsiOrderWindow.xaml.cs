@@ -54,6 +54,20 @@ namespace POMT_WPF.MVVM.View
                 }
             }
         }
+
+        private string _selectedTextBoxText;
+        public string SelectedTextBoxText
+        {
+            get { return _selectedTextBoxText; }
+            set
+            {
+                if(_selectedTextBoxText != value)
+                {
+                    _selectedTextBoxText = value;
+                }
+            }
+        }
+
         public PetsiOrderWindow(PetsiOrder? existingOrder, bool isExistingOrder)
         {
             InitializeComponent();
@@ -192,6 +206,8 @@ namespace POMT_WPF.MVVM.View
 
         private void testTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            List<CatalogItemPetsi> result = ViewModel.GetItemMatchResults(SelectedTextBoxText);
+            testComboBox.ItemsSource = result.Select(x => x.ItemName);
             testComboBox.IsDropDownOpen = true;
         }
     }
