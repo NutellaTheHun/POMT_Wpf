@@ -11,7 +11,7 @@ namespace POMT_WPF.MVVM.ViewModel
     public class PetsiOrderWindowViewModel : ViewModelBase
     {
         private PetsiOrder _order;
-
+        CatalogService cs;
         public string Recipient
         {
             get => _order.Recipient;
@@ -201,6 +201,7 @@ namespace POMT_WPF.MVVM.ViewModel
 
         public PetsiOrderWindowViewModel(PetsiOrder? petsiOrder)
         {
+            cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
             if (petsiOrder != null)
             {
                 _order = petsiOrder;
@@ -265,7 +266,6 @@ namespace POMT_WPF.MVVM.ViewModel
 
         public bool ValidateItemName(string text)
         {
-            CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
             PetsiOrderLineItem lineItem = LineItems.First(x => x.ItemName == text);
             if (lineItem == null) { return false; }
             string id;
@@ -277,6 +277,11 @@ namespace POMT_WPF.MVVM.ViewModel
             }
             lineItem.IsInvalid = true;
             return false;
+        }
+
+        public List<CatalogItemPetsi> GetItemMatchResults(string itemName)
+        {
+            return cs.GetItemNameValidationResults(itemName);
         }
     }
 }

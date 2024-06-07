@@ -159,19 +159,40 @@ namespace POMT_WPF.MVVM.View
         private void ItemNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextFillTextBox itemNameTextBox = (TextFillTextBox)sender;
+            bool isValidItem = false;
+            bool hasListofResults = false;
             string itemName = itemNameTextBox.Text;
-           if(!ViewModel.ValidateItemName(itemName))
-           {
+            List<CatalogItemPetsi> results = ViewModel.GetItemMatchResults(itemName);
+            if(results.Count == 0)
+            {
+
+            }
+            else if(results.Count == 1)
+            {
+                isValidItem = true;
+            }
+            else
+            {
+                hasListofResults = true;
+                //combo box selection?
+            }
+            if(!ViewModel.ValidateItemName(itemName))
+            {
                 BrushConverter brushConverter = new BrushConverter();
                 Brush brush = (Brush)brushConverter.ConvertFromString("#D64933");
                 itemNameTextBox.Background = brush;
-           }
-           else
-           {
+            }
+            else
+            {
                 BrushConverter brushConverter = new BrushConverter();
                 Brush brush = (Brush)brushConverter.ConvertFromString("#F7FFF7");
                 itemNameTextBox.Background = brush;
-           }
+            }
+        }
+
+        private void testTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            testComboBox.IsDropDownOpen = true;
         }
     }
 }

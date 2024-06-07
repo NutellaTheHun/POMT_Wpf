@@ -97,19 +97,17 @@ namespace Petsi.Units
             if(NaturalNames.Count > 0) 
             {
                 NaturalNames.Any(name => name.ToLower().Contains(searchTerm.ToLower()));
-                /*
-                foreach (string naturalName in naturalNames)
-                {
-                    if (naturalName.ToLower().Contains(searchTerm.ToLower()))
-                    {
-                        return true;
-                    }
-                }
-                */
             } 
+            return false; 
+        }
+        public bool NaturalNameEquals(string searchTerm)
+        {
+
+            if (NaturalNames.Count > 0)
+            {
+                NaturalNames.Any(name => name.ToLower().Equals(searchTerm.ToLower()));
+            }
             return false;
-            
-            //return naturalNames.Any(name => name.ToLower().Contains(searchTerm.ToLower()));
         }
 
         public void AddNaturalName(string errorName)
