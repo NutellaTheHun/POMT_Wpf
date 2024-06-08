@@ -260,8 +260,16 @@ namespace Petsi.Models
 
                     SaveDeletedOrder(order);
 
-                    if (order.IsOneShot) { SaveOneShotModel(); }
-                    else { SavePeriodicModel(); }
+                    if (order.IsOneShot)
+                    {
+                        OneShotOrders.Remove(order);
+                        SaveOneShotModel();
+                    }
+                    else 
+                    { 
+                        PeriodicOrders.Remove(order);  
+                        SavePeriodicModel();
+                    }
                     break;
                 }
             }
