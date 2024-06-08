@@ -16,13 +16,26 @@ namespace POMT_WPF.MVVM.ViewModel
                 if(_orders != value)
                 {
                     _orders = value;
+                    TotalOrderCount = Orders.Count;
                     OnPropertyChanged(nameof(_orders));
                 }
+            }
+        }
+
+        private int _totalOrderCount;
+        public int TotalOrderCount
+        {
+            get { return _totalOrderCount; }
+            set
+            {
+                _totalOrderCount = value;
+                OnPropertyChanged(nameof(TotalOrderCount));
             }
         }
         public MainWindowViewModel()
         {
             Orders = ObsOrderModelSingleton.Instance.Orders;
+            TotalOrderCount = Orders.Count();
         }
 
         public void AddOrder(PetsiOrder order)
@@ -56,10 +69,12 @@ namespace POMT_WPF.MVVM.ViewModel
             if(orderTypefilter == null)
             {
                 Orders = ObsOrderModelSingleton.Instance.Orders;
+                TotalOrderCount = Orders.Count;
             }
             else
             {
                 Orders = new ObservableCollection<PetsiOrder>(ObsOrderModelSingleton.Instance.Orders.Where(x => x.OrderType == orderTypefilter));
+                TotalOrderCount = Orders.Count;
             }
         }
 
@@ -84,6 +99,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
             Orders = results;
+            TotalOrderCount = Orders.Count;
         }
     }
 }

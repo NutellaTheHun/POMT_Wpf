@@ -132,14 +132,30 @@
                 </Button>
 
                 <!--  Page Title  -->
-                <TextBlock
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <TextBlock
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Left"
+                        FontSize="32"
+                        FontWeight="SemiBold"
+                        Foreground="#40474C"
+                        Text="{Binding TotalOrderCount, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Left"
+                        FontSize="32"
+                        FontWeight="SemiBold"
+                        Foreground="#40474C"
+                        Text=" Orders" />
+                </StackPanel>
+                <!--<TextBlock
                     Grid.Row="1"
                     Margin="0,20,0,0"
                     HorizontalAlignment="Left"
                     FontSize="32"
                     FontWeight="SemiBold"
                     Foreground="#40474C"
-                    Text="X Orders" />
+                    Text="X Orders" />-->
 
                 <!--  Add Button  -->
                 <Button Click="AddOrder_ButtonClick" Style="{StaticResource addButton}">

@@ -20,6 +20,7 @@ namespace POMT_WPF
             mwvm = new MainWindowViewModel();
             dashboardDataGrid.ItemsSource = mwvm.Orders;
             dashboardDataGrid.SelectionChanged += DashboardDataGrid_SelectionChanged;
+            DataContext = mwvm;
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
