@@ -174,13 +174,13 @@ namespace Petsi.Models
             if (targetDate == null)
             {
                 query = from order in Orders
-                        where order.InputOriginType == Identifiers.WHOLESALE_INPUT
+                        where order.OrderType == Identifiers.ORDER_TYPE_WHOLESALE
                         select order;
             }
             else
             {
                 query = from order in Orders
-                        where order.InputOriginType == Identifiers.WHOLESALE_INPUT
+                        where order.OrderType == Identifiers.ORDER_TYPE_WHOLESALE
                         where DateTime.Parse(order.OrderDueDate).Date == targetDate.Value.Date
                         select order;
             }
@@ -193,13 +193,13 @@ namespace Petsi.Models
             if (targetDate == null)
             {
                 query = from order in Orders
-                        where order.InputOriginType == Identifiers.WHOLESALE_INPUT
+                        where order.OrderType == Identifiers.ORDER_TYPE_WHOLESALE
                         select order;
             }
             else
             {
                 query = from order in Orders
-                        where order.InputOriginType == Identifiers.WHOLESALE_INPUT
+                        where order.OrderType == Identifiers.ORDER_TYPE_WHOLESALE
                         where DateTime.Parse(order.OrderDueDate).Date == targetDate.Value.Date
                         select order;
             }

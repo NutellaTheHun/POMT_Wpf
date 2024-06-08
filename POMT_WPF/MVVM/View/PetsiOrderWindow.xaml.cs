@@ -2,7 +2,6 @@
 using Petsi.Utils;
 using POMT_WPF.MVVM.View.Controls;
 using POMT_WPF.MVVM.ViewModel;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -36,10 +35,9 @@ namespace POMT_WPF.MVVM.View
                 if (_isExistingOrder != value)
                 {
                     _isExistingOrder = value;
-                    if(ViewModel.InputOriginType == Identifiers.WHOLESALE_INPUT 
-                        || ViewModel.InputOriginType == Identifiers.ONE_SHOT_INPUT) 
-                    { CanDelete = true; }
-                    else { CanDelete = false; }
+                    CanDelete = (ViewModel.InputOriginType == Identifiers.USER_ENTERED_INPUT);
+                    //if(ViewModel.InputOriginType == Identifiers.USER_ENTERED_INPUT) { CanDelete = true; }
+                    //else { CanDelete = false; }
                 }
             }
         }
@@ -62,6 +60,7 @@ namespace POMT_WPF.MVVM.View
             IsExistingOrder = isExistingOrder;
             DataContext = this;
             orderFormDataGrid.ItemsSource = ViewModel.LineItems;
+            OrderTypeComboBox.ItemsSource = ViewModel.OrderTypes;
         }
 
         private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)
@@ -95,7 +94,14 @@ namespace POMT_WPF.MVVM.View
                 errorWindow.Show();
                 return;
             }
-            if (OrderTypeTextBox.Text == "")
+            //if (OrderTypeTextBox.Text == "")
+            //{
+            //    PetsiOrderFormErrorWindow errorWindow =
+            //        new PetsiOrderFormErrorWindow("Order type is required.");
+            //    errorWindow.Show();
+            //    return;
+            //}
+            if (OrderTypeComboBox.SelectedItem == null)
             {
                 PetsiOrderFormErrorWindow errorWindow =
                     new PetsiOrderFormErrorWindow("Order type is required.");

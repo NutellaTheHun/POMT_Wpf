@@ -11,9 +11,9 @@ namespace Petsi.Utils
         public readonly static string PERIODIC_ORDERS = "periodicOrder";
         public readonly static string ONE_SHOT_ORDERS = "oneShotOrder";
 
-        public readonly static string ORDER_TYPE_SQUARE = "squareOrder";
-        public readonly static string ORDER_TYPE_WHOLESALE = "wholesaleOrder";
-        public readonly static string ORDER_TYPE_SPECIAL = "specialOrder";
+        public readonly static string ORDER_TYPE_SQUARE = "Square";
+        public readonly static string ORDER_TYPE_WHOLESALE = "Wholesale";
+        public readonly static string ORDER_TYPE_SPECIAL = "Special";
 
         public readonly static string ORDER_INPUT_ORIGIN_SQUARE = "squareInput";
         public readonly static string ORDER_INPUT_ORIGIN_USER = "userInput";
@@ -79,5 +79,15 @@ namespace Petsi.Utils
         public readonly static string SETTING_PASTRY_TEMPLATE = "pastryTemplateName";
         public readonly static string SETTING_LABEL_FP = "labelDirectory";
         public readonly static string SETTING_DAYNUM = "environPeriod";
+
+        public static List<string> GetOrderTypes()
+        {
+            return new List<string>
+            {
+                ORDER_TYPE_SPECIAL,
+                ORDER_TYPE_SQUARE,
+                ORDER_TYPE_WHOLESALE
+            };
+        }
     }
 }

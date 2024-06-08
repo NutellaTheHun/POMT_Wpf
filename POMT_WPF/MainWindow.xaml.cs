@@ -18,7 +18,6 @@ namespace POMT_WPF
         {
             InitializeComponent();
             mwvm = new MainWindowViewModel();
-
             dashboardDataGrid.ItemsSource = mwvm.Orders;
             dashboardDataGrid.SelectionChanged += DashboardDataGrid_SelectionChanged;
         }
@@ -92,22 +91,28 @@ namespace POMT_WPF
 
         private void FilterAll_Button_Click(object sender, RoutedEventArgs e)
         {
-            mwvm.GetOrders(null);
+            mwvm.FilterOrderType(null);
             dashboardDataGrid.ItemsSource = mwvm.Orders;
         }
         private void FilterWholesale_Button_Click(object sender, RoutedEventArgs e)
         {
-            mwvm.GetOrders(Identifiers.WHOLESALE_INPUT);
+            mwvm.FilterOrderType(Identifiers.ORDER_TYPE_WHOLESALE);
             dashboardDataGrid.ItemsSource = mwvm.Orders;
         }
         private void FilterSquare_Button_Click(object sender, RoutedEventArgs e)
         {
-            mwvm.GetOrders(Identifiers.SQUARE_ORDER_INPUT);
+            mwvm.FilterOrderType(Identifiers.ORDER_TYPE_SQUARE);
             dashboardDataGrid.ItemsSource = mwvm.Orders;
         }
         private void FilterOther_Button_Click(object sender, RoutedEventArgs e)
         {
-            mwvm.GetOrders(Identifiers.USER_ENTERED_INPUT);
+            mwvm.FilterOrderType(Identifiers.ORDER_TYPE_SPECIAL);
+            dashboardDataGrid.ItemsSource = mwvm.Orders;
+        }
+
+        private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            mwvm.FilterSearchBar(txtFilter.Text);
             dashboardDataGrid.ItemsSource = mwvm.Orders;
         }
     }

@@ -122,11 +122,16 @@
                             TextFill="Delivery Address(optional) ..." />
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                        <local:TextFillTextBox
+                        <!--<local:TextFillTextBox
                             x:Name="OrderTypeTextBox"
                             Style="{StaticResource textFillTextBox}"
                             Text="{Binding ViewModel.VMOrderType, Mode=TwoWay}"
-                            TextFill="Order Type ..." />
+                            TextFill="Order Type ..." />-->
+                        <ComboBox
+                            x:Name="OrderTypeComboBox"
+                            Width="200"
+                            Height="30"
+                            Text="{Binding ViewModel.OrderType, Mode=TwoWay}" />
                     </StackPanel>
 
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" />

@@ -16,7 +16,7 @@ namespace Petsi.Reports.PageBuilder
             PetsiOrder order = item as PetsiOrder;
             if(order.FulfillmentType == Identifiers.FULFILLMENT_DELIVERY
                 ||
-               order.InputOriginType == Identifiers.WHOLESALE_INPUT)
+               order.OrderType == Identifiers.ORDER_TYPE_WHOLESALE)
             {
                 return 1;
             }

@@ -482,13 +482,8 @@
                             Background="{TemplateBinding Background}"
                             BorderBrush="#e0e6ed"
                             BorderThickness="1"
-                            CornerRadius="20"
-                            SnapsToDevicePixels="True">
-                            <ScrollViewer
-                                x:Name="PART_ContentHose"
-                                Focusable="false"
-                                HorizontalScrollBarVisibility="Hidden"
-                                VerticalScrollBarVisibility="Hidden" />
+                            CornerRadius="20">
+                            <ContentPresenter/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -542,13 +537,7 @@
                             BorderBrush="#e0e6ed"
                             BorderThickness="1"
                             CornerRadius="7"
-                            SnapsToDevicePixels="True">
-                            <ScrollViewer
-                                x:Name="PART_ContentHose"
-                                Focusable="false"
-                                HorizontalScrollBarVisibility="Hidden"
-                                VerticalScrollBarVisibility="Hidden" />
-                        </Border>
+                            SnapsToDevicePixels="True" />
 
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">

@@ -4,6 +4,7 @@ using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
 using POMT_WPF.MVVM.ObsModels;
+using System.Collections;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 
@@ -46,6 +47,18 @@ namespace POMT_WPF.MVVM.ViewModel
                 {
                     _order.DeliveryAddress = value;
                     OnPropertyChanged(DeliveryAddress);
+                }
+            }
+        }
+        public string OrderType
+        {
+            get => _order.OrderType;
+            set
+            {
+                if (_order.OrderType != value)
+                {
+                    _order.OrderType = value;
+                    OnPropertyChanged(OrderType);
                 }
             }
         }
@@ -199,6 +212,10 @@ namespace POMT_WPF.MVVM.ViewModel
             }
         }
 
+        public List<string> OrderTypes
+        {
+            get { return Identifiers.GetOrderTypes(); }
+        }
 
         public PetsiOrderWindowViewModel(PetsiOrder? petsiOrder)
         {
@@ -236,10 +253,10 @@ namespace POMT_WPF.MVVM.ViewModel
         {
             string Date = DateTime.Parse(VMPickupDate).ToShortDateString();
             _order.OrderDueDate = DateTime.Parse(Date + " " + pickupTime).ToString();
-            _order.InputOriginType = Identifiers.USER_ENTERED_INPUT+"-"+VMOrderType;
+            _order.InputOriginType = Identifiers.USER_ENTERED_INPUT;
             _order.IsUserEntered = true;
             OrderModelPetsi omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
-            _order.OrderId = _order.InputOriginType+"-"+omp.GenerateOrderId();
+            _order.OrderId = omp.GenerateOrderId();
             ObsOrderModelSingleton.AddOrder(_order);
         }
 
@@ -300,6 +317,11 @@ namespace POMT_WPF.MVVM.ViewModel
         public List<CatalogItemPetsi> GetItemMatchResults(string itemName)
         {
             return cs.GetItemNameValidationResults(itemName);
+        }
+
+        public List<string> GetOrderTypes()
+        {
+            return Identifiers.GetOrderTypes();
         }
     }
 }

@@ -41,14 +41,15 @@ namespace Petsi.CommandLine
         public override void CommandFrameView()
         {
             Console.WriteLine(
-                "Recipient: " + item.Recipient +
-                "\nOrder Id: " + item.OrderId +
-                "\nOrder Due Date: " + DateTime.Parse(item.OrderDueDate).ToShortDateString() +
+                "          Recipient: " + item.Recipient +
+                "\n         Order Id: " + item.OrderId +
+                "\n   Order Due Date: " + DateTime.Parse(item.OrderDueDate).ToShortDateString() +
                 "\nOrder Pickup Time: " + DateTime.Parse(item.OrderDueDate).ToShortTimeString() +
                 "\nInput Origin Type: " + item.InputOriginType +
-                "\nFulfillment Type: " + item.FulfillmentType +
-                "\nNote: " + item.Note +
-                "\nLine Items: "
+                "\n      Order  Type: " + item.OrderType +
+                "\n Fulfillment Type: " + item.FulfillmentType +
+                "\n             Note: " + item.Note +
+                "\n       Line Items: "
                 );
             PrintLineItems();
             Console.WriteLine("\ntype \"help\" for commands.");

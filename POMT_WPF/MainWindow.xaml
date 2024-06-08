@@ -197,15 +197,27 @@
                         Margin="15,0"
                         VerticalAlignment="Center"
                         Panel.ZIndex="1"
-                        Foreground="#40474C"
+                        Foreground="{StaticResource TextFont}"
                         IsHitTestVisible="False"
                         Text="Search orders ..."
                         Visibility="{Binding ElementName=txtFilter, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}" />
+                    <Border
+                        Background="#ffffff"
+                        BorderBrush="#e0e6ed"
+                        BorderThickness="1"
+                        CornerRadius="20">
+                        <TextBox
+                            x:Name="txtFilter"
+                            Width="175"
+                            Height="40"
+                            Margin="10,0,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalContentAlignment="Center"
+                            BorderThickness="0"
+                            Foreground="{StaticResource TextFont}"
+                            TextChanged="txtFilter_TextChanged" />
+                    </Border>
 
-                    <TextBox
-                        x:Name="txtFilter"
-                        Height="40"
-                        Style="{StaticResource textBoxSearch}" />
 
                 </Grid>
 
@@ -218,7 +230,7 @@
                     RowStyle="{DynamicResource dashboardDataGridRowStyle}"
                     Style="{DynamicResource dashboardDataGridStyle}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding InputOriginType, UpdateSourceTrigger=PropertyChanged}" Header="Type" />
+                        <DataGridTextColumn Binding="{Binding OrderType, UpdateSourceTrigger=PropertyChanged}" Header="Type" />
                         <DataGridTextColumn Binding="{Binding Recipient, UpdateSourceTrigger=PropertyChanged}" Header="Name" />
                         <DataGridTextColumn Binding="{Binding OrderDueDate, UpdateSourceTrigger=PropertyChanged}" Header="Due Date" />
                         <DataGridTextColumn Binding="{Binding FulfillmentType, UpdateSourceTrigger=PropertyChanged}" Header="Fulfillment" />

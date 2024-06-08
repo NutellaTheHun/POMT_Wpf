@@ -43,6 +43,7 @@ namespace POMT_WPF.MVVM.ViewModel
         /// OrderTypes:
         ///     Square
         ///     Wholesale
+        ///     Ez-Cater
         ///     SpecialOrder
         /// InputOriginType:
         ///     Square
@@ -50,16 +51,39 @@ namespace POMT_WPF.MVVM.ViewModel
         ///     Ez-Cater
         /// </summary>
         /// <param name="filter"></param>
-        public void GetOrders(string? filter)
+        public void FilterOrderType(string? orderTypefilter)
         {
-            if(filter == null)
+            if(orderTypefilter == null)
             {
                 Orders = ObsOrderModelSingleton.Instance.Orders;
             }
             else
             {
-                Orders = new ObservableCollection<PetsiOrder>(ObsOrderModelSingleton.Instance.Orders.Where(x => x.InputOriginType == filter));
+                Orders = new ObservableCollection<PetsiOrder>(ObsOrderModelSingleton.Instance.Orders.Where(x => x.OrderType == orderTypefilter));
             }
+        }
+
+        public void FilterSearchBar(string text)
+        {
+            ObservableCollection<PetsiOrder> modelOrders = ObsOrderModelSingleton.Instance.Orders;
+            ObservableCollection<PetsiOrder> results = new ObservableCollection<PetsiOrder>();
+            foreach (PetsiOrder order in modelOrders)
+            {
+                if (order.Recipient.ToLower().Contains(text.ToLower()))
+                {
+                    results.Add(order);
+                    continue;
+                }
+                foreach (PetsiOrderLineItem lineItem in order.LineItems)
+                {
+                    if (lineItem.ItemName.ToLower().Contains(text.ToLower()))
+                    {
+                        results.Add(order);
+                        continue;
+                    }
+                }
+            }
+            Orders = results;
         }
     }
 }
