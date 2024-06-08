@@ -33,13 +33,13 @@
                     IsEditable="True"
                     IsHitTestVisible="False"
                     IsReadOnly="False"
+                    LostFocus="ItemNameTextBox_LostFocus"
                     SelectionChanged="itemNameComboBox_SelectionChanged"
                     StaysOpenOnEdit="True"
                     Text="{Binding ElementName=ItemNameTextBox, Path=Text}" />
                 <local:TextFillTextBox
                     x:Name="ItemNameTextBox"
                     Background="{StaticResource MintCream}"
-                    LostFocus="ItemNameTextBox_LostFocus"
                     Style="{StaticResource orderFormItemnameTextFillTextBox}"
                     Text="{Binding ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     TextChanged="ItemNameTextBox_TextChanged"

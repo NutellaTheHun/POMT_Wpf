@@ -30,30 +30,36 @@ namespace Petsi.Services
         }
 
         /// <summary>
-        /// Returns the catalog object ID from square's catalog API
+        /// Returns the catalog object ID from square's catalog API, returns "" if fails
         /// </summary>
         /// <param name="input">Can be item name or variation Id</param>
         /// <returns></returns>
         public string GetCatalogObjectId(string input)
         {
             CatalogItemPetsi source;
-            //string result = "";
-            if (catalogIdDict.TryGetValue(input, out source))
+            string result = "";
+            catalogIdDict.TryGetValue(input, out source);
+            if (source != null)
             {
-                if(source == null)
-                {
-                    return "";
-                }
-                else
-                {
-                    return source.CatalogObjectId;
-                }
-                //return result;
+                result = source.CatalogObjectId;
             }
-            else
-            {
-                throw new Exception("GetCatalogObjId key/value doesn't exist, key used: " + input);
-            }
+            return result;
+            //if (catalogIdDict.TryGetValue(input, out source))
+            //{
+            //    if(source == null)
+            //    {
+            //        return "";
+            //    }
+            //    else
+            //    {
+            //        return source.CatalogObjectId;
+            //    }
+            //    //return result;
+            //}
+            //else
+            //{
+            //    throw new Exception("GetCatalogObjId key/value doesn't exist, key used: " + input);
+            //}
         }
         public bool IsModifyItem(string catalogObjectId)
         {

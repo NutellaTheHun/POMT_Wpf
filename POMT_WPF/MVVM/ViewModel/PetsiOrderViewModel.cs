@@ -5,6 +5,7 @@ using Petsi.Units;
 using Petsi.Utils;
 using POMT_WPF.MVVM.ObsModels;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace POMT_WPF.MVVM.ViewModel
 {
@@ -247,11 +248,10 @@ namespace POMT_WPF.MVVM.ViewModel
             
             foreach (PetsiOrderLineItem lineItem in LineItems)
             {
-                
-                if (lineItem.ItemName == "" || lineItem.ItemName == null)
-                {
-                    return false;
-                }
+                string id = cs.GetCatalogObjectId(lineItem.ItemName);
+                if (id == "" || id == null) { return false; }
+                if (lineItem.CatalogObjectId != id) { return false; }
+                if (lineItem.ItemName == "" || lineItem.ItemName == null) { return false; }
                 if (lineItem.AmountRegular == 0
                        && lineItem.Amount3 == 0
                        && lineItem.Amount5 == 0
@@ -274,13 +274,14 @@ namespace POMT_WPF.MVVM.ViewModel
         {
             PetsiOrderLineItem lineItem = LineItems.First(x => x.ItemName == text);
             if (lineItem == null) { return false; }
-            string id;
+            string id = "";
             if (cs.TryValidateItemName(text, out id))
             {
                 lineItem.CatalogObjectId = id;
                 lineItem.IsValid = true;
                 return true;    
             }
+            lineItem.CatalogObjectId = "";
             lineItem.IsValid = false;
             return false;
         }

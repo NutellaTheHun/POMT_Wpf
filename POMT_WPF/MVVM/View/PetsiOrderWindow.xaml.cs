@@ -1,5 +1,4 @@
-﻿using DocumentFormat.OpenXml.Office2010.Excel;
-using Petsi.Units;
+﻿using Petsi.Units;
 using Petsi.Utils;
 using POMT_WPF.MVVM.View.Controls;
 using POMT_WPF.MVVM.ViewModel;
@@ -171,7 +170,6 @@ namespace POMT_WPF.MVVM.View
 
 
             TextFillTextBox itemNameTextBox = (TextFillTextBox)sender;
-            Trace.WriteLine(itemNameTextBox.Text);
             if (ViewModel.ValidateItemName(itemNameTextBox.Text))
             {
                 isValidItem = true;
@@ -216,7 +214,10 @@ namespace POMT_WPF.MVVM.View
         private void ItemNameTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             //# D64933 chili red
-            TextFillTextBox itemNameTextBox = (TextFillTextBox)sender;
+            //TextFillTextBox itemNameTextBox = (TextFillTextBox)sender;
+            ComboBox comboBox = (ComboBox)sender;
+            Grid grid = comboBox.Parent as Grid;
+            TextFillTextBox itemNameTextBox = grid.FindName("ItemNameTextBox") as TextFillTextBox;
             if (!ViewModel.IsValidItem(itemNameTextBox.Text))
             {
                 BrushConverter brushConverter = new BrushConverter();
@@ -228,6 +229,40 @@ namespace POMT_WPF.MVVM.View
                 BrushConverter brushConverter = new BrushConverter();
                 Brush brush = (Brush)brushConverter.ConvertFromString("#CCD7E1");
                 itemNameTextBox.Background = brush;
+            }
+        }
+        private void itemNameComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //#D64933 chili red
+            ComboBox comboBox = (ComboBox)sender;
+            Grid grid = comboBox.Parent as Grid;
+            TextFillTextBox itemNameTextBox = grid.FindName("ItemNameTextBox") as TextFillTextBox;
+            if (comboBox.SelectedItem != null)
+            {
+                itemNameTextBox.Text = comboBox.SelectedItem.ToString();
+                TextFillTextBox idTextBox = grid.FindName("testcatalogObjId") as TextFillTextBox;
+                if (ViewModel.ValidateItemName(itemNameTextBox.Text))
+                {
+                    
+                }
+                else
+                {
+                    BrushConverter brushConverter = new BrushConverter();
+                    Brush brush = (Brush)brushConverter.ConvertFromString("#D64933");
+                    itemNameTextBox.Background = brush;
+                }
+                //if (!ViewModel.IsValidItem((string)comboBox.SelectedItem))
+                //{
+                //    BrushConverter brushConverter = new BrushConverter();
+                //    Brush brush = (Brush)brushConverter.ConvertFromString("#D64933");
+                //    itemNameTextBox.Background = brush;
+                //}
+                //else
+                //{
+                //    BrushConverter brushConverter = new BrushConverter();
+                //    Brush brush = (Brush)brushConverter.ConvertFromString("#CCD7E1");
+                //    itemNameTextBox.Background = brush;
+                //}
             }
         }
 
@@ -252,24 +287,6 @@ namespace POMT_WPF.MVVM.View
             }
         }
 
-        private void itemNameComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //#D64933 chili red
-            //ComboBox comboBox = (ComboBox)sender;
-            //Grid grid = comboBox.Parent as Grid;
-            //TextFillTextBox itemNameTextBox = grid.FindName("ItemNameTextBox") as TextFillTextBox;
-            //if (!ViewModel.IsValidItem((string)comboBox.SelectedItem))
-            //{
-            //    BrushConverter brushConverter = new BrushConverter();
-            //    Brush brush = (Brush)brushConverter.ConvertFromString("#D64933");
-            //    itemNameTextBox.Background = brush;
-            //}
-            //else
-            //{
-            //    BrushConverter brushConverter = new BrushConverter();
-            //    Brush brush = (Brush)brushConverter.ConvertFromString("#CCD7E1");
-            //    itemNameTextBox.Background = brush;
-            //}
-        }
+        
     }
 }
