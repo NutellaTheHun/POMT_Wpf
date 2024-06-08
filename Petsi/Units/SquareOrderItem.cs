@@ -43,6 +43,7 @@ namespace Petsi.Units
             o.Note = Note;
             o.LineItems = ToPetsiOrderLineItemList();
             o.IsPeriodic = false;
+            o.IsOneShot = true;
             o.OrderType = Identifiers.ORDER_TYPE_SQUARE;
             return o;
         }

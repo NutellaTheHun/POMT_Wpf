@@ -1,4 +1,5 @@
-﻿using Petsi.Units;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using Petsi.Units;
 using Petsi.Utils;
 using POMT_WPF.MVVM.View.Controls;
 using POMT_WPF.MVVM.ViewModel;
@@ -53,6 +54,19 @@ namespace POMT_WPF.MVVM.View
                 }
             }
         }
+
+        //bool _isReadOnly;
+        //public bool IsReadOnly
+        //{
+        //    get { return _isReadOnly; }
+        //    set
+        //    {
+        //        if (_isReadOnly != value)
+        //        {
+        //            _isReadOnly = value;
+        //        }
+        //    }
+        //}
         public PetsiOrderWindow(PetsiOrder? existingOrder, bool isExistingOrder)
         {
             InitializeComponent();
@@ -61,6 +75,27 @@ namespace POMT_WPF.MVVM.View
             DataContext = this;
             orderFormDataGrid.ItemsSource = ViewModel.LineItems;
             OrderTypeComboBox.ItemsSource = ViewModel.OrderTypes;
+            if(IsExistingOrder)
+            {
+                ViewModel.IsReadOnly = true;
+                ViewModel.ItemsIsReadOnly();
+                ViewModel.NotReadOnly = false;
+                if (ViewModel.InputOriginType != Identifiers.USER_ENTERED_INPUT)
+                {
+                    editToggleButton.IsEnabled = false;
+                    editToggleButton.Visibility = Visibility.Hidden;
+                    AddOrderButton.Visibility = Visibility.Hidden;
+                }                
+            }
+            else
+            {
+                ViewModel.IsReadOnly = false;
+                ViewModel.ItemsNotReadOnly();
+                ViewModel.NotReadOnly = true;
+                editToggleButton.IsEnabled = false;
+                editToggleButton.Visibility = Visibility.Hidden;
+            }
+            
         }
 
         private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)
@@ -293,6 +328,10 @@ namespace POMT_WPF.MVVM.View
             }
         }
 
-        
+        private void editToggleButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (ViewModel.IsReadOnly) { ViewModel.IsReadOnly = false; ViewModel.NotReadOnly = true; ViewModel.ItemsNotReadOnly(); }
+            else { ViewModel.IsReadOnly = true; ViewModel.ItemsIsReadOnly(); ViewModel.NotReadOnly = false; }
+        }
     }
 }

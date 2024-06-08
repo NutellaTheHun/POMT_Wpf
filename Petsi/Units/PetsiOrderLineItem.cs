@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace Petsi.Units
 {
-    public class PetsiOrderLineItem : IEquatable<PetsiOrderLineItem>
+    public class PetsiOrderLineItem : IEquatable<PetsiOrderLineItem>, INotifyPropertyChanged
     {
         public string ItemName { get; set; }
         public string CatalogObjectId { get; set; }
@@ -13,6 +13,32 @@ namespace Petsi.Units
         public int Amount10 { get; set; }
         public int AmountRegular { get; set; }
         public bool IsValid { get; set; }
+
+        //The only way I could get the datagrid for the order form to propertly be set to read only.
+        private bool _isReadOnly;
+        public bool IsReadOnly
+        {
+            get
+            {
+                return _isReadOnly;
+            }
+            set
+            {
+                if (_isReadOnly != value)
+                {
+                    _isReadOnly = value;
+                    OnPropertyChanged(nameof(IsReadOnly));
+                }
+            }
+        }
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        //---------------------------------
+        public bool NotReadOnly { get; set; }
+
         public PetsiOrderLineItem() 
         {
             ItemName = "";

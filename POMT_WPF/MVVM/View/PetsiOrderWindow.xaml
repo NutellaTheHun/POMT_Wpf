@@ -40,6 +40,7 @@
                 <local:TextFillTextBox
                     x:Name="ItemNameTextBox"
                     Background="{StaticResource MintCream}"
+                    IsReadOnly="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged}"
                     Style="{StaticResource orderFormItemnameTextFillTextBox}"
                     Text="{Binding ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     TextChanged="ItemNameTextBox_TextChanged"
@@ -82,6 +83,17 @@
                 FontSize="24"
                 Foreground="White"
                 Text="Order Form" />
+            <ToggleButton
+                x:Name="editToggleButton"
+                Grid.Row="1"
+                Width="60"
+                Height="20"
+                Margin="0,5,50,5"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Click="editToggleButton_Click"
+                Content="edit"
+                Style="{StaticResource orderFormEditButton}" />
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -94,6 +106,7 @@
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                         <local:TextFillTextBox
                             x:Name="recipientTextBox"
+                            IsReadOnly="{Binding ViewModel.IsReadOnly}"
                             Style="{StaticResource textFillTextBox}"
                             Text="{Binding ViewModel.Recipient, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                             TextFill="Recipient ..." />
@@ -104,33 +117,34 @@
                             x:Name="PickupRadioButton"
                             Margin="0,5,20,5"
                             Content="Pickup"
+                            Focusable="{Binding ViewModel.NotReadOnly}"
                             Foreground="#efefef"
                             IsChecked="{Binding ViewModel.FulfillmentType, Converter={StaticResource StringToBoolConverter}, ConverterParameter=PICKUP}"
+                            IsHitTestVisible="{Binding ViewModel.NotReadOnly}"
                             Style="{StaticResource reportLabelsRadioButtonTheme}" />
                         <RadioButton
                             x:Name="DeliveryRadioButton"
                             Content="Delivery"
+                            Focusable="{Binding ViewModel.NotReadOnly}"
                             Foreground="#efefef"
                             IsChecked="{Binding ViewModel.FulfillmentType, Converter={StaticResource StringToBoolConverter}, ConverterParameter=DELIVERY}"
+                            IsHitTestVisible="{Binding ViewModel.NotReadOnly}"
                             Style="{StaticResource reportLabelsRadioButtonTheme}" />
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                         <local:TextFillTextBox
                             x:Name="DeliveryAddressTextBox"
+                            IsReadOnly="{Binding ViewModel.IsReadOnly}"
                             Style="{StaticResource textFillTextBox}"
                             Text="{Binding ViewModel.DeliveryAddress, Mode=TwoWay}"
                             TextFill="Delivery Address(optional) ..." />
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                        <!--<local:TextFillTextBox
-                            x:Name="OrderTypeTextBox"
-                            Style="{StaticResource textFillTextBox}"
-                            Text="{Binding ViewModel.VMOrderType, Mode=TwoWay}"
-                            TextFill="Order Type ..." />-->
                         <ComboBox
                             x:Name="OrderTypeComboBox"
                             Width="200"
                             Height="30"
+                            IsHitTestVisible="{Binding ViewModel.NotReadOnly}"
                             Text="{Binding ViewModel.OrderType, Mode=TwoWay}" />
                     </StackPanel>
 
@@ -142,14 +156,18 @@
                             x:Name="WeeklyRadioButton"
                             Margin="0,5,20,5"
                             Content="Weekly"
+                            Focusable="{Binding ViewModel.NotReadOnly}"
                             Foreground="#efefef"
                             IsChecked="{Binding ViewModel.IsPeriodic, UpdateSourceTrigger=PropertyChanged}"
+                            IsHitTestVisible="{Binding ViewModel.NotReadOnly}"
                             Style="{StaticResource reportLabelsRadioButtonTheme}" />
                         <RadioButton
                             x:Name="OneTimeRadioButton"
                             Content="One Time"
+                            Focusable="{Binding ViewModel.NotReadOnly}"
                             Foreground="#efefef"
                             IsChecked="{Binding ViewModel.IsOneShot, UpdateSourceTrigger=PropertyChanged}"
+                            IsHitTestVisible="{Binding ViewModel.NotReadOnly}"
                             Style="{StaticResource reportLabelsRadioButtonTheme}" />
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
@@ -157,12 +175,15 @@
                             x:Name="orderDatePicker"
                             Width="200"
                             Height="40"
+                            Focusable="{Binding ViewModel.NotReadOnly}"
                             Foreground="Black"
+                            IsHitTestVisible="{Binding ViewModel.NotReadOnly}"
                             SelectedDate="{Binding ViewModel.VMPickupDate}" />
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                         <local:TextFillTextBox
                             x:Name="orderTimeTextBox"
+                            IsReadOnly="{Binding ViewModel.IsReadOnly}"
                             Style="{StaticResource textFillTextBox}"
                             Text="{Binding ViewModel.VMPickupTime, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                             TextChanged="orderTimeTextBox_TextChanged"
@@ -172,6 +193,7 @@
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                         <local:TextFillTextBox
                             x:Name="phoneTextBox"
+                            IsReadOnly="{Binding ViewModel.IsReadOnly}"
                             Style="{StaticResource textFillTextBox}"
                             Text="{Binding ViewModel.PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             TextFill="phone ... " />
@@ -180,6 +202,7 @@
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                         <local:TextFillTextBox
                             x:Name="emailTextBox"
+                            IsReadOnly="{Binding ViewModel.IsReadOnly}"
                             Style="{StaticResource textFillTextBox}"
                             Text="{Binding ViewModel.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             TextFill="email ..." />
@@ -219,6 +242,7 @@
                                         <local:TextFillTextBox
                                             x:Name="amount3TextBox"
                                             Background="{StaticResource MintCream}"
+                                            IsReadOnly="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged}"
                                             Style="{StaticResource orderFormTextFillTextBox}"
                                             Text="{Binding Amount3, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}, Mode=TwoWay}"
                                             TextFill="Amount 3 ..." />
@@ -231,6 +255,7 @@
                                         <local:TextFillTextBox
                                             x:Name="amount5TextBox"
                                             Background="{StaticResource MintCream}"
+                                            IsReadOnly="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged}"
                                             Style="{StaticResource orderFormTextFillTextBox}"
                                             Text="{Binding Amount5, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}, Mode=TwoWay}"
                                             TextFill="Amount 5 ..." />
@@ -243,6 +268,7 @@
                                         <local:TextFillTextBox
                                             x:Name="amount8TextBox"
                                             Background="{StaticResource MintCream}"
+                                            IsReadOnly="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged}"
                                             Style="{StaticResource orderFormTextFillTextBox}"
                                             Text="{Binding Amount8, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}, Mode=TwoWay}"
                                             TextFill="Amount 8 ..." />
@@ -255,6 +281,7 @@
                                         <local:TextFillTextBox
                                             x:Name="amount10TextBox"
                                             Background="{StaticResource MintCream}"
+                                            IsReadOnly="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged}"
                                             Style="{StaticResource orderFormTextFillTextBox}"
                                             Text="{Binding Amount10, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}, Mode=TwoWay}"
                                             TextFill="Amount 10 ..." />
@@ -270,12 +297,14 @@
                         </DataGrid.Columns>
                     </DataGrid>
                     <Button
+                        Name="AddOrderButton"
                         Width="30"
                         Height="30"
                         Margin="5,0,5,5"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Top"
                         Click="AddLineItem_BtnClk"
+                        IsEnabled="{Binding ViewModel.NotReadOnly}"
                         Style="{StaticResource secondaryButton}">
                         <Icon:PackIconMaterial Kind="Plus" />
                     </Button>
@@ -286,6 +315,7 @@
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                     <!--  Textboxmode=multiline  -->
                     <local:TextFillTextBox
+                        IsReadOnly="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged}"
                         Style="{StaticResource textFillTextBox}"
                         Text="{Binding ViewModel.Note, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextFill="notes ..."

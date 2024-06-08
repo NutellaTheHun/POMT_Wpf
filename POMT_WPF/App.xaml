@@ -483,7 +483,7 @@
                             BorderBrush="#e0e6ed"
                             BorderThickness="1"
                             CornerRadius="20">
-                            <ContentPresenter/>
+                            <ContentPresenter />
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -519,6 +519,36 @@
                 </Trigger>-->
                 <Trigger Property="IsChecked" Value="True">
                     <Setter Property="BorderBrush" Value="#E37B34" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="orderFormEditButton" TargetType="ToggleButton">
+            <Setter Property="Width" Value="60" />
+            <Setter Property="Height" Value="20" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="0,0,0,1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <!--<Trigger Property="IsMouseOver" Value="True">
+             <Setter Property="BorderBrush" Value="#E37B34" />
+         </Trigger>-->
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Background" Value="#E37B34" />
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -576,6 +606,7 @@
                                     Background="Transparent"
                                     BorderThickness="0"
                                     Foreground="{StaticResource maybeDark}"
+                                    IsReadOnly="{TemplateBinding IsReadOnly}"
                                     Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                                 <TextBlock

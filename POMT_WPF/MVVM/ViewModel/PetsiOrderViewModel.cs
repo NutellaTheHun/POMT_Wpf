@@ -4,9 +4,7 @@ using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
 using POMT_WPF.MVVM.ObsModels;
-using System.Collections;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 
 namespace POMT_WPF.MVVM.ViewModel
 {
@@ -212,6 +210,36 @@ namespace POMT_WPF.MVVM.ViewModel
             }
         }
 
+        private bool _isReadOnly;
+
+        public bool IsReadOnly
+        {
+            get { return _isReadOnly; }
+            set
+            {
+                if (_isReadOnly != value)
+                {
+                    _isReadOnly = value;
+                    OnPropertyChanged(nameof(IsReadOnly));
+                }
+            }
+        }
+
+        private bool _notReadOnly;
+
+        public bool NotReadOnly
+        {
+            get { return _notReadOnly; }
+            set
+            {
+                if (_notReadOnly != value)
+                {
+                    _notReadOnly = value;
+                    OnPropertyChanged(nameof(NotReadOnly));
+                }
+            }
+        }
+
         public List<string> OrderTypes
         {
             get { return Identifiers.GetOrderTypes(); }
@@ -322,6 +350,23 @@ namespace POMT_WPF.MVVM.ViewModel
         public List<string> GetOrderTypes()
         {
             return Identifiers.GetOrderTypes();
+        }
+
+        public void ItemsIsReadOnly()
+        {
+            foreach (PetsiOrderLineItem lineItem in LineItems)
+            {
+                lineItem.IsReadOnly = true;
+                lineItem.NotReadOnly = false;
+            }
+        }
+        public void ItemsNotReadOnly()
+        {
+            foreach (PetsiOrderLineItem lineItem in LineItems)
+            {
+                lineItem.IsReadOnly = false;
+                lineItem.NotReadOnly = true;
+            }
         }
     }
 }
