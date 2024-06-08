@@ -34,14 +34,16 @@ namespace Petsi.Units
         public PetsiOrder ToPetsiOrder()
         {
             PetsiOrder o = new PetsiOrder();
-            o.InputOriginType = Identifiers.SQUARE_ORDER_INPUT;
+            //o.InputOriginType = Identifiers.SQUARE_ORDER_INPUT;
+            o.InputOriginType = Identifiers.ORDER_INPUT_ORIGIN_SQUARE;
             o.Recipient = RecipientName;
             o.OrderId = Id;
             o.OrderDueDate = Pickup_time;
             o.FulfillmentType = FulfillmentType;
             o.Note = Note;
             o.LineItems = ToPetsiOrderLineItemList();
-            o.IsPeriodic = false; 
+            o.IsPeriodic = false;
+            o.OrderType = Identifiers.ORDER_TYPE_SQUARE;
             return o;
         }
         private List<PetsiOrderLineItem> ToPetsiOrderLineItemList()

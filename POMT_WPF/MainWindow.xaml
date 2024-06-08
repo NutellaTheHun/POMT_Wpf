@@ -166,13 +166,27 @@
                     Grid.Row="2"
                     Margin="0,10,0,0"
                     Orientation="Horizontal">
-                    <Button
-                        BorderBrush="#E37B34"
+                    <RadioButton
+                        Click="FilterAll_Button_Click"
                         Content="All "
+                        GroupName="g1"
+                        IsChecked="True"
                         Style="{StaticResource tabButton}" />
-                    <Button Content="Wholesale" Style="{StaticResource tabButton}" />
-                    <Button Content="Square" Style="{StaticResource tabButton}" />
-                    <Button Content="Other" Style="{StaticResource tabButton}" />
+                    <RadioButton
+                        Click="FilterWholesale_Button_Click"
+                        Content="Wholesale"
+                        GroupName="g1"
+                        Style="{StaticResource tabButton}" />
+                    <RadioButton
+                        Click="FilterSquare_Button_Click"
+                        Content="Square"
+                        GroupName="g1"
+                        Style="{StaticResource tabButton}" />
+                    <RadioButton
+                        Click="FilterOther_Button_Click"
+                        Content="Other"
+                        GroupName="g1"
+                        Style="{StaticResource tabButton}" />
                 </StackPanel>
                 <!--  Filter TextBox  -->
                 <Grid

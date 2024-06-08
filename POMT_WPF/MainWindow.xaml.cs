@@ -1,4 +1,5 @@
 ﻿using Petsi.Units;
+using Petsi.Utils;
 using POMT_WPF.MVVM.View;
 using POMT_WPF.MVVM.ViewModel;
 using System.Windows;
@@ -12,10 +13,11 @@ namespace POMT_WPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        MainWindowViewModel mwvm;
         public MainWindow()
         {
             InitializeComponent();
-            MainWindowViewModel mwvm = new MainWindowViewModel();
+            mwvm = new MainWindowViewModel();
 
             dashboardDataGrid.ItemsSource = mwvm.Orders;
             dashboardDataGrid.SelectionChanged += DashboardDataGrid_SelectionChanged;
@@ -86,6 +88,27 @@ namespace POMT_WPF
         private void CloseMainWindow(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void FilterAll_Button_Click(object sender, RoutedEventArgs e)
+        {
+            mwvm.GetOrders(null);
+            dashboardDataGrid.ItemsSource = mwvm.Orders;
+        }
+        private void FilterWholesale_Button_Click(object sender, RoutedEventArgs e)
+        {
+            mwvm.GetOrders(Identifiers.WHOLESALE_INPUT);
+            dashboardDataGrid.ItemsSource = mwvm.Orders;
+        }
+        private void FilterSquare_Button_Click(object sender, RoutedEventArgs e)
+        {
+            mwvm.GetOrders(Identifiers.SQUARE_ORDER_INPUT);
+            dashboardDataGrid.ItemsSource = mwvm.Orders;
+        }
+        private void FilterOther_Button_Click(object sender, RoutedEventArgs e)
+        {
+            mwvm.GetOrders(Identifiers.USER_ENTERED_INPUT);
+            dashboardDataGrid.ItemsSource = mwvm.Orders;
         }
     }
 }

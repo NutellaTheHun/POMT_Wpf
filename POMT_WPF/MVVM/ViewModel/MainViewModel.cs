@@ -34,5 +34,32 @@ namespace POMT_WPF.MVVM.ViewModel
         {
             Orders.Remove(order);
         }
+
+        /// <summary>
+        /// filters:
+        /// Square -> InputOriginType: SQUARE_ORDER_INPUT
+        ///  Wholesale -> orderType: wholesale, IsPeriodic? (isUserEntered)
+        /// SpecialOrders(Other) -> IsUserEntered, IsOneShot?      (isUserEntered)
+        /// OrderTypes:
+        ///     Square
+        ///     Wholesale
+        ///     SpecialOrder
+        /// InputOriginType:
+        ///     Square
+        ///     UserEntered
+        ///     Ez-Cater
+        /// </summary>
+        /// <param name="filter"></param>
+        public void GetOrders(string? filter)
+        {
+            if(filter == null)
+            {
+                Orders = ObsOrderModelSingleton.Instance.Orders;
+            }
+            else
+            {
+                Orders = new ObservableCollection<PetsiOrder>(ObsOrderModelSingleton.Instance.Orders.Where(x => x.InputOriginType == filter));
+            }
+        }
     }
 }

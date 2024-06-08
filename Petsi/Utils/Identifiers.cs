@@ -11,6 +11,14 @@ namespace Petsi.Utils
         public readonly static string PERIODIC_ORDERS = "periodicOrder";
         public readonly static string ONE_SHOT_ORDERS = "oneShotOrder";
 
+        public readonly static string ORDER_TYPE_SQUARE = "squareOrder";
+        public readonly static string ORDER_TYPE_WHOLESALE = "wholesaleOrder";
+        public readonly static string ORDER_TYPE_SPECIAL = "specialOrder";
+
+        public readonly static string ORDER_INPUT_ORIGIN_SQUARE = "squareInput";
+        public readonly static string ORDER_INPUT_ORIGIN_USER = "userInput";
+        public readonly static string ORDER_INPUT_ORIGIN_EZCATER = "EzInput";
+
         public readonly static string MODEL_ORDERS = "ORDERMODEL";
 
         public readonly static string MODEL_CATALOG = "CATALOGMODEL";
