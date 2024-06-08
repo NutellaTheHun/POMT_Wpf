@@ -1,6 +1,6 @@
-﻿using DocumentFormat.OpenXml.Wordprocessing;
-using Petsi.Units;
+﻿using Petsi.Units;
 using Petsi.Utils;
+using POMT_WPF.MVVM.ObsModels;
 using POMT_WPF.MVVM.View.Controls;
 using POMT_WPF.MVVM.ViewModel;
 using System.Windows;
@@ -54,19 +54,6 @@ namespace POMT_WPF.MVVM.View
                 }
             }
         }
-
-        //bool _isReadOnly;
-        //public bool IsReadOnly
-        //{
-        //    get { return _isReadOnly; }
-        //    set
-        //    {
-        //        if (_isReadOnly != value)
-        //        {
-        //            _isReadOnly = value;
-        //        }
-        //    }
-        //}
         public PetsiOrderWindow(PetsiOrder? existingOrder, bool isExistingOrder)
         {
             InitializeComponent();
@@ -84,7 +71,8 @@ namespace POMT_WPF.MVVM.View
                 {
                     editToggleButton.IsEnabled = false;
                     editToggleButton.Visibility = Visibility.Hidden;
-                    AddOrderButton.Visibility = Visibility.Hidden;
+                    AddLineButton.Visibility = Visibility.Hidden;
+                    DeleteLineButton.Visibility = Visibility.Hidden;
                 }                
             }
             else
@@ -129,13 +117,6 @@ namespace POMT_WPF.MVVM.View
                 errorWindow.Show();
                 return;
             }
-            //if (OrderTypeTextBox.Text == "")
-            //{
-            //    PetsiOrderFormErrorWindow errorWindow =
-            //        new PetsiOrderFormErrorWindow("Order type is required.");
-            //    errorWindow.Show();
-            //    return;
-            //}
             if (OrderTypeComboBox.SelectedItem == null)
             {
                 PetsiOrderFormErrorWindow errorWindow =
@@ -182,10 +163,14 @@ namespace POMT_WPF.MVVM.View
             Close();
         }
 
-        private void Delete_BtnClk(object sender, RoutedEventArgs e)
+        private void DeleteOrder_BtnClk(object sender, RoutedEventArgs e)
         {
-            //Are you sure window?
-            //delete
+            ConfirmationWindow confirmationWindow = new ConfirmationWindow();
+            confirmationWindow.ShowDialog();
+            if (confirmationWindow.ControlBool)
+            {
+                ObsOrderModelSingleton.Instance.Orders.Remove(ViewModel.GetOrder());
+            }
             Close();
         }
         private void AddLineItem_BtnClk(object sender, RoutedEventArgs e)
@@ -200,12 +185,6 @@ namespace POMT_WPF.MVVM.View
 
         private void ItemNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //if text == catalogItemName
-            //  set catalog Obj Id
-            //else
-            //  get list of matches
-            //  click match => textChangedEvent?
-
             bool isValidItem = false;
             bool hasListofResults = false;
 
@@ -237,25 +216,11 @@ namespace POMT_WPF.MVVM.View
                     hasListofResults = true;
                 }
             }
-
-            //if(itemNameTextBox.IsFocused == false && !isValidItem)
-            //{
-            //    BrushConverter brushConverter = new BrushConverter();
-            //    Brush brush = (Brush)brushConverter.ConvertFromString("#D64933");
-            //    itemNameTextBox.Background = brush;
-            //}
-            //else
-            //{
-            //    BrushConverter brushConverter = new BrushConverter();
-            //    Brush brush = (Brush)brushConverter.ConvertFromString("#F7FFF7");
-            //    itemNameTextBox.Background = brush;
-            //}
         }
 
         private void ItemNameTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             //# D64933 chili red
-            //TextFillTextBox itemNameTextBox = (TextFillTextBox)sender;
             ComboBox comboBox = (ComboBox)sender;
             Grid grid = comboBox.Parent as Grid;
             TextFillTextBox itemNameTextBox = grid.FindName("ItemNameTextBox") as TextFillTextBox;
@@ -292,18 +257,6 @@ namespace POMT_WPF.MVVM.View
                     Brush brush = (Brush)brushConverter.ConvertFromString("#D64933");
                     itemNameTextBox.Background = brush;
                 }
-                //if (!ViewModel.IsValidItem((string)comboBox.SelectedItem))
-                //{
-                //    BrushConverter brushConverter = new BrushConverter();
-                //    Brush brush = (Brush)brushConverter.ConvertFromString("#D64933");
-                //    itemNameTextBox.Background = brush;
-                //}
-                //else
-                //{
-                //    BrushConverter brushConverter = new BrushConverter();
-                //    Brush brush = (Brush)brushConverter.ConvertFromString("#CCD7E1");
-                //    itemNameTextBox.Background = brush;
-                //}
             }
         }
 
@@ -332,6 +285,20 @@ namespace POMT_WPF.MVVM.View
         {
             if (ViewModel.IsReadOnly) { ViewModel.IsReadOnly = false; ViewModel.NotReadOnly = true; ViewModel.ItemsNotReadOnly(); }
             else { ViewModel.IsReadOnly = true; ViewModel.ItemsIsReadOnly(); ViewModel.NotReadOnly = false; }
+        }
+
+        private void DeleteLineButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(orderFormDataGrid.SelectedItem != null)
+            {
+                bool deleteConfirmation = false;
+                ConfirmationWindow confirmationWindow = new ConfirmationWindow();
+                confirmationWindow.ShowDialog();
+                if (confirmationWindow.ControlBool)
+                {
+                    ViewModel.LineItems.Remove((PetsiOrderLineItem)orderFormDataGrid.SelectedItem);
+                }      
+            }
         }
     }
 }

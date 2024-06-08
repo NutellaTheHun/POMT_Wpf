@@ -296,18 +296,34 @@
                             <DataGridTextColumn Header="Amount 10" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding Amount10}" />-->
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button
-                        Name="AddOrderButton"
-                        Width="30"
-                        Height="30"
-                        Margin="5,0,5,5"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Top"
-                        Click="AddLineItem_BtnClk"
-                        IsEnabled="{Binding ViewModel.NotReadOnly}"
-                        Style="{StaticResource secondaryButton}">
-                        <Icon:PackIconMaterial Kind="Plus" />
-                    </Button>
+                    <StackPanel Orientation="Vertical">
+                        <Button
+                            Name="AddLineButton"
+                            Width="30"
+                            Height="30"
+                            Margin="5,0,5,5"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Click="AddLineItem_BtnClk"
+                            IsEnabled="{Binding ViewModel.NotReadOnly}"
+                            Style="{StaticResource secondaryButton}">
+                            <Icon:PackIconMaterial Kind="Plus" />
+                        </Button>
+                        <Button
+                            Name="DeleteLineButton"
+                            Width="30"
+                            Height="30"
+                            Margin="5,0,5,5"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Background="{StaticResource ChiliRed}"
+                            Click="DeleteLineButton_Click"
+                            IsEnabled="{Binding ViewModel.NotReadOnly}"
+                            Style="{StaticResource secondaryButton}">
+                            <Icon:PackIconMaterial Kind="Minus" />
+                        </Button>
+                    </StackPanel>
+
                 </StackPanel>
 
             </Grid>
@@ -348,7 +364,7 @@
                             Margin="100,10,0,0"
                             HorizontalAlignment="Right"
                             Background="{StaticResource ChiliRed}"
-                            Click="Delete_BtnClk"
+                            Click="DeleteOrder_BtnClk"
                             Content="Delete"
                             Style="{StaticResource secondaryButton}"
                             Visibility="{Binding CanDelete, Converter={StaticResource BoolToVis}}" />

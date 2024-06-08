@@ -288,6 +288,8 @@ namespace POMT_WPF.MVVM.ViewModel
             ObsOrderModelSingleton.AddOrder(_order);
         }
 
+        public PetsiOrder GetOrder() { return _order; }
+
         public bool IsValidLineItems()
         {
             
