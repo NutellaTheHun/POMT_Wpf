@@ -1,6 +1,11 @@
 ﻿using Petsi.Units;
+using Petsi.Utils;
+using POMT_WPF.MVVM.View.Controls;
 using POMT_WPF.MVVM.ViewModel;
+using System.Diagnostics;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 
 namespace POMT_WPF.MVVM.View
@@ -10,14 +15,53 @@ namespace POMT_WPF.MVVM.View
     /// </summary>
     public partial class PetsiOrderWindow : Window
     {
-        PetsiOrderWindowViewModel vm;
-
-        public PetsiOrderWindow(PetsiOrder? existingOrder)
+        PetsiOrderWindowViewModel _vm;
+        public PetsiOrderWindowViewModel ViewModel 
+        { 
+            get { return _vm; }
+            set
+            {
+                if (_vm != value)
+                {
+                    _vm = value;
+                }
+            }
+        }
+        bool _isExistingOrder;
+        public bool IsExistingOrder 
+        {
+            get { return _isExistingOrder; }
+            set
+            {
+                if (_isExistingOrder != value)
+                {
+                    _isExistingOrder = value;
+                    if(ViewModel.InputOriginType == Identifiers.WHOLESALE_INPUT 
+                        || ViewModel.InputOriginType == Identifiers.ONE_SHOT_INPUT) 
+                    { CanDelete = true; }
+                    else { CanDelete = false; }
+                }
+            }
+        }
+        bool _canDelete;
+        public bool CanDelete
+        {
+            get { return _canDelete; }
+            set
+            {
+                if (_canDelete != value)
+                {
+                    _canDelete = value;
+                }
+            }
+        }
+        public PetsiOrderWindow(PetsiOrder? existingOrder, bool isExistingOrder)
         {
             InitializeComponent();
-            vm = new PetsiOrderWindowViewModel(existingOrder);
-            DataContext = vm;
-            orderFormDataGrid.ItemsSource = vm.Order.LineItems;
+            ViewModel = new PetsiOrderWindowViewModel(existingOrder);
+            IsExistingOrder = isExistingOrder;
+            DataContext = this;
+            orderFormDataGrid.ItemsSource = ViewModel.LineItems;
         }
 
         private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)
@@ -77,31 +121,24 @@ namespace POMT_WPF.MVVM.View
 
             DateTime testDate;
             if (OneTimeRadioButton.IsChecked == true
-                && !DateTime.TryParse(orderTimeTextBox.Text + orderTimeComboBox.Text, out testDate))
+                && !DateTime.TryParse(orderTimeTextBox.Text, out testDate))
             {
                 PetsiOrderFormErrorWindow errorWindow =
-                    new PetsiOrderFormErrorWindow("Order time input was not accepted.");
+                    new PetsiOrderFormErrorWindow("fulfillment time was not valid. make sure to use AM/PM");
                 errorWindow.Show();
                 return;
             }
-            /*
-            if(orderFormDataGrid.Items.Count == 0 || !AllLineItemsComplete())
-            {
-                PetsiOrderFormErrorWindow errorWindow =
-                    new PetsiOrderFormErrorWindow("Order must have at least one item, and all items filled in.");
-                errorWindow.Show();
-                return;
-            }
-            */
             
-            //ADD ORDER IF NEW!! CAN DELETE IF EXISTS
-            vm.AddOrder(orderTimeTextBox.Text + orderTimeComboBox.Text);
-            Close();
-        }
+            if(!ViewModel.IsValidLineItems())
+            {
+                PetsiOrderFormErrorWindow errorWindow =
+                    new PetsiOrderFormErrorWindow("Order must have at least one item, and all items filled in. (Needs a name and a quantity)");
+                errorWindow.Show();
+                return;
+            }
 
-        private bool AllLineItemsComplete()
-        {
-            throw new NotImplementedException();
+            ViewModel.AddOrder(orderTimeTextBox.Text);
+            Close();
         }
 
         private void Delete_BtnClk(object sender, RoutedEventArgs e)
@@ -112,12 +149,144 @@ namespace POMT_WPF.MVVM.View
         }
         private void AddLineItem_BtnClk(object sender, RoutedEventArgs e)
         {
-            vm.AddLineItem(new PetsiOrderLineItem());
+            ViewModel.AddLineItem(new PetsiOrderLineItem());
         }
 
-        private void orderDateTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        private void orderTimeTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            ViewModel.VMPickupTime = orderTimeTextBox.Text;
         }
+
+        private void ItemNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //if text == catalogItemName
+            //  set catalog Obj Id
+            //else
+            //  get list of matches
+            //  click match => textChangedEvent?
+
+            bool isValidItem = false;
+            bool hasListofResults = false;
+
+
+            TextFillTextBox itemNameTextBox = (TextFillTextBox)sender;
+            if (ViewModel.ValidateItemName(itemNameTextBox.Text))
+            {
+                isValidItem = true;
+            }
+            else
+            {
+                Grid grid = itemNameTextBox.Parent as Grid;
+                ComboBox itemNameCb = grid.FindName("itemNameComboBox") as ComboBox;
+                string itemName = itemNameTextBox.Text;
+                List<CatalogItemPetsi> results = ViewModel.GetItemMatchResults(itemName);
+
+                itemNameCb.ItemsSource = results.Select(x => x.ItemName);
+                
+                if (results.Count != 0)
+                {
+                    itemNameCb.IsDropDownOpen = true;
+                }
+                if (results.Count == 0)
+                {
+                    
+                }
+                else
+                {
+                    hasListofResults = true;
+                }
+            }
+
+            //if(itemNameTextBox.IsFocused == false && !isValidItem)
+            //{
+            //    BrushConverter brushConverter = new BrushConverter();
+            //    Brush brush = (Brush)brushConverter.ConvertFromString("#D64933");
+            //    itemNameTextBox.Background = brush;
+            //}
+            //else
+            //{
+            //    BrushConverter brushConverter = new BrushConverter();
+            //    Brush brush = (Brush)brushConverter.ConvertFromString("#F7FFF7");
+            //    itemNameTextBox.Background = brush;
+            //}
+        }
+
+        private void ItemNameTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            //# D64933 chili red
+            //TextFillTextBox itemNameTextBox = (TextFillTextBox)sender;
+            ComboBox comboBox = (ComboBox)sender;
+            Grid grid = comboBox.Parent as Grid;
+            TextFillTextBox itemNameTextBox = grid.FindName("ItemNameTextBox") as TextFillTextBox;
+            if (!ViewModel.IsValidItem(itemNameTextBox.Text))
+            {
+                BrushConverter brushConverter = new BrushConverter();
+                Brush brush = (Brush)brushConverter.ConvertFromString("#D64933");
+                itemNameTextBox.Background = brush;
+            }
+            else
+            {
+                BrushConverter brushConverter = new BrushConverter();
+                Brush brush = (Brush)brushConverter.ConvertFromString("#CCD7E1");
+                itemNameTextBox.Background = brush;
+            }
+        }
+        private void itemNameComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //#D64933 chili red
+            ComboBox comboBox = (ComboBox)sender;
+            Grid grid = comboBox.Parent as Grid;
+            TextFillTextBox itemNameTextBox = grid.FindName("ItemNameTextBox") as TextFillTextBox;
+            if (comboBox.SelectedItem != null)
+            {
+                itemNameTextBox.Text = comboBox.SelectedItem.ToString();
+                TextFillTextBox idTextBox = grid.FindName("testcatalogObjId") as TextFillTextBox;
+                if (ViewModel.ValidateItemName(itemNameTextBox.Text))
+                {
+                    
+                }
+                else
+                {
+                    BrushConverter brushConverter = new BrushConverter();
+                    Brush brush = (Brush)brushConverter.ConvertFromString("#D64933");
+                    itemNameTextBox.Background = brush;
+                }
+                //if (!ViewModel.IsValidItem((string)comboBox.SelectedItem))
+                //{
+                //    BrushConverter brushConverter = new BrushConverter();
+                //    Brush brush = (Brush)brushConverter.ConvertFromString("#D64933");
+                //    itemNameTextBox.Background = brush;
+                //}
+                //else
+                //{
+                //    BrushConverter brushConverter = new BrushConverter();
+                //    Brush brush = (Brush)brushConverter.ConvertFromString("#CCD7E1");
+                //    itemNameTextBox.Background = brush;
+                //}
+            }
+        }
+
+        private void itemNameComboBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+             //#D64933 chili red
+            ComboBox comboBox = (ComboBox)sender;
+            Grid grid = comboBox.Parent as Grid;
+            TextFillTextBox itemNameTextBox = grid.FindName("ItemNameTextBox") as TextFillTextBox;
+
+            if(!ViewModel.IsValidItem((string)comboBox.SelectedItem))
+            {
+                BrushConverter brushConverter = new BrushConverter();
+                Brush brush = (Brush)brushConverter.ConvertFromString("#D64933");
+                itemNameTextBox.Background = brush;
+            }
+            else
+            {
+                BrushConverter brushConverter = new BrushConverter();
+                Brush brush = (Brush)brushConverter.ConvertFromString("#CCD7E1");
+                itemNameTextBox.Background = brush;
+            }
+        }
+
+        
     }
 }

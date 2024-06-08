@@ -21,7 +21,7 @@
     </Window.Resources>
 
     <Border
-        Background="{StaticResource PrimaryColor}"
+        Background="{StaticResource ColumbiaBlue}"
         CornerRadius="20"
         MouseDown="Border_MouseDown"
         MouseLeftButtonDown="Border_MouseLeftButtonDown">
@@ -40,7 +40,7 @@
 
                 <Border
                     Grid.Row="1"
-                    Background="{StaticResource SecondaryColor}"
+                    Background="{StaticResource LapisLazuli}"
                     CornerRadius="0 50 0 20">
                     <DockPanel>
                         <Border

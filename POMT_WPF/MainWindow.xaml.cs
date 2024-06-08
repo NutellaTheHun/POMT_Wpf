@@ -55,7 +55,7 @@ namespace POMT_WPF
                 var selectedItem = dashboardDataGrid.SelectedItem;
                 if (selectedItem != null)
                 {
-                    PetsiOrderWindow petsiOrderWin = new PetsiOrderWindow(selectedItem as PetsiOrder);
+                    PetsiOrderWindow petsiOrderWin = new PetsiOrderWindow(selectedItem as PetsiOrder, true);
                     petsiOrderWin.Show();
                 }
             }
@@ -63,7 +63,7 @@ namespace POMT_WPF
 
         private void AddOrder_ButtonClick(object sender, RoutedEventArgs e)
         {
-            PetsiOrderWindow petsiOrderWin = new PetsiOrderWindow(null);
+            PetsiOrderWindow petsiOrderWin = new PetsiOrderWindow(null, false);
             petsiOrderWin.Show();
         }
         private void ReportWindow_ButtonClick(object sender, RoutedEventArgs e)

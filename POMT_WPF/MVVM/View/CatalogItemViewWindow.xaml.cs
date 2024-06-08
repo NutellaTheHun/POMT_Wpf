@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using Petsi.Units;
+using POMT_WPF.MVVM.ViewModel;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace POMT_WPF.MVVM.View
 {
@@ -7,9 +10,12 @@ namespace POMT_WPF.MVVM.View
     /// </summary>
     public partial class CatalogItemViewWindow : Window
     {
-        public CatalogItemViewWindow()
+        CatalogItemViewModel civm;
+        public CatalogItemViewWindow(CatalogItemPetsi? item)
         {
             InitializeComponent();
+            civm = new CatalogItemViewModel(item);
+            DataContext = civm;
         }
         private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)
         {
@@ -18,8 +24,16 @@ namespace POMT_WPF.MVVM.View
 
         private void ConfirmCloseWin_BtnClk(object sender, RoutedEventArgs e)
         {
-            //Do something
+            //Error Handle form
             Close();
         }
+
+        private void Delete_BtnClk(object sender, RoutedEventArgs e)
+        {
+            //Are you sure window?
+            //delete
+            Close();
+        }
+        
     }
 }

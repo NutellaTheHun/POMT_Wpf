@@ -1,4 +1,5 @@
 ﻿using Petsi.CommandLine;
+using System.ComponentModel;
 
 namespace Petsi.Units
 {
@@ -15,8 +16,10 @@ namespace Petsi.Units
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public bool IsPeriodic { get; set; }
-    
-        public List<PetsiOrderLineItem> LineItems { get; set; }
+        public bool IsOneShot { get; set; }
+        public bool IsUserEntered { get; set; }
+        public List<PetsiOrderLineItem> LineItems{ get; set; }
+        
         public PetsiOrder()
         {
             LineItems = new List<PetsiOrderLineItem>();

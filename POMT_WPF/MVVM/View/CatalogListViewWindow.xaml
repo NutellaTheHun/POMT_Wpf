@@ -17,7 +17,7 @@
     WindowStyle="None"
     mc:Ignorable="d">
 
-    <Border Background="{StaticResource SecWinPrimary}" CornerRadius="20">
+    <Border Background="{StaticResource Charcoal}" CornerRadius="20">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
@@ -43,7 +43,7 @@
                 <Border
                     Width="520"
                     Height="520"
-                    Background="{StaticResource niceDark}"
+                    Background="{StaticResource RaisinBlack}"
                     CornerRadius="20">
                     <DataGrid
                         x:Name="catalogListDataGrid"

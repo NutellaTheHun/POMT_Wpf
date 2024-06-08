@@ -1,11 +1,11 @@
-﻿using Petsi.CommandLine;
+﻿using DocumentFormat.OpenXml.Bibliography;
+using Petsi.CommandLine;
 using Petsi.CommandLine.ErrorHandlers;
 using Petsi.Interfaces;
 using Petsi.Managers;
 using Petsi.Models;
 using Petsi.Units;
 using Petsi.Utils;
-using System.Collections;
 
 namespace Petsi.Services
 {
@@ -14,13 +14,14 @@ namespace Petsi.Services
         /// <summary>
         /// Used by ICatalogService Method for OrderModel to retrieve catalogObjectId. Key: variationId or item name, value: categoryObjectId
         /// </summary>
-        Dictionary<string, string> catalogIdDict;
+        //Dictionary<string, string> catalogIdDict;
+        Dictionary<string, CatalogItemPetsi> catalogIdDict;
 
         List<CatalogItemPetsi> catalog;
 
         public CatalogService() 
         {
-            catalogIdDict = new Dictionary<string, string>();
+            catalogIdDict = new Dictionary<string, CatalogItemPetsi>();
             catalog = new List<CatalogItemPetsi>();
             SetServiceName(Identifiers.SERVICE_CATALOG);
             ServiceManagerSingleton.GetInstance().Register(this);
@@ -29,21 +30,36 @@ namespace Petsi.Services
         }
 
         /// <summary>
-        /// Returns the catalog object ID from square's catalog API
+        /// Returns the catalog object ID from square's catalog API, returns "" if fails
         /// </summary>
         /// <param name="input">Can be item name or variation Id</param>
         /// <returns></returns>
         public string GetCatalogObjectId(string input)
         {
+            CatalogItemPetsi source;
             string result = "";
-            if (catalogIdDict.TryGetValue(input, out result))
+            catalogIdDict.TryGetValue(input, out source);
+            if (source != null)
             {
-                return result;
+                result = source.CatalogObjectId;
             }
-            else
-            {
-                throw new Exception("GetCatalogObjId key/value doesn't exist, key used: " + input);
-            }
+            return result;
+            //if (catalogIdDict.TryGetValue(input, out source))
+            //{
+            //    if(source == null)
+            //    {
+            //        return "";
+            //    }
+            //    else
+            //    {
+            //        return source.CatalogObjectId;
+            //    }
+            //    //return result;
+            //}
+            //else
+            //{
+            //    throw new Exception("GetCatalogObjId key/value doesn't exist, key used: " + input);
+            //}
         }
         public bool IsModifyItem(string catalogObjectId)
         {
@@ -57,6 +73,26 @@ namespace Petsi.Services
             {
                 return true;
             }
+            return false;
+        }
+        //For ItemName form validating
+        public bool TryValidateItemName(string name, out string catalogId)
+        {
+            List<CatalogItemPetsi> results = new List<CatalogItemPetsi>();
+
+            foreach (CatalogItemPetsi item in catalog)
+            {
+                if (item.ItemName.ToLower().Equals(name.ToLower()) || item.NaturalNameEquals(name.ToLower()))
+                {
+                    results.Add(item);
+                }
+            }
+            if(results.Count == 1)
+            {
+                catalogId = results[0].CatalogObjectId;
+                return true;
+            }
+            catalogId = "";
             return false;
         }
         public string ValidateModifyItemName(string name)
@@ -112,28 +148,22 @@ namespace Petsi.Services
             CatalogModelPetsi cmp = model as CatalogModelPetsi;
 
             catalog = cmp.GetItems();
-            foreach (CatalogItemPetsi item in cmp.GetItems())
+            foreach (CatalogItemPetsi item in catalog)
             {
-                catalogIdDict.TryAdd(item.ItemName, item.CatalogObjectId);
-                foreach (DictionaryEntry entry in item.Variations)
+                catalogIdDict.TryAdd(item.ItemName, item);
+                //foreach (DictionaryEntry entry in item.Variations)
+                //{
+                //    catalogIdDict.TryAdd((string)entry.Key, item.CatalogObjectId);
+                //}
+                foreach ((string variationId, string variationName) in item.VariationList)
                 {
-                    catalogIdDict.TryAdd((string)entry.Key, item.CatalogObjectId);
+                    catalogIdDict.TryAdd(variationId, item);
                 }
             }
         }
 
         public bool NameExists(string input)
         {
-            /*
-            foreach(CatalogItemPetsi item in catalog)
-            {
-                if(item.itemName.ToLower().Contains(input.ToLower()))
-                {
-                    return true;
-                }
-            }
-            return false;
-            */
             return catalog.Any(item => item.ItemName.ToLower().Contains(input.ToLower()));  
         }
 
@@ -145,15 +175,7 @@ namespace Petsi.Services
         public List<string> NameContains(string inputName)
         {
             List<string> results = new List<string>();
-            /*
-            foreach (CatalogItemPetsi item in catalog)
-            {
-                if (item.itemName.ToLower().Contains(inputName.ToLower()))
-                {
-                    results.Add(item.itemName);
-                }
-            }
-            */
+
             results.AddRange(catalog
                 .Where(item => item.ItemName.ToLower().Contains(inputName.ToLower()))
                 .Select(item => item.ItemName));
@@ -173,16 +195,6 @@ namespace Petsi.Services
             CatalogItemPetsi searchItem = null;
             LineItem result = new LineItem();
 
-            /*
-            foreach (CatalogItemPetsi item in catalog)
-            {
-                if(item.itemName.ToLower() == searchItemName.ToLower())
-                {
-                    searchItem = item;
-                    break;
-                }
-            }
-            */
             searchItem = catalog.FirstOrDefault(item => item.ItemName.ToLower() == searchItemName.ToLower());
 
             if(searchItem == null) { SystemLogger.Log("CatalogSerivce GetItem() did not find item: " + searchItemName); }
@@ -194,6 +206,54 @@ namespace Petsi.Services
             result.VariationId = searchItem.CatalogObjectId;
 
             return result;
+        }
+
+        public List<CatalogItemPetsi> GetItemNameValidationResults(string name)
+        {
+            List<CatalogItemPetsi> results = new List<CatalogItemPetsi>();
+
+            //hard equals itemName
+            foreach (CatalogItemPetsi item in catalog)
+            {
+                if (item.ItemName.ToLower().Equals(name.ToLower()))
+                {
+                    results.Add(item);
+                }
+            }
+            //hard equals natural name
+            if (results.Count == 0)
+            {
+                foreach (CatalogItemPetsi item in catalog)
+                {
+                    if (item.NaturalNameEquals(name.ToLower()))
+                    {
+                        results.Add(item);
+                    }
+                }
+            }
+            //contains item name
+            if (results.Count == 0)
+            {
+                foreach (CatalogItemPetsi item in catalog)
+                {
+                    if (item.ItemName.ToLower().Contains(name.ToLower()))
+                    {
+                        results.Add(item);
+                    }
+                }
+            }
+            //contains natural name
+            if (results.Count == 0)
+            {
+                foreach (CatalogItemPetsi item in catalog)
+                {
+                    if (item.NaturalNameContains(name.ToLower()))
+                    {
+                        results.Add(item);
+                    }
+                }
+            }
+            return results;
         }
     }
 }

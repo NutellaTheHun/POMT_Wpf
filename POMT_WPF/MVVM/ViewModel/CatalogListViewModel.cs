@@ -20,8 +20,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 {
                     _items = value;
                     OnPropertyChanged(nameof(_items));
-                }
-                
+                }     
             }
         }
 

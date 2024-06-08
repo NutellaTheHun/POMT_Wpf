@@ -1,4 +1,6 @@
 ﻿
+using System.ComponentModel;
+
 namespace Petsi.Units
 {
     public class PetsiOrderLineItem : IEquatable<PetsiOrderLineItem>
@@ -9,8 +11,18 @@ namespace Petsi.Units
         public int Amount5 { get; set; }
         public int Amount8 { get; set; }
         public int Amount10 { get; set; }
-        public int AmountRegular {  get; set; }
-        public PetsiOrderLineItem() { }
+        public int AmountRegular { get; set; }
+        public bool IsValid { get; set; }
+        public PetsiOrderLineItem() 
+        {
+            ItemName = "";
+            CatalogObjectId = "";
+            Amount10 = 0;
+            Amount3 = 0;
+            Amount5 = 0;
+            Amount8 = 0;
+            AmountRegular = 0;
+        }
         public PetsiOrderLineItem(string itemName, string catalogObjectId, int amount3, int amount5, int amount8, int amount10, int regular)
         {
             ItemName = itemName;

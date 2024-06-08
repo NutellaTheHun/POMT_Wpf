@@ -21,9 +21,35 @@
 
     <Window.Resources>
         <convert:StringToBoolConverter x:Key="StringToBoolConverter" />
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <convert:StringToIntConverter x:Key="StringToIntConverter" />
+
+        <DataTemplate x:Key="OrderFormItemNameTemplate">
+            <Grid>
+                <ComboBox
+                    x:Name="itemNameComboBox"
+                    Width="120"
+                    Height="40"
+                    IsEditable="True"
+                    IsHitTestVisible="False"
+                    IsReadOnly="False"
+                    LostFocus="ItemNameTextBox_LostFocus"
+                    SelectionChanged="itemNameComboBox_SelectionChanged"
+                    StaysOpenOnEdit="True"
+                    Text="{Binding ElementName=ItemNameTextBox, Path=Text}" />
+                <local:TextFillTextBox
+                    x:Name="ItemNameTextBox"
+                    Background="{StaticResource MintCream}"
+                    Style="{StaticResource orderFormItemnameTextFillTextBox}"
+                    Text="{Binding ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    TextChanged="ItemNameTextBox_TextChanged"
+                    TextFill="Item Name ..." />
+            </Grid>
+        </DataTemplate>
+
     </Window.Resources>
 
-    <Border Background="{StaticResource SecWinPrimary}" CornerRadius="20">
+    <Border Background="{StaticResource Charcoal}" CornerRadius="20">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
@@ -69,7 +95,7 @@
                         <local:TextFillTextBox
                             x:Name="recipientTextBox"
                             Style="{StaticResource textFillTextBox}"
-                            Text="{Binding Order.Recipient}"
+                            Text="{Binding ViewModel.Recipient, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                             TextFill="Recipient ..." />
 
                     </StackPanel>
@@ -79,29 +105,31 @@
                             Margin="0,5,20,5"
                             Content="Pickup"
                             Foreground="#efefef"
-                            IsChecked="{Binding Order.FulfillmentType, Converter={StaticResource StringToBoolConverter}, ConverterParameter=PICKUP}"
+                            IsChecked="{Binding ViewModel.FulfillmentType, Converter={StaticResource StringToBoolConverter}, ConverterParameter=PICKUP}"
                             Style="{StaticResource reportLabelsRadioButtonTheme}" />
                         <RadioButton
                             x:Name="DeliveryRadioButton"
                             Content="Delivery"
                             Foreground="#efefef"
-                            IsChecked="{Binding Order.FulfillmentType, Converter={StaticResource StringToBoolConverter}, ConverterParameter=DELIVERY}"
+                            IsChecked="{Binding ViewModel.FulfillmentType, Converter={StaticResource StringToBoolConverter}, ConverterParameter=DELIVERY}"
                             Style="{StaticResource reportLabelsRadioButtonTheme}" />
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                         <local:TextFillTextBox
                             x:Name="DeliveryAddressTextBox"
                             Style="{StaticResource textFillTextBox}"
-                            Text="{Binding Order.DeliveryAddress}"
+                            Text="{Binding ViewModel.DeliveryAddress, Mode=TwoWay}"
                             TextFill="Delivery Address(optional) ..." />
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                         <local:TextFillTextBox
                             x:Name="OrderTypeTextBox"
                             Style="{StaticResource textFillTextBox}"
-                            Text="{Binding Order.InputOriginType}"
+                            Text="{Binding ViewModel.VMOrderType, Mode=TwoWay}"
                             TextFill="Order Type ..." />
                     </StackPanel>
+
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" />
                 </StackPanel>
                 <StackPanel Grid.Column="4" Orientation="Vertical">
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
@@ -110,13 +138,13 @@
                             Margin="0,5,20,5"
                             Content="Weekly"
                             Foreground="#efefef"
-                            IsChecked="{Binding IsPeriodic, UpdateSourceTrigger=PropertyChanged}"
+                            IsChecked="{Binding ViewModel.IsPeriodic, UpdateSourceTrigger=PropertyChanged}"
                             Style="{StaticResource reportLabelsRadioButtonTheme}" />
                         <RadioButton
                             x:Name="OneTimeRadioButton"
                             Content="One Time"
                             Foreground="#efefef"
-                            IsChecked="{Binding IsOneTime, UpdateSourceTrigger=PropertyChanged}"
+                            IsChecked="{Binding ViewModel.IsOneShot, UpdateSourceTrigger=PropertyChanged}"
                             Style="{StaticResource reportLabelsRadioButtonTheme}" />
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
@@ -125,45 +153,30 @@
                             Width="200"
                             Height="40"
                             Foreground="Black"
-                            SelectedDate="{Binding VMPickupDate}" />
-                        <!--<local:TextFillTextBox
-                            x:Name="orderDateTextBox"
-                            Style="{StaticResource textFillTextBox}"
-                            Text="{Binding OrderDueDate}"
-                            TextFill="mm/dd/yy or day of week ..." TextChanged="orderDateTextBox_TextChanged" />-->
+                            SelectedDate="{Binding ViewModel.VMPickupDate}" />
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                         <local:TextFillTextBox
                             x:Name="orderTimeTextBox"
                             Style="{StaticResource textFillTextBox}"
-                            Text="{Binding VMPickupTime}"
-                            TextFill="Pickup Time ..." />
-                        <ComboBox
-                            x:Name="orderTimeComboBox"
-                            Width="50"
-                            Height="40"
-                            HorizontalContentAlignment="Center"
-                            VerticalContentAlignment="Center"
-                            Foreground="Black"
-                            SelectedIndex="1">
-                            <ComboBoxItem Content="AM" />
-                            <ComboBoxItem Content="PM" />
-                        </ComboBox>
+                            Text="{Binding ViewModel.VMPickupTime, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                            TextChanged="orderTimeTextBox_TextChanged"
+                            TextFill="Pickup Time AM/PM ..." />
                     </StackPanel>
 
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                         <local:TextFillTextBox
                             x:Name="phoneTextBox"
                             Style="{StaticResource textFillTextBox}"
-                            Text="{Binding Order.PhoneNumber}"
-                            TextFill="phone .. " />
+                            Text="{Binding ViewModel.PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            TextFill="phone ... " />
                     </StackPanel>
 
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                         <local:TextFillTextBox
                             x:Name="emailTextBox"
                             Style="{StaticResource textFillTextBox}"
-                            Text="{Binding Order.Email}"
+                            Text="{Binding ViewModel.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             TextFill="email ..." />
                     </StackPanel>
                 </StackPanel>
@@ -187,26 +200,22 @@
                         BorderBrush="Transparent"
                         CellStyle="{DynamicResource orderFormDataGridCellStyle}"
                         ColumnHeaderStyle="{DynamicResource orderFormDataGridColumnHeaderStyle}"
-                        ItemsSource="{Binding Order.LineItems}"
                         RowStyle="{DynamicResource orderFormDataGridRowStyle}"
                         Style="{DynamicResource orderFormGridStyle}">
                         <DataGrid.Columns>
-                            <DataGridTemplateColumn Width="*" Header="Item Name">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <local:TextFillTextBox
-                                            Style="{StaticResource orderFormTextFillTextBox}"
-                                            Text="{Binding ItemName}"
-                                            TextFill="Item Name ..." />
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn
+                                x:Name="orderFormTemplate"
+                                Width="auto"
+                                CellTemplate="{StaticResource OrderFormItemNameTemplate}"
+                                Header="Item Name" />
                             <DataGridTemplateColumn Width="*" Header="Amount 3">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <local:TextFillTextBox
+                                            x:Name="amount3TextBox"
+                                            Background="{StaticResource MintCream}"
                                             Style="{StaticResource orderFormTextFillTextBox}"
-                                            Text="{Binding Amount3}"
+                                            Text="{Binding Amount3, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}, Mode=TwoWay}"
                                             TextFill="Amount 3 ..." />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
@@ -215,8 +224,10 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <local:TextFillTextBox
+                                            x:Name="amount5TextBox"
+                                            Background="{StaticResource MintCream}"
                                             Style="{StaticResource orderFormTextFillTextBox}"
-                                            Text="{Binding Amount5}"
+                                            Text="{Binding Amount5, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}, Mode=TwoWay}"
                                             TextFill="Amount 5 ..." />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
@@ -225,8 +236,10 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <local:TextFillTextBox
+                                            x:Name="amount8TextBox"
+                                            Background="{StaticResource MintCream}"
                                             Style="{StaticResource orderFormTextFillTextBox}"
-                                            Text="{Binding Amount8}"
+                                            Text="{Binding Amount8, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}, Mode=TwoWay}"
                                             TextFill="Amount 8 ..." />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
@@ -235,8 +248,10 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <local:TextFillTextBox
+                                            x:Name="amount10TextBox"
+                                            Background="{StaticResource MintCream}"
                                             Style="{StaticResource orderFormTextFillTextBox}"
-                                            Text="{Binding Amount10}"
+                                            Text="{Binding Amount10, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}, Mode=TwoWay}"
                                             TextFill="Amount 10 ..." />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
@@ -264,8 +279,10 @@
             </Grid>
             <Grid Grid.Row="6">
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    <!--  Textboxmode=multiline  -->
                     <local:TextFillTextBox
                         Style="{StaticResource textFillTextBox}"
+                        Text="{Binding ViewModel.Note, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextFill="notes ..."
                         TextWrapping="Wrap" />
                 </StackPanel>
@@ -295,10 +312,11 @@
                         <Button
                             Margin="100,10,0,0"
                             HorizontalAlignment="Right"
-                            Background="#E5446D"
+                            Background="{StaticResource ChiliRed}"
                             Click="Delete_BtnClk"
                             Content="Delete"
-                            Style="{StaticResource secondaryButton}" />
+                            Style="{StaticResource secondaryButton}"
+                            Visibility="{Binding CanDelete, Converter={StaticResource BoolToVis}}" />
 
                     </StackPanel>
                     <StackPanel />

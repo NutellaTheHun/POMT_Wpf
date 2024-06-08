@@ -18,11 +18,14 @@ namespace Petsi.Units
         /// </summary>
         public List<string> NaturalNames { get; set; }
 
+        public List<string> Alt_CatalogObjId { get; set; }
+
         /// <summary>
         /// key is variation id, value is variation name,
         /// catalogObjectId in Orders api equates to variation id of catalog object id in catalog api
         /// </summary>
         public ListDictionary Variations { get; set; }
+        public List<(string variationId, string variationName)> VariationList { get; set; }
 
         public string StandardLabelFilePath { get; set; }
         public string CutieLabelFilePath { get; set; }
@@ -34,6 +37,8 @@ namespace Petsi.Units
             Variations = new ListDictionary();
             frameBehavior = new CatalogItemFrameBehavior(this);
             NaturalNames = new List<string>();
+            VariationList = new List<(string variationName, string variationId)>();
+            Alt_CatalogObjId = new List<string>();
         }
         public CatalogItemPetsi(string categoryId, string catalogObjectId, string itemName, ListDictionary variations, List<string> naturalNames)
         {
@@ -43,12 +48,16 @@ namespace Petsi.Units
             this.Variations = variations;
             frameBehavior = new CatalogItemFrameBehavior(this);
             this.NaturalNames = naturalNames;
+            VariationList = new List<(string variationName, string variationId)>();
+            Alt_CatalogObjId = new List<string>();
         }
         public CatalogItemPetsi()
         {
             Variations = new ListDictionary();
             frameBehavior = new CatalogItemFrameBehavior(this);
             NaturalNames = new List<string>();
+            VariationList = new List<(string variationName, string variationId)>();
+            Alt_CatalogObjId = new List<string>();
         }
         public override FrameBehaviorBase GetFrameBehavior()
         {
@@ -88,19 +97,17 @@ namespace Petsi.Units
             if(NaturalNames.Count > 0) 
             {
                 NaturalNames.Any(name => name.ToLower().Contains(searchTerm.ToLower()));
-                /*
-                foreach (string naturalName in naturalNames)
-                {
-                    if (naturalName.ToLower().Contains(searchTerm.ToLower()))
-                    {
-                        return true;
-                    }
-                }
-                */
             } 
+            return false; 
+        }
+        public bool NaturalNameEquals(string searchTerm)
+        {
+
+            if (NaturalNames.Count > 0)
+            {
+                NaturalNames.Any(name => name.ToLower().Equals(searchTerm.ToLower()));
+            }
             return false;
-            
-            //return naturalNames.Any(name => name.ToLower().Contains(searchTerm.ToLower()));
         }
 
         public void AddNaturalName(string errorName)

@@ -1,5 +1,6 @@
 ﻿using Petsi.Interfaces;
 using Petsi.Models;
+using Petsi.Utils;
 
 namespace Petsi.CommandLine.ErrorHandlers
 {
@@ -17,7 +18,14 @@ namespace Petsi.CommandLine.ErrorHandlers
             PrintModel(null);
             Console.WriteLine("Select item: ");
             arg = Console.ReadLine();
-            _cmp.GetItems()[Int32.Parse(arg)].AddNaturalName(_errorName);
+            if (arg != null)
+            {
+                _cmp.GetItems()[Int32.Parse(arg)].AddNaturalName(_errorName);
+            }
+            else
+            {
+                SystemLogger.Log("CatalogModelModifyNatNameErrorFrame: arg is null for item index: errorName: " + _errorName);
+            }
             contextChain.Pop();
 
             return Task.CompletedTask;

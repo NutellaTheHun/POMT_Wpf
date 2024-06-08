@@ -7,6 +7,7 @@
     xmlns:helper="clr-namespace:POMT_WPF.MVVM.Other"
     xmlns:local="clr-namespace:POMT_WPF.MVVM.View.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:POMT_WPF.MVVM.ViewModel"
     Title="CatalogItemViewWindow"
     Width="600"
     Height="720"
@@ -17,7 +18,7 @@
     WindowStyle="None"
     mc:Ignorable="d">
 
-    <Border Background="{StaticResource SecWinPrimary}" CornerRadius="20">
+    <Border Background="{StaticResource Charcoal}" CornerRadius="20">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
@@ -59,13 +60,22 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0" Orientation="Vertical">
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                        <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="Item Name ..." />
+                        <local:TextFillTextBox
+                            Style="{StaticResource textFillTextBox}"
+                            Text="{Binding Item.ItemName}"
+                            TextFill="Item Name ..." />
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                        <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="catalog id ..." />
+                        <local:TextFillTextBox
+                            Style="{StaticResource textFillTextBox}"
+                            Text="{Binding Item.CatalogObjectId}"
+                            TextFill="catalog id ..." />
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                        <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="category id ..." />
+                        <local:TextFillTextBox
+                            Style="{StaticResource textFillTextBox}"
+                            Text="{Binding Item.CategoryId}"
+                            TextFill="category id ..." />
                     </StackPanel>
                     <StackPanel
                         Margin="0,15,0,0"
@@ -73,25 +83,35 @@
                         Orientation="Horizontal">
                         <StackPanel Margin="0,0,40,0" Orientation="Vertical">
                             <CheckBox
-                                Margin="0,0,0,10"
                                 Content="Small"
                                 FontSize="16"
-                                Foreground="White" />
+                                Foreground="White"
+                                IsChecked="{Binding IsSmall}" />
                             <CheckBox
+                                Margin="0,10,0,10"
                                 Content="Medium"
                                 FontSize="16"
-                                Foreground="White" />
-                        </StackPanel>
-                        <StackPanel Orientation="Vertical">
+                                Foreground="White"
+                                IsChecked="{Binding IsMedium}" />
                             <CheckBox
-                                Margin="0,0,0,10"
                                 Content="Large"
                                 FontSize="16"
-                                Foreground="White" />
+                                Foreground="White"
+                                IsChecked="{Binding IsLarge}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+
                             <CheckBox
+                                Margin="0,10,0,10"
                                 Content="Regular"
                                 FontSize="16"
-                                Foreground="White" />
+                                Foreground="White"
+                                IsChecked="{Binding IsRegular}" />
+                            <CheckBox
+                                Content="Cutie"
+                                FontSize="16"
+                                Foreground="White"
+                                IsChecked="{Binding IsCutie}" />
                         </StackPanel>
 
 
@@ -99,18 +119,34 @@
                 </StackPanel>
                 <StackPanel Grid.Column="4" Orientation="Vertical">
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                        <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="natural names ..." />
-                    </StackPanel>
-                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                        <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="variations ..." />
-                    </StackPanel>
-
-                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                        <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="standard label file ..." />
+                        <!--<local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="Make List Box? natural names ..." />-->
+                        <ListBox
+                            x:Name="NaturalNames"
+                            Width="200"
+                            Height="100"
+                            ItemsSource="{Binding Item.NaturalNames}" />
                     </StackPanel>
 
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                        <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="cutie label file ..." />
+                        <local:TextFillTextBox
+                            Style="{StaticResource textFillTextBox}"
+                            Text="{Binding Item.StandardLabelFilePath}"
+                            TextFill="standard label file ..." />
+                    </StackPanel>
+
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <local:TextFillTextBox
+                            Style="{StaticResource textFillTextBox}"
+                            Text="{Binding Item.CutieLabelFilePath}"
+                            TextFill="cutie label file ..." />
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <!--<local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="Make List Box? natural names ..." />-->
+                        <ListBox
+                            x:Name="VariationNames"
+                            Width="200"
+                            Height="100"
+                            ItemsSource="{Binding Item.VariationList.variationName}" />
                     </StackPanel>
                 </StackPanel>
             </Grid>
