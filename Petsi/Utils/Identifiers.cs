@@ -11,6 +11,8 @@ namespace Petsi.Utils
         public readonly static string PERIODIC_ORDERS = "periodicOrder";
         public readonly static string ONE_SHOT_ORDERS = "oneShotOrder";
 
+        public readonly static string DELETED_ORDERS = "deletedOrders";
+
         public readonly static string ORDER_TYPE_SQUARE = "Square";
         public readonly static string ORDER_TYPE_WHOLESALE = "Wholesale";
         public readonly static string ORDER_TYPE_SPECIAL = "Special";

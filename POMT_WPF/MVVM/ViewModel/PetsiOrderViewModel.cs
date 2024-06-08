@@ -108,6 +108,18 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }
+        public string OrderId
+        {
+            get => _order.OrderId;
+            set
+            {
+                if (_order.OrderId != value)
+                {
+                    _order.OrderId = value;
+                    OnPropertyChanged(nameof(OrderId));
+                }
+            }
+        }
         public string PhoneNumber
         {
             get => _order.PhoneNumber;
@@ -226,7 +238,6 @@ namespace POMT_WPF.MVVM.ViewModel
         }
 
         private bool _notReadOnly;
-
         public bool NotReadOnly
         {
             get { return _notReadOnly; }

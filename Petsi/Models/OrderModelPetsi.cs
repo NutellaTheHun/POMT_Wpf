@@ -53,7 +53,6 @@ namespace Petsi.Models
                     OneShotOrders.Add(order);
                 }
             }
-           
         }
         public override FrameBehaviorBase GetFrameBehavior() { return frameBehavior; }
         public List<PetsiOrder> GetOrders() { return Orders; }
@@ -236,9 +235,36 @@ namespace Petsi.Models
             reportFb.DataListToFile(Identifiers.ENV_OMP, Orders);
         }
 
-        public void RemoveItem(PetsiOrder order)
+        private void SaveAll()
         {
-            Orders.Remove(order);
+            SavePeriodicModel();
+            SaveOneShotModel();
+        }
+        private void SavePeriodicModel(){fileBehavior.DataListToFile(Identifiers.PERIODIC_ORDERS, PeriodicOrders); }
+        private void SaveOneShotModel() { fileBehavior.DataListToFile(Identifiers.ONE_SHOT_ORDERS, OneShotOrders); }
+
+        private void SaveDeletedOrder(PetsiOrder order) 
+        {
+            List<PetsiOrder> deletedOrders = fileBehavior.BuildDataListFile<PetsiOrder>(Identifiers.DELETED_ORDERS);
+            if(deletedOrders == null) { deletedOrders = new List<PetsiOrder>(); }
+            deletedOrders.Add(order);
+            fileBehavior.DataListToFile(Identifiers.DELETED_ORDERS, deletedOrders);
+        }
+        public void RemoveItem(string orderId)
+        {
+            foreach (PetsiOrder order in Orders)
+            {
+                if (order.OrderId == orderId)
+                {
+                    Orders.Remove(order);
+
+                    SaveDeletedOrder(order);
+
+                    if (order.IsOneShot) { SaveOneShotModel(); }
+                    else { SavePeriodicModel(); }
+                    break;
+                }
+            }
         }
     }   
 }

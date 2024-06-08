@@ -83,7 +83,6 @@ namespace POMT_WPF.MVVM.View
                 editToggleButton.IsEnabled = false;
                 editToggleButton.Visibility = Visibility.Hidden;
             }
-            
         }
 
         private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)
@@ -169,7 +168,7 @@ namespace POMT_WPF.MVVM.View
             confirmationWindow.ShowDialog();
             if (confirmationWindow.ControlBool)
             {
-                ObsOrderModelSingleton.Instance.Orders.Remove(ViewModel.GetOrder());
+                ObsOrderModelSingleton.RemoveOrder(ViewModel.OrderId);
             }
             Close();
         }

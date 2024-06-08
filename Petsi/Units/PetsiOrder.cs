@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace Petsi.Units
 {
-    public class PetsiOrder : ModelUnitBase, IEquatable<PetsiOrder>
+    public class PetsiOrder : ModelUnitBase/*, IEquatable<PetsiOrder>*/
     {
         PetsiOrderFrameBehavior frameBehavior;
         public string InputOriginType { get; set; }
@@ -74,37 +74,37 @@ namespace Petsi.Units
             return LineItems;
         }
 
-        public bool Equals(PetsiOrder? other)
-        {
-            if (InputOriginType != other.InputOriginType)
-            {
-                return false;
-            }
-            if (Recipient.ToLower() != other.Recipient.ToLower())
-            {
-                return false;
-            }
-            if(OrderId != other.OrderId)
-            {
-                return false;
-            }
-            if(OrderDueDate != other.OrderDueDate)
-            {
-                return false;
-            }
-            if(FulfillmentType != other.FulfillmentType)
-            {
-                return false;
-            }
-            if (Note != other.Note)
-            {
-                return false;
-            }
-            foreach(PetsiOrderLineItem lineItem in other.LineItems)
-            {
-                if (!LineItems.Contains(lineItem)){ return false; }
-            }
-            return true;
-        }
+        //public bool Equals(PetsiOrder? other)
+        //{
+        //    if (InputOriginType != other.InputOriginType)
+        //    {
+        //        return false;
+        //    }
+        //    if (Recipient.ToLower() != other.Recipient.ToLower())
+        //    {
+        //        return false;
+        //    }
+        //    if(OrderId != other.OrderId)
+        //    {
+        //        return false;
+        //    }
+        //    if(OrderDueDate != other.OrderDueDate)
+        //    {
+        //        return false;
+        //    }
+        //    if(FulfillmentType != other.FulfillmentType)
+        //    {
+        //        return false;
+        //    }
+        //    if (Note != other.Note)
+        //    {
+        //        return false;
+        //    }
+        //    foreach(PetsiOrderLineItem lineItem in other.LineItems)
+        //    {
+        //        if (!LineItems.Contains(lineItem)){ return false; }
+        //    }
+        //    return true;
+        //}
     }
 }
