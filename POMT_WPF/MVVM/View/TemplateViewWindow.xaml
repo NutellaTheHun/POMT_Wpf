@@ -62,7 +62,6 @@
                         BorderBrush="Transparent"
                         CellStyle="{DynamicResource orderFormDataGridCellStyle}"
                         ColumnHeaderStyle="{DynamicResource orderFormDataGridColumnHeaderStyle}"
-                        ItemsSource="{Binding TemplateItems}"
                         RowStyle="{DynamicResource orderFormDataGridRowStyle}"
                         Style="{DynamicResource orderFormGridStyle}">
                         <DataGrid.Columns>
@@ -73,6 +72,16 @@
                                             Style="{StaticResource TemplateViewTextFillTextBox}"
                                             Text="{Binding ItemName}"
                                             TextFill="Item Name ..." />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Display Name">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <local:TextFillTextBox
+                                            Style="{StaticResource TemplateViewTextFillTextBox}"
+                                            Text="{Binding PageDisplayName}"
+                                            TextFill="Display name ..." />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>

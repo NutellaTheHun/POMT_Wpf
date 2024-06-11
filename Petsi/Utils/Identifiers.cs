@@ -63,6 +63,7 @@ namespace Petsi.Utils
         public readonly static string SERVICE_CATALOG = "CATALOG_SERVICE";
         public readonly static string SERVICE_CATEGORY = "CATEGORY_SERVICE";
         public readonly static string SERVICE_LABEL = "LABEL_SERVICE";
+        public readonly static string SERVICE_TEMPLATE = "TEMPLATE_SERVICE";
 
         public readonly static string USER_BASED_ID_TAG = "userbased-";
 

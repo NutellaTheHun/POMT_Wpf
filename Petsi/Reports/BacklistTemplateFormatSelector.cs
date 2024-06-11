@@ -70,7 +70,7 @@ namespace Petsi.Reports
             }
         }
 
-        private (string name,List<BackListItem> template) BootSummerFormat()
+        public (string name,List<BackListItem> template) BootSummerFormat()
         {
 
             return("Summer Pies", new List<BackListItem>
@@ -96,7 +96,7 @@ namespace Petsi.Reports
             
         }
 
-        private (string name, List<BackListItem> template) BootPieFormat()
+        public (string name, List<BackListItem> template) BootPieFormat()
         {
             return ("Standard Pies", new List<BackListItem>
             {
@@ -126,7 +126,7 @@ namespace Petsi.Reports
 
         }
 
-        private (string name, List<BackListItem> template) BootPastryFormat()
+        public (string name, List<BackListItem> template) BootPastryFormat()
         {
             return ("Standard Pastry", new List<BackListItem>
             {

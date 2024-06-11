@@ -1,4 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using Petsi.Services;
+using Petsi.Units;
+using POMT_WPF.MVVM.ViewModel;
+using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace POMT_WPF.MVVM.View
@@ -8,12 +11,15 @@ namespace POMT_WPF.MVVM.View
     /// </summary>
     public partial class TemplateViewWindow : Window
     {
-        public ObservableCollection<TemplateItem> TemplateItems { get; set; } = new ObservableCollection<TemplateItem>();
-        public TemplateViewWindow()
+        public TemplateViewModel tvm;
+
+        public TemplateViewWindow(string? inputTemplateName)
         {
             InitializeComponent();
+            
+            tvm = new TemplateViewModel(inputTemplateName);
             DataContext = this;
-            TemplateItems.Add(new TemplateItem("sadasas", "ssss"));
+            templateViewDataGrid.ItemsSource = tvm.TemplateItems;
         }
         private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)
         {
@@ -21,20 +27,13 @@ namespace POMT_WPF.MVVM.View
         }
         private void ConfirmCloseWin_BtnClk(object sender, RoutedEventArgs e)
         {
-            //Do something
+            //validation
+            //save
             Close();
         }
         private void AddLineItem_BtnClk(object sender, RoutedEventArgs e)
         {
-            TemplateItems.Add(new TemplateItem());
+            tvm.Add(new BackListItem());
         }
-    }
-
-    public class TemplateItem
-    {
-        public string ItemName { get; set; }
-        public string Id { get; set; }
-        public TemplateItem() { }
-        public TemplateItem(string itemName, string id) { ItemName = itemName; Id = id; }   
     }
 }

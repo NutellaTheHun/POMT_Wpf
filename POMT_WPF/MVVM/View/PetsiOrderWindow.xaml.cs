@@ -19,13 +19,7 @@ namespace POMT_WPF.MVVM.View
         public PetsiOrderWindowViewModel ViewModel 
         { 
             get { return _vm; }
-            set
-            {
-                if (_vm != value)
-                {
-                    _vm = value;
-                }
-            }
+            set { if (_vm != value){ _vm = value;} }
         }
         bool _isExistingOrder;
         public bool IsExistingOrder 
@@ -46,13 +40,7 @@ namespace POMT_WPF.MVVM.View
         public bool CanDelete
         {
             get { return _canDelete; }
-            set
-            {
-                if (_canDelete != value)
-                {
-                    _canDelete = value;
-                }
-            }
+            set { if (_canDelete != value){_canDelete = value;}}
         }
         public PetsiOrderWindow(PetsiOrder? existingOrder, bool isExistingOrder)
         {

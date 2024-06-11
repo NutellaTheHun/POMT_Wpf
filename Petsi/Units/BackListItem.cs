@@ -5,17 +5,26 @@
         /// <summary>
         /// The name that is displayed on a backlist page.
         /// </summary>
-        public string PageDisplayName;
+        public string PageDisplayName { get; set; }
 
         /// <summary>
         /// The corresponding id of the item it represents from the square catalog.
         /// </summary>
-        public string CatalogObjId;
+        public string CatalogObjId { get; set; }
 
+        public string ItemName { get; set; }
+
+        public BackListItem() { }
         public BackListItem(string pageDisplayName, string catalogObjId)
         {
             PageDisplayName = pageDisplayName;
             CatalogObjId = catalogObjId;
+        }
+        public BackListItem(string pageDisplayName, string catalogObjId, string itemName)
+        {
+            PageDisplayName = pageDisplayName;
+            CatalogObjId = catalogObjId;
+            ItemName = itemName;
         }
         #region PIE
         public static BackListItem MUD()

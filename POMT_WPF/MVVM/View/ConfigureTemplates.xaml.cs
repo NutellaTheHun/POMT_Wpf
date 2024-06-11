@@ -1,4 +1,6 @@
 ﻿using Petsi.Reports;
+using Petsi.Units;
+using POMT_WPF.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,12 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace POMT_WPF.MVVM.View
 {
@@ -21,14 +17,13 @@ namespace POMT_WPF.MVVM.View
     /// </summary>
     public partial class ConfigureTemplates : Window
     {
-        ObservableCollection<string> templateNames = new ObservableCollection<string>();
+        ConfigureTemplateViewModel ctvm;
+
         public ConfigureTemplates()
         {
             InitializeComponent();
-            templateNames = new ObservableCollection<string>(
-                BacklistTemplateFormatSelector.GetInstance().GetTemplates()
-                .Select(x => x.name).ToList());
-            templateListbox.ItemsSource = templateNames;
+            ctvm = new ConfigureTemplateViewModel();
+            templateListbox.ItemsSource = ctvm.templateNames;
         }
         private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)
         {
@@ -42,17 +37,19 @@ namespace POMT_WPF.MVVM.View
         }
         private void AddTemplate_BtnClk(object sender, RoutedEventArgs e)
         {
-            TemplateViewWindow tvw = new TemplateViewWindow();
+            TemplateViewWindow tvw = new TemplateViewWindow(null);
             tvw.Show();
         }
-        private void AddItem_BtnClk(object sender, RoutedEventArgs e)
-        {
-            TemplateViewWindow tvw = new TemplateViewWindow();
-            tvw.Show();
-        }        
         private void RemTemplate_BtnClk(object sender, RoutedEventArgs e)
         {
             //Do something
+        }
+
+        private void templateListbox_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            string selectedItem = (string)templateListbox.SelectedItem;
+            TemplateViewWindow tvw = new TemplateViewWindow(selectedItem);
+            tvw.Show();
         }
     }
 }

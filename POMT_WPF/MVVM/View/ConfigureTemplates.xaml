@@ -62,7 +62,8 @@
                         Grid.Column="3"
                         Width="350"
                         Height="200"
-                        Margin="20" />
+                        Margin="20"
+                        MouseDoubleClick="templateListbox_MouseDoubleClick" />
                 </Grid>
                 <Grid Grid.Column="0">
                     <Grid.RowDefinitions>
