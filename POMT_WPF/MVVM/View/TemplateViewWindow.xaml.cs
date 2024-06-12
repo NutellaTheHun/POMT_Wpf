@@ -13,17 +13,14 @@ namespace POMT_WPF.MVVM.View
     public partial class TemplateViewWindow : Window
     {
         public TemplateViewModel viewModel { get; set; }
-        bool isPastryTemplate;
 
         public TemplateViewWindow(string? inputTemplateName)
         {
             InitializeComponent();
 
             viewModel = new TemplateViewModel(inputTemplateName);
-            //templateNameTextBox.Text = viewModel.TemplateName;
             DataContext = this;
             templateViewDataGrid.ItemsSource = viewModel.TemplateItems;
-            isPastryTemplate = true;
         }
         private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)
         {
@@ -48,11 +45,6 @@ namespace POMT_WPF.MVVM.View
         private void AddLineItem_BtnClk(object sender, RoutedEventArgs e)
         {
             viewModel.Add(new BackListItem());
-        }
-
-        private void PiePastryToggle_Click(object sender, RoutedEventArgs e)
-        {
-            isPastryTemplate = (isPastryTemplate == false);
         }
 
         private void DeleteItemButton_Click(object sender, RoutedEventArgs e)
@@ -135,16 +127,6 @@ namespace POMT_WPF.MVVM.View
                     itemNameCb.IsDropDownOpen = true;
                 }
 
-            }
-        }
-
-        private void pageDisplayNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            TextFillTextBox pageDisplayNameTextBox = (TextFillTextBox)sender;
-
-            if (templateViewDataGrid.SelectedItem != null)
-            {
-                viewModel.SetPageDisplayName((BackListItem)templateViewDataGrid.SelectedItem, pageDisplayNameTextBox.Text);
             }
         }
     }
