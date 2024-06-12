@@ -129,5 +129,21 @@ namespace POMT_WPF.MVVM.View
 
             }
         }
+
+        private void MoveItemUpBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (templateViewDataGrid.SelectedItem != null)
+            {
+                viewModel.SwapItemUp((BackListItem)templateViewDataGrid.SelectedItem);
+            }
+        }
+
+        private void MoveItemDownBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (templateViewDataGrid.SelectedItem != null)
+            {
+                viewModel.SwapItemDown((BackListItem)templateViewDataGrid.SelectedItem);
+            }
+        }
     }
 }

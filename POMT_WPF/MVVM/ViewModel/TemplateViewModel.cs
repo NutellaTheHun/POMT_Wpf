@@ -93,5 +93,57 @@ namespace POMT_WPF.MVVM.ViewModel
             BackListItem templateItem = TemplateItems.First(x => x.ItemName == selectedItem.ItemName);
             templateItem.PageDisplayName = displayName;
         }
+
+        public void SwapItemUp(BackListItem selectedItem)
+        {
+            BackListItem templateItem = TemplateItems.First(x => x == selectedItem);
+            foreach (BackListItem item in TemplateItems)
+            {
+                if (item == selectedItem)
+                {
+                    int index = TemplateItems.IndexOf(item);
+                    if (index != 0)
+                    {
+                        List<BackListItem> tempList = TemplateItems.ToList();
+                        BackListItem temp = tempList[index - 1];
+                        tempList[index - 1] = tempList[index];
+                        tempList[index] = temp;
+
+                        TemplateItems.Clear();
+                        foreach (BackListItem name in tempList)
+                        {
+                            TemplateItems.Add(name);
+                        }
+                        return;
+                    }
+                }
+            }
+        }
+
+        public void SwapItemDown(BackListItem selectedItem)
+        {
+            BackListItem templateItem = TemplateItems.First(x => x == selectedItem);
+            foreach (BackListItem item in TemplateItems)
+            {
+                if (item == selectedItem)
+                {
+                    int index = TemplateItems.IndexOf(item);
+                    if(index != TemplateItems.Count - 1)
+                    {
+                        List<BackListItem> tempList = TemplateItems.ToList();
+                        BackListItem temp = tempList[index + 1];
+                        tempList[index + 1] = TemplateItems[index];
+                        tempList[index] = temp;
+
+                        TemplateItems.Clear();
+                        foreach (BackListItem name in tempList)
+                        {
+                            TemplateItems.Add(name);
+                        }
+                        return;
+                    }
+                }
+            }
+        }
     }
 }
