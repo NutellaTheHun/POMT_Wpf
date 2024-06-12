@@ -270,8 +270,17 @@ namespace POMT_WPF.MVVM.View
 
         private void editToggleButton_Click(object sender, RoutedEventArgs e)
         {
-            if (ViewModel.IsReadOnly) { ViewModel.IsReadOnly = false; ViewModel.NotReadOnly = true; ViewModel.ItemsNotReadOnly(); }
-            else { ViewModel.IsReadOnly = true; ViewModel.ItemsIsReadOnly(); ViewModel.NotReadOnly = false; }
+            ViewModel.IsReadOnly = (ViewModel.IsReadOnly == false);
+            ViewModel.NotReadOnly = !ViewModel.IsReadOnly;
+
+            if (ViewModel.IsReadOnly) 
+            {
+                ViewModel.ItemsNotReadOnly();
+            }
+            else 
+            { 
+                ViewModel.ItemsIsReadOnly();
+            }
         }
 
         private void DeleteLineButton_Click(object sender, RoutedEventArgs e)

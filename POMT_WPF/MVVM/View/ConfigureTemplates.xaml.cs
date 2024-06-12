@@ -37,6 +37,7 @@ namespace POMT_WPF.MVVM.View
         }
         private void AddTemplate_BtnClk(object sender, RoutedEventArgs e)
         {
+            
             TemplateViewWindow tvw = new TemplateViewWindow(null);
             tvw.Show();
         }

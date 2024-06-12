@@ -17,6 +17,31 @@
     WindowStyle="None"
     mc:Ignorable="d">
 
+    <Window.Resources>
+        <DataTemplate x:Key="ItemNameTemplate">
+            <Grid>
+                <ComboBox
+                    x:Name="itemNameComboBox"
+                    Width="120"
+                    Height="40"
+                    IsEditable="True"
+                    IsHitTestVisible="False"
+                    IsReadOnly="False"
+                    LostFocus="ItemNameTextBox_LostFocus"
+                    SelectionChanged="itemNameComboBox_SelectionChanged"
+                    StaysOpenOnEdit="True"
+                    Text="{Binding ElementName=ItemNameTextBox, Path=Text}" />
+                <local:TextFillTextBox
+                    x:Name="ItemNameTextBox"
+                    Background="{StaticResource MintCream}"
+                    IsReadOnly="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged}"
+                    Style="{StaticResource orderFormItemnameTextFillTextBox}"
+                    Text="{Binding ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    TextChanged="ItemNameTextBox_TextChanged"
+                    TextFill="Item Name ..." />
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
     <Border Background="{StaticResource Charcoal}" CornerRadius="20">
         <Grid>
             <Grid.RowDefinitions>
@@ -40,12 +65,17 @@
             </Button>
             <Grid Grid.Row="1">
                 <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="Template Name..." />
-                <Label
-                    Margin="0,0,80,0"
+                <ToggleButton
+                    x:Name="PiePastryToggle"
+                    Grid.Row="1"
+                    Width="120"
+                    Height="20"
+                    Margin="0,5,50,5"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
+                    Click="PiePastryToggle_Click"
                     Content="Pie/Pastry Toggle"
-                    Foreground="White" />
+                    Style="{StaticResource orderFormEditButton}" />
             </Grid>
             <Grid Grid.Row="2" Margin="0,10,0,0">
                 <Border
@@ -65,16 +95,11 @@
                         RowStyle="{DynamicResource orderFormDataGridRowStyle}"
                         Style="{DynamicResource orderFormGridStyle}">
                         <DataGrid.Columns>
-                            <DataGridTemplateColumn Width="*" Header="Item Name">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <local:TextFillTextBox
-                                            Style="{StaticResource TemplateViewTextFillTextBox}"
-                                            Text="{Binding ItemName}"
-                                            TextFill="Item Name ..." />
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn
+                                x:Name="orderFormTemplate"
+                                Width="auto"
+                                CellTemplate="{StaticResource ItemNameTemplate}"
+                                Header="Item Name" />
                             <DataGridTemplateColumn Width="*" Header="Display Name">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
@@ -88,17 +113,33 @@
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>
+                <StackPanel>
+                    <Button
+                        Width="30"
+                        Height="30"
+                        Margin="5,0,5,5"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Click="AddLineItem_BtnClk"
+                        Style="{StaticResource templateViewButton}">
+                        <Icon:PackIconMaterial Kind="Plus" />
+                    </Button>
+                    <Button
+                        Name="DeleteItemButton"
+                        Width="30"
+                        Height="30"
+                        Margin="5,0,5,5"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Background="{StaticResource ChiliRed}"
+                        Click="DeleteItemButton_Click"
+                        IsEnabled="{Binding ViewModel.NotReadOnly}"
+                        Style="{StaticResource secondaryButton}">
+                        <Icon:PackIconMaterial Kind="Minus" />
+                    </Button>
+                </StackPanel>
 
-                <Button
-                    Width="30"
-                    Height="30"
-                    Margin="5,0,5,5"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Top"
-                    Click="AddLineItem_BtnClk"
-                    Style="{StaticResource templateViewButton}">
-                    <Icon:PackIconMaterial Kind="Plus" />
-                </Button>
+
 
             </Grid>
             <Grid
