@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace POMT_WPF.MVVM.ViewModel
 {
-    public class ConfigureTemplateViewModel
+    public class ConfigureTemplateViewModel : ViewModelBase
     {
         public ObservableCollection<string> templateNames = new ObservableCollection<string>();
         ReportTemplateService rts;

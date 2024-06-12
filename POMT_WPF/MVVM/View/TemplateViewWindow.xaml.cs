@@ -1,8 +1,6 @@
-﻿using Petsi.Services;
-using Petsi.Units;
+﻿using Petsi.Units;
 using POMT_WPF.MVVM.View.Controls;
 using POMT_WPF.MVVM.ViewModel;
-using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -14,14 +12,15 @@ namespace POMT_WPF.MVVM.View
     /// </summary>
     public partial class TemplateViewWindow : Window
     {
-        public TemplateViewModel viewModel;
+        public TemplateViewModel viewModel { get; set; }
         bool isPastryTemplate;
 
         public TemplateViewWindow(string? inputTemplateName)
         {
             InitializeComponent();
-            
+
             viewModel = new TemplateViewModel(inputTemplateName);
+            //templateNameTextBox.Text = viewModel.TemplateName;
             DataContext = this;
             templateViewDataGrid.ItemsSource = viewModel.TemplateItems;
             isPastryTemplate = true;
@@ -32,7 +31,7 @@ namespace POMT_WPF.MVVM.View
         }
         private void ConfirmCloseWin_BtnClk(object sender, RoutedEventArgs e)
         {
-            if(viewModel.IsValidTemplate())
+            if (viewModel.IsValidTemplate())
             {
                 viewModel.SaveTemplate();
                 Close();
@@ -44,7 +43,7 @@ namespace POMT_WPF.MVVM.View
                 errorWindow.Show();
                 return;
             }
-            
+
         }
         private void AddLineItem_BtnClk(object sender, RoutedEventArgs e)
         {
@@ -72,7 +71,7 @@ namespace POMT_WPF.MVVM.View
 
         private void ItemNameTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            
+
             //# D64933 chili red
             ComboBox comboBox = (ComboBox)sender;
             Grid grid = comboBox.Parent as Grid;
@@ -89,12 +88,12 @@ namespace POMT_WPF.MVVM.View
                 Brush brush = (Brush)brushConverter.ConvertFromString("#CCD7E1");
                 itemNameTextBox.Background = brush;
             }
-            
+
         }
 
         private void itemNameComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+
             //#D64933 chili red
             ComboBox comboBox = (ComboBox)sender;
             Grid grid = comboBox.Parent as Grid;
@@ -114,12 +113,12 @@ namespace POMT_WPF.MVVM.View
                     itemNameTextBox.Background = brush;
                 }
             }
-            
+
         }
 
         private void ItemNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
+
             TextFillTextBox itemNameTextBox = (TextFillTextBox)sender;
 
             if (!viewModel.ValidateItemName(itemNameTextBox.Text))
@@ -136,6 +135,16 @@ namespace POMT_WPF.MVVM.View
                     itemNameCb.IsDropDownOpen = true;
                 }
 
+            }
+        }
+
+        private void pageDisplayNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextFillTextBox pageDisplayNameTextBox = (TextFillTextBox)sender;
+
+            if (templateViewDataGrid.SelectedItem != null)
+            {
+                viewModel.SetPageDisplayName((BackListItem)templateViewDataGrid.SelectedItem, pageDisplayNameTextBox.Text);
             }
         }
     }

@@ -1,5 +1,4 @@
-﻿using DocumentFormat.OpenXml.Office2010.Excel;
-using Petsi.Managers;
+﻿using Petsi.Managers;
 using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
@@ -7,17 +6,30 @@ using System.Collections.ObjectModel;
 
 namespace POMT_WPF.MVVM.ViewModel
 {
-    public class TemplateViewModel
+    public class TemplateViewModel : ViewModelBase
     {
         ReportTemplateService rts;
         CatalogService cs;
-        string TemplateName {  get; set; }
+
+        private string _templateName;
+        public string TemplateName
+        {
+            get { return _templateName; }
+            set
+            {
+                if (_templateName != value)
+                {
+                    _templateName = value;
+                    OnPropertyChanged(nameof(TemplateName));
+                }
+            }
+        }
         public ObservableCollection<BackListItem> TemplateItems { get; set; } = new ObservableCollection<BackListItem>();
 
         public TemplateViewModel(string? templateName)
         {
             rts = ReportTemplateService.Instance();
-            cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATEGORY);
+            cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
             if (templateName != null)
             {
                 (string name, List<BackListItem> items) template = rts.GetTemplate(templateName);
@@ -40,15 +52,15 @@ namespace POMT_WPF.MVVM.ViewModel
 
         public bool ValidateItemName(string? text)
         {
-            BackListItem templateitem = TemplateItems.First(x => x.ItemName == text);
-            if (templateitem == null) { return false; }
+            BackListItem templateItem = TemplateItems.First(x => x.ItemName == text);
+            if (templateItem == null) { return false; }
             string id = "";
             if (cs.TryValidateItemName(text, out id))
             {
-                templateitem.CatalogObjId = id;
+                templateItem.CatalogObjId = id;
                 return true;
             }
-            templateitem.CatalogObjId = "";
+            templateItem.CatalogObjId = "";
             return false;
         }
 
@@ -74,6 +86,12 @@ namespace POMT_WPF.MVVM.ViewModel
         {
             List<BackListItem> backListItems = TemplateItems.ToList();
             rts.AddTemplate((TemplateName, backListItems));
+        }
+
+        public void SetPageDisplayName(BackListItem selectedItem, string displayName)
+        {
+            BackListItem templateItem = TemplateItems.First(x => x.ItemName == selectedItem.ItemName);
+            templateItem.PageDisplayName = displayName;
         }
     }
 }

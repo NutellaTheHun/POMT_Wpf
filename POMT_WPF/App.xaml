@@ -716,7 +716,7 @@
                                     Background="Transparent"
                                     BorderThickness="0"
                                     Foreground="#CFCFCF"
-                                    Text="{TemplateBinding Text}" />
+                                    Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                                 <TextBlock
                                     x:Name="PlaceholderTextBlock"

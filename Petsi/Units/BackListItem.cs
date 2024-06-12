@@ -1,11 +1,33 @@
-﻿namespace Petsi.Units
+﻿using System.ComponentModel;
+
+namespace Petsi.Units
 {
-    public class BackListItem
+    public class BackListItem : INotifyPropertyChanged
     {
         /// <summary>
         /// The name that is displayed on a backlist page.
         /// </summary>
-        public string PageDisplayName { get; set; }
+        private string _pageDisplayName;
+        public string PageDisplayName
+        {
+            get {
+                return _pageDisplayName;
+            }
+            set 
+            {
+                if (_pageDisplayName != value)
+                { 
+                    _pageDisplayName = value;
+                    OnPropertyChanged(nameof(PageDisplayName));
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         /// <summary>
         /// The corresponding id of the item it represents from the square catalog.
@@ -14,7 +36,7 @@
 
         public string ItemName { get; set; }
 
-        public BackListItem() { }
+        public BackListItem() {}
         public BackListItem(string pageDisplayName, string catalogObjId)
         {
             PageDisplayName = pageDisplayName;
@@ -26,6 +48,7 @@
             CatalogObjId = catalogObjId;
             ItemName = itemName;
         }
+
         #region PIE
         public static BackListItem MUD()
         {

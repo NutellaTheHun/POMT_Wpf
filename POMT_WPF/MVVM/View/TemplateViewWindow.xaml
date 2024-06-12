@@ -34,7 +34,6 @@
                 <local:TextFillTextBox
                     x:Name="ItemNameTextBox"
                     Background="{StaticResource MintCream}"
-                    IsReadOnly="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged}"
                     Style="{StaticResource orderFormItemnameTextFillTextBox}"
                     Text="{Binding ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     TextChanged="ItemNameTextBox_TextChanged"
@@ -64,7 +63,11 @@
                 </StackPanel>
             </Button>
             <Grid Grid.Row="1">
-                <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="Template Name..." />
+                <local:TextFillTextBox
+                    x:Name="templateNameTextBox"
+                    Style="{StaticResource textFillTextBox}"
+                    Text="{Binding viewModel.TemplateName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    TextFill="Template Name..." />
                 <ToggleButton
                     x:Name="PiePastryToggle"
                     Grid.Row="1"
@@ -104,8 +107,10 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <local:TextFillTextBox
+                                            x:Name="pageDisplayNameTextBox"
                                             Style="{StaticResource TemplateViewTextFillTextBox}"
-                                            Text="{Binding PageDisplayName}"
+                                            Text="{Binding PageDisplayName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            TextChanged="pageDisplayNameTextBox_TextChanged"
                                             TextFill="Display name ..." />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
