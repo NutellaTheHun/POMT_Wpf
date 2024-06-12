@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
 
@@ -16,8 +17,13 @@ namespace Petsi.Reports.TableBuilder
         {
             List<PetsiOrderLineItem> items = tableOrders as List<PetsiOrderLineItem>;
             List<PetsiOrderLineItem> itemTracker = new List<PetsiOrderLineItem>(items);
-            List<BackListItem> listFormat = BacklistTemplateFormatSelector.GetInstance().GetPieFormat();
-            
+            //List<BackListItem> listFormat = BacklistTemplateFormatSelector.GetInstance().GetPieFormat();
+            List<BackListItem> listFormat = ReportTemplateService.Instance().GetActiveBacklistPieTemplate();
+            if (listFormat == null)
+            {
+                SystemLogger.Log("TableBackListPie GetActiveBacklistPieTemplate returned an empty list");
+                return;
+            }
             //Header
             AddLine(page, ref _rowIndex, _rootPosition.col, "", "3\"", "5\"", "8\"", "10\"");
 

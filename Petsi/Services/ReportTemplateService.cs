@@ -42,9 +42,10 @@ namespace Petsi.Services
             return items.Select(x => x.templateName).ToList();
         }
 
-        public (string templateName, List<BackListItem> templateItems) GetTemplate(string templateName)
+        public  List<BackListItem> GetTemplate(string templateName)
         {
-            return items.First(x => x.templateName == templateName);
+            var template = items.FirstOrDefault(x => x.templateName == templateName);
+            return template.templateItems;
         }
 
         /// <summary>
@@ -84,5 +85,17 @@ namespace Petsi.Services
         }
 
         public void Subscribe(ITemplateService service) { subscribers.Add(service); }
+
+        public List<BackListItem> GetActiveBacklistPieTemplate()
+        {
+            string templateName = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_PIE_TEMPLATE);
+            return GetTemplate(templateName);
+        }
+
+        public List<BackListItem> GetActiveBacklistPastryTemplate()
+        {
+            string templateName = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_PASTRY_TEMPLATE);
+            return GetTemplate(templateName);
+        }
     }
 }

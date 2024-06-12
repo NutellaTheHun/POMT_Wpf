@@ -32,9 +32,12 @@ namespace POMT_WPF.MVVM.ViewModel
             cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
             if (templateName != null)
             {
-                (string name, List<BackListItem> items) template = rts.GetTemplate(templateName);
-                TemplateName = template.name;
-                TemplateItems = new ObservableCollection<BackListItem>(template.items);
+                List<BackListItem> templateItems = rts.GetTemplate(templateName);
+                if (templateItems != null)
+                {
+                    TemplateName = templateName;
+                    TemplateItems = new ObservableCollection<BackListItem>(templateItems);
+                } 
             }
         }
 
