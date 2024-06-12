@@ -17,13 +17,13 @@ namespace POMT_WPF.MVVM.View
     /// </summary>
     public partial class ConfigureTemplates : Window
     {
-        ConfigureTemplateViewModel ctvm;
+        ConfigureTemplateViewModel viewModel;
 
         public ConfigureTemplates()
         {
             InitializeComponent();
-            ctvm = new ConfigureTemplateViewModel();
-            templateListbox.ItemsSource = ctvm.templateNames;
+            viewModel = new ConfigureTemplateViewModel();
+            templateListbox.ItemsSource = viewModel.templateNames;
         }
         private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)
         {
@@ -39,11 +39,20 @@ namespace POMT_WPF.MVVM.View
         {
             
             TemplateViewWindow tvw = new TemplateViewWindow(null);
-            tvw.Show();
+            tvw.ShowDialog();
         }
         private void RemTemplate_BtnClk(object sender, RoutedEventArgs e)
         {
-            //Do something
+            if (templateListbox.SelectedItem != null)
+            {
+                bool deleteConfirmation = false;
+                ConfirmationWindow confirmationWindow = new ConfirmationWindow();
+                confirmationWindow.ShowDialog();
+                if (confirmationWindow.ControlBool)
+                {
+                    viewModel.RemoveTemplate((string)templateListbox.SelectedItem);
+                }
+            }
         }
 
         private void templateListbox_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)

@@ -1,8 +1,8 @@
 ﻿using Petsi.Filing;
+using Petsi.Interfaces;
 using Petsi.Reports;
 using Petsi.Units;
 using Petsi.Utils;
-using System.ComponentModel;
 
 namespace Petsi.Services
 {
@@ -14,11 +14,13 @@ namespace Petsi.Services
 
         private static ReportTemplateService instance;
 
+        private List<ITemplateService> subscribers;
         private ReportTemplateService() 
         {
             filebehavior = new FileBehavior(Identifiers.SERVICE_TEMPLATE);
             items = filebehavior.BuildDataListFile<(string, List<BackListItem>)>(filename);
-            if(items == null) 
+            subscribers = new List<ITemplateService>();
+            if (items == null) 
             { 
                 items = new List<(string name, List<BackListItem> templateItems)> ();
                 BacklistTemplateFormatSelector btfs = BacklistTemplateFormatSelector.GetInstance();
@@ -54,6 +56,7 @@ namespace Petsi.Services
             var existingTemplate = items.FirstOrDefault(x => x.templateName == newTemplate.templateName);
             if (existingTemplate != default) { items.Remove(existingTemplate); } //Needs testing, default in this case?
             items.Add(newTemplate);
+            NotifySubscribers();
             Save(); }
 
         /// <summary>
@@ -64,6 +67,7 @@ namespace Petsi.Services
         {
             var template = items.First(x => x.templateName.Equals(templateName)); //test if not found?
             items.Remove(template);
+            NotifySubscribers();
             Save();
         }
         private void Save()
@@ -71,5 +75,14 @@ namespace Petsi.Services
             filebehavior.DataListToFile(filename, items);
         }
 
+        private void NotifySubscribers()
+        {
+            foreach(ITemplateService subscriber in subscribers)
+            {
+                subscriber.Update();
+            }
+        }
+
+        public void Subscribe(ITemplateService service) { subscribers.Add(service); }
     }
 }

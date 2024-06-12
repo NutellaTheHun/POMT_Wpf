@@ -65,7 +65,7 @@
             <Grid Grid.Row="1">
                 <local:TextFillTextBox
                     x:Name="templateNameTextBox"
-                    Style="{StaticResource textFillTextBox}"
+                    Style="{StaticResource TemplateViewTextFillTextBox}"
                     Text="{Binding viewModel.TemplateName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                     TextFill="Template Name..." />
             </Grid>

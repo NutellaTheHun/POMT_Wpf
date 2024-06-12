@@ -700,7 +700,7 @@
                         <Border
                             Width="80"
                             Height="40"
-                            Background="{StaticResource Charcoal}"
+                            Background="{StaticResource ColumbiaBlue}"
                             BorderBrush="Transparent"
                             BorderThickness="0"
                             CornerRadius="10">
@@ -715,7 +715,7 @@
                                     VerticalAlignment="Center"
                                     Background="Transparent"
                                     BorderThickness="0"
-                                    Foreground="#CFCFCF"
+                                    Foreground="{StaticResource maybeDark}"
                                     Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                                 <TextBlock
@@ -724,7 +724,7 @@
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Center"
                                     FontSize="11"
-                                    Foreground="DarkGray"
+                                    Foreground="{StaticResource maybeDark}"
                                     IsHitTestVisible="False"
                                     Text="{TemplateBinding TextFill}"
                                     Visibility="Hidden" />
