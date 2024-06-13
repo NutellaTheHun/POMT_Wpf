@@ -145,8 +145,14 @@ namespace POMT_WPF.MVVM.View
                 errorWindow.Show();
                 return;
             }
-
-            ViewModel.AddOrder(orderTimeTextBox.Text);
+            if(!IsExistingOrder)
+            {
+                ViewModel.AddOrder(orderTimeTextBox.Text);
+            }
+            else
+            {
+                ViewModel.ModifyOrder();
+            }
             Close();
         }
 
@@ -275,11 +281,11 @@ namespace POMT_WPF.MVVM.View
 
             if (ViewModel.IsReadOnly) 
             {
-                ViewModel.ItemsNotReadOnly();
+                ViewModel.ItemsIsReadOnly();
             }
             else 
-            { 
-                ViewModel.ItemsIsReadOnly();
+            {
+                ViewModel.ItemsNotReadOnly();
             }
         }
 

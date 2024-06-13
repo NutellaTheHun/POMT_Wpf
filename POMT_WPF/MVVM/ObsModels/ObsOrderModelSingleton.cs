@@ -53,6 +53,21 @@ namespace POMT_WPF.MVVM.ObsModels
             Instance.Orders.Add(order);
             Instance.AddOrderMainModel(order);
         }
+
+        public static void ModifyOrder(PetsiOrder modOrder)
+        {
+            int index = 0;
+            foreach(PetsiOrder order  in Instance.Orders)
+            {
+                if(order.OrderId == modOrder.OrderId)
+                {
+                    index = Instance.Orders.IndexOf(order);
+                    break;
+                }
+            }
+            Instance.Orders[index] = modOrder;
+            Instance.ModifyOrderMainModel(modOrder);
+        }
         public static void RemoveOrder(string orderId)
         {
             var orderToRemove = Instance.Orders.FirstOrDefault(order => order.OrderId == orderId);
@@ -65,6 +80,10 @@ namespace POMT_WPF.MVVM.ObsModels
         public void AddOrderMainModel(PetsiOrder order)
         {
             _omp.AddOrder(order);
+        }
+        public void ModifyOrderMainModel(PetsiOrder order)
+        {
+            _omp.ModifyOrder(order);
         }
         public void RemoveOrderMainModel(string orderId)
         {

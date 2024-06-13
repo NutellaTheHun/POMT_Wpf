@@ -274,6 +274,61 @@ namespace Petsi.Models
                 }
             }
         }
+
+        public void ModifyOrder(PetsiOrder modOrder)
+        {
+            int index = 0;
+            foreach (PetsiOrder order in Orders)
+            {
+                if (order.OrderId == modOrder.OrderId)
+                {
+                    index = Orders.IndexOf(order);
+                    break;
+                }
+            }
+            Orders[index] = modOrder;
+            if (modOrder.IsPeriodic)
+            {
+                UpdatePeriodicOrders(modOrder);
+                
+            }
+            else if (modOrder.IsOneShot)
+            {
+                UpdateOneShotOrders(modOrder);
+                
+            }
+        }
+
+        private void UpdateOneShotOrders(PetsiOrder modOrder)
+        {
+            int index = 0;
+            foreach (PetsiOrder order in OneShotOrders)
+            {
+                if (order.OrderId == modOrder.OrderId)
+                {
+                    index = OneShotOrders.IndexOf(order);
+                    break;
+                }
+            }
+            OneShotOrders[index] = modOrder;
+            fileBehavior.DataListToFile(Identifiers.ONE_SHOT_ORDERS, OneShotOrders);
+            
+        }
+
+        private void UpdatePeriodicOrders(PetsiOrder modOrder)
+        {
+            int index = 0;
+            foreach (PetsiOrder order in PeriodicOrders)
+            {
+                if (order.OrderId == modOrder.OrderId)
+                {
+                    index = PeriodicOrders.IndexOf(order);
+                    break;
+                }
+            }
+            PeriodicOrders[index] = modOrder;
+            fileBehavior.DataListToFile(Identifiers.PERIODIC_ORDERS, PeriodicOrders);
+        }
     }   
 }
 

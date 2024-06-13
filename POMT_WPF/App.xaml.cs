@@ -4,6 +4,8 @@ using Petsi.Reports;
 using Petsi.Services;
 using Square.Service;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace POMT_WPF
 {
@@ -31,6 +33,14 @@ namespace POMT_WPF
             sci.Execute().Wait();
             //soi.Execute().Wait();
         }
+
+        //https://stackoverflow.com/questions/53500915/how-to-select-all-text-in-textbox-wpf-when-focused
+        private void TextBox_GotKeyboardFocus(Object sender, KeyboardFocusChangedEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.Dispatcher.BeginInvoke(new Action(() => tb.SelectAll()));
+        }
+        
     }
 
 }
