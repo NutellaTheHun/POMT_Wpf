@@ -17,7 +17,7 @@ namespace Petsi.Reports
         FileBehavior fileBehavior;
         public Report(string name)
         {
-            _filePath = PetsiConfig.GetInstance().GetFilepath("createdReportPath");
+            _filePath = PetsiConfig.GetInstance().GetVariable("createdReportPath");
             ReportName = name;//might need to expand, include date/time, or id/count?
             DatePrinted = DateTime.Now.ToShortDateString();
             ReportId = ReportUtil.CreateReportId();

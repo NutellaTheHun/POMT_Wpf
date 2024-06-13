@@ -141,6 +141,7 @@ namespace Petsi.Models
 
         public List<PetsiOrderLineItem> GetBackListData(DateTime? targetDate, DateTime? endDate)
         {
+            
             IEnumerable<PetsiOrder> query;
             if (targetDate == null) //all data
             {
@@ -152,15 +153,15 @@ namespace Petsi.Models
             {
                query =
                from order in Orders
-               where DateTime.Parse(order.OrderDueDate).Date == targetDate.Value.Date
+               where DateTime.Parse(order.OrderDueDate).DayOfWeek == targetDate.Value.DayOfWeek
                select order;
             }
             else //range
             {
                 query =
                  from order in Orders
-                 where DateTime.Parse(order.OrderDueDate).Date >= targetDate.Value.Date
-                 where DateTime.Parse(order.OrderDueDate).Date <= endDate.Value.Date
+                 where DateTime.Parse(order.OrderDueDate).DayOfWeek >= targetDate.Value.DayOfWeek
+                 where DateTime.Parse(order.OrderDueDate).DayOfWeek <= endDate.Value.DayOfWeek
                  select order;
             }
             return AggregatePetsiOrders(query.ToList()); 
