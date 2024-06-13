@@ -56,16 +56,16 @@
                         FontSize="14"
                         FontWeight="SemiBold"
                         Foreground="{StaticResource maybeDark}"
-                        Text="Rollo Printer" />
+                        Text="Label Printer" />
                     <local:TextFillTextBox
                         IsReadOnly="true"
                         Style="{StaticResource textFillTextBox}"
-                        Text="{Binding RolloPrinter, UpdateSourceTrigger=PropertyChanged}"
+                        Text="{Binding LabelPrinter, UpdateSourceTrigger=PropertyChanged}"
                         TextFill="getListOfPrinters()" />
                     <Button
                         Width="50"
                         Margin="10,0,0,0"
-                        Click="ConfigureLabelsWin_BtnClk"
+                        Click="SetLabelPrinter_BtnClk"
                         Content="Set"
                         Style="{StaticResource settingsButton}" />
                 </StackPanel>
@@ -86,7 +86,7 @@
                     <Button
                         Width="50"
                         Margin="10,0,0,0"
-                        Click="ConfigureLabelsWin_BtnClk"
+                        Click="SetStandardPrinter_BtnClk"
                         Content="Set"
                         Style="{StaticResource settingsButton}" />
                 </StackPanel>
@@ -102,12 +102,12 @@
                     <local:TextFillTextBox
                         IsReadOnly="true"
                         Style="{StaticResource textFillTextBox}"
-                        Text="{Binding LabelsFilepath}"
+                        Text="{Binding LabelsFilepath, UpdateSourceTrigger=PropertyChanged}"
                         TextFill="selectFolderPath()" />
                     <Button
                         Width="50"
                         Margin="10,0,0,0"
-                        Click="ConfigureLabelsWin_BtnClk"
+                        Click="SetLabelsFilePath_BtnClk"
                         Content="Set"
                         Style="{StaticResource settingsButton}" />
                 </StackPanel>
@@ -124,9 +124,8 @@
                         Foreground="{StaticResource maybeDark}"
                         Text="NumberOfDays" />
                     <local:TextFillTextBox
-                        IsReadOnly="true"
                         Style="{StaticResource textFillTextBox}"
-                        Text="{Binding NumberOfDays}"
+                        Text="{Binding NumberOfDays, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextFill=".." />
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
@@ -141,12 +140,12 @@
                     <local:TextFillTextBox
                         IsReadOnly="true"
                         Style="{StaticResource textFillTextBox}"
-                        Text="{Binding PieTemplate}"
+                        Text="{Binding PieTemplate, UpdateSourceTrigger=PropertyChanged}"
                         TextFill="SelectFromListBox()" />
                     <Button
                         Width="50"
                         Margin="10,0,0,0"
-                        Click="ConfigureLabelsWin_BtnClk"
+                        Click="SetPieTemplate_BtnClk"
                         Content="Set"
                         Style="{StaticResource settingsButton}" />
                 </StackPanel>
@@ -162,12 +161,12 @@
                     <local:TextFillTextBox
                         IsReadOnly="true"
                         Style="{StaticResource textFillTextBox}"
-                        Text="{Binding PastryTemplate}"
+                        Text="{Binding PastryTemplate, UpdateSourceTrigger=PropertyChanged}"
                         TextFill="SelectFromListBox()" />
                     <Button
                         Width="50"
                         Margin="10,0,0,0"
-                        Click="ConfigureLabelsWin_BtnClk"
+                        Click="SetPastryTemplate_BtnClk"
                         Content="Set"
                         Style="{StaticResource settingsButton}" />
                 </StackPanel>

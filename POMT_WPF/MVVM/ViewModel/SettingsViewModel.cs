@@ -1,20 +1,22 @@
 ﻿using Petsi.Utils;
-
+using POMT_WPF.MVVM.View;
+using System.Windows.Forms;
 
 namespace POMT_WPF.MVVM.ViewModel
 {
     class SettingsWindowViewModel : ViewModelBase
     {
-        private string _rolloPrinter; //config, getPrinters()
-        public string RolloPrinter
+        #region Properties
+        private string _labelPrinter; //config, getPrinters()
+        public string LabelPrinter
         {
-            get { return _rolloPrinter; }
+            get { return _labelPrinter; }
             set
             {
-                if (_rolloPrinter != value)
+                if (_labelPrinter != value)
                 {
-                    _rolloPrinter = value;
-                    OnPropertyChanged(nameof(_rolloPrinter));
+                    _labelPrinter = value;
+                    OnPropertyChanged(nameof(_labelPrinter));
                 }
             }
         }
@@ -42,7 +44,8 @@ namespace POMT_WPF.MVVM.ViewModel
                 if (_labelsFilepath != value)
                 {
                     _labelsFilepath = value;
-                    OnPropertyChanged(nameof(_labelsFilepath));
+                    config.SetValue(Identifiers.SETTING_LABEL_FP, LabelsFilepath);
+                    OnPropertyChanged(nameof(LabelsFilepath));
                 }
             }
         }
@@ -70,7 +73,8 @@ namespace POMT_WPF.MVVM.ViewModel
                 if (_pieTemplate != value)
                 {
                     _pieTemplate = value;
-                    OnPropertyChanged(nameof(_pieTemplate));
+                    config.SetValue(Identifiers.SETTING_PIE_TEMPLATE, PieTemplate);
+                    OnPropertyChanged(nameof(PieTemplate));
                 }
             }
         }
@@ -84,21 +88,62 @@ namespace POMT_WPF.MVVM.ViewModel
                 if (_pastryTemplate != value)
                 {
                     _standardPrinter = value;
-                    OnPropertyChanged(nameof(_pastryTemplate));
+                    config.SetValue(Identifiers.SETTING_PASTRY_TEMPLATE, PastryTemplate);
+                    OnPropertyChanged(nameof(PastryTemplate));
                 }
             }
         }
-        PetsiConfig config;
+        #endregion
 
+        PetsiConfig config;
         public SettingsWindowViewModel()
         {
             config = PetsiConfig.GetInstance();
-            _rolloPrinter = config.GetVariable(Identifiers.SETTING_ROLLO_PRINTER);
+            LabelPrinter = config.GetVariable(Identifiers.SETTING_ROLLO_PRINTER);
             StandardPrinter = config.GetVariable(Identifiers.SETTING_STD_PRINTER);
-            _labelsFilepath = config.GetFilepath(Identifiers.SETTING_LABEL_FP);
-            _numberOfDays = config.GetVariable(Identifiers.SETTING_DAYNUM);
-            _pieTemplate = config.GetVariable(Identifiers.SETTING_PIE_TEMPLATE);
-            _pastryTemplate = config.GetVariable(Identifiers.SETTING_PASTRY_TEMPLATE);
+            LabelsFilepath = config.GetVariable(Identifiers.SETTING_LABEL_FP);
+            NumberOfDays = config.GetVariable(Identifiers.SETTING_DAYNUM);
+            PieTemplate = config.GetVariable(Identifiers.SETTING_PIE_TEMPLATE);
+            PastryTemplate = config.GetVariable(Identifiers.SETTING_PASTRY_TEMPLATE);
+        }
+
+        public void SetLabelsFilePath()
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            fbd.Description = "Select folder containing pie and cutie label folders";
+            string sSelectedPath = "";
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                sSelectedPath = fbd.SelectedPath;
+            }
+            if(sSelectedPath != "")
+            {
+                LabelsFilepath = sSelectedPath;
+            }
+        }
+
+        public void SetPieTemplate(string templateName)
+        {
+            //SetPieTemplateView view = new SetPieTemplateView();
+            //view.Show();
+            PieTemplate = templateName;
+        }
+
+        public void SetPastryTemplate(string templateName)
+        {
+            //SetPieTemplateView view = new SetPieTemplateView();
+            //view.Show();
+            PastryTemplate = templateName;
+        }
+
+        public void SetStandardPrinter()
+        {
+            //PrinterName Listbox
+        }
+
+        public void SetLabelPrinter()
+        {
+            //PrinterName Listbox
         }
     }
 }

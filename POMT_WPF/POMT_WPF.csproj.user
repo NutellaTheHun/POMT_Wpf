@@ -10,12 +10,24 @@
     <Compile Update="MVVM\View\PetsiOrderFormErrorWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="MVVM\View\SetPastryTemplateView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\SetPieTemplateView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\PetsiOrderFormErrorWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\SetPastryTemplateView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\SetPieTemplateView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

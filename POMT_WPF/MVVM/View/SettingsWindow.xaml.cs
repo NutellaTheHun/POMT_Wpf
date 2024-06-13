@@ -8,10 +8,13 @@ namespace POMT_WPF.MVVM.View
     /// </summary>
     public partial class SettingsWindow : Window
     {
+        SettingsWindowViewModel viewModel;
+        public string selection;
         public SettingsWindow()
         {
             InitializeComponent();
-            DataContext = new SettingsWindowViewModel();
+            viewModel = new SettingsWindowViewModel();
+            DataContext = viewModel;
         }
 
         private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)
@@ -40,25 +43,38 @@ namespace POMT_WPF.MVVM.View
             CatalogListViewWindow clvw = new CatalogListViewWindow();
             clvw.Show();
         }
-        private void SetRolloPrinter_BtnClk(object sender, RoutedEventArgs e)
+        private void SetLabelPrinter_BtnClk(object sender, RoutedEventArgs e)
         {
-
+            viewModel.SetLabelPrinter();
         }
         private void SetStandardPrinter_BtnClk(object sender, RoutedEventArgs e)
         {
-
+            viewModel.SetStandardPrinter();
         }
         private void SetLabelsFilePath_BtnClk(object sender, RoutedEventArgs e)
         {
-
+            viewModel.SetLabelsFilePath();
         }
         private void SetPieTemplate_BtnClk(object sender, RoutedEventArgs e)
         {
-
+            SetPieTemplateView view = new SetPieTemplateView();
+            view.ShowDialog();
+            if(view.selection != null)
+            {
+                viewModel.SetPieTemplate(view.selection);
+            }
+            
+            //viewModel.SetPieTemplate();
         }
-        private void SetpastryTemplate_BtnClk(object sender, RoutedEventArgs e)
+        private void SetPastryTemplate_BtnClk(object sender, RoutedEventArgs e)
         {
-
+            SetPastryTemplateView view = new SetPastryTemplateView();
+            view.ShowDialog();
+            if (view.selection != null)
+            {
+                viewModel.SetPastryTemplate(view.selection);
+            }
+            //viewModel.SetPastryTemplate();
         }
     }
 }

@@ -215,3 +215,7 @@ D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows\POMT_WPF.genruntimeconfi
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows\ref\POMT_WPF.dll
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows\MVVM\View\PetsiOrderFormErrorWindow.g.cs
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows\MVVM\View\PetsiOrderFormErrorWindow.baml
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows\MVVM\View\SetPieTemplateView.g.cs
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows\MVVM\View\SetPieTemplateView.baml
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows\MVVM\View\SetPastryTemplateView.g.cs
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows\MVVM\View\SetPastryTemplateView.baml
