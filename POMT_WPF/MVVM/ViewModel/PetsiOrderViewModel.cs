@@ -335,17 +335,20 @@ namespace POMT_WPF.MVVM.ViewModel
         /// <returns></returns>
         public bool ValidateItemName(string text)
         {
-            PetsiOrderLineItem lineItem = LineItems.First(x => x.ItemName == text);
-            if (lineItem == null) { return false; }
-            string id = "";
-            if (cs.TryValidateItemName(text, out id))
+            if (text != "")
             {
-                lineItem.CatalogObjectId = id;
-                lineItem.IsValid = true;
-                return true;    
+                PetsiOrderLineItem lineItem = LineItems.First(x => x.ItemName == text);
+                if (lineItem == null) { return false; }
+                string id = "";
+                if (cs.TryValidateItemName(text, out id))
+                {
+                    lineItem.CatalogObjectId = id;
+                    lineItem.IsValid = true;
+                    return true;
+                }
+                lineItem.CatalogObjectId = "";
+                lineItem.IsValid = false;
             }
-            lineItem.CatalogObjectId = "";
-            lineItem.IsValid = false;
             return false;
         }
 
