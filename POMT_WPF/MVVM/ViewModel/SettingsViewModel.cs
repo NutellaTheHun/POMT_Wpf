@@ -87,7 +87,7 @@ namespace POMT_WPF.MVVM.ViewModel
             {
                 if (_pastryTemplate != value)
                 {
-                    _standardPrinter = value;
+                    _pastryTemplate = value;
                     config.SetValue(Identifiers.SETTING_PASTRY_TEMPLATE, PastryTemplate);
                     OnPropertyChanged(nameof(PastryTemplate));
                 }
