@@ -5,6 +5,8 @@ using Petsi.Reports.TableBuilder;
 using Petsi.Utils;
 using System.Diagnostics;
 using System.Drawing.Printing;
+using Microsoft.Office.Interop.Excel;
+using System.Runtime.InteropServices;
 
 
 
@@ -47,30 +49,59 @@ namespace Petsi.Reports
             if(Wb.Worksheets.Count > 0)
             {
                 ReportUtil.Save(Wb, _filePath + ReportName);
-                PrintReport(Wb, _filePath, ReportName);
+                PrintReport(_filePath, ReportName);
                 CaptureEnvironment();
             }
         }
 
-        private void PrintReport(XLWorkbook wb, string filepath, string fileName)
+        private void PrintReport(string filepath, string fileName)
         {
-            XLWorkbook temp = new XLWorkbook();
+            Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();
+            Workbook wb = app.Workbooks.Open(filepath + fileName + ".xlsx",
+                Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
+                Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
+                Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+
+            wb.PrintOut(
+                Type.Missing, Type.Missing, Type.Missing, Type.Missing,
+                Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+
+            // Cleanup:
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+
+            Marshal.FinalReleaseComObject(wb);
+
+            wb.Close(false, Type.Missing, Type.Missing);
+            Marshal.FinalReleaseComObject(wb);
+
+            app.Quit();
+            Marshal.FinalReleaseComObject(app);
+
+            /*
+            XLWorkbook temp;
+            int index = 1;
             foreach (IXLWorksheet sheet in wb.Worksheets)
             {
+                temp = new XLWorkbook();
                 temp.AddWorksheet(sheet);
-                ReportUtil.Save(wb, filepath + fileName);
-                var pi = new ProcessStartInfo(filepath + fileName + ".xlsx");
+                ReportUtil.Save(temp, filepath + fileName + index);
+                var pi = new ProcessStartInfo(filepath + fileName + index + ".xlsx");
                 pi.UseShellExecute = true;
                 pi.Verb = "PrintTo";
                 pi.Arguments = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_STD_PRINTER);
                 var process = System.Diagnostics.Process.Start(pi);
-                ReportUtil.RemoveFile(filepath + fileName);
+                index++;
+                //ReportUtil.RemoveFile(filepath  + fileName + index);
             }
+            */
+            /*
             //var pi = new ProcessStartInfo(filepath + fileName + ".xlsx");
             //pi.UseShellExecute = true;
             //pi.Verb = "PrintTo";
             //pi.Arguments = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_STD_PRINTER);
             //var process = System.Diagnostics.Process.Start(pi);
+            */
         }
 
         private void FormatReportHeader()
