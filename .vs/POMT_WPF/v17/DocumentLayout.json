@@ -48,7 +48,7 @@
               "RelativeDocumentMoniker": "Petsi\\Reports\\Report.cs",
               "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Reports\\Report.cs",
               "RelativeToolTip": "Petsi\\Reports\\Report.cs",
-              "ViewState": "AQIAADMAAAAAAAAAAAAwwEYAAAAvAAAA",
+              "ViewState": "AQIAAC4AAAAAAAAAAAAIwEAAAAA/AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-14T15:32:11.11Z",
               "EditorCaption": ""
@@ -77,53 +77,6 @@
               "ViewState": "AQIAAAYAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-14T15:31:48.904Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "c9ee6546-e748-4a1d-b740-c8188f3e6bb7",
-        "Display": 1,
-        "X": -353,
-        "Y": 457,
-        "Width": 1907,
-        "Height": 777,
-        "WindowState": 2
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Identifiers.cs",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Utils\\Identifiers.cs",
-              "RelativeDocumentMoniker": "Petsi\\Utils\\Identifiers.cs",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Utils\\Identifiers.cs",
-              "RelativeToolTip": "Petsi\\Utils\\Identifiers.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAE8AAAA5AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T16:02:04.318Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PetsiConfig.cs",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Utils\\PetsiConfig.cs",
-              "RelativeDocumentMoniker": "Petsi\\Utils\\PetsiConfig.cs",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Utils\\PetsiConfig.cs",
-              "RelativeToolTip": "Petsi\\Utils\\PetsiConfig.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAABVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-12T20:50:36.617Z",
               "EditorCaption": ""
             }
           ]
@@ -177,6 +130,53 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-14T15:06:12.535Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "c9ee6546-e748-4a1d-b740-c8188f3e6bb7",
+        "Display": 1,
+        "X": -353,
+        "Y": 457,
+        "Width": 1907,
+        "Height": 777,
+        "WindowState": 2
+      },
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Identifiers.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Utils\\Identifiers.cs",
+              "RelativeDocumentMoniker": "Petsi\\Utils\\Identifiers.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Utils\\Identifiers.cs",
+              "RelativeToolTip": "Petsi\\Utils\\Identifiers.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAE8AAAA5AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-11T16:02:04.318Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PetsiConfig.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Utils\\PetsiConfig.cs",
+              "RelativeDocumentMoniker": "Petsi\\Utils\\PetsiConfig.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Utils\\PetsiConfig.cs",
+              "RelativeToolTip": "Petsi\\Utils\\PetsiConfig.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAABVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-12T20:50:36.617Z",
               "EditorCaption": ""
             }
           ]

@@ -1,13 +1,11 @@
 ﻿using ClosedXML.Excel;
-using DocumentFormat.OpenXml.Spreadsheet;
 using Petsi.Filing;
 using Petsi.Managers;
 using Petsi.Reports.TableBuilder;
 using Petsi.Utils;
 using System.Diagnostics;
 using System.Drawing.Printing;
-using System.Runtime.InteropServices;
-using System.Windows.Forms;
+
 
 
 namespace Petsi.Reports
@@ -60,19 +58,24 @@ namespace Petsi.Reports
         }
         private void PrintReport(string filepath, string fileName)
         {
-            PrintDialog dialog = new PrintDialog();
-            using (PrintDocument pd = new PrintDocument())
-            {
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    string filePath = filepath+fileName+".xlsx";
-                    pd.OriginAtMargins = true;
-                    pd.PrintPage += pd_PrintPage;
-                    pd.DocumentName = filePath;
-                    pd.Print();
-                    pd.PrintPage -= pd_PrintPage;
-                }
-            }
+            var pi = new ProcessStartInfo(filepath + fileName + ".xlsx");
+            pi.UseShellExecute = true;
+            pi.Verb = "PrintTo";
+            pi.Arguments = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_STD_PRINTER);
+            var process = System.Diagnostics.Process.Start(pi);
+            //PrintDialog dialog = new PrintDialog();
+            //using (PrintDocument pd = new PrintDocument())
+            //{
+            //    if (dialog.ShowDialog() == DialogResult.OK)
+            //    {
+            //        string filePath = filepath+fileName+".xlsx";
+            //        pd.OriginAtMargins = true;
+            //        pd.PrintPage += pd_PrintPage;
+            //        pd.DocumentName = filePath;
+            //        pd.Print();
+            //        pd.PrintPage -= pd_PrintPage;
+            //    }
+            //}
             //
             //Entire Workbook
             //Scaling : All Columns to page
