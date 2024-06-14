@@ -80,5 +80,10 @@ namespace Petsi.Reports
             }
             return report.GetReportTargetDate().ToShortDateString();
         }
+
+        public static void RemoveFile(string filePath)
+        {
+            File.Delete(filePath);
+        }
     }
 }

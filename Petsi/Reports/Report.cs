@@ -47,90 +47,30 @@ namespace Petsi.Reports
             if(Wb.Worksheets.Count > 0)
             {
                 ReportUtil.Save(Wb, _filePath + ReportName);
-                PrintReport(_filePath, ReportName);
+                PrintReport(Wb, _filePath, ReportName);
                 CaptureEnvironment();
             }
         }
-        public void pd_PrintPage(object sender, PrintPageEventArgs e)
+
+        private void PrintReport(XLWorkbook wb, string filepath, string fileName)
         {
-            string labelPath = ((PrintDocument)sender).DocumentName;
-            e.Graphics.DrawImage(new Bitmap(labelPath), 0, 0);
-        }
-        private void PrintReport(string filepath, string fileName)
-        {
-            var pi = new ProcessStartInfo(filepath + fileName + ".xlsx");
-            pi.UseShellExecute = true;
-            pi.Verb = "PrintTo";
-            pi.Arguments = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_STD_PRINTER);
-            var process = System.Diagnostics.Process.Start(pi);
-            //PrintDialog dialog = new PrintDialog();
-            //using (PrintDocument pd = new PrintDocument())
-            //{
-            //    if (dialog.ShowDialog() == DialogResult.OK)
-            //    {
-            //        string filePath = filepath+fileName+".xlsx";
-            //        pd.OriginAtMargins = true;
-            //        pd.PrintPage += pd_PrintPage;
-            //        pd.DocumentName = filePath;
-            //        pd.Print();
-            //        pd.PrintPage -= pd_PrintPage;
-            //    }
-            //}
-            //
-            //Entire Workbook
-            //Scaling : All Columns to page
-            //PrintDialog dialog = new PrintDialog();
-            //PrintDocument pDocument = new PrintDocument();
-
-            //pDocument.DocumentName = filepathAndFileName;
-            //dialog.Document = pDocument;
-            //dialog.AllowSomePages = true;
-            //pDocument.PrinterSettings.PrinterName = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_STD_PRINTER);
-
-
-            //if (dialog.ShowDialog() == DialogResult.OK)
-            //{
-            //    //pDocument.Print();
-            //    Process p = new Process();
-            //    p.StartInfo = new ProcessStartInfo()
-            //    {
-            //        CreateNoWindow = true,
-            //        Verb = "print",
-            //        FileName = filepathAndFileName //put the correct path here
-            //    };
-            //    p.Start();
-            //}
-            //using (PrintDialog printDialog = new PrintDialog())
-            //{
-            //    printDialog.AllowSomePages = true;
-            //    printDialog.AllowSelection = true;
-            //    printDialog.PrinterSettings.PrinterName = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_STD_PRINTER);
-            //    if (printDialog.ShowDialog() == DialogResult.OK)
-            //    {
-            //        var StartInfo = new ProcessStartInfo
-            //        {
-            //            CreateNoWindow = true,
-            //            UseShellExecute = true,
-            //            Verb = "printTo",
-            //            Arguments = "\"" + printDialog.PrinterSettings.PrinterName + "\"",
-            //            WindowStyle = ProcessWindowStyle.Hidden,
-            //            WorkingDirectory = Path.GetDirectoryName(filepath),
-            //            FileName = fileName
-            //        };
-
-            //        Process.Start(StartInfo);
-            //    }
-            //}
-            //    Process p = new Process();
-            //p.StartInfo = new ProcessStartInfo()
-            //{
-            //    CreateNoWindow = true,
-            //    Verb = "print",
-            //    WorkingDirectory = Path.GetDirectoryName(filepath),
-            //    FileName = fileName + ".xlsx" //put the correct path here
-            //};
-            //p.Start();
-
+            XLWorkbook temp = new XLWorkbook();
+            foreach (IXLWorksheet sheet in wb.Worksheets)
+            {
+                temp.AddWorksheet(sheet);
+                ReportUtil.Save(wb, filepath + fileName);
+                var pi = new ProcessStartInfo(filepath + fileName + ".xlsx");
+                pi.UseShellExecute = true;
+                pi.Verb = "PrintTo";
+                pi.Arguments = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_STD_PRINTER);
+                var process = System.Diagnostics.Process.Start(pi);
+                ReportUtil.RemoveFile(filepath + fileName);
+            }
+            //var pi = new ProcessStartInfo(filepath + fileName + ".xlsx");
+            //pi.UseShellExecute = true;
+            //pi.Verb = "PrintTo";
+            //pi.Arguments = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_STD_PRINTER);
+            //var process = System.Diagnostics.Process.Start(pi);
         }
 
         private void FormatReportHeader()
