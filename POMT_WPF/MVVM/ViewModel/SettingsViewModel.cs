@@ -16,7 +16,8 @@ namespace POMT_WPF.MVVM.ViewModel
                 if (_labelPrinter != value)
                 {
                     _labelPrinter = value;
-                    OnPropertyChanged(nameof(_labelPrinter));
+                    config.SetValue(Identifiers.SETTING_LABEL_PRINTER, LabelPrinter);
+                    OnPropertyChanged(nameof(LabelPrinter));
                 }
             }
         }
@@ -30,7 +31,8 @@ namespace POMT_WPF.MVVM.ViewModel
                 if(_standardPrinter != value)
                 {
                     _standardPrinter = value;
-                    OnPropertyChanged(nameof(_standardPrinter));
+                    config.SetValue(Identifiers.SETTING_STD_PRINTER, StandardPrinter);                 
+                    OnPropertyChanged(nameof(StandardPrinter));
                 }
             }
         }
@@ -99,7 +101,7 @@ namespace POMT_WPF.MVVM.ViewModel
         public SettingsWindowViewModel()
         {
             config = PetsiConfig.GetInstance();
-            LabelPrinter = config.GetVariable(Identifiers.SETTING_ROLLO_PRINTER);
+            LabelPrinter = config.GetVariable(Identifiers.SETTING_LABEL_PRINTER);
             StandardPrinter = config.GetVariable(Identifiers.SETTING_STD_PRINTER);
             LabelsFilepath = config.GetVariable(Identifiers.SETTING_LABEL_FP);
             NumberOfDays = config.GetVariable(Identifiers.SETTING_DAYNUM);
@@ -124,26 +126,22 @@ namespace POMT_WPF.MVVM.ViewModel
 
         public void SetPieTemplate(string templateName)
         {
-            //SetPieTemplateView view = new SetPieTemplateView();
-            //view.Show();
             PieTemplate = templateName;
         }
 
         public void SetPastryTemplate(string templateName)
         {
-            //SetPieTemplateView view = new SetPieTemplateView();
-            //view.Show();
             PastryTemplate = templateName;
         }
 
-        public void SetStandardPrinter()
+        public void SetStandardPrinter(string printerName)
         {
-            //PrinterName Listbox
+            StandardPrinter = printerName;
         }
 
-        public void SetLabelPrinter()
+        public void SetLabelPrinter(string printerName)
         {
-            //PrinterName Listbox
+            LabelPrinter = printerName;
         }
     }
 }

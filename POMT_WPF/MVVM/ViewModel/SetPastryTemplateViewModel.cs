@@ -20,20 +20,11 @@ namespace POMT_WPF.MVVM.ViewModel
 
         public void Update()
         {
-            //templateNames = new ObservableCollection<string>(rts.GetTemplateNames());
             var newTemplateNames = rts.GetTemplateNames();
             templateNames.Clear();
             foreach (var name in newTemplateNames)
             {
                 templateNames.Add(name);
-            }
-        }
-
-        public void SetPastryTemplate(string? v)
-        {
-            if (v != null)
-            {
-                PetsiConfig.GetInstance().SetValue(Identifiers.SETTING_PASTRY_TEMPLATE, v);
             }
         }
     }

@@ -181,7 +181,7 @@ namespace Petsi.Models
             {
                 query = from order in Orders
                         where order.OrderType == Identifiers.ORDER_TYPE_WHOLESALE
-                        where DateTime.Parse(order.OrderDueDate).Date == targetDate.Value.Date
+                        where DateTime.Parse(order.OrderDueDate).DayOfWeek == targetDate.Value.DayOfWeek
                         select order;
             }
             return AggregatePetsiOrders(query.ToList()).OrderBy(item => item.ItemName).ToList();

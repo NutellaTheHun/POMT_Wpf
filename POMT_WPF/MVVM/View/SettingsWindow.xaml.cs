@@ -45,11 +45,21 @@ namespace POMT_WPF.MVVM.View
         }
         private void SetLabelPrinter_BtnClk(object sender, RoutedEventArgs e)
         {
-            viewModel.SetLabelPrinter();
+            SetLabelPrinterView view = new SetLabelPrinterView();
+            view.ShowDialog();
+            if (view.selection != null)
+            {
+                viewModel.SetLabelPrinter(view.selection);
+            }
         }
         private void SetStandardPrinter_BtnClk(object sender, RoutedEventArgs e)
         {
-            viewModel.SetStandardPrinter();
+            SetStandardPrinterView view = new SetStandardPrinterView();
+            view.ShowDialog();
+            if (view.selection != null)
+            {
+                viewModel.SetStandardPrinter(view.selection);
+            }
         }
         private void SetLabelsFilePath_BtnClk(object sender, RoutedEventArgs e)
         {
@@ -62,9 +72,7 @@ namespace POMT_WPF.MVVM.View
             if(view.selection != null)
             {
                 viewModel.SetPieTemplate(view.selection);
-            }
-            
-            //viewModel.SetPieTemplate();
+            }  
         }
         private void SetPastryTemplate_BtnClk(object sender, RoutedEventArgs e)
         {
@@ -74,7 +82,6 @@ namespace POMT_WPF.MVVM.View
             {
                 viewModel.SetPastryTemplate(view.selection);
             }
-            //viewModel.SetPastryTemplate();
         }
     }
 }

@@ -219,3 +219,7 @@ D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows\MVVM\View\SetPieTemplate
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows\MVVM\View\SetPieTemplateView.baml
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows\MVVM\View\SetPastryTemplateView.g.cs
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows\MVVM\View\SetPastryTemplateView.baml
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows\MVVM\View\SetLabelPrinterView.g.cs
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows\MVVM\View\SetStandardPrinterView.g.cs
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows\MVVM\View\SetLabelPrinterView.baml
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows\MVVM\View\SetStandardPrinterView.baml

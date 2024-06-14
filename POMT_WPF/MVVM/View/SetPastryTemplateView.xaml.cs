@@ -27,7 +27,6 @@ namespace POMT_WPF.MVVM.View
         {
             if (templateListbox.SelectedItem != null)
             {
-                viewModel.SetPastryTemplate(templateListbox.SelectedItem.ToString());
                 selection = (string)templateListbox.SelectedItem;
                 Close();
             }
