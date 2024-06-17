@@ -1,6 +1,8 @@
 ﻿using Petsi.Units;
+using Petsi.Utils;
 using POMT_WPF.MVVM.ViewModel;
 using System.Windows;
+using System.Windows.Forms;
 
 namespace POMT_WPF.MVVM.View
 {
@@ -47,12 +49,12 @@ namespace POMT_WPF.MVVM.View
 
         private void setCutieFile_Click(object sender, RoutedEventArgs e)
         {
-            //file explorer
+            viewModel.SetCutieFile();
         }
 
         private void setLabelFile_Click(object sender, RoutedEventArgs e)
         {
-            //file explorer
+            viewModel.SetStandardLabelFile();
         }
 
         private void deleteNaturalNameButton_Click(object sender, RoutedEventArgs e)

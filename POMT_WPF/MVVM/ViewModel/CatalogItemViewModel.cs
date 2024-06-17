@@ -3,6 +3,7 @@ using Petsi.Models;
 using Petsi.Units;
 using Petsi.Utils;
 using System.Collections.ObjectModel;
+using System.Windows.Forms;
 
 namespace POMT_WPF.MVVM.ViewModel
 {
@@ -94,22 +95,22 @@ namespace POMT_WPF.MVVM.ViewModel
             }
         }
         
-        /*
+        
         public string _standardLabelFilepath;
-        public string StandardLabelFilepath { 
+        public string StandardLabelFilePath { 
             get { return _standardLabelFilepath; }
             set
             { 
                 if(_standardLabelFilepath != value)
                 {
                     _standardLabelFilepath = value;
-                    OnPropertyChanged(nameof(StandardLabelFilepath));
+                    OnPropertyChanged(nameof(StandardLabelFilePath));
                 }
             }
         }
 
         public string _cutieLabelFilepath;
-        public string CutieLabelFilepath
+        public string CutieLabelFilePath
         {
             get { return _cutieLabelFilepath; }
             set
@@ -117,10 +118,10 @@ namespace POMT_WPF.MVVM.ViewModel
                 if (_cutieLabelFilepath != value)
                 {
                     _cutieLabelFilepath = value;
-                    OnPropertyChanged(nameof(CutieLabelFilepath));
+                    OnPropertyChanged(nameof(CutieLabelFilePath));
                 }
             }
-        }*/
+        }
 
         public CatalogItemViewModel(CatalogItemPetsi? item)
         {
@@ -160,13 +161,12 @@ namespace POMT_WPF.MVVM.ViewModel
                 NaturalNames = new ObservableCollection<string>(item.NaturalNames);
                 //StandardLabelFp
 
-                //StandardLabelFilepath = item.StandardLabelFilePath;
+                StandardLabelFilePath = item.StandardLabelFilePath;
                 //CutieLabelFp
-                //CutieLabelFilepath = item.CutieLabelFilePath;
+                CutieLabelFilePath = item.CutieLabelFilePath;
                 //Category
 
             }
-            
         }
 
         public void AddCatalogItem()
@@ -178,14 +178,48 @@ namespace POMT_WPF.MVVM.ViewModel
         {
             NaturalNames.Add(naturalName);
             Item.AddNaturalName(naturalName);
-            CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
-            cmp.UpdateModel();
+            UpdateCatalogModel();
         }
 
         public void RemoveNaturalName(string selectedItem)
         {
             NaturalNames.Remove(selectedItem);
             Item.RemoveNaturalName(selectedItem);
+            UpdateCatalogModel();
+        }
+
+        public void SetCutieFile()
+        {
+            string labelsFilepath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_LABEL_FP);
+            if (labelsFilepath != null || labelsFilepath != "")
+            {
+                OpenFileDialog fileDialog = new OpenFileDialog();
+                fileDialog.InitialDirectory = labelsFilepath + "\\Cuties";
+                if (fileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    CutieLabelFilePath = fileDialog.FileName;
+                    Item.CutieLabelFilePath = fileDialog.FileName;
+                    UpdateCatalogModel();
+                }
+            }
+        }
+        public void SetStandardLabelFile()
+        {
+            string labelsFilepath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_LABEL_FP);
+            if (labelsFilepath != null || labelsFilepath != "")
+            {
+                OpenFileDialog fileDialog = new OpenFileDialog();
+                fileDialog.InitialDirectory = labelsFilepath + "\\Pie";
+                if (fileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    StandardLabelFilePath = fileDialog.FileName;
+                    Item.StandardLabelFilePath = fileDialog.FileName;
+                    UpdateCatalogModel();
+                }
+            }
+        }
+        private void UpdateCatalogModel()
+        {
             CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
             cmp.UpdateModel();
         }

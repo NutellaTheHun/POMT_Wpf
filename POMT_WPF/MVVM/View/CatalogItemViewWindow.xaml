@@ -80,11 +80,7 @@
                             Name="CategoryComboBox"
                             Width="200"
                             Height="30"
-                            Foreground="{StaticResource TextFont}">
-                            <ComboBoxItem Name="TestPie" />
-                            <ComboBoxItem Name="TestPastry" />
-                            <ComboBoxItem />
-                        </ComboBox>
+                            Foreground="{StaticResource TextFont}" />
                     </StackPanel>
                     <StackPanel
                         Margin="0,15,0,0"
@@ -169,7 +165,7 @@
                     <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
                         <local:TextFillTextBox
                             Style="{StaticResource textFillTextBox}"
-                            Text="{Binding Item.StandardLabelFilePath}"
+                            Text="{Binding StandardLabelFilePath}"
                             TextFill="standard label file ..." />
                         <Button
                             x:Name="setLabelFile"
@@ -187,7 +183,7 @@
                     <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
                         <local:TextFillTextBox
                             Style="{StaticResource textFillTextBox}"
-                            Text="{Binding Item.CutieLabelFilePath}"
+                            Text="{Binding CutieLabelFilePath}"
                             TextFill="cutie label file ..." />
                         <Button
                             x:Name="setCutieFile"

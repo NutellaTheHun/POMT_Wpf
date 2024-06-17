@@ -79,7 +79,7 @@ namespace Petsi.CommandLine.UnitBuilders
                         int inputNum;
                         if(int.TryParse(input, out inputNum))
                         {
-                            categoryId = categoryService.GetCategoryId(Int32.Parse(input));
+                            categoryId = categoryService.GetCategoryIdByIndex(Int32.Parse(input));
                             step++;
                         }
                         else

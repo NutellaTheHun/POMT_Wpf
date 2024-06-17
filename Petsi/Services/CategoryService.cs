@@ -3,7 +3,6 @@ using Petsi.Managers;
 using Petsi.Models;
 using Petsi.Units;
 using Petsi.Utils;
-using System.Collections;
 
 namespace Petsi.Services
 {
@@ -14,12 +13,13 @@ namespace Petsi.Services
         /// </summary>
         Dictionary<string, string> categoryMap;
 
-        List<(string name, string id)> categoryList;
+
+        List<(string categoryName, string id)> categoryList;
 
         public CategoryService()
         {
             categoryMap = new Dictionary<string, string>();
-            categoryList = new List<(string name, string id)>();
+            categoryList = new List<(string categoryName, string id)>();
             SetServiceName(Identifiers.SERVICE_CATEGORY);
             ServiceManagerSingleton.GetInstance().Register(this);
             CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
@@ -29,7 +29,7 @@ namespace Petsi.Services
         public List<string> GetCategoryNames()
         {
             List<string> result = new List<string>();
-            result.AddRange(categoryList.Select(item => item.name));
+            result.AddRange(categoryList.Select(item => item.categoryName));
             /*
             foreach(var item in categoryList)
             {
@@ -39,9 +39,21 @@ namespace Petsi.Services
             return result;
         }
 
-        public string GetCategoryId(int categoryIndex)
+        public string GetCategoryIdByIndex(int categoryIndex)
         {
             return categoryList[categoryIndex].id;
+        }
+        public string GetCategoryIdByCategoryName(string categoryName)
+        {
+            string result = "";
+            foreach ((string categoryName, string id) item in categoryList)
+            {
+                if(item.categoryName == categoryName)
+                {
+                    result = item.id;
+                }
+            }
+            return result;
         }
 
         /// <summary>
