@@ -96,7 +96,7 @@ namespace Petsi.Units
             
             if(NaturalNames.Count > 0) 
             {
-                NaturalNames.Any(name => name.ToLower().Contains(searchTerm.ToLower()));
+                return NaturalNames.Any(name => name.ToLower().Contains(searchTerm.ToLower()));
             } 
             return false; 
         }
@@ -105,7 +105,7 @@ namespace Petsi.Units
 
             if (NaturalNames.Count > 0)
             {
-                NaturalNames.Any(name => name.ToLower().Equals(searchTerm.ToLower()));
+                return NaturalNames.Any(name => name.ToLower().Equals(searchTerm.ToLower()));
             }
             return false;
         }
