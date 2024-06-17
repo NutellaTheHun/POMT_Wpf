@@ -56,10 +56,6 @@
             "CsvHelper": {
               "target": "Package",
               "version": "[30.1.0, )"
-            },
-            "Microsoft.Office.Interop.Excel": {
-              "target": "Package",
-              "version": "[15.0.4795.1001, )"
             }
           },
           "imports": [

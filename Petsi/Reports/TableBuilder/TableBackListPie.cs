@@ -65,7 +65,7 @@ namespace Petsi.Reports.TableBuilder
 
             TableFormat.RangeAllBorders(page, tableRange);
             TableFormat.RangeAlignment(page, "center", tableRange);
-            TableFormat.RangeFontSize(page, 16, tableRange);
+            TableFormat.RangeFontSize(page, 18, tableRange);
             TableFormat.ColWidthFitSizeOfText(page, "B");
             TableFormat.ColumnSetPixelLength(page, 8.57, "C:F");
             TableFormat.RangeBold(page, headerRange);

@@ -52,6 +52,19 @@ namespace Petsi.Models
                 items.Add(cip);
             }
         }
+
+        public void AddNewItem(CatalogItemPetsi newItem)
+        {
+            if (!items.Contains(newItem)) //Sqaure ListCatalog API call contains duplicates.
+            {
+                items.Add(newItem);
+                NotifyModelServices();
+            }
+            else
+            {
+                SystemLogger.Log("ERROR Duplicate newItem entered to catalog while handling new item from soi");
+            }
+        }
         public override FrameBehaviorBase GetFrameBehavior(){ return frameBehavior; }
         public List<CatalogItemPetsi> GetItems(){ return items; }
         public void SetItemList(List<CatalogItemPetsi> newItems)

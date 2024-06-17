@@ -17,6 +17,10 @@
     WindowStyle="None"
     mc:Ignorable="d">
 
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </Window.Resources>
+
     <Border Background="{StaticResource Charcoal}" CornerRadius="20">
         <Grid>
             <Grid.RowDefinitions>
@@ -26,6 +30,38 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
+            <Grid
+                Grid.Row="0"
+                Width="200"
+                Margin="5"
+                HorizontalAlignment="Left">
+                <TextBlock
+                    Margin="15,0"
+                    VerticalAlignment="Center"
+                    Panel.ZIndex="1"
+                    Foreground="{StaticResource TextFont}"
+                    IsHitTestVisible="False"
+                    Text="Search catalog ..."
+                    Visibility="{Binding ElementName=txtFilter, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}" />
+                <Border
+                    Background="#ffffff"
+                    BorderBrush="#e0e6ed"
+                    BorderThickness="1"
+                    CornerRadius="20">
+                    <TextBox
+                        x:Name="txtFilter"
+                        Width="175"
+                        Height="40"
+                        Margin="10,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalContentAlignment="Center"
+                        BorderThickness="0"
+                        Foreground="{StaticResource TextFont}"
+                        TextChanged="txtFilter_TextChanged" />
+                </Border>
+
+
+            </Grid>
             <Button
                 Grid.Row="0"
                 Margin="5"

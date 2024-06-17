@@ -11,7 +11,6 @@ namespace POMT_WPF.MVVM.ViewModel
         CatalogModelPetsi cmp;
 
         ObservableCollection<CatalogItemPetsi> _items;
-
         public ObservableCollection<CatalogItemPetsi> Items
         {
             get { return _items; }
@@ -19,10 +18,25 @@ namespace POMT_WPF.MVVM.ViewModel
                 if(_items != value)
                 {
                     _items = value;
-                    OnPropertyChanged(nameof(_items));
+                    OnPropertyChanged(nameof(Items));
                 }     
             }
         }
+
+        ObservableCollection<CatalogItemPetsi> _filterItems;
+        public ObservableCollection<CatalogItemPetsi> FilterItems
+        {
+            get { return _filterItems; }
+            set
+            {
+                if (_filterItems != value)
+                {
+                    _filterItems = value;
+                    OnPropertyChanged(nameof(FilterItems));
+                }
+            }
+        }
+
 
         public CatalogListViewWindowModel()
         {

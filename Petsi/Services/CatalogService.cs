@@ -114,7 +114,12 @@ namespace Petsi.Services
 
                 //Handle an unknown modifer name, either create a new catalog item, or add to natural name
                 //CommandFrame.GetInstance().InjectErrorHandlingFrame(new CatalogServiceErrorFrameBehavior(name));
-                HandleNewModifier(name);
+                //HandleNewModifier(name);
+                CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
+                CatalogItemPetsi newItem = new CatalogItemPetsi();
+                newItem.ItemName = name;
+                newItem.CatalogObjectId = GenerateCatalogId();
+                cmp.AddNewItem(newItem);
                 return ValidateModifyItemName(name);
             }
             else if (results.Count > 1)

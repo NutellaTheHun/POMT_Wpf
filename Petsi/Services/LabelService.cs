@@ -4,6 +4,7 @@ using Petsi.Models;
 using Petsi.Units;
 using Petsi.Utils;
 using System.Diagnostics;
+using System.Drawing.Printing;
 
 namespace Petsi.Services
 {
@@ -75,13 +76,31 @@ namespace Petsi.Services
         }
         private void PrintStandard(List<LabelPrintData> inputList)
         {
+            PrintDocument pd;
             /*
             foreach(LabelPrintData printItem in inputList)
             {
                 ExecuteRolloPrint(pieDirectoryPath + _standardLabelMap[printItem.Id], printItem.GetStandardAmount() );
             }*/
-            ExecuteRolloPrint("D:/Git-Repos/Petsi/Petsi/Labels/Files/Pie/Apple-Crumb_pie_ingredient_labels.jpg", 1);
+            //ExecuteRolloPrint("D:/Git-Repos/Petsi/Petsi/Labels/Files/Pie/Apple-Crumb_pie_ingredient_labels.jpg", 1);
+            foreach (LabelPrintData printItem in inputList)
+            {
+                //copies
+                //label printer
+                pd = new PrintDocument();
+                pd.PrintPage += PrintPage;
+                pd.Print();
+            }
         }
+
+        private void PrintPage(object o, PrintPageEventArgs e)
+        {
+            //pass image fp,
+            System.Drawing.Image img = System.Drawing.Image.FromFile("D:\\Foto.jpg");
+            Point loc = new Point(100, 100);
+            e.Graphics.DrawImage(img, loc);
+        }
+
         private void PrintCutie(List<LabelPrintData> inputList)
         {
             foreach (LabelPrintData printItem in inputList)

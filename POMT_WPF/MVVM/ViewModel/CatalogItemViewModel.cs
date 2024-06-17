@@ -1,6 +1,6 @@
-﻿
-using Petsi.Units;
+﻿using Petsi.Units;
 using Petsi.Utils;
+using System.Collections.ObjectModel;
 
 namespace POMT_WPF.MVVM.ViewModel
 {
@@ -15,10 +15,11 @@ namespace POMT_WPF.MVVM.ViewModel
                 if (_isSmall != value)
                 {
                     _isSmall = value;
-                    OnPropertyChanged(nameof(_isSmall));
+                    OnPropertyChanged(nameof(IsSmall));
                 }
             }
         }
+
         private bool _isMedium;
         public bool IsMedium
         {
@@ -28,10 +29,11 @@ namespace POMT_WPF.MVVM.ViewModel
                 if (_isMedium != value)
                 {
                     _isMedium = value;
-                    OnPropertyChanged(nameof(_isMedium));
+                    OnPropertyChanged(nameof(IsMedium));
                 }
             }
         }
+
         private bool _isLarge;
         public bool IsLarge
         {
@@ -41,10 +43,11 @@ namespace POMT_WPF.MVVM.ViewModel
                 if (_isLarge != value)
                 {
                     _isLarge = value;
-                    OnPropertyChanged(nameof(_isLarge));
+                    OnPropertyChanged(nameof(IsLarge));
                 }
             }
         }
+
         private bool _isRegular;
         public bool IsRegular
         {
@@ -54,10 +57,11 @@ namespace POMT_WPF.MVVM.ViewModel
                 if (_isRegular != value)
                 {
                     _isRegular = value;
-                    OnPropertyChanged(nameof(_isRegular));
+                    OnPropertyChanged(nameof(IsRegular));
                 }
             }
         }
+
         private bool _isCutie;
         public bool IsCutie
         {
@@ -67,10 +71,11 @@ namespace POMT_WPF.MVVM.ViewModel
                 if (_isCutie != value)
                 {
                     _isCutie = value;
-                    OnPropertyChanged(nameof(_isCutie));
+                    OnPropertyChanged(nameof(IsCutie));
                 }
             }
         }
+
         private CatalogItemPetsi? _item;
         public CatalogItemPetsi? Item
         {
@@ -80,19 +85,51 @@ namespace POMT_WPF.MVVM.ViewModel
                 if (_item != value)
                 {
                     _item = value;
-                    OnPropertyChanged(nameof(_item));
+                    OnPropertyChanged(nameof(Item));
                 }
             }
         }
+
+        public string _standardLabelFilepath;
+        public string StandardLabelFilepath { 
+            get { return _standardLabelFilepath; }
+            set
+            { 
+                if(_standardLabelFilepath != value)
+                {
+                    _standardLabelFilepath = value;
+                    OnPropertyChanged(nameof(StandardLabelFilepath));
+                }
+            }
+        }
+
+        public string _cutieLabelFilepath;
+        public string CutieLabelFilepath
+        {
+            get { return _cutieLabelFilepath; }
+            set
+            {
+                if (_cutieLabelFilepath != value)
+                {
+                    _cutieLabelFilepath = value;
+                    OnPropertyChanged(nameof(CutieLabelFilepath));
+                }
+            }
+        }
+
+        ObservableCollection<string> NaturalNames;
+
         public CatalogItemViewModel(CatalogItemPetsi? item)
         {
             Item = item;
             if(Item == null)
             {
                 Item = new CatalogItemPetsi();
+                NaturalNames = new ObservableCollection<string>();
             }
             else
             {
+                //Variations
                 foreach ((string key, string value) in Item.VariationList)
                 {
                     if (value.Contains(Identifiers.SIZE_CUTIE))
@@ -116,28 +153,15 @@ namespace POMT_WPF.MVVM.ViewModel
                         IsRegular = true;
                     }
                 }
+                //Natural Names
+                NaturalNames = new ObservableCollection<string>(item.NaturalNames);
+                //StandardLabelFp
+                StandardLabelFilepath = item.StandardLabelFilePath;
+                //CutieLabelFp
+                CutieLabelFilepath = item.CutieLabelFilePath;
+                //Category
+
             }
-           
-            //if (Item.Variations.Contains(Identifiers.SIZE_CUTIE))
-            //{
-            //    IsCutie = true;
-            //}
-            //if (Item.Variations.Contains(Identifiers.SIZE_SMALL))
-            //{
-            //    IsSmall = true;
-            //}
-            //if (Item.Variations.Contains(Identifiers.SIZE_MEDIUM))
-            //{
-            //    IsMedium = true;
-            //}
-            //if (Item.Variations.Contains(Identifiers.SIZE_LARGE))
-            //{
-            //    IsLarge = true;
-            //}
-            //if (Item.Variations.Contains(Identifiers.SIZE_REGULAR))
-            //{
-            //    IsRegular = true;
-            //}
         }
 
         public void AddCatalogItem()

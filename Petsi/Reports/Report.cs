@@ -3,8 +3,6 @@ using Petsi.Filing;
 using Petsi.Managers;
 using Petsi.Reports.TableBuilder;
 using Petsi.Utils;
-using System.Diagnostics;
-using System.Drawing.Printing;
 using Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
 
@@ -49,28 +47,34 @@ namespace Petsi.Reports
             if(Wb.Worksheets.Count > 0)
             {
                 ReportUtil.Save(Wb, _filePath + ReportName);
-                PrintReport(_filePath, ReportName);
+                PrintReport(_filePath + ReportName);
                 CaptureEnvironment();
             }
         }
 
-        private void PrintReport(string filepath, string fileName)
+        private void PrintReport(string filepathFileName)
         {
             Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();
-            Workbook wb = app.Workbooks.Open(filepath + fileName + ".xlsx",
+            Workbook wb = app.Workbooks.Open(filepathFileName+".xlsx",
                 Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
                 Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
                 Type.Missing, Type.Missing, Type.Missing, Type.Missing);
 
+            app.PrintCommunication = false;
+            foreach (Worksheet ws in wb.Worksheets)
+            {
+                ws.PageSetup.FitToPagesWide = true;
+            }
+            app.PrintCommunication = true;
+
             wb.PrintOut(
                 Type.Missing, Type.Missing, Type.Missing, Type.Missing,
-                Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+                PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_STD_PRINTER), Type.Missing, Type.Missing, Type.Missing);
 
             // Cleanup:
             GC.Collect();
             GC.WaitForPendingFinalizers();
 
-            Marshal.FinalReleaseComObject(wb);
 
             wb.Close(false, Type.Missing, Type.Missing);
             Marshal.FinalReleaseComObject(wb);
@@ -78,30 +82,6 @@ namespace Petsi.Reports
             app.Quit();
             Marshal.FinalReleaseComObject(app);
 
-            /*
-            XLWorkbook temp;
-            int index = 1;
-            foreach (IXLWorksheet sheet in wb.Worksheets)
-            {
-                temp = new XLWorkbook();
-                temp.AddWorksheet(sheet);
-                ReportUtil.Save(temp, filepath + fileName + index);
-                var pi = new ProcessStartInfo(filepath + fileName + index + ".xlsx");
-                pi.UseShellExecute = true;
-                pi.Verb = "PrintTo";
-                pi.Arguments = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_STD_PRINTER);
-                var process = System.Diagnostics.Process.Start(pi);
-                index++;
-                //ReportUtil.RemoveFile(filepath  + fileName + index);
-            }
-            */
-            /*
-            //var pi = new ProcessStartInfo(filepath + fileName + ".xlsx");
-            //pi.UseShellExecute = true;
-            //pi.Verb = "PrintTo";
-            //pi.Arguments = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_STD_PRINTER);
-            //var process = System.Diagnostics.Process.Start(pi);
-            */
         }
 
         private void FormatReportHeader()

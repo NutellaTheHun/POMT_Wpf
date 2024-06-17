@@ -47,5 +47,10 @@ namespace POMT_WPF.MVVM.View
                 }
             }
         }
+
+        private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

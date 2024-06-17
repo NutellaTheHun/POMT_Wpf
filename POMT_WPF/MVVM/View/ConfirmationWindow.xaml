@@ -62,9 +62,6 @@
                         Style="{StaticResource secondaryButton}" />
                 </StackPanel>
             </StackPanel>
-
         </Grid>
-
     </Border>
-
 </Window>
