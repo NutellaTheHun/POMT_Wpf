@@ -102,6 +102,12 @@ namespace Petsi.Models
             SaveMainModel();
             NotifyModelServices();
         }
+
+        public void UpdateModel()
+        {
+            SaveMainModel();
+            NotifyModelServices();
+        }
         private void SaveMainModel()
         {
             GetFileBehavior().DataListToFile(Identifiers.MAIN_MODEL_CATALOG_FILE, GetItems());

@@ -8,15 +8,18 @@ namespace POMT_WPF.MVVM.View
     public partial class AddNaturalNameView : Window
     {
         public bool ControlBool;
-        string naturalName;
+        public string naturalName;
         public AddNaturalNameView()
         {
             InitializeComponent();
         }
         private void Accept_ButtonClick(object sender, RoutedEventArgs e)
         {
-            ControlBool = true;
-            Close();
+            if(naturalNameTextBox.Text != "")
+            {
+                ControlBool = true;
+                Close();
+            }
         }
 
         private void Reject_ButtonClick(Object sender, RoutedEventArgs e)
@@ -28,6 +31,11 @@ namespace POMT_WPF.MVVM.View
         private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void naturalNameTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            naturalName = naturalNameTextBox.Text;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Petsi.Units;
+﻿using Petsi.Managers;
+using Petsi.Models;
+using Petsi.Units;
 using Petsi.Utils;
 using System.Collections.ObjectModel;
 
@@ -76,6 +78,8 @@ namespace POMT_WPF.MVVM.ViewModel
             }
         }
 
+        public ObservableCollection<string> NaturalNames;
+
         private CatalogItemPetsi? _item;
         public CatalogItemPetsi? Item
         {
@@ -89,7 +93,8 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }
-
+        
+        /*
         public string _standardLabelFilepath;
         public string StandardLabelFilepath { 
             get { return _standardLabelFilepath; }
@@ -115,9 +120,7 @@ namespace POMT_WPF.MVVM.ViewModel
                     OnPropertyChanged(nameof(CutieLabelFilepath));
                 }
             }
-        }
-
-        ObservableCollection<string> NaturalNames;
+        }*/
 
         public CatalogItemViewModel(CatalogItemPetsi? item)
         {
@@ -156,17 +159,35 @@ namespace POMT_WPF.MVVM.ViewModel
                 //Natural Names
                 NaturalNames = new ObservableCollection<string>(item.NaturalNames);
                 //StandardLabelFp
-                StandardLabelFilepath = item.StandardLabelFilePath;
+
+                //StandardLabelFilepath = item.StandardLabelFilePath;
                 //CutieLabelFp
-                CutieLabelFilepath = item.CutieLabelFilePath;
+                //CutieLabelFilepath = item.CutieLabelFilePath;
                 //Category
 
             }
+            
         }
 
         public void AddCatalogItem()
         {
            
+        }
+
+        public void AddNaturalName(string naturalName)
+        {
+            NaturalNames.Add(naturalName);
+            Item.AddNaturalName(naturalName);
+            CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
+            cmp.UpdateModel();
+        }
+
+        public void RemoveNaturalName(string selectedItem)
+        {
+            NaturalNames.Remove(selectedItem);
+            Item.RemoveNaturalName(selectedItem);
+            CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
+            cmp.UpdateModel();
         }
     }
 }

@@ -9,12 +9,13 @@ namespace POMT_WPF.MVVM.View
     /// </summary>
     public partial class CatalogItemViewWindow : Window
     {
-        CatalogItemViewModel civm;
+        CatalogItemViewModel viewModel;
         public CatalogItemViewWindow(CatalogItemPetsi? item)
         {
             InitializeComponent();
-            civm = new CatalogItemViewModel(item);
-            DataContext = civm;
+            viewModel = new CatalogItemViewModel(item);
+            DataContext = viewModel;
+            NaturalNamesListBox.ItemsSource = viewModel.NaturalNames;
         }
         private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)
         {
@@ -36,7 +37,12 @@ namespace POMT_WPF.MVVM.View
 
         private void addNaturalNameButton_Click(object sender, RoutedEventArgs e)
         {
-
+            AddNaturalNameView view = new AddNaturalNameView();
+            view.ShowDialog();
+            if(view.ControlBool)
+            {
+                viewModel.AddNaturalName(view.naturalName);
+            }
         }
 
         private void setCutieFile_Click(object sender, RoutedEventArgs e)
@@ -58,7 +64,7 @@ namespace POMT_WPF.MVVM.View
                 confirmationWindow.ShowDialog();
                 if (confirmationWindow.ControlBool)
                 {
-                    
+                    viewModel.RemoveNaturalName((string)NaturalNamesListBox.SelectedItem);
                 }
             }
         }

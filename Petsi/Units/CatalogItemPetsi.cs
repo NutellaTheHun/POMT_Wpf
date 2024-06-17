@@ -114,5 +114,10 @@ namespace Petsi.Units
         {
             NaturalNames.Add(errorName);
         }
+
+        public void RemoveNaturalName(string selectedItem)
+        {
+            NaturalNames.Remove(selectedItem);
+        }
     }
 }

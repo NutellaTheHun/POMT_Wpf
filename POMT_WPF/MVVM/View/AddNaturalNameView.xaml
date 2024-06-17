@@ -42,7 +42,8 @@
                 Grid.Row="1"
                 Margin="10"
                 Style="{StaticResource textFillTextBox}"
-                TextFill="Natural Name ..." />
+                TextFill="Natural Name ..."
+                LostFocus="naturalNameTextBox_LostFocus"/>
             <StackPanel
                 Grid.Row="2"
                 HorizontalAlignment="Center"
