@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using Petsi.Managers;
+using Petsi.Services;
+using Petsi.Utils;
+using System.Windows;
 
 namespace POMT_WPF.MVVM.View
 {
@@ -28,7 +31,8 @@ namespace POMT_WPF.MVVM.View
         }
         private void Standard_ButtonClick(Object sender, RoutedEventArgs e)
         {
-           
+            LabelService ls = (LabelService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_LABEL);
+            ls.PrintStandard(null);
         }
         private void Small_ButtonClick(Object sender, RoutedEventArgs e)
         {

@@ -74,32 +74,89 @@ namespace Petsi.Services
             List<LabelPrintData> printList = LoadPrintList(omp.GetWsDayData(targetDate));
             PrintRound(printList);
         }
-        private void PrintStandard(List<LabelPrintData> inputList)
+
+        //zebra https://stackoverflow.com/questions/44671934/c-sharp-printdocument-print-image
+        /*
+         static void Main(string[] args)
+    {
+        try
         {
-            PrintDocument pd;
+            PrintDocument pd = new PrintDocument();
+            pd.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("Custom", 100, 77);
+
+            //We want potrait. 
+            pd.DefaultPageSettings.Landscape = false;
+            pd.PrintPage += PrintPage;
+            pd.Print();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            Console.ReadLine();
+        }
+    }
+
+    private static void PrintPage(object o, PrintPageEventArgs e)
+    {
+        //System.Drawing.Image img = System.Drawing.Image.FromFile(@"c:\test\test.png");
+        //img.RotateFlip(RotateFlipType.Rotate90FlipNone);
+        //e.Graphics.DrawImage(img,0,0);
+
+        int printHeight = 450;
+        int printWidth = 400;
+        int leftMargin = 20;
+        int rightMargin = 0;
+        System.Drawing.Image img = System.Drawing.Image.FromFile(@"c:\test\test.png");
+        img.RotateFlip(RotateFlipType.Rotate90FlipNone);
+
+        e.Graphics.DrawImage(img, new Rectangle(leftMargin, rightMargin, printWidth, printHeight));
+    }
+         */
+        public void PrintStandard(List<LabelPrintData> inputList)
+        {
+
             /*
             foreach(LabelPrintData printItem in inputList)
             {
                 ExecuteRolloPrint(pieDirectoryPath + _standardLabelMap[printItem.Id], printItem.GetStandardAmount() );
             }*/
             //ExecuteRolloPrint("D:/Git-Repos/Petsi/Petsi/Labels/Files/Pie/Apple-Crumb_pie_ingredient_labels.jpg", 1);
+            
+            
+            PrintDocument pd;
+            pd = new PrintDocument();
+            pd.PrinterSettings.PrinterName = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_LABEL_PRINTER);
+            pd.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("Custom", 400, 200); //hundreths of an inch
+                                                                                                          //pd.PrinterSettings.Copies = (short)printItem.GetStandardAmount();
+            pd.PrinterSettings.Copies = 1;
+            pd.PrintPage += (sender, args) =>
+            {
+                //pass image fp,
+                //System.Drawing.Image img = System.Drawing.Image.FromFile(pieDirectoryPath + _standardLabelMap[printItem.Id]);
+                System.Drawing.Image img = System.Drawing.Image.FromFile("D:\\Git-Repos\\POMT_WPF\\Petsi\\Labels\\Files\\Pie\\Apple-Pear-Cran_pie_ingredient.jpg");
+                Point loc = new Point(100, 100);
+                args.Graphics.DrawImage(img, loc);
+            };
+            pd.Print();
+            /*
             foreach (LabelPrintData printItem in inputList)
             {
-                //copies
-                //label printer
                 pd = new PrintDocument();
-                pd.PrintPage += PrintPage;
-                pd.Print();
-            }
+                pd.PrinterSettings.PrinterName = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_LABEL_PRINTER);
+                pd.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("Custom", 400, 200); //hundreths of an inch
+                //pd.PrinterSettings.Copies = (short)printItem.GetStandardAmount();
+                pd.PrinterSettings.Copies = 1;
+                pd.PrintPage += (sender, args) =>
+                {
+                    //pass image fp,
+                    //System.Drawing.Image img = System.Drawing.Image.FromFile(pieDirectoryPath + _standardLabelMap[printItem.Id]);
+                    System.Drawing.Image img = System.Drawing.Image.FromFile("D:\\Git-Repos\\POMT_WPF\\Petsi\\Labels\\Files\\Pie\\Apple-Pear-Cran_pie_ingredient.jpg");
+                    Point loc = new Point(100, 100);
+                    args.Graphics.DrawImage(img, loc);
+                };
+                pd.Print();*/
         }
-
-        private void PrintPage(object o, PrintPageEventArgs e)
-        {
-            //pass image fp,
-            System.Drawing.Image img = System.Drawing.Image.FromFile("D:\\Foto.jpg");
-            Point loc = new Point(100, 100);
-            e.Graphics.DrawImage(img, loc);
-        }
+        
 
         private void PrintCutie(List<LabelPrintData> inputList)
         {
