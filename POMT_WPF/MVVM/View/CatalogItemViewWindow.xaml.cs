@@ -78,5 +78,10 @@ namespace POMT_WPF.MVVM.View
                 }
             }
         }
+
+        private void CategoryComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            viewModel.SetCategory(CategoryComboBox.SelectedItem.ToString());
+        }
     }
 }

@@ -80,7 +80,8 @@
                             Name="CategoryComboBox"
                             Width="200"
                             Height="30"
-                            Foreground="{StaticResource TextFont}" />
+                            Foreground="{StaticResource TextFont}"
+                            SelectionChanged="CategoryComboBox_SelectionChanged" />
                     </StackPanel>
                     <StackPanel
                         Margin="0,15,0,0"

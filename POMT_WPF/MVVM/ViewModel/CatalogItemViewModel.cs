@@ -196,7 +196,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 //CutieLabelFp
                 CutieLabelFilePath = item.CutieLabelFilePath;
                 //Category
-                CategoryService cs = (CategoryService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATEGORY);
+                CategoryService cs = GetCategoryService();
                 //CategoryNames = 
                 CategoryNames = new ObservableCollection<string>(cs.GetCategoryNames());
 
@@ -272,5 +272,25 @@ namespace POMT_WPF.MVVM.ViewModel
             }
             return null;
         }
+
+        public void SetCategory(string? v)
+        {
+            if(v == null) { return; }
+
+            CategoryService cs = GetCategoryService();
+            string result = "";
+            result = cs.GetCategoryIdByCategoryName(v);
+            if (result != "")
+            {
+                Item.CategoryId = result;
+                UpdateCatalogModel();
+            }
+            else
+            {
+                SystemLogger.Log("CatalogItemViewModel for item: " + Item.ItemName + " set category with input: \"" + v + "\" returned empty");
+            }
+              
+        }
+        private CategoryService GetCategoryService() { return (CategoryService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATEGORY); }
     }
 }
