@@ -1,5 +1,4 @@
-﻿using DocumentFormat.OpenXml.Bibliography;
-using Petsi.CommandLine;
+﻿using Petsi.CommandLine;
 using Petsi.CommandLine.ErrorHandlers;
 using Petsi.Interfaces;
 using Petsi.Managers;
@@ -169,7 +168,7 @@ namespace Petsi.Services
 
         public bool NameExists(string input)
         {
-            return catalog.Any(item => item.ItemName.ToLower().Contains(input.ToLower()));  
+            return catalog.Any(item => item.ItemName.ToLower().Equals(input.ToLower()));  
         }
 
         public string GenerateCatalogId()
@@ -259,6 +258,13 @@ namespace Petsi.Services
                 }
             }
             return results;
+        }
+
+        public CatalogItemPetsi GetCatalogItem(string itemName)
+        {
+            CatalogItemPetsi result = null;
+            catalogIdDict.TryGetValue(itemName, out result);
+            return result;
         }
     }
 }

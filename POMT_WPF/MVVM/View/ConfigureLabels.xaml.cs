@@ -8,11 +8,12 @@ namespace POMT_WPF.MVVM.View
     /// </summary>
     public partial class ConfigureLabels : Window
     {
+        ConfigureLabelsViewModel viewModel;
         public ConfigureLabels()
         {
             InitializeComponent();
-            ConfigureLabelsViewModel cmv= new ConfigureLabelsViewModel();
-            labelDataGrid.ItemsSource = cmv.Items;
+            viewModel = new ConfigureLabelsViewModel();
+            labelDataGrid.ItemsSource = viewModel.Items;
         }
         private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)
         {

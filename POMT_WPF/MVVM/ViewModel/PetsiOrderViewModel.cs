@@ -252,9 +252,6 @@ namespace POMT_WPF.MVVM.ViewModel
         }
 
         public List<string> OrderTypes;
-        /*{
-            get { return (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS).GetOrderTypes(); }
-        }*/
 
         public PetsiOrderWindowViewModel(PetsiOrder? petsiOrder)
         {

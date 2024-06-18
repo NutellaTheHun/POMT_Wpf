@@ -37,7 +37,6 @@ namespace POMT_WPF.MVVM.ViewModel
             }
         }
 
-
         public CatalogListViewWindowModel()
         {
             cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);

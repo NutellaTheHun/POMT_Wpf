@@ -7,15 +7,16 @@
     xmlns:local="clr-namespace:POMT_WPF.MVVM.View.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="AddLabelWindow"
-    Width="800"
-    Height="450"
+    Width="500"
+    Height="300"
     AllowsTransparency="True"
     Background="Transparent"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
-    <Border Background="{StaticResource SecWinPrimary}" CornerRadius="20">
+
+    <Border Background="{StaticResource Charcoal}" CornerRadius="20">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
@@ -37,9 +38,29 @@
                     <Icon:PackIconMaterial Kind="Close" Style="{StaticResource menuButtonIcon}" />
                 </StackPanel>
             </Button>
-            <Grid Grid.Row="1" Margin="0,100,0,0">
+            <Grid Grid.Row="1" Margin="0,25,0,0">
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                    <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="Item Name ..." />
+                    <Grid>
+                        <ComboBox
+                            x:Name="itemNameComboBox"
+                            Width="120"
+                            Height="40"
+                            IsEditable="True"
+                            IsHitTestVisible="False"
+                            IsReadOnly="False"
+                            LostFocus="itemNameComboBox_LostFocus"
+                            SelectionChanged="itemNameComboBox_SelectionChanged"
+                            StaysOpenOnEdit="True"
+                            Text="{Binding ElementName=ItemNameTextBox, Path=Text}" />
+                        <local:TextFillTextBox
+                            x:Name="ItemNameTextBox"
+                            Background="{StaticResource ColumbiaBlue}"
+                            IsReadOnly="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged}"
+                            Style="{StaticResource orderFormItemnameTextFillTextBox}"
+                            Text="{Binding ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            TextChanged="ItemNameTextBox_TextChanged"
+                            TextFill="Item Name ..." />
+                    </Grid>
 
                 </StackPanel>
             </Grid>
@@ -67,7 +88,7 @@
             </Grid>
             <Grid
                 Grid.Row="3"
-                Margin="0,100,0,0"
+                Margin="0,25,0,0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Bottom">
                 <StackPanel Orientation="Horizontal">
