@@ -86,27 +86,52 @@ namespace POMT_WPF.MVVM.View
 
         private void regularCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            viewModel.UpdateSizeSetting(Identifiers.SIZE_REGULAR);
+            viewModel.UpdateSizeSetting(Identifiers.SIZE_REGULAR, true);
         }
 
         private void cutieCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            viewModel.UpdateSizeSetting(Identifiers.SIZE_CUTIE);
+            viewModel.UpdateSizeSetting(Identifiers.SIZE_CUTIE, true);
         }
 
         private void largeCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            viewModel.UpdateSizeSetting(Identifiers.SIZE_LARGE);
+            viewModel.UpdateSizeSetting(Identifiers.SIZE_LARGE, true);
         }
 
         private void mediumCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            viewModel.UpdateSizeSetting(Identifiers.SIZE_MEDIUM);
+            viewModel.UpdateSizeSetting(Identifiers.SIZE_MEDIUM, true);
         }
 
         private void smallCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            viewModel.UpdateSizeSetting(Identifiers.SIZE_SMALL);
+            viewModel.UpdateSizeSetting(Identifiers.SIZE_SMALL,true);
+        }
+
+        private void regularCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            viewModel.UpdateSizeSetting(Identifiers.SIZE_REGULAR, false);
+        }
+
+        private void cutieCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            viewModel.UpdateSizeSetting(Identifiers.SIZE_CUTIE, false);
+        }
+
+        private void largeCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            viewModel.UpdateSizeSetting(Identifiers.SIZE_LARGE, false);
+        }
+
+        private void mediumCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            viewModel.UpdateSizeSetting(Identifiers.SIZE_MEDIUM, false);
+        }
+
+        private void smallCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            viewModel.UpdateSizeSetting(Identifiers.SIZE_SMALL, false);
         }
     }
 }

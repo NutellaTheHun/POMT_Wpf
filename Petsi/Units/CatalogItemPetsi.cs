@@ -1,4 +1,7 @@
 ﻿using Petsi.CommandLine;
+using Petsi.Managers;
+using Petsi.Services;
+using Petsi.Utils;
 using System.Collections.Specialized;
 
 namespace Petsi.Units
@@ -97,12 +100,12 @@ namespace Petsi.Units
         }
         public bool NaturalNameContains(string searchTerm)
         {
-            
-            if(NaturalNames.Count > 0) 
+
+            if (NaturalNames.Count > 0)
             {
                 return NaturalNames.Any(name => name.ToLower().Contains(searchTerm.ToLower()));
-            } 
-            return false; 
+            }
+            return false;
         }
         public bool NaturalNameEquals(string searchTerm)
         {
@@ -123,5 +126,46 @@ namespace Petsi.Units
         {
             NaturalNames.Remove(selectedItem);
         }
+
+        /// <summary>
+        /// There will be duplicate size/variations due to duplicate square category items, so the forloops must iterate through entire list and not return on first match.
+        /// </summary>
+        /// <param name="sizeVariation"></param>
+        /// <param name="isChecked"></param>
+        public void UpdateSizeVariation(string sizeVariation, bool isChecked)
+        {
+            bool isCached = false;
+            if (isChecked)
+            {
+                List<(string variationId, string variationName)> DisabledVariationListCopy = new List<(string variationId, string variationName)>(DisabledVariationList);
+                foreach (var item in DisabledVariationListCopy)
+                {
+                    if (item.variationName == sizeVariation)
+                    {
+                        VariationList.Add(item);
+                        DisabledVariationList.Remove(item);
+                        isCached = true;
+                    }
+                }
+                if (!isCached)
+                {
+                    CatalogService cs = GetCatalogService();
+                    VariationList.Add((cs.GenerateCatalogId(), sizeVariation));
+                }      
+            }
+            else
+            {
+                List<(string variationId, string variationName)> VariationListCopy = new List<(string variationId, string variationName)>(VariationList);
+                foreach (var item in VariationListCopy)
+                {
+                    if (item.variationName == sizeVariation)
+                    {
+                        DisabledVariationList.Add(item);
+                        VariationList.Remove(item);
+                    }
+                }
+            }
+        }
+        private CatalogService GetCatalogService() { return (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG); }
     }
 }

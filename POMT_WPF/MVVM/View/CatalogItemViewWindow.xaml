@@ -84,7 +84,8 @@
                                 Content="Small"
                                 FontSize="16"
                                 Foreground="White"
-                                IsChecked="{Binding IsSmall}" />
+                                IsChecked="{Binding IsSmall}"
+                                Unchecked="smallCheckBox_Unchecked" />
                             <CheckBox
                                 Name="mediumCheckBox"
                                 Margin="0,10,0,10"
@@ -92,14 +93,16 @@
                                 Content="Medium"
                                 FontSize="16"
                                 Foreground="White"
-                                IsChecked="{Binding IsMedium}" />
+                                IsChecked="{Binding IsMedium}"
+                                Unchecked="mediumCheckBox_Unchecked" />
                             <CheckBox
                                 x:Name="largeCheckBox"
                                 Checked="largeCheckBox_Checked"
                                 Content="Large"
                                 FontSize="16"
                                 Foreground="White"
-                                IsChecked="{Binding IsLarge}" />
+                                IsChecked="{Binding IsLarge}"
+                                Unchecked="largeCheckBox_Unchecked" />
                         </StackPanel>
                         <StackPanel Orientation="Vertical">
                             <CheckBox
@@ -109,14 +112,16 @@
                                 Content="Regular"
                                 FontSize="16"
                                 Foreground="White"
-                                IsChecked="{Binding IsRegular}" />
+                                IsChecked="{Binding IsRegular}"
+                                Unchecked="regularCheckBox_Unchecked" />
                             <CheckBox
                                 x:Name="cutieCheckBox"
                                 Checked="cutieCheckBox_Checked"
                                 Content="Cutie"
                                 FontSize="16"
                                 Foreground="White"
-                                IsChecked="{Binding IsCutie}" />
+                                IsChecked="{Binding IsCutie}"
+                                Unchecked="cutieCheckBox_Unchecked" />
                         </StackPanel>
 
 
