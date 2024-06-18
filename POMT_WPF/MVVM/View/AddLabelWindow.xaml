@@ -67,7 +67,12 @@
             <Grid Grid.Row="2">
                 <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
-                        <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="filepath ..." />
+                        <local:TextFillTextBox
+                            x:Name="standardLabelFilePathBox"
+                            IsHitTestVisible="False"
+                            Style="{StaticResource textFillTextBox}"
+                            Text="{Binding StandardFilePath, UpdateSourceTrigger=PropertyChanged}"
+                            TextFill="filepath ..." />
                         <Button
                             Width="125"
                             Margin="0,0,30,0"
@@ -77,7 +82,12 @@
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
-                        <local:TextFillTextBox Style="{StaticResource textFillTextBox}" TextFill="filepath ..." />
+                        <local:TextFillTextBox
+                            x:Name="cutieLabelFilePathBox"
+                            IsHitTestVisible="False"
+                            Style="{StaticResource textFillTextBox}"
+                            Text="{Binding CutieFilePath, UpdateSourceTrigger=PropertyChanged}"
+                            TextFill="filepath ..." />
                         <Button
                             Width="125"
                             Click="AddCutieFilepath_ButtonClick"
