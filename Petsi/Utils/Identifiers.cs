@@ -3,85 +3,85 @@ namespace Petsi.Utils
 {
     public static class Identifiers
     {
-        public readonly static string SQUARE_ORDER_INPUT = "SquareOrderInput";
-        public readonly static string WHOLESALE_INPUT = "WholesaleInput";
-        public readonly static string SQUARE_CATALOG_INPUT = "SquareCatalogInput";
-        public readonly static string ONE_SHOT_INPUT = "OneShotInput";
-        public readonly static string USER_ENTERED_INPUT = "UserEntered";
-        public readonly static string PERIODIC_ORDERS = "periodicOrder";
-        public readonly static string ONE_SHOT_ORDERS = "oneShotOrder";
+        public const string SQUARE_ORDER_INPUT = "SquareOrderInput";
+        public const string WHOLESALE_INPUT = "WholesaleInput";
+        public const string SQUARE_CATALOG_INPUT = "SquareCatalogInput";
+        public const string ONE_SHOT_INPUT = "OneShotInput";
+        public const string USER_ENTERED_INPUT = "UserEntered";
+        public const string PERIODIC_ORDERS = "periodicOrder";
+        public const string ONE_SHOT_ORDERS = "oneShotOrder";
 
-        public readonly static string DELETED_ORDERS = "deletedOrders";
+        public const string DELETED_ORDERS = "deletedOrders";
 
-        public readonly static string ORDER_TYPE_SQUARE = "Square";
-        public readonly static string ORDER_TYPE_WHOLESALE = "Wholesale";
-        public readonly static string ORDER_TYPE_SPECIAL = "Special";
+        public const string ORDER_TYPE_SQUARE = "Square";
+        public const string ORDER_TYPE_WHOLESALE = "Wholesale";
+        public const string ORDER_TYPE_SPECIAL = "Special";
 
-        public readonly static string ORDER_INPUT_ORIGIN_SQUARE = "squareInput";
-        public readonly static string ORDER_INPUT_ORIGIN_USER = "userInput";
-        public readonly static string ORDER_INPUT_ORIGIN_EZCATER = "EzInput";
+        public const string ORDER_INPUT_ORIGIN_SQUARE = "squareInput";
+        public const string ORDER_INPUT_ORIGIN_USER = "userInput";
+        public const string ORDER_INPUT_ORIGIN_EZCATER = "EzInput";
 
-        public readonly static string MODEL_ORDERS = "ORDERMODEL";
+        public const string MODEL_ORDERS = "ORDERMODEL";
 
-        public readonly static string MODEL_CATALOG = "CATALOGMODEL";
-        public readonly static string MAIN_MODEL_CATALOG_FILE = "main_catalogmodel";
+        public const string MODEL_CATALOG = "CATALOGMODEL";
+        public const string MAIN_MODEL_CATALOG_FILE = "main_catalogmodel";
 
-        public readonly static string FULFILLMENT_PICKUP = "PICKUP";
-        public readonly static string FULFILLMENT_DELIVERY = "DELIVERY";
-        public readonly static string FULFILLMENT_WHOLESALE = "wholesale";
+        public const string FULFILLMENT_PICKUP = "PICKUP";
+        public const string FULFILLMENT_DELIVERY = "DELIVERY";
+        public const string FULFILLMENT_WHOLESALE = "wholesale";
 
-        public readonly static string WS_DAY_SUN = "sun";
-        public readonly static string WS_DAY_MON = "mon";
-        public readonly static string WS_DAY_TUE = "tue";
-        public readonly static string WS_DAY_WED = "wed";
-        public readonly static string WS_DAY_THU = "thu";
-        public readonly static string WS_DAY_FRI = "fri";
-        public readonly static string WS_DAY_SAT = "sat";
+        public const string WS_DAY_SUN = "sun";
+        public const string WS_DAY_MON = "mon";
+        public const string WS_DAY_TUE = "tue";
+        public const string WS_DAY_WED = "wed";
+        public const string WS_DAY_THU = "thu";
+        public const string WS_DAY_FRI = "fri";
+        public const string WS_DAY_SAT = "sat";
 
-        public readonly static string SIZE_CUTIE = "cutie";
-        public readonly static string SIZE_SMALL = "Small";
-        public readonly static string SIZE_MEDIUM = "Medium";
-        public readonly static string SIZE_LARGE = "Large";
-        public readonly static string SIZE_REGULAR = "Regular";
+        public const string SIZE_CUTIE = "cutie";
+        public const string SIZE_SMALL = "Small";
+        public const string SIZE_MEDIUM = "Medium";
+        public const string SIZE_LARGE = "Large";
+        public const string SIZE_REGULAR = "Regular";
 
-        public readonly static string CATEGORY_PIE = "GNF2D3XZMZBO2R3ZDHHLTELC";
-        public readonly static string CATEGORY_FROZEN_PIE = "CUAIOOBN27MNTBZNQZHLRUT5";
-        public readonly static string CATEGORY_PASTRY = "RJHRRYGCM4CMJQ4L57KP4JK5";
-        public readonly static string CATEGORY_DRINKS = "TPSEG2FP3QTC24PUTRQAUAEE";
-        public readonly static string CATEGORY_BOXED_TEA_PLATTERS = "PCM22LM7KMUAUOPP7MKQNRBL";
-        public readonly static string CATEGORY_MERCH_ICECREAM = "HDB76BYHJ2NCXIZUMTI3WJIB";
+        public const string CATEGORY_PIE = "GNF2D3XZMZBO2R3ZDHHLTELC";
+        public const string CATEGORY_FROZEN_PIE = "CUAIOOBN27MNTBZNQZHLRUT5";
+        public const string CATEGORY_PASTRY = "RJHRRYGCM4CMJQ4L57KP4JK5";
+        public const string CATEGORY_DRINKS = "TPSEG2FP3QTC24PUTRQAUAEE";
+        public const string CATEGORY_BOXED_TEA_PLATTERS = "PCM22LM7KMUAUOPP7MKQNRBL";
+        public const string CATEGORY_MERCH_ICECREAM = "HDB76BYHJ2NCXIZUMTI3WJIB";
 
-        public readonly static string MODIFY_NAME_NOTE_CARD = "Add your note in \"notes\" section in checkout";
-        public readonly static string BOX_OF_6 = "Box of 6";
-        public readonly static string MODIFY_BOX_OF_6_COOKIES = "BX3UJ6TYAREM3DTNNDNULHIY";
-        public readonly static string MODIFY_BOX_OF_6_SCONES = "YOSF3YAHQIIWSYC7SRD4NSZI";
-        public readonly static string MODIFY_BOX_OF_6_MUFFINS = "3PISTAMARHW6Q5CWUO3GPE5S";
-        public readonly static string MODIFY_SCONE = "UFVOR7Y5GMDEATE32T4M2IAI";
-        public readonly static string BOX_OF_SCONES_VARIATION = "box of scones";
-        public readonly static string BOX_OF_6_BACON_BISCUITS = "A5QLMWSYER6MJXANX5FOE7FE";
+        public const string MODIFY_NAME_NOTE_CARD = "Add your note in \"notes\" section in checkout";
+        public const string BOX_OF_6 = "Box of 6";
+        public const string MODIFY_BOX_OF_6_COOKIES = "BX3UJ6TYAREM3DTNNDNULHIY";
+        public const string MODIFY_BOX_OF_6_SCONES = "YOSF3YAHQIIWSYC7SRD4NSZI";
+        public const string MODIFY_BOX_OF_6_MUFFINS = "3PISTAMARHW6Q5CWUO3GPE5S";
+        public const string MODIFY_SCONE = "UFVOR7Y5GMDEATE32T4M2IAI";
+        public const string BOX_OF_SCONES_VARIATION = "box of scones";
+        public const string BOX_OF_6_BACON_BISCUITS = "A5QLMWSYER6MJXANX5FOE7FE";
 
-        public readonly static string SERVICE_CATALOG = "CATALOG_SERVICE";
-        public readonly static string SERVICE_CATEGORY = "CATEGORY_SERVICE";
-        public readonly static string SERVICE_LABEL = "LABEL_SERVICE";
-        public readonly static string SERVICE_TEMPLATE = "TEMPLATE_SERVICE";
+        public const string SERVICE_CATALOG = "CATALOG_SERVICE";
+        public const string SERVICE_CATEGORY = "CATEGORY_SERVICE";
+        public const string SERVICE_LABEL = "LABEL_SERVICE";
+        public const string SERVICE_TEMPLATE = "TEMPLATE_SERVICE";
 
-        public readonly static string USER_BASED_ID_TAG = "userbased-";
+        public const string USER_BASED_ID_TAG = "userbased-";
 
-        public readonly static string ENV_SCI = "env_square_catalog_input";
-        public readonly static string ENV_SOI = "env_square_order_input";
-        public readonly static string ENV_WSI = "env_wholesale_input";
-        public readonly static string ENV_OSI = "env_oneShot_input";
-        public readonly static string ENV_OMP = "env_order_model";
-        public readonly static string ENV_CMP = "env_catalog_model";
-        public readonly static string ENV_CATA_S = "env_catalog_serv";
-        public readonly static string ENV_CATE_S = "env_category_serv";
+        public const string ENV_SCI = "env_square_catalog_input";
+        public const string ENV_SOI = "env_square_order_input";
+        public const string ENV_WSI = "env_wholesale_input";
+        public const string ENV_OSI = "env_oneShot_input";
+        public const string ENV_OMP = "env_order_model";
+        public const string ENV_CMP = "env_catalog_model";
+        public const string ENV_CATA_S = "env_catalog_serv";
+        public const string ENV_CATE_S = "env_category_serv";
 
-        public readonly static string SETTING_LABEL_PRINTER = "labelPrinter";
-        public readonly static string SETTING_STD_PRINTER = "standardPrinter";
-        public readonly static string SETTING_PIE_TEMPLATE = "pieTemplateName";
-        public readonly static string SETTING_PASTRY_TEMPLATE = "pastryTemplateName";
-        public readonly static string SETTING_LABEL_FP = "labelDirectory";
-        public readonly static string SETTING_DAYNUM = "environPeriod";
+        public const string SETTING_LABEL_PRINTER = "labelPrinter";
+        public const string SETTING_STD_PRINTER = "standardPrinter";
+        public const string SETTING_PIE_TEMPLATE = "pieTemplateName";
+        public const string SETTING_PASTRY_TEMPLATE = "pastryTemplateName";
+        public const string SETTING_LABEL_FP = "labelDirectory";
+        public const string SETTING_DAYNUM = "environPeriod";
 
         public static List<string> GetOrderTypes()
         {

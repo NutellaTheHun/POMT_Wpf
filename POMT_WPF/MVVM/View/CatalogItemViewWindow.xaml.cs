@@ -83,5 +83,30 @@ namespace POMT_WPF.MVVM.View
         {
             viewModel.SetCategory(CategoryComboBox.SelectedItem.ToString());
         }
+
+        private void regularCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            viewModel.UpdateSizeSetting(Identifiers.SIZE_REGULAR);
+        }
+
+        private void cutieCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            viewModel.UpdateSizeSetting(Identifiers.SIZE_CUTIE);
+        }
+
+        private void largeCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            viewModel.UpdateSizeSetting(Identifiers.SIZE_LARGE);
+        }
+
+        private void mediumCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            viewModel.UpdateSizeSetting(Identifiers.SIZE_MEDIUM);
+        }
+
+        private void smallCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            viewModel.UpdateSizeSetting(Identifiers.SIZE_SMALL);
+        }
     }
 }

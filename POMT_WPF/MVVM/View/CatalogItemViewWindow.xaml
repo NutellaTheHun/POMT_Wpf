@@ -65,17 +65,7 @@
                             Text="{Binding Item.ItemName}"
                             TextFill="Item Name ..." />
                     </StackPanel>
-                    <!--<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                        <local:TextFillTextBox
-                            Style="{StaticResource textFillTextBox}"
-                            Text="{Binding Item.CatalogObjectId}"
-                            TextFill="catalog id ..." />
-                    </StackPanel>-->
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                        <!--<local:TextFillTextBox
-                            Style="{StaticResource textFillTextBox}"
-                            Text="{Binding Item.CategoryId}"
-                            TextFill="category id ..." />-->
                         <ComboBox
                             Name="CategoryComboBox"
                             Width="200"
@@ -90,6 +80,7 @@
                         <StackPanel Margin="0,0,40,0" Orientation="Vertical">
                             <CheckBox
                                 Name="smallCheckBox"
+                                Checked="smallCheckBox_Checked"
                                 Content="Small"
                                 FontSize="16"
                                 Foreground="White"
@@ -97,12 +88,14 @@
                             <CheckBox
                                 Name="mediumCheckBox"
                                 Margin="0,10,0,10"
+                                Checked="mediumCheckBox_Checked"
                                 Content="Medium"
                                 FontSize="16"
                                 Foreground="White"
                                 IsChecked="{Binding IsMedium}" />
                             <CheckBox
                                 x:Name="largeCheckBox"
+                                Checked="largeCheckBox_Checked"
                                 Content="Large"
                                 FontSize="16"
                                 Foreground="White"
@@ -112,12 +105,14 @@
                             <CheckBox
                                 x:Name="regularCheckBox"
                                 Margin="0,10,0,10"
+                                Checked="regularCheckBox_Checked"
                                 Content="Regular"
                                 FontSize="16"
                                 Foreground="White"
                                 IsChecked="{Binding IsRegular}" />
                             <CheckBox
                                 x:Name="cutieCheckBox"
+                                Checked="cutieCheckBox_Checked"
                                 Content="Cutie"
                                 FontSize="16"
                                 Foreground="White"

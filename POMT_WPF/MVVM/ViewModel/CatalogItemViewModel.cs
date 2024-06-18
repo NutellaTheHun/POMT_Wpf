@@ -292,5 +292,10 @@ namespace POMT_WPF.MVVM.ViewModel
               
         }
         private CategoryService GetCategoryService() { return (CategoryService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATEGORY); }
+
+        public void UpdateSizeSetting(string sizeVariation)
+        {
+
+        }
     }
 }

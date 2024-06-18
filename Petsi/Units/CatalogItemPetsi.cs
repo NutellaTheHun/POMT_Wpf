@@ -26,6 +26,7 @@ namespace Petsi.Units
         /// </summary>
         public ListDictionary Variations { get; set; }
         public List<(string variationId, string variationName)> VariationList { get; set; }
+        public List<(string variationId, string variationName)> DisabledVariationList { get; set; }
 
         public string StandardLabelFilePath { get; set; }
         public string CutieLabelFilePath { get; set; }
@@ -38,6 +39,7 @@ namespace Petsi.Units
             frameBehavior = new CatalogItemFrameBehavior(this);
             NaturalNames = new List<string>();
             VariationList = new List<(string variationName, string variationId)>();
+            DisabledVariationList = new List<(string variationId, string variationName)>();
             Alt_CatalogObjId = new List<string>();
         }
         public CatalogItemPetsi(string categoryId, string catalogObjectId, string itemName, ListDictionary variations, List<string> naturalNames)
@@ -49,6 +51,7 @@ namespace Petsi.Units
             frameBehavior = new CatalogItemFrameBehavior(this);
             this.NaturalNames = naturalNames;
             VariationList = new List<(string variationName, string variationId)>();
+            DisabledVariationList = new List<(string variationId, string variationName)>();
             Alt_CatalogObjId = new List<string>();
         }
         public CatalogItemPetsi()
@@ -57,6 +60,7 @@ namespace Petsi.Units
             frameBehavior = new CatalogItemFrameBehavior(this);
             NaturalNames = new List<string>();
             VariationList = new List<(string variationName, string variationId)>();
+            DisabledVariationList = new List<(string variationId, string variationName)>();
             Alt_CatalogObjId = new List<string>();
         }
         public override FrameBehaviorBase GetFrameBehavior()
