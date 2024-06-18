@@ -75,10 +75,19 @@
                             TextFill="filepath ..." />
                         <Button
                             Width="125"
-                            Margin="0,0,30,0"
+                            Margin="0,0,10,0"
                             Click="AddPieFilepath_ButtonClick"
                             Content="Choose Pie Label"
                             Style="{StaticResource secondaryButton}" />
+                        <Button
+                            x:Name="deleteStandardLabel"
+                            Width="40"
+                            Margin="0,0,30,0"
+                            Background="{StaticResource ChiliRed}"
+                            Click="deleteStandardLabel_Click"
+                            Style="{StaticResource secondaryButton}">
+                            <Icon:PackIconMaterial Kind="Delete" />
+                        </Button>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
@@ -90,9 +99,19 @@
                             TextFill="filepath ..." />
                         <Button
                             Width="125"
+                            Margin="0,0,10,0"
                             Click="AddCutieFilepath_ButtonClick"
                             Content="Choose Cutie Label"
                             Style="{StaticResource secondaryButton}" />
+                        <Button
+                            x:Name="deleteCutieLabel"
+                            Width="40"
+                            Margin="0,0,30,0"
+                            Background="{StaticResource ChiliRed}"
+                            Click="deleteCutieLabel_Click"
+                            Style="{StaticResource secondaryButton}">
+                            <Icon:PackIconMaterial Kind="Delete" />
+                        </Button>
                     </StackPanel>
                 </StackPanel>
             </Grid>

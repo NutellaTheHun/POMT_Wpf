@@ -14,11 +14,14 @@ namespace POMT_WPF.MVVM.View
     public partial class AddLabelWindow : Window
     {
         AddLabelViewModel viewModel;
-        public AddLabelWindow()
+        bool isNewItem;
+        public AddLabelWindow(CatalogItemPetsi? item)
         {
             InitializeComponent();
-            viewModel = new AddLabelViewModel();
+            viewModel = new AddLabelViewModel(item);
             DataContext = viewModel;
+            if (item == null) { isNewItem = true; }
+            else { isNewItem = false; }
         }
         private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)
         {
@@ -28,7 +31,7 @@ namespace POMT_WPF.MVVM.View
         {
             if (viewModel.ValidateFields())
             {
-                if (viewModel.HasDuplicate())
+                if (isNewItem && viewModel.HasDuplicate())
                 {
                     PetsiOrderFormErrorWindow errorWindow =
                    new PetsiOrderFormErrorWindow("Item already has labels assigned, please modify the existing item.");
@@ -123,6 +126,16 @@ namespace POMT_WPF.MVVM.View
                     itemNameCb.IsDropDownOpen = true;
                 }
             }
+        }
+
+        private void deleteStandardLabel_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.ClearStandardLabel();
+        }
+
+        private void deleteCutieLabel_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.ClearCutieLabel();
         }
     }
 }

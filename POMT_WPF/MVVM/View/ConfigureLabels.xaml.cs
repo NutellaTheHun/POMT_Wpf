@@ -1,4 +1,5 @@
-﻿using POMT_WPF.MVVM.ViewModel;
+﻿using Petsi.Units;
+using POMT_WPF.MVVM.ViewModel;
 using System.Windows;
 
 namespace POMT_WPF.MVVM.View
@@ -26,12 +27,27 @@ namespace POMT_WPF.MVVM.View
         }
         private void AddLabelWindow_ButtonClick(object sender, RoutedEventArgs e)
         {
-            AddLabelWindow addLabelWindow = new AddLabelWindow();
-            addLabelWindow.Show();
+            AddLabelWindow addLabelWindow = new AddLabelWindow(null);
+            addLabelWindow.ShowDialog();
+            viewModel.UpdateLabelList();
         }
         private void RemLabelWindow_ButtonClick(object sender, RoutedEventArgs e)
         {
+            if (labelDataGrid.SelectedItem != null)
+            {
+                viewModel.RemoveItem(labelDataGrid.SelectedItem);
+                viewModel.UpdateLabelList();
+            }
+        }
 
+        private void labelDataGrid_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (labelDataGrid.SelectedItem != null)
+            {
+                AddLabelWindow addLabelWindow = new AddLabelWindow((CatalogItemPetsi)labelDataGrid.SelectedItem);
+                addLabelWindow.ShowDialog();
+                viewModel.UpdateLabelList();
+            }
         }
     }
 }

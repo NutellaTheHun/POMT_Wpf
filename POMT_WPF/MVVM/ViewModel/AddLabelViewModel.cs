@@ -11,7 +11,6 @@ namespace POMT_WPF.MVVM.ViewModel
     {
         CatalogService cs;
         CatalogItemPetsi item;
-
         public string _itemName;
         public string ItemName
         {
@@ -52,9 +51,15 @@ namespace POMT_WPF.MVVM.ViewModel
             }
         }
 
-        public AddLabelViewModel()
+        public AddLabelViewModel(CatalogItemPetsi? item)
         {
             cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
+            if(item != null)
+            {
+                ItemName = item.ItemName;
+                StandardFilePath = item.StandardLabelFilePath;
+                CutieFilePath = item.CutieLabelFilePath;
+            }
         }
 
         public void SetCutieFile()
@@ -128,9 +133,18 @@ namespace POMT_WPF.MVVM.ViewModel
             if (item != null)
             {
                 if (item.StandardLabelFilePath != null || item.CutieLabelFilePath != null) { return true; }
-                if (item.StandardLabelFilePath != "" || item.CutieLabelFilePath != "") { return true; }
             }
             return false;
+        }
+
+        public void ClearStandardLabel()
+        {
+            StandardFilePath = null;
+        }
+
+        public void ClearCutieLabel()
+        {
+            CutieFilePath = null;
         }
     }
 }

@@ -46,7 +46,8 @@
                 Width="450"
                 Height="300"
                 Margin="50"
-                AutoGenerateColumns="False">
+                AutoGenerateColumns="False"
+                MouseDoubleClick="labelDataGrid_MouseDoubleClick">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding ItemName, UpdateSourceTrigger=PropertyChanged}" Header="Item Name" />
                     <DataGridTextColumn Binding="{Binding StandardLabelFilePath, UpdateSourceTrigger=PropertyChanged}" Header="Standard Label" />
