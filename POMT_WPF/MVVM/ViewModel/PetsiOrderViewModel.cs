@@ -251,10 +251,10 @@ namespace POMT_WPF.MVVM.ViewModel
             }
         }
 
-        public List<string> OrderTypes
-        {
-            get { return Identifiers.GetOrderTypes(); }
-        }
+        public List<string> OrderTypes;
+        /*{
+            get { return (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS).GetOrderTypes(); }
+        }*/
 
         public PetsiOrderWindowViewModel(PetsiOrder? petsiOrder)
         {
@@ -274,6 +274,8 @@ namespace POMT_WPF.MVVM.ViewModel
                 LineItems.CollectionChanged += (s, e) => _order.LineItems = LineItems.ToList();
                 LineItems.Add(new PetsiOrderLineItem());
             }
+            OrderModelPetsi omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+            OrderTypes = omp.GetOrderTypes();
         }
 
         public void AddLineItem(PetsiOrderLineItem newLine)

@@ -2,7 +2,6 @@
 using Petsi.Utils;
 using POMT_WPF.MVVM.ViewModel;
 using System.Windows;
-using System.Windows.Forms;
 
 namespace POMT_WPF.MVVM.View
 {

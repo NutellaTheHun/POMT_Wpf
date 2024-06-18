@@ -12,7 +12,7 @@ namespace Petsi.Models
         List<PetsiOrder> Orders;
         List<PetsiOrder> OneShotOrders;
         List<PetsiOrder> PeriodicOrders;
-
+        HashSet<string> OrderTypesSet;
         OrderModelFrameBehavior frameBehavior;
         FileBehavior fileBehavior;
         public OrderModelPetsi()
@@ -26,8 +26,40 @@ namespace Petsi.Models
             EnvironCaptureRegistrySingleton.GetInstance().Register(this);
             Orders = new List<PetsiOrder>();
             OneShotOrders = new List<PetsiOrder>();
-            PeriodicOrders = new List<PetsiOrder>();
+            PeriodicOrders = new List<PetsiOrder>();           
             InitSerializedOrders();
+            OrderTypesSet = InitOrderTypes();
+        }
+
+        private HashSet<string>? InitOrderTypes()
+        {
+            List<string> filedList = fileBehavior.BuildDataListFile<string>("OrderTypeSet");
+            if(filedList == null)
+            {
+                filedList = new List<string> { Identifiers.ORDER_TYPE_DAILY_BAKE, Identifiers.ORDER_TYPE_EZ_CATER,
+                    Identifiers.ORDER_TYPE_SPECIAL, Identifiers.ORDER_TYPE_SQUARE, Identifiers.ORDER_TYPE_WHOLESALE };
+            }
+            HashSet<string> result = new HashSet<string>(filedList);
+            foreach (PetsiOrder o in Orders)
+            {
+                result.Add(o.OrderType);
+            }
+            return result;
+        }
+
+        public List<string> GetOrderTypes() { return OrderTypesSet.ToList(); }
+
+        public void AddOrderType(string orderType)
+        {
+            if (OrderTypesSet.Add(orderType))
+            {
+                SerializeOrderTypeSet();
+            }
+        }
+
+        private void SerializeOrderTypeSet()
+        {
+            fileBehavior.DataListToFile("OrderTypeSet", OrderTypesSet.ToList());
         }
 
         private void InitSerializedOrders()
@@ -42,6 +74,7 @@ namespace Petsi.Models
         {
             PetsiOrder order = (PetsiOrder)unit;
             Orders.Add(order);
+            OrderTypesSet.Add(order.OrderType);
             if (order.IsUserEntered)
             {
                 if (order.IsPeriodic)

@@ -28,10 +28,10 @@ namespace POMT_WPF
             ReportDirector director = new ReportDirector();
 
             SquareCatalogInput sci = new SquareCatalogInput(scf);
-            //SquareOrderInput soi = new SquareOrderInput(scf);
+            SquareOrderInput soi = new SquareOrderInput(scf);
             
             sci.Execute().Wait();
-            //soi.Execute().Wait();
+            soi.Execute().Wait();
         }
 
         //https://stackoverflow.com/questions/53500915/how-to-select-all-text-in-textbox-wpf-when-focused
