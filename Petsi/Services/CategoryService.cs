@@ -75,6 +75,19 @@ namespace Petsi.Services
             }
         }
 
+        public string GetCategoryName(string categoryId)
+        {
+            string result = "";
+            foreach ((string categoryName, string id) item in categoryList)
+            {
+                if (item.id == categoryId)
+                {
+                    result = item.categoryName;
+                }
+            }
+            return result;
+        }
+
         public override void Update(ModelBase model)
         {
             categoryMap.Clear();

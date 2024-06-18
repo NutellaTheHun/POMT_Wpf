@@ -1,5 +1,6 @@
 ﻿using Petsi.Managers;
 using Petsi.Models;
+using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
 using System.Collections.ObjectModel;
@@ -81,6 +82,8 @@ namespace POMT_WPF.MVVM.ViewModel
 
         public ObservableCollection<string> NaturalNames;
 
+        public ObservableCollection<string> CategoryNames;
+        
         private CatalogItemPetsi? _item;
         public CatalogItemPetsi? Item
         {
@@ -119,6 +122,34 @@ namespace POMT_WPF.MVVM.ViewModel
                 {
                     _cutieLabelFilepath = value;
                     OnPropertyChanged(nameof(CutieLabelFilePath));
+                }
+            }
+        }
+
+        public string _categoryId;
+        public string CategoryId 
+        { 
+            get { return _categoryId; }
+            set
+            {
+                if(_categoryId != value)
+                {
+                    _categoryId = value;
+                    OnPropertyChanged(nameof(CategoryId));
+                }
+            }
+        }
+
+        public string _categoryName;
+        public string CategoryName
+        {
+            get { return _categoryName; }
+            set
+            {
+                if (_categoryName != value)
+                {
+                    _categoryName = value;
+                    OnPropertyChanged(nameof(CategoryName));
                 }
             }
         }
@@ -165,7 +196,12 @@ namespace POMT_WPF.MVVM.ViewModel
                 //CutieLabelFp
                 CutieLabelFilePath = item.CutieLabelFilePath;
                 //Category
+                CategoryService cs = (CategoryService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATEGORY);
+                //CategoryNames = 
+                CategoryNames = new ObservableCollection<string>(cs.GetCategoryNames());
 
+                CategoryId = item.CategoryId;
+                CategoryName = cs.GetCategoryName(CategoryId);
             }
         }
 
@@ -222,6 +258,19 @@ namespace POMT_WPF.MVVM.ViewModel
         {
             CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
             cmp.UpdateModel();
+        }
+
+        public object SetSelectedItem()
+        {
+            if(CategoryId == "") { return null; }
+            foreach(string category in CategoryNames)
+            {
+                if(CategoryName == category)
+                {
+                    return category;
+                }
+            }
+            return null;
         }
     }
 }

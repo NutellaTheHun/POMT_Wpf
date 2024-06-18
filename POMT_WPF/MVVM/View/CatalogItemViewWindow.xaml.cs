@@ -18,7 +18,15 @@ namespace POMT_WPF.MVVM.View
             viewModel = new CatalogItemViewModel(item);
             DataContext = viewModel;
             NaturalNamesListBox.ItemsSource = viewModel.NaturalNames;
+            CategoryComboBox.ItemsSource = viewModel.CategoryNames;
+            InitCategoryComboBoxSelection();
         }
+
+        private void InitCategoryComboBoxSelection()
+        {
+            CategoryComboBox.SelectedItem = viewModel.SetSelectedItem();
+        }
+
         private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)
         {
             Close();
