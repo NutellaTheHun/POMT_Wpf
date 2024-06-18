@@ -167,7 +167,8 @@ namespace Petsi.Input
                     boxedli.ItemName = modifier.Name;
 
                     //the "Box of..." has a quantity, and the modifiers have a quantity as well. If 2 boxes, with 2 scones of flavor A, total is 4 flavor A scones.
-                    boxedli.Quantity = (int.Parse(modifier.Quantity) * int.Parse(squareOrderlineItem.Quantity)).ToString();
+                    //boxedli.Quantity = (int.Parse(modifier.Quantity) * int.Parse(squareOrderlineItem.Quantity)).ToString();
+                    boxedli.Quantity = modifier.Quantity;
                     lineItems.Add(boxedli);
                 }
             }

@@ -236,7 +236,7 @@
                                 Width="auto"
                                 CellTemplate="{StaticResource OrderFormItemNameTemplate}"
                                 Header="Item Name" />
-                            <DataGridTemplateColumn Width="*" Header="Amount 3">
+                            <DataGridTemplateColumn Width="*" Header="Amount 3/Regular">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <local:TextFillTextBox

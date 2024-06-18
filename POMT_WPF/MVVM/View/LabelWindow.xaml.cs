@@ -27,12 +27,12 @@ namespace POMT_WPF.MVVM.View
 
         private void Print_ButtonClick(Object sender, RoutedEventArgs e)
         {
-
+            LabelService ls = (LabelService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_LABEL);
+            ls.PrintStandard(null);
         }
         private void Standard_ButtonClick(Object sender, RoutedEventArgs e)
         {
-            LabelService ls = (LabelService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_LABEL);
-            ls.PrintStandard(null);
+            
         }
         private void Small_ButtonClick(Object sender, RoutedEventArgs e)
         {

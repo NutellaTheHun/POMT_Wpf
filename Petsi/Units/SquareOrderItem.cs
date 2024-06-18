@@ -61,19 +61,19 @@ namespace Petsi.Units
                     //A order from square shouldnt have duplicate lines of item and size, so an assignment should suffice, (just "=" rather than "+=")
                     if (ChannelLineItem.VariationName.Contains(Identifiers.SIZE_SMALL))
                     {
-                        variationSizeDict[ChannelLineItem.CatalogObjectId].Amount5 = int.Parse(ChannelLineItem.Quantity);
+                        variationSizeDict[ChannelLineItem.CatalogObjectId].Amount5 += int.Parse(ChannelLineItem.Quantity);
                     }
                     else if (ChannelLineItem.VariationName.Contains(Identifiers.SIZE_MEDIUM))
                     {
-                        variationSizeDict[ChannelLineItem.CatalogObjectId].Amount8 = int.Parse(ChannelLineItem.Quantity);
+                        variationSizeDict[ChannelLineItem.CatalogObjectId].Amount8 += int.Parse(ChannelLineItem.Quantity);
                     }
                     else if (ChannelLineItem.VariationName.Contains(Identifiers.SIZE_LARGE))
                     {
-                        variationSizeDict[ChannelLineItem.CatalogObjectId].Amount10 = int.Parse(ChannelLineItem.Quantity);
+                        variationSizeDict[ChannelLineItem.CatalogObjectId].Amount10 += int.Parse(ChannelLineItem.Quantity);
                     }
                     else if (ChannelLineItem.VariationName.Contains(Identifiers.SIZE_REGULAR)) //Regular is used for items that aren't Pies, such as pastries and merch.
                     {
-                        variationSizeDict[ChannelLineItem.CatalogObjectId].AmountRegular = int.Parse(ChannelLineItem.Quantity);
+                        variationSizeDict[ChannelLineItem.CatalogObjectId].AmountRegular += int.Parse(ChannelLineItem.Quantity);
                     }
                 }
                 else //create a new item, parse the size and quantity, add to dictionary
