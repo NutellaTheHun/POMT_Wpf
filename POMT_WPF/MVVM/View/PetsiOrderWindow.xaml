@@ -53,15 +53,15 @@
     <Border Background="{StaticResource Charcoal}" CornerRadius="20">
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="30" />
                 <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="5" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="60" />
+
             </Grid.RowDefinitions>
 
             <Button
@@ -76,6 +76,33 @@
                     <Icon:PackIconMaterial Kind="Close" Style="{StaticResource menuButtonIcon}" />
                 </StackPanel>
             </Button>
+            <Button
+                Name="openHeaderWidget"
+                Grid.Row="1"
+                Width="30"
+                Height="30"
+                Margin="5,0,5,5"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Background="Transparent"
+                Click="viewHeaderWidget_Click"
+                Style="{StaticResource secondaryButton}">
+                <Icon:PackIconMaterial x:Name="headerGridChevronOpen" Kind="ChevronDown" />
+            </Button>
+            <Button
+                Name="closeHeaderWidget"
+                Grid.Row="1"
+                Width="30"
+                Height="30"
+                Margin="5,0,5,5"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Background="Transparent"
+                Click="viewHeaderWidget_Click"
+                Style="{StaticResource secondaryButton}"
+                Visibility="Hidden">
+                <Icon:PackIconMaterial x:Name="headerGridChevronClosed" Kind="ChevronUp" />
+            </Button>
             <TextBlock
                 Grid.Row="1"
                 HorizontalAlignment="Center"
@@ -83,18 +110,37 @@
                 FontSize="24"
                 Foreground="White"
                 Text="Order Form" />
-            <ToggleButton
-                x:Name="editToggleButton"
+            <StackPanel
                 Grid.Row="1"
-                Width="60"
-                Height="20"
-                Margin="0,5,50,5"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center"
-                Click="editToggleButton_Click"
-                Content="edit"
-                Style="{StaticResource orderFormEditButton}" />
-            <Grid Grid.Row="2">
+                Orientation="Horizontal">
+                <ToggleButton
+                    x:Name="freezeToggleButton"
+                    Width="60"
+                    Height="20"
+                    Margin="0,5,50,5"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Click="freezeToggleButton_Click"
+                    Content="freeze"
+                    Style="{StaticResource orderFormEditButton}" />
+                <ToggleButton
+                    x:Name="editToggleButton"
+                    Width="60"
+                    Height="20"
+                    Margin="0,5,20,5"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Click="editToggleButton_Click"
+                    Content="edit"
+                    Style="{StaticResource orderFormEditButton}" />
+            </StackPanel>
+
+            <Grid
+                x:Name="headerGrid"
+                Grid.Row="2"
+                Visibility="Visible">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="auto" />
@@ -216,7 +262,10 @@
                 FontSize="18"
                 Foreground="#efefef" />
             <Separator Grid.Row="4" Width="500" />
-            <Grid Grid.Row="5" Margin="0,10,0,0">
+            <Grid
+                x:Name="dataGridGrid"
+                Grid.Row="5"
+                Margin="0,10,0,0">
                 <StackPanel
                     Margin="20,0,0,0"
                     HorizontalAlignment="Center"
@@ -224,7 +273,7 @@
                     <DataGrid
                         x:Name="orderFormDataGrid"
                         Width="500"
-                        Height="250"
+                        Height="auto"
                         BorderBrush="Transparent"
                         CellStyle="{DynamicResource orderFormDataGridCellStyle}"
                         ColumnHeaderStyle="{DynamicResource orderFormDataGridColumnHeaderStyle}"

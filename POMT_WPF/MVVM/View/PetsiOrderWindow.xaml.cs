@@ -16,6 +16,9 @@ namespace POMT_WPF.MVVM.View
     public partial class PetsiOrderWindow : Window
     {
         PetsiOrderWindowViewModel _vm;
+        bool headerGridOpen;
+        double headerGridHeight;
+        double dataGridHeight;
         public PetsiOrderWindowViewModel ViewModel 
         { 
             get { return _vm; }
@@ -71,6 +74,9 @@ namespace POMT_WPF.MVVM.View
                 editToggleButton.IsEnabled = false;
                 editToggleButton.Visibility = Visibility.Hidden;
             }
+            headerGridOpen = true;
+            headerGridHeight = headerGrid.Height;
+            dataGridHeight = dataGridGrid.Height;
         }
 
         private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)
@@ -300,6 +306,31 @@ namespace POMT_WPF.MVVM.View
                 {
                     ViewModel.LineItems.Remove((PetsiOrderLineItem)orderFormDataGrid.SelectedItem);
                 }      
+            }
+        }
+
+        private void freezeToggleButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void viewHeaderWidget_Click(object sender, RoutedEventArgs e)
+        {
+            if(headerGridOpen)
+            {
+                headerGrid.Visibility = Visibility.Collapsed;
+                openHeaderWidget.Visibility = Visibility.Hidden;
+                closeHeaderWidget.Visibility = Visibility.Visible;
+                //dataGridGrid.Height = dataGridHeight + headerGridHeight;
+                headerGridOpen = false;
+            }
+            else
+            {
+                headerGrid.Visibility = Visibility.Visible;
+                openHeaderWidget.Visibility = Visibility.Visible;
+                closeHeaderWidget.Visibility = Visibility.Hidden;
+                //dataGridGrid.Height = dataGridHeight;
+                headerGridOpen = true;
             }
         }
     }
