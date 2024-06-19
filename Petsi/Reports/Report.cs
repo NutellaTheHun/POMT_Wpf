@@ -47,7 +47,7 @@ namespace Petsi.Reports
             if(Wb.Worksheets.Count > 0)
             {
                 ReportUtil.Save(Wb, _filePath + ReportName);
-                PrintReport(_filePath + ReportName);
+                //PrintReport(_filePath + ReportName);
                 CaptureEnvironment();
             }
         }

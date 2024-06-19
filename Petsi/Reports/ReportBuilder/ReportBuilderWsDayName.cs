@@ -17,7 +17,7 @@ namespace Petsi.Reports.ReportBuilder
         {
             pageBuilders.Add(new PageBuilderWsDayName(_report));
         }
-        public override XLWorkbook BuildReport<T>(List<T> orderData, DateTime? targetDate)
+        public override XLWorkbook BuildReport<T>(List<T> orderData, DateTime? targetDate, DateTime? endDate)
         {
             int pageCount = 1;
             _report.SetReportTargetDate(targetDate);

@@ -194,6 +194,7 @@ namespace Petsi.Models
             else //range
             {
                 //Gather Non-periodic Orders
+                
                  query =
                  from order in Orders
                  where 
@@ -201,7 +202,7 @@ namespace Petsi.Models
                      && DateTime.Parse(order.OrderDueDate) >= targetDate.Value
                      && DateTime.Parse(order.OrderDueDate) <= endDate.Value
                  select order;
-
+                
                 //Gather periodic orders, fulfilment date of periodic(weekly) orders is only used to get the corresponding day of the week.
                 //To get periodic orders, for each day of the date range, get the orders of that day and add to list
                 for (DateTime date = targetDate.Value; date <= endDate; date = date.AddDays(1))

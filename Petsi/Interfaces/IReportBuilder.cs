@@ -10,6 +10,6 @@ namespace Petsi.Interfaces
         /// <typeparam name="T"></typeparam>
         /// <param name="inputList"></param>
         /// <returns></returns>
-        public XLWorkbook BuildReport<T>(List<T> inputList, DateTime? targetDate);
+        public XLWorkbook BuildReport<T>(List<T> inputList, DateTime? targetDate, DateTime? endDate);
     }
 }

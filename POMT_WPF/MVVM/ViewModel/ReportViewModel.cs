@@ -41,7 +41,7 @@ namespace POMT_WPF.MVVM.ViewModel
             wsAgg = false;
             ws = false;
         }
-        public void ProduceReport(DateTime dt1, DateTime dt2)
+        public void ProduceReport(DateTime dt1, DateTime? dt2)
         {
             ReportDirector rd = new ReportDirector();
             if (frontlist)

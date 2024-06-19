@@ -27,7 +27,7 @@ namespace POMT_WPF.MVVM.View
 
             if (selectedStartDate.HasValue)
             {
-                rwvm.ProduceReport((DateTime)selectedStartDate, (DateTime)selectedEndDate);
+                rwvm.ProduceReport((DateTime)selectedStartDate, (DateTime?)selectedEndDate);
             }
         }
 
