@@ -41,7 +41,7 @@ namespace POMT_WPF.MVVM.ViewModel
             wsAgg = false;
             ws = false;
         }
-        public void ProduceReport(DateTime dt1)
+        public void ProduceReport(DateTime dt1, DateTime dt2)
         {
             ReportDirector rd = new ReportDirector();
             if (frontlist)
@@ -50,7 +50,7 @@ namespace POMT_WPF.MVVM.ViewModel
             }
             else if (backList)
             {
-                rd.CreateBackList(dt1, null);
+                rd.CreateBackList(dt1, dt2);
             }
             else if (wsAgg)
             {

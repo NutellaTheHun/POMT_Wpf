@@ -22,11 +22,12 @@ namespace POMT_WPF.MVVM.View
 
         private void Print_ButtonClick(Object sender, RoutedEventArgs e)
         {
-            DateTime? selectedDate = datePickerStart.SelectedDate;
+            DateTime? selectedStartDate = datePickerStart.SelectedDate;
+            DateTime? selectedEndDate = datePickerEnd.SelectedDate;
 
-            if (selectedDate.HasValue)
+            if (selectedStartDate.HasValue)
             {
-                rwvm.ProduceReport((DateTime)selectedDate);
+                rwvm.ProduceReport((DateTime)selectedStartDate, (DateTime)selectedEndDate);
             }
         }
 

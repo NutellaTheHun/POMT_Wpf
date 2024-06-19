@@ -26,7 +26,7 @@ namespace Petsi.Reports
 
             orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
 
-            builder.BuildReport(orderModel.GetFrontListData(targetDate), targetDate);
+            builder.BuildReport(orderModel.GetFrontListData(targetDate), targetDate, null);
 
             report.FinalizeReport();
 
@@ -41,11 +41,11 @@ namespace Petsi.Reports
 
             if(endDate == null)//if endDate is null, report is for single day, targetDate is used in report header as targetDate
             {
-                builder.BuildReport(orderModel.GetBackListData(targetDate, endDate), targetDate);
+                builder.BuildReport(orderModel.GetBackListData(targetDate, endDate), targetDate, endDate);
             }
             else //otherwise printing all orders (for testing purposes) or is printing a range, displaying targetDate as a range not implemented yet, make arg param[] dateTime?
             {
-                builder.BuildReport(orderModel.GetBackListData(targetDate, endDate), null);
+                builder.BuildReport(orderModel.GetBackListData(targetDate, endDate), null, null);
             }
 
             report.FinalizeReport();
@@ -59,7 +59,7 @@ namespace Petsi.Reports
 
             orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
 
-            builder.BuildReport(orderModel.GetWsDayData(targetDate), targetDate);
+            builder.BuildReport(orderModel.GetWsDayData(targetDate), targetDate, null);
 
             report.FinalizeReport();
 
@@ -72,7 +72,7 @@ namespace Petsi.Reports
 
             orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
 
-            builder.BuildReport(orderModel.GetWsDayNameData(targetDate), targetDate);
+            builder.BuildReport(orderModel.GetWsDayNameData(targetDate), targetDate, null);
 
             report.FinalizeReport();
 

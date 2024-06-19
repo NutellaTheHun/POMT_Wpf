@@ -31,7 +31,7 @@ namespace Petsi.Reports.ReportBuilder
             ConfigureBuilders();
         }
         
-        public virtual XLWorkbook BuildReport<T>(List<T> inputList, DateTime? targetDate)
+        public virtual XLWorkbook BuildReport<T>(List<T> inputList, DateTime? targetDate, DateTime? targetRangeEndDate)
         {
             if(inputList.Count == 0) { SystemLogger.Log("Given list to report is empty"); return _report.Wb; ; }
             int pageCount = 1;

@@ -37,13 +37,29 @@
                     <Icon:PackIconMaterial Kind="Close" Style="{StaticResource menuButtonIcon}" />
                 </StackPanel>
             </Button>
-            <DatePicker
-                x:Name="datePickerStart"
+            <StackPanel
                 Grid.Row="2"
-                Width="150"
-                Height="40"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center" />
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+                <Label Content="Start" />
+                <DatePicker
+                    x:Name="datePickerStart"
+                    Grid.Row="2"
+                    Width="150"
+                    Height="40"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center" />
+                <Label Content="End" />
+                <DatePicker
+                    x:Name="datePickerEnd"
+                    Grid.Row="2"
+                    Width="150"
+                    Height="40"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center" />
+            </StackPanel>
+
             <StackPanel
                 Grid.Row="3"
                 HorizontalAlignment="Center"

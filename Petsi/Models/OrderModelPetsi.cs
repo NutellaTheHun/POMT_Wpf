@@ -173,10 +173,10 @@ namespace Petsi.Models
         }
 
         public List<PetsiOrderLineItem> GetBackListData(DateTime? targetDate, DateTime? endDate)
-        {
-            
+        {          
             IEnumerable<PetsiOrder> query;
-            if (targetDate == null) //all data
+            List<PetsiOrder> periodicOrders = new List<PetsiOrder>();
+            if (targetDate == null) //all data, WARNING WHOLESALE ONLY ONCE CURRENTLY, add ws orders up to max day, or end of week of max day?
             {
               query =
               from order in Orders
@@ -186,18 +186,44 @@ namespace Petsi.Models
             {
                query =
                from order in Orders
-               where DateTime.Parse(order.OrderDueDate).DayOfWeek == targetDate.Value.DayOfWeek
+               where (order.IsPeriodic == true && DateTime.Parse(order.OrderDueDate).DayOfWeek == targetDate.Value.DayOfWeek)  //wholesale/periodic is weekly, so by day of week
+                      ||
+                     (order.IsPeriodic == false && DateTime.Parse(order.OrderDueDate) == targetDate.Value)
                select order;
             }
             else //range
             {
-                query =
+                //Gather Non-periodic Orders
+                 query =
                  from order in Orders
-                 where DateTime.Parse(order.OrderDueDate).DayOfWeek >= targetDate.Value.DayOfWeek
-                 where DateTime.Parse(order.OrderDueDate).DayOfWeek <= endDate.Value.DayOfWeek
+                 where 
+                     order.IsOneShot == true
+                     && DateTime.Parse(order.OrderDueDate) >= targetDate.Value
+                     && DateTime.Parse(order.OrderDueDate) <= endDate.Value
                  select order;
+
+                //Gather periodic orders, fulfilment date of periodic(weekly) orders is only used to get the corresponding day of the week.
+                //To get periodic orders, for each day of the date range, get the orders of that day and add to list
+                for (DateTime date = targetDate.Value; date <= endDate; date = date.AddDays(1))
+                {
+                    AccumulatePeriodicOrders(periodicOrders, date);
+                }
+
+                //combine periodic orders with oneshot orders and return
+                periodicOrders.AddRange(query.ToList());
+                return AggregatePetsiOrders(periodicOrders);
             }
             return AggregatePetsiOrders(query.ToList()); 
+        }
+
+        private void AccumulatePeriodicOrders(List<PetsiOrder> periodicOrders, DateTime targetDate)
+        {
+            IEnumerable<PetsiOrder> query;
+            query =
+              from order in Orders
+              where (order.IsPeriodic == true && DateTime.Parse(order.OrderDueDate).DayOfWeek == targetDate.DayOfWeek)  //wholesale/periodic is weekly, so by day of week
+              select order;
+            periodicOrders.AddRange(query.ToList());
         }
 
         //Label Service uses it, WS_Day_report still needs day separation tho, and day info
