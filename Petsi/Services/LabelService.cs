@@ -121,21 +121,28 @@ namespace Petsi.Services
                 ExecuteRolloPrint(pieDirectoryPath + _standardLabelMap[printItem.Id], printItem.GetStandardAmount() );
             }*/
             //ExecuteRolloPrint("D:/Git-Repos/Petsi/Petsi/Labels/Files/Pie/Apple-Crumb_pie_ingredient_labels.jpg", 1);
-            
-            
+
+            //pdf printers need print to file?
+            //https://stackoverflow.com/questions/72721466/printdocument-not-work-with-pdf-printers-on-windowservice-and-production-environ
+
             PrintDocument pd;
             pd = new PrintDocument();
             pd.PrinterSettings.PrinterName = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_LABEL_PRINTER);
             pd.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("Custom", 400, 200); //hundreths of an inch
-                                                                                                          //pd.PrinterSettings.Copies = (short)printItem.GetStandardAmount();
+            
+            //pd.PrinterSettings.PrintToFile = true;
+            //pd.PrinterSettings.PrintFileName = "D:\\Git-Repos\\POMT_WPF\\Petsi\\Labels\\Files\\Pie\\Apple-Pear-Cran_pie_ingredient.jpg";
+            //pd.PrinterSettings.Copies = (short)printItem.GetStandardAmount();
             pd.PrinterSettings.Copies = 1;
             pd.PrintPage += (sender, args) =>
             {
                 //pass image fp,
                 //System.Drawing.Image img = System.Drawing.Image.FromFile(pieDirectoryPath + _standardLabelMap[printItem.Id]);
-                System.Drawing.Image img = System.Drawing.Image.FromFile("D:\\Git-Repos\\POMT_WPF\\Petsi\\Labels\\Files\\Pie\\Apple-Pear-Cran_pie_ingredient.jpg");
+               // System.Drawing.Image img = System.Drawing.Image.FromFile("D:\\Git-Repos\\POMT_WPF\\Petsi\\Labels\\Files\\Pie\\Apple-Pear-Cran_pie_ingredient.jpg");
+                pd.PrinterSettings.PrintToFile = true;
+                pd.PrinterSettings.PrintFileName = "D:\\Git-Repos\\POMT_WPF\\Petsi\\Labels\\Files\\Pie\\Apple-Pear-Cran_pie_ingredient.jpg";
                 Point loc = new Point(100, 100);
-                args.Graphics.DrawImage(img, loc);
+                //args.Graphics.DrawImage(img, loc);
             };
             pd.Print();
             /*
