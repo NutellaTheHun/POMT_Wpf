@@ -132,5 +132,15 @@ namespace POMT_WPF.MVVM.View
         {
             viewModel.UpdateSizeSetting(Identifiers.SIZE_SMALL, false);
         }
+
+        private void potm_checkBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            viewModel.SetIsPOTM(false);
+        }
+
+        private void potm_checkBox_Checked(object sender, RoutedEventArgs e)
+        {
+            viewModel.SetIsPOTM(true);
+        }
     }
 }

@@ -33,6 +33,7 @@ namespace Petsi.Units
 
         public string StandardLabelFilePath { get; set; }
         public string CutieLabelFilePath { get; set; }
+        public bool IsPOTM {  get; set; }
         public CatalogItemPetsi(string categoryId, string catalogObjectId, string itemName)
         {
             this.CategoryId = categoryId;

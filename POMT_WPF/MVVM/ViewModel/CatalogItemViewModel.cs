@@ -79,6 +79,19 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }
+        private bool _isPOTM;
+        public bool IsPOTM
+        {
+            get { return _isPOTM; }
+            set
+            {
+                if (_isPOTM != value)
+                {
+                    _isPOTM = value;
+                    OnPropertyChanged(nameof(IsPOTM));
+                }
+            }
+        }
 
         public ObservableCollection<string> NaturalNames;
 
@@ -202,6 +215,7 @@ namespace POMT_WPF.MVVM.ViewModel
 
                 CategoryId = item.CategoryId;
                 CategoryName = cs.GetCategoryName(CategoryId);
+                IsPOTM = item.IsPOTM;
             }
         }
 
@@ -290,6 +304,11 @@ namespace POMT_WPF.MVVM.ViewModel
                 SystemLogger.Log("CatalogItemViewModel for item: " + Item.ItemName + " set category with input: \"" + v + "\" returned empty");
             }
               
+        }
+        public void SetIsPOTM(bool isPOTM)
+        {
+            Item.IsPOTM = isPOTM;
+            UpdateCatalogModel();
         }
         private CategoryService GetCategoryService() { return (CategoryService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATEGORY); }
 
