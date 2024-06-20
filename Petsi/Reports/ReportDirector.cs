@@ -73,7 +73,7 @@ namespace Petsi.Reports
             orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
 
             builder.BuildReport(orderModel.GetWsDayNameData(targetDate), targetDate, null);
-
+            report.isLandscape = true;
             report.FinalizeReport();
 
             return report.Wb;

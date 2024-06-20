@@ -29,7 +29,8 @@ namespace Petsi.Reports.TableBuilder
                 if (item.Amount8 != 0) { amount8 = item.Amount8.ToString(); }
                 if (item.Amount10 != 0) { amount10 = item.Amount10.ToString(); }
 
-                AddLine(page, ref _rowIndex, _rootPosition.col, item.ItemName, amount3, amount5, amount8, amount10);
+                AddLine(page, ref _rowIndex, _rootPosition.col, 
+                    item.ItemName, amount3, amount5, amount8, amount10);
             }
             FormatTable(page);
             _rowIndex = _rootPosition.row;

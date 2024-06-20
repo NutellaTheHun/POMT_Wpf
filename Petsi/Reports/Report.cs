@@ -17,6 +17,8 @@ namespace Petsi.Reports
         public string ReportName { get; private set; }
         public string DatePrinted { get; private set; } //change to date time
         public int ReportId { get; private set; }
+
+        public bool isLandscape;
         public XLWorkbook Wb { get; private set; }
         FileBehavior fileBehavior;
         public Report(string name)
@@ -46,8 +48,8 @@ namespace Petsi.Reports
             FormatReportHeader();
             if(Wb.Worksheets.Count > 0)
             {
-                ReportUtil.Save(Wb, _filePath + ReportName);
-                //PrintReport(_filePath + ReportName);
+                ReportUtil.Save(Wb, _filePath + ReportName + ReportId);
+                PrintReport(_filePath + ReportName+ ReportId);
                 CaptureEnvironment();
             }
         }
@@ -63,6 +65,10 @@ namespace Petsi.Reports
             app.PrintCommunication = false;
             foreach (Worksheet ws in wb.Worksheets)
             {
+                if(isLandscape)
+                {
+                    ws.PageSetup.Orientation = XlPageOrientation.xlLandscape;
+                }
                 ws.PageSetup.FitToPagesWide = true;
             }
             app.PrintCommunication = true;

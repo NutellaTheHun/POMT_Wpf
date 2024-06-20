@@ -132,10 +132,10 @@ namespace Petsi.Models
         //----------
         private List<PetsiOrderLineItem> AggregatePetsiOrders(List<PetsiOrder> orders)
         {
-            List<PetsiOrder> orderCpy = new List<PetsiOrder>(orders);
+            //List<PetsiOrder> orderCpy = new List<PetsiOrder>(orders);
             Dictionary<string, PetsiOrderLineItem> aggregate = new Dictionary<string, PetsiOrderLineItem>();
 
-            foreach (PetsiOrder order in orderCpy)
+            foreach (PetsiOrder order in orders)
             {
                 foreach (PetsiOrderLineItem lineItem in order.LineItems)
                 {
@@ -156,7 +156,7 @@ namespace Petsi.Models
         {
             IEnumerable<PetsiOrder> query;
             if (targetDate != null)
-            {
+            {//doesn't filter out wholesale because they're used for Coverpage and notes page, order data is filtered out in report builders
                 query =
                 from order in Orders
                 where DateTime.Parse(order.OrderDueDate).Date == targetDate.Value.Date
@@ -189,13 +189,13 @@ namespace Petsi.Models
                from order in Orders
                where (order.IsPeriodic == true && DateTime.Parse(order.OrderDueDate).DayOfWeek == targetDate.Value.DayOfWeek)  //wholesale/periodic is weekly, so by day of week
                       ||
-                     (order.IsPeriodic == false && DateTime.Parse(order.OrderDueDate) == targetDate.Value)
+                     (order.IsPeriodic == false && DateTime.Parse(order.OrderDueDate).Date == targetDate.Value.Date)
                select order;
             }
             else //range
             {
                 //Gather Non-periodic Orders
-                /*
+                
                  query =
                  from order in Orders
                  where 
@@ -203,7 +203,7 @@ namespace Petsi.Models
                      && DateTime.Parse(order.OrderDueDate) >= targetDate.Value
                      && DateTime.Parse(order.OrderDueDate) <= endDate.Value
                  select order;
-                */
+                
                 //Gather periodic orders, fulfilment date of periodic(weekly) orders is only used to get the corresponding day of the week.
                 //To get periodic orders, for each day of the date range, get the orders of that day and add to list
                 for (DateTime date = targetDate.Value; date <= endDate; date = date.AddDays(1))
@@ -261,7 +261,7 @@ namespace Petsi.Models
             {
                 query = from order in Orders
                         where order.OrderType == Identifiers.ORDER_TYPE_WHOLESALE
-                        where DateTime.Parse(order.OrderDueDate).Date == targetDate.Value.Date
+                        where DateTime.Parse(order.OrderDueDate).DayOfWeek == targetDate.Value.DayOfWeek
                         select order;
             }
 
