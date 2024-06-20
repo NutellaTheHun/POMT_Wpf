@@ -1,10 +1,11 @@
 ﻿using Petsi.Units;
+using POMT_WPF.Interfaces;
 using POMT_WPF.MVVM.ObsModels;
 using System.Collections.ObjectModel;
 
 namespace POMT_WPF.MVVM.ViewModel
 {
-    public class MainWindowViewModel : ViewModelBase
+    public class MainWindowViewModel : ViewModelBase, IObsOrderModelSubscriber
     {
 
         private ObservableCollection<PetsiOrder> _orders;
@@ -16,8 +17,8 @@ namespace POMT_WPF.MVVM.ViewModel
                 if(_orders != value)
                 {
                     _orders = value;
-                    TotalOrderCount = Orders.Count;
-                    OnPropertyChanged(nameof(_orders));
+                    //TotalOrderCount = Orders.Count;
+                    OnPropertyChanged(nameof(Orders));
                 }
             }
         }
@@ -34,6 +35,7 @@ namespace POMT_WPF.MVVM.ViewModel
         }
         public MainWindowViewModel()
         {
+            ObsOrderModelSingleton.Instance.Subscribe(this);
             Orders = ObsOrderModelSingleton.Instance.Orders;
             TotalOrderCount = Orders.Count();
         }
@@ -41,11 +43,13 @@ namespace POMT_WPF.MVVM.ViewModel
         public void AddOrder(PetsiOrder order)
         {
             Orders.Add(order);
+            TotalOrderCount = Orders.Count;
         }
 
         public void RemoveOrder(PetsiOrder order)
         {
             Orders.Remove(order);
+            TotalOrderCount = Orders.Count;
         }
 
         /// <summary>
@@ -100,6 +104,16 @@ namespace POMT_WPF.MVVM.ViewModel
             }
             Orders = results;
             TotalOrderCount = Orders.Count;
+        }
+
+        public void UpdateOrderList()
+        {
+            Orders = ObsOrderModelSingleton.Instance.Orders;
+            TotalOrderCount = Orders.Count;
+        }
+        public void Update()
+        {
+            UpdateOrderList();
         }
     }
 }

@@ -15,10 +15,10 @@ namespace POMT_WPF.MVVM.View
     /// </summary>
     public partial class PetsiOrderWindow : Window
     {
-        PetsiOrderWindowViewModel _vm;
         bool headerGridOpen;
         double headerGridHeight;
         double dataGridHeight;
+        PetsiOrderWindowViewModel _vm;
         public PetsiOrderWindowViewModel ViewModel 
         { 
             get { return _vm; }
@@ -157,7 +157,7 @@ namespace POMT_WPF.MVVM.View
             }
             else
             {
-                ViewModel.ModifyOrder();
+                ViewModel.ModifyOrder(orderTimeTextBox.Text);
             }
             Close();
         }
@@ -169,8 +169,8 @@ namespace POMT_WPF.MVVM.View
             if (confirmationWindow.ControlBool)
             {
                 ObsOrderModelSingleton.RemoveOrder(ViewModel.OrderId);
-            }
-            Close();
+                Close();
+            }     
         }
         private void AddLineItem_BtnClk(object sender, RoutedEventArgs e)
         {

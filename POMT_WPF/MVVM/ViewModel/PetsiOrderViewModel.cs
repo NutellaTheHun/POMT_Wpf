@@ -175,7 +175,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 if (_VMPickupDate != value)
                 {
                     _VMPickupDate = value;
-                    OnPropertyChanged(nameof(_VMPickupDate));
+                    OnPropertyChanged(nameof(VMPickupDate));
                 }
             }
         }
@@ -196,7 +196,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 if (_VMPickupTime != value)
                 {
                     _VMPickupTime = value;
-                    OnPropertyChanged(nameof(_VMPickupTime));
+                    OnPropertyChanged(nameof(VMPickupTime));
                 }
             }
         }
@@ -217,7 +217,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 if (_VMOrderType != value)
                 {
                     _VMOrderType = value;
-                    OnPropertyChanged(nameof(_VMOrderType));
+                    OnPropertyChanged(nameof(VMOrderType));
                 }
             }
         }
@@ -298,8 +298,10 @@ namespace POMT_WPF.MVVM.ViewModel
             ObsOrderModelSingleton.AddOrder(_order);
         }
 
-        public void ModifyOrder()
+        public void ModifyOrder(string pickupTime)
         {
+            string Date = DateTime.Parse(VMPickupDate).ToShortDateString();
+            _order.OrderDueDate = DateTime.Parse(Date + " " + pickupTime).ToString();
             ObsOrderModelSingleton.ModifyOrder(_order);
         }
 

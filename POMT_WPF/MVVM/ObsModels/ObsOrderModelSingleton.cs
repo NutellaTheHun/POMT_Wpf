@@ -2,6 +2,7 @@
 using Petsi.Models;
 using Petsi.Units;
 using Petsi.Utils;
+using POMT_WPF.Interfaces;
 using System.Collections.ObjectModel;
 
 namespace POMT_WPF.MVVM.ObsModels
@@ -41,17 +42,29 @@ namespace POMT_WPF.MVVM.ObsModels
                 }
             }
         }
-
+        private List<IObsOrderModelSubscriber> _subscriptions;
         private ObsOrderModelSingleton()
         {
             _omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
             Orders = new ObservableCollection<PetsiOrder>(_omp.GetOrders());
+            _subscriptions = new List<IObsOrderModelSubscriber>();
         }
+
+        private void Notify()
+        {
+            foreach(var subscriptions in _subscriptions)
+            {
+                subscriptions.Update();
+            }
+        }
+
+        public void Subscribe(IObsOrderModelSubscriber subscriber) { _subscriptions.Add(subscriber); }
 
         public static void AddOrder(PetsiOrder order)
         {
             Instance.Orders.Add(order);
             Instance.AddOrderMainModel(order);
+            Instance.Notify();
         }
 
         public static void ModifyOrder(PetsiOrder modOrder)
@@ -67,6 +80,7 @@ namespace POMT_WPF.MVVM.ObsModels
             }
             Instance.Orders[index] = modOrder;
             Instance.ModifyOrderMainModel(modOrder);
+            Instance.Notify();
         }
         public static void RemoveOrder(string orderId)
         {
@@ -75,6 +89,7 @@ namespace POMT_WPF.MVVM.ObsModels
             {
                 Instance.Orders.Remove(orderToRemove);
                 Instance.RemoveOrderMainModel(orderId);
+                Instance.Notify();
             }
         }
         public void AddOrderMainModel(PetsiOrder order)

@@ -19,6 +19,11 @@ namespace Petsi.Units
         public bool IsOneShot { get; set; }
         public bool IsUserEntered { get; set; }
         public string OrderType { get; set; }
+        public string DisplayOrderDueDate
+        {
+            get { return DateTime.Parse(OrderDueDate).ToString("d"); }
+            set {  }
+        }
         public List<PetsiOrderLineItem> LineItems{ get; set; }
         
         public PetsiOrder()

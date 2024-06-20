@@ -232,7 +232,6 @@
                             IsReadOnly="{Binding ViewModel.IsReadOnly}"
                             Style="{StaticResource textFillTextBox}"
                             Text="{Binding ViewModel.VMPickupTime, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                            TextChanged="orderTimeTextBox_TextChanged"
                             TextFill="Pickup Time AM/PM ..." />
                     </StackPanel>
 
