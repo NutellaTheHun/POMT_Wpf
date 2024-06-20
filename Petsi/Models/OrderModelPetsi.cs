@@ -352,43 +352,82 @@ namespace Petsi.Models
             if (modOrder.IsPeriodic)
             {
                 UpdatePeriodicOrders(modOrder);
-                
+                if(HandleOneShotOrdersContains(modOrder))
+                {
+                    UpdateOneShotOrders(null);
+                }
             }
             else if (modOrder.IsOneShot)
             {
                 UpdateOneShotOrders(modOrder);
-                
+                if(HandlePeriodicOrdersContains(modOrder))
+                {
+                    UpdatePeriodicOrders(null);
+                }
             }
         }
 
-        private void UpdateOneShotOrders(PetsiOrder modOrder)
+        private bool HandleOneShotOrdersContains(PetsiOrder modOrder)
         {
-            int index = 0;
             foreach (PetsiOrder order in OneShotOrders)
             {
                 if (order.OrderId == modOrder.OrderId)
                 {
-                    index = OneShotOrders.IndexOf(order);
-                    break;
+                    OneShotOrders.Remove(order);
+                    return true;
                 }
             }
-            OneShotOrders[index] = modOrder;
-            fileBehavior.DataListToFile(Identifiers.ONE_SHOT_ORDERS, OneShotOrders);
-            
+            return false;
         }
 
-        private void UpdatePeriodicOrders(PetsiOrder modOrder)
+        private bool HandlePeriodicOrdersContains(PetsiOrder modOrder)
         {
-            int index = 0;
             foreach (PetsiOrder order in PeriodicOrders)
             {
                 if (order.OrderId == modOrder.OrderId)
                 {
-                    index = PeriodicOrders.IndexOf(order);
-                    break;
+                    PeriodicOrders.Remove(order);
+                    return true;
                 }
             }
-            PeriodicOrders[index] = modOrder;
+            return false;
+        }
+
+        private void UpdateOneShotOrders(PetsiOrder? modOrder)
+        {
+            if(modOrder != null)
+            {
+                int index = 0;
+                foreach (PetsiOrder order in OneShotOrders)
+                {
+                    if (order.OrderId == modOrder.OrderId)
+                    {
+                        index = OneShotOrders.IndexOf(order);
+                        break;
+                    }
+                }
+                OneShotOrders[index] = modOrder;
+            }
+
+            fileBehavior.DataListToFile(Identifiers.ONE_SHOT_ORDERS, OneShotOrders);   
+        }
+
+        private void UpdatePeriodicOrders(PetsiOrder? modOrder)
+        {
+            if (modOrder != null)
+            {
+                int index = 0;
+                foreach (PetsiOrder order in PeriodicOrders)
+                {
+                    if (order.OrderId == modOrder.OrderId)
+                    {
+                        index = PeriodicOrders.IndexOf(order);
+                        break;
+                    }
+                }
+                PeriodicOrders[index] = modOrder;
+            }
+
             fileBehavior.DataListToFile(Identifiers.PERIODIC_ORDERS, PeriodicOrders);
         }
     }   
