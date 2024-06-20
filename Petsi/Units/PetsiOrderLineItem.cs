@@ -49,6 +49,16 @@ namespace Petsi.Units
             Amount8 = 0;
             AmountRegular = 0;
         }
+        public PetsiOrderLineItem(PetsiOrderLineItem itemSource)
+        {
+            ItemName = itemSource.ItemName;
+            CatalogObjectId = itemSource.CatalogObjectId;
+            Amount10 = itemSource.Amount10;
+            Amount3 = itemSource.Amount3;
+            Amount5 = itemSource.Amount5;
+            Amount8 = itemSource.Amount8;
+            AmountRegular = itemSource.AmountRegular;
+        }
         public PetsiOrderLineItem(string itemName, string catalogObjectId, int amount3, int amount5, int amount8, int amount10, int regular)
         {
             ItemName = itemName;
