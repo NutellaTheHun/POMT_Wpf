@@ -10,7 +10,7 @@
     xmlns:vm="clr-namespace:POMT_WPF.MVVM.ViewModel"
     Title="CatalogItemViewWindow"
     Width="600"
-    Height="360"
+    Height="420"
     AllowsTransparency="True"
     Background="Transparent"
     ResizeMode="NoResize"
@@ -173,6 +173,7 @@
 
                     <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
                         <local:TextFillTextBox
+                            IsHitTestVisible="False"
                             Style="{StaticResource textFillTextBox}"
                             Text="{Binding StandardLabelFilePath}"
                             TextFill="standard label file ..." />
@@ -191,6 +192,7 @@
 
                     <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
                         <local:TextFillTextBox
+                            IsHitTestVisible="False"
                             Style="{StaticResource textFillTextBox}"
                             Text="{Binding CutieLabelFilePath}"
                             TextFill="cutie label file ..." />
@@ -204,6 +206,24 @@
                             Click="setCutieFile_Click"
                             Style="{StaticResource secondaryButton}">
                             <Icon:PackIconMaterial Kind="File" />
+                        </Button>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                        <local:TextFillTextBox
+                            x:Name="veganMapTextBox"
+                            Style="{StaticResource textFillTextBox}"
+                            Text="{Binding VeganMappedItemName, UpdateSourceTrigger=PropertyChanged}"
+                            TextFill="Vegan Pie ..." />
+                        <Button
+                            x:Name="veganMapping"
+                            Width="30"
+                            Height="30"
+                            Margin="5,0,5,5"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Click="veganMapping_Click"
+                            Style="{StaticResource secondaryButton}">
+                            <Icon:PackIconMaterial Kind="ChartPie" />
                         </Button>
                     </StackPanel>
                 </StackPanel>

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Petsi.Utils;
+using System.ComponentModel;
 
 namespace Petsi.Units
 {
@@ -156,9 +157,9 @@ namespace Petsi.Units
         }
         public static BackListItem POTM()//define potms?
         {
-            return new BackListItem("POTM", "not implemented");
+            return new BackListItem("POTM", Identifiers.CATEGORY_POTM);
         }
-        public static BackListItem PARBAKES()//define potms?
+        public static BackListItem PARBAKES()//define parbakes?
         {
             return new BackListItem("PARBAKES", "not implemented");
         }
@@ -180,7 +181,7 @@ namespace Petsi.Units
         }
         public static BackListItem V_STRAWBARB()
         {
-            return new BackListItem("VEGAN Mix", "ZVLI2WL7CMEHAQL6I74FQ4QT");
+            return new BackListItem("VEGAN Straw", "ZVLI2WL7CMEHAQL6I74FQ4QT");
         }
         #endregion PIE
         #region PASTRY

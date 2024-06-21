@@ -1,4 +1,7 @@
 ﻿
+using Petsi.Managers;
+using Petsi.Services;
+using Petsi.Utils;
 using System.ComponentModel;
 
 namespace Petsi.Units
@@ -115,6 +118,27 @@ namespace Petsi.Units
             if(AmountRegular != other.Amount10) { return false; }
             
             return true;
+        }
+
+        public bool IsPOTM()
+        {
+           CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
+           return cs.IsPOTM(CatalogObjectId);
+        }
+
+        /// <summary>
+        /// returns true if the lineItem is a vegan pie assoicated with the backListItemId.
+        /// If lineItem is a Vegan apple and the backlistItemId is for classic Apple, returns true
+        /// Templates aren't intended to have rows for specific vegan categories, vegan quantities are expressed in its
+        /// assoicated non-vegan counterpart.
+        /// </summary>
+        /// <param name="backListItemId"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public bool IsVeganTo(string backListItemId)
+        {
+            CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
+            return cs.IsVeganAssociate(backListItemId, CatalogObjectId);
         }
     }
 }

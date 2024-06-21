@@ -110,7 +110,36 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }
-        
+
+        private CatalogItemPetsi? _veganMapping;
+        public CatalogItemPetsi? VeganMapping
+        {
+            get { return _veganMapping; }
+            set
+            {
+                if (_veganMapping != value)
+                {
+                    _veganMapping = value;
+                    OnPropertyChanged(nameof(VeganMapping));              
+                }
+            }
+        }
+        private string _veganMappedItemName;
+        public string VeganMappedItemName 
+        { 
+            get 
+            { if(_veganMappedItemName != null) {  return _veganMappedItemName; }
+                return "";
+            }         
+            set 
+            {
+                if (_veganMappedItemName != value)
+                {
+                    _veganMappedItemName = value;
+                    OnPropertyChanged(nameof(VeganMappedItemName));
+                }
+            } 
+        }
         
         public string _standardLabelFilepath;
         public string StandardLabelFilePath { 
@@ -216,6 +245,11 @@ namespace POMT_WPF.MVVM.ViewModel
                 CategoryId = item.CategoryId;
                 CategoryName = cs.GetCategoryName(CategoryId);
                 IsPOTM = item.IsPOTM;
+                if (item.VeganPieAssociation != null)
+                {
+                    _veganMapping = item.VeganPieAssociation;
+                    VeganMappedItemName = item.VeganPieAssociation.ItemName;
+                }
             }
         }
 
@@ -315,6 +349,13 @@ namespace POMT_WPF.MVVM.ViewModel
         public void UpdateSizeSetting(string sizeVariation,bool isChecked)
         {
             Item.UpdateSizeVariation(sizeVariation, isChecked);
+            UpdateCatalogModel();
+        }
+
+        public void SetVeganPieAssociation(CatalogItemPetsi selection)
+        {
+            Item.VeganPieAssociation = selection;
+            VeganMappedItemName = selection.ItemName;
             UpdateCatalogModel();
         }
     }

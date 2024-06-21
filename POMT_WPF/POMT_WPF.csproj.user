@@ -10,6 +10,9 @@
     <Compile Update="MVVM\View\AddNaturalNameView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="MVVM\View\CatalogItemVeganMapView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="MVVM\View\PetsiOrderFormErrorWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -31,6 +34,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\AddNaturalNameView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\CatalogItemVeganMapView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\PetsiOrderFormErrorWindow.xaml">

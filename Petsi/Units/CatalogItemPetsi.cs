@@ -30,7 +30,7 @@ namespace Petsi.Units
         public ListDictionary Variations { get; set; }
         public List<(string variationId, string variationName)> VariationList { get; set; }
         public List<(string variationId, string variationName)> DisabledVariationList { get; set; }
-
+        public CatalogItemPetsi VeganPieAssociation { get; set; }
         public string StandardLabelFilePath { get; set; }
         public string CutieLabelFilePath { get; set; }
         public bool IsPOTM {  get; set; }

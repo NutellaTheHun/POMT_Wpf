@@ -142,5 +142,15 @@ namespace POMT_WPF.MVVM.View
         {
             viewModel.SetIsPOTM(true);
         }
+
+        private void veganMapping_Click(object sender, RoutedEventArgs e)
+        {
+            CatalogItemVeganMapView veganMapView = new CatalogItemVeganMapView();
+            veganMapView.ShowDialog();
+            if (veganMapView.selection != null) 
+            {
+                viewModel.SetVeganPieAssociation((CatalogItemPetsi)veganMapView.selection);
+            }
+        }
     }
 }

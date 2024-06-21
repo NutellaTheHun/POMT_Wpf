@@ -212,7 +212,7 @@ namespace Petsi.Models
                 }
 
                 //combine periodic orders with oneshot orders and return
-                //periodicOrders.AddRange(query.ToList());
+                periodicOrders.AddRange(query.ToList());
                 return AggregatePetsiOrders(periodicOrders);
             }
             return AggregatePetsiOrders(query.ToList()); 

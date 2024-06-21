@@ -5,6 +5,7 @@ using Petsi.Managers;
 using Petsi.Models;
 using Petsi.Units;
 using Petsi.Utils;
+using Square.Models;
 
 namespace Petsi.Services
 {
@@ -265,6 +266,41 @@ namespace Petsi.Services
             CatalogItemPetsi result = null;
             catalogIdDict.TryGetValue(itemName, out result);
             return result;
+        }
+
+        public bool IsPOTM(string catalogObjectId)
+        {
+            foreach (CatalogItemPetsi item in catalog)
+            {
+                if(item.CatalogObjectId ==  catalogObjectId)
+                {
+                    return item.IsPOTM;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// If catalog item returned from backListItemId's VeganPieAssoication's catalogObjectId matches the target Id, returns true
+        /// </summary>
+        /// <param name="backListItemId">catalog item that could have a vegan counterpart</param>
+        /// <param name="targetId">the line item that is checked to be associated as vegan version of backlistItem</param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public bool IsVeganAssociate(string backListItemId, string targetId)
+        {
+            foreach (CatalogItemPetsi item in catalog)
+            {
+                if (item.CatalogObjectId == backListItemId)
+                {
+                    if(item.VeganPieAssociation != null)
+                    {
+                        return (item.VeganPieAssociation.CatalogObjectId == targetId);
+                    }
+                    break;
+                }
+            }
+            return false;
         }
     }
 }
