@@ -67,6 +67,7 @@ namespace Petsi.Utils
         public const string SERVICE_CATEGORY = "CATEGORY_SERVICE";
         public const string SERVICE_LABEL = "LABEL_SERVICE";
         public const string SERVICE_TEMPLATE = "TEMPLATE_SERVICE";
+        public const string SERVICE_ERROR = "ERROR_SERVICE";
 
         public const string USER_BASED_ID_TAG = "userbased-";
 
