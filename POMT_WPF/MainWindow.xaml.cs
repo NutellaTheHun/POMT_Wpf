@@ -1,4 +1,5 @@
-﻿using Petsi.Units;
+﻿using Petsi.Services;
+using Petsi.Units;
 using Petsi.Utils;
 using POMT_WPF.MVVM.View;
 using POMT_WPF.MVVM.ViewModel;
@@ -18,9 +19,18 @@ namespace POMT_WPF
         {
             InitializeComponent();
             viewModel = new MainWindowViewModel();
+
+            ErrorService.Instance().SoiNewItem += NotifyUserNewItem;
+
             dashboardDataGrid.ItemsSource = viewModel.Orders;
             dashboardDataGrid.MouseDoubleClick += DashboardDataGrid_MouseDoubleClick;
             DataContext = viewModel;
+        }
+
+        public void NotifyUserNewItem(object sender, EventArgs e)
+        {
+            NotifyNewCatalogItemView view = new NotifyNewCatalogItemView();
+            view.Show();
         }
 
         private void DashboardDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)

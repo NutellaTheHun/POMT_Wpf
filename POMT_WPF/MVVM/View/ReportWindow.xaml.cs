@@ -1,4 +1,5 @@
-﻿using POMT_WPF.MVVM.ViewModel;
+﻿using Petsi.Services;
+using POMT_WPF.MVVM.ViewModel;
 using System.Windows;
 
 namespace POMT_WPF.MVVM.View
@@ -13,6 +14,13 @@ namespace POMT_WPF.MVVM.View
         {
             InitializeComponent();
             rwvm = new ReportWindowViewModel();
+            ErrorService.Instance().TBOverflow += NotifyOverFlowEvent;
+        }
+
+        public void NotifyOverFlowEvent(object sender, EventArgs e)
+        {
+            NotifyTableBuilderOverFlow view = new NotifyTableBuilderOverFlow();
+            view.Show();
         }
 
         private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)

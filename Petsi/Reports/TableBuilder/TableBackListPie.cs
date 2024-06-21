@@ -70,6 +70,10 @@ namespace Petsi.Reports.TableBuilder
                         remainders.Add(item);
                     }
                 }
+                if (remainders.Count > 0)
+                {
+                    ErrorService.Instance().RaiseTBOverflowEvent();
+                }
             }
             FormatTable(page);
             _rowIndex = _rootPosition.row;
