@@ -115,7 +115,7 @@ namespace Petsi.Units
             if(Amount5 != other.Amount5) {  return false; }
             if(Amount8 != other.Amount8) { return false; }
             if(Amount10 != other.Amount10) {  return false; }
-            if(AmountRegular != other.Amount10) { return false; }
+            if(AmountRegular != other.AmountRegular) { return false; }
             
             return true;
         }
@@ -139,6 +139,13 @@ namespace Petsi.Units
         {
             CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
             return cs.IsVeganAssociate(backListItemId, CatalogObjectId);
+        }
+
+        public bool IsCategory(string categoryId)
+        {
+            CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
+            CatalogItemPetsi item = cs.GetCatalogItemById(CatalogObjectId);
+            return item.CategoryId == categoryId;
         }
     }
 }

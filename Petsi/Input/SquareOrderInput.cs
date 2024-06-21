@@ -178,9 +178,11 @@ namespace Petsi.Input
                 foreach (var modifier in squareOrderlineItem.Modifiers)
                 {
                     LineItem sconeLi = new LineItem();
-                    sconeLi.ItemName = modifier.Name + " scone";
+                    //sconeLi.ItemName = modifier.Name + " scone";
+                    sconeLi.ItemName = modifier.Name;
                     sconeLi.VariationId = squareOrderlineItem.CatalogObjectId;
-                    sconeLi.CatalogObjectId = sconeLi.ItemName;//Scone flavors dont exist in catalog, item name to supplement
+                    //sconeLi.CatalogObjectId = sconeLi.ItemName;//Scone flavors dont exist in catalog, item name to supplement
+                    sconeLi.CatalogObjectId = catalogLookup.GetCatalogObjectId(sconeLi.ItemName);
                     sconeLi.VariationName = Identifiers.SIZE_REGULAR;
 
                     //the "Box of..." has a quantity, and the modifiers have a quantity as well. If 2 boxes, with 2 scones of flavor A, total is 4 flavor A scones.

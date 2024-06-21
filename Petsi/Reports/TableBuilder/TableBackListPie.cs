@@ -61,10 +61,14 @@ namespace Petsi.Reports.TableBuilder
             }
             if(itemTracker.Count > 0)
             {
-                SystemLogger.Log("Items for backlist pie not added to BackListPage: ");
+                List<PetsiOrderLineItem> remainders = new List<PetsiOrderLineItem>();
+                //SystemLogger.Log("Items for backlist pie not added to BackListPage: ");
                 foreach(PetsiOrderLineItem item in itemTracker)
                 {
-                    SystemLogger.Log("   " + item.ItemName);
+                    if(item.IsCategory(Identifiers.CATEGORY_PIE))
+                    {
+                        remainders.Add(item);
+                    }
                 }
             }
             FormatTable(page);

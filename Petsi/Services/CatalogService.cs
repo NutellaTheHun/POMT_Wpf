@@ -44,22 +44,6 @@ namespace Petsi.Services
                 result = source.CatalogObjectId;
             }
             return result;
-            //if (catalogIdDict.TryGetValue(input, out source))
-            //{
-            //    if(source == null)
-            //    {
-            //        return "";
-            //    }
-            //    else
-            //    {
-            //        return source.CatalogObjectId;
-            //    }
-            //    //return result;
-            //}
-            //else
-            //{
-            //    throw new Exception("GetCatalogObjId key/value doesn't exist, key used: " + input);
-            //}
         }
         public bool IsModifyItem(string catalogObjectId)
         {
@@ -265,6 +249,19 @@ namespace Petsi.Services
         {
             CatalogItemPetsi result = null;
             catalogIdDict.TryGetValue(itemName, out result);
+            return result;
+        }
+
+        public CatalogItemPetsi GetCatalogItemById(string targetid)
+        {
+            CatalogItemPetsi result = null;
+            foreach (CatalogItemPetsi item in catalog)
+            {
+                if(item.CatalogObjectId == targetid)
+                {
+                    return item;
+                }
+            }
             return result;
         }
 

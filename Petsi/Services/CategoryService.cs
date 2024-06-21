@@ -118,5 +118,18 @@ namespace Petsi.Services
                 
             }
         }
+
+        public bool ValidateCategory(string categoryIdentifier, string categoryId)
+        {
+            //categoryList = new List<(string categoryName, string id)>();
+            foreach(var item in categoryList)
+            {
+                if (item.categoryName == categoryIdentifier)
+                {
+                    return item.id == categoryId;
+                }
+            }
+            return false;
+        }
     }
 }
