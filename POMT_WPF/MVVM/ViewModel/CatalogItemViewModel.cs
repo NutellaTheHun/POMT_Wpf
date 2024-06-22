@@ -272,15 +272,15 @@ namespace POMT_WPF.MVVM.ViewModel
         public void AddNaturalName(string naturalName)
         {
             NaturalNames.Add(naturalName);
-            Item.AddNaturalName(naturalName);
-            UpdateCatalogModel();
+            //Item.AddNaturalName(naturalName);
+            //UpdateCatalogModel();
         }
 
         public void RemoveNaturalName(string selectedItem)
         {
             NaturalNames.Remove(selectedItem);
-            Item.RemoveNaturalName(selectedItem);
-            UpdateCatalogModel();
+            //Item.RemoveNaturalName(selectedItem);
+            //UpdateCatalogModel();
         }
 
         public void SetCutieFile()
@@ -293,8 +293,8 @@ namespace POMT_WPF.MVVM.ViewModel
                 if (fileDialog.ShowDialog() == DialogResult.OK)
                 {
                     CutieLabelFilePath = fileDialog.FileName;
-                    Item.CutieLabelFilePath = fileDialog.FileName;
-                    UpdateCatalogModel();
+                    //Item.CutieLabelFilePath = fileDialog.FileName;
+                    //UpdateCatalogModel();
                 }
             }
         }
@@ -308,8 +308,8 @@ namespace POMT_WPF.MVVM.ViewModel
                 if (fileDialog.ShowDialog() == DialogResult.OK)
                 {
                     StandardLabelFilePath = fileDialog.FileName;
-                    Item.StandardLabelFilePath = fileDialog.FileName;
-                    UpdateCatalogModel();
+                    //Item.StandardLabelFilePath = fileDialog.FileName;
+                    //UpdateCatalogModel();
                 }
             }
         }
@@ -352,29 +352,29 @@ namespace POMT_WPF.MVVM.ViewModel
         }
         public void SetIsPOTM(bool isPOTM)
         {
-            Item.IsPOTM = isPOTM;
-            UpdateCatalogModel();
+            //Item.IsPOTM = isPOTM;
+            //UpdateCatalogModel();
         }
         private CategoryService GetCategoryService() { return (CategoryService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATEGORY); }
 
         public void UpdateSizeSetting(string sizeVariation,bool isChecked)
         {
             Item.UpdateSizeVariation(sizeVariation, isChecked);
-            UpdateCatalogModel();
+            //UpdateCatalogModel();
         }
 
         public void SetVeganPieAssociation(CatalogItemPetsi selection)
         {
-            Item.VeganPieAssociation = selection;
+            //Item.VeganPieAssociation = selection;
             VeganMappedItemName = selection.ItemName;
-            UpdateCatalogModel();
+            //UpdateCatalogModel();
         }
 
-        public bool ValidateNewCatalogItem()
+        public bool ValidateCatalogItem()
         {
             if (ItemName == "" || ItemName == null) { return false; }
             if(CategoryName == "" || CategoryName == null) { return false; }
-            if (!IsValidSizes(CategoryId)) { return false; }
+            //if (!IsValidSizes(CategoryId)) { return false; }
             return true;
         }
 
@@ -391,8 +391,8 @@ namespace POMT_WPF.MVVM.ViewModel
 
         public void SetItemName(string text)
         {
-            Item.ItemName = text;
-            UpdateCatalogModel();
+            //Item.ItemName = text;
+            //UpdateCatalogModel();
         }
 
         public void UpdateItem()
@@ -409,7 +409,7 @@ namespace POMT_WPF.MVVM.ViewModel
             Item.StandardLabelFilePath = StandardLabelFilePath;
             Item.CutieLabelFilePath = CutieLabelFilePath;
             Item.NaturalNames = NaturalNames.ToList();
-            //DisabledVariations?
+            UpdateCatalogModel();
         }
     }
 }

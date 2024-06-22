@@ -1,5 +1,4 @@
 ﻿using Petsi.Units;
-using Petsi.Utils;
 using POMT_WPF.MVVM.ViewModel;
 using System.Windows;
 using System.Windows.Media;
@@ -12,12 +11,24 @@ namespace POMT_WPF.MVVM.View
     public partial class CatalogItemViewWindow : Window
     {
         CatalogItemViewModel viewModel;
-        bool isEdited;
+        bool isEditable;
+        bool needsValidation;
         public CatalogItemViewWindow(CatalogItemPetsi? item)
         {
             InitializeComponent();
 
-            if (item == null) { isEdited = true; editToggleButton.Visibility = Visibility.Hidden; }
+            if (item == null) 
+            { 
+                isEditable = true;
+                AllowEditing(isEditable);
+                needsValidation = true;
+                editToggleButton.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                isEditable = false;
+                AllowEditing(isEditable);
+            }
             viewModel = new CatalogItemViewModel(item);
             DataContext = viewModel;
 
@@ -39,9 +50,9 @@ namespace POMT_WPF.MVVM.View
 
         private void ConfirmCloseWin_BtnClk(object sender, RoutedEventArgs e)
         {
-            if (isEdited)
+            if (needsValidation)
             {
-                if (viewModel.ValidateNewCatalogItem())
+                if (viewModel.ValidateCatalogItem())
                 {
                     viewModel.UpdateItem();
                     Close();
@@ -105,52 +116,52 @@ namespace POMT_WPF.MVVM.View
 
         private void regularCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            viewModel.UpdateSizeSetting(Identifiers.SIZE_REGULAR, true);
+            //viewModel.UpdateSizeSetting(Identifiers.SIZE_REGULAR, true);
         }
 
         private void cutieCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            viewModel.UpdateSizeSetting(Identifiers.SIZE_CUTIE, true);
+            //viewModel.UpdateSizeSetting(Identifiers.SIZE_CUTIE, true);
         }
 
         private void largeCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            viewModel.UpdateSizeSetting(Identifiers.SIZE_LARGE, true);
+           // viewModel.UpdateSizeSetting(Identifiers.SIZE_LARGE, true);
         }
 
         private void mediumCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            viewModel.UpdateSizeSetting(Identifiers.SIZE_MEDIUM, true);
+            //viewModel.UpdateSizeSetting(Identifiers.SIZE_MEDIUM, true);
         }
 
         private void smallCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            viewModel.UpdateSizeSetting(Identifiers.SIZE_SMALL, true);
+            //viewModel.UpdateSizeSetting(Identifiers.SIZE_SMALL, true);
         }
 
         private void regularCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
-            viewModel.UpdateSizeSetting(Identifiers.SIZE_REGULAR, false);
+           // viewModel.UpdateSizeSetting(Identifiers.SIZE_REGULAR, false);
         }
 
         private void cutieCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
-            viewModel.UpdateSizeSetting(Identifiers.SIZE_CUTIE, false);
+            //viewModel.UpdateSizeSetting(Identifiers.SIZE_CUTIE, false);
         }
 
         private void largeCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
-            viewModel.UpdateSizeSetting(Identifiers.SIZE_LARGE, false);
+           // viewModel.UpdateSizeSetting(Identifiers.SIZE_LARGE, false);
         }
 
         private void mediumCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
-            viewModel.UpdateSizeSetting(Identifiers.SIZE_MEDIUM, false);
+          //  viewModel.UpdateSizeSetting(Identifiers.SIZE_MEDIUM, false);
         }
 
         private void smallCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
-            viewModel.UpdateSizeSetting(Identifiers.SIZE_SMALL, false);
+           // viewModel.UpdateSizeSetting(Identifiers.SIZE_SMALL, false);
         }
 
         private void potm_checkBox_Unchecked(object sender, RoutedEventArgs e)
@@ -193,44 +204,34 @@ namespace POMT_WPF.MVVM.View
         private void editToggleButton_Click(object sender, RoutedEventArgs e)
         {
             viewModel.IsReadOnly = (viewModel.IsReadOnly == false);
-            isEdited = (isEdited == false);
-            if (isEdited) 
-            {
-                ItemNameTextBox.IsHitTestVisible = true;
-                CategoryComboBox.IsHitTestVisible = true;
-                smallCheckBox.IsHitTestVisible = true;
-                mediumCheckBox.IsHitTestVisible = true;
-                largeCheckBox.IsHitTestVisible = true;
-                regularCheckBox.IsHitTestVisible = true;
-                cutieCheckBox.IsHitTestVisible = true;
-                potm_checkBox.IsHitTestVisible = true;
-                addNaturalNameButton.IsHitTestVisible = true;
-                deleteNaturalNameButton.IsHitTestVisible = true;
-                setLabelFile.IsHitTestVisible = true;
-                setCutieFile.IsHitTestVisible = true;
-                veganMapping.IsHitTestVisible = true;
-            }
-            else
-            {
-                ItemNameTextBox.IsHitTestVisible = false;
-                CategoryComboBox.IsHitTestVisible = false;
-                smallCheckBox.IsHitTestVisible = false;
-                mediumCheckBox.IsHitTestVisible = false;
-                largeCheckBox.IsHitTestVisible = false;
-                regularCheckBox.IsHitTestVisible = false;
-                cutieCheckBox.IsHitTestVisible = false;
-                potm_checkBox.IsHitTestVisible = false;
-                addNaturalNameButton.IsHitTestVisible = false;
-                deleteNaturalNameButton.IsHitTestVisible = false;
-                setLabelFile.IsHitTestVisible = false;
-                setCutieFile.IsHitTestVisible = false;
-                veganMapping.IsHitTestVisible = false;
-            }
+
+            isEditable = (isEditable == false);
+
+            if (!needsValidation) { if (isEditable) needsValidation = true; }
+
+            AllowEditing(isEditable);
         }
 
         private void deleteItemBtn_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void AllowEditing(bool b)
+        {
+            ItemNameTextBox.IsHitTestVisible = b;
+            CategoryComboBox.IsHitTestVisible = b;
+            smallCheckBox.IsHitTestVisible = b;
+            mediumCheckBox.IsHitTestVisible = b;
+            largeCheckBox.IsHitTestVisible = b;
+            regularCheckBox.IsHitTestVisible = b;
+            cutieCheckBox.IsHitTestVisible = b;
+            potm_checkBox.IsHitTestVisible = b;
+            addNaturalNameButton.IsHitTestVisible = b;
+            deleteNaturalNameButton.IsHitTestVisible = b;
+            setLabelFile.IsHitTestVisible = b;
+            setCutieFile.IsHitTestVisible = b;
+            veganMapping.IsHitTestVisible = b;
         }
     }
 }
