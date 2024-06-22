@@ -191,6 +191,7 @@ namespace POMT_WPF.MVVM.View
         private void TextFillTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             //# D64933 chili red
+            //NEED FIX will return false if pre-existing name is changed and returned to original
             if (viewModel.ValidateCatalogName(ItemNameTextBox.Text))
             {
                 viewModel.SetItemName(ItemNameTextBox.Text);

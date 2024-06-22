@@ -403,6 +403,7 @@ namespace POMT_WPF.MVVM.ViewModel
             throw new NotImplementedException();
         }
 
+        //NEED FIX will return false if pre-existing name is changed and returned to original
         public bool ValidateCatalogName(string textBoxItemName)
         {
             CatalogService service = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
