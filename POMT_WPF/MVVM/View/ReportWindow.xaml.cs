@@ -1,4 +1,5 @@
-﻿using Petsi.Services;
+﻿using Petsi.Events;
+using Petsi.Services;
 using POMT_WPF.MVVM.ViewModel;
 using System.Windows;
 
@@ -17,9 +18,11 @@ namespace POMT_WPF.MVVM.View
             ErrorService.Instance().TBOverflow += NotifyOverFlowEvent;
         }
 
-        public void NotifyOverFlowEvent(object sender, EventArgs e)
+        public void NotifyOverFlowEvent(object sender, EventArgs e)//Error service is sender?
         {
-            NotifyTableBuilderOverFlow view = new NotifyTableBuilderOverFlow();
+            TBOverflowEventArgs args = (TBOverflowEventArgs)e;
+            NotifyTableBuilderOverFlow view = NotifyTableBuilderOverFlow.Instance();
+            NotifyTableBuilderOverFlow.UpdateListNames(args.OverflowList);
             view.Show();
         }
 

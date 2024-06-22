@@ -49,8 +49,7 @@
                 x:Name="overFlowItemListBox"
                 Grid.Row="2"
                 Width="300"
-                Height="200"
-                MouseDoubleClick="overFlowItemListBox_MouseDoubleClick" />
+                Height="200" />
             <StackPanel
                 Grid.Row="3"
                 Margin="20"

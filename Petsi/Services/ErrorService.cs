@@ -1,5 +1,6 @@
-﻿
+﻿using Petsi.Events;
 using Petsi.Models;
+using Petsi.Units;
 using Petsi.Utils;
 
 namespace Petsi.Services
@@ -34,9 +35,10 @@ namespace Petsi.Services
             throw new NotImplementedException();
         }
 
-        public void RaiseTBOverflowEvent()
+        public void RaiseTBOverflowEvent(List<PetsiOrderLineItem> overflowList)
         {
-            TBOverflow?.Invoke(this, EventArgs.Empty);
+            TBOverflowEventArgs args = new TBOverflowEventArgs(overflowList);
+            TBOverflow?.Invoke(this, args);
         }
 
         public void RaiseSoiNewItemEvent()

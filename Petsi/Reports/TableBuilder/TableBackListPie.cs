@@ -72,7 +72,7 @@ namespace Petsi.Reports.TableBuilder
                 }
                 if (remainders.Count > 0)
                 {
-                    ErrorService.Instance().RaiseTBOverflowEvent();
+                    ErrorService.Instance().RaiseTBOverflowEvent(remainders);
                 }
             }
             FormatTable(page);

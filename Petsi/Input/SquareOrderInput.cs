@@ -157,9 +157,10 @@ namespace Petsi.Input
                     if(modifier.Name == "Add your note in \"notes\" section in checkout") { continue; }
                     LineItem boxedli = new LineItem();
                     boxedli.ItemName = catalogLookup.ValidateModifyItemName(modifier.Name);
-                    
+
+
                     //item not matched to catalog item, error and must back out
-                    if(boxedli.ItemName == "") { return new List<LineItem>(); }
+                    if (boxedli.ItemName == "") { return new List<LineItem>(); }
 
                     boxedli.CatalogObjectId = catalogLookup.GetCatalogObjectId(boxedli.ItemName);
                     boxedli.VariationId = "modifierItem"+ boxedli.ItemName;
@@ -180,9 +181,14 @@ namespace Petsi.Input
                     LineItem sconeLi = new LineItem();
                     //sconeLi.ItemName = modifier.Name + " scone";
                     sconeLi.ItemName = modifier.Name;
+
                     sconeLi.VariationId = squareOrderlineItem.CatalogObjectId;
+
                     //sconeLi.CatalogObjectId = sconeLi.ItemName;//Scone flavors dont exist in catalog, item name to supplement
-                    sconeLi.CatalogObjectId = catalogLookup.GetCatalogObjectId(sconeLi.ItemName);
+
+                    sconeLi.CatalogObjectId = catalogLookup.GetCatalogObjectId(sconeLi.ItemName); //This function call currently will break when a new item comes in
+                    //**check if returns "" and handle?
+
                     sconeLi.VariationName = Identifiers.SIZE_REGULAR;
 
                     //the "Box of..." has a quantity, and the modifiers have a quantity as well. If 2 boxes, with 2 scones of flavor A, total is 4 flavor A scones.
@@ -219,6 +225,8 @@ namespace Petsi.Input
                 LineItem stdli = new LineItem();
                 stdli.VariationId = squareOrderlineItem.CatalogObjectId;
                 stdli.CatalogObjectId = catalogLookup.GetCatalogObjectId(stdli.VariationId);
+                //check if returns "" and handle?
+
                 stdli.VariationName = squareOrderlineItem.VariationName;
                 stdli.ItemName = squareOrderlineItem.Name;
                 stdli.Quantity = squareOrderlineItem.Quantity;
