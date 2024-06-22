@@ -10,6 +10,9 @@ namespace POMT_WPF.MVVM.ViewModel
 {
     public class PetsiOrderWindowViewModel : ViewModelBase
     {
+
+        #region props
+
         private PetsiOrder _order;
         CatalogService cs;
         public string Recipient
@@ -252,6 +255,8 @@ namespace POMT_WPF.MVVM.ViewModel
         }
 
         public List<string> OrderTypes;
+
+        #endregion
 
         public PetsiOrderWindowViewModel(PetsiOrder? petsiOrder)
         {

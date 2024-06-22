@@ -3,6 +3,7 @@ using Petsi.Models;
 using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
+using POMT_WPF.MVVM.ObsModels;
 using System.Collections.ObjectModel;
 using System.Windows.Forms;
 
@@ -213,17 +214,20 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }//******
-        
-        #endregion
 
-        public bool IsReadOnly { get; set; }
+        #endregion
+        private bool isNew;
+        //public bool IsReadOnly { get; set; }
         public CatalogItemViewModel(CatalogItemPetsi? item)
         {
             Item = item;
             if(Item == null)
             {
+                isNew = true;
                 Item = new CatalogItemPetsi();
                 NaturalNames = new ObservableCollection<string>();
+                CategoryService cs = GetCategoryService();
+                CategoryNames = new ObservableCollection<string>(cs.GetCategoryNames());
             }
             else
             {
@@ -267,6 +271,7 @@ namespace POMT_WPF.MVVM.ViewModel
                     VeganMappedItemName = item.VeganPieAssociation.ItemName;
                 }
             }
+
         }
 
         public void AddNaturalName(string naturalName)
@@ -316,7 +321,16 @@ namespace POMT_WPF.MVVM.ViewModel
         private void UpdateCatalogModel()
         {
             CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
-            cmp.UpdateModel();
+            if (isNew)
+            {
+                ObsCatalogModelSingleton.AddItem(Item);
+            }
+            else
+            {
+                //cmp.UpdateModel();
+                ObsCatalogModelSingleton.ModifyItem(Item);
+            }
+            
         }
 
         public object SetSelectedItem()
@@ -341,12 +355,13 @@ namespace POMT_WPF.MVVM.ViewModel
             result = cs.GetCategoryIdByCategoryName(categoryName);
             if (result != "")
             {
-                Item.CategoryId = result;
-                UpdateCatalogModel();
+                //Item.CategoryId = result;
+                CategoryId = result;
+                //UpdateCatalogModel();
             }
             else
             {
-                SystemLogger.Log("CatalogItemViewModel for item: " + Item.ItemName + " set category with input: \"" + categoryName + "\" returned empty");
+                SystemLogger.Log("CatalogItemViewModel for item: " + ItemName + " set category with input: \"" + categoryName + "\" returned empty");
             }
               
         }
@@ -356,12 +371,14 @@ namespace POMT_WPF.MVVM.ViewModel
             //UpdateCatalogModel();
         }
         private CategoryService GetCategoryService() { return (CategoryService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATEGORY); }
-
+        
+        /*
         public void UpdateSizeSetting(string sizeVariation,bool isChecked)
         {
             Item.UpdateSizeVariation(sizeVariation, isChecked);
             //UpdateCatalogModel();
         }
+        */
 
         public void SetVeganPieAssociation(CatalogItemPetsi selection)
         {
@@ -401,14 +418,15 @@ namespace POMT_WPF.MVVM.ViewModel
             Item.CategoryId = CategoryId;
             Item.IsPOTM = IsPOTM;
             Item.VeganPieAssociation = VeganMapping;
-            UpdateSizeSetting(Identifiers.SIZE_SMALL, IsSmall);
-            UpdateSizeSetting(Identifiers.SIZE_MEDIUM, IsMedium);
-            UpdateSizeSetting(Identifiers.SIZE_LARGE, IsLarge);
-            UpdateSizeSetting(Identifiers.SIZE_REGULAR, IsRegular);
-            UpdateSizeSetting(Identifiers.SIZE_CUTIE, IsCutie);
+            Item.UpdateSizeVariation(Identifiers.SIZE_SMALL, IsSmall);
+            Item.UpdateSizeVariation(Identifiers.SIZE_MEDIUM, IsMedium);
+            Item.UpdateSizeVariation(Identifiers.SIZE_LARGE, IsLarge);
+            Item.UpdateSizeVariation(Identifiers.SIZE_REGULAR, IsRegular);
+            Item.UpdateSizeVariation(Identifiers.SIZE_CUTIE, IsCutie);
             Item.StandardLabelFilePath = StandardLabelFilePath;
             Item.CutieLabelFilePath = CutieLabelFilePath;
             Item.NaturalNames = NaturalNames.ToList();
+
             UpdateCatalogModel();
         }
     }

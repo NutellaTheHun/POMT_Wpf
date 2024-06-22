@@ -14,6 +14,7 @@ namespace POMT_WPF.MVVM.View
         CatalogItemViewModel viewModel;
         bool isEditable;
         bool needsValidation;
+        bool isNew;
         public CatalogItemViewWindow(CatalogItemPetsi? item)
         {
             InitializeComponent();
@@ -204,7 +205,7 @@ namespace POMT_WPF.MVVM.View
 
         private void editToggleButton_Click(object sender, RoutedEventArgs e)
         {
-            viewModel.IsReadOnly = (viewModel.IsReadOnly == false);
+            //viewModel.IsReadOnly = (viewModel.IsReadOnly == false);
 
             isEditable = (isEditable == false);
 

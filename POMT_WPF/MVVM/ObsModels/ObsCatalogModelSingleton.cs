@@ -77,7 +77,7 @@ namespace POMT_WPF.MVVM.ObsModels
                 Instance.Notify();
             }
         }
-        public void AddItemMainModel(CatalogItemPetsi catalogItem)
+        private void AddItemMainModel(CatalogItemPetsi catalogItem)
         {
             _cmp.AddOrder(catalogItem);
         }
@@ -95,12 +95,12 @@ namespace POMT_WPF.MVVM.ObsModels
                 Instance.Notify();
             }
         }
-        public void RemoveItemMainModel(CatalogItemPetsi catalogItem)
+        private void RemoveItemMainModel(CatalogItemPetsi catalogItem)
         {
             _cmp.RemoveItem(catalogItem);
         }
 
-        public void ModifyItem(CatalogItemPetsi modCatalogItem)
+        public static void ModifyItem(CatalogItemPetsi modCatalogItem)
         {
             int index = 0;
             bool isfound = false;
@@ -124,7 +124,7 @@ namespace POMT_WPF.MVVM.ObsModels
                 SystemLogger.Log("ObsCatalogModel item not found: " + modCatalogItem.ItemName + " : " +  modCatalogItem.CatalogObjectId);
             }
         }
-        public void ModifyItemMainModel(CatalogItemPetsi catalogItem)
+        private void ModifyItemMainModel(CatalogItemPetsi catalogItem)
         {
             _cmp.ModifyItem(catalogItem);
         }
