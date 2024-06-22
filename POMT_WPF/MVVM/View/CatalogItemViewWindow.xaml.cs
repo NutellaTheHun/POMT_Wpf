@@ -216,14 +216,14 @@ namespace POMT_WPF.MVVM.View
 
         private void deleteItemBtn_Click(object sender, RoutedEventArgs e)
         {
-            /*
+            
             ConfirmationWindow confirmationWindow = new ConfirmationWindow();
             confirmationWindow.ShowDialog();
             if (confirmationWindow.ControlBool)
             {
-                ObsOrderModelSingleton.RemoveOrder(ViewModel.OrderId);
+                ObsCatalogModelSingleton.RemoveItem(viewModel.CatalogItem);
                 Close();
-            }*/
+            }
         }
 
         private void AllowEditing(bool b)
