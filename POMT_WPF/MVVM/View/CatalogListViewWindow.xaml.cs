@@ -29,11 +29,6 @@ namespace POMT_WPF.MVVM.View
             Close();
         }
 
-        private void AddLineItem_BtnClk(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void CatalogListDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var catalogListDataGrid = sender as DataGrid;
@@ -51,6 +46,12 @@ namespace POMT_WPF.MVVM.View
         private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        private void AddCatalogItemBtn_Click(object sender, RoutedEventArgs e)
+        {
+            CatalogItemViewWindow view = new CatalogItemViewWindow(null);
+            view.Show();
         }
     }
 }

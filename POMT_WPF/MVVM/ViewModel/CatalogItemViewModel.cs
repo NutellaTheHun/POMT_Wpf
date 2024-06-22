@@ -9,7 +9,10 @@ using System.Windows.Forms;
 namespace POMT_WPF.MVVM.ViewModel
 {
     public class CatalogItemViewModel : ViewModelBase
-    { 
+    {
+
+        #region props
+
         private bool _isSmall;
         public bool IsSmall
         {
@@ -22,7 +25,7 @@ namespace POMT_WPF.MVVM.ViewModel
                     OnPropertyChanged(nameof(IsSmall));
                 }
             }
-        }
+        }//******
 
         private bool _isMedium;
         public bool IsMedium
@@ -36,7 +39,7 @@ namespace POMT_WPF.MVVM.ViewModel
                     OnPropertyChanged(nameof(IsMedium));
                 }
             }
-        }
+        }//******
 
         private bool _isLarge;
         public bool IsLarge
@@ -50,7 +53,7 @@ namespace POMT_WPF.MVVM.ViewModel
                     OnPropertyChanged(nameof(IsLarge));
                 }
             }
-        }
+        }//******
 
         private bool _isRegular;
         public bool IsRegular
@@ -64,7 +67,7 @@ namespace POMT_WPF.MVVM.ViewModel
                     OnPropertyChanged(nameof(IsRegular));
                 }
             }
-        }
+        }//******
 
         private bool _isCutie;
         public bool IsCutie
@@ -78,7 +81,8 @@ namespace POMT_WPF.MVVM.ViewModel
                     OnPropertyChanged(nameof(IsCutie));
                 }
             }
-        }
+        }//******
+
         private bool _isPOTM;
         public bool IsPOTM
         {
@@ -91,9 +95,9 @@ namespace POMT_WPF.MVVM.ViewModel
                     OnPropertyChanged(nameof(IsPOTM));
                 }
             }
-        }
+        }//******
 
-        public ObservableCollection<string> NaturalNames;
+        public ObservableCollection<string> NaturalNames;//******
 
         public ObservableCollection<string> CategoryNames;
         
@@ -138,9 +142,9 @@ namespace POMT_WPF.MVVM.ViewModel
                     _veganMappedItemName = value;
                     OnPropertyChanged(nameof(VeganMappedItemName));
                 }
-            } 
-        }
-        
+            }
+        }//******
+
         public string _standardLabelFilepath;
         public string StandardLabelFilePath { 
             get { return _standardLabelFilepath; }
@@ -152,7 +156,7 @@ namespace POMT_WPF.MVVM.ViewModel
                     OnPropertyChanged(nameof(StandardLabelFilePath));
                 }
             }
-        }
+        }//******
 
         public string _cutieLabelFilepath;
         public string CutieLabelFilePath
@@ -166,7 +170,7 @@ namespace POMT_WPF.MVVM.ViewModel
                     OnPropertyChanged(nameof(CutieLabelFilePath));
                 }
             }
-        }
+        }//******
 
         public string _categoryId;
         public string CategoryId 
@@ -194,8 +198,25 @@ namespace POMT_WPF.MVVM.ViewModel
                     OnPropertyChanged(nameof(CategoryName));
                 }
             }
-        }
+        }//******
 
+        public string _itemName;
+        public string ItemName
+        {
+            get { return _itemName; }
+            set
+            {
+                if (_itemName != value)
+                {
+                    _itemName = value;
+                    OnPropertyChanged(nameof(ItemName));
+                }
+            }
+        }//******
+        
+        #endregion
+
+        public bool IsReadOnly { get; set; }
         public CatalogItemViewModel(CatalogItemPetsi? item)
         {
             Item = item;
@@ -230,32 +251,22 @@ namespace POMT_WPF.MVVM.ViewModel
                         IsRegular = true;
                     }
                 }
-                //Natural Names
+
                 NaturalNames = new ObservableCollection<string>(item.NaturalNames);
-                //StandardLabelFp
-
                 StandardLabelFilePath = item.StandardLabelFilePath;
-                //CutieLabelFp
                 CutieLabelFilePath = item.CutieLabelFilePath;
-                //Category
-                CategoryService cs = GetCategoryService();
-                //CategoryNames = 
+                CategoryService cs = GetCategoryService(); 
                 CategoryNames = new ObservableCollection<string>(cs.GetCategoryNames());
-
                 CategoryId = item.CategoryId;
                 CategoryName = cs.GetCategoryName(CategoryId);
                 IsPOTM = item.IsPOTM;
+                ItemName = item.ItemName;
                 if (item.VeganPieAssociation != null)
                 {
                     _veganMapping = item.VeganPieAssociation;
                     VeganMappedItemName = item.VeganPieAssociation.ItemName;
                 }
             }
-        }
-
-        public void AddCatalogItem()
-        {
-           
         }
 
         public void AddNaturalName(string naturalName)
@@ -321,13 +332,13 @@ namespace POMT_WPF.MVVM.ViewModel
             return null;
         }
 
-        public void SetCategory(string? v)
+        public void SetCategory(string? categoryName)
         {
-            if(v == null) { return; }
+            if(categoryName == null) { return; }
 
             CategoryService cs = GetCategoryService();
             string result = "";
-            result = cs.GetCategoryIdByCategoryName(v);
+            result = cs.GetCategoryIdByCategoryName(categoryName);
             if (result != "")
             {
                 Item.CategoryId = result;
@@ -335,7 +346,7 @@ namespace POMT_WPF.MVVM.ViewModel
             }
             else
             {
-                SystemLogger.Log("CatalogItemViewModel for item: " + Item.ItemName + " set category with input: \"" + v + "\" returned empty");
+                SystemLogger.Log("CatalogItemViewModel for item: " + Item.ItemName + " set category with input: \"" + categoryName + "\" returned empty");
             }
               
         }
@@ -357,6 +368,48 @@ namespace POMT_WPF.MVVM.ViewModel
             Item.VeganPieAssociation = selection;
             VeganMappedItemName = selection.ItemName;
             UpdateCatalogModel();
+        }
+
+        public bool ValidateNewCatalogItem()
+        {
+            if (ItemName == "" || ItemName == null) { return false; }
+            if(CategoryName == "" || CategoryName == null) { return false; }
+            if (!IsValidSizes(CategoryId)) { return false; }
+            return true;
+        }
+
+        private bool IsValidSizes(string categoryId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool ValidateCatalogName(string textBoxItemName)
+        {
+            CatalogService service = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
+            return service.GetCatalogItem(textBoxItemName) == null;
+        }
+
+        public void SetItemName(string text)
+        {
+            Item.ItemName = text;
+            UpdateCatalogModel();
+        }
+
+        public void UpdateItem()
+        {
+            Item.ItemName = ItemName;
+            Item.CategoryId = CategoryId;
+            Item.IsPOTM = IsPOTM;
+            Item.VeganPieAssociation = VeganMapping;
+            UpdateSizeSetting(Identifiers.SIZE_SMALL, IsSmall);
+            UpdateSizeSetting(Identifiers.SIZE_MEDIUM, IsMedium);
+            UpdateSizeSetting(Identifiers.SIZE_LARGE, IsLarge);
+            UpdateSizeSetting(Identifiers.SIZE_REGULAR, IsRegular);
+            UpdateSizeSetting(Identifiers.SIZE_CUTIE, IsCutie);
+            Item.StandardLabelFilePath = StandardLabelFilePath;
+            Item.CutieLabelFilePath = CutieLabelFilePath;
+            Item.NaturalNames = NaturalNames.ToList();
+            //DisabledVariations?
         }
     }
 }

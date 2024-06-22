@@ -2,6 +2,7 @@
 using Petsi.Utils;
 using POMT_WPF.MVVM.ViewModel;
 using System.Windows;
+using System.Windows.Media;
 
 namespace POMT_WPF.MVVM.View
 {
@@ -11,13 +12,18 @@ namespace POMT_WPF.MVVM.View
     public partial class CatalogItemViewWindow : Window
     {
         CatalogItemViewModel viewModel;
+        bool isEdited;
         public CatalogItemViewWindow(CatalogItemPetsi? item)
         {
             InitializeComponent();
+
+            if (item == null) { isEdited = true; editToggleButton.Visibility = Visibility.Hidden; }
             viewModel = new CatalogItemViewModel(item);
             DataContext = viewModel;
+
             NaturalNamesListBox.ItemsSource = viewModel.NaturalNames;
             CategoryComboBox.ItemsSource = viewModel.CategoryNames;
+
             InitCategoryComboBoxSelection();
         }
 
@@ -33,7 +39,19 @@ namespace POMT_WPF.MVVM.View
 
         private void ConfirmCloseWin_BtnClk(object sender, RoutedEventArgs e)
         {
-            //Error Handle form
+            if (isEdited)
+            {
+                if (viewModel.ValidateNewCatalogItem())
+                {
+                    viewModel.UpdateItem();
+                    Close();
+                }
+                else
+                {
+                    PetsiOrderFormErrorWindow errorWindow = new PetsiOrderFormErrorWindow("Invalid catalog item entry.");
+                    errorWindow.Show();
+                }
+            }
             Close();
         }
 
@@ -48,7 +66,7 @@ namespace POMT_WPF.MVVM.View
         {
             AddNaturalNameView view = new AddNaturalNameView();
             view.ShowDialog();
-            if(view.ControlBool)
+            if (view.ControlBool)
             {
                 viewModel.AddNaturalName(view.naturalName);
             }
@@ -83,6 +101,8 @@ namespace POMT_WPF.MVVM.View
             viewModel.SetCategory(CategoryComboBox.SelectedItem.ToString());
         }
 
+        #region checkEvents
+
         private void regularCheckBox_Checked(object sender, RoutedEventArgs e)
         {
             viewModel.UpdateSizeSetting(Identifiers.SIZE_REGULAR, true);
@@ -105,7 +125,7 @@ namespace POMT_WPF.MVVM.View
 
         private void smallCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            viewModel.UpdateSizeSetting(Identifiers.SIZE_SMALL,true);
+            viewModel.UpdateSizeSetting(Identifiers.SIZE_SMALL, true);
         }
 
         private void regularCheckBox_Unchecked(object sender, RoutedEventArgs e)
@@ -143,14 +163,74 @@ namespace POMT_WPF.MVVM.View
             viewModel.SetIsPOTM(true);
         }
 
+        #endregion
+
         private void veganMapping_Click(object sender, RoutedEventArgs e)
         {
             CatalogItemVeganMapView veganMapView = new CatalogItemVeganMapView();
             veganMapView.ShowDialog();
-            if (veganMapView.selection != null) 
+            if (veganMapView.selection != null)
             {
                 viewModel.SetVeganPieAssociation((CatalogItemPetsi)veganMapView.selection);
             }
+        }
+
+        private void TextFillTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            //# D64933 chili red
+            if (viewModel.ValidateCatalogName(ItemNameTextBox.Text))
+            {
+                viewModel.SetItemName(ItemNameTextBox.Text);
+            }
+            else
+            {
+                BrushConverter brushConverter = new BrushConverter();
+                Brush brush = (Brush)brushConverter.ConvertFromString("#D64933");
+                ItemNameTextBox.Background = brush;
+            }
+        }
+
+        private void editToggleButton_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.IsReadOnly = (viewModel.IsReadOnly == false);
+            isEdited = (isEdited == false);
+            if (isEdited) 
+            {
+                ItemNameTextBox.IsHitTestVisible = true;
+                CategoryComboBox.IsHitTestVisible = true;
+                smallCheckBox.IsHitTestVisible = true;
+                mediumCheckBox.IsHitTestVisible = true;
+                largeCheckBox.IsHitTestVisible = true;
+                regularCheckBox.IsHitTestVisible = true;
+                cutieCheckBox.IsHitTestVisible = true;
+                potm_checkBox.IsHitTestVisible = true;
+                addNaturalNameButton.IsHitTestVisible = true;
+                deleteNaturalNameButton.IsHitTestVisible = true;
+                setLabelFile.IsHitTestVisible = true;
+                setCutieFile.IsHitTestVisible = true;
+                veganMapping.IsHitTestVisible = true;
+            }
+            else
+            {
+                ItemNameTextBox.IsHitTestVisible = false;
+                CategoryComboBox.IsHitTestVisible = false;
+                smallCheckBox.IsHitTestVisible = false;
+                mediumCheckBox.IsHitTestVisible = false;
+                largeCheckBox.IsHitTestVisible = false;
+                regularCheckBox.IsHitTestVisible = false;
+                cutieCheckBox.IsHitTestVisible = false;
+                potm_checkBox.IsHitTestVisible = false;
+                addNaturalNameButton.IsHitTestVisible = false;
+                deleteNaturalNameButton.IsHitTestVisible = false;
+                setLabelFile.IsHitTestVisible = false;
+                setCutieFile.IsHitTestVisible = false;
+                veganMapping.IsHitTestVisible = false;
+            }
+        }
+
+        private void deleteItemBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -18,7 +18,6 @@ namespace POMT_WPF.MVVM.View
         private NotifyTableBuilderOverFlow()
         {
             InitializeComponent();
-            //ObservableCollection<string> OverflowListNames = new ObservableCollection<string>();
             overFlowItemListBox.ItemsSource = OverflowListNames;
         }
 
@@ -27,18 +26,6 @@ namespace POMT_WPF.MVVM.View
             if (instance == null) { instance = new NotifyTableBuilderOverFlow(); }
             return instance;
         }
-        //public NotifyTableBuilderOverFlow(EventArgs e)
-        //{
-        //    var args = (TBOverflowEventArgs)e;
-        //    InitializeComponent();
-        //    ObservableCollection<string> OverflowListNames = new ObservableCollection<string>();
-        //    foreach (var item in args.OverflowList)
-        //    {
-        //        Over
-        //    }
-        //    OverflowListNames.AddRange(args.OverflowList.Select( x => x.ItemName).ToList());
-        //    overFlowItemListBox.ItemsSource = OverflowListNames;
-        //}
 
         public static void UpdateListNames(List<PetsiOrderLineItem> overflowList)
         {
@@ -47,7 +34,6 @@ namespace POMT_WPF.MVVM.View
                 instance.OverflowListNames.Add(item.ItemName);
             }
         }
-
         private void closeBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();

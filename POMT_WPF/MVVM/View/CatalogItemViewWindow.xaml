@@ -50,6 +50,17 @@
                 FontSize="24"
                 Foreground="White"
                 Text="Catalog Item View" />
+            <ToggleButton
+                x:Name="editToggleButton"
+                Grid.Row="1"
+                Width="60"
+                Height="20"
+                Margin="0,5,20,5"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Click="editToggleButton_Click"
+                Content="edit"
+                Style="{StaticResource orderFormEditButton}" />
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -61,8 +72,10 @@
                 <StackPanel Grid.Column="0" Orientation="Vertical">
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                         <local:TextFillTextBox
+                            x:Name="ItemNameTextBox"
+                            LostFocus="TextFillTextBox_LostFocus"
                             Style="{StaticResource textFillTextBox}"
-                            Text="{Binding Item.ItemName}"
+                            Text="{Binding ItemName}"
                             TextFill="Item Name ..." />
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
@@ -245,6 +258,14 @@
                         Width="80"
                         Click="CloseWindow_ButtonClick"
                         Content="Cancel"
+                        Style="{StaticResource secondaryButton}" />
+                    <Button
+                        x:Name="deleteItemBtn"
+                        Margin="100,10,0,0"
+                        HorizontalAlignment="Right"
+                        Background="{StaticResource ChiliRed}"
+                        Click="deleteItemBtn_Click"
+                        Content="Delete"
                         Style="{StaticResource secondaryButton}" />
                     <!--  Delete button for pre-existing items if arg(injection) is null gate?  -->
                 </StackPanel>

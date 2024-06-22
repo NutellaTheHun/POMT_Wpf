@@ -30,12 +30,6 @@ namespace Petsi.Services
         {
             List<string> result = new List<string>();
             result.AddRange(categoryList.Select(item => item.categoryName));
-            /*
-            foreach(var item in categoryList)
-            {
-                result.Add(item.name);
-            }
-            */
             return result;
         }
 
@@ -104,11 +98,6 @@ namespace Petsi.Services
                     categoryMap.TryAdd(item.CatalogObjectId, item.CategoryId);
                     if(item.VariationList != null)
                     {
-                        /*
-                        foreach (DictionaryEntry entry in item.Variations)
-                        {
-                            categoryMap.TryAdd((string)entry.Key, item.CategoryId);
-                        }*/
                         foreach(var entry in item.VariationList)
                         {
                             categoryMap.TryAdd(entry.variationId, item.CategoryId);
@@ -121,7 +110,6 @@ namespace Petsi.Services
 
         public bool ValidateCategory(string categoryIdentifier, string categoryId)
         {
-            //categoryList = new List<(string categoryName, string id)>();
             foreach(var item in categoryList)
             {
                 if (item.categoryName == categoryIdentifier)
