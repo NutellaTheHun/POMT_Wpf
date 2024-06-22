@@ -1,12 +1,12 @@
 ﻿using Petsi.Models;
-using Petsi.Managers;
 using Petsi.Units;
-using Petsi.Utils;
 using System.Collections.ObjectModel;
+using POMT_WPF.MVVM.ObsModels;
+using POMT_WPF.Interfaces;
 
 namespace POMT_WPF.MVVM.ViewModel
 {
-    public class CatalogListViewWindowModel : ViewModelBase
+    public class CatalogListViewWindowModel : ViewModelBase, IObsCatalogModelSubscriber
     {
         CatalogModelPetsi cmp;
 
@@ -39,9 +39,15 @@ namespace POMT_WPF.MVVM.ViewModel
 
         public CatalogListViewWindowModel()
         {
-            cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
-            Items = new ObservableCollection<CatalogItemPetsi>(cmp.GetItems());
+            //cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
+            //Items = new ObservableCollection<CatalogItemPetsi>(cmp.GetItems());
+            ObsCatalogModelSingleton.Instance.Subscribe(this);
+            Items = ObsCatalogModelSingleton.Instance.CatalogItems;
         }
 
+        public void Update()
+        {
+           Items = ObsCatalogModelSingleton.Instance.CatalogItems;
+        }
     }
 }

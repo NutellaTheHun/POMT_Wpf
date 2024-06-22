@@ -1,4 +1,5 @@
-﻿using Petsi.Managers;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using Petsi.Managers;
 using Petsi.Models;
 using Petsi.Units;
 using Petsi.Utils;
@@ -42,7 +43,9 @@ namespace POMT_WPF.MVVM.ObsModels
                 }
             }
         }
+
         private List<IObsOrderModelSubscriber> _subscriptions;
+
         private ObsOrderModelSingleton()
         {
             _omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
@@ -70,26 +73,45 @@ namespace POMT_WPF.MVVM.ObsModels
         public static void ModifyOrder(PetsiOrder modOrder)
         {
             int index = 0;
+            bool isfound = false;
             foreach(PetsiOrder order  in Instance.Orders)
             {
                 if(order.OrderId == modOrder.OrderId)
                 {
                     index = Instance.Orders.IndexOf(order);
+                    isfound = true;
                     break;
                 }
             }
-            Instance.Orders[index] = modOrder;
-            Instance.ModifyOrderMainModel(modOrder);
-            Instance.Notify();
+            if(isfound)
+            {
+                Instance.Orders[index] = modOrder;
+                Instance.ModifyOrderMainModel(modOrder);
+                Instance.Notify();
+            }
+            else
+            {
+                SystemLogger.Log("ObsOrderModel modifyorder failed: " + modOrder.Recipient + modOrder.OrderId);
+            }
+
         }
         public static void RemoveOrder(string orderId)
         {
             var orderToRemove = Instance.Orders.FirstOrDefault(order => order.OrderId == orderId);
             if (orderToRemove != null)
             {
+                int count = Instance.Orders.Count;
                 Instance.Orders.Remove(orderToRemove);
+                if(count-1 != Instance.Orders.Count)
+                {
+                    SystemLogger.Log("ObsOrderModel RemoveOrder failed with order: " + orderToRemove.Recipient + " : " + orderToRemove.OrderId);
+                }
                 Instance.RemoveOrderMainModel(orderId);
                 Instance.Notify();
+            }
+            else
+            {
+                SystemLogger.Log("ObsOrderModel RemoveOrder could not locat order with id: " + orderId);
             }
         }
         public void AddOrderMainModel(PetsiOrder order)

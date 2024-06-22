@@ -1,4 +1,5 @@
 ﻿using Petsi.Units;
+using POMT_WPF.MVVM.ObsModels;
 using POMT_WPF.MVVM.ViewModel;
 using System.Windows;
 using System.Windows.Media;
@@ -214,7 +215,14 @@ namespace POMT_WPF.MVVM.View
 
         private void deleteItemBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            /*
+            ConfirmationWindow confirmationWindow = new ConfirmationWindow();
+            confirmationWindow.ShowDialog();
+            if (confirmationWindow.ControlBool)
+            {
+                ObsOrderModelSingleton.RemoveOrder(ViewModel.OrderId);
+                Close();
+            }*/
         }
 
         private void AllowEditing(bool b)

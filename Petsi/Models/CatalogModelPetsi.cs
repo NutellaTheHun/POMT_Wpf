@@ -6,7 +6,6 @@ using Petsi.Managers;
 using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
-using System.Collections;
 
 namespace Petsi.Models
 {
@@ -78,9 +77,17 @@ namespace Petsi.Models
 
         public override void AddOrder(ModelUnitBase item)
         {
+            int count = items.Count;
             items.Add((CatalogItemPetsi)item);
-            SaveMainModel();
-            NotifyModelServices();
+            if(count+1 != items.Count)
+            {
+                SystemLogger.Log("cmp AddOrder failure: ");
+            }
+            else
+            {
+                SaveMainModel();
+                NotifyModelServices();
+            }
         }
 
         public void SetCategoryList(List<(string, string)> categories){ Categories = categories; }
@@ -145,6 +152,26 @@ namespace Petsi.Models
                 {
                     dict[item.ItemName] = item;
                 }
+
+                /* //Removed variation tuples that were errantly created.
+                   //Items from square do not need UserbasedIds which were uninentionally created and need to be removed
+                   //Items that have userbasedIds got them because the item didnt exist in square's catalog, these shouldn't be pruned
+                foreach(var variation in item.VariationList.ToList())
+                {
+                    if (!variation.variationId.Contains("userbased")) //if an item has square catalog Ids, they dont need userGenerated Ids and needs to be pruned
+                    {
+                        List<(string variationId, string variationName)> copy = new List<(string variationId, string variationName)>(item.VariationList);
+                        foreach (var var in copy)
+                        {
+                            if(var.variationId.Contains("userbased")) //removes all userbased IDs
+                            {
+                                item.VariationList.Remove(var);
+                            }
+                        }
+                        break;
+                    }
+                }
+                */
             }
             return dict.Values.ToList();
         }
@@ -212,7 +239,40 @@ namespace Petsi.Models
 
         public void RemoveItem(CatalogItemPetsi order)
         {
+            int count = items.Count;
             items.Remove(order);
+            if (count - 1 == items.Count)
+            {
+                UpdateModel();
+            }
+            else
+            {
+                SystemLogger.Log("CatalogModel remove item failed, original count:  " + count + " after operation: " + items.Count);
+            }
+        }
+
+        public void ModifyItem(CatalogItemPetsi catalogItem)
+        {
+            int index = 0;
+            bool isFound = false;
+            foreach (CatalogItemPetsi item in items)
+            {
+                if (item.CatalogObjectId == catalogItem.CatalogObjectId)
+                {
+                    index = items.IndexOf(item);
+                    isFound = true;
+                    break;
+                }
+            }
+            if(isFound)
+            {
+                items[index] = catalogItem;
+                UpdateModel();
+            }
+            else
+            {
+                SystemLogger.Log("CatalogModelPetsi modifyItem not found: " + catalogItem.ItemName + " " + ": " + catalogItem.CatalogObjectId);
+            }
         }
     }
 }
