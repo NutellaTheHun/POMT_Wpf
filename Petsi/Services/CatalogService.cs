@@ -121,7 +121,7 @@ namespace Petsi.Services
             }
             else if (results.Count > 1)
             {
-                /*if (name == "Lemon")//temporary until square updates "Lemon" to "Lemon Glaze"
+                if (name == "Lemon")//temporary until square updates "Lemon" to "Lemon Glaze"
                 {
                     return ValidateModifyItemName("Lemon Glaze");
                 }
@@ -132,15 +132,11 @@ namespace Petsi.Services
                     {
                         SystemLogger.Log("   " + results[i]);
                     }
-                }*/
+                }
 
                 ErrorService.Instance().RaiseSoiMultiItemEvent(name, results);
 
                 return name;
-            }
-            if (name == "Lemon Glaze")//temporary until square updates "Lemon" to "Lemon Glaze"
-            {
-                return ValidateModifyItemName("Lemon")/*.Result*/;
             }
             return results[0].ItemName;
         }

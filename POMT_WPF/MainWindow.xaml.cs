@@ -32,8 +32,7 @@ namespace POMT_WPF
 
         public void NotifyUserNewItem(object sender, EventArgs e)
         {
-            SoiNewItemEventArgs args = (SoiNewItemEventArgs)e;
-            NotifyNewCatalogItemView view = new NotifyNewCatalogItemView();
+            NotifyNewCatalogItemView view = new NotifyNewCatalogItemView((SoiNewItemEventArgs)e);
             view.Show();
         }
 
