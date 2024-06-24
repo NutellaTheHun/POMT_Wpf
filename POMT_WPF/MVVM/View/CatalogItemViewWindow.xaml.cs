@@ -226,7 +226,6 @@ namespace POMT_WPF.MVVM.View
                 Close();
             }
         }
-
         private void AllowEditing(bool b)
         {
             ItemNameTextBox.IsHitTestVisible = b;
@@ -243,5 +242,7 @@ namespace POMT_WPF.MVVM.View
             setCutieFile.IsHitTestVisible = b;
             veganMapping.IsHitTestVisible = b;
         }
+
+        public void ErrorEventSetItemName(string itemContext) { viewModel.ItemName = itemContext; }
     }
 }

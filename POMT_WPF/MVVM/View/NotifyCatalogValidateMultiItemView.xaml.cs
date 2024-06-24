@@ -34,7 +34,7 @@ namespace POMT_WPF.MVVM.View
         {      
             CatalogItemViewWindow view = new CatalogItemViewWindow(null);
             //Get itemContext to new catalogItem somehow ?
-            view.ItemNameTextBox.Text = ItemContext;
+            view.ErrorEventSetItemName(ItemContext);
             view.ShowDialog();
 
             //update omp with new catalog item
@@ -47,17 +47,13 @@ namespace POMT_WPF.MVVM.View
         {
             if (multiItemListBox.SelectedItem != null)
             {
-                CatalogItemPetsi selectedItem = (CatalogItemPetsi)multiItemListBox.SelectedItem;
-                CatalogItemPetsi matchItem = MultiItemList.FirstOrDefault(x => x.ItemName == selectedItem.ItemName);
+                string selectedItemName = (string)multiItemListBox.SelectedItem;
+                CatalogItemPetsi matchItem = MultiItemList.FirstOrDefault(x => x.ItemName == selectedItemName);
                 matchItem.NaturalNames.Add(ItemContext);
                 ObsCatalogModelSingleton.ModifyItem(matchItem);
                 ObsOrderModelSingleton.UpdateMultiLineMatchEvent();
+                Close();
             }
-        }
-
-        private void closeBtn_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

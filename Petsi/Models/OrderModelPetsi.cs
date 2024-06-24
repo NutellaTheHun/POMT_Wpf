@@ -407,16 +407,18 @@ namespace Petsi.Models
         {
             if(modOrder != null)
             {
+                bool isFound = false;
                 int index = 0;
                 foreach (PetsiOrder order in OneShotOrders)
                 {
                     if (order.OrderId == modOrder.OrderId)
                     {
                         index = OneShotOrders.IndexOf(order);
+                        isFound = true;
                         break;
                     }
                 }
-                OneShotOrders[index] = modOrder;
+                if (isFound) { OneShotOrders[index] = modOrder; }
             }
 
             fileBehavior.DataListToFile(Identifiers.ONE_SHOT_ORDERS, OneShotOrders);   
@@ -427,15 +429,17 @@ namespace Petsi.Models
             if (modOrder != null)
             {
                 int index = 0;
+                bool isFound = false;
                 foreach (PetsiOrder order in PeriodicOrders)
                 {
                     if (order.OrderId == modOrder.OrderId)
                     {
                         index = PeriodicOrders.IndexOf(order);
+                        isFound = true;
                         break;
                     }
                 }
-                PeriodicOrders[index] = modOrder;
+                if (isFound) {  PeriodicOrders[index] = modOrder;}
             }
 
             fileBehavior.DataListToFile(Identifiers.PERIODIC_ORDERS, PeriodicOrders);

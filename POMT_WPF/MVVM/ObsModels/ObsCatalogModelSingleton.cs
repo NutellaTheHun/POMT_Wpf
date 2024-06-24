@@ -10,7 +10,7 @@ namespace POMT_WPF.MVVM.ObsModels
 {
     public class ObsCatalogModelSingleton
     {
-        private static ObsCatalogModelSingleton _instance;
+        
         private CatalogModelPetsi _cmp;
 
         private List<IObsCatalogModelSubscriber> _subscriptions;
@@ -41,6 +41,8 @@ namespace POMT_WPF.MVVM.ObsModels
             CatalogItems = new ObservableCollection<CatalogItemPetsi>(_cmp.GetItems());
             _subscriptions = new List<IObsCatalogModelSubscriber>();
         }
+
+        private static ObsCatalogModelSingleton _instance;
         public static ObsCatalogModelSingleton Instance
         {
             get
@@ -104,11 +106,11 @@ namespace POMT_WPF.MVVM.ObsModels
         {
             int index = 0;
             bool isfound = false;
-            foreach (CatalogItemPetsi item in _instance.CatalogItems)
+            foreach (CatalogItemPetsi item in Instance.CatalogItems)
             {
                 if (item.CatalogObjectId == modCatalogItem.CatalogObjectId)
                 {
-                    index = _instance.CatalogItems.IndexOf(item);
+                    index = Instance.CatalogItems.IndexOf(item);
                     isfound = true;
                     break;
                 }

@@ -131,13 +131,14 @@ namespace POMT_WPF.MVVM.ObsModels
         public static void UpdateMultiLineMatchEvent()
         {
             CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
-            foreach(PetsiOrder order in Instance.Orders)
+            List<PetsiOrder> copy = new List<PetsiOrder>(Instance.Orders);
+            foreach(PetsiOrder order in copy)
             {
                 foreach(PetsiOrderLineItem line in order.LineItems)
                 {
                     if(line.CatalogObjectId == Identifiers.SOI_MULTI_LINE_EVENT_ID_SIG)
                     {
-                        line.CatalogObjectId = cs.GetCatalogObjectId(line.CatalogObjectId);
+                        line.CatalogObjectId = cs.GetCatalogObjectId(line.ItemName);
                         if(line.CatalogObjectId == "")
                         {
                             SystemLogger.Log("Update MultiLineMatch Event FAILED: recipient " + order.Recipient + " item: " + line.ItemName);

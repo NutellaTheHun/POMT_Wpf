@@ -27,7 +27,7 @@ namespace Petsi.Services
         #endregion
 
         #region events
-
+        List<EventArgs> mainWindowEvents = new List<EventArgs>();
         //Table Builder Overflow Event
         public delegate void TableBuilderOverflowEvent(object sender, EventArgs e);
 
@@ -46,7 +46,8 @@ namespace Petsi.Services
         public void RaiseSoiNewItemEvent(CatalogItemPetsi newItem)
         {
             SoiNewItemEventArgs args = new SoiNewItemEventArgs(newItem);
-            SoiNewItem?.Invoke(this, args);
+            mainWindowEvents.Add(args);
+            //SoiNewItem?.Invoke(this, args);
         }
 
         //Square Order Input Multi Item Event
@@ -63,8 +64,24 @@ namespace Petsi.Services
             {
                 multiItemNameEventCalls.Add(itemContext);
                 SoiMultiItemEventArgs args = new SoiMultiItemEventArgs(itemContext, multiItemList);
-                SoiMultiItem?.Invoke(this, args);
+                mainWindowEvents.Add(args);
+                //SoiMultiItem?.Invoke(this, args);
             }          
+        }
+
+        public static void RaiseMainWindowEvents()
+        {
+            foreach(var args in Instance().mainWindowEvents)
+            {
+                if (args.GetType() == typeof(SoiNewItemEventArgs))
+                {
+                    Instance().SoiNewItem?.Invoke(Instance(), args);
+                }
+                if (args.GetType() == typeof(SoiMultiItemEventArgs))
+                {
+                    Instance().SoiMultiItem?.Invoke(Instance(), args);
+                }
+            }
         }
 
         #endregion

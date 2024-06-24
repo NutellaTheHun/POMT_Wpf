@@ -27,18 +27,19 @@ namespace POMT_WPF
             dashboardDataGrid.ItemsSource = viewModel.Orders;
             dashboardDataGrid.MouseDoubleClick += DashboardDataGrid_MouseDoubleClick;
             DataContext = viewModel;
+            ErrorService.RaiseMainWindowEvents();
         }
 
         public void NotifyUserNewItem(object sender, EventArgs e)
         {
-            SoiNewItemEventArgs args = (SoiNewItemEventArgs)sender;
+            SoiNewItemEventArgs args = (SoiNewItemEventArgs)e;
             NotifyNewCatalogItemView view = new NotifyNewCatalogItemView();
             view.Show();
         }
 
         public void NotifyUserMultiItemMatch(object sender, EventArgs e)
         {
-            SoiMultiItemEventArgs args = (SoiMultiItemEventArgs)sender;
+            SoiMultiItemEventArgs args = (SoiMultiItemEventArgs)e;
             NotifyCatalogValidateMultiItemView view = new NotifyCatalogValidateMultiItemView();
             view.UpdateListNames(args.MultItemList);
             view.SetItemContext(args.ItemContext);
