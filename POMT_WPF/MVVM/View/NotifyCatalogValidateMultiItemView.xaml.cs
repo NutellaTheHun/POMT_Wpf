@@ -1,0 +1,63 @@
+﻿using Petsi.Units;
+using POMT_WPF.MVVM.ObsModels;
+using System.Collections.ObjectModel;
+using System.Windows;
+
+namespace POMT_WPF.MVVM.View
+{
+    /// <summary>
+    /// Interaction logic for NotifyCatalogValidateMultiItemView.xaml
+    /// </summary>
+    public partial class NotifyCatalogValidateMultiItemView : Window
+    {
+        public ObservableCollection<string> MultiItemListNames = new ObservableCollection<string>();
+        public List<CatalogItemPetsi> MultiItemList = new List<CatalogItemPetsi>();
+        string ItemContext { get; set; }
+        public NotifyCatalogValidateMultiItemView()
+        {
+            InitializeComponent();
+            multiItemListBox.ItemsSource = MultiItemListNames;
+        }
+
+        public void UpdateListNames(List<CatalogItemPetsi> overflowList)
+        {
+            MultiItemList = overflowList;
+            foreach (var item in overflowList)
+            {
+                MultiItemListNames.Add(item.ItemName);
+            }
+        }
+
+        public void SetItemContext(string itemContext) { ItemContext = itemContext; }
+
+        private void createBtn_Click(object sender, RoutedEventArgs e)
+        {      
+            CatalogItemViewWindow view = new CatalogItemViewWindow(null);
+            //Get itemContext to new catalogItem somehow ?
+            view.ItemNameTextBox.Text = ItemContext;
+            view.ShowDialog();
+
+            //update omp with new catalog item
+            ObsOrderModelSingleton.UpdateMultiLineMatchEvent();
+
+            Close();
+        }
+
+        private void selectBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (multiItemListBox.SelectedItem != null)
+            {
+                CatalogItemPetsi selectedItem = (CatalogItemPetsi)multiItemListBox.SelectedItem;
+                CatalogItemPetsi matchItem = MultiItemList.FirstOrDefault(x => x.ItemName == selectedItem.ItemName);
+                matchItem.NaturalNames.Add(ItemContext);
+                ObsCatalogModelSingleton.ModifyItem(matchItem);
+                ObsOrderModelSingleton.UpdateMultiLineMatchEvent();
+            }
+        }
+
+        private void closeBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+    }
+}

@@ -366,7 +366,12 @@ namespace Petsi.Models
                 }
             }
         }
-
+        /// <summary>
+        /// If modOrder is found in the OneShotOrders list, it is removed.
+        /// Neccessary for the case that a order is changed from periodic to oneshot.
+        /// </summary>
+        /// <param name="modOrder"></param>
+        /// <returns></returns>
         private bool HandleOneShotOrdersContains(PetsiOrder modOrder)
         {
             foreach (PetsiOrder order in OneShotOrders)
@@ -379,7 +384,12 @@ namespace Petsi.Models
             }
             return false;
         }
-
+        /// <summary>
+        /// If modOrder is found in the PeriodicOrders list, it is removed.
+        /// Neccessary for the case that a order is changed from oneshot to periodic.
+        /// </summary>
+        /// <param name="modOrder"></param>
+        /// <returns></returns>
         private bool HandlePeriodicOrdersContains(PetsiOrder modOrder)
         {
             foreach (PetsiOrder order in PeriodicOrders)

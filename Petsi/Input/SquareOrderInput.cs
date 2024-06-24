@@ -129,6 +129,7 @@ namespace Petsi.Input
                         item.Pickup_time = orderItem.Fulfillments[0].DeliveryDetails.DeliverAt;
                         item.Note = orderItem.Fulfillments[0].DeliveryDetails.Note;
                         item.RecipientName = orderItem.Fulfillments[0].DeliveryDetails.Recipient.DisplayName;
+                        //del address
                     }
 
                     foreach (var lineItem in orderItem.LineItems)
@@ -154,22 +155,28 @@ namespace Petsi.Input
                 string catalogObjId, varId;
                 foreach (var modifier in squareOrderlineItem.Modifiers)
                 {
-                    if(modifier.Name == "Add your note in \"notes\" section in checkout") { continue; }
-                    LineItem boxedli = new LineItem();
-                    boxedli.ItemName = catalogLookup.ValidateModifyItemName(modifier.Name);
+                    if(modifier.Name == Identifiers.MODIFY_NAME_NOTE_CARD) { continue; }
 
+                    LineItem boxedli = new LineItem();
+                    boxedli.ItemName = catalogLookup.ValidateModifyItemName(modifier.Name); //Will create a new item in catalog if no match is found.
 
                     //item not matched to catalog item, error and must back out
-                    if (boxedli.ItemName == "") { return new List<LineItem>(); }
+                    //if (boxedli.ItemName == "") { return new List<LineItem>(); }
 
                     boxedli.CatalogObjectId = catalogLookup.GetCatalogObjectId(boxedli.ItemName);
+                    if(boxedli.CatalogObjectId == "")//will return "" if ValidateModifyItemName finds multiple results.
+                    {
+                        //Temporary ID for an item when a multiItem match event occurs, is resolved after user intervention window. (NotifyCatalogValidateMultiItemView.cs)
+                        boxedli.CatalogObjectId = Identifiers.SOI_MULTI_LINE_EVENT_ID_SIG;
+                    }
+
                     boxedli.VariationId = "modifierItem"+ boxedli.ItemName;
                     boxedli.VariationName = Identifiers.SIZE_REGULAR;
-                    boxedli.ItemName = modifier.Name;
 
-                    //the "Box of..." has a quantity, and the modifiers have a quantity as well. If 2 boxes, with 2 scones of flavor A, total is 4 flavor A scones.
-                    //boxedli.Quantity = (int.Parse(modifier.Quantity) * int.Parse(squareOrderlineItem.Quantity)).ToString();
+                    //boxedli.ItemName = modifier.Name; //??? second assignment?
+
                     boxedli.Quantity = modifier.Quantity;
+
                     lineItems.Add(boxedli);
                 }
             }
@@ -180,19 +187,24 @@ namespace Petsi.Input
                 {
                     LineItem sconeLi = new LineItem();
                     //sconeLi.ItemName = modifier.Name + " scone";
-                    sconeLi.ItemName = modifier.Name;
+                    //sconeLi.ItemName = modifier.Name;
+                    sconeLi.ItemName = catalogLookup.ValidateModifyItemName(modifier.Name); //Will create a new item in catalog if no match is found.
 
                     sconeLi.VariationId = squareOrderlineItem.CatalogObjectId;
 
                     //sconeLi.CatalogObjectId = sconeLi.ItemName;//Scone flavors dont exist in catalog, item name to supplement
 
                     sconeLi.CatalogObjectId = catalogLookup.GetCatalogObjectId(sconeLi.ItemName); //This function call currently will break when a new item comes in
-                    //**check if returns "" and handle?
+                    if (sconeLi.CatalogObjectId == "") //will return "" if ValidateModifyItemName finds multiple results.
+                    {
+                        //Temporary ID for an item when a multiItem match event occurs, is resolved after user intervention window. (NotifyCatalogValidateMultiItemView.cs)
+                        sconeLi.CatalogObjectId = Identifiers.SOI_MULTI_LINE_EVENT_ID_SIG;
+                    }
 
                     sconeLi.VariationName = Identifiers.SIZE_REGULAR;
-
-                    //the "Box of..." has a quantity, and the modifiers have a quantity as well. If 2 boxes, with 2 scones of flavor A, total is 4 flavor A scones.
-                    sconeLi.Quantity = (int.Parse(modifier.Quantity) * int.Parse(squareOrderlineItem.Quantity)).ToString();
+                   
+                    //sconeLi.Quantity = (int.Parse(modifier.Quantity) * int.Parse(squareOrderlineItem.Quantity)).ToString();
+                    sconeLi.Quantity = modifier.Quantity;
                     lineItems.Add(sconeLi);
                 }
             }
@@ -204,7 +216,7 @@ namespace Petsi.Input
                 sconeLi.CatalogObjectId = sconeLi.ItemName;//Scone flavors dont exist in catalog, item name to supplement
                 sconeLi.VariationName = Identifiers.SIZE_REGULAR;
 
-                //the "Box of..." has a quantity, and the modifiers have a quantity as well. If 2 boxes, with 2 scones of flavor A, total is 4 flavor A scones.
+                
                 sconeLi.Quantity = (6 * int.Parse(squareOrderlineItem.Quantity)).ToString();
                 lineItems.Add(sconeLi);
             }
@@ -216,8 +228,19 @@ namespace Petsi.Input
                 bisc.VariationId = "VWA4YKGMLWXG5P5B3CE2NFBE";
                 bisc.VariationName = Identifiers.SIZE_REGULAR;
                 bisc.Quantity = (6*int.Parse(squareOrderlineItem.Quantity)).ToString();
-                //the "Box of..." has a quantity, and the modifiers have a quantity as well. If 2 boxes, with 2 scones of flavor A, total is 4 flavor A scones.
+                
                 lineItems.Add(bisc);
+            }
+            else if (squareOrderlineItem.CatalogObjectId == Identifiers.BOX_OF_6_BLUEBERRY_MUFFINS)
+            {
+                LineItem muff = new LineItem();
+                muff.ItemName = "Blueberry Muffin";
+                muff.CatalogObjectId = catalogLookup.GetCatalogObjectId(muff.ItemName);
+                muff.VariationId = "63N53J6WJ42OE4QAVHDVIZW4";
+                muff.VariationName = Identifiers.SIZE_REGULAR;
+                muff.Quantity = (6 * int.Parse(squareOrderlineItem.Quantity)).ToString();
+                
+                lineItems.Add(muff);
             }
             //all other "standard" items
             else

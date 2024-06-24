@@ -61,7 +61,11 @@ namespace Petsi.Utils
         public const string MODIFY_BOX_OF_6_MUFFINS = "3PISTAMARHW6Q5CWUO3GPE5S";
         public const string MODIFY_SCONE = "UFVOR7Y5GMDEATE32T4M2IAI";
         public const string BOX_OF_SCONES_VARIATION = "box of scones";
-        public const string BOX_OF_6_BACON_BISCUITS = "A5QLMWSYER6MJXANX5FOE7FE";
+        public const string BOX_OF_6_BACON_BISCUITS = "A5QLMWSYER6MJXANX5FOE7FE"; //seems to be for chill only
+        public const string BOX_OF_6_BLUEBERRY_MUFFINS = "DZEF5HUCVC5LFXIYPMUPKSEM"; //seems to be for chill only
+
+        //Temporary ID for an item when a multiItem match event occurs, is resolved after user intervention window. (NotifyCatalogValidateMultiItemView.cs)
+        public const string SOI_MULTI_LINE_EVENT_ID_SIG = "%FIND_NEW_ID"; 
 
         public const string SERVICE_CATALOG = "CATALOG_SERVICE";
         public const string SERVICE_CATEGORY = "CATEGORY_SERVICE";

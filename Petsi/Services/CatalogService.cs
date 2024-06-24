@@ -79,10 +79,20 @@ namespace Petsi.Services
             catalogId = "";
             return false;
         }
+
+        /// <summary>
+        /// Will match the given modifer name to item name in catalog, 
+        /// returns catalog item's name if 1 match is found
+        /// creates a new item in catalog if 0 matches are found
+        /// returns "" if multiple matches are found
+        /// </summary>
+        /// <param name="name">item name from modifiers section of squareOrderLineItem</param>
+        /// <returns></returns>
         public string ValidateModifyItemName(string name)
         {
-            List<string> results = new List<string>();
-
+            List<CatalogItemPetsi> results = new List<CatalogItemPetsi>();
+            results = GetItemNameValidationResults(name);
+            /*
             foreach (CatalogItemPetsi item in catalog)
             {
                 if (item.ItemName.ToLower().Contains(name.ToLower()) || item.NaturalNameContains(name.ToLower()))
@@ -90,20 +100,23 @@ namespace Petsi.Services
                     results.Add(item.ItemName);
                 }
             }
+            */
+            
+            //HANDLE ADDING NEW ITEM TO CATALOG -> NOTIFY USER
             if (results.Count == 0)
             {
-                //throw new Exception("No matching catalog name found from given modified name: " + name);
-                //string correction = await HandleNewModifier(name);
-                //results.Add(correction);
-
                 //Handle an unknown modifer name, either create a new catalog item, or add to natural name
                 //CommandFrame.GetInstance().InjectErrorHandlingFrame(new CatalogServiceErrorFrameBehavior(name));
                 //HandleNewModifier(name);
+
                 CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
                 CatalogItemPetsi newItem = new CatalogItemPetsi();
                 newItem.ItemName = name;
                 newItem.CatalogObjectId = GenerateCatalogId();
                 cmp.AddNewItem(newItem);
+
+                ErrorService.Instance().RaiseSoiNewItemEvent(newItem);
+
                 return ValidateModifyItemName(name);
             }
             else if (results.Count > 1)
@@ -114,15 +127,18 @@ namespace Petsi.Services
                 }
                 else
                 {
-                    Console.WriteLine("multiple matching catalog names found from given modified name: " + name);
+                    SystemLogger.Log("multiple matching catalog names found from given modified name: " + name);
                     for (int i = 0; i < results.Count; i++)
                     {
-                        Console.WriteLine("   " + results[i]);
+                        SystemLogger.Log("   " + results[i]);
                     }
                 }
-                return "";
+
+                ErrorService.Instance().RaiseSoiMultiItemEvent(name, results);
+
+                return name;
             }
-            return results[0];
+            return results[0].ItemName;
         }
 
         private void HandleNewModifier(string name)
@@ -197,6 +213,12 @@ namespace Petsi.Services
             return result;
         }
 
+        /// <summary>
+        /// matches the given name for an item name in the catalog. Searches in a priority of itemName to natural name,
+        /// and if name equals the source to the name contains the source. used in fuzzy search and validating modifier names.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public List<CatalogItemPetsi> GetItemNameValidationResults(string name)
         {
             List<CatalogItemPetsi> results = new List<CatalogItemPetsi>();

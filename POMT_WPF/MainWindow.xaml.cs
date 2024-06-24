@@ -1,4 +1,5 @@
-﻿using Petsi.Services;
+﻿using Petsi.Events;
+using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
 using POMT_WPF.MVVM.View;
@@ -21,6 +22,7 @@ namespace POMT_WPF
             viewModel = new MainWindowViewModel();
 
             ErrorService.Instance().SoiNewItem += NotifyUserNewItem;
+            ErrorService.Instance().SoiMultiItem += NotifyUserMultiItemMatch;
 
             dashboardDataGrid.ItemsSource = viewModel.Orders;
             dashboardDataGrid.MouseDoubleClick += DashboardDataGrid_MouseDoubleClick;
@@ -29,7 +31,17 @@ namespace POMT_WPF
 
         public void NotifyUserNewItem(object sender, EventArgs e)
         {
+            SoiNewItemEventArgs args = (SoiNewItemEventArgs)sender;
             NotifyNewCatalogItemView view = new NotifyNewCatalogItemView();
+            view.Show();
+        }
+
+        public void NotifyUserMultiItemMatch(object sender, EventArgs e)
+        {
+            SoiMultiItemEventArgs args = (SoiMultiItemEventArgs)sender;
+            NotifyCatalogValidateMultiItemView view = new NotifyCatalogValidateMultiItemView();
+            view.UpdateListNames(args.MultItemList);
+            view.SetItemContext(args.ItemContext);
             view.Show();
         }
 

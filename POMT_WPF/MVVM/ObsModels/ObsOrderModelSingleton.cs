@@ -1,6 +1,7 @@
 ﻿using DocumentFormat.OpenXml.Wordprocessing;
 using Petsi.Managers;
 using Petsi.Models;
+using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
 using POMT_WPF.Interfaces;
@@ -125,6 +126,29 @@ namespace POMT_WPF.MVVM.ObsModels
         public void RemoveOrderMainModel(string orderId)
         {
             _omp.RemoveItem(orderId);
-        } 
+        }
+
+        public static void UpdateMultiLineMatchEvent()
+        {
+            CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
+            foreach(PetsiOrder order in Instance.Orders)
+            {
+                foreach(PetsiOrderLineItem line in order.LineItems)
+                {
+                    if(line.CatalogObjectId == Identifiers.SOI_MULTI_LINE_EVENT_ID_SIG)
+                    {
+                        line.CatalogObjectId = cs.GetCatalogObjectId(line.CatalogObjectId);
+                        if(line.CatalogObjectId == "")
+                        {
+                            SystemLogger.Log("Update MultiLineMatch Event FAILED: recipient " + order.Recipient + " item: " + line.ItemName);
+                        }
+                        else
+                        {
+                            ModifyOrder(order);
+                        }
+                    }
+                }
+            }
+        }
     }
 }

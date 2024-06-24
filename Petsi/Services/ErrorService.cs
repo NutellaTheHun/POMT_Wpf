@@ -7,18 +7,8 @@ namespace Petsi.Services
 {
     public class ErrorService : ServiceBase
     {
+        #region singleton/Observer
         public static ErrorService instance;
-
-
-        public delegate void TableBuilderOverflowEvent(object sender, EventArgs e);
-
-        public event TableBuilderOverflowEvent TBOverflow;
-
-
-        public delegate void SquareOrderInputNewItemEvent(object sender, EventArgs e);
-
-        public event SquareOrderInputNewItemEvent SoiNewItem;
-
         private ErrorService()
         {
             SetServiceName(Identifiers.SERVICE_ERROR);
@@ -26,24 +16,57 @@ namespace Petsi.Services
 
         public static ErrorService Instance()
         {
-            if(instance == null) { instance = new ErrorService(); }
+            if (instance == null) { instance = new ErrorService(); }
             return instance;
         }
-
         public override void Update(ModelBase model)
         {
             throw new NotImplementedException();
         }
 
+        #endregion
+
+        #region events
+
+        //Table Builder Overflow Event
+        public delegate void TableBuilderOverflowEvent(object sender, EventArgs e);
+
+        public event TableBuilderOverflowEvent TBOverflow;
         public void RaiseTBOverflowEvent(List<PetsiOrderLineItem> overflowList)
         {
             TBOverflowEventArgs args = new TBOverflowEventArgs(overflowList);
             TBOverflow?.Invoke(this, args);
         }
 
-        public void RaiseSoiNewItemEvent()
+        //Square Order Input New Item Event
+        public delegate void SquareOrderInputNewItemEvent(object sender, EventArgs e);
+
+        public event SquareOrderInputNewItemEvent SoiNewItem;
+
+        public void RaiseSoiNewItemEvent(CatalogItemPetsi newItem)
         {
-            SoiNewItem?.Invoke(this, EventArgs.Empty);
+            SoiNewItemEventArgs args = new SoiNewItemEventArgs(newItem);
+            SoiNewItem?.Invoke(this, args);
         }
+
+        //Square Order Input Multi Item Event
+        public delegate void SquareOrderInputMultiItemEvent(object sender, EventArgs e);
+
+        public event SquareOrderInputMultiItemEvent SoiMultiItem;
+
+        //To prevent duplicate windows being created for each time the same item returns multiple matches
+        List<string> multiItemNameEventCalls = new List<string>();
+        public void RaiseSoiMultiItemEvent(string itemContext, List<CatalogItemPetsi> multiItemList)
+        {
+            //If event hasn't been raised for the given item name
+            if(!Instance().multiItemNameEventCalls.Contains(itemContext))
+            {
+                multiItemNameEventCalls.Add(itemContext);
+                SoiMultiItemEventArgs args = new SoiMultiItemEventArgs(itemContext, multiItemList);
+                SoiMultiItem?.Invoke(this, args);
+            }          
+        }
+
+        #endregion
     }
 }
