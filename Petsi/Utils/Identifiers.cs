@@ -10,6 +10,7 @@ namespace Petsi.Utils
         public const string USER_ENTERED_INPUT = "UserEntered";
         public const string PERIODIC_ORDERS = "periodicOrder";
         public const string ONE_SHOT_ORDERS = "oneShotOrder";
+        public const string FROZEN_ORDERS = "frozenOrders";
 
         public const string DELETED_ORDERS = "deletedOrders";
 

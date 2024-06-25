@@ -18,6 +18,7 @@ namespace Petsi.Units
         public bool IsPeriodic { get; set; }
         public bool IsOneShot { get; set; }
         public bool IsUserEntered { get; set; }
+        public bool IsFrozen { get; set; }
         public string OrderType { get; set; }
         public string DisplayOrderDueDate
         {

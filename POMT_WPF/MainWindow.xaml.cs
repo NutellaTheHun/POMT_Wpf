@@ -145,10 +145,22 @@ namespace POMT_WPF
             viewModel.FilterOrderType(Identifiers.ORDER_TYPE_SQUARE);
             dashboardDataGrid.ItemsSource = viewModel.Orders;
         }
-        private void FilterOther_Button_Click(object sender, RoutedEventArgs e)
+        private void FilterSpecial_Button_Click(object sender, RoutedEventArgs e)
         {
             viewModel.FilterOrderType(Identifiers.ORDER_TYPE_SPECIAL);
             dashboardDataGrid.ItemsSource = viewModel.Orders;
+        }
+
+        private void FilterRetail_Button_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.FilterOrderType(Identifiers.ORDER_TYPE_RETAIL);
+            dashboardDataGrid.ItemsSource = viewModel.Orders;
+        }
+
+        private void FilterFrozen_Button_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.FilterOrderType(Identifiers.ORDER_TYPE_RETAIL);
+            dashboardDataGrid.ItemsSource = viewModel.FrozenOrders;
         }
 
         private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)

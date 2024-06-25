@@ -395,5 +395,16 @@ namespace POMT_WPF.MVVM.ViewModel
                 lineItem.NotReadOnly = true;
             }
         }
+        public void HandleOrderFreezeToggle(bool? isChecked)
+        {
+            if (isChecked.Value)
+            {
+                ObsOrderModelSingleton.FreezeOrder(_order);
+            }
+            else
+            {
+                ObsOrderModelSingleton.ThawOrder(_order);
+            }
+        }
     }
 }

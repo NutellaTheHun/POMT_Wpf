@@ -151,5 +151,38 @@ namespace POMT_WPF.MVVM.ObsModels
                 }
             }
         }
+
+        public static List<PetsiOrder> GetFrozenOrders()
+        {
+            return Instance._omp.GetFrozenOrders();
+        }
+
+        public static void FreezeOrder(PetsiOrder order)
+        {
+            Instance._omp.FreezeOrder(order);
+
+            var orderToRemove = Instance.Orders.FirstOrDefault(x => x.OrderId == order.OrderId);
+            if (orderToRemove != null)
+            {
+                int count = Instance.Orders.Count;
+                Instance.Orders.Remove(orderToRemove);
+                if (count - 1 != Instance.Orders.Count)
+                {
+                    SystemLogger.Log("ObsOrderModel RemoveOrder failed with order: " + orderToRemove.Recipient + " : " + orderToRemove.OrderId);
+                }
+                Instance.Notify();
+            }
+            else
+            {
+                SystemLogger.Log("ObsOrderModel RemoveOrder could not locat order with id: " + order.OrderId);
+            }
+        }
+
+        public static void ThawOrder(PetsiOrder order)
+        {
+            Instance._omp.ThawOrder(order);
+            Instance.Orders.Add(order);
+            Instance.Notify();
+        }
     }
 }

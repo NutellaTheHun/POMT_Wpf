@@ -155,16 +155,6 @@
                         Foreground="#40474C"
                         Text=" Orders" />
                 </StackPanel>
-                <!--<TextBlock
-                    Grid.Row="1"
-                    Margin="0,20,0,0"
-                    HorizontalAlignment="Left"
-                    FontSize="32"
-                    FontWeight="SemiBold"
-                    Foreground="#40474C"
-                    Text="X Orders" />-->
-
-                <!--  Add Button  -->
                 <Button
                     Grid.Row="1"
                     Margin="0,0,0,4"
@@ -213,11 +203,23 @@
                         GroupName="g1"
                         Style="{StaticResource tabButton}" />
                     <RadioButton
-                        Click="FilterOther_Button_Click"
-                        Content="Other"
+                        Click="FilterRetail_Button_Click"
+                        Content="Retail"
                         GroupName="g1"
                         Style="{StaticResource tabButton}" />
+                    <RadioButton
+                        Click="FilterSpecial_Button_Click"
+                        Content="Special"
+                        GroupName="g1"
+                        Style="{StaticResource tabButton}" />
+                    <RadioButton
+                        Click="FilterFrozen_Button_Click"
+                        Content="Frozen"
+                        GroupName="g1"
+                        Style="{StaticResource tabButton}" />
+
                 </StackPanel>
+
                 <!--  Filter TextBox  -->
                 <Grid
                     Grid.Row="2"
@@ -249,8 +251,6 @@
                             Foreground="{StaticResource TextFont}"
                             TextChanged="txtFilter_TextChanged" />
                     </Border>
-
-
                 </Grid>
 
                 <!--  DataGrid  -->
@@ -269,51 +269,6 @@
                         <DataGridTextColumn Binding="{Binding DisplayOrderDueDate, UpdateSourceTrigger=PropertyChanged}" Header="Due Date" />
                         <DataGridTextColumn Binding="{Binding FulfillmentType, UpdateSourceTrigger=PropertyChanged}" Header="Fulfillment" />
                     </DataGrid.Columns>
-                    <!--<DataGrid.Columns>
-                        <DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
-                            <DataGridCheckBoxColumn.HeaderTemplate>
-                                <DataTemplate>
-                                    <CheckBox Style="{StaticResource CheckBoxStyle1}"/>
-                                </DataTemplate>
-                            </DataGridCheckBoxColumn.HeaderTemplate>
-                        </DataGridCheckBoxColumn>
-
-                        <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Number}"/>
-
-                        <DataGridTemplateColumn Header="Member" IsReadOnly="True" Width="*">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="{Binding BgColor}">
-                                            <TextBlock Text="{Binding Character}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
-                                        </Border>
-
-                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-
-                        <DataGridTextColumn Header="Position" IsReadOnly="True" Width="*" Binding="{Binding Position}"/>
-                        <DataGridTextColumn Header="Email Address" IsReadOnly="True" Width="*" Binding="{Binding Email}"/>
-                        <DataGridTextColumn Header="Phone Number" IsReadOnly="True" Width="*" Binding="{Binding Phone}"/>
-
-                        <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button Style="{StaticResource gridEditButton}">
-                                            <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
-                                        </Button>
-                                        <Button Style="{StaticResource gridRemoveButton}" Margin="5 0 0 0 ">
-                                            <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
-                                        </Button>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-
-                    </DataGrid.Columns>-->
                 </DataGrid>
             </Grid>
         </Grid>
