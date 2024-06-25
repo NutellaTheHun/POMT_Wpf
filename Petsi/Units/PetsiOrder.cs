@@ -21,7 +21,14 @@ namespace Petsi.Units
         public string OrderType { get; set; }
         public string DisplayOrderDueDate
         {
-            get { return DateTime.Parse(OrderDueDate).ToString("d"); }
+            get 
+            { 
+                if(IsPeriodic)
+                {
+                    return DateTime.Parse(OrderDueDate).DayOfWeek.ToString();
+                }
+                return DateTime.Parse(OrderDueDate).ToString("d"); 
+            }
             set {  }
         }
         public List<PetsiOrderLineItem> LineItems{ get; set; }

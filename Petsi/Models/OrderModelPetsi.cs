@@ -36,7 +36,7 @@ namespace Petsi.Models
             List<string> filedList = fileBehavior.BuildDataListFile<string>("OrderTypeSet");
             if(filedList == null)
             {
-                filedList = new List<string> { Identifiers.ORDER_TYPE_DAILY_BAKE, Identifiers.ORDER_TYPE_EZ_CATER,
+                filedList = new List<string> { Identifiers.ORDER_TYPE_RETAIL, Identifiers.ORDER_TYPE_EZ_CATER,
                     Identifiers.ORDER_TYPE_SPECIAL, Identifiers.ORDER_TYPE_SQUARE, Identifiers.ORDER_TYPE_WHOLESALE };
             }
             HashSet<string> result = new HashSet<string>(filedList);

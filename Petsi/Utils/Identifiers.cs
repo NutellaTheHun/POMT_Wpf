@@ -16,7 +16,7 @@ namespace Petsi.Utils
         public const string ORDER_TYPE_SQUARE = "Square";
         public const string ORDER_TYPE_WHOLESALE = "Wholesale";
         public const string ORDER_TYPE_SPECIAL = "Special";
-        public const string ORDER_TYPE_DAILY_BAKE = "dailyBake";
+        public const string ORDER_TYPE_RETAIL = "Retail";
         public const string ORDER_TYPE_EZ_CATER = "ezCater";
 
         public const string ORDER_INPUT_ORIGIN_SQUARE = "squareInput";
