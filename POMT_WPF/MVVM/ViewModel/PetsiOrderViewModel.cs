@@ -259,7 +259,16 @@ namespace POMT_WPF.MVVM.ViewModel
             omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
 
             OrderTypes = omp.GetOrderTypes();
-            LineItems = new ObservableCollection<PetsiOrderLineItem>(_order.LineItems);
+
+            if (_order.LineItems != null)
+            {
+                LineItems = new ObservableCollection<PetsiOrderLineItem>(_order.LineItems);
+            }
+            else
+            {
+                LineItems = new ObservableCollection<PetsiOrderLineItem>();
+            }
+
             LineItems.CollectionChanged += (s, e) => _order.LineItems = LineItems.ToList();
 
             if (petsiOrder != null)

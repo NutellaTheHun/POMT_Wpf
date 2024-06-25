@@ -45,12 +45,33 @@ namespace POMT_WPF.MVVM.ObsModels
             }
         }
 
+        private ObservableCollection<PetsiOrder> _frozenOrders;
+        public ObservableCollection<PetsiOrder> FrozenOrders
+        {
+            get
+            {
+                if (_frozenOrders == null)
+                {
+                    _frozenOrders = new ObservableCollection<PetsiOrder>();
+                }
+                return _frozenOrders;
+            }
+            set
+            {
+                if (_frozenOrders != value)
+                {
+                    _frozenOrders = value;
+                }
+            }
+        }
+
         private List<IObsOrderModelSubscriber> _subscriptions;
 
         private ObsOrderModelSingleton()
         {
             _subscriptions = new List<IObsOrderModelSubscriber>();
             Orders = new ObservableCollection<PetsiOrder>();
+            FrozenOrders = new ObservableCollection<PetsiOrder>();
             _omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
             _omp.Subscribe(this);
             UpdateSubscriber();
@@ -170,6 +191,14 @@ namespace POMT_WPF.MVVM.ObsModels
             {
                 Orders.Add(order);
             }
+
+            FrozenOrders.Clear();
+            List<PetsiOrder> frozenOrders = _omp.GetFrozenOrders();
+            foreach(PetsiOrder order in frozenOrders)
+            {
+                FrozenOrders.Add(order);
+            }
+
             Notify();
         }
     }
