@@ -168,7 +168,7 @@ namespace POMT_WPF.MVVM.View
             confirmationWindow.ShowDialog();
             if (confirmationWindow.ControlBool)
             {
-                ObsOrderModelSingleton.RemoveOrder(ViewModel.OrderId);
+                ViewModel.RemoveOrder(ViewModel.OrderId);
                 Close();
             }     
         }

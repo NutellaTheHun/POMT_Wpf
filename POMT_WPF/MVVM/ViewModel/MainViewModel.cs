@@ -50,7 +50,7 @@ namespace POMT_WPF.MVVM.ViewModel
         {
             ObsOrderModelSingleton.Instance.Subscribe(this);
             Orders = ObsOrderModelSingleton.Instance.Orders;
-            FrozenOrders = new ObservableCollection<PetsiOrder>(ObsOrderModelSingleton.GetFrozenOrders());
+            //FrozenOrders = new ObservableCollection<PetsiOrder>(ObsOrderModelSingleton.GetFrozenOrders());
             TotalOrderCount = Orders.Count();
         }
 
@@ -129,11 +129,12 @@ namespace POMT_WPF.MVVM.ViewModel
         public void UpdateFrozenOrderList()
         {
             FrozenOrders.Clear();
-            List<PetsiOrder> newFrozenOrders = ObsOrderModelSingleton.GetFrozenOrders();
+            //List<PetsiOrder> newFrozenOrders = ObsOrderModelSingleton.GetFrozenOrders();
+            /*
             foreach (PetsiOrder order in newFrozenOrders)
             {
                 FrozenOrders.Add(order);
-            }
+            }*/
         }
         public void Update()
         {

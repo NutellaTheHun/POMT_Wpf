@@ -10,11 +10,12 @@ namespace POMT_WPF.MVVM.ViewModel
 {
     public class PetsiOrderWindowViewModel : ViewModelBase
     {
+        private OrderModelPetsi omp;
+        private PetsiOrder _order;
+        CatalogService cs;
 
         #region props
 
-        private PetsiOrder _order;
-        CatalogService cs;
         public string Recipient
         {
             get => _order.Recipient;
@@ -159,9 +160,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }
-
         public ObservableCollection<PetsiOrderLineItem> LineItems { get; set; }
-
         private string _VMPickupDate;
         public string VMPickupDate
         {
@@ -182,7 +181,6 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }
-
         private string _VMPickupTime;
         public string VMPickupTime
         {
@@ -203,7 +201,6 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }
-
         private string _VMOrderType;
         public string VMOrderType
         {
@@ -224,9 +221,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }
-
         private bool _isReadOnly;
-
         public bool IsReadOnly
         {
             get { return _isReadOnly; }
@@ -239,7 +234,6 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }
-
         private bool _notReadOnly;
         public bool NotReadOnly
         {
@@ -253,31 +247,37 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }
-
         public List<string> OrderTypes;
 
         #endregion
 
         public PetsiOrderWindowViewModel(PetsiOrder? petsiOrder)
         {
+            _order = new PetsiOrder(petsiOrder);
+
             cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
+            omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+
+            OrderTypes = omp.GetOrderTypes();
+            LineItems = new ObservableCollection<PetsiOrderLineItem>(_order.LineItems);
+            LineItems.CollectionChanged += (s, e) => _order.LineItems = LineItems.ToList();
+
             if (petsiOrder != null)
             {
-                _order = petsiOrder;
+                //_order = petsiOrder;
+                //_order = new PetsiOrder(petsiOrder);
                 VMPickupDate = DateTime.Parse(_order.OrderDueDate).ToShortDateString();
                 VMPickupTime = DateTime.Parse(_order.OrderDueDate).ToShortTimeString();
-                LineItems = new ObservableCollection<PetsiOrderLineItem>(_order.LineItems);
-                LineItems.CollectionChanged += (s, e) => _order.LineItems = LineItems.ToList();
+                //LineItems = new ObservableCollection<PetsiOrderLineItem>(_order.LineItems);
+                //LineItems.CollectionChanged += (s, e) => _order.LineItems = LineItems.ToList();
             }
             else
             {
-                _order = new PetsiOrder();
-                LineItems = new ObservableCollection<PetsiOrderLineItem>(_order.LineItems);
-                LineItems.CollectionChanged += (s, e) => _order.LineItems = LineItems.ToList();
+                //_order = new PetsiOrder();
+                //LineItems = new ObservableCollection<PetsiOrderLineItem>(_order.LineItems);
+                //LineItems.CollectionChanged += (s, e) => _order.LineItems = LineItems.ToList();
                 LineItems.Add(new PetsiOrderLineItem());
             }
-            OrderModelPetsi omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
-            OrderTypes = omp.GetOrderTypes();
         }
 
         public void AddLineItem(PetsiOrderLineItem newLine)
@@ -288,9 +288,6 @@ namespace POMT_WPF.MVVM.ViewModel
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="fulfillPickup"></param>
-        /// <param name="oneTime"></param>
-        /// <param name="pickupDay"></param>
         /// <param name="pickupTime"></param>
         public void AddOrder(string pickupTime)
         {
@@ -298,16 +295,19 @@ namespace POMT_WPF.MVVM.ViewModel
             _order.OrderDueDate = DateTime.Parse(Date + " " + pickupTime).ToString();
             _order.InputOriginType = Identifiers.USER_ENTERED_INPUT;
             _order.IsUserEntered = true;
-            OrderModelPetsi omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+            //OrderModelPetsi omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
             _order.OrderId = omp.GenerateOrderId();
-            ObsOrderModelSingleton.AddOrder(_order);
+
+            //ObsOrderModelSingleton.AddOrder(_order);
+            omp.AddOrder(_order);
         }
 
         public void ModifyOrder(string pickupTime)
         {
             string Date = DateTime.Parse(VMPickupDate).ToShortDateString();
             _order.OrderDueDate = DateTime.Parse(Date + " " + pickupTime).ToString();
-            ObsOrderModelSingleton.ModifyOrder(_order);
+            //ObsOrderModelSingleton.ModifyOrder(_order);
+            omp.ModifyOrder(_order);
         }
 
         public PetsiOrder GetOrder() { return _order; }
@@ -407,6 +407,11 @@ namespace POMT_WPF.MVVM.ViewModel
                 _order.IsFrozen = false;
                 //ObsOrderModelSingleton.ThawOrder(_order);
             }
+        }
+
+        public void RemoveOrder(string orderId)
+        {
+            omp.RemoveItem(orderId);
         }
     }
 }

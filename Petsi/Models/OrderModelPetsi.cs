@@ -34,7 +34,17 @@ namespace Petsi.Models
             InitSerializedOrders();
             OrderTypesSet = InitOrderTypes();
         }
-
+        public void Notify()
+        {
+            foreach (IOrderModelSubscriber subscriber in subscribers)
+            {
+                subscriber.UpdateSubscriber();
+            }
+        }
+        public void Subscribe(IOrderModelSubscriber subscription)
+        {
+            subscribers.Add(subscription);
+        }
         private HashSet<string>? InitOrderTypes()
         {
             List<string> filedList = fileBehavior.BuildDataListFile<string>("OrderTypeSet");
@@ -109,22 +119,12 @@ namespace Petsi.Models
         public void SetOrders(List<PetsiOrder> newOrders) { Orders = newOrders; }
         public FileBehavior GetFileBehavior() { return fileBehavior; }
         public override void ClearModel() { Orders.Clear(); }
-        public override void AddOrder(ModelUnitBase order) 
+        
+        public void RemoveOrder(ModelUnitBase item) 
         { 
-            PetsiOrder o = (PetsiOrder)order;
-            Orders.Add(o); SortOrders(); 
-            if(o.IsPeriodic)
-            {
-                PeriodicOrders.Add(o);
-                fileBehavior.DataListToFile(Identifiers.PERIODIC_ORDERS, PeriodicOrders);
-            }
-            else if(o.IsOneShot)
-            {
-                OneShotOrders.Add(o);
-                fileBehavior.DataListToFile(Identifiers.ONE_SHOT_ORDERS, OneShotOrders);
-            }
+            int count = Orders.Count;
+            Orders.Remove((PetsiOrder)item);
         }
-        public void RemoveOrder(ModelUnitBase item) { Orders.Remove((PetsiOrder)item);}
         public override void Complete() 
         {
            SortOrders();
@@ -337,6 +337,30 @@ namespace Petsi.Models
             deletedOrders.Add(order);
             fileBehavior.DataListToFile(Identifiers.DELETED_ORDERS, deletedOrders);
         }
+        public override void AddOrder(ModelUnitBase order)
+        {
+            PetsiOrder o = (PetsiOrder)order;
+
+            if(o.IsFrozen)
+            {
+                FrozenOrders.Add(o);
+                fileBehavior.DataListToFile(Identifiers.FROZEN_ORDERS, FrozenOrders);
+                return;
+            }
+
+            Orders.Add(o); SortOrders();
+            if (o.IsPeriodic)
+            {
+                PeriodicOrders.Add(o);
+                fileBehavior.DataListToFile(Identifiers.PERIODIC_ORDERS, PeriodicOrders);
+            }
+            else if (o.IsOneShot)
+            {
+                OneShotOrders.Add(o);
+                fileBehavior.DataListToFile(Identifiers.ONE_SHOT_ORDERS, OneShotOrders);
+            }
+            Notify();
+        }
         public void RemoveItem(string orderId)
         {
             foreach (PetsiOrder order in Orders)
@@ -360,10 +384,20 @@ namespace Petsi.Models
                     break;
                 }
             }
+            Notify();
         }
 
         public void ModifyOrder(PetsiOrder modOrder)
         {
+            if (modOrder.IsFrozen)
+            {
+                FreezeOrder(modOrder);
+                return;
+            }
+            else
+            {
+                
+            }
             int index = 0;
             foreach (PetsiOrder order in Orders)
             {
@@ -390,6 +424,7 @@ namespace Petsi.Models
                     UpdatePeriodicOrders(null);
                 }
             }
+            Notify();
         }
         /// <summary>
         /// If modOrder is found in the OneShotOrders list, it is removed.
@@ -488,22 +523,9 @@ namespace Petsi.Models
                 }
             }
         }
-
         public List<PetsiOrder> GetFrozenOrders()
         {
             return FrozenOrders;
-        }
-
-        public void Notify()
-        {
-            foreach (IOrderModelSubscriber subscriber in subscribers)
-            {
-                subscriber.UpdateSubscriber();
-            }
-        }
-        public void Subscribe(IOrderModelSubscriber subscription)
-        {
-            subscribers.Add(subscription);
         }
     }   
 }

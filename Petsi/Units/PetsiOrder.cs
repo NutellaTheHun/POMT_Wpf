@@ -32,7 +32,31 @@ namespace Petsi.Units
             set {  }
         }
         public List<PetsiOrderLineItem> LineItems{ get; set; }
-        
+
+        public PetsiOrder(PetsiOrder? source)
+        {
+            if(source == null) { }
+            else
+            {
+                frameBehavior = source.frameBehavior;
+                InputOriginType = source.InputOriginType;
+                Recipient = source.Recipient;
+                OrderId = source.OrderId;
+                OrderDueDate = source.OrderDueDate;
+                FulfillmentType = source.FulfillmentType;
+                Note = source.Note;
+                DeliveryAddress = source.DeliveryAddress;
+                PhoneNumber = source.PhoneNumber;
+                Email = source.Email;
+                IsPeriodic = source.IsPeriodic;
+                IsOneShot = source.IsOneShot;
+                IsUserEntered = source.IsUserEntered;
+                IsFrozen = source.IsFrozen;
+                OrderType = source.OrderType;
+                LineItems = source.LineItems;
+            }
+        }
+
         public PetsiOrder()
         {
             LineItems = new List<PetsiOrderLineItem>();
