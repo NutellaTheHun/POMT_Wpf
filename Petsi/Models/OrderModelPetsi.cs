@@ -159,7 +159,9 @@ namespace Petsi.Models
             {//doesn't filter out wholesale because they're used for Coverpage and notes page, order data is filtered out in report builders
                 query =
                 from order in Orders
-                where DateTime.Parse(order.OrderDueDate).Date == targetDate.Value.Date
+                where (order.IsPeriodic == true && DateTime.Parse(order.OrderDueDate).DayOfWeek == targetDate.Value.DayOfWeek)  //wholesale/periodic is weekly, so by day of week
+                      ||
+                     (order.IsPeriodic == false && DateTime.Parse(order.OrderDueDate).ToShortDateString() == targetDate.Value.ToShortDateString())
                 orderby order.FulfillmentType, DateTime.Parse(order.OrderDueDate).TimeOfDay
                 select order;
             }
