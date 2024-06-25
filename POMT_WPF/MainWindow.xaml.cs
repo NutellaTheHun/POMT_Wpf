@@ -159,7 +159,6 @@ namespace POMT_WPF
 
         private void FilterFrozen_Button_Click(object sender, RoutedEventArgs e)
         {
-            viewModel.FilterOrderType(Identifiers.ORDER_TYPE_RETAIL);
             dashboardDataGrid.ItemsSource = viewModel.FrozenOrders;
         }
 

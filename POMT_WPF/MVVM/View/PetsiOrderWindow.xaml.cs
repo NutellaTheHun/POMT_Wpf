@@ -65,7 +65,6 @@ namespace POMT_WPF.MVVM.View
                     AddLineButton.Visibility = Visibility.Hidden;
                     DeleteLineButton.Visibility = Visibility.Hidden;
                 }
-                freezeToggleButton.IsChecked = existingOrder.IsFrozen;
             }
             else
             {
@@ -312,7 +311,7 @@ namespace POMT_WPF.MVVM.View
 
         private void freezeToggleButton_Click(object sender, RoutedEventArgs e)
         {
-            freezeToggleButton.IsChecked = (freezeToggleButton.IsChecked == false);
+            //freezeToggleButton.IsChecked = (freezeToggleButton.IsChecked == false);
             ViewModel.HandleOrderFreezeToggle(freezeToggleButton.IsChecked);
         }
 

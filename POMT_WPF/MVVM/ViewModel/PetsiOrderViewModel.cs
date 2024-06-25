@@ -399,11 +399,13 @@ namespace POMT_WPF.MVVM.ViewModel
         {
             if (isChecked.Value)
             {
-                ObsOrderModelSingleton.FreezeOrder(_order);
+                _order.IsFrozen = true;
+                //ObsOrderModelSingleton.FreezeOrder(_order);
             }
             else
             {
-                ObsOrderModelSingleton.ThawOrder(_order);
+                _order.IsFrozen = false;
+                //ObsOrderModelSingleton.ThawOrder(_order);
             }
         }
     }

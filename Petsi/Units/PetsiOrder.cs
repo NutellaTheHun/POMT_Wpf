@@ -1,5 +1,4 @@
 ﻿using Petsi.CommandLine;
-using System.ComponentModel;
 
 namespace Petsi.Units
 {

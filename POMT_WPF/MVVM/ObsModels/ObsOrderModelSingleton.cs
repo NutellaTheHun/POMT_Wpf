@@ -1,4 +1,4 @@
-﻿using DocumentFormat.OpenXml.Wordprocessing;
+﻿using Petsi.Interfaces;
 using Petsi.Managers;
 using Petsi.Models;
 using Petsi.Services;
@@ -9,10 +9,10 @@ using System.Collections.ObjectModel;
 
 namespace POMT_WPF.MVVM.ObsModels
 {
-    public class ObsOrderModelSingleton
+    public class ObsOrderModelSingleton : IOrderModelSubscriber
     {
-        private static ObsOrderModelSingleton _instance;
         private OrderModelPetsi _omp;
+        private static ObsOrderModelSingleton _instance;
         public static ObsOrderModelSingleton Instance
         {
             get
@@ -49,9 +49,11 @@ namespace POMT_WPF.MVVM.ObsModels
 
         private ObsOrderModelSingleton()
         {
-            _omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
-            Orders = new ObservableCollection<PetsiOrder>(_omp.GetOrders());
             _subscriptions = new List<IObsOrderModelSubscriber>();
+            Orders = new ObservableCollection<PetsiOrder>();
+            _omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+            _omp.Subscribe(this);
+            UpdateSubscriber();
         }
 
         private void Notify()
@@ -86,7 +88,15 @@ namespace POMT_WPF.MVVM.ObsModels
             }
             if(isfound)
             {
-                Instance.Orders[index] = modOrder;
+                if(modOrder.IsFrozen)
+                {
+                    //FreezeOrder(modOrder);
+                }
+                else
+                {
+                    Instance.Orders[index] = modOrder;
+                }
+                
                 Instance.ModifyOrderMainModel(modOrder);
                 Instance.Notify();
             }
@@ -152,37 +162,15 @@ namespace POMT_WPF.MVVM.ObsModels
             }
         }
 
-        public static List<PetsiOrder> GetFrozenOrders()
+        public void UpdateSubscriber()
         {
-            return Instance._omp.GetFrozenOrders();
-        }
-
-        public static void FreezeOrder(PetsiOrder order)
-        {
-            Instance._omp.FreezeOrder(order);
-
-            var orderToRemove = Instance.Orders.FirstOrDefault(x => x.OrderId == order.OrderId);
-            if (orderToRemove != null)
+            Orders.Clear();
+            List<PetsiOrder> newOrders = _omp.GetOrders();
+            foreach (PetsiOrder order in newOrders)
             {
-                int count = Instance.Orders.Count;
-                Instance.Orders.Remove(orderToRemove);
-                if (count - 1 != Instance.Orders.Count)
-                {
-                    SystemLogger.Log("ObsOrderModel RemoveOrder failed with order: " + orderToRemove.Recipient + " : " + orderToRemove.OrderId);
-                }
-                Instance.Notify();
+                Orders.Add(order);
             }
-            else
-            {
-                SystemLogger.Log("ObsOrderModel RemoveOrder could not locat order with id: " + order.OrderId);
-            }
-        }
-
-        public static void ThawOrder(PetsiOrder order)
-        {
-            Instance._omp.ThawOrder(order);
-            Instance.Orders.Add(order);
-            Instance.Notify();
+            Notify();
         }
     }
 }

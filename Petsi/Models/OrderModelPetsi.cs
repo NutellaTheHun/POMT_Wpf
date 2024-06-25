@@ -7,18 +7,20 @@ using Petsi.Utils;
 
 namespace Petsi.Models
 {
-    public class OrderModelPetsi : ModelBase, IModelInput
+    public class OrderModelPetsi : ModelBase, IModelInput, IOrderModelPublisher
     {
         List<PetsiOrder> Orders;
         List<PetsiOrder> OneShotOrders;
         List<PetsiOrder> PeriodicOrders;
         List<PetsiOrder> FrozenOrders;
+
+        List<IOrderModelSubscriber> subscribers;
         HashSet<string> OrderTypesSet;
         OrderModelFrameBehavior frameBehavior;
         FileBehavior fileBehavior;
         public OrderModelPetsi()
         {
-
+            subscribers = new List<IOrderModelSubscriber>();
             frameBehavior = new OrderModelFrameBehavior(this);
             fileBehavior = new FileBehavior("OrderModel");
             SetModelName(Identifiers.MODEL_ORDERS);
@@ -167,6 +169,9 @@ namespace Petsi.Models
             }
             return aggregate.Values.ToList();
         }
+
+        #region Report Pulls
+
         public List<PetsiOrder> GetFrontListData(DateTime? targetDate)
         {
             IEnumerable<PetsiOrder> query;
@@ -245,6 +250,7 @@ namespace Petsi.Models
             periodicOrders.AddRange(query.ToList());
         }
 
+        
         //Label Service uses it, WS_Day_report still needs day separation tho, and day info
         public List<PetsiOrderLineItem> GetWsDayData(DateTime? targetDate)
         {
@@ -290,7 +296,9 @@ namespace Petsi.Models
             }
             return result;
         }
-        //-----
+
+        #endregion
+
         public static List<PetsiOrder> MergeOrders(List<PetsiOrder> mainOrders,  List<PetsiOrder> otherOrders)
         {
             List<PetsiOrder> result = new List<PetsiOrder>(mainOrders);
@@ -464,6 +472,7 @@ namespace Petsi.Models
         public void FreezeOrder(PetsiOrder order)
         {
             RemoveItem(order.OrderId);
+            FrozenOrders.Add(order);
             fileBehavior.DataListToFile(Identifiers.FROZEN_ORDERS, FrozenOrders);
         }
 
@@ -485,7 +494,17 @@ namespace Petsi.Models
             return FrozenOrders;
         }
 
-        
+        public void Notify()
+        {
+            foreach (IOrderModelSubscriber subscriber in subscribers)
+            {
+                subscriber.UpdateSubscriber();
+            }
+        }
+        public void Subscribe(IOrderModelSubscriber subscription)
+        {
+            subscribers.Add(subscription);
+        }
     }   
 }
 

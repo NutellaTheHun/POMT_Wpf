@@ -17,7 +17,6 @@ namespace POMT_WPF.MVVM.ViewModel
                 if(_orders != value)
                 {
                     _orders = value;
-                    //TotalOrderCount = Orders.Count;
                     OnPropertyChanged(nameof(Orders));
                 }
             }
