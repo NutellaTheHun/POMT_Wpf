@@ -10,11 +10,12 @@ namespace POMT_WPF.MVVM.View
     /// </summary>
     public partial class CatalogListViewWindow : Window
     {
+        CatalogListViewWindowModel viewModel;
         public CatalogListViewWindow()
         {
             InitializeComponent();
-            CatalogListViewWindowModel model = new CatalogListViewWindowModel();
-            catalogListDataGrid.ItemsSource = model.Items;
+            viewModel = new CatalogListViewWindowModel();
+            catalogListDataGrid.ItemsSource = viewModel.Items;
             catalogListDataGrid.SelectionChanged += CatalogListDataGrid_SelectionChanged;
         }
 
@@ -37,15 +38,16 @@ namespace POMT_WPF.MVVM.View
                 var selectedItem = catalogListDataGrid.SelectedItem;
                 if (selectedItem != null)
                 {
-                    CatalogItemViewWindow civw = new CatalogItemViewWindow(selectedItem as CatalogItemPetsi);
-                    civw.Show();
+                    CatalogItemViewWindow view = new CatalogItemViewWindow(selectedItem as CatalogItemPetsi);
+                    view.Show();
                 }
             }
         }
 
         private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            viewModel.FilterSearchBar(txtFilter.Text);
+            catalogListDataGrid.ItemsSource = viewModel.Items;
         }
 
         private void AddCatalogItemBtn_Click(object sender, RoutedEventArgs e)

@@ -39,8 +39,6 @@ namespace POMT_WPF.MVVM.ViewModel
 
         public CatalogListViewWindowModel()
         {
-            //cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
-            //Items = new ObservableCollection<CatalogItemPetsi>(cmp.GetItems());
             ObsCatalogModelSingleton.Instance.Subscribe(this);
             Items = ObsCatalogModelSingleton.Instance.CatalogItems;
         }
@@ -48,6 +46,21 @@ namespace POMT_WPF.MVVM.ViewModel
         public void Update()
         {
            Items = ObsCatalogModelSingleton.Instance.CatalogItems;
+        }
+
+        public void FilterSearchBar(string text)
+        {
+            ObservableCollection<CatalogItemPetsi> catalogItems = ObsCatalogModelSingleton.Instance.CatalogItems;
+            ObservableCollection<CatalogItemPetsi> results = new ObservableCollection<CatalogItemPetsi>();
+            foreach (CatalogItemPetsi item in catalogItems)
+            {
+                if (item.ItemName.ToLower().Contains(text.ToLower()))
+                {
+                    results.Add(item);
+                    continue;
+                }
+            }
+            Items = results;
         }
     }
 }
