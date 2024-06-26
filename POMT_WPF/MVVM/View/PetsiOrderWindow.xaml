@@ -124,7 +124,7 @@
                     VerticalAlignment="Center"
                     Click="freezeToggleButton_Click"
                     Content="freeze"
-                    Style="{StaticResource orderFormEditButton}" />
+                    Style="{StaticResource orderFormFreezeButton}" />
                 <ToggleButton
                     x:Name="editToggleButton"
                     Width="60"

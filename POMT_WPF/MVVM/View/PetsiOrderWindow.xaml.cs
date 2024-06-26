@@ -53,6 +53,7 @@ namespace POMT_WPF.MVVM.View
             DataContext = this;
             orderFormDataGrid.ItemsSource = ViewModel.LineItems;
             OrderTypeComboBox.ItemsSource = ViewModel.OrderTypes;
+            freezeToggleButton.IsChecked = existingOrder.IsFrozen;
             if(IsExistingOrder)
             {
                 ViewModel.IsReadOnly = true;

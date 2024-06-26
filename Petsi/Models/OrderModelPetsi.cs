@@ -339,6 +339,7 @@ namespace Petsi.Models
         }
         public override void AddOrder(ModelUnitBase order)
         {
+
             PetsiOrder o = (PetsiOrder)order;
 
             if(o.IsFrozen)
@@ -349,6 +350,7 @@ namespace Petsi.Models
             }
 
             Orders.Add(o); SortOrders();
+
             if (o.IsPeriodic)
             {
                 PeriodicOrders.Add(o);
@@ -359,7 +361,9 @@ namespace Petsi.Models
                 OneShotOrders.Add(o);
                 fileBehavior.DataListToFile(Identifiers.ONE_SHOT_ORDERS, OneShotOrders);
             }
+
             Notify();
+
         }
         public void RemoveItem(string orderId)
         {
@@ -396,7 +400,7 @@ namespace Petsi.Models
             }
             else
             {
-                
+                if (ThawOrder(modOrder)) return;
             }
             int index = 0;
             foreach (PetsiOrder order in Orders)
@@ -511,7 +515,12 @@ namespace Petsi.Models
             fileBehavior.DataListToFile(Identifiers.FROZEN_ORDERS, FrozenOrders);
         }
 
-        public void ThawOrder(PetsiOrder orderTarget)
+        /// <summary>
+        /// If order is found on list of Frozen Orders, will be removed from Frozen list,
+        /// and added to active order lists. If not found on frozen orders, no action is taken.
+        /// </summary>
+        /// <param name="orderTarget"></param>
+        public bool ThawOrder(PetsiOrder orderTarget)
         {
             AddOrder(orderTarget);
             foreach (PetsiOrder order in FrozenOrders)
@@ -520,8 +529,10 @@ namespace Petsi.Models
                 {
                     FrozenOrders.Remove(order);
                     fileBehavior.DataListToFile(Identifiers.FROZEN_ORDERS, FrozenOrders);
+                    return true;
                 }
             }
+            return false;
         }
         public List<PetsiOrder> GetFrozenOrders()
         {
