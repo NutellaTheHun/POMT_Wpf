@@ -304,10 +304,8 @@ namespace POMT_WPF.MVVM.ViewModel
             _order.OrderDueDate = DateTime.Parse(Date + " " + pickupTime).ToString();
             _order.InputOriginType = Identifiers.USER_ENTERED_INPUT;
             _order.IsUserEntered = true;
-            //OrderModelPetsi omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
             _order.OrderId = omp.GenerateOrderId();
 
-            //ObsOrderModelSingleton.AddOrder(_order);
             omp.AddOrder(_order);
         }
 
@@ -315,7 +313,6 @@ namespace POMT_WPF.MVVM.ViewModel
         {
             string Date = DateTime.Parse(VMPickupDate).ToShortDateString();
             _order.OrderDueDate = DateTime.Parse(Date + " " + pickupTime).ToString();
-            //ObsOrderModelSingleton.ModifyOrder(_order);
             omp.ModifyOrder(_order);
         }
 
@@ -328,7 +325,6 @@ namespace POMT_WPF.MVVM.ViewModel
 
         public bool IsValidLineItems()
         {
-            
             foreach (PetsiOrderLineItem lineItem in LineItems)
             {
                 string id = cs.GetCatalogObjectId(lineItem.ItemName);
@@ -414,12 +410,10 @@ namespace POMT_WPF.MVVM.ViewModel
             if (isChecked.Value)
             {
                 _order.IsFrozen = true;
-                //ObsOrderModelSingleton.FreezeOrder(_order);
             }
             else
             {
                 _order.IsFrozen = false;
-                //ObsOrderModelSingleton.ThawOrder(_order);
             }
         }
 

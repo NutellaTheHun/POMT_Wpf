@@ -284,7 +284,20 @@
                                 Width="auto"
                                 CellTemplate="{StaticResource OrderFormItemNameTemplate}"
                                 Header="Item Name" />
-                            <DataGridTemplateColumn Width="*" Header="Amount 3/Regular">
+                            <DataGridTemplateColumn Width="*" Header="Regular">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <local:TextFillTextBox
+                                            x:Name="amountRegTextBox"
+                                            Background="{StaticResource MintCream}"
+                                            IsReadOnly="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged}"
+                                            Style="{StaticResource orderFormTextFillTextBox}"
+                                            Text="{Binding AmountRegular, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}, Mode=TwoWay}"
+                                            TextFill="Regular ..." />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Amount 3">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <local:TextFillTextBox
