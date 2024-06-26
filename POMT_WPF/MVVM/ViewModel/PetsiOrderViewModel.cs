@@ -319,9 +319,9 @@ namespace POMT_WPF.MVVM.ViewModel
             omp.ModifyOrder(_order);
         }
 
-        public void RemoveOrder(string orderId)
+        public void RemoveOrder()
         {
-            omp.RemoveItem(orderId);
+            omp.RemoveItem(_order);
         }
 
         public PetsiOrder GetOrder() { return _order; }

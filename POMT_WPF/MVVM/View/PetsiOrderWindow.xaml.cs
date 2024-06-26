@@ -170,7 +170,7 @@ namespace POMT_WPF.MVVM.View
             confirmationWindow.ShowDialog();
             if (confirmationWindow.ControlBool)
             {
-                ViewModel.RemoveOrder(ViewModel.OrderId);
+                ViewModel.RemoveOrder();
                 Close();
             }     
         }

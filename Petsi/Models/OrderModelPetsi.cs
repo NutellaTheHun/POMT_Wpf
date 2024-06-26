@@ -366,45 +366,44 @@ namespace Petsi.Models
             Notify();
 
         }
-        public void RemoveItem(string orderId)
+        public void RemoveItem(PetsiOrder targetOrder)
         {
-            foreach(PetsiOrder o in FrozenOrders)
-            {
-                if (o.OrderId == orderId)
-                {
-                    FrozenOrders.Remove(o);
-                    fileBehavior.DataListToFile(Identifiers.FROZEN_ORDERS, FrozenOrders);
-                    Notify();
-                    return;
-                }
-            }
             foreach (PetsiOrder order in Orders)
             {
-                if (order.OrderId == orderId)
+                if (order.OrderId == targetOrder.OrderId)
                 {
                     Orders.Remove(order);
-                    
+
                     if (!order.IsFrozen)
                     {
                         SaveDeletedOrder(order);
                     }
-                    
+
                     if (order.IsOneShot)
                     {
                         OneShotOrders.Remove(order);
                         SaveOneShotModel();
                     }
-                    else 
-                    { 
-                        PeriodicOrders.Remove(order);  
+                    else
+                    {
+                        PeriodicOrders.Remove(order);
                         SavePeriodicModel();
                     }
-                    break;
+                    Notify();
+                    return;
                 }
             }
 
+            foreach (PetsiOrder o in FrozenOrders)
+            {
+                if (o.OrderId == targetOrder.OrderId)
+                {
+                    FrozenOrders.Remove(o);
+                    fileBehavior.DataListToFile(Identifiers.FROZEN_ORDERS, FrozenOrders);
+                    break;
+                }
+            }
             Notify();
-
         }
 
         public void ModifyOrder(PetsiOrder modOrder)
@@ -453,7 +452,7 @@ namespace Petsi.Models
         {
             FrozenOrders.Add(order);
             fileBehavior.DataListToFile(Identifiers.FROZEN_ORDERS, FrozenOrders);
-            RemoveItem(order.OrderId); // !! RemoveItem() Calls Notify so should happen after updating frozen orders!!
+            RemoveItem(order); // !! RemoveItem() Calls Notify so should happen after updating frozen orders!!
         }
 
         /// <summary>

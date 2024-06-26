@@ -127,6 +127,7 @@ namespace POMT_WPF.MVVM.ObsModels
             }
 
         }
+        /*
         public static void RemoveOrder(string orderId)
         {
             var orderToRemove = Instance.Orders.FirstOrDefault(order => order.OrderId == orderId);
@@ -145,7 +146,7 @@ namespace POMT_WPF.MVVM.ObsModels
             {
                 SystemLogger.Log("ObsOrderModel RemoveOrder could not locat order with id: " + orderId);
             }
-        }
+        }*/
         public void AddOrderMainModel(PetsiOrder order)
         {
             _omp.AddOrder(order);
@@ -156,7 +157,8 @@ namespace POMT_WPF.MVVM.ObsModels
         }
         public void RemoveOrderMainModel(string orderId)
         {
-            _omp.RemoveItem(orderId);
+            //_omp.RemoveItem(orderId);
+            throw new NotImplementedException();
         }
 
         public static void UpdateMultiLineMatchEvent()
