@@ -7,7 +7,7 @@ namespace POMT_WPF.MVVM.ViewModel
 {
     public class MainWindowViewModel : ViewModelBase, IObsOrderModelSubscriber
     {
-
+        private MainWindow view;
         private ObservableCollection<PetsiOrder> _orders;
         public ObservableCollection<PetsiOrder> Orders 
         { 
@@ -46,12 +46,17 @@ namespace POMT_WPF.MVVM.ViewModel
                 OnPropertyChanged(nameof(TotalOrderCount));
             }
         }
-        public MainWindowViewModel()
+
+        private string activeFilter;
+
+        public MainWindowViewModel(MainWindow mainWindowView)
         {
+            view = mainWindowView;
             ObsOrderModelSingleton.Instance.Subscribe(this);
             Orders = ObsOrderModelSingleton.Instance.Orders;
             FrozenOrders = ObsOrderModelSingleton.Instance.FrozenOrders;
             TotalOrderCount = Orders.Count();
+            this.view = view;
         }
 
         public void AddOrder(PetsiOrder order)
@@ -84,6 +89,8 @@ namespace POMT_WPF.MVVM.ViewModel
         /// <param name="filter"></param>
         public void FilterOrderType(string? orderTypefilter)
         {
+            activeFilter = orderTypefilter;
+            
             if(orderTypefilter == null)
             {
                 Orders = ObsOrderModelSingleton.Instance.Orders;
@@ -123,7 +130,7 @@ namespace POMT_WPF.MVVM.ViewModel
         public void UpdateOrderList()
         {
             Orders = ObsOrderModelSingleton.Instance.Orders;
-            TotalOrderCount = Orders.Count;
+            FilterOrderType(activeFilter);
         }
 
         public void UpdateFrozenOrderList()
@@ -134,6 +141,12 @@ namespace POMT_WPF.MVVM.ViewModel
         {
             UpdateOrderList();
             UpdateFrozenOrderList();
+            view.UpdateDataGrid();
+        }
+
+        public void SetActiveFilter(string v)
+        {
+            //activeFilter = v;
         }
     }
 }

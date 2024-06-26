@@ -19,13 +19,14 @@ namespace POMT_WPF
         public MainWindow()
         {
             InitializeComponent();
-            viewModel = new MainWindowViewModel();
+            viewModel = new MainWindowViewModel(this);
 
             ErrorService.Instance().SoiNewItem += NotifyUserNewItem;
             ErrorService.Instance().SoiMultiItem += NotifyUserMultiItemMatch;
 
             dashboardDataGrid.ItemsSource = viewModel.Orders;
             dashboardDataGrid.MouseDoubleClick += DashboardDataGrid_MouseDoubleClick;
+
             DataContext = viewModel;
             ErrorService.RaiseMainWindowEvents();
         }
@@ -54,9 +55,20 @@ namespace POMT_WPF
                 if (selectedItem != null)
                 {
                     PetsiOrderWindow petsiOrderWin = new PetsiOrderWindow(selectedItem as PetsiOrder, true);
-                    petsiOrderWin.Show();
+                    petsiOrderWin.ShowDialog();
+                    //UpdateDataGrid(); //Works for delete but not add
                 }
             }
+        }
+
+        public void UpdateDataGrid()
+        {
+            if (FrozenOrdersSelected) { dashboardDataGrid.ItemsSource = viewModel.FrozenOrders; }
+            else
+            {
+                dashboardDataGrid.ItemsSource = viewModel.Orders;
+            }
+            
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -66,6 +78,9 @@ namespace POMT_WPF
 
 
         private bool isMaximized = false;
+
+        public bool FrozenOrdersSelected { get; private set; }
+
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ClickCount == 2)
@@ -95,7 +110,7 @@ namespace POMT_WPF
                 if (selectedItem != null)
                 {
                     PetsiOrderWindow petsiOrderWin = new PetsiOrderWindow(selectedItem as PetsiOrder, true);
-                    petsiOrderWin.Show();
+                    petsiOrderWin.ShowDialog();
                     viewModel.UpdateOrderList();
                 }
             }
@@ -132,33 +147,39 @@ namespace POMT_WPF
 
         private void FilterAll_Button_Click(object sender, RoutedEventArgs e)
         {
+            FrozenOrdersSelected = false;
             viewModel.FilterOrderType(null);
             dashboardDataGrid.ItemsSource = viewModel.Orders;
         }
         private void FilterWholesale_Button_Click(object sender, RoutedEventArgs e)
         {
+            FrozenOrdersSelected = false;
             viewModel.FilterOrderType(Identifiers.ORDER_TYPE_WHOLESALE);
             dashboardDataGrid.ItemsSource = viewModel.Orders;
         }
         private void FilterSquare_Button_Click(object sender, RoutedEventArgs e)
         {
+            FrozenOrdersSelected = false;
             viewModel.FilterOrderType(Identifiers.ORDER_TYPE_SQUARE);
             dashboardDataGrid.ItemsSource = viewModel.Orders;
         }
         private void FilterSpecial_Button_Click(object sender, RoutedEventArgs e)
         {
+            FrozenOrdersSelected = false;
             viewModel.FilterOrderType(Identifiers.ORDER_TYPE_SPECIAL);
             dashboardDataGrid.ItemsSource = viewModel.Orders;
         }
 
         private void FilterRetail_Button_Click(object sender, RoutedEventArgs e)
         {
+            FrozenOrdersSelected = false;
             viewModel.FilterOrderType(Identifiers.ORDER_TYPE_RETAIL);
             dashboardDataGrid.ItemsSource = viewModel.Orders;
         }
 
         private void FilterFrozen_Button_Click(object sender, RoutedEventArgs e)
         {
+            FrozenOrdersSelected = true;
             dashboardDataGrid.ItemsSource = viewModel.FrozenOrders;
         }
 

@@ -346,6 +346,7 @@ namespace Petsi.Models
             {
                 FrozenOrders.Add(o);
                 fileBehavior.DataListToFile(Identifiers.FROZEN_ORDERS, FrozenOrders);
+                Notify();
                 return;
             }
 
@@ -367,14 +368,27 @@ namespace Petsi.Models
         }
         public void RemoveItem(string orderId)
         {
+            foreach(PetsiOrder o in FrozenOrders)
+            {
+                if (o.OrderId == orderId)
+                {
+                    FrozenOrders.Remove(o);
+                    fileBehavior.DataListToFile(Identifiers.FROZEN_ORDERS, FrozenOrders);
+                    Notify();
+                    return;
+                }
+            }
             foreach (PetsiOrder order in Orders)
             {
                 if (order.OrderId == orderId)
                 {
                     Orders.Remove(order);
-
-                    SaveDeletedOrder(order);
-
+                    
+                    if (!order.IsFrozen)
+                    {
+                        SaveDeletedOrder(order);
+                    }
+                    
                     if (order.IsOneShot)
                     {
                         OneShotOrders.Remove(order);
@@ -388,7 +402,9 @@ namespace Petsi.Models
                     break;
                 }
             }
+
             Notify();
+
         }
 
         public void ModifyOrder(PetsiOrder modOrder)
@@ -412,6 +428,7 @@ namespace Petsi.Models
                 }
             }
             Orders[index] = modOrder;
+
             if (modOrder.IsPeriodic)
             {
                 UpdatePeriodicOrders(modOrder);
@@ -428,7 +445,35 @@ namespace Petsi.Models
                     UpdatePeriodicOrders(null);
                 }
             }
+
             Notify();
+
+        }
+        public void FreezeOrder(PetsiOrder order)
+        {
+            FrozenOrders.Add(order);
+            fileBehavior.DataListToFile(Identifiers.FROZEN_ORDERS, FrozenOrders);
+            RemoveItem(order.OrderId); // !! RemoveItem() Calls Notify so should happen after updating frozen orders!!
+        }
+
+        /// <summary>
+        /// If order is found on list of Frozen Orders, will be removed from Frozen list,
+        /// and added to active order lists. If not found on frozen orders, no action is taken.
+        /// </summary>
+        /// <param name="orderTarget"></param>
+        public bool ThawOrder(PetsiOrder orderTarget)
+        {
+            foreach (PetsiOrder order in FrozenOrders)
+            {
+                if (order.OrderId == orderTarget.OrderId)
+                {
+                    FrozenOrders.Remove(order);
+                    fileBehavior.DataListToFile(Identifiers.FROZEN_ORDERS, FrozenOrders);
+                    AddOrder(orderTarget); // !! AddOrder() Calls Notify so should happen after updating frozen orders!!
+                    return true;
+                }
+            }
+            return false;
         }
         /// <summary>
         /// If modOrder is found in the OneShotOrders list, it is removed.
@@ -508,32 +553,7 @@ namespace Petsi.Models
             fileBehavior.DataListToFile(Identifiers.PERIODIC_ORDERS, PeriodicOrders);
         }
 
-        public void FreezeOrder(PetsiOrder order)
-        {
-            RemoveItem(order.OrderId);
-            FrozenOrders.Add(order);
-            fileBehavior.DataListToFile(Identifiers.FROZEN_ORDERS, FrozenOrders);
-        }
-
-        /// <summary>
-        /// If order is found on list of Frozen Orders, will be removed from Frozen list,
-        /// and added to active order lists. If not found on frozen orders, no action is taken.
-        /// </summary>
-        /// <param name="orderTarget"></param>
-        public bool ThawOrder(PetsiOrder orderTarget)
-        {
-            AddOrder(orderTarget);
-            foreach (PetsiOrder order in FrozenOrders)
-            {
-                if (order.OrderId == orderTarget.OrderId)
-                {
-                    FrozenOrders.Remove(order);
-                    fileBehavior.DataListToFile(Identifiers.FROZEN_ORDERS, FrozenOrders);
-                    return true;
-                }
-            }
-            return false;
-        }
+       
         public List<PetsiOrder> GetFrozenOrders()
         {
             return FrozenOrders;

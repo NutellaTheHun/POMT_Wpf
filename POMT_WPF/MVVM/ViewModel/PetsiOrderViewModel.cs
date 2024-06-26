@@ -319,6 +319,11 @@ namespace POMT_WPF.MVVM.ViewModel
             omp.ModifyOrder(_order);
         }
 
+        public void RemoveOrder(string orderId)
+        {
+            omp.RemoveItem(orderId);
+        }
+
         public PetsiOrder GetOrder() { return _order; }
 
         public bool IsValidLineItems()
@@ -418,9 +423,6 @@ namespace POMT_WPF.MVVM.ViewModel
             }
         }
 
-        public void RemoveOrder(string orderId)
-        {
-            omp.RemoveItem(orderId);
-        }
+        
     }
 }
