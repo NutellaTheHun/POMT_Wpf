@@ -2,6 +2,7 @@
 using Petsi.Filing;
 using Petsi.Interfaces;
 using Petsi.Managers;
+using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
 
@@ -48,7 +49,7 @@ namespace Petsi.Models
         private HashSet<string>? InitOrderTypes()
         {
             List<string> filedList = fileBehavior.BuildDataListFile<string>("OrderTypeSet");
-            if(filedList == null)
+            if (filedList == null)
             {
                 filedList = new List<string> { Identifiers.ORDER_TYPE_RETAIL, Identifiers.ORDER_TYPE_EZ_CATER,
                     Identifiers.ORDER_TYPE_SPECIAL, Identifiers.ORDER_TYPE_SQUARE, Identifiers.ORDER_TYPE_WHOLESALE };
@@ -79,7 +80,7 @@ namespace Petsi.Models
         private void InitSerializedOrders()
         {
             OneShotOrders = fileBehavior.BuildDataListFile<PetsiOrder>(Identifiers.ONE_SHOT_ORDERS);
-            if(OneShotOrders == null)
+            if (OneShotOrders == null)
             {
                 OneShotOrders = new List<PetsiOrder>();
             }
@@ -88,7 +89,7 @@ namespace Petsi.Models
             {
                 PeriodicOrders = new List<PetsiOrder>();
             }
-            FrozenOrders =  fileBehavior.BuildDataListFile<PetsiOrder>(Identifiers.FROZEN_ORDERS);
+            FrozenOrders = fileBehavior.BuildDataListFile<PetsiOrder>(Identifiers.FROZEN_ORDERS);
             if (FrozenOrders == null)
             {
                 FrozenOrders = new List<PetsiOrder>();
@@ -119,15 +120,15 @@ namespace Petsi.Models
         public void SetOrders(List<PetsiOrder> newOrders) { Orders = newOrders; }
         public FileBehavior GetFileBehavior() { return fileBehavior; }
         public override void ClearModel() { Orders.Clear(); }
-        
-        public void RemoveOrder(ModelUnitBase item) 
-        { 
+
+        public void RemoveOrder(ModelUnitBase item)
+        {
             int count = Orders.Count;
             Orders.Remove((PetsiOrder)item);
         }
-        public override void Complete() 
+        public override void Complete()
         {
-           SortOrders();
+            SortOrders();
         }
         private void SortOrders()
         {
@@ -186,7 +187,7 @@ namespace Petsi.Models
                 select order;
             }
             else
-            {   
+            {
                 query =
                 from order in Orders
                 orderby order.FulfillmentType, DateTime.Parse(order.OrderDueDate).TimeOfDay
@@ -196,36 +197,36 @@ namespace Petsi.Models
         }
 
         public List<PetsiOrderLineItem> GetBackListData(DateTime? targetDate, DateTime? endDate)
-        {          
+        {
             IEnumerable<PetsiOrder> query;
             List<PetsiOrder> periodicOrders = new List<PetsiOrder>();
             if (targetDate == null) //all data, WARNING WHOLESALE ONLY ONCE CURRENTLY, add ws orders up to max day, or end of week of max day?
             {
-              query =
-              from order in Orders
-              select order;
+                query =
+                from order in Orders
+                select order;
             }
             else if (endDate == null) //target date
             {
-               query =
-               from order in Orders
-               where (order.IsPeriodic == true && DateTime.Parse(order.OrderDueDate).DayOfWeek == targetDate.Value.DayOfWeek)  //wholesale/periodic is weekly, so by day of week
-                      ||
-                     (order.IsPeriodic == false && DateTime.Parse(order.OrderDueDate).Date == targetDate.Value.Date)
-               select order;
+                query =
+                from order in Orders
+                where (order.IsPeriodic == true && DateTime.Parse(order.OrderDueDate).DayOfWeek == targetDate.Value.DayOfWeek)  //wholesale/periodic is weekly, so by day of week
+                       ||
+                      (order.IsPeriodic == false && DateTime.Parse(order.OrderDueDate).Date == targetDate.Value.Date)
+                select order;
             }
             else //range
             {
                 //Gather Non-periodic Orders
-                
-                 query =
-                 from order in Orders
-                 where 
-                     order.IsOneShot == true
-                     && DateTime.Parse(order.OrderDueDate) >= targetDate.Value
-                     && DateTime.Parse(order.OrderDueDate) <= endDate.Value
-                 select order;
-                
+
+                query =
+                from order in Orders
+                where
+                    order.IsOneShot == true
+                    && DateTime.Parse(order.OrderDueDate) >= targetDate.Value
+                    && DateTime.Parse(order.OrderDueDate) <= endDate.Value
+                select order;
+
                 //Gather periodic orders, fulfilment date of periodic(weekly) orders is only used to get the corresponding day of the week.
                 //To get periodic orders, for each day of the date range, get the orders of that day and add to list
                 for (DateTime date = targetDate.Value; date <= endDate; date = date.AddDays(1))
@@ -237,7 +238,7 @@ namespace Petsi.Models
                 periodicOrders.AddRange(query.ToList());
                 return AggregatePetsiOrders(periodicOrders);
             }
-            return AggregatePetsiOrders(query.ToList()); 
+            return AggregatePetsiOrders(query.ToList());
         }
 
         private void AccumulatePeriodicOrders(List<PetsiOrder> periodicOrders, DateTime targetDate)
@@ -250,7 +251,7 @@ namespace Petsi.Models
             periodicOrders.AddRange(query.ToList());
         }
 
-        
+
         //Label Service uses it, WS_Day_report still needs day separation tho, and day info
         public List<PetsiOrderLineItem> GetWsDayData(DateTime? targetDate)
         {
@@ -288,7 +289,7 @@ namespace Petsi.Models
                         select order;
             }
 
-            List <PetsiOrder> result = query.ToList();
+            List<PetsiOrder> result = query.ToList();
 
             foreach (PetsiOrder order in result)
             {
@@ -299,7 +300,7 @@ namespace Petsi.Models
 
         #endregion
 
-        public static List<PetsiOrder> MergeOrders(List<PetsiOrder> mainOrders,  List<PetsiOrder> otherOrders)
+        public static List<PetsiOrder> MergeOrders(List<PetsiOrder> mainOrders, List<PetsiOrder> otherOrders)
         {
             List<PetsiOrder> result = new List<PetsiOrder>(mainOrders);
             result.AddRange(otherOrders.Where(order => !result.Contains(order)));
@@ -327,13 +328,13 @@ namespace Petsi.Models
             SavePeriodicModel();
             SaveOneShotModel();
         }
-        private void SavePeriodicModel(){fileBehavior.DataListToFile(Identifiers.PERIODIC_ORDERS, PeriodicOrders); }
+        private void SavePeriodicModel() { fileBehavior.DataListToFile(Identifiers.PERIODIC_ORDERS, PeriodicOrders); }
         private void SaveOneShotModel() { fileBehavior.DataListToFile(Identifiers.ONE_SHOT_ORDERS, OneShotOrders); }
 
-        private void SaveDeletedOrder(PetsiOrder order) 
+        private void SaveDeletedOrder(PetsiOrder order)
         {
             List<PetsiOrder> deletedOrders = fileBehavior.BuildDataListFile<PetsiOrder>(Identifiers.DELETED_ORDERS);
-            if(deletedOrders == null) { deletedOrders = new List<PetsiOrder>(); }
+            if (deletedOrders == null) { deletedOrders = new List<PetsiOrder>(); }
             deletedOrders.Add(order);
             fileBehavior.DataListToFile(Identifiers.DELETED_ORDERS, deletedOrders);
         }
@@ -342,7 +343,7 @@ namespace Petsi.Models
 
             PetsiOrder o = (PetsiOrder)order;
 
-            if(o.IsFrozen)
+            if (o.IsFrozen)
             {
                 FrozenOrders.Add(o);
                 fileBehavior.DataListToFile(Identifiers.FROZEN_ORDERS, FrozenOrders);
@@ -431,7 +432,7 @@ namespace Petsi.Models
             if (modOrder.IsPeriodic)
             {
                 UpdatePeriodicOrders(modOrder);
-                if(HandleOneShotOrdersContains(modOrder))
+                if (HandleOneShotOrdersContains(modOrder))
                 {
                     UpdateOneShotOrders(null);
                 }
@@ -439,7 +440,7 @@ namespace Petsi.Models
             else if (modOrder.IsOneShot)
             {
                 UpdateOneShotOrders(modOrder);
-                if(HandlePeriodicOrdersContains(modOrder))
+                if (HandlePeriodicOrdersContains(modOrder))
                 {
                     UpdatePeriodicOrders(null);
                 }
@@ -513,7 +514,7 @@ namespace Petsi.Models
 
         private void UpdateOneShotOrders(PetsiOrder? modOrder)
         {
-            if(modOrder != null)
+            if (modOrder != null)
             {
                 bool isFound = false;
                 int index = 0;
@@ -529,7 +530,7 @@ namespace Petsi.Models
                 if (isFound) { OneShotOrders[index] = modOrder; }
             }
 
-            fileBehavior.DataListToFile(Identifiers.ONE_SHOT_ORDERS, OneShotOrders);   
+            fileBehavior.DataListToFile(Identifiers.ONE_SHOT_ORDERS, OneShotOrders);
         }
 
         private void UpdatePeriodicOrders(PetsiOrder? modOrder)
@@ -547,16 +548,39 @@ namespace Petsi.Models
                         break;
                     }
                 }
-                if (isFound) {  PeriodicOrders[index] = modOrder;}
+                if (isFound) { PeriodicOrders[index] = modOrder; }
             }
             fileBehavior.DataListToFile(Identifiers.PERIODIC_ORDERS, PeriodicOrders);
         }
 
-       
         public List<PetsiOrder> GetFrozenOrders()
         {
             return FrozenOrders;
         }
-    }   
+
+        public void UpdateMultiLineMatchEvent()
+        {
+            CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
+            List<PetsiOrder> copy = new List<PetsiOrder>(Orders);
+            foreach (PetsiOrder order in copy)
+            {
+                foreach (PetsiOrderLineItem line in order.LineItems)
+                {
+                    if (line.CatalogObjectId == Identifiers.SOI_MULTI_LINE_EVENT_ID_SIG)
+                    {
+                        line.CatalogObjectId = cs.GetCatalogObjectId(line.ItemName);
+                        if (line.CatalogObjectId == "")
+                        {
+                            SystemLogger.Log("Update MultiLineMatch Event FAILED: recipient " + order.Recipient + " item: " + line.ItemName);
+                        }
+                        else
+                        {
+                            ModifyOrder(order);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 

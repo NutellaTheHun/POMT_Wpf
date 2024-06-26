@@ -90,17 +90,15 @@ namespace Petsi.Services
         /// <returns></returns>
         public string ValidateModifyItemName(string name)
         {
+            //test notification windows
+            /* 
+            if (name == "Lemon Glaze")
+            {
+                return ValidateModifyItemName("Lemon");
+            }*/
+
             List<CatalogItemPetsi> results = new List<CatalogItemPetsi>();
             results = GetItemNameValidationResults(name);
-            /*
-            foreach (CatalogItemPetsi item in catalog)
-            {
-                if (item.ItemName.ToLower().Contains(name.ToLower()) || item.NaturalNameContains(name.ToLower()))
-                {
-                    results.Add(item.ItemName);
-                }
-            }
-            */
             
             //HANDLE ADDING NEW ITEM TO CATALOG -> NOTIFY USER
             if (results.Count == 0)
@@ -121,7 +119,7 @@ namespace Petsi.Services
             }
             else if (results.Count > 1)
             {
-                if (name == "Lemon")//temporary until square updates "Lemon" to "Lemon Glaze"
+                /*if (name == "Lemon")//temporary until square updates "Lemon" to "Lemon Glaze"
                 {
                     return ValidateModifyItemName("Lemon Glaze");
                 }
@@ -132,7 +130,7 @@ namespace Petsi.Services
                     {
                         SystemLogger.Log("   " + results[i]);
                     }
-                }
+                }*/
 
                 ErrorService.Instance().RaiseSoiMultiItemEvent(name, results);
 
@@ -156,10 +154,7 @@ namespace Petsi.Services
             foreach (CatalogItemPetsi item in catalog)
             {
                 catalogIdDict.TryAdd(item.ItemName, item);
-                //foreach (DictionaryEntry entry in item.Variations)
-                //{
-                //    catalogIdDict.TryAdd((string)entry.Key, item.CatalogObjectId);
-                //}
+
                 foreach ((string variationId, string variationName) in item.VariationList)
                 {
                     catalogIdDict.TryAdd(variationId, item);

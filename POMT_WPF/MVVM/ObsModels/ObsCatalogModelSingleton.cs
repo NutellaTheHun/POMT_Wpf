@@ -38,6 +38,7 @@ namespace POMT_WPF.MVVM.ObsModels
         private ObsCatalogModelSingleton()
         {
             _cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
+            
             CatalogItems = new ObservableCollection<CatalogItemPetsi>(_cmp.GetItems());
             _subscriptions = new List<IObsCatalogModelSubscriber>();
         }

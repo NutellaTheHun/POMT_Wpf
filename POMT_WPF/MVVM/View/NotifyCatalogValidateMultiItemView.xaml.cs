@@ -1,4 +1,7 @@
-﻿using Petsi.Units;
+﻿using Petsi.Managers;
+using Petsi.Models;
+using Petsi.Units;
+using Petsi.Utils;
 using POMT_WPF.MVVM.ObsModels;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -38,8 +41,9 @@ namespace POMT_WPF.MVVM.View
             view.ShowDialog();
 
             //update omp with new catalog item
-            ObsOrderModelSingleton.UpdateMultiLineMatchEvent();
-
+            //ObsOrderModelSingleton.UpdateMultiLineMatchEvent();
+            OrderModelPetsi omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+            omp.UpdateMultiLineMatchEvent();
             Close();
         }
 
@@ -50,8 +54,14 @@ namespace POMT_WPF.MVVM.View
                 string selectedItemName = (string)multiItemListBox.SelectedItem;
                 CatalogItemPetsi matchItem = MultiItemList.FirstOrDefault(x => x.ItemName == selectedItemName);
                 matchItem.NaturalNames.Add(ItemContext);
+
                 ObsCatalogModelSingleton.ModifyItem(matchItem);
-                ObsOrderModelSingleton.UpdateMultiLineMatchEvent();
+                //CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
+                //cmp.ModifyItem(matchItem);
+
+                //ObsOrderModelSingleton.UpdateMultiLineMatchEvent();
+                OrderModelPetsi omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+                omp.UpdateMultiLineMatchEvent();
                 Close();
             }
         }
