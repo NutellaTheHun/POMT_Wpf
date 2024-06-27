@@ -16,7 +16,7 @@ namespace POMT_WPF.MVVM.View
             InitializeComponent();
             viewModel = new CatalogListViewWindowModel();
             catalogListDataGrid.ItemsSource = viewModel.Items;
-            catalogListDataGrid.SelectionChanged += CatalogListDataGrid_SelectionChanged;
+            catalogListDataGrid.MouseDoubleClick += catalogListDataGrid_MouseDoubleClick;
         }
 
         private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)
@@ -30,7 +30,19 @@ namespace POMT_WPF.MVVM.View
             Close();
         }
 
-        private void CatalogListDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            viewModel.FilterSearchBar(txtFilter.Text);
+            catalogListDataGrid.ItemsSource = viewModel.Items;
+        }
+
+        private void AddCatalogItemBtn_Click(object sender, RoutedEventArgs e)
+        {
+            CatalogItemViewWindow view = new CatalogItemViewWindow(null);
+            view.Show();
+        }
+
+        private void catalogListDataGrid_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var catalogListDataGrid = sender as DataGrid;
             if (catalogListDataGrid != null)
@@ -42,18 +54,6 @@ namespace POMT_WPF.MVVM.View
                     view.Show();
                 }
             }
-        }
-
-        private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            viewModel.FilterSearchBar(txtFilter.Text);
-            catalogListDataGrid.ItemsSource = viewModel.Items;
-        }
-
-        private void AddCatalogItemBtn_Click(object sender, RoutedEventArgs e)
-        {
-            CatalogItemViewWindow view = new CatalogItemViewWindow(null);
-            view.Show();
         }
     }
 }
