@@ -56,7 +56,6 @@ namespace POMT_WPF
                 {
                     PetsiOrderWindow petsiOrderWin = new PetsiOrderWindow(selectedItem as PetsiOrder, true);
                     petsiOrderWin.ShowDialog();
-                    //UpdateDataGrid(); //Works for delete but not add
                 }
             }
         }
@@ -67,13 +66,14 @@ namespace POMT_WPF
             else
             {
                 dashboardDataGrid.ItemsSource = viewModel.Orders;
-            }
-            
+            }  
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.ChangedButton == MouseButton.Left) { this.DragMove(); }
+            //if (e.ChangedButton == MouseButton.Left) { this.DragMove(); }
+            if (e.LeftButton == MouseButtonState.Pressed)
+                this.DragMove();
         }
 
 

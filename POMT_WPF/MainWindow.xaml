@@ -264,10 +264,22 @@
                     RowStyle="{DynamicResource dashboardDataGridRowStyle}"
                     Style="{DynamicResource dashboardDataGridStyle}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding OrderType, UpdateSourceTrigger=PropertyChanged}" Header="Type" />
-                        <DataGridTextColumn Binding="{Binding Recipient, UpdateSourceTrigger=PropertyChanged}" Header="Name" />
-                        <DataGridTextColumn Binding="{Binding DisplayOrderDueDate, UpdateSourceTrigger=PropertyChanged}" Header="Due Date" />
-                        <DataGridTextColumn Binding="{Binding FulfillmentType, UpdateSourceTrigger=PropertyChanged}" Header="Fulfillment" />
+                        <DataGridTextColumn
+                            Binding="{Binding OrderType, UpdateSourceTrigger=PropertyChanged}"
+                            Header="Type"
+                            IsReadOnly="True" />
+                        <DataGridTextColumn
+                            Binding="{Binding Recipient, UpdateSourceTrigger=PropertyChanged}"
+                            Header="Name"
+                            IsReadOnly="True" />
+                        <DataGridTextColumn
+                            Binding="{Binding DisplayOrderDueDate, UpdateSourceTrigger=PropertyChanged}"
+                            Header="Due Date"
+                            IsReadOnly="True" />
+                        <DataGridTextColumn
+                            Binding="{Binding FulfillmentType, UpdateSourceTrigger=PropertyChanged}"
+                            Header="Fulfillment"
+                            IsReadOnly="True" />
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>

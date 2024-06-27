@@ -1113,7 +1113,7 @@
                             Background="{TemplateBinding Background}"
                             BorderThickness="0"
                             SnapsToDevicePixels="True">
-                            <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                            <ContentPresenter Focusable="False" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>

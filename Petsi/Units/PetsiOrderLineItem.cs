@@ -1,5 +1,4 @@
-﻿
-using Petsi.Managers;
+﻿using Petsi.Managers;
 using Petsi.Services;
 using Petsi.Utils;
 using System.ComponentModel;

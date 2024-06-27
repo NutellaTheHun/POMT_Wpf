@@ -70,9 +70,9 @@ namespace Petsi.Services
 
         public delegate void LabelServiceValidateFilePathEvent(object sender, EventArgs e);
         public event LabelServiceValidateFilePathEvent LabelServiceValidateFilePath;
-        public void RaiseLabelServiceValidateFilePathEvent(string catalogId, string fileName)
+        public void RaiseLabelServiceValidateFilePathEvent(string catalogId, string fileName, string pieType)
         {
-            LabelServiceValidateFpEventArgs args = new LabelServiceValidateFpEventArgs(catalogId, fileName);
+            LabelServiceValidateFpEventArgs args = new LabelServiceValidateFpEventArgs(catalogId, fileName, pieType);
             LabelServiceValidateFilePath?.Invoke(this, args);
         }
 
