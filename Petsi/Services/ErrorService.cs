@@ -1,4 +1,5 @@
-﻿using Petsi.Events;
+﻿using DocumentFormat.OpenXml.Vml.Office;
+using Petsi.Events;
 using Petsi.Models;
 using Petsi.Units;
 using Petsi.Utils;
@@ -47,7 +48,6 @@ namespace Petsi.Services
         {
             SoiNewItemEventArgs args = new SoiNewItemEventArgs(newItem);
             mainWindowEvents.Add(args);
-            //SoiNewItem?.Invoke(this, args);
         }
 
         //Square Order Input Multi Item Event
@@ -65,10 +65,23 @@ namespace Petsi.Services
                 multiItemNameEventCalls.Add(itemContext);
                 SoiMultiItemEventArgs args = new SoiMultiItemEventArgs(itemContext, multiItemList);
                 mainWindowEvents.Add(args);
-                //SoiMultiItem?.Invoke(this, args);
             }          
         }
 
+        public delegate void LabelServiceValidateFilePathEvent(object sender, EventArgs e);
+        public event LabelServiceValidateFilePathEvent LabelServiceValidateFilePath;
+        public void RaiseLabelServiceValidateFilePathEvent(string catalogId, string fileName)
+        {
+            LabelServiceValidateFpEventArgs args = new LabelServiceValidateFpEventArgs(catalogId, fileName);
+            LabelServiceValidateFilePath?.Invoke(this, args);
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Events that occur before the MainWindow is initialized are added to the mainWindowEvents list
+        /// and is called in the mainWindow view constructor.
+        /// </summary>
         public static void RaiseMainWindowEvents()
         {
             foreach(var args in Instance().mainWindowEvents)
@@ -84,6 +97,6 @@ namespace Petsi.Services
             }
         }
 
-        #endregion
+        
     }
 }

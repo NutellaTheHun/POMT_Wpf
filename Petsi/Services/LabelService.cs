@@ -1,4 +1,5 @@
 ﻿using Petsi.CommandLine;
+using Petsi.Events;
 using Petsi.Managers;
 using Petsi.Models;
 using Petsi.Units;
@@ -35,6 +36,7 @@ namespace Petsi.Services
             CommandFrame.GetInstance().RegisterFrame("lbl", frameBehavior);
             CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
             cmp.AddModelService(this);
+            LoadLabelMap(cmp.GetItems());
         }
         public FrameBehaviorBase GetFrameBehavior() { return frameBehavior; }
         public void LoadLabelMap(List<CatalogItemPetsi> inputList)
@@ -138,19 +140,23 @@ namespace Petsi.Services
         }
 
         //--------------
-        public bool ValidateFilePath(string id)
+        public void ValidateFilePaths()
         {
-            bool b = false;
-            //if (!File.Exists(path)) return false;
-            if(_standardLabelMap.ContainsKey(id))
+            //key: catalog id, val: fileName
+            foreach (KeyValuePair<string, string> entry in _standardLabelMap)
             {
-                if (File.Exists(_standardLabelMap[id])) b = true;
+                if (!File.Exists(pieDirectoryPath + entry.Value)) 
+                {
+                    ErrorService.Instance().RaiseLabelServiceValidateFilePathEvent(entry.Key, entry.Value, "Pie");
+                }
             }
-            if(_cutieLabelMap.ContainsKey(id))
+            foreach (KeyValuePair<string, string> entry in _cutieLabelMap)
             {
-                if (File.Exists(_cutieLabelMap[id])) b = true;
+                if (!File.Exists(cutieDirectoryPath + entry.Value))
+                {
+                    ErrorService.Instance().RaiseLabelServiceValidateFilePathEvent(entry.Key, entry.Value, "Cutie");
+                }
             }
-            return b;
         }
 
         private List<LabelPrintData> LoadPrintList(List<PetsiOrderLineItem> inputList)

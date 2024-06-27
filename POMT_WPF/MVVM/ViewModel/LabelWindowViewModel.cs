@@ -12,6 +12,7 @@ namespace POMT_WPF.MVVM.ViewModel
         public LabelWindowViewModel()
         {
             ls = (LabelService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_LABEL);
+            ls.ValidateFilePaths();
         }
 
         public void PrintRound(DateTime targetDate)
