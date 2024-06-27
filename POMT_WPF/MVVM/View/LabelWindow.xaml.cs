@@ -24,7 +24,6 @@ namespace POMT_WPF.MVVM.View
         }
         LabelTypes selectedType;
 
-
         public LabelWindow()
         {
             ErrorService.Instance().LabelServiceValidateFilePath += ValidateFileServiceErrorWindow;

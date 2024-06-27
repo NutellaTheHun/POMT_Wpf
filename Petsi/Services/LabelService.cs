@@ -1,10 +1,8 @@
 ﻿using Petsi.CommandLine;
-using Petsi.Events;
 using Petsi.Managers;
 using Petsi.Models;
 using Petsi.Units;
 using Petsi.Utils;
-using System.Diagnostics;
 using System.Drawing.Printing;
 
 namespace Petsi.Services
@@ -59,7 +57,6 @@ namespace Petsi.Services
             OrderModelPetsi omp = GetOrderModel();
 
             List<LabelPrintData> printList = LoadPrintList(omp.GetWsDayData(targetDate));
-            //if filepaths exist
             PrintStandard(printList);
         }
         public void Print_2x1(DateTime targetDate)
@@ -67,7 +64,6 @@ namespace Petsi.Services
             OrderModelPetsi omp = GetOrderModel();
 
             List<LabelPrintData> printList = LoadPrintList(omp.GetWsDayData(targetDate));
-            //if filepaths exist
             PrintCare(printList);
             PrintCutie(printList);
         }
@@ -76,29 +72,19 @@ namespace Petsi.Services
             OrderModelPetsi omp = GetOrderModel();
 
             List<LabelPrintData> printList = LoadPrintList(omp.GetWsDayData(targetDate));
-            //if filepaths exist
             PrintRound(printList);
         }
         
-        public void PrintStandard(List<LabelPrintData> inputList)
+        private void PrintStandard(List<LabelPrintData> inputList)
         {
-
-            /*
-            foreach(LabelPrintData printItem in inputList)
-            {
-                ExecuteRolloPrint(pieDirectoryPath + _standardLabelMap[printItem.Id], printItem.GetStandardAmount() );
-            }*/
-            //ExecuteRolloPrint("D:/Git-Repos/Petsi/Petsi/Labels/Files/Pie/Apple-Crumb_pie_ingredient_labels.jpg", 1);
-
             PrintDocument pd;
             foreach (LabelPrintData printItem in inputList)
             {
                 pd = new PrintDocument();
                 pd.PrinterSettings.PrinterName = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_LABEL_PRINTER);
                 pd.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("Custom", 400, 200); //hundreths of an inch
-
-                //pd.PrinterSettings.Copies = (short)printItem.GetStandardAmount();
-                pd.PrinterSettings.Copies = 1;
+                pd.PrinterSettings.Copies = (short)printItem.GetStandardAmount();
+                //pd.PrinterSettings.Copies = 1;
                 pd.PrintPage += (sender, args) =>
                 {
                     System.Drawing.Image img = System.Drawing.Image.FromFile(pieDirectoryPath + _standardLabelMap[printItem.Id]);
@@ -110,12 +96,22 @@ namespace Petsi.Services
             }
         }
         
-
         private void PrintCutie(List<LabelPrintData> inputList)
         {
+            PrintDocument pd;
             foreach (LabelPrintData printItem in inputList)
             {
-                ExecuteRolloPrint(cutieDirectoryPath + _cutieLabelMap[printItem.Id], printItem.GetCutieAmount() );
+                pd = new PrintDocument();
+                pd.PrinterSettings.PrinterName = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_LABEL_PRINTER);
+                pd.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("Custom", 400, 200); //hundreths of an inch
+                pd.PrinterSettings.Copies = (short)printItem.GetCutieAmount();
+                pd.PrintPage += (sender, args) =>
+                {
+                    System.Drawing.Image img = System.Drawing.Image.FromFile(pieDirectoryPath + _standardLabelMap[printItem.Id]);
+                    Point loc = new Point(0, 0);
+                    args.Graphics.DrawImage(img, loc);
+                };
+                pd.Print();
             }
         }
         private void PrintCare(List<LabelPrintData> inputList)
@@ -124,9 +120,18 @@ namespace Petsi.Services
             foreach (LabelPrintData printItem in inputList)
             {
                 count += printItem.GetStandardAmount();
-               
             }
-            ExecuteRolloPrint(pieDirectoryPath + _standardLabelMap["care"] , count );
+            PrintDocument pd = new PrintDocument();
+            pd.PrinterSettings.PrinterName = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_LABEL_PRINTER);
+            pd.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("Custom", 400, 200); //hundreths of an inch
+            pd.PrinterSettings.Copies = (short)count;
+            pd.PrintPage += (sender, args) =>
+            {
+                System.Drawing.Image img = System.Drawing.Image.FromFile(pieDirectoryPath + _standardLabelMap["care"]);
+                Point loc = new Point(0, 0);
+                args.Graphics.DrawImage(img, loc);
+            };
+            pd.Print();
         }
         private void PrintRound(List<LabelPrintData> inputList)
         {
@@ -134,9 +139,18 @@ namespace Petsi.Services
             foreach (LabelPrintData printItem in inputList)
             {
                 count += printItem.GetCutieAmount();
-                //ValidateFilePath(printItem.Id);
             }
-            ExecuteRolloPrint(pieDirectoryPath + _standardLabelMap["round"] , count );
+            PrintDocument pd = new PrintDocument();
+            pd.PrinterSettings.PrinterName = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_LABEL_PRINTER);
+            pd.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("Custom", 400, 200); //hundreths of an inch
+            pd.PrinterSettings.Copies = (short)count;
+            pd.PrintPage += (sender, args) =>
+            {
+                System.Drawing.Image img = System.Drawing.Image.FromFile(pieDirectoryPath + _standardLabelMap["round"]);
+                Point loc = new Point(0, 0);
+                args.Graphics.DrawImage(img, loc);
+            };
+            pd.Print();
         }
 
         //--------------
@@ -169,38 +183,7 @@ namespace Petsi.Services
             }
             return printList;
         }
-        private void ExecuteRolloPrint(string PdfFp, int copies)
-        {
-            string nodePath = @"C:\Program Files\nodejs\node.exe";
 
-            string scriptPath = @"D:\Git-Repos\Petsi\Petsi\Services\RolloPrinter.js";
-
-            ProcessStartInfo startInfo = new ProcessStartInfo
-            {
-                FileName = nodePath,
-                Arguments = $"{scriptPath} \"{PdfFp}\" {copies}",
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                UseShellExecute = false,
-                CreateNoWindow = true
-            };
-
-            using (Process process = new Process { StartInfo = startInfo })
-            {
-                process.Start();
-
-                string output = process.StandardOutput.ReadToEnd();
-                string error = process.StandardError.ReadToEnd();
-
-                process.WaitForExit();
-
-                Console.WriteLine("Output: " + output);
-                if (!string.IsNullOrEmpty(error))
-                {
-                    Console.WriteLine("Error: " + error);
-                }
-            }
-        }   
         public override void Update(ModelBase model)
         {
             var catalog = (CatalogModelPetsi)model;
