@@ -1,6 +1,5 @@
-﻿using Petsi.Managers;
-using Petsi.Services;
-using Petsi.Utils;
+﻿using Petsi.Utils;
+using POMT_WPF.MVVM.ViewModel;
 using System.Windows;
 
 namespace POMT_WPF.MVVM.View
@@ -10,37 +9,63 @@ namespace POMT_WPF.MVVM.View
     /// </summary>
     public partial class LabelWindow : Window
     {
-        DateTime dt1;
-        DateTime dt2;
-        bool standardLabel;
-        bool smallLabel;
-        bool roundLabel;
+        LabelWindowViewModel viewModel;
+        DateTime targetDate;
+
+        enum LabelTypes
+        {
+            Standard,
+            Small,
+            Round
+        }
+        LabelTypes selectedType;
+
+
         public LabelWindow()
         {
+            viewModel = new LabelWindowViewModel();
+            DataContext = this;
             InitializeComponent();
-        }
-
-        private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void Print_ButtonClick(Object sender, RoutedEventArgs e)
-        {
-            LabelService ls = (LabelService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_LABEL);
-            ls.PrintStandard(null);
         }
         private void Standard_ButtonClick(Object sender, RoutedEventArgs e)
         {
-            
+            selectedType = LabelTypes.Standard;
         }
         private void Small_ButtonClick(Object sender, RoutedEventArgs e)
         {
-           
+            selectedType = LabelTypes.Small;
         }
         private void Round_ButtonClick(Object sender, RoutedEventArgs e)
         {
-          
+            selectedType = LabelTypes.Round;
+        }
+        private void Print_ButtonClick(Object sender, RoutedEventArgs e)
+        {
+            if (datePicker.SelectedDate == null) 
+            { PetsiOrderFormErrorWindow error = new PetsiOrderFormErrorWindow("Please select a date."); return; }
+
+            switch (selectedType)
+            {
+                case LabelTypes.Standard:
+                    viewModel.PrintStandard(targetDate);
+                break;
+
+                case LabelTypes.Small:
+                    viewModel.PrintSmall(targetDate);
+                break;
+
+                case LabelTypes.Round:
+                    viewModel.PrintRound(targetDate);
+                break;
+
+                default:
+                    SystemLogger.Log("LABELWINDOW: PRINT_BUTTONCLICK SWITCHCASE DEFAULT");
+                break;
+            }
+        }
+        private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

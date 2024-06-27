@@ -57,6 +57,7 @@ namespace Petsi.Services
             OrderModelPetsi omp = GetOrderModel();
 
             List<LabelPrintData> printList = LoadPrintList(omp.GetWsDayData(targetDate));
+            //if filepaths exist
             PrintStandard(printList);
         }
         public void Print_2x1(DateTime targetDate)
@@ -64,6 +65,7 @@ namespace Petsi.Services
             OrderModelPetsi omp = GetOrderModel();
 
             List<LabelPrintData> printList = LoadPrintList(omp.GetWsDayData(targetDate));
+            //if filepaths exist
             PrintCare(printList);
             PrintCutie(printList);
         }
@@ -72,46 +74,10 @@ namespace Petsi.Services
             OrderModelPetsi omp = GetOrderModel();
 
             List<LabelPrintData> printList = LoadPrintList(omp.GetWsDayData(targetDate));
+            //if filepaths exist
             PrintRound(printList);
         }
-
-        //zebra https://stackoverflow.com/questions/44671934/c-sharp-printdocument-print-image
-        /*
-         static void Main(string[] args)
-    {
-        try
-        {
-            PrintDocument pd = new PrintDocument();
-            pd.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("Custom", 100, 77);
-
-            //We want potrait. 
-            pd.DefaultPageSettings.Landscape = false;
-            pd.PrintPage += PrintPage;
-            pd.Print();
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-            Console.ReadLine();
-        }
-    }
-
-    private static void PrintPage(object o, PrintPageEventArgs e)
-    {
-        //System.Drawing.Image img = System.Drawing.Image.FromFile(@"c:\test\test.png");
-        //img.RotateFlip(RotateFlipType.Rotate90FlipNone);
-        //e.Graphics.DrawImage(img,0,0);
-
-        int printHeight = 450;
-        int printWidth = 400;
-        int leftMargin = 20;
-        int rightMargin = 0;
-        System.Drawing.Image img = System.Drawing.Image.FromFile(@"c:\test\test.png");
-        img.RotateFlip(RotateFlipType.Rotate90FlipNone);
-
-        e.Graphics.DrawImage(img, new Rectangle(leftMargin, rightMargin, printWidth, printHeight));
-    }
-         */
+        
         public void PrintStandard(List<LabelPrintData> inputList)
         {
 
@@ -166,17 +132,34 @@ namespace Petsi.Services
             foreach (LabelPrintData printItem in inputList)
             {
                 count += printItem.GetCutieAmount();
-
+                //ValidateFilePath(printItem.Id);
             }
             ExecuteRolloPrint(pieDirectoryPath + _standardLabelMap["round"] , count );
         }
+
+        //--------------
+        public bool ValidateFilePath(string id)
+        {
+            bool b = false;
+            //if (!File.Exists(path)) return false;
+            if(_standardLabelMap.ContainsKey(id))
+            {
+                if (File.Exists(_standardLabelMap[id])) b = true;
+            }
+            if(_cutieLabelMap.ContainsKey(id))
+            {
+                if (File.Exists(_cutieLabelMap[id])) b = true;
+            }
+            return b;
+        }
+
         private List<LabelPrintData> LoadPrintList(List<PetsiOrderLineItem> inputList)
         {
             List<LabelPrintData> printList = new List<LabelPrintData>();
 
             foreach (PetsiOrderLineItem item in inputList)
             {
-                printList.Add(new LabelPrintData(item.CatalogObjectId, item.Amount3, item.Amount5, item.Amount8));
+                printList.Add(new LabelPrintData(item.CatalogObjectId, item.Amount3, item.Amount5, item.Amount8));               
             }
             return printList;
         }
@@ -238,6 +221,6 @@ namespace Petsi.Services
             Amount8 = amount8;
         }
         public int GetStandardAmount() { return Amount5 + Amount8; }
-        public int GetCutieAmount() {  return Amount3; }
+        public int GetCutieAmount() {  return Amount3; }   
     }
 }
