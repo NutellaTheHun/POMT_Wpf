@@ -7,40 +7,40 @@
       "RelativeMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|solutionrelative:pomt_wpf\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|d:\\git-repos\\pomt_wpf\\pomt_wpf\\mvvm\\view\\testnewmainview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|solutionrelative:pomt_wpf\\mvvm\\view\\testnewmainview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|d:\\git-repos\\pomt_wpf\\pomt_wpf\\mvvm\\viewmodel\\oldmainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|solutionrelative:pomt_wpf\\mvvm\\viewmodel\\oldmainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|d:\\git-repos\\pomt_wpf\\pomt_wpf\\mvvm\\view\\testnewmainview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|solutionrelative:pomt_wpf\\mvvm\\view\\testnewmainview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|d:\\git-repos\\pomt_wpf\\pomt_wpf\\mvvm\\view\\orderview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|solutionrelative:pomt_wpf\\mvvm\\view\\orderview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|d:\\git-repos\\pomt_wpf\\pomt_wpf\\mvvm\\view\\catalogview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|solutionrelative:pomt_wpf\\mvvm\\view\\catalogview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|d:\\git-repos\\pomt_wpf\\pomt_wpf\\mvvm\\viewmodel\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|solutionrelative:pomt_wpf\\mvvm\\viewmodel\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|d:\\git-repos\\pomt_wpf\\pomt_wpf\\mvvm\\view\\labelview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|solutionrelative:pomt_wpf\\mvvm\\view\\labelview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|d:\\git-repos\\pomt_wpf\\pomt_wpf\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|solutionrelative:pomt_wpf\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|d:\\git-repos\\pomt_wpf\\pomt_wpf\\mvvm\\view\\testnewmainview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|solutionrelative:pomt_wpf\\mvvm\\view\\testnewmainview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|d:\\git-repos\\pomt_wpf\\pomt_wpf\\core\\relaycommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|solutionrelative:pomt_wpf\\core\\relaycommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|d:\\git-repos\\pomt_wpf\\pomt_wpf\\core\\observableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|solutionrelative:pomt_wpf\\core\\observableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|d:\\git-repos\\pomt_wpf\\pomt_wpf\\mvvm\\view\\orderview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|solutionrelative:pomt_wpf\\mvvm\\view\\orderview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|d:\\git-repos\\pomt_wpf\\pomt_wpf\\mvvm\\view\\reportview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|solutionrelative:pomt_wpf\\mvvm\\view\\reportview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|d:\\git-repos\\pomt_wpf\\pomt_wpf\\mvvm\\view\\settingsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|solutionrelative:pomt_wpf\\mvvm\\view\\settingsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|d:\\git-repos\\pomt_wpf\\pomt_wpf\\mvvm\\viewmodel\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|solutionrelative:pomt_wpf\\mvvm\\viewmodel\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|d:\\git-repos\\pomt_wpf\\pomt_wpf\\mvvm\\viewmodel\\orderviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A78F1392-E35B-4D70-98B2-49200DD5DFC2}|POMT_WPF\\POMT_WPF.csproj|solutionrelative:pomt_wpf\\mvvm\\viewmodel\\orderviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\utils\\identifiers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -66,91 +66,69 @@
       "DocumentGroups": [
         {
           "DockedWidth": 300,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "testNEWmainVIEW.xaml.cs",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\View\\testNEWmainVIEW.xaml.cs",
-              "RelativeDocumentMoniker": "POMT_WPF\\MVVM\\View\\testNEWmainVIEW.xaml.cs",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\View\\testNEWmainVIEW.xaml.cs",
-              "RelativeToolTip": "POMT_WPF\\MVVM\\View\\testNEWmainVIEW.xaml.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAdAAAA",
+              "DocumentIndex": 6,
+              "Title": "RelayCommand.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\Core\\RelayCommand.cs",
+              "RelativeDocumentMoniker": "POMT_WPF\\Core\\RelayCommand.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\Core\\RelayCommand.cs",
+              "RelativeToolTip": "POMT_WPF\\Core\\RelayCommand.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-28T20:02:37.236Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "SettingsView.xaml",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\View\\SettingsView.xaml",
-              "RelativeDocumentMoniker": "POMT_WPF\\MVVM\\View\\SettingsView.xaml",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\View\\SettingsView.xaml",
-              "RelativeToolTip": "POMT_WPF\\MVVM\\View\\SettingsView.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-06-28T19:57:20.896Z",
+              "WhenOpened": "2024-06-28T20:40:00.131Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "ReportView.xaml",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\View\\ReportView.xaml",
-              "RelativeDocumentMoniker": "POMT_WPF\\MVVM\\View\\ReportView.xaml",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\View\\ReportView.xaml",
-              "RelativeToolTip": "POMT_WPF\\MVVM\\View\\ReportView.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-06-28T19:57:20.059Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "OrderView.xaml",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\View\\OrderView.xaml",
-              "RelativeDocumentMoniker": "POMT_WPF\\MVVM\\View\\OrderView.xaml",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\View\\OrderView.xaml",
-              "RelativeToolTip": "POMT_WPF\\MVVM\\View\\OrderView.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-06-28T19:57:19.343Z",
+              "Title": "ObservableObject.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\Core\\ObservableObject.cs",
+              "RelativeDocumentMoniker": "POMT_WPF\\Core\\ObservableObject.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\Core\\ObservableObject.cs",
+              "RelativeToolTip": "POMT_WPF\\Core\\ObservableObject.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-28T20:39:59.424Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "LabelView.xaml",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\View\\LabelView.xaml",
-              "RelativeDocumentMoniker": "POMT_WPF\\MVVM\\View\\LabelView.xaml",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\View\\LabelView.xaml",
-              "RelativeToolTip": "POMT_WPF\\MVVM\\View\\LabelView.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-06-28T19:57:17.711Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CatalogView.xaml",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\View\\CatalogView.xaml",
-              "RelativeDocumentMoniker": "POMT_WPF\\MVVM\\View\\CatalogView.xaml",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\View\\CatalogView.xaml",
-              "RelativeToolTip": "POMT_WPF\\MVVM\\View\\CatalogView.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-06-28T19:57:10.558Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "testNEWmainVIEW.xaml",
               "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\View\\testNEWmainVIEW.xaml",
               "RelativeDocumentMoniker": "POMT_WPF\\MVVM\\View\\testNEWmainVIEW.xaml",
               "ToolTip": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\View\\testNEWmainVIEW.xaml",
               "RelativeToolTip": "POMT_WPF\\MVVM\\View\\testNEWmainVIEW.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-06-28T19:53:20.557Z",
+              "WhenOpened": "2024-06-28T20:38:44.455Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "OrderView.xaml",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\View\\OrderView.xaml",
+              "RelativeDocumentMoniker": "POMT_WPF\\MVVM\\View\\OrderView.xaml",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\View\\OrderView.xaml",
+              "RelativeToolTip": "POMT_WPF\\MVVM\\View\\OrderView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-06-28T20:27:49.186Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "OrderView.xaml.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\View\\OrderView.xaml.cs",
+              "RelativeDocumentMoniker": "POMT_WPF\\MVVM\\View\\OrderView.xaml.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\View\\OrderView.xaml.cs",
+              "RelativeToolTip": "POMT_WPF\\MVVM\\View\\OrderView.xaml.cs",
+              "ViewState": "AQIAAFsAAAAAAAAAAAAYwHAAAABGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-28T20:19:02.491Z",
               "EditorCaption": ""
             }
           ]
@@ -259,15 +237,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "oldMainViewModel.cs",
               "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\ViewModel\\oldMainViewModel.cs",
               "RelativeDocumentMoniker": "POMT_WPF\\MVVM\\ViewModel\\oldMainViewModel.cs",
               "ToolTip": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\ViewModel\\oldMainViewModel.cs",
               "RelativeToolTip": "POMT_WPF\\MVVM\\ViewModel\\oldMainViewModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADEAAAAlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-28T20:05:45.451Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MainViewModel.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\ViewModel\\MainViewModel.cs",
+              "RelativeDocumentMoniker": "POMT_WPF\\MVVM\\ViewModel\\MainViewModel.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\ViewModel\\MainViewModel.cs",
+              "RelativeToolTip": "POMT_WPF\\MVVM\\ViewModel\\MainViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADMAAAA9AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-27T18:06:43.244Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "POMT_WPF\\MainWindow.xaml.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MainWindow.xaml.cs",
+              "RelativeToolTip": "POMT_WPF\\MainWindow.xaml.cs",
+              "ViewState": "AQIAAHMAAAAAAAAAAAAYwIQAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-28T20:18:11.799Z",
               "EditorCaption": ""
             }
           ]
@@ -280,11 +284,11 @@
       "FloatingWindowState": {
         "Id": "aa0cb2f0-c86f-43ce-a3f8-b33052af6ccc",
         "Display": 2,
-        "X": 272,
-        "Y": 264,
+        "X": 60,
+        "Y": 272,
         "Width": 1648,
         "Height": 816,
-        "WindowState": 0
+        "WindowState": 2
       },
       "DocumentGroups": [
         {
@@ -294,14 +298,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 9,
-              "Title": "MainViewModel.cs",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\ViewModel\\MainViewModel.cs",
-              "RelativeDocumentMoniker": "POMT_WPF\\MVVM\\ViewModel\\MainViewModel.cs",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\ViewModel\\MainViewModel.cs",
-              "RelativeToolTip": "POMT_WPF\\MVVM\\ViewModel\\MainViewModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "OrderViewModel.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\ViewModel\\OrderViewModel.cs",
+              "RelativeDocumentMoniker": "POMT_WPF\\MVVM\\ViewModel\\OrderViewModel.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\MVVM\\ViewModel\\OrderViewModel.cs",
+              "RelativeToolTip": "POMT_WPF\\MVVM\\ViewModel\\OrderViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACoAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-27T18:06:43.244Z",
+              "WhenOpened": "2024-06-28T20:20:04.906Z",
               "EditorCaption": ""
             }
           ]

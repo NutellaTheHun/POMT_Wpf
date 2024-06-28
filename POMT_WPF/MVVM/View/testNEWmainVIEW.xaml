@@ -66,7 +66,6 @@
                         <StackPanel DockPanel.Dock="Top">
                             <Button
                                 x:Name="OrderButton"
-                                Click="OrderButton_Click"
                                 Command="{Binding OrderViewCommand}"
                                 Style="{StaticResource menuButton}">
                                 <StackPanel Orientation="Horizontal">
@@ -77,7 +76,6 @@
 
                             <Button
                                 x:Name="ReportButton"
-                                Click="ReportButton_Click"
                                 Command="{Binding ReportViewCommand}"
                                 Style="{StaticResource menuButton}">
                                 <StackPanel Orientation="Horizontal">
@@ -88,7 +86,6 @@
 
                             <Button
                                 x:Name="LabelButton"
-                                Click="LabelButton_Click"
                                 Command="{Binding LabelViewCommand}"
                                 Style="{StaticResource menuButton}">
                                 <StackPanel Orientation="Horizontal">
@@ -98,7 +95,6 @@
                             </Button>
                             <Button
                                 x:Name="CatalogButton"
-                                Click="CatalogButton_Click"
                                 Command="{Binding CatalogViewCommand}"
                                 Style="{StaticResource menuButton}">
                                 <StackPanel Orientation="Horizontal">

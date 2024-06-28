@@ -15,25 +15,5 @@ namespace POMT_WPF.MVVM.View
             DataContext = vm;
             InitializeComponent();
         }
-
-        private void CatalogButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void LabelButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ReportButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void OrderButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

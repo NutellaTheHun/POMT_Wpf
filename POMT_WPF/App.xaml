@@ -70,29 +70,9 @@
                 <EventSetter Event="GotKeyboardFocus" Handler="TextBox_GotKeyboardFocus" />
             </Style>
 
-            <DataTemplate DataType="{x:Type viewModel:CatalogViewModel}">
-                <view:CatalogView />
-            </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewModel:LabelViewModel}">
-                <view:LabelView />
-            </DataTemplate>
-
-            <DataTemplate DataType="{x:Type viewModel:OrderViewModel}">
-                <view:OrderView />
-            </DataTemplate>
-
-            <DataTemplate DataType="{x:Type viewModel:ReportViewModel}">
-                <view:ReportView />
-            </DataTemplate>
-
-            <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
-                <view:SettingsView />
-            </DataTemplate>
 
         </ResourceDictionary>
-
-
 
     </Application.Resources>
 </Application>
