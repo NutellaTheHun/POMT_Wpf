@@ -3,11 +3,224 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:POMT_WPF.MVVM.View"
+    xmlns:local="clr-namespace:POMT_WPF.MVVM.View.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
 
-    <Grid Background="{StaticResource ColumbiaBlue}" />
+    <Grid Background="{StaticResource ColumbiaBlue}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!--  CheckBox Filters  -->
+        <Grid Grid.Column="0" Margin="10">
+            <Label Height="200" Content="Filter" />
+            <Border
+                Height="150"
+                BorderBrush="{StaticResource TextFont}"
+                BorderThickness="1"
+                CornerRadius="5">
+                <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+                    <CheckBox
+                        x:Name="RetailCheckbox"
+                        Margin="5"
+                        Content="Retail" />
+                    <CheckBox
+                        x:Name="SquareCheckBox"
+                        Margin="5"
+                        Content="Square" />
+                    <CheckBox
+                        x:Name="WholesaleCheckbox"
+                        Margin="5"
+                        Content="Wholesale" />
+                    <CheckBox
+                        x:Name="SpecialCheckbox"
+                        Margin="5"
+                        Content="Special" />
+                    <CheckBox
+                        x:Name="EzCaterCheckbox"
+                        Margin="5"
+                        Content="Ez-Cater" />
+                </StackPanel>
+            </Border>
+
+        </Grid>
+
+        <!--  Main Body  -->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--  Printing  -->
+            <Grid Grid.Row="0">
+                <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                    <Label Content="Printing" />
+                    <Border
+                        Width="400"
+                        Height="150"
+                        BorderBrush="{StaticResource TextFont}"
+                        BorderThickness="1"
+                        CornerRadius="5">
+                        <Grid>
+                            <StackPanel
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Orientation="Vertical">
+                                <StackPanel
+                                    Grid.Row="2"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Orientation="Horizontal">
+                                    <StackPanel Orientation="Vertical">
+                                        <Label Content="Start" />
+                                        <DatePicker
+                                            x:Name="datePickerStart"
+                                            Grid.Row="2"
+                                            Width="150"
+                                            Height="40"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical">
+                                        <Label Content="End" />
+                                        <DatePicker
+                                            x:Name="datePickerEnd"
+                                            Grid.Row="2"
+                                            Width="150"
+                                            Height="40"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Orientation="Horizontal">
+                                    <RadioButton
+                                        Click="SelectFrontList_ButtonClick"
+                                        Content="Print FrontList"
+                                        Foreground="#efefef"
+                                        GroupName="1"
+                                        Style="{StaticResource reportLabelsRadioButtonTheme}" />
+                                    <RadioButton
+                                        Click="SelectBackList_ButtonClick"
+                                        Content="Print Backlist"
+                                        Foreground="#efefef"
+                                        GroupName="1"
+                                        Style="{StaticResource reportLabelsRadioButtonTheme}" />
+                                </StackPanel>
+                                <StackPanel
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Orientation="Horizontal">
+                                    <RadioButton
+                                        Click="SelectWsAggList_ButtonClick"
+                                        Content="Print Ws Agg"
+                                        Foreground="#efefef"
+                                        GroupName="1"
+                                        Style="{StaticResource reportLabelsRadioButtonTheme}" />
+                                    <RadioButton
+                                        Click="SelectWsList_ButtonClick"
+                                        Content="Print Wholesale"
+                                        Foreground="#efefef"
+                                        GroupName="1"
+                                        Style="{StaticResource reportLabelsRadioButtonTheme}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+
+
+            </Grid>
+
+            <!--  Configure  -->
+            <Grid Grid.Row="1">
+                <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                    <Label Content="Configure" />
+                    <Border
+                        Width="425"
+                        Height="200"
+                        BorderBrush="{StaticResource TextFont}"
+                        BorderThickness="1"
+                        CornerRadius="5">
+                        <Grid>
+                            <StackPanel
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Orientation="Vertical">
+                                <StackPanel Margin="5" HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            FontSize="14"
+                                            FontWeight="SemiBold"
+                                            Foreground="{StaticResource maybeDark}"
+                                            Text="Select Pie Template" />
+                                        <Border
+                                            BorderBrush="{StaticResource TextFont}"
+                                            BorderThickness="1"
+                                            CornerRadius="5">
+                                            <local:TextFillTextBox
+                                                IsReadOnly="true"
+                                                Style="{StaticResource textFillTextBox}"
+                                                Text="{Binding PieTemplate, UpdateSourceTrigger=PropertyChanged}"
+                                                TextFill="SelectFromListBox()" />
+                                        </Border>
+
+                                    </StackPanel>
+
+                                    <Button
+                                        Width="50"
+                                        Click="SetPieTemplate_BtnClk"
+                                        Content="Set"
+                                        Style="{StaticResource settingsButton}" />
+                                </StackPanel>
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <StackPanel Orientation="Vertical" Margin="5">
+                                        <TextBlock
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            FontSize="14"
+                                            FontWeight="SemiBold"
+                                            Foreground="{StaticResource maybeDark}"
+                                            Text="Select PastryTemplate" />
+                                        <Border
+                                            BorderBrush="{StaticResource TextFont}"
+                                            BorderThickness="1"
+                                            CornerRadius="5">
+                                            <local:TextFillTextBox
+                                                IsReadOnly="true"
+                                                Style="{StaticResource textFillTextBox}"
+                                                Text="{Binding PastryTemplate, UpdateSourceTrigger=PropertyChanged}"
+                                                TextFill="SelectFromListBox()" />
+                                        </Border>
+                                    </StackPanel>
+
+                                    <Button
+                                        Width="50"
+                                        Click="SetPastryTemplate_BtnClk"
+                                        Content="Set"
+                                        Style="{StaticResource settingsButton}" />
+                                </StackPanel>
+                                <Button
+                                    Width="140"
+                                    Click="ManageCatalogWin_BtnClk"
+                                    Content="Manage Catalog"
+                                    Style="{StaticResource settingsButton}" />
+                            </StackPanel>
+                        </Grid>
+
+                    </Border>
+                </StackPanel>
+
+            </Grid>
+        </Grid>
+    </Grid>
 </UserControl>

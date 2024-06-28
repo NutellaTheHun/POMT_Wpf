@@ -70,8 +70,6 @@
                 <EventSetter Event="GotKeyboardFocus" Handler="TextBox_GotKeyboardFocus" />
             </Style>
 
-
-
         </ResourceDictionary>
 
     </Application.Resources>
