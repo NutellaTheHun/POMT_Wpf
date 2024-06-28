@@ -18,7 +18,6 @@ namespace POMT_WPF.MVVM.ViewModel
 		
 
         private object _currentView;
-
 		public object CurrentView
 		{
 			get { return _currentView; }
