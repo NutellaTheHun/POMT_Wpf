@@ -1,10 +1,9 @@
 ﻿using Petsi.Utils;
-using POMT_WPF.MVVM.View;
 using System.Windows.Forms;
 
 namespace POMT_WPF.MVVM.ViewModel
 {
-    class SettingsWindowViewModel : ViewModelBase
+    public class SettingsViewModel : ViewModelBase
     {
         #region Properties
         private string _labelPrinter; //config, getPrinters()
@@ -98,7 +97,7 @@ namespace POMT_WPF.MVVM.ViewModel
         #endregion
 
         PetsiConfig config;
-        public SettingsWindowViewModel()
+        public SettingsViewModel()
         {
             config = PetsiConfig.GetInstance();
             LabelPrinter = config.GetVariable(Identifiers.SETTING_LABEL_PRINTER);

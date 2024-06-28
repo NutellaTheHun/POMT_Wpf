@@ -6,7 +6,7 @@ using POMT_WPF.Interfaces;
 
 namespace POMT_WPF.MVVM.ViewModel
 {
-    public class CatalogListViewWindowModel : ViewModelBase, IObsCatalogModelSubscriber
+    public class CatalogViewModel : ViewModelBase, IObsCatalogModelSubscriber
     {
         CatalogModelPetsi cmp;
 
@@ -37,7 +37,7 @@ namespace POMT_WPF.MVVM.ViewModel
             }
         }
 
-        public CatalogListViewWindowModel()
+        public CatalogViewModel()
         {
             ObsCatalogModelSingleton.Instance.Subscribe(this);
             Items = ObsCatalogModelSingleton.Instance.CatalogItems;

@@ -8,12 +8,12 @@ namespace POMT_WPF.MVVM.View
     /// </summary>
     public partial class SettingsWindow : Window
     {
-        SettingsWindowViewModel viewModel;
+        SettingsViewModel viewModel;
         public string selection;
         public SettingsWindow()
         {
             InitializeComponent();
-            viewModel = new SettingsWindowViewModel();
+            viewModel = new SettingsViewModel();
             DataContext = viewModel;
         }
 

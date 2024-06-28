@@ -10,12 +10,12 @@ namespace POMT_WPF.MVVM.View
     /// </summary>
     public partial class CatalogItemVeganMapView : Window
     {
-        CatalogListViewWindowModel viewModel;
+        CatalogViewModel viewModel;
         public CatalogItemPetsi selection;
         public CatalogItemVeganMapView()
         {
             InitializeComponent();
-            viewModel = new CatalogListViewWindowModel();
+            viewModel = new CatalogViewModel();
             catalogVeganMapperListDataGrid.ItemsSource = viewModel.Items;
             catalogVeganMapperListDataGrid.SelectionChanged += CatalogListDataGrid_SelectionChanged;
             //catalogVeganMapperListDataGrid.LostFocus += CatalogListDataGrid_LostFocus;

@@ -10,11 +10,11 @@ namespace POMT_WPF.MVVM.View
     /// </summary>
     public partial class ReportWindow : Window
     {
-        ReportWindowViewModel rwvm;
+        ReportViewModel rwvm;
         public ReportWindow()
         {
             InitializeComponent();
-            rwvm = new ReportWindowViewModel();
+            rwvm = new ReportViewModel();
             ErrorService.Instance().TBOverflow += NotifyOverFlowEvent;
         }
 

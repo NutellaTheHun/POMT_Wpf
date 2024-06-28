@@ -12,9 +12,9 @@ TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 D:\Git-Repos\POMT_WPF\POMT_WPF\App.xaml
 25-474552221
 
-57-863972056
+582049373275
 251-1027217315
 MainWindow.xaml;MVVM\View\AddLabelWindow.xaml;MVVM\View\AddNaturalNameView.xaml;MVVM\View\AddTemplateWindow.xaml;MVVM\View\CatalogItemVeganMapView.xaml;MVVM\View\CatalogItemViewWindow.xaml;MVVM\View\CatalogListViewWindow.xaml;MVVM\View\CatalogValidateErrorHandleWindow.xaml;MVVM\View\ConfigureLabels.xaml;MVVM\View\ConfigureTemplates.xaml;MVVM\View\ConfirmationWindow.xaml;MVVM\View\LabelWindow.xaml;MVVM\View\NotifyCatalogValidateMultiItemView.xaml;MVVM\View\NotifyNewCatalogItemView.xaml;MVVM\View\NotifyTableBuilderOverFlow.xaml;MVVM\View\PetsiOrderFormErrorWindow.xaml;MVVM\View\PetsiOrderWindow.xaml;MVVM\View\ReportWindow.xaml;MVVM\View\SetLabelPrinterView.xaml;MVVM\View\SetPastryTemplateView.xaml;MVVM\View\SetPieTemplateView.xaml;MVVM\View\SetStandardPrinterView.xaml;MVVM\View\SettingsWindow.xaml;MVVM\View\TemplateViewWindow.xaml;MVVM\View\testCatalogItemView.xaml;
 
-True
+False
 

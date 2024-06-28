@@ -10,11 +10,11 @@ namespace POMT_WPF.MVVM.View
     /// </summary>
     public partial class CatalogListViewWindow : Window
     {
-        CatalogListViewWindowModel viewModel;
+        CatalogViewModel viewModel;
         public CatalogListViewWindow()
         {
             InitializeComponent();
-            viewModel = new CatalogListViewWindowModel();
+            viewModel = new CatalogViewModel();
             catalogListDataGrid.ItemsSource = viewModel.Items;
             catalogListDataGrid.MouseDoubleClick += catalogListDataGrid_MouseDoubleClick;
         }

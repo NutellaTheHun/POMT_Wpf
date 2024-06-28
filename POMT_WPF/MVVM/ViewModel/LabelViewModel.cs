@@ -5,11 +5,11 @@ using Petsi.Utils;
 
 namespace POMT_WPF.MVVM.ViewModel
 {
-    public class LabelWindowViewModel : ViewModelBase
+    public class LabelViewModel : ViewModelBase
     {
         LabelService ls;
 
-        public LabelWindowViewModel()
+        public LabelViewModel()
         {
             ls = (LabelService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_LABEL);
             ls.ValidateFilePaths();

@@ -13,7 +13,7 @@ namespace POMT_WPF.MVVM.View
     /// </summary>
     public partial class LabelWindow : Window
     {
-        LabelWindowViewModel viewModel;
+        LabelViewModel viewModel;
         DateTime targetDate;
 
         enum LabelTypes
@@ -28,7 +28,7 @@ namespace POMT_WPF.MVVM.View
         {
             ErrorService.Instance().LabelServiceValidateFilePath += ValidateFileServiceErrorWindow;
             InitializeComponent();
-            viewModel = new LabelWindowViewModel();
+            viewModel = new LabelViewModel();
             DataContext = this;
             
         }

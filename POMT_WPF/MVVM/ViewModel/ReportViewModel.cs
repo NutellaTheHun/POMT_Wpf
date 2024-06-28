@@ -3,14 +3,14 @@ using Petsi.Reports;
 
 namespace POMT_WPF.MVVM.ViewModel
 {
-    public class ReportWindowViewModel : ViewModelBase
+    public class ReportViewModel : ViewModelBase
     {
         bool frontlist;
         bool backList;
         bool wsAgg;
         bool ws;
 
-        public ReportWindowViewModel()
+        public ReportViewModel()
         {
 
         }
