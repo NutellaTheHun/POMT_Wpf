@@ -9,5 +9,5 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
 
-    <Grid />
+    <Grid Background="{StaticResource MoonStone}" />
 </UserControl>

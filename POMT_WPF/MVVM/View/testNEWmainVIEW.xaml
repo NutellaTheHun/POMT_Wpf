@@ -64,24 +64,46 @@
 
                         <!--  Menu Buttons  -->
                         <StackPanel DockPanel.Dock="Top">
-                            <Button Style="{StaticResource menuButton}">
+                            <Button
+                                x:Name="OrderButton"
+                                Click="OrderButton_Click"
+                                Command="{Binding OrderViewCommand}"
+                                Style="{StaticResource menuButton}">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="TextBoxOutline" Style="{StaticResource menuButtonIcon}" />
                                     <TextBlock Text="Orders" />
                                 </StackPanel>
                             </Button>
 
-                            <Button Style="{StaticResource menuButton}">
+                            <Button
+                                x:Name="ReportButton"
+                                Click="ReportButton_Click"
+                                Command="{Binding ReportViewCommand}"
+                                Style="{StaticResource menuButton}">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="FileTableOutline" Style="{StaticResource menuButtonIcon}" />
                                     <TextBlock Text="Reports" />
                                 </StackPanel>
                             </Button>
 
-                            <Button Style="{StaticResource menuButton}">
+                            <Button
+                                x:Name="LabelButton"
+                                Click="LabelButton_Click"
+                                Command="{Binding LabelViewCommand}"
+                                Style="{StaticResource menuButton}">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Label" Style="{StaticResource menuButtonIcon}" />
                                     <TextBlock Text="Labels" />
+                                </StackPanel>
+                            </Button>
+                            <Button
+                                x:Name="CatalogButton"
+                                Click="CatalogButton_Click"
+                                Command="{Binding CatalogViewCommand}"
+                                Style="{StaticResource menuButton}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="Label" Style="{StaticResource menuButtonIcon}" />
+                                    <TextBlock Text="Catalog" />
                                 </StackPanel>
                             </Button>
 
@@ -93,6 +115,7 @@
                             HorizontalAlignment="Left"
                             VerticalAlignment="Bottom"
                             Background="#dcdcdc"
+                            Command="{Binding SettingsViewCommand}"
                             DockPanel.Dock="Left"
                             Style="{StaticResource topButton}">
                             <Icon:PackIconMaterial Kind="Cog" />
@@ -101,7 +124,10 @@
                 </Border>
             </Grid>
 
-            <ContentControl Grid.Column="1" Margin="10" />
+            <ContentControl
+                Grid.Column="1"
+                Margin="10"
+                Content="{Binding CurrentView}" />
 
         </Grid>
     </Border>
