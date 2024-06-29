@@ -47,7 +47,6 @@
                     TextFill="Item Name ..." />
             </Grid>
         </DataTemplate>
-
     </Window.Resources>
 
     <Border Background="{StaticResource Charcoal}" CornerRadius="20">

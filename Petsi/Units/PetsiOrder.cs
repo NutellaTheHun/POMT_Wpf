@@ -19,6 +19,7 @@ namespace Petsi.Units
         public bool IsUserEntered { get; set; }
         public bool IsFrozen { get; set; }
         public string OrderType { get; set; }
+        public string OrderFrequency { get; set; }
         public string DisplayOrderDueDate
         {
             get 

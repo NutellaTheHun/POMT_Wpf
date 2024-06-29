@@ -50,13 +50,18 @@ namespace POMT_WPF.MVVM.ViewModel
 			return _instance;
 		}
 
-        public static void OrderItemViewCommand(object o)
+        public void OrderItemViewCommand(object o)
         {
             if(o is PetsiOrder order)
             {
-                Instance().OrderItemVM = new OrderItemViewModel(order);
-                Instance().CurrentView = Instance().OrderItemVM;
+                OrderItemVM = new OrderItemViewModel(order);
+                CurrentView = OrderItemVM;
             }   
+        }
+
+        public void BackOrderViewCommand()
+        {
+            CurrentView = OrderVM;
         }
 
         private MainViewModel()

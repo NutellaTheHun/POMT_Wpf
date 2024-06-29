@@ -247,6 +247,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }
+
         public List<string> OrderTypes;
 
         #endregion
