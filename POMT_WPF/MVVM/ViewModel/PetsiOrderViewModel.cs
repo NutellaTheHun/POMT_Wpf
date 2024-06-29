@@ -3,7 +3,6 @@ using Petsi.Models;
 using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
-using POMT_WPF.MVVM.ObsModels;
 using System.Collections.ObjectModel;
 
 namespace POMT_WPF.MVVM.ViewModel

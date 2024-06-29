@@ -270,7 +270,7 @@
                     BorderBrush="Transparent"
                     CellStyle="{DynamicResource orderFormDataGridCellStyle}"
                     ColumnHeaderStyle="{DynamicResource orderFormDataGridColumnHeaderStyle}"
-                    DataContext="{Binding LineItems}"
+                    ItemsSource="{Binding LineItems}"
                     RowStyle="{DynamicResource orderFormDataGridRowStyle}"
                     Style="{DynamicResource orderFormGridStyle}">
                     <DataGrid.Columns>
