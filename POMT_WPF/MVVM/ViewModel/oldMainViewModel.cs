@@ -1,28 +1,36 @@
-﻿using POMT_WPF.Core;
-using POMT_WPF.MVVM.View;
+﻿using Petsi.Units;
+using POMT_WPF.Core;
 
 namespace POMT_WPF.MVVM.ViewModel
 {
     public class MainViewModel : ObservableObject
     {
+		public PetsiOrder SelectedOrder;
+
         public RelayCommand CatalogViewCommand { get; set; }
         public RelayCommand LabelViewCommand { get; set; }
         public RelayCommand OrderViewCommand { get; set; }
         public RelayCommand ReportViewCommand { get; set; }
         public RelayCommand SettingsViewCommand { get; set; }
 
-        public CatalogViewModel CatalogVM { get; set; }
-        public LabelViewModel LabelVM { get; set; }
-		public OrderViewModel OrderVM { get; set; }
-		public ReportViewModel ReportVM { get; set; }
-		public SettingsViewModel SettingsVM { get; set; }
+        //public RelayCommand OrderItemViewCommand { get; set; }
 
+        /*
         public CatalogView CatalogView { get; set; }
         public LabelView LabelView { get; set; }
         public OrderView OrderView { get; set; }
         public ReportView ReportView { get; set; }
         public SettingsView SettingsView { get; set; }
 
+		public OrderItemView OrderItemView { get; set; }
+        */
+        public CatalogViewModel CatalogVM { get; set; }
+        public LabelViewModel LabelVM { get; set; }
+        public OrderViewModel OrderVM { get; set; }
+        public ReportViewModel ReportVM { get; set; }
+        public SettingsViewModel SettingsVM { get; set; }
+
+        public OrderItemViewModel OrderItemVM { get; set; }
 
         private object _currentView;
 		public object CurrentView
@@ -35,31 +43,56 @@ namespace POMT_WPF.MVVM.ViewModel
 			}
 		}
 
-		public MainViewModel()
+		private static MainViewModel _instance;
+		public static MainViewModel Instance()
+		{
+			if( _instance == null) _instance = new MainViewModel();
+			return _instance;
+		}
+
+        public static void OrderItemViewCommand(object o)
+        {
+            if(o is PetsiOrder order)
+            {
+                Instance().OrderItemVM = new OrderItemViewModel(order);
+                Instance().CurrentView = Instance().OrderItemVM;
+            }   
+        }
+
+        private MainViewModel()
 		{
             CatalogVM = new CatalogViewModel();
             LabelVM = new LabelViewModel();
-			OrderVM = new OrderViewModel();
-			ReportVM = new ReportViewModel();
-			SettingsVM = new SettingsViewModel();
+            OrderVM = new OrderViewModel();
+            ReportVM = new ReportViewModel();
+            SettingsVM = new SettingsViewModel();
 
-			CatalogView = new CatalogView();
-			LabelView = new LabelView();
-			OrderView = new OrderView();
-			ReportView = new ReportView();
-			SettingsView = new SettingsView();
-			
-			CurrentView = OrderVM;
+            //OrderItemVM = new OrderItemViewModel();
 
-			CatalogViewCommand = new RelayCommand(o =>{ CurrentView = CatalogView; });
+            /*
+            CatalogView = new CatalogView();
+            LabelView = new LabelView();
+            OrderView = new OrderView();
+            ReportView = new ReportView();
+            SettingsView = new SettingsView();
 
-			LabelViewCommand = new RelayCommand(o =>{ CurrentView = LabelView; });
+            OrderItemView = new OrderItemView();
+            */
 
-			OrderViewCommand = new RelayCommand(o =>{ CurrentView = OrderView; });
+            CurrentView = OrderVM;
 
-			ReportViewCommand = new RelayCommand(o =>{ CurrentView = ReportView; });
+			CatalogViewCommand = new RelayCommand(o =>{ CurrentView = CatalogVM; });
 
-			SettingsViewCommand = new RelayCommand(o =>{ CurrentView = SettingsView; });
+			LabelViewCommand = new RelayCommand(o =>{ CurrentView = LabelVM; });
+
+			OrderViewCommand = new RelayCommand(o =>{ CurrentView = OrderVM; });
+
+			ReportViewCommand = new RelayCommand(o =>{ CurrentView = ReportVM; });
+
+			SettingsViewCommand = new RelayCommand(o =>{ CurrentView = SettingsVM; });
+
+            //OrderItemViewCommand = new RelayCommand(o =>{ CurrentView = OrderItemVM; });
         }
+
     }
 }

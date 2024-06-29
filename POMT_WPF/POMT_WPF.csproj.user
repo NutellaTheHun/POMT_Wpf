@@ -28,6 +28,9 @@
     <Compile Update="MVVM\View\NotifyTableBuilderOverFlow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="MVVM\View\OrderItemView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="MVVM\View\OrderView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -79,6 +82,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\NotifyTableBuilderOverFlow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\OrderItemView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\OrderView.xaml">

@@ -11,7 +11,7 @@ namespace POMT_WPF.MVVM.View
         MainViewModel vm; 
         public testNEWmainVIEW()
         {
-            vm = new MainViewModel();
+            vm = MainViewModel.Instance();
             DataContext = vm;
             InitializeComponent();
         }

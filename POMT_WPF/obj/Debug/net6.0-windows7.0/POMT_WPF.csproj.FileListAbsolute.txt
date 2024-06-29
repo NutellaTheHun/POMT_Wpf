@@ -180,3 +180,5 @@ D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\Styles\Custom\TextFil
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\Styles\Custom\TextFillTextBox\orderFormTextFillTextBox.baml
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\Styles\Custom\TextFillTextBox\TemplateViewTextFillTextBox.baml
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\Styles\Custom\TextFillTextBox\textFillTextBox.baml
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\OrderItemView.g.cs
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\OrderItemView.baml

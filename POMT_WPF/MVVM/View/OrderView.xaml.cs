@@ -23,7 +23,7 @@ namespace POMT_WPF.MVVM.View
             ErrorService.Instance().SoiMultiItem += NotifyUserMultiItemMatch;
 
             dashboardDataGrid.ItemsSource = ViewModel.Orders;
-            dashboardDataGrid.MouseDoubleClick += DashboardDataGrid_MouseDoubleClick;
+            //dashboardDataGrid.MouseDoubleClick += DashboardDataGrid_MouseDoubleClick;
 
             DataContext = ViewModel;
             ErrorService.RaiseMainWindowEvents();

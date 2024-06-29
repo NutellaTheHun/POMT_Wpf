@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using POMT_WPF.MVVM.ViewModel;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace POMT_WPF.MVVM.View
 {
@@ -20,9 +8,52 @@ namespace POMT_WPF.MVVM.View
     /// </summary>
     public partial class SettingsView : UserControl
     {
+        SettingsViewModel ViewModel;
         public SettingsView()
         {
             InitializeComponent();
+            ViewModel = new SettingsViewModel();
+            DataContext = ViewModel;
+        }
+
+        private void SetLabelPrinterButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
+
+        private void SetStandardPrinterButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
+
+        private void SetLabelFilePathButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
+
+        private void SetPieTemplateButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
+
+        private void SetPastryTemplateButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
+
+        private void ConfigureLabelsButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
+
+        private void ConfigureTemplatesButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
+
+        private void ManageCatalogButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
         }
     }
 }

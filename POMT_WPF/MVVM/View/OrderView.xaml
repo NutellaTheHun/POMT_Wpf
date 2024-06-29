@@ -160,6 +160,12 @@
                 ColumnHeaderStyle="{DynamicResource dashboardDataGridColumnHeaderStyle}"
                 RowStyle="{DynamicResource dashboardDataGridRowStyle}"
                 Style="{DynamicResource dashboardDataGridStyle}">
+                <DataGrid.InputBindings>
+                    <MouseBinding
+                        Command="{Binding OpenOrderItemView}"
+                        CommandParameter="{Binding ElementName=dashboardDataGrid, Path=SelectedItem}"
+                        MouseAction="LeftDoubleClick" />
+                </DataGrid.InputBindings>
                 <DataGrid.Columns>
                     <DataGridTextColumn
                         Binding="{Binding OrderType, UpdateSourceTrigger=PropertyChanged}"

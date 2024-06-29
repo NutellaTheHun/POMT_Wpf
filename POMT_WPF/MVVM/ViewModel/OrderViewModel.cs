@@ -1,4 +1,5 @@
 ﻿using Petsi.Units;
+using POMT_WPF.Core;
 using POMT_WPF.Interfaces;
 using POMT_WPF.MVVM.ObsModels;
 using System.Collections.ObjectModel;
@@ -8,6 +9,8 @@ namespace POMT_WPF.MVVM.ViewModel
     public class OrderViewModel : ViewModelBase, IObsOrderModelSubscriber
     {
         //private OrderView view;
+
+        public RelayCommand OpenOrderItemView { get; set; }
 
         private ObservableCollection<PetsiOrder> _orders;
         public ObservableCollection<PetsiOrder> Orders
@@ -55,6 +58,8 @@ namespace POMT_WPF.MVVM.ViewModel
             Orders = ObsOrderModelSingleton.Instance.Orders;
             FrozenOrders = ObsOrderModelSingleton.Instance.FrozenOrders;
             TotalOrderCount = Orders.Count();
+
+            OpenOrderItemView = new RelayCommand(o => { MainViewModel.OrderItemViewCommand(o); });
         }
 
         public void AddOrder(PetsiOrder order)

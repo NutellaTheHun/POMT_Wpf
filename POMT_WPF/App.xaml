@@ -6,8 +6,8 @@
     xmlns:helper="clr-namespace:POMT_WPF.MVVM.Other"
     xmlns:local="clr-namespace:POMT_WPF.MVVM.View.Controls"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
-    xmlns:view="clr-namespace:POMT_WPF.MVVM.View"
-    xmlns:viewModel="clr-namespace:POMT_WPF.MVVM.ViewModel"
+    xmlns:vm="clr-namespace:POMT_WPF.MVVM.ViewModel"
+    xmlns:vw="clr-namespace:POMT_WPF.MVVM.View"
     StartupUri="MVVM/View/testNEWmainVIEW.xaml">
     <Application.Resources>
 
@@ -70,6 +70,31 @@
                 <EventSetter Event="GotKeyboardFocus" Handler="TextBox_GotKeyboardFocus" />
             </Style>
 
+            <DataTemplate DataType="{x:Type vm:CatalogViewModel}">
+                <vw:CatalogView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vm:LabelViewModel}">
+                <vw:LabelView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vm:OrderViewModel}">
+                <vw:OrderView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vm:ReportViewModel}">
+                <vw:ReportView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
+                <vw:SettingsView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vm:OrderItemViewModel}">
+                <vw:OrderItemView />
+            </DataTemplate>
+            
+            
         </ResourceDictionary>
 
     </Application.Resources>
