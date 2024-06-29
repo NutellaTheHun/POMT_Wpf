@@ -5,8 +5,87 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:POMT_WPF.MVVM.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:DesignHeight="700"
+    d:DesignWidth="860"
     mc:Ignorable="d">
-    <Grid Background="{StaticResource ColumbiaBlue}" />
+    <Grid Background="{StaticResource ColumbiaBlue}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Grid Width="400" Margin="10">
+                <StackPanel Orientation="Vertical">
+                    <Label Content="Printing" />
+                    <Border
+                        Width="400"
+                        Height="150"
+                        BorderBrush="{StaticResource TextFont}"
+                        BorderThickness="1"
+                        CornerRadius="5">
+                        <Grid>
+                            <StackPanel
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Orientation="Vertical">
+                                <StackPanel
+                                    Grid.Row="2"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Orientation="Horizontal">
+                                    <StackPanel Orientation="Vertical">
+                                        <DatePicker
+                                            x:Name="datePicker"
+                                            Grid.Row="2"
+                                            Width="150"
+                                            Height="40"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Orientation="Horizontal">
+                                    <RadioButton
+                                        Name="PrintStandardLabelButton"
+                                        Margin="5"
+                                        Click="PrintStandardLabelButton_Click"
+                                        Content="Print Standard Labels"
+                                        Foreground="#efefef"
+                                        GroupName="1"
+                                        Style="{StaticResource reportLabelsRadioButtonTheme}" />
+                                    <RadioButton
+                                        Name="PrintSmallLabelButton"
+                                        Margin="5"
+                                        Click="PrintSmallLabelButton_Click"
+                                        Content="Print Small Labels"
+                                        Foreground="#efefef"
+                                        GroupName="1"
+                                        Style="{StaticResource reportLabelsRadioButtonTheme}" />
+                                    <RadioButton
+                                        Name="PrintRoundLabelButton"
+                                        Margin="5"
+                                        Click="PrintRoundLabelButton_Click"
+                                        Content="Print Round Labels"
+                                        Foreground="#efefef"
+                                        GroupName="1"
+                                        Style="{StaticResource reportLabelsRadioButtonTheme}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    <Button
+                        Name="ConfigureLabelsButton"
+                        Width="140"
+                        Margin="0,5,0,5"
+                        Click="ConfigureLabelsButton_Click"
+                        Content="Configure Labels"
+                        Style="{StaticResource settingsButton}" />
+                </StackPanel>
+            </Grid>
+
+        </Grid>
+    </Grid>
 </UserControl>

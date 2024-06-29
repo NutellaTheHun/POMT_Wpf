@@ -59,7 +59,6 @@
                         Foreground="{StaticResource TextFont}"
                         TextChanged="txtFilter_TextChanged" />
                 </Border>
-
             </Grid>
             <Button
                 Grid.Row="0"

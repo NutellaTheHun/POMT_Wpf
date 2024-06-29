@@ -5,8 +5,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:POMT_WPF.MVVM.View.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:DesignHeight="700"
+    d:DesignWidth="860"
     mc:Ignorable="d">
 
     <Grid Background="{StaticResource ColumbiaBlue}">
@@ -16,38 +16,7 @@
         </Grid.ColumnDefinitions>
 
         <!--  CheckBox Filters  -->
-        <Grid Grid.Column="0" Margin="10">
-            <Label Height="200" Content="Filter" />
-            <Border
-                Height="150"
-                BorderBrush="{StaticResource TextFont}"
-                BorderThickness="1"
-                CornerRadius="5">
-                <StackPanel VerticalAlignment="Center" Orientation="Vertical">
-                    <CheckBox
-                        x:Name="RetailCheckbox"
-                        Margin="5"
-                        Content="Retail" />
-                    <CheckBox
-                        x:Name="SquareCheckBox"
-                        Margin="5"
-                        Content="Square" />
-                    <CheckBox
-                        x:Name="WholesaleCheckbox"
-                        Margin="5"
-                        Content="Wholesale" />
-                    <CheckBox
-                        x:Name="SpecialCheckbox"
-                        Margin="5"
-                        Content="Special" />
-                    <CheckBox
-                        x:Name="EzCaterCheckbox"
-                        Margin="5"
-                        Content="Ez-Cater" />
-                </StackPanel>
-            </Border>
 
-        </Grid>
 
         <!--  Main Body  -->
         <Grid Grid.Column="1">
@@ -57,84 +26,126 @@
             </Grid.RowDefinitions>
 
             <!--  Printing  -->
-            <Grid Grid.Row="0">
-                <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
-                    <Label Content="Printing" />
-                    <Border
-                        Width="400"
-                        Height="150"
-                        BorderBrush="{StaticResource TextFont}"
-                        BorderThickness="1"
-                        CornerRadius="5">
-                        <Grid>
+            <Grid Grid.Row="0" Margin="0,200,0,0">
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    <Grid>
+                        <Label Height="200" Content="Filter" />
+                        <Border
+                            Height="150"
+                            Margin="5"
+                            BorderBrush="{StaticResource TextFont}"
+                            BorderThickness="1"
+                            CornerRadius="5">
                             <StackPanel
-                                HorizontalAlignment="Center"
+                                Margin="5"
                                 VerticalAlignment="Center"
                                 Orientation="Vertical">
-                                <StackPanel
-                                    Grid.Row="2"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Orientation="Horizontal">
-                                    <StackPanel Orientation="Vertical">
-                                        <Label Content="Start" />
-                                        <DatePicker
-                                            x:Name="datePickerStart"
-                                            Grid.Row="2"
-                                            Width="150"
-                                            Height="40"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center" />
-                                    </StackPanel>
-                                    <StackPanel Orientation="Vertical">
-                                        <Label Content="End" />
-                                        <DatePicker
-                                            x:Name="datePickerEnd"
-                                            Grid.Row="2"
-                                            Width="150"
-                                            Height="40"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center" />
-                                    </StackPanel>
-                                </StackPanel>
-                                <StackPanel
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Orientation="Horizontal">
-                                    <RadioButton
-                                        Click="SelectFrontList_ButtonClick"
-                                        Content="Print FrontList"
-                                        Foreground="#efefef"
-                                        GroupName="1"
-                                        Style="{StaticResource reportLabelsRadioButtonTheme}" />
-                                    <RadioButton
-                                        Click="SelectBackList_ButtonClick"
-                                        Content="Print Backlist"
-                                        Foreground="#efefef"
-                                        GroupName="1"
-                                        Style="{StaticResource reportLabelsRadioButtonTheme}" />
-                                </StackPanel>
-                                <StackPanel
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Orientation="Horizontal">
-                                    <RadioButton
-                                        Click="SelectWsAggList_ButtonClick"
-                                        Content="Print Ws Agg"
-                                        Foreground="#efefef"
-                                        GroupName="1"
-                                        Style="{StaticResource reportLabelsRadioButtonTheme}" />
-                                    <RadioButton
-                                        Click="SelectWsList_ButtonClick"
-                                        Content="Print Wholesale"
-                                        Foreground="#efefef"
-                                        GroupName="1"
-                                        Style="{StaticResource reportLabelsRadioButtonTheme}" />
-                                </StackPanel>
+                                <CheckBox
+                                    x:Name="RetailCheckbox"
+                                    Margin="5"
+                                    Content="Retail" />
+                                <CheckBox
+                                    x:Name="SquareCheckBox"
+                                    Margin="5"
+                                    Content="Square" />
+                                <CheckBox
+                                    x:Name="WholesaleCheckbox"
+                                    Margin="5"
+                                    Content="Wholesale" />
+                                <CheckBox
+                                    x:Name="SpecialCheckbox"
+                                    Margin="5"
+                                    Content="Special" />
+                                <CheckBox
+                                    x:Name="EzCaterCheckbox"
+                                    Margin="5"
+                                    Content="Ez-Cater" />
                             </StackPanel>
-                        </Grid>
-                    </Border>
+                        </Border>
+                    </Grid>
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Printing" />
+                        <Border
+                            Width="400"
+                            Height="150"
+                            BorderBrush="{StaticResource TextFont}"
+                            BorderThickness="1"
+                            CornerRadius="5">
+                            <Grid>
+                                <StackPanel
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Orientation="Vertical">
+                                    <StackPanel
+                                        Grid.Row="2"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal">
+                                        <StackPanel Orientation="Vertical">
+                                            <Label Content="Start" />
+                                            <DatePicker
+                                                x:Name="datePickerStart"
+                                                Grid.Row="2"
+                                                Width="150"
+                                                Height="40"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Vertical">
+                                            <Label Content="End" />
+                                            <DatePicker
+                                                x:Name="datePickerEnd"
+                                                Grid.Row="2"
+                                                Width="150"
+                                                Height="40"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <StackPanel
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal">
+                                        <RadioButton
+                                            Name="PrintFrontListButton"
+                                            Click="PrintFrontListButton_Click"
+                                            Content="Print FrontList"
+                                            Foreground="#efefef"
+                                            GroupName="1"
+                                            Style="{StaticResource reportLabelsRadioButtonTheme}" />
+                                        <RadioButton
+                                            Name="PrintBackListButton"
+                                            Click="PrintBackListButton_Click"
+                                            Content="Print Backlist"
+                                            Foreground="#efefef"
+                                            GroupName="1"
+                                            Style="{StaticResource reportLabelsRadioButtonTheme}" />
+                                    </StackPanel>
+                                    <StackPanel
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal">
+                                        <RadioButton
+                                            Name="PrintWholesaleAggButton"
+                                            Click="PrintWholesaleAggButton_Click"
+                                            Content="Print Ws Agg"
+                                            Foreground="#efefef"
+                                            GroupName="1"
+                                            Style="{StaticResource reportLabelsRadioButtonTheme}" />
+                                        <RadioButton
+                                            x:Name="PrintWholesaleButton"
+                                            Click="PrintWholesaleButton_Click"
+                                            Content="Print Wholesale"
+                                            Foreground="#efefef"
+                                            GroupName="1"
+                                            Style="{StaticResource reportLabelsRadioButtonTheme}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
                 </StackPanel>
+
 
 
             </Grid>
@@ -154,7 +165,10 @@
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 Orientation="Vertical">
-                                <StackPanel Margin="5" HorizontalAlignment="Right" Orientation="Horizontal">
+                                <StackPanel
+                                    Margin="5"
+                                    HorizontalAlignment="Right"
+                                    Orientation="Horizontal">
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock
                                             HorizontalAlignment="Left"
@@ -177,13 +191,14 @@
                                     </StackPanel>
 
                                     <Button
+                                        x:Name="SetPieTemplateButton"
                                         Width="50"
-                                        Click="SetPieTemplate_BtnClk"
+                                        Click="SetPieTemplateButton_Click"
                                         Content="Set"
                                         Style="{StaticResource settingsButton}" />
                                 </StackPanel>
                                 <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                                    <StackPanel Orientation="Vertical" Margin="5">
+                                    <StackPanel Margin="5" Orientation="Vertical">
                                         <TextBlock
                                             HorizontalAlignment="Left"
                                             VerticalAlignment="Center"
@@ -204,14 +219,16 @@
                                     </StackPanel>
 
                                     <Button
+                                        x:Name="SetPastryTemplateButton"
                                         Width="50"
-                                        Click="SetPastryTemplate_BtnClk"
+                                        Click="SetPastryTemplateButton_Click"
                                         Content="Set"
                                         Style="{StaticResource settingsButton}" />
                                 </StackPanel>
                                 <Button
+                                    Name="ManageCatalogButton"
                                     Width="140"
-                                    Click="ManageCatalogWin_BtnClk"
+                                    Click="ManageCatalogButton_Click"
                                     Content="Manage Catalog"
                                     Style="{StaticResource settingsButton}" />
                             </StackPanel>
