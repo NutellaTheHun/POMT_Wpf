@@ -15,6 +15,7 @@
         <convert:StringToBoolConverter x:Key="StringToBoolConverter" />
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
         <convert:StringToIntConverter x:Key="StringToIntConverter" />
+        <convert:InvertBoolConverter x:Key="InvertBool" />
 
         <DataTemplate x:Key="OrderFormItemNameTemplate">
             <Grid>
@@ -72,7 +73,9 @@
                     VerticalAlignment="Center"
                     Click="FreezeToggleButton_Click"
                     Content="Freeze"
-                    Style="{StaticResource orderFormFreezeButton}" />
+                    IsChecked="{Binding IsFrozen, Mode=TwoWay}"
+                    Style="{StaticResource orderFormFreezeButton}"
+                    Visibility="{Binding CanModify, Converter={StaticResource BoolToVis}}" />
                 <!--  EDIT  -->
                 <ToggleButton
                     x:Name="EditToggleButton"
@@ -83,7 +86,9 @@
                     VerticalAlignment="Center"
                     Click="EditToggleButton_Click_1"
                     Content="Edit"
-                    Style="{StaticResource orderFormEditButton}" />
+                    IsChecked="{Binding IsEdit, Mode=TwoWay}"
+                    Style="{StaticResource orderFormEditButton}"
+                    Visibility="{Binding CanModify, Converter={StaticResource BoolToVis}}" />
             </StackPanel>
         </Grid>
 
@@ -107,6 +112,7 @@
                                 Width="150"
                                 Height="40"
                                 Background="{StaticResource MintCream}"
+                                IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
                                 Text="{Binding Recipient, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                         </Border>
                     </StackPanel>
@@ -121,6 +127,7 @@
                                 Width="150"
                                 Height="40"
                                 Background="{StaticResource MintCream}"
+                                IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
                                 Text="{Binding Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                         </Border>
                     </StackPanel>
@@ -135,6 +142,7 @@
                                 Width="150"
                                 Height="40"
                                 Background="{StaticResource MintCream}"
+                                IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
                                 Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                         </Border>
                     </StackPanel>
@@ -152,9 +160,9 @@
                                 x:Name="OrderDatePicker"
                                 Width="200"
                                 Height="40"
-                                Focusable="True"
+                                Focusable="{Binding IsEdit, Converter={StaticResource InvertBool}}"
                                 Foreground="Black"
-                                IsHitTestVisible="True"
+                                IsHitTestVisible="{Binding IsEdit, Converter={StaticResource InvertBool}}"
                                 SelectedDate="{Binding FulfillmentDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                         </Border>
                     </StackPanel>
@@ -169,6 +177,7 @@
                                 Width="200"
                                 Height="40"
                                 Background="{StaticResource MintCream}"
+                                IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
                                 Text="{Binding Time, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                         </Border>
                     </StackPanel>
@@ -183,6 +192,7 @@
                                 Width="200"
                                 Height="40"
                                 Background="{StaticResource MintCream}"
+                                IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
                                 Text="{Binding DeliveryAddr, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                         </Border>
                     </StackPanel>
@@ -203,7 +213,8 @@
                                 Width="200"
                                 Height="40"
                                 Background="{StaticResource MintCream}"
-                                IsHitTestVisible="True"
+                                IsHitTestVisible="{Binding IsEdit, Converter={StaticResource InvertBool}}"
+                                IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
                                 ItemsSource="{Binding Path=OrderTypes}"
                                 SelectedItem="{Binding Path=OrderType, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                         </Border>
@@ -219,7 +230,8 @@
                                 Width="200"
                                 Height="40"
                                 Background="{StaticResource MintCream}"
-                                IsHitTestVisible="True"
+                                IsHitTestVisible="{Binding IsEdit, Converter={StaticResource InvertBool}}"
+                                IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
                                 ItemsSource="{Binding Path=FulfillmentTypes}"
                                 SelectedItem="{Binding Path=FulfillmentType, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                         </Border>
@@ -235,7 +247,8 @@
                                 Width="200"
                                 Height="40"
                                 Background="{StaticResource MintCream}"
-                                IsHitTestVisible="True"
+                                IsHitTestVisible="{Binding IsEdit, Converter={StaticResource InvertBool}}"
+                                IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
                                 ItemsSource="{Binding Path=OrderFrequencies}"
                                 SelectedItem="{Binding OrderFrequency, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                         </Border>
@@ -255,6 +268,7 @@
                                 Width="200"
                                 Height="175"
                                 Background="{StaticResource MintCream}"
+                                IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
                                 Text="{Binding Notes, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                         </Border>
                     </StackPanel>
@@ -262,122 +276,198 @@
             </Grid>
         </Grid>
         <Grid x:Name="dataGridGrid" Grid.Row="3">
-            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                <DataGrid
-                    x:Name="orderFormDataGrid"
-                    Width="800"
-                    Height="350"
-                    BorderBrush="Transparent"
-                    CellStyle="{DynamicResource orderFormDataGridCellStyle}"
-                    ColumnHeaderStyle="{DynamicResource orderFormDataGridColumnHeaderStyle}"
-                    ItemsSource="{Binding LineItems}"
-                    RowStyle="{DynamicResource orderFormDataGridRowStyle}"
-                    Style="{DynamicResource orderFormGridStyle}">
-                    <DataGrid.Columns>
-                        <DataGridTemplateColumn
-                            x:Name="orderFormTemplate"
-                            Width="auto"
-                            CellTemplate="{StaticResource OrderFormItemNameTemplate}"
-                            Header="Item Name" />
-                        <DataGridTemplateColumn Width="*" Header="Regular">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <local:TextFillTextBox
-                                        x:Name="amountRegTextBox"
-                                        Background="{StaticResource MintCream}"
-                                        IsReadOnly="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged}"
-                                        Style="{StaticResource orderFormTextFillTextBox}"
-                                        Text="{Binding AmountRegular, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}, Mode=TwoWay}"
-                                        TextFill="Regular ..." />
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Width="*" Header="Amount 3">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <local:TextFillTextBox
-                                        x:Name="amount3TextBox"
-                                        Background="{StaticResource MintCream}"
-                                        IsReadOnly="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged}"
-                                        Style="{StaticResource orderFormTextFillTextBox}"
-                                        Text="{Binding Amount3, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}, Mode=TwoWay}"
-                                        TextFill="Amount 3 ..." />
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Width="*" Header="Amount 5">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <local:TextFillTextBox
-                                        x:Name="amount5TextBox"
-                                        Background="{StaticResource MintCream}"
-                                        IsReadOnly="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged}"
-                                        Style="{StaticResource orderFormTextFillTextBox}"
-                                        Text="{Binding Amount5, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}, Mode=TwoWay}"
-                                        TextFill="Amount 5 ..." />
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Width="*" Header="Amount 8">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <local:TextFillTextBox
-                                        x:Name="amount8TextBox"
-                                        Background="{StaticResource MintCream}"
-                                        IsReadOnly="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged}"
-                                        Style="{StaticResource orderFormTextFillTextBox}"
-                                        Text="{Binding Amount8, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}, Mode=TwoWay}"
-                                        TextFill="Amount 8 ..." />
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Width="*" Header="Amount 10">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <local:TextFillTextBox
-                                        x:Name="amount10TextBox"
-                                        Background="{StaticResource MintCream}"
-                                        IsReadOnly="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged}"
-                                        Style="{StaticResource orderFormTextFillTextBox}"
-                                        Text="{Binding Amount10, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}, Mode=TwoWay}"
-                                        TextFill="Amount 10 ..." />
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
+            <StackPanel Orientation="Vertical">
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    <DataGrid
+                        x:Name="orderFormDataGrid"
+                        Width="800"
+                        Height="350"
+                        BorderBrush="Transparent"
+                        CellStyle="{DynamicResource orderFormDataGridCellStyle}"
+                        ColumnHeaderStyle="{DynamicResource orderFormDataGridColumnHeaderStyle}"
+                        ItemsSource="{Binding LineItems}"
+                        RowStyle="{DynamicResource orderFormDataGridRowStyle}"
+                        Style="{DynamicResource orderFormGridStyle}">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn
+                                x:Name="orderFormTemplate"
+                                Width="auto"
+                                CellTemplate="{StaticResource OrderFormItemNameTemplate}"
+                                Header="Item Name" />
+                            <DataGridTemplateColumn Width="*" Header="Regular">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <local:TextFillTextBox
+                                            x:Name="amountRegTextBox"
+                                            Background="{StaticResource MintCream}"
+                                            IsReadOnly="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged}"
+                                            Style="{StaticResource orderFormTextFillTextBox}"
+                                            Text="{Binding AmountRegular, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}, Mode=TwoWay}"
+                                            TextFill="Regular ..." />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Amount 3">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <local:TextFillTextBox
+                                            x:Name="amount3TextBox"
+                                            Background="{StaticResource MintCream}"
+                                            IsReadOnly="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged}"
+                                            Style="{StaticResource orderFormTextFillTextBox}"
+                                            Text="{Binding Amount3, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}, Mode=TwoWay}"
+                                            TextFill="Amount 3 ..." />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Amount 5">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <local:TextFillTextBox
+                                            x:Name="amount5TextBox"
+                                            Background="{StaticResource MintCream}"
+                                            IsReadOnly="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged}"
+                                            Style="{StaticResource orderFormTextFillTextBox}"
+                                            Text="{Binding Amount5, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}, Mode=TwoWay}"
+                                            TextFill="Amount 5 ..." />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Amount 8">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <local:TextFillTextBox
+                                            x:Name="amount8TextBox"
+                                            Background="{StaticResource MintCream}"
+                                            IsReadOnly="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged}"
+                                            Style="{StaticResource orderFormTextFillTextBox}"
+                                            Text="{Binding Amount8, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}, Mode=TwoWay}"
+                                            TextFill="Amount 8 ..." />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Amount 10">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <local:TextFillTextBox
+                                            x:Name="amount10TextBox"
+                                            Background="{StaticResource MintCream}"
+                                            IsReadOnly="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged}"
+                                            Style="{StaticResource orderFormTextFillTextBox}"
+                                            Text="{Binding Amount10, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}, Mode=TwoWay}"
+                                            TextFill="Amount 10 ..." />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
 
-                        <!--<DataGridTextColumn Header="Item Name" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding ItemName}"/>
+                            <!--<DataGridTextColumn Header="Item Name" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding ItemName}"/>
                 <DataGridTextColumn Header="Amount 3" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding Amount3}" />
                 <DataGridTextColumn Header="Amount 5" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding Amount5}" />
                 <DataGridTextColumn Header="Amount 8" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding Amount8}" />
                 <DataGridTextColumn Header="Amount 10" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding Amount10}" />-->
-                    </DataGrid.Columns>
-                </DataGrid>
-                <StackPanel Orientation="Vertical">
-                    <Button
-                        Name="AddLineButton"
-                        Width="30"
-                        Height="30"
-                        Margin="5,0,5,5"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Top"
-                        Click="AddLineButton_Click"
-                        IsEnabled="True"
-                        Style="{StaticResource secondaryButton}">
-                        <Icon:PackIconMaterial Kind="Plus" />
-                    </Button>
-                    <Button
-                        Name="DeleteLineButton"
-                        Width="30"
-                        Height="30"
-                        Margin="5,0,5,5"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Top"
-                        Background="{StaticResource ChiliRed}"
-                        Click="DeleteLineButton_Click"
-                        IsEnabled="True"
-                        Style="{StaticResource secondaryButton}">
-                        <Icon:PackIconMaterial Kind="Minus" />
-                    </Button>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Orientation="Vertical">
+                        <Button
+                            Name="AddLineButton"
+                            Width="30"
+                            Height="30"
+                            Margin="5,0,5,5"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Click="AddLineButton_Click"
+                            IsHitTestVisible="{Binding IsEdit}"
+                            Style="{StaticResource secondaryButton}"
+                            Visibility="{Binding CanModify, Converter={StaticResource BoolToVis}}">
+                            <Icon:PackIconMaterial Kind="Plus" />
+                        </Button>
+                        <Button
+                            Name="DeleteLineButton"
+                            Width="30"
+                            Height="30"
+                            Margin="5,0,5,5"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Background="{StaticResource ChiliRed}"
+                            Click="DeleteLineButton_Click"
+                            IsHitTestVisible="{Binding IsEdit}"
+                            Style="{StaticResource secondaryButton}"
+                            Visibility="{Binding CanModify, Converter={StaticResource BoolToVis}}">
+                            <Icon:PackIconMaterial Kind="Minus" />
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    <Border
+                        Margin="5,5,10,5"
+                        BorderBrush="{StaticResource maybeDark}"
+                        BorderThickness="1"
+                        CornerRadius="5">
+                        <TextBlock
+                            Width="50"
+                            Height="40"
+                            Background="{StaticResource MintCream}"
+                            Foreground="{StaticResource maybeDark}"
+                            IsHitTestVisible="False"
+                            Text="{Binding TotalAmountReg}" />
+                    </Border>
+
+                    <Border
+                        Margin="10,5,10,5"
+                        BorderBrush="{StaticResource maybeDark}"
+                        BorderThickness="1"
+                        CornerRadius="5">
+                        <TextBlock
+                            Width="50"
+                            Height="40"
+                            Background="{StaticResource MintCream}"
+                            Foreground="{StaticResource maybeDark}"
+                            IsHitTestVisible="False"
+                            Text="{Binding TotalAmount3}" />
+                    </Border>
+
+                    <Border
+                        Margin="10,5,10,5"
+                        BorderBrush="{StaticResource maybeDark}"
+                        BorderThickness="1"
+                        CornerRadius="5">
+                        <TextBlock
+                            Width="50"
+                            Height="40"
+                            Background="{StaticResource MintCream}"
+                            Foreground="{StaticResource maybeDark}"
+                            IsHitTestVisible="False"
+                            Text="{Binding TotalAmount5}" />
+                    </Border>
+
+                    <Border
+                        Margin="10,5,10,5"
+                        BorderBrush="{StaticResource maybeDark}"
+                        BorderThickness="1"
+                        CornerRadius="5">
+                        <TextBlock
+                            Width="50"
+                            Height="40"
+                            Background="{StaticResource MintCream}"
+                            Foreground="{StaticResource maybeDark}"
+                            IsHitTestVisible="False"
+                            Text="{Binding TotalAmount8}" />
+                    </Border>
+
+                    <Border
+                        Margin="10,5,10,5"
+                        BorderBrush="{StaticResource maybeDark}"
+                        BorderThickness="1"
+                        CornerRadius="5">
+                        <TextBlock
+                            Width="50"
+                            Height="40"
+                            Background="{StaticResource MintCream}"
+                            Foreground="{StaticResource maybeDark}"
+                            IsHitTestVisible="False"
+                            Text="{Binding TotalAmount10}" />
+                    </Border>
+
                 </StackPanel>
             </StackPanel>
         </Grid>
@@ -389,7 +479,7 @@
                 Click="DeleteOrderButton_Click"
                 Content="Save"
                 Style="{StaticResource secondaryButton}"
-                Visibility="Visible" />
+                Visibility="{Binding CanModify, Converter={StaticResource BoolToVis}}" />
             <Button
                 Name="DeleteOrderButton"
                 Margin="100,10,10,0"
@@ -398,7 +488,7 @@
                 Click="DeleteOrderButton_Click"
                 Content="Delete"
                 Style="{StaticResource secondaryButton}"
-                Visibility="Visible" />
+                Visibility="{Binding CanDelete, Converter={StaticResource BoolToVis}}" />
 
         </Grid>
     </Grid>

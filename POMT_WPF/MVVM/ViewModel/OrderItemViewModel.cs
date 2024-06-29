@@ -10,6 +10,7 @@ namespace POMT_WPF.MVVM.ViewModel
     public class OrderItemViewModel : ViewModelBase
     {
         private PetsiOrder Order;
+
         #region Properties
 
         public string Recipient 
@@ -136,9 +137,61 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }
+        private bool _canDelete;
+        public bool CanDelete
+        {
+            get { return _canDelete; }
+            set
+            {
+                if(value != _canDelete)
+                {
+                    _canDelete = value;
+                    OnPropertyChanged(nameof(CanDelete));
+                }
+            }
+        }
+        private bool _canSave;
+        public bool CanSave
+        {
+            get { return _canSave; }
+            set
+            {
+                if (value != _canSave)
+                {
+                    _canSave = value;
+                    OnPropertyChanged(nameof(CanSave));
+                }
+            }
+        }
+        private bool _canFreeze;
+        public bool CanFreeze
+        {
+            get { return _canFreeze; }
+            set
+            {
+                if (value != _canFreeze)
+                {
+                    _canFreeze = value;
+                    OnPropertyChanged(nameof(CanFreeze));
+                }
+            }
+        }
+        private bool _canModify;
+        public bool CanModify
+        {
+            get { return _canModify; }
+            set
+            {
+                if (value != _canModify)
+                {
+                    _canModify = value;
+                    OnPropertyChanged(nameof(CanModify));
+                }
+            }
+        }
         public bool IsFrozen
         {
-            get { return Order.IsFrozen; }
+            get { return (Order.IsFrozen != null) ? Order.IsFrozen : false; }
             set 
             {
                 if(value != Order.IsFrozen)
@@ -148,10 +201,10 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }
-        private bool _isEdit; //--
+        private bool _isEdit;
         public bool IsEdit
         {
-            get { return _isEdit; }
+            get { return (_isEdit != null) ? _isEdit : false; }
             set
             {
                 if (value != _isEdit)
@@ -237,7 +290,7 @@ namespace POMT_WPF.MVVM.ViewModel
         #region Commands
 
         public RelayCommand BackCommand {  get; set; }
-        public RelayCommand FreezeCommand {  get; set; }
+        //public RelayCommand FreezeCommand {  get; set; }
         public RelayCommand EditCommand {  get; set; }
         public RelayCommand AddLineCommand {  get; set; }
         public RelayCommand DeleteLineCommand {  get; set; }
@@ -253,7 +306,10 @@ namespace POMT_WPF.MVVM.ViewModel
             if(orderContext == null)
             {
                 IsEdit = true;
-
+                CanDelete = false;
+                CanSave = true;
+                CanFreeze = true;
+                CanModify = true;
                 LineItems = new ObservableCollection<PetsiOrderLineItem>();
             }
             else
@@ -264,11 +320,22 @@ namespace POMT_WPF.MVVM.ViewModel
                 if (orderContext.IsPeriodic) { OrderFrequency = "Weekly"; }
                 else if (orderContext.IsOneShot) { OrderFrequency = "One Time"; }
 
+                if(Order.IsUserEntered)
+                {
+                    CanDelete = true;
+                    CanModify = true;
+                }
+                else
+                {
+                    CanDelete = false;
+                    CanModify = false;
+                }
+
                 IsEdit = false;
 
                 LineItems = new ObservableCollection<PetsiOrderLineItem>(orderContext.LineItems);
             }
-
+            UpdateColumnTotals();
             OrderModelPetsi omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
             OrderTypes = new ObservableCollection<string>(omp.GetOrderTypes());
             OrderFrequencies = new ObservableCollection<string>() { "Weekly", "One Time" };
@@ -278,7 +345,7 @@ namespace POMT_WPF.MVVM.ViewModel
             LineItems.CollectionChanged += (s, e) => UpdateColumnTotals();
 
             BackCommand = new RelayCommand(o => { MainViewModel.Instance().BackOrderViewCommand(); });
-            FreezeCommand = new RelayCommand(o => {  });
+            //FreezeCommand = new RelayCommand(o => {  });
             EditCommand = new RelayCommand(o => {  });
             AddLineCommand = new RelayCommand(o => {  });
             DeleteLineCommand = new RelayCommand(o => {  });
