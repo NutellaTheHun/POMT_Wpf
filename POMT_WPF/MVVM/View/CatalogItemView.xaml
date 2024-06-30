@@ -68,9 +68,10 @@
                                 <StackPanel Orientation="Horizontal">
                                     <Border Style="{StaticResource GeneralBorder}">
                                         <ListBox
+                                            x:Name="AltNameListBox"
                                             Width="150"
                                             Height="100"
-                                            IsHitTestVisible="False"
+                                            IsHitTestVisible="{Binding IsEdit}"
                                             ItemsSource="{Binding NaturalNames, UpdateSourceTrigger=PropertyChanged}" />
                                     </Border>
                                     <StackPanel Orientation="Vertical">
@@ -93,6 +94,7 @@
                                             VerticalAlignment="Top"
                                             Background="{StaticResource ChiliRed}"
                                             Command="{Binding RemoveAltName}"
+                                            CommandParameter="{Binding ElementName=AltNameListBox, Path=SelectedItem}"
                                             IsHitTestVisible="{Binding IsEdit}"
                                             Style="{StaticResource secondaryButton}">
                                             <Icon:PackIconMaterial Kind="Minus" />

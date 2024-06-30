@@ -48,7 +48,7 @@
             <Grid Grid.Row="1">
                 <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                     <Label Content="Alternative Name" />
-                    <TextBox Style="{StaticResource GeneralField}" />
+                    <TextBox Style="{StaticResource GeneralField}" Text="{Binding AlternativeName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                 </StackPanel>
             </Grid>
             <StackPanel

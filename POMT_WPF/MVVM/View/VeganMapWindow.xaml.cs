@@ -35,7 +35,10 @@ namespace POMT_WPF.MVVM.View
         public VeganMapWindow()
         {
             InitializeComponent();
-            VeganList = (ObservableCollection<CatalogItemPetsi>)ObsCatalogModelSingleton.Instance.CatalogItems.Where(x => x.ItemName.ToLower().Contains("vegan"));
+            VeganListBox.MouseDoubleClick += DoneButton_Click;
+            DataContext = this;
+            List<CatalogItemPetsi> items = ObsCatalogModelSingleton.Instance.CatalogItems.Where(x => x.ItemName.ToLower().Contains("vegan")).ToList();
+            VeganList = new ObservableCollection<CatalogItemPetsi>(items);
         }
 
         private void DoneButton_Click(object sender, RoutedEventArgs e)

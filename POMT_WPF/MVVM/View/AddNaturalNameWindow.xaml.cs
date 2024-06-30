@@ -9,18 +9,19 @@ namespace POMT_WPF.MVVM.View
     public partial class AddNaturalNameWindow : Window
     {
         public bool ControlBool;
-        private string _alternationName;
+
+        private string _alternativeName;
         public string AlternativeName
         {
             get
             {
-                return _alternationName;
+                return _alternativeName;
             }
             set 
             { 
-                if (_alternationName != value)
-                { 
-                    _alternationName = value; 
+                if (_alternativeName != value)
+                {
+                    _alternativeName = value; 
                     OnPropertyChanged(nameof(AlternativeName));
                 } 
             }
@@ -35,6 +36,7 @@ namespace POMT_WPF.MVVM.View
         public AddNaturalNameWindow()
         {
             InitializeComponent();
+            DataContext = this;
         }
 
         private void CloseWindowButton_Click(object sender, RoutedEventArgs e)
@@ -45,7 +47,7 @@ namespace POMT_WPF.MVVM.View
 
         private void DoneButton_Click(object sender, RoutedEventArgs e)
         {
-            if(AlternativeName != null || AlternativeName != "") { ControlBool = true; }
+            if(AlternativeName != null && AlternativeName != "") { ControlBool = true; }
             Close();
         }
     }

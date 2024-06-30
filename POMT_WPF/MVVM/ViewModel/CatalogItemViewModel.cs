@@ -393,11 +393,12 @@ namespace POMT_WPF.MVVM.ViewModel
         }
         private void SetVeganPieCmd()
         {
-            CatalogItemVeganMapView veganMapView = new CatalogItemVeganMapView();
-            veganMapView.ShowDialog();
-            if (veganMapView.selection != null)
+            VeganMapWindow window = new VeganMapWindow();
+            window.ShowDialog();
+            if (window.ControlBool)
             {
-                VeganMapping = veganMapView.selection;
+                VeganMapping = window.Selection;
+                VeganMappedItemName = VeganMapping.ItemName;
             }
         }
         private void DeleteItemCmd()

@@ -47,10 +47,17 @@
                         Height="355"
                         Style="{StaticResource GeneralBorder}">
                         <ListBox
+                            x:Name="VeganListBox"
                             Width="300"
                             Height="350"
                             ItemsSource="{Binding VeganList}"
-                            SelectedItem="{Binding Selection, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                            SelectedItem="{Binding Selection, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding ItemName}" />
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
                     </Border>
                 </StackPanel>
             </Grid>
