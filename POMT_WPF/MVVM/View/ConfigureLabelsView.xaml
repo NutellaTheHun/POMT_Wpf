@@ -1,0 +1,68 @@
+﻿<UserControl
+    x:Class="POMT_WPF.MVVM.View.ConfigureLabelsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:POMT_WPF.MVVM.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="700"
+    d:DesignWidth="860"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource ColumbiaBlue}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Button
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Style="{StaticResource GeneralBackButton}" />
+        </Grid>
+        <Grid Grid.Row="1">
+            <StackPanel
+                Margin="20"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+                <DataGrid
+                    x:Name="labelDataGrid"
+                    Width="450"
+                    Height="300"
+                    AutoGenerateColumns="False"
+                    ItemsSource="{Binding Items}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding ItemName, UpdateSourceTrigger=PropertyChanged}" Header="Item Name" />
+                        <DataGridTextColumn Binding="{Binding StandardLabelFilePath, UpdateSourceTrigger=PropertyChanged}" Header="Standard Label" />
+                        <DataGridTextColumn Binding="{Binding CutieLabelFilePath, UpdateSourceTrigger=PropertyChanged}" Header="Cutie Label" />
+                    </DataGrid.Columns>
+                </DataGrid>
+                <StackPanel Orientation="Vertical">
+                    <Button
+                        Width="30"
+                        Height="30"
+                        Margin="5,0,5,5"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Style="{StaticResource secondaryButton}">
+                        <Icon:PackIconMaterial Kind="Plus" />
+                    </Button>
+                    <Button
+                        Width="30"
+                        Height="30"
+                        Margin="5,0,5,5"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Background="{StaticResource ChiliRed}"
+                        Style="{StaticResource secondaryButton}">
+                        <Icon:PackIconMaterial Kind="Minus" />
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+</UserControl>

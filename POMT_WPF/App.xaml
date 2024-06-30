@@ -85,6 +85,10 @@
                 <vw:LabelView />
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type vm:ConfigureLabelsViewModel}">
+                <vw:ConfigureLabelsView />
+            </DataTemplate>
+
             <DataTemplate DataType="{x:Type vm:OrderViewModel}">
                 <vw:OrderView />
             </DataTemplate>

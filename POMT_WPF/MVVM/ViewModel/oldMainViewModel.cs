@@ -57,6 +57,11 @@ namespace POMT_WPF.MVVM.ViewModel
             CurrentView = CatalogItemVM;
         }
 
+        public void OpenConfigureLabelViewCommand()
+        {
+
+        }
+
         public void BackOrderViewCommand()
         {
             CurrentView = OrderVM;

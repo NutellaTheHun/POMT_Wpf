@@ -52,15 +52,15 @@ namespace POMT_WPF.MVVM.View
             switch (selectedType)
             {
                 case LabelTypes.Standard:
-                    viewModel.PrintStandard(targetDate);
+                    //viewModel.PrintStandard(targetDate);
                 break;
 
                 case LabelTypes.Small:
-                    viewModel.PrintSmall(targetDate);
+                    //viewModel.PrintSmall(targetDate);
                 break;
 
                 case LabelTypes.Round:
-                    viewModel.PrintRound(targetDate);
+                   // viewModel.PrintRound(targetDate);
                 break;
 
                 default:
