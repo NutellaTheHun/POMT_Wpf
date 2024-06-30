@@ -99,28 +99,25 @@
                 <StackPanel Margin="10" Orientation="Vertical">
                     <StackPanel Orientation="Vertical">
                         <Label Content="Recipient" />
-                        <TextBox Style="{StaticResource GeneralField}" Text="{Binding Recipient, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                        <TextBox
+                            IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
+                            Style="{StaticResource GeneralField}"
+                            Text="{Binding Recipient, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
 
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
                         <Label Content="Email" />
-                        <Border Style="{StaticResource GeneralBorder}">
-                            <TextBox
-                                x:Name="EmailTextBox"
-                                IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
-                                Style="{StaticResource GeneralTextBox}"
-                                Text="{Binding Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                        </Border>
+                        <TextBox
+                            IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
+                            Style="{StaticResource GeneralField}"
+                            Text="{Binding Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
                         <Label Content="Phone" />
-                        <Border Style="{StaticResource GeneralBorder}">
-                            <TextBox
-                                Name="PhoneTextBox"
-                                IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
-                                Style="{StaticResource GeneralTextBox}"
-                                Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                        </Border>
+                        <TextBox
+                            IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
+                            Style="{StaticResource GeneralField}"
+                            Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                     </StackPanel>
                 </StackPanel>
             </Grid>
@@ -141,23 +138,17 @@
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
                         <Label Content="Time" />
-                        <Border Style="{StaticResource GeneralBorder}">
-                            <TextBox
-                                Name="TimeTextBox"
-                                IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
-                                Style="{StaticResource GeneralTextBox}"
-                                Text="{Binding Time, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                        </Border>
+                        <TextBox
+                            IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
+                            Style="{StaticResource GeneralField}"
+                            Text="{Binding Time, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
                         <Label Content="Delivery Address" />
-                        <Border Style="{StaticResource GeneralBorder}">
-                            <TextBox
-                                Name="DeliveryAddrTextBox"
-                                IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
-                                Style="{StaticResource GeneralTextBox}"
-                                Text="{Binding DeliveryAddr, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                        </Border>
+                        <TextBox
+                            IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
+                            Style="{StaticResource GeneralField}"
+                            Text="{Binding DeliveryAddr, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                     </StackPanel>
                 </StackPanel>
             </Grid>
@@ -213,12 +204,11 @@
                         <Label Content="Notes" />
                         <Border Style="{StaticResource GeneralBorder}">
                             <TextBox
-                                Name="NotesTextBox"
+                                Height="175"
                                 IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
                                 Style="{StaticResource GeneralTextBox}"
                                 Text="{Binding Notes, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                         </Border>
-                        <Label Content="TEst" />
 
                     </StackPanel>
                 </StackPanel>
