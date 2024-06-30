@@ -290,7 +290,6 @@ namespace POMT_WPF.MVVM.ViewModel
         #region Commands
 
         public RelayCommand BackCommand {  get; set; }
-        //public RelayCommand FreezeCommand {  get; set; }
         public RelayCommand EditCommand {  get; set; }
         public RelayCommand AddLineCommand {  get; set; }
         public RelayCommand DeleteLineCommand {  get; set; }
@@ -347,7 +346,6 @@ namespace POMT_WPF.MVVM.ViewModel
             LineItems.CollectionChanged += (s, e) => UpdateColumnTotals();
 
             BackCommand = new RelayCommand(o => { MainViewModel.Instance().BackOrderViewCommand(); });
-            //FreezeCommand = new RelayCommand(o => {  });
             EditCommand = new RelayCommand(o => { ToggleEditing(); });
             AddLineCommand = new RelayCommand(o => { AddLine(); });
             DeleteLineCommand = new RelayCommand(o => { DeleteLine(o); });

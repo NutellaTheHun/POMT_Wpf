@@ -16,6 +16,11 @@
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
+            <Button
+                Margin="10"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Style="{StaticResource GeneralBackButton}" />
             <ToggleButton
                 Width="60"
                 Height="20"
@@ -41,14 +46,18 @@
                             <StackPanel Orientation="Vertical">
                                 <Label Content="Item Name" />
                                 <Border Style="{StaticResource GeneralBorder}">
-                                    <TextBox Style="{StaticResource GeneralTextBox}" />
+                                    <TextBox Style="{StaticResource GeneralTextBox}" Text="{Binding ItemName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                                 </Border>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
                                 <Label Content="Alternative Names" />
                                 <StackPanel Orientation="Horizontal">
                                     <Border Style="{StaticResource GeneralBorder}">
-                                        <ListBox Width="150" Height="100" />
+                                        <ListBox
+                                            Width="150"
+                                            Height="100"
+                                            IsHitTestVisible="False"
+                                            ItemsSource="{Binding NaturalNames, UpdateSourceTrigger=PropertyChanged}" />
                                     </Border>
                                     <StackPanel Orientation="Vertical">
                                         <Button
@@ -82,31 +91,37 @@
                                                 <CheckBox
                                                     Content="Small"
                                                     FontSize="16"
-                                                    Foreground="{StaticResource maybeDark}" />
+                                                    Foreground="{StaticResource maybeDark}"
+                                                    IsChecked="{Binding IsSmall, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                                                 <CheckBox
                                                     Margin="0,10,0,10"
                                                     Content="Medium"
                                                     FontSize="16"
-                                                    Foreground="{StaticResource maybeDark}" />
+                                                    Foreground="{StaticResource maybeDark}"
+                                                    IsChecked="{Binding IsMedium, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                                                 <CheckBox
                                                     Content="Large"
                                                     FontSize="16"
-                                                    Foreground="{StaticResource maybeDark}" />
+                                                    Foreground="{StaticResource maybeDark}"
+                                                    IsChecked="{Binding IsLarge, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                                             </StackPanel>
                                             <StackPanel Orientation="Vertical">
                                                 <CheckBox
                                                     Content="Regular"
                                                     FontSize="16"
-                                                    Foreground="{StaticResource maybeDark}" />
+                                                    Foreground="{StaticResource maybeDark}"
+                                                    IsChecked="{Binding IsRegular, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                                                 <CheckBox
                                                     Margin="0,10,0,10"
                                                     Content="Cutie"
                                                     FontSize="16"
-                                                    Foreground="{StaticResource maybeDark}" />
+                                                    Foreground="{StaticResource maybeDark}"
+                                                    IsChecked="{Binding IsCutie, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                                                 <CheckBox
                                                     Content="POTM"
                                                     FontSize="16"
-                                                    Foreground="{StaticResource maybeDark}" />
+                                                    Foreground="{StaticResource maybeDark}"
+                                                    IsChecked="{Binding IsPOTM, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                                             </StackPanel>
                                         </StackPanel>
                                     </Grid>
@@ -127,14 +142,19 @@
                                         <ComboBox
                                             Width="150"
                                             Height="30"
-                                            Foreground="{StaticResource TextFont}" />
+                                            Foreground="{StaticResource TextFont}"
+                                            ItemsSource="{Binding CategoryNames}"
+                                            SelectedItem="{Binding Path=CategoryName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                                     </Border>
                                 </StackPanel>
                                 <StackPanel Orientation="Vertical">
                                     <Label Content="Standard Label File" />
                                     <StackPanel Orientation="Horizontal">
                                         <Border Style="{StaticResource GeneralBorder}">
-                                            <TextBox Style="{StaticResource GeneralTextBox}" />
+                                            <TextBox
+                                                IsReadOnly="True"
+                                                Style="{StaticResource GeneralTextBox}"
+                                                Text="{Binding StandardLabelFilePath, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                                         </Border>
                                         <Button
                                             Width="30"
@@ -152,7 +172,10 @@
                                     <Label Content="Cutie Label File" />
                                     <StackPanel Orientation="Horizontal">
                                         <Border Style="{StaticResource GeneralBorder}">
-                                            <TextBox Style="{StaticResource GeneralTextBox}" />
+                                            <TextBox
+                                                IsReadOnly="True"
+                                                Style="{StaticResource GeneralTextBox}"
+                                                Text="{Binding CutieLabelFilePath, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                                         </Border>
                                         <Button
                                             Width="30"
@@ -170,7 +193,10 @@
                                     <Label Content="Vegan Pie" />
                                     <StackPanel Orientation="Horizontal">
                                         <Border Style="{StaticResource GeneralBorder}">
-                                            <TextBox Style="{StaticResource GeneralTextBox}" />
+                                            <TextBox
+                                                IsReadOnly="True"
+                                                Style="{StaticResource GeneralTextBox}"
+                                                Text="{Binding VeganMappedItemName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                                         </Border>
                                         <Button
                                             Width="30"

@@ -164,7 +164,8 @@ namespace Petsi.Units
         }
 
         /// <summary>
-        /// There will be duplicate size/variations due to duplicate square category items, so the forloops must iterate through entire list and not return on first match.
+        /// There can be duplicate size/variations due to duplicate square category items,
+        /// so the forloops must iterate through entire list and not return on first match.
         /// </summary>
         /// <param name="sizeVariation"></param>
         /// <param name="isChecked"></param>
@@ -261,5 +262,20 @@ namespace Petsi.Units
             */
         }
         private CatalogService GetCatalogService() { return (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG); }
+
+
+        //public List<(string variationId, string variationName)> VariationList { get; set; }
+
+        public bool VariationExists(string variationName) 
+        {
+            foreach((string variationId, string variationName) entry in VariationList)
+            {
+                if(entry.variationName.ToLower().Contains(variationName.ToLower()))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

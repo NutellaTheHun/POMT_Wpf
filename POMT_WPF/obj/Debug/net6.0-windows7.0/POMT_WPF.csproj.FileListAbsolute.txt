@@ -187,3 +187,4 @@ D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\CatalogItem
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\CatalogItemView.baml
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\Styles\TextBox\GeneralTextBox.baml
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\Styles\Templates\GeneralField.baml
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\Styles\Templates\GeneralBackButton.baml

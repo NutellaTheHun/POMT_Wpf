@@ -13,23 +13,13 @@ namespace POMT_WPF.MVVM.ViewModel
         public RelayCommand ReportViewCommand { get; set; }
         public RelayCommand SettingsViewCommand { get; set; }
 
-        //public RelayCommand OrderItemViewCommand { get; set; }
-
-        /*
-        public CatalogView CatalogView { get; set; }
-        public LabelView LabelView { get; set; }
-        public OrderView OrderView { get; set; }
-        public ReportView ReportView { get; set; }
-        public SettingsView SettingsView { get; set; }
-
-		public OrderItemView OrderItemView { get; set; }
-        */
 
         public CatalogViewModel CatalogVM { get; set; }
         public LabelViewModel LabelVM { get; set; }
         public OrderViewModel OrderVM { get; set; }
         public ReportViewModel ReportVM { get; set; }
         public SettingsViewModel SettingsVM { get; set; }
+
 
         public OrderItemViewModel OrderItemVM { get; set; }
         public CatalogItemViewModel CatalogItemVM { get; set; }
@@ -85,18 +75,6 @@ namespace POMT_WPF.MVVM.ViewModel
             ReportVM = new ReportViewModel();
             SettingsVM = new SettingsViewModel();
 
-            //OrderItemVM = new OrderItemViewModel();
-
-            /*
-            CatalogView = new CatalogView();
-            LabelView = new LabelView();
-            OrderView = new OrderView();
-            ReportView = new ReportView();
-            SettingsView = new SettingsView();
-
-            OrderItemView = new OrderItemView();
-            */
-
             CurrentView = OrderVM;
 
 			CatalogViewCommand = new RelayCommand(o =>{ CurrentView = CatalogVM; });
@@ -109,7 +87,6 @@ namespace POMT_WPF.MVVM.ViewModel
 
 			SettingsViewCommand = new RelayCommand(o =>{ CurrentView = SettingsVM; });
 
-            //OrderItemViewCommand = new RelayCommand(o =>{ CurrentView = OrderItemVM; });
         }
 
     }

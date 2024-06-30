@@ -5,6 +5,7 @@ using Petsi.Units;
 using Petsi.Utils;
 using POMT_WPF.Core;
 using POMT_WPF.MVVM.ObsModels;
+using POMT_WPF.MVVM.View;
 using System.Collections.ObjectModel;
 using System.Windows.Forms;
 
@@ -12,97 +13,11 @@ namespace POMT_WPF.MVVM.ViewModel
 {
     public class CatalogItemViewModel : ViewModelBase
     {
+        public CatalogItemPetsi cItem;
 
         #region props
 
-        private bool _isSmall;
-        public bool IsSmall
-        {
-            get { return _isSmall; }
-            set
-            {
-                if (_isSmall != value)
-                {
-                    _isSmall = value;
-                    OnPropertyChanged(nameof(IsSmall));
-                }
-            }
-        }//******
-
-        private bool _isMedium;
-        public bool IsMedium
-        {
-            get { return _isMedium; }
-            set
-            {
-                if (_isMedium != value)
-                {
-                    _isMedium = value;
-                    OnPropertyChanged(nameof(IsMedium));
-                }
-            }
-        }//******
-
-        private bool _isLarge;
-        public bool IsLarge
-        {
-            get { return _isLarge; }
-            set
-            {
-                if (_isLarge != value)
-                {
-                    _isLarge = value;
-                    OnPropertyChanged(nameof(IsLarge));
-                }
-            }
-        }//******
-
-        private bool _isRegular;
-        public bool IsRegular
-        {
-            get { return _isRegular; }
-            set
-            {
-                if (_isRegular != value)
-                {
-                    _isRegular = value;
-                    OnPropertyChanged(nameof(IsRegular));
-                }
-            }
-        }//******
-
-        private bool _isCutie;
-        public bool IsCutie
-        {
-            get { return _isCutie; }
-            set
-            {
-                if (_isCutie != value)
-                {
-                    _isCutie = value;
-                    OnPropertyChanged(nameof(IsCutie));
-                }
-            }
-        }//******
-
-        private bool _isPOTM;
-        public bool IsPOTM
-        {
-            get { return _isPOTM; }
-            set
-            {
-                if (_isPOTM != value)
-                {
-                    _isPOTM = value;
-                    OnPropertyChanged(nameof(IsPOTM));
-                }
-            }
-        }//******
-
-        public ObservableCollection<string> NaturalNames;//******
-
-        public ObservableCollection<string> CategoryNames;
-        
+        /*
         private CatalogItemPetsi? _catalogItem;
         public CatalogItemPetsi? CatalogItem
         {
@@ -115,28 +30,28 @@ namespace POMT_WPF.MVVM.ViewModel
                     OnPropertyChanged(nameof(CatalogItem));
                 }
             }
-        }
+        }*/
 
-        private CatalogItemPetsi? _veganMapping;
         public CatalogItemPetsi? VeganMapping
         {
-            get { return _veganMapping; }
+            get { return cItem.VeganPieAssociation; }
             set
             {
-                if (_veganMapping != value)
+                if (cItem.VeganPieAssociation != value)
                 {
-                    _veganMapping = value;
+                    cItem.VeganPieAssociation = value;
                     OnPropertyChanged(nameof(VeganMapping));              
                 }
             }
         }
+
         private string _veganMappedItemName;
         public string VeganMappedItemName 
         { 
             get 
-            { if(_veganMappedItemName != null) {  return _veganMappedItemName; }
-                return "";
-            }         
+             {  
+                return _veganMappedItemName;
+            }      
             set 
             {
                 if (_veganMappedItemName != value)
@@ -145,44 +60,40 @@ namespace POMT_WPF.MVVM.ViewModel
                     OnPropertyChanged(nameof(VeganMappedItemName));
                 }
             }
-        }//******
+        }
 
-        public string _standardLabelFilepath;
         public string StandardLabelFilePath { 
-            get { return _standardLabelFilepath; }
+            get { return cItem.StandardLabelFilePath; }
             set
             { 
-                if(_standardLabelFilepath != value)
+                if(cItem.StandardLabelFilePath != value)
                 {
-                    _standardLabelFilepath = value;
+                    cItem.StandardLabelFilePath = value;
                     OnPropertyChanged(nameof(StandardLabelFilePath));
                 }
             }
-        }//******
+        }
 
-        public string _cutieLabelFilepath;
         public string CutieLabelFilePath
         {
-            get { return _cutieLabelFilepath; }
+            get { return cItem.CutieLabelFilePath; }
             set
             {
-                if (_cutieLabelFilepath != value)
+                if (cItem.CutieLabelFilePath != value)
                 {
-                    _cutieLabelFilepath = value;
+                    cItem.CutieLabelFilePath = value;
                     OnPropertyChanged(nameof(CutieLabelFilePath));
                 }
             }
-        }//******
-
-        public string _categoryId;
+        }
         public string CategoryId 
         { 
-            get { return _categoryId; }
+            get { return cItem.CategoryId; }
             set
             {
-                if(_categoryId != value)
+                if(cItem.CategoryId != value)
                 {
-                    _categoryId = value;
+                    cItem.CategoryId = value;
                     OnPropertyChanged(nameof(CategoryId));
                 }
             }
@@ -200,27 +111,137 @@ namespace POMT_WPF.MVVM.ViewModel
                     OnPropertyChanged(nameof(CategoryName));
                 }
             }
-        }//******
+        }
 
-        public string _itemName;
         public string ItemName
         {
-            get { return _itemName; }
+            get { return cItem.ItemName; }
             set
             {
-                if (_itemName != value)
+                if (cItem.ItemName != value)
                 {
-                    _itemName = value;
+                    cItem.ItemName = value;
                     OnPropertyChanged(nameof(ItemName));
                 }
             }
-        }//******
+        }
 
-        #endregion
+        public ObservableCollection<string> NaturalNames;
 
-        private bool isNew;
+        public ObservableCollection<string> CategoryNames;
 
-        //public bool IsReadOnly { get; set; }
+        private bool _isNew;
+        public bool IsNew
+        {
+            get { return _isNew; }
+            set
+            {
+                if (_isNew != value)
+                {
+                    _isNew = value;
+                    OnPropertyChanged(nameof(IsNew));
+                }
+            }
+        }
+
+        private bool _isEdit;
+        public bool IsEdit
+        {
+            get { return _isEdit; }
+            set
+            {
+                if (_isEdit != value)
+                {
+                    _isEdit = value;
+                    OnPropertyChanged(nameof(IsEdit));
+                }
+            }
+        }
+
+        private bool _isSmall;
+        public bool IsSmall
+        {
+            get { return _isSmall; }
+            set
+            {
+                if (_isSmall != value)
+                {
+                    _isSmall = value;
+                    OnPropertyChanged(nameof(IsSmall));
+                }
+            }
+        }
+
+        private bool _isMedium;
+        public bool IsMedium
+        {
+            get { return _isMedium; }
+            set
+            {
+                if (_isMedium != value)
+                {
+                    _isMedium = value;
+                    OnPropertyChanged(nameof(IsMedium));
+                }
+            }
+        }
+
+        private bool _isLarge;
+        public bool IsLarge
+        {
+            get { return _isLarge; }
+            set
+            {
+                if (_isLarge != value)
+                {
+                    _isLarge = value;
+                    OnPropertyChanged(nameof(IsLarge));
+                }
+            }
+        }
+
+        private bool _isRegular;
+        public bool IsRegular
+        {
+            get { return _isRegular; }
+            set
+            {
+                if (_isRegular != value)
+                {
+                    _isRegular = value;
+                    OnPropertyChanged(nameof(IsRegular));
+                }
+            }
+        }
+
+        private bool _isCutie;
+        public bool IsCutie
+        {
+            get { return _isCutie; }
+            set
+            {
+                if (_isCutie != value)
+                {
+                    _isCutie = value;
+                    OnPropertyChanged(nameof(IsCutie));
+                }
+            }
+        }
+
+        public bool IsPOTM
+        {
+            get { return cItem.IsPOTM; }
+            set
+            {
+                if (cItem.IsPOTM != value)
+                {
+                    cItem.IsPOTM = value;
+                    OnPropertyChanged(nameof(IsPOTM));
+                }
+            }
+        }
+
+        #endregion    
 
         public RelayCommand AddAltName { get; set; }
         public RelayCommand RemoveAltName { get; set; }
@@ -228,25 +249,28 @@ namespace POMT_WPF.MVVM.ViewModel
         public RelayCommand SetCutieLblFile { get; set; }
         public RelayCommand SetVeganPie { get; set; }
         public RelayCommand DeleteItem { get; set; }
+        public RelayCommand SaveItem { get; set; }
         public RelayCommand BackCatalogItem { get; set; }
 
         public CatalogItemViewModel(CatalogItemPetsi? inputItem)
         {
-            CatalogItem = inputItem;
-            if(CatalogItem == null)
+            cItem = new CatalogItemPetsi(inputItem);
+
+            if (inputItem == null)
             {
-                isNew = true;
-                CatalogItem = new CatalogItemPetsi();
+                IsNew = true;
+                IsEdit = true;
                 NaturalNames = new ObservableCollection<string>();
+                NaturalNames.CollectionChanged += (s, e) => cItem.NaturalNames = NaturalNames.ToList();
                 CategoryService cs = GetCategoryService();
                 CategoryNames = new ObservableCollection<string>(cs.GetCategoryNames());
                 CatalogService catalogService = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
-                CatalogItem.CatalogObjectId = catalogService.GenerateCatalogId();
+                cItem.CatalogObjectId = catalogService.GenerateCatalogId();
             }
             else
             {
                 //Variations
-                foreach ((string key, string value) in CatalogItem.VariationList)
+                foreach ((string key, string value) in cItem.VariationList)
                 {
                     if (value.Contains(Identifiers.SIZE_CUTIE))
                     {
@@ -271,21 +295,110 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
 
                 NaturalNames = new ObservableCollection<string>(inputItem.NaturalNames);
-                StandardLabelFilePath = inputItem.StandardLabelFilePath;
-                CutieLabelFilePath = inputItem.CutieLabelFilePath;
-                CategoryService cs = GetCategoryService(); 
-                CategoryNames = new ObservableCollection<string>(cs.GetCategoryNames());
+                NaturalNames.CollectionChanged += (s, e) => cItem.NaturalNames = NaturalNames.ToList();
+                //StandardLabelFilePath = inputItem.StandardLabelFilePath;
+                //CutieLabelFilePath = inputItem.CutieLabelFilePath;
+
                 CategoryId = inputItem.CategoryId;
+
+                CategoryService cs = GetCategoryService();
+                CategoryNames = new ObservableCollection<string>(cs.GetCategoryNames());
                 CategoryName = cs.GetCategoryName(CategoryId);
-                IsPOTM = inputItem.IsPOTM;
-                ItemName = inputItem.ItemName;
+
+                //IsPOTM = inputItem.IsPOTM;
+                //ItemName = inputItem.ItemName;
+
                 if (inputItem.VeganPieAssociation != null)
                 {
-                    _veganMapping = inputItem.VeganPieAssociation;
+                    //_veganMapping = inputItem.VeganPieAssociation;
                     VeganMappedItemName = inputItem.VeganPieAssociation.ItemName;
                 }
             }
 
+            AddAltName = new RelayCommand(o => { AddAltNameCmd(); });
+            RemoveAltName = new RelayCommand(o => { RemAltNameCmd(o); });
+            SetStandardLblFile = new RelayCommand(o => { SetStdLblFileCmd(); });
+            SetCutieLblFile = new RelayCommand(o => { SetCutieLblFileCmd(); });
+            SetVeganPie = new RelayCommand(o => { SetVeganPieCmd(); });
+            DeleteItem = new RelayCommand(o => { DeleteItemCmd(); });
+            SaveItem = new RelayCommand(o => { SaveItemCmd(); });
+            BackCatalogItem = new RelayCommand(o => { BackCmd(); });
+
+        }
+
+        private void AddAltNameCmd()
+        {
+            AddNaturalNameView view = new AddNaturalNameView();
+            view.ShowDialog();
+            if (view.ControlBool)
+            {
+                NaturalNames.Add(view.naturalName);
+            }
+        }
+        private void RemAltNameCmd(object o)
+        {
+            if (o is string)
+            {
+                ConfirmationWindow confirmationWindow = new ConfirmationWindow();
+                confirmationWindow.ShowDialog();
+                if (confirmationWindow.ControlBool)
+                {
+                    NaturalNames.Remove((string)o);
+                }
+            }
+        }
+        private void SetStdLblFileCmd()
+        {
+            string labelsFilepath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_LABEL_FP);
+            if (labelsFilepath != null || labelsFilepath != "")
+            {
+                OpenFileDialog fileDialog = new OpenFileDialog();
+                fileDialog.InitialDirectory = labelsFilepath + "\\Pie";
+                if (fileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    StandardLabelFilePath = fileDialog.FileName;
+                }
+            }
+        }
+        private void SetCutieLblFileCmd()
+        {
+            string labelsFilepath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_LABEL_FP);
+            if (labelsFilepath != null || labelsFilepath != "")
+            {
+                OpenFileDialog fileDialog = new OpenFileDialog();
+                fileDialog.InitialDirectory = labelsFilepath + "\\Cuties";
+                if (fileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    CutieLabelFilePath = fileDialog.FileName;
+                }
+            }
+        }
+        private void SetVeganPieCmd()
+        {
+            CatalogItemVeganMapView veganMapView = new CatalogItemVeganMapView();
+            veganMapView.ShowDialog();
+            if (veganMapView.selection != null)
+            {
+                VeganMapping = veganMapView.selection;
+            }
+        }
+        private void DeleteItemCmd()
+        {
+            ConfirmationWindow confirmationWindow = new ConfirmationWindow();
+            confirmationWindow.ShowDialog();
+            if (confirmationWindow.ControlBool)
+            {
+                //ObsCatalogModelSingleton.RemoveItem(viewModel.cItem);
+                BackCmd();
+            }
+        }
+        private void SaveItemCmd()
+        {
+
+        }
+        private void BackCmd()
+        {
+            MainViewModel.Instance().BackCatalogViewCommand();
         }
 
         public void AddNaturalName(string naturalName)
@@ -335,14 +448,14 @@ namespace POMT_WPF.MVVM.ViewModel
         private void UpdateCatalogModel()
         {
             CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
-            if (isNew)
+            if (IsNew)
             {
-                ObsCatalogModelSingleton.AddItem(CatalogItem);
+                ObsCatalogModelSingleton.AddItem(cItem);
             }
             else
             {
                 //cmp.UpdateModel();
-                ObsCatalogModelSingleton.ModifyItem(CatalogItem);
+                ObsCatalogModelSingleton.ModifyItem(cItem);
             }
             
         }
@@ -430,18 +543,18 @@ namespace POMT_WPF.MVVM.ViewModel
 
         public void UpdateItem()
         {
-            CatalogItem.ItemName = ItemName;
-            CatalogItem.CategoryId = CategoryId;
-            CatalogItem.IsPOTM = IsPOTM;
-            CatalogItem.VeganPieAssociation = VeganMapping;
-            CatalogItem.UpdateSizeVariation(Identifiers.SIZE_SMALL, IsSmall);
-            CatalogItem.UpdateSizeVariation(Identifiers.SIZE_MEDIUM, IsMedium);
-            CatalogItem.UpdateSizeVariation(Identifiers.SIZE_LARGE, IsLarge);
-            CatalogItem.UpdateSizeVariation(Identifiers.SIZE_REGULAR, IsRegular);
-            CatalogItem.UpdateSizeVariation(Identifiers.SIZE_CUTIE, IsCutie);
-            CatalogItem.StandardLabelFilePath = StandardLabelFilePath;
-            CatalogItem.CutieLabelFilePath = CutieLabelFilePath;
-            CatalogItem.NaturalNames = NaturalNames.ToList();
+            cItem.ItemName = ItemName;
+            cItem.CategoryId = CategoryId;
+            cItem.IsPOTM = IsPOTM;
+            cItem.VeganPieAssociation = VeganMapping;
+            cItem.UpdateSizeVariation(Identifiers.SIZE_SMALL, IsSmall);
+            cItem.UpdateSizeVariation(Identifiers.SIZE_MEDIUM, IsMedium);
+            cItem.UpdateSizeVariation(Identifiers.SIZE_LARGE, IsLarge);
+            cItem.UpdateSizeVariation(Identifiers.SIZE_REGULAR, IsRegular);
+            cItem.UpdateSizeVariation(Identifiers.SIZE_CUTIE, IsCutie);
+            cItem.StandardLabelFilePath = StandardLabelFilePath;
+            cItem.CutieLabelFilePath = CutieLabelFilePath;
+            cItem.NaturalNames = NaturalNames.ToList();
 
             UpdateCatalogModel();
         }
