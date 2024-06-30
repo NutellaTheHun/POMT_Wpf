@@ -3,6 +3,7 @@ using Petsi.Models;
 using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
+using POMT_WPF.Core;
 using POMT_WPF.MVVM.ObsModels;
 using System.Collections.ObjectModel;
 using System.Windows.Forms;
@@ -216,8 +217,19 @@ namespace POMT_WPF.MVVM.ViewModel
         }//******
 
         #endregion
+
         private bool isNew;
+
         //public bool IsReadOnly { get; set; }
+
+        public RelayCommand AddAltName { get; set; }
+        public RelayCommand RemoveAltName { get; set; }
+        public RelayCommand SetStandardLblFile { get; set; }
+        public RelayCommand SetCutieLblFile { get; set; }
+        public RelayCommand SetVeganPie { get; set; }
+        public RelayCommand DeleteItem { get; set; }
+        public RelayCommand BackCatalogItem { get; set; }
+
         public CatalogItemViewModel(CatalogItemPetsi? inputItem)
         {
             CatalogItem = inputItem;

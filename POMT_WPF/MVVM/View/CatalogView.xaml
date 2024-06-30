@@ -63,7 +63,7 @@
                     Height="520"
                     BorderBrush="{StaticResource TextFont}"
                     BorderThickness="1"
-                    CornerRadius="20">
+                    CornerRadius="5">
                     <DataGrid
                         x:Name="catalogListDataGrid"
                         Width="500"
@@ -71,6 +71,12 @@
                         AutoGenerateColumns="False"
                         Background="Transparent"
                         BorderBrush="Transparent">
+                        <DataGrid.InputBindings>
+                            <MouseBinding
+                                Command="{Binding OpenCatalogItemView}"
+                                CommandParameter="{Binding ElementName=catalogListDataGrid, Path=SelectedItem}"
+                                MouseAction="LeftDoubleClick" />
+                        </DataGrid.InputBindings>
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding ItemName}" Header="Item Name" />
                             <DataGridTextColumn Binding="{Binding CatalogObjectId}" Header="Catalog ID" />
@@ -80,18 +86,15 @@
                     </DataGrid>
                 </Border>
                 <Button
-                    x:Name="AddCatalogItemButton"
                     Width="30"
                     Height="30"
                     Margin="5,0,5,5"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
-                    Click="AddCatalogItemButton_Click"
                     Style="{StaticResource secondaryButton}">
                     <Icon:PackIconMaterial Kind="Plus" />
                 </Button>
             </StackPanel>
-
         </Grid>
     </Grid>
 </UserControl>

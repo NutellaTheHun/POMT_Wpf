@@ -24,6 +24,7 @@ namespace POMT_WPF.MVVM.ViewModel
 
 		public OrderItemView OrderItemView { get; set; }
         */
+
         public CatalogViewModel CatalogVM { get; set; }
         public LabelViewModel LabelVM { get; set; }
         public OrderViewModel OrderVM { get; set; }
@@ -31,6 +32,8 @@ namespace POMT_WPF.MVVM.ViewModel
         public SettingsViewModel SettingsVM { get; set; }
 
         public OrderItemViewModel OrderItemVM { get; set; }
+        public CatalogItemViewModel CatalogItemVM { get; set; }
+
 
         private object _currentView;
 		public object CurrentView
@@ -57,9 +60,21 @@ namespace POMT_WPF.MVVM.ViewModel
             CurrentView = OrderItemVM;
         }
 
+        public void CatalogItemViewCommand(object? o)
+        {
+            if (o is CatalogItemPetsi order) CatalogItemVM = new CatalogItemViewModel(order);
+            else CatalogItemVM = new CatalogItemViewModel(null);
+            CurrentView = CatalogItemVM;
+        }
+
         public void BackOrderViewCommand()
         {
             CurrentView = OrderVM;
+        }
+
+        public void BackCatalogViewCommand()
+        {
+            CurrentView = CatalogVM;
         }
 
         private MainViewModel()

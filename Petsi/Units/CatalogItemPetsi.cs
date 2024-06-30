@@ -34,6 +34,41 @@ namespace Petsi.Units
         public string StandardLabelFilePath { get; set; }
         public string CutieLabelFilePath { get; set; }
         public bool IsPOTM {  get; set; }
+
+        public CatalogItemPetsi(CatalogItemPetsi? copyItem)
+        {
+            if(copyItem != null)
+            {
+                frameBehavior = copyItem.frameBehavior;
+                CategoryId = copyItem.CategoryId;
+                CatalogObjectId = copyItem.CatalogObjectId;
+                ItemName = copyItem.ItemName;
+                NaturalNames = new List<string>(copyItem.NaturalNames);
+                Alt_CatalogObjId = new List<string>(copyItem.Alt_CatalogObjId);
+                Variations = copyItem.Variations;
+                VariationList = new List<(string variationId, string variationName)>(copyItem.VariationList);
+                DisabledVariationList = new List<(string variationId, string variationName)>(copyItem.DisabledVariationList);
+
+                if (copyItem.VeganPieAssociation != null)
+                {
+                    VeganPieAssociation = new CatalogItemPetsi(copyItem.VeganPieAssociation);
+                }
+
+                StandardLabelFilePath = copyItem.StandardLabelFilePath;
+                CutieLabelFilePath = copyItem.CutieLabelFilePath;
+                IsPOTM = copyItem.IsPOTM;
+            }
+            else
+            {
+                Variations = new ListDictionary();
+                frameBehavior = new CatalogItemFrameBehavior(this);
+                NaturalNames = new List<string>();
+                VariationList = new List<(string variationName, string variationId)>();
+                DisabledVariationList = new List<(string variationId, string variationName)>();
+                Alt_CatalogObjId = new List<string>();
+            }
+        }
+
         public CatalogItemPetsi(string categoryId, string catalogObjectId, string itemName)
         {
             this.CategoryId = categoryId;

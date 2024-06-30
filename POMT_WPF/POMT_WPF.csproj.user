@@ -135,6 +135,9 @@
     <Page Update="Styles\Button\DataGridSelectAllButtonStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Styles\Templates\GeneralBackButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Styles\Button\gridEditBUtton.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -223,9 +226,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\Templates\GeneralField.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Styles\Templates\InnerGeneralField.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\TextBlock\orderTextBlock.xaml">

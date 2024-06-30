@@ -85,7 +85,6 @@
                                             <Label Content="Start" />
                                             <DatePicker
                                                 x:Name="datePickerStart"
-                                                Grid.Row="2"
                                                 Width="150"
                                                 Height="40"
                                                 HorizontalAlignment="Center"
@@ -95,7 +94,6 @@
                                             <Label Content="End" />
                                             <DatePicker
                                                 x:Name="datePickerEnd"
-                                                Grid.Row="2"
                                                 Width="150"
                                                 Height="40"
                                                 HorizontalAlignment="Center"
@@ -177,19 +175,11 @@
                                             FontWeight="SemiBold"
                                             Foreground="{StaticResource maybeDark}"
                                             Text="Select Pie Template" />
-                                        <Border
-                                            BorderBrush="{StaticResource TextFont}"
-                                            BorderThickness="1"
-                                            CornerRadius="5">
-                                            <local:TextFillTextBox
-                                                IsReadOnly="true"
-                                                Style="{StaticResource textFillTextBox}"
-                                                Text="{Binding PieTemplate, UpdateSourceTrigger=PropertyChanged}"
-                                                TextFill="SelectFromListBox()" />
-                                        </Border>
-
+                                        <TextBox
+                                            IsReadOnly="true"
+                                            Style="{StaticResource GeneralField}"
+                                            Text="{Binding PieTemplate, UpdateSourceTrigger=PropertyChanged}" />
                                     </StackPanel>
-
                                     <Button
                                         x:Name="SetPieTemplateButton"
                                         Width="50"
@@ -206,18 +196,11 @@
                                             FontWeight="SemiBold"
                                             Foreground="{StaticResource maybeDark}"
                                             Text="Select PastryTemplate" />
-                                        <Border
-                                            BorderBrush="{StaticResource TextFont}"
-                                            BorderThickness="1"
-                                            CornerRadius="5">
-                                            <local:TextFillTextBox
-                                                IsReadOnly="true"
-                                                Style="{StaticResource textFillTextBox}"
-                                                Text="{Binding PastryTemplate, UpdateSourceTrigger=PropertyChanged}"
-                                                TextFill="SelectFromListBox()" />
-                                        </Border>
+                                        <TextBox
+                                            IsReadOnly="true"
+                                            Style="{StaticResource GeneralField}"
+                                            Text="{Binding PastryTemplate, UpdateSourceTrigger=PropertyChanged}" />
                                     </StackPanel>
-
                                     <Button
                                         x:Name="SetPastryTemplateButton"
                                         Width="50"

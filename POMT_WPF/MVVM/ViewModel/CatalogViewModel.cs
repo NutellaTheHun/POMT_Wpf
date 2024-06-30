@@ -3,6 +3,7 @@ using Petsi.Units;
 using System.Collections.ObjectModel;
 using POMT_WPF.MVVM.ObsModels;
 using POMT_WPF.Interfaces;
+using POMT_WPF.Core;
 
 namespace POMT_WPF.MVVM.ViewModel
 {
@@ -37,10 +38,14 @@ namespace POMT_WPF.MVVM.ViewModel
             }
         }
 
+        RelayCommand OpenCatalogItemView {  get; set; }
+
         public CatalogViewModel()
         {
             ObsCatalogModelSingleton.Instance.Subscribe(this);
             Items = ObsCatalogModelSingleton.Instance.CatalogItems;
+
+            OpenCatalogItemView = new RelayCommand(o => { MainViewModel.Instance().CatalogItemViewCommand(o); });
         }
 
         public void Update()

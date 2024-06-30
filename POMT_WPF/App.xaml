@@ -68,7 +68,7 @@
                 <ResourceDictionary Source="Styles/CheckBox/CheckBoxStyle1.xaml" />
 
                 <ResourceDictionary Source="Styles/Templates/GeneralField.xaml" />
-                <ResourceDictionary Source="Styles/Templates/InnerGeneralField.xaml" />
+                <ResourceDictionary Source="Styles/Templates/GeneralBackButton.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
 
