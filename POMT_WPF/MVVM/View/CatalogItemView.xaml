@@ -1,0 +1,157 @@
+﻿<UserControl
+    x:Class="POMT_WPF.MVVM.View.CatalogItemView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:POMT_WPF.MVVM.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="700"
+    d:DesignWidth="860"
+    mc:Ignorable="d">
+    <Grid Background="{StaticResource ColumbiaBlue}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" Margin="30">
+                    <StackPanel
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Orientation="Vertical">
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="Item Name" />
+                            <Border Style="{StaticResource GeneralBorder}">
+                                <TextBox Style="{StaticResource GeneralTextBox}" />
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="Category" />
+                            <Border Style="{StaticResource GeneralBorder}">
+                                <ComboBox
+                                    Name="CategoryComboBox"
+                                    Width="150"
+                                    Height="30"
+                                    Foreground="{StaticResource TextFont}" />
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="Attributes" />
+                            <Border Style="{StaticResource GeneralBorder}">
+                                <Grid>
+                                    <StackPanel Orientation="Horizontal">
+                                        <StackPanel Orientation="Vertical">
+                                            <CheckBox
+                                                Name="smallCheckBox"
+                                                Content="Small"
+                                                FontSize="16"
+                                                Foreground="{StaticResource maybeDark}" />
+                                            <CheckBox
+                                                Name="mediumCheckBox"
+                                                Margin="0,10,0,10"
+                                                Content="Medium"
+                                                FontSize="16"
+                                                Foreground="{StaticResource maybeDark}" />
+                                            <CheckBox
+                                                x:Name="largeCheckBox"
+                                                Content="Large"
+                                                FontSize="16"
+                                                Foreground="{StaticResource maybeDark}" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Vertical">
+                                            <CheckBox
+                                                x:Name="regularCheckBox"
+                                                Content="Regular"
+                                                FontSize="16"
+                                                Foreground="{StaticResource maybeDark}" />
+                                            <CheckBox
+                                                x:Name="cutieCheckBox"
+                                                Margin="0,10,0,10"
+                                                Content="Cutie"
+                                                FontSize="16"
+                                                Foreground="{StaticResource maybeDark}" />
+                                            <CheckBox
+                                                x:Name="potm_checkBox"
+                                                Content="POTM"
+                                                FontSize="16"
+                                                Foreground="{StaticResource maybeDark}" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <StackPanel
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="Alternative Names" />
+                                <StackPanel Orientation="Horizontal">
+                                    <Border Style="{StaticResource GeneralBorder}">
+                                        <TextBox Style="{StaticResource GeneralTextBox}" />
+                                    </Border>
+                                    <StackPanel Orientation="Vertical">
+                                        <Button
+                                            x:Name="addNaturalNameButton"
+                                            Width="30"
+                                            Height="30"
+                                            Margin="5,0,5,5"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Top"
+                                            Style="{StaticResource secondaryButton}">
+                                            <Icon:PackIconMaterial Kind="Plus" />
+                                        </Button>
+                                        <Button
+                                            Name="deleteNaturalNameButton"
+                                            Width="30"
+                                            Height="30"
+                                            Margin="5,0,5,5"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Top"
+                                            Background="{StaticResource ChiliRed}"
+                                            Style="{StaticResource secondaryButton}">
+                                            <Icon:PackIconMaterial Kind="Minus" />
+                                        </Button>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="Standard Label File" />
+                                <Border Style="{StaticResource GeneralBorder}">
+                                    <TextBox Style="{StaticResource GeneralTextBox}" />
+                                </Border>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="Cutie Label File" />
+                                <Border Style="{StaticResource GeneralBorder}">
+                                    <TextBox Style="{StaticResource GeneralTextBox}" />
+                                </Border>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="Vegan Pie" />
+                                <Border Style="{StaticResource GeneralBorder}">
+                                    <TextBox Style="{StaticResource GeneralTextBox}" />
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+
+        </Grid>
+    </Grid>
+</UserControl>

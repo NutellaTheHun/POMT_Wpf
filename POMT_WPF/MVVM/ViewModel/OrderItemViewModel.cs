@@ -294,7 +294,7 @@ namespace POMT_WPF.MVVM.ViewModel
         public RelayCommand EditCommand {  get; set; }
         public RelayCommand AddLineCommand {  get; set; }
         public RelayCommand DeleteLineCommand {  get; set; }
-        public RelayCommand SaveLineCommand {  get; set; }
+        public RelayCommand SaveOrderCommand {  get; set; }
         public RelayCommand DeleteOrderCommand {  get; set; }
 
         #endregion
@@ -336,8 +336,10 @@ namespace POMT_WPF.MVVM.ViewModel
                 LineItems = new ObservableCollection<PetsiOrderLineItem>(orderContext.LineItems);
             }
             UpdateColumnTotals();
-            OrderModelPetsi omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
-            OrderTypes = new ObservableCollection<string>(omp.GetOrderTypes());
+
+            OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+
+            OrderTypes = new ObservableCollection<string>(orderModel.GetOrderTypes());
             OrderFrequencies = new ObservableCollection<string>() { "Weekly", "One Time" };
             FulfillmentTypes = new ObservableCollection<string>() { "PICKUP", "DELIVERY" };
 
@@ -346,11 +348,45 @@ namespace POMT_WPF.MVVM.ViewModel
 
             BackCommand = new RelayCommand(o => { MainViewModel.Instance().BackOrderViewCommand(); });
             //FreezeCommand = new RelayCommand(o => {  });
-            EditCommand = new RelayCommand(o => {  });
-            AddLineCommand = new RelayCommand(o => {  });
-            DeleteLineCommand = new RelayCommand(o => {  });
-            SaveLineCommand = new RelayCommand(o => {  });
-            DeleteOrderCommand = new RelayCommand(o => {  });
+            EditCommand = new RelayCommand(o => { ToggleEditing(); });
+            AddLineCommand = new RelayCommand(o => { AddLine(); });
+            DeleteLineCommand = new RelayCommand(o => { DeleteLine(o); });
+            SaveOrderCommand = new RelayCommand(o => { SaveOrder();  });
+            DeleteOrderCommand = new RelayCommand(o => { DeleteOrder();  });
+        }
+        private void ToggleEditing()
+        {
+            foreach(var item in LineItems)
+            {
+                item.IsReadOnly = !IsEdit;
+            }
+        }
+        private void AddLine()
+        {
+            LineItems.Add(new PetsiOrderLineItem());
+        }
+        
+        private void DeleteLine(object o)
+        {
+            if(o is PetsiOrderLineItem lineItem)
+            {
+                int count = LineItems.Count;
+                LineItems.Remove(lineItem);
+                if(LineItems.Count != count - 1)
+                {
+                    SystemLogger.Log("Delete Line Command failed to remove");
+                }
+            }
+        }
+
+        private void SaveOrder()
+        {
+
+        }
+
+        private void DeleteOrder()
+        {
+
         }
 
         private void UpdateColumnTotals()

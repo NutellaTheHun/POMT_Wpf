@@ -56,7 +56,7 @@
                 Grid.Row="1"
                 Margin="0,0,0,4"
                 VerticalAlignment="Center"
-                Click="AddOrder_ButtonClick"
+                Command="{Binding OpenOrderItemView}"
                 Style="{StaticResource addButton}">
                 <StackPanel Orientation="Horizontal">
                     <Icon:PackIconMaterial

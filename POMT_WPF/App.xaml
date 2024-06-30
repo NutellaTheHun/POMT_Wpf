@@ -41,6 +41,7 @@
                 <ResourceDictionary Source="Styles/TextBox/newOrderTextBox.xaml" />
                 <ResourceDictionary Source="Styles/TextBox/textBoxSearch.xaml" />
                 <ResourceDictionary Source="Styles/TextBox/textBoxFilter.xaml" />
+                <ResourceDictionary Source="Styles/TextBox/GeneralTextBox.xaml" />
 
                 <ResourceDictionary Source="Styles/ToggleButton/tabButton.xaml" />
                 <ResourceDictionary Source="Styles/ToggleButton/orderFormFreezeButton.xaml" />
@@ -62,7 +63,12 @@
                 <ResourceDictionary Source="Styles/DataGrid/orderFormDataGridRowStyle.xaml" />
                 <ResourceDictionary Source="Styles/DataGrid/orderFormDataGridCellStyle.xaml" />
 
+                <ResourceDictionary Source="Styles/Borders/GeneralBorder.xaml" />
+
                 <ResourceDictionary Source="Styles/CheckBox/CheckBoxStyle1.xaml" />
+
+                <ResourceDictionary Source="Styles/Templates/GeneralField.xaml" />
+                <ResourceDictionary Source="Styles/Templates/InnerGeneralField.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
 
@@ -93,8 +99,12 @@
             <DataTemplate DataType="{x:Type vm:OrderItemViewModel}">
                 <vw:OrderItemView />
             </DataTemplate>
-            
-            
+
+            <DataTemplate DataType="{x:Type vm:CatalogItemViewModel}">
+                <vw:CatalogItemView />
+            </DataTemplate>
+
+
         </ResourceDictionary>
 
     </Application.Resources>

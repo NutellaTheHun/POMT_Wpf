@@ -26,8 +26,6 @@
                     IsEditable="True"
                     IsHitTestVisible="False"
                     IsReadOnly="False"
-                    LostFocus="ItemNameComboBox_LostFocus"
-                    SelectionChanged="ItemNameComboBox_SelectionChanged"
                     StaysOpenOnEdit="True"
                     Text="{Binding ElementName=ItemNameTextBox, Path=Text}" />
                 <local:TextFillTextBox
@@ -71,7 +69,6 @@
                     Margin="0,5,50,5"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
-                    Click="FreezeToggleButton_Click"
                     Content="Freeze"
                     IsChecked="{Binding IsFrozen, Mode=TwoWay}"
                     Style="{StaticResource orderFormFreezeButton}"
@@ -84,7 +81,6 @@
                     Margin="0,5,20,5"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
-                    Click="EditToggleButton_Click_1"
                     Content="Edit"
                     IsChecked="{Binding IsEdit, Mode=TwoWay}"
                     Style="{StaticResource orderFormEditButton}"
@@ -103,46 +99,26 @@
                 <StackPanel Margin="10" Orientation="Vertical">
                     <StackPanel Orientation="Vertical">
                         <Label Content="Recipient" />
-                        <Border
-                            BorderBrush="{StaticResource TextFont}"
-                            BorderThickness="1"
-                            CornerRadius="5">
-                            <TextBox
-                                Name="RecipientTextBox"
-                                Width="150"
-                                Height="40"
-                                Background="{StaticResource MintCream}"
-                                IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
-                                Text="{Binding Recipient, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                        </Border>
+                        <TextBox Style="{StaticResource GeneralField}" Text="{Binding Recipient, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
                         <Label Content="Email" />
-                        <Border
-                            BorderBrush="{StaticResource TextFont}"
-                            BorderThickness="1"
-                            CornerRadius="5">
+                        <Border Style="{StaticResource GeneralBorder}">
                             <TextBox
                                 x:Name="EmailTextBox"
-                                Width="150"
-                                Height="40"
-                                Background="{StaticResource MintCream}"
                                 IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
+                                Style="{StaticResource GeneralTextBox}"
                                 Text="{Binding Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                         </Border>
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
                         <Label Content="Phone" />
-                        <Border
-                            BorderBrush="{StaticResource TextFont}"
-                            BorderThickness="1"
-                            CornerRadius="5">
+                        <Border Style="{StaticResource GeneralBorder}">
                             <TextBox
                                 Name="PhoneTextBox"
-                                Width="150"
-                                Height="40"
-                                Background="{StaticResource MintCream}"
                                 IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
+                                Style="{StaticResource GeneralTextBox}"
                                 Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                         </Border>
                     </StackPanel>
@@ -152,10 +128,7 @@
                 <StackPanel Margin="10" Orientation="Vertical">
                     <StackPanel Orientation="Vertical">
                         <Label Content="Fulfillment Date" />
-                        <Border
-                            BorderBrush="{StaticResource TextFont}"
-                            BorderThickness="1"
-                            CornerRadius="5">
+                        <Border Style="{StaticResource GeneralBorder}">
                             <DatePicker
                                 x:Name="OrderDatePicker"
                                 Width="200"
@@ -168,46 +141,31 @@
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
                         <Label Content="Time" />
-                        <Border
-                            BorderBrush="{StaticResource TextFont}"
-                            BorderThickness="1"
-                            CornerRadius="5">
+                        <Border Style="{StaticResource GeneralBorder}">
                             <TextBox
                                 Name="TimeTextBox"
-                                Width="200"
-                                Height="40"
-                                Background="{StaticResource MintCream}"
                                 IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
+                                Style="{StaticResource GeneralTextBox}"
                                 Text="{Binding Time, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                         </Border>
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
                         <Label Content="Delivery Address" />
-                        <Border
-                            BorderBrush="{StaticResource TextFont}"
-                            BorderThickness="1"
-                            CornerRadius="5">
+                        <Border Style="{StaticResource GeneralBorder}">
                             <TextBox
                                 Name="DeliveryAddrTextBox"
-                                Width="200"
-                                Height="40"
-                                Background="{StaticResource MintCream}"
                                 IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
+                                Style="{StaticResource GeneralTextBox}"
                                 Text="{Binding DeliveryAddr, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                         </Border>
                     </StackPanel>
-
                 </StackPanel>
             </Grid>
             <Grid Grid.Column="2">
                 <StackPanel Margin="10" Orientation="Vertical">
-
                     <StackPanel Orientation="Vertical">
                         <Label Content="Order Type" />
-                        <Border
-                            BorderBrush="{StaticResource TextFont}"
-                            BorderThickness="1"
-                            CornerRadius="5">
+                        <Border Style="{StaticResource GeneralBorder}">
                             <ComboBox
                                 x:Name="OrderTypeComboBox"
                                 Width="200"
@@ -221,10 +179,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
                         <Label Content="Fulfillment Type" />
-                        <Border
-                            BorderBrush="{StaticResource TextFont}"
-                            BorderThickness="1"
-                            CornerRadius="5">
+                        <Border Style="{StaticResource GeneralBorder}">
                             <ComboBox
                                 x:Name="FulfillmentTypeComboBox"
                                 Width="200"
@@ -238,10 +193,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
                         <Label Content="Order Frequency" />
-                        <Border
-                            BorderBrush="{StaticResource TextFont}"
-                            BorderThickness="1"
-                            CornerRadius="5">
+                        <Border Style="{StaticResource GeneralBorder}">
                             <ComboBox
                                 x:Name="OrderFrequencyTypeComboBox"
                                 Width="200"
@@ -259,18 +211,15 @@
                 <StackPanel Margin="10" Orientation="Vertical">
                     <StackPanel Orientation="Vertical">
                         <Label Content="Notes" />
-                        <Border
-                            BorderBrush="{StaticResource TextFont}"
-                            BorderThickness="1"
-                            CornerRadius="5">
+                        <Border Style="{StaticResource GeneralBorder}">
                             <TextBox
                                 Name="NotesTextBox"
-                                Width="200"
-                                Height="175"
-                                Background="{StaticResource MintCream}"
                                 IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
+                                Style="{StaticResource GeneralTextBox}"
                                 Text="{Binding Notes, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                         </Border>
+                        <Label Content="TEst" />
+
                     </StackPanel>
                 </StackPanel>
             </Grid>
@@ -375,7 +324,7 @@
                             Margin="5,0,5,5"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Top"
-                            Click="AddLineButton_Click"
+                            Command="{Binding AddLineCommand}"
                             IsHitTestVisible="{Binding IsEdit}"
                             Style="{StaticResource secondaryButton}"
                             Visibility="{Binding CanModify, Converter={StaticResource BoolToVis}}">
@@ -389,7 +338,8 @@
                             HorizontalAlignment="Right"
                             VerticalAlignment="Top"
                             Background="{StaticResource ChiliRed}"
-                            Click="DeleteLineButton_Click"
+                            Command="{Binding DeleteLineCommand}"
+                            CommandParameter="{Binding ElementName=orderFormDataGrid, Path=SelectedItem}"
                             IsHitTestVisible="{Binding IsEdit}"
                             Style="{StaticResource secondaryButton}"
                             Visibility="{Binding CanModify, Converter={StaticResource BoolToVis}}">
@@ -398,11 +348,7 @@
                     </StackPanel>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                    <Border
-                        Margin="5,5,10,5"
-                        BorderBrush="{StaticResource maybeDark}"
-                        BorderThickness="1"
-                        CornerRadius="5">
+                    <Border Margin="5,5,10,5" Style="{StaticResource GeneralBorder}">
                         <TextBlock
                             Width="50"
                             Height="40"
@@ -476,7 +422,7 @@
             <Button
                 Name="SaveOrderButton"
                 HorizontalAlignment="Center"
-                Click="DeleteOrderButton_Click"
+                Command="{Binding SaveOrderCommand}"
                 Content="Save"
                 Style="{StaticResource secondaryButton}"
                 Visibility="{Binding CanModify, Converter={StaticResource BoolToVis}}" />
@@ -485,11 +431,10 @@
                 Margin="100,10,10,0"
                 HorizontalAlignment="Right"
                 Background="{StaticResource ChiliRed}"
-                Click="DeleteOrderButton_Click"
+                Command="{Binding DeleteOrderCommand}"
                 Content="Delete"
                 Style="{StaticResource secondaryButton}"
                 Visibility="{Binding CanDelete, Converter={StaticResource BoolToVis}}" />
-
         </Grid>
     </Grid>
 </UserControl>

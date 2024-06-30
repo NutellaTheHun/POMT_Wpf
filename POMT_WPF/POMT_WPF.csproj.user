@@ -13,6 +13,9 @@
     <Compile Update="MVVM\View\CatalogItemVeganMapView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="MVVM\View\CatalogItemView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="MVVM\View\CatalogView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -69,6 +72,9 @@
     <Page Update="MVVM\View\CatalogItemVeganMapView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="MVVM\View\CatalogItemView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MVVM\View\CatalogView.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -112,6 +118,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\testNEWmainVIEW.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Borders\GeneralBorder.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\Brushes.xaml">
@@ -213,7 +222,16 @@
     <Page Update="Styles\RadioButton\reportLabelsRadioButtonTheme.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Styles\Templates\GeneralField.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Templates\InnerGeneralField.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Styles\TextBlock\orderTextBlock.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\TextBox\GeneralTextBox.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\TextBox\newOrderTextBox.xaml">

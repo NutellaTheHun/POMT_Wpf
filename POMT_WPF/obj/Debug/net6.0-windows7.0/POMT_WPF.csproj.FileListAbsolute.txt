@@ -182,3 +182,9 @@ D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\Styles\Custom\TextFil
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\Styles\Custom\TextFillTextBox\textFillTextBox.baml
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\OrderItemView.g.cs
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\OrderItemView.baml
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\Styles\Borders\GeneralBorder.baml
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\CatalogItemView.g.cs
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\CatalogItemView.baml
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\Styles\TextBox\GeneralTextBox.baml
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\Styles\Templates\GeneralField.baml
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\Styles\Templates\InnerGeneralField.baml
