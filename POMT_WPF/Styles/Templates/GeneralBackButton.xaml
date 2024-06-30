@@ -8,7 +8,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Button>
+                    <Button Command="{TemplateBinding Command}">
                         <Icon:PackIconMaterial Kind="ChevronLeft" />
                     </Button>
                 </ControlTemplate>

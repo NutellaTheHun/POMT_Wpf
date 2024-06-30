@@ -15,34 +15,26 @@
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
-    <Border Background="{StaticResource Charcoal}" CornerRadius="20">
+    <Border
+        Background="{StaticResource ColumbiaBlueDark}"
+        BorderBrush="{StaticResource Licorice}"
+        BorderThickness="5"
+        CornerRadius="5">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
+                <RowDefinition Height="25" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Button
-                Grid.Row="0"
-                Margin="5"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Bottom"
-                Click="CloseWindow_ButtonClick"
-                DockPanel.Dock="Bottom"
-                Style="{StaticResource menuButton}">
-                <StackPanel Orientation="Horizontal">
-                    <Icon:PackIconMaterial Kind="Close" Style="{StaticResource menuButtonIcon}" />
-                </StackPanel>
-            </Button>
             <TextBlock
                 Grid.Row="1"
                 Margin="0,40,0,50"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 FontSize="24"
-                Foreground="White"
+                Foreground="{StaticResource Licorice}"
                 Text="Are you sure?" />
             <StackPanel
                 Grid.Row="2"

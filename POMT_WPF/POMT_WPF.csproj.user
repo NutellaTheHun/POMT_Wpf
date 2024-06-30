@@ -10,6 +10,9 @@
     <Compile Update="MVVM\View\AddNaturalNameView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="MVVM\View\AddNaturalNameWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="MVVM\View\CatalogItemVeganMapView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -61,12 +64,18 @@
     <Compile Update="MVVM\View\testNEWmainVIEW.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="MVVM\View\VeganMapWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\AddNaturalNameView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\AddNaturalNameWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\CatalogItemVeganMapView.xaml">
@@ -118,6 +127,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\testNEWmainVIEW.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\VeganMapWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\Borders\GeneralBorder.xaml">
@@ -223,6 +235,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\RadioButton\reportLabelsRadioButtonTheme.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Templates\GeneralCloseButton.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\Templates\GeneralField.xaml">

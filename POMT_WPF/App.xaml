@@ -69,6 +69,7 @@
 
                 <ResourceDictionary Source="Styles/Templates/GeneralField.xaml" />
                 <ResourceDictionary Source="Styles/Templates/GeneralBackButton.xaml" />
+                <ResourceDictionary Source="Styles/Templates/GeneralCloseButton.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
 

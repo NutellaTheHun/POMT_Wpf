@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <SolidColorBrush x:Key="ColumbiaBlue" Color="#CCD7E1" />
+    <SolidColorBrush x:Key="ColumbiaBlueDark" Color="#BFC3C6" />
     <SolidColorBrush x:Key="LapisLazuli" Color="#2D6587" />
     <SolidColorBrush x:Key="TextFont" Color="#40474C" />
     <SolidColorBrush x:Key="Orange" Color="#E37B34" />
@@ -27,5 +28,10 @@
     <SolidColorBrush x:Key="BitterSweet" Color="#ED6A5E" />
     <SolidColorBrush x:Key="Puce" Color="#C6878F" />
     <SolidColorBrush x:Key="BurntSienna" Color="#EC774C" />
-
+    <SolidColorBrush x:Key="YlnMnBLue" Color="#465379" />
+    <SolidColorBrush x:Key="CosmicLatte" Color="#F8F4E3" />
+    <SolidColorBrush x:Key="Coral" Color="#FF8966" />
+    <SolidColorBrush x:Key="Cerise" Color="#E5446D" />
+    <SolidColorBrush x:Key="Licorice" Color="#22181C" />
+    <SolidColorBrush x:Key="LicoriceDark" Color="#0D0106" />
 </ResourceDictionary>

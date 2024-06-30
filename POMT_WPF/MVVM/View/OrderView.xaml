@@ -122,7 +122,7 @@
                 Grid.Row="2"
                 Grid.RowSpan="2"
                 Width="200"
-                Margin="630,0,0,10"
+                Margin="610,0,0,10"
                 HorizontalAlignment="Left">
                 <TextBlock
                     Margin="15,0"

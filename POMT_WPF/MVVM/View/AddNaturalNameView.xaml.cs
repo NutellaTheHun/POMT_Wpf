@@ -15,11 +15,12 @@ namespace POMT_WPF.MVVM.View
         }
         private void Accept_ButtonClick(object sender, RoutedEventArgs e)
         {
+            /*
             if(naturalNameTextBox.Text != "")
             {
                 ControlBool = true;
                 Close();
-            }
+            }*/
         }
 
         private void Reject_ButtonClick(Object sender, RoutedEventArgs e)
@@ -35,7 +36,7 @@ namespace POMT_WPF.MVVM.View
 
         private void naturalNameTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            naturalName = naturalNameTextBox.Text;
+           /* naturalName = naturalNameTextBox.Text;*/
         }
     }
 }

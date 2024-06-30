@@ -14,8 +14,8 @@ namespace POMT_WPF.MVVM.View
         {
             InitializeComponent();
             ViewModel = new CatalogViewModel();
-            catalogListDataGrid.ItemsSource = ViewModel.Items;
-            catalogListDataGrid.MouseDoubleClick += catalogListDataGrid_MouseDoubleClick;
+            //catalogListDataGrid.ItemsSource = ViewModel.Items;
+            //catalogListDataGrid.MouseDoubleClick += catalogListDataGrid_MouseDoubleClick;
         }
 
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)

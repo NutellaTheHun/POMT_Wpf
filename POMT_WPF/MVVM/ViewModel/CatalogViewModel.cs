@@ -38,7 +38,7 @@ namespace POMT_WPF.MVVM.ViewModel
             }
         }
 
-        RelayCommand OpenCatalogItemView {  get; set; }
+        public RelayCommand OpenCatalogItemView {  get; set; }
 
         public CatalogViewModel()
         {

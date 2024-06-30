@@ -188,3 +188,8 @@ D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\CatalogItem
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\Styles\TextBox\GeneralTextBox.baml
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\Styles\Templates\GeneralField.baml
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\Styles\Templates\GeneralBackButton.baml
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\Styles\Templates\GeneralCloseButton.baml
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\AddNaturalNameWindow.g.cs
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\VeganMapWindow.g.cs
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\AddNaturalNameWindow.baml
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\VeganMapWindow.baml

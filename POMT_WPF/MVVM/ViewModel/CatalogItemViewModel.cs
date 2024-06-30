@@ -126,9 +126,23 @@ namespace POMT_WPF.MVVM.ViewModel
             }
         }
 
-        public ObservableCollection<string> NaturalNames;
+        public ObservableCollection<string> NaturalNames { get; set; }
 
-        public ObservableCollection<string> CategoryNames;
+        public ObservableCollection<string> CategoryNames { get; set; }
+
+        private bool _canDelete;
+        public bool CanDelete
+        {
+            get { return _canDelete; }
+            set
+            {
+                if (_canDelete != value)
+                {
+                    _canDelete = value;
+                    OnPropertyChanged(nameof(CanDelete));
+                }
+            }
+        }
 
         private bool _isNew;
         public bool IsNew
@@ -259,6 +273,7 @@ namespace POMT_WPF.MVVM.ViewModel
             if (inputItem == null)
             {
                 IsNew = true;
+                CanDelete = false;
                 IsEdit = true;
                 NaturalNames = new ObservableCollection<string>();
                 NaturalNames.CollectionChanged += (s, e) => cItem.NaturalNames = NaturalNames.ToList();
@@ -269,6 +284,9 @@ namespace POMT_WPF.MVVM.ViewModel
             }
             else
             {
+                CanDelete = true;
+                IsNew = false;
+                IsEdit = false;
                 //Variations
                 foreach ((string key, string value) in cItem.VariationList)
                 {
@@ -328,11 +346,11 @@ namespace POMT_WPF.MVVM.ViewModel
 
         private void AddAltNameCmd()
         {
-            AddNaturalNameView view = new AddNaturalNameView();
+            AddNaturalNameWindow view = new AddNaturalNameWindow();
             view.ShowDialog();
             if (view.ControlBool)
             {
-                NaturalNames.Add(view.naturalName);
+                NaturalNames.Add(view.AlternativeName);
             }
         }
         private void RemAltNameCmd(object o)

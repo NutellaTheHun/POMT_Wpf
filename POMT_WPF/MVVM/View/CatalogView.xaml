@@ -16,7 +16,7 @@
 
     <Grid Background="{StaticResource ColumbiaBlue}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
+            <RowDefinition Height="100" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
@@ -70,7 +70,8 @@
                         Height="500"
                         AutoGenerateColumns="False"
                         Background="Transparent"
-                        BorderBrush="Transparent">
+                        BorderBrush="Transparent"
+                        ItemsSource="{Binding Items}">
                         <DataGrid.InputBindings>
                             <MouseBinding
                                 Command="{Binding OpenCatalogItemView}"
@@ -78,8 +79,14 @@
                                 MouseAction="LeftDoubleClick" />
                         </DataGrid.InputBindings>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding ItemName}" Header="Item Name" />
-                            <DataGridTextColumn Binding="{Binding CatalogObjectId}" Header="Catalog ID" />
+                            <DataGridTextColumn
+                                Binding="{Binding ItemName, UpdateSourceTrigger=PropertyChanged}"
+                                Header="Item Name"
+                                IsReadOnly="True" />
+                            <DataGridTextColumn
+                                Binding="{Binding CatalogObjectId, UpdateSourceTrigger=PropertyChanged}"
+                                Header="Catalog ID"
+                                IsReadOnly="True" />
                             <!--  Sizes  -->
                             <!--  hasLabels  -->
                         </DataGrid.Columns>
@@ -91,6 +98,7 @@
                     Margin="5,0,5,5"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
+                    Command="{Binding OpenCatalogItemView}"
                     Style="{StaticResource secondaryButton}">
                     <Icon:PackIconMaterial Kind="Plus" />
                 </Button>

@@ -1,8 +1,9 @@
-﻿D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\GeneratedInternalTypeHelper.g.cs
+﻿
 FD:\Git-Repos\POMT_WPF\POMT_WPF\App.xaml;;
 FD:\Git-Repos\POMT_WPF\POMT_WPF\MainWindow.xaml;;
 FD:\Git-Repos\POMT_WPF\POMT_WPF\MVVM\View\AddLabelWindow.xaml;;
 FD:\Git-Repos\POMT_WPF\POMT_WPF\MVVM\View\AddNaturalNameView.xaml;;
+FD:\Git-Repos\POMT_WPF\POMT_WPF\MVVM\View\AddNaturalNameWindow.xaml;;
 FD:\Git-Repos\POMT_WPF\POMT_WPF\MVVM\View\AddTemplateWindow.xaml;;
 FD:\Git-Repos\POMT_WPF\POMT_WPF\MVVM\View\CatalogItemVeganMapView.xaml;;
 FD:\Git-Repos\POMT_WPF\POMT_WPF\MVVM\View\CatalogItemView.xaml;;
@@ -33,6 +34,7 @@ FD:\Git-Repos\POMT_WPF\POMT_WPF\MVVM\View\SettingsWindow.xaml;;
 FD:\Git-Repos\POMT_WPF\POMT_WPF\MVVM\View\TemplateViewWindow.xaml;;
 FD:\Git-Repos\POMT_WPF\POMT_WPF\MVVM\View\testCatalogItemView.xaml;;
 FD:\Git-Repos\POMT_WPF\POMT_WPF\MVVM\View\testNEWmainVIEW.xaml;;
+FD:\Git-Repos\POMT_WPF\POMT_WPF\MVVM\View\VeganMapWindow.xaml;;
 FD:\Git-Repos\POMT_WPF\POMT_WPF\Styles\Custom\TextFillTextBox\orderFormItemnameTextFillTextBox.xaml;;
 FD:\Git-Repos\POMT_WPF\POMT_WPF\Styles\Custom\TextFillTextBox\orderFormTextFillTextBox.xaml;;
 FD:\Git-Repos\POMT_WPF\POMT_WPF\Styles\Custom\TextFillTextBox\TemplateViewTextFillTextBox.xaml;;
