@@ -45,7 +45,7 @@ namespace POMT_WPF.MVVM.ViewModel
             ObsCatalogModelSingleton.Instance.Subscribe(this);
             Items = ObsCatalogModelSingleton.Instance.CatalogItems;
 
-            OpenCatalogItemView = new RelayCommand(o => { MainViewModel.Instance().CatalogItemViewCommand(o); });
+            OpenCatalogItemView = new RelayCommand(o => { MainViewModel.Instance().OpenCatalogItemView(o); });
         }
 
         public void Update()

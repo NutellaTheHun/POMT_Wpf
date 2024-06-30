@@ -103,7 +103,7 @@ namespace POMT_WPF.MVVM.View {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/POMT_WPF;component/mvvm/view/addlabelwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/POMT_WPF;V1.0.0.0;component/mvvm/view/addlabelwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\MVVM\View\AddLabelWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

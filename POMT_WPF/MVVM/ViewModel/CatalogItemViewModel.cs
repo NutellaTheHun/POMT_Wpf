@@ -417,7 +417,7 @@ namespace POMT_WPF.MVVM.ViewModel
         }
         private void BackCmd()
         {
-            MainViewModel.Instance().BackCatalogViewCommand();
+            MainViewModel.Instance().BackCatalogView();
         }
 
         public void AddNaturalName(string naturalName)

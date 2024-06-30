@@ -345,7 +345,7 @@ namespace POMT_WPF.MVVM.ViewModel
             LineItems.CollectionChanged += (s, e) => Order.LineItems = LineItems.ToList();
             LineItems.CollectionChanged += (s, e) => UpdateColumnTotals();
 
-            BackCommand = new RelayCommand(o => { MainViewModel.Instance().BackOrderViewCommand(); });
+            BackCommand = new RelayCommand(o => { MainViewModel.Instance().BackOrderView(); });
             EditCommand = new RelayCommand(o => { ToggleEditing(); });
             AddLineCommand = new RelayCommand(o => { AddLine(); });
             DeleteLineCommand = new RelayCommand(o => { DeleteLine(o); });

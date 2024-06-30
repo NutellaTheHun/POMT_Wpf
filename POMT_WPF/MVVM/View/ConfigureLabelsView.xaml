@@ -18,13 +18,13 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Button
+                Margin="10"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
                 Style="{StaticResource GeneralBackButton}" />
         </Grid>
         <Grid Grid.Row="1">
             <StackPanel
-                Margin="20"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Orientation="Horizontal">
@@ -34,6 +34,12 @@
                     Height="300"
                     AutoGenerateColumns="False"
                     ItemsSource="{Binding Items}">
+                    <DataGrid.InputBindings>
+                        <MouseBinding
+                            Command="{Binding ViewLabelMapping}"
+                            CommandParameter="{Binding ElementName=labelDataGrid, Path=SelectedItem}"
+                            MouseAction="LeftDoubleClick" />
+                    </DataGrid.InputBindings>
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding ItemName, UpdateSourceTrigger=PropertyChanged}" Header="Item Name" />
                         <DataGridTextColumn Binding="{Binding StandardLabelFilePath, UpdateSourceTrigger=PropertyChanged}" Header="Standard Label" />
@@ -47,6 +53,7 @@
                         Margin="5,0,5,5"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Top"
+                        Command="{Binding ViewLabelMapping}"
                         Style="{StaticResource secondaryButton}">
                         <Icon:PackIconMaterial Kind="Plus" />
                     </Button>
@@ -57,12 +64,13 @@
                         HorizontalAlignment="Right"
                         VerticalAlignment="Top"
                         Background="{StaticResource ChiliRed}"
+                        Command="{Binding RemoveLabelMapping}"
+                        CommandParameter="{Binding ElementName=labelDataGrid, Path=SelectedItem}"
                         Style="{StaticResource secondaryButton}">
                         <Icon:PackIconMaterial Kind="Minus" />
                     </Button>
                 </StackPanel>
             </StackPanel>
-
         </Grid>
     </Grid>
 </UserControl>

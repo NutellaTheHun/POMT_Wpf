@@ -59,7 +59,7 @@ namespace POMT_WPF.MVVM.ViewModel
             FrozenOrders = ObsOrderModelSingleton.Instance.FrozenOrders;
             TotalOrderCount = Orders.Count();
 
-            OpenOrderItemView = new RelayCommand(o => { MainViewModel.Instance().OrderItemViewCommand(o); });
+            OpenOrderItemView = new RelayCommand(o => { MainViewModel.Instance().OpenOrderItemView(o); });
         }
 
         public void AddOrder(PetsiOrder order)

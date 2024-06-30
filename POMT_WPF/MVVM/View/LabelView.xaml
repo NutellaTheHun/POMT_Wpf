@@ -11,7 +11,7 @@
     mc:Ignorable="d">
     <Grid Background="{StaticResource ColumbiaBlue}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
+            <RowDefinition Height="200" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
@@ -75,122 +75,15 @@
                                 </StackPanel>
                             </Grid>
                         </Border>
+                        <Button
+                            Width="140"
+                            Margin="10"
+                            Command="{Binding ConfigureLabels}"
+                            Content="Configure Labels"
+                            Style="{StaticResource secondaryButton}" />
                     </StackPanel>
-                    <Button
-                        Width="140"
-                        Margin="10"
-                        Command="{Binding ConfigureLabels}"
-                        Content="Configure Labels"
-                        Style="{StaticResource secondaryButton}" />
                 </StackPanel>
-
-
             </Grid>
-        </Grid>
-        <Grid Grid.Row="2">
-            <StackPanel Orientation="Horizontal">
-                <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
-                    <Label Content="Configure" />
-                    <Border Width="500" Style="{StaticResource GeneralBorder}">
-                        <StackPanel
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Orientation="Horizontal">
-                            <DataGrid
-                                x:Name="labelDataGrid"
-                                Width="450"
-                                Height="300"
-                                AutoGenerateColumns="False"
-                                ItemsSource="{Binding Items}">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Binding="{Binding ItemName, UpdateSourceTrigger=PropertyChanged}" Header="Item Name" />
-                                    <DataGridTextColumn Binding="{Binding StandardLabelFilePath, UpdateSourceTrigger=PropertyChanged}" Header="Standard Label" />
-                                    <DataGridTextColumn Binding="{Binding CutieLabelFilePath, UpdateSourceTrigger=PropertyChanged}" Header="Cutie Label" />
-                                </DataGrid.Columns>
-                            </DataGrid>
-                            <StackPanel Orientation="Vertical">
-                                <Button
-                                    Width="30"
-                                    Height="30"
-                                    Margin="5,0,5,5"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Top"
-                                    Style="{StaticResource secondaryButton}">
-                                    <Icon:PackIconMaterial Kind="Plus" />
-                                </Button>
-                                <Button
-                                    Width="30"
-                                    Height="30"
-                                    Margin="5,0,5,5"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Top"
-                                    Background="{StaticResource ChiliRed}"
-                                    Style="{StaticResource secondaryButton}">
-                                    <Icon:PackIconMaterial Kind="Minus" />
-                                </Button>
-                            </StackPanel>
-                        </StackPanel>
-                    </Border>
-                </StackPanel>
-                <Grid Margin="10,0,0,0">
-                    <StackPanel Orientation="Vertical">
-                        <Label Content="Item" />
-                        <Border Style="{StaticResource GeneralBorder}">
-                            <Grid>
-                                <StackPanel Orientation="Vertical">
-                                    <StackPanel Orientation="Vertical">
-                                        <Label Content="Item Name" />
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBox Style="{StaticResource GeneralField}" />
-                                        </StackPanel>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Vertical">
-                                        <Label Content="Standard Label File" />
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBox Style="{StaticResource GeneralField}" />
-                                            <Button
-                                                Width="125"
-                                                Margin="0,0,10,0"
-                                                Content="Choose Pie Label"
-                                                Style="{StaticResource secondaryButton}" />
-                                            <Button
-                                                x:Name="deleteStandardLabel"
-                                                Width="40"
-                                                Margin="5"
-                                                Background="{StaticResource ChiliRed}"
-                                                Style="{StaticResource secondaryButton}">
-                                                <Icon:PackIconMaterial Kind="Delete" />
-                                            </Button>
-                                        </StackPanel>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Vertical">
-                                        <Label Content="Cutie Label File" />
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBox Style="{StaticResource GeneralField}" />
-                                            <Button
-                                                Width="125"
-                                                Margin="0,0,10,0"
-                                                Content="Choose Cutie Label"
-                                                Style="{StaticResource secondaryButton}" />
-                                            <Button
-                                                x:Name="deleteCutieLabel"
-                                                Width="40"
-                                                Margin="5"
-                                                Background="{StaticResource ChiliRed}"
-                                                Style="{StaticResource secondaryButton}">
-                                                <Icon:PackIconMaterial Kind="Delete" />
-                                            </Button>
-                                        </StackPanel>
-                                    </StackPanel>
-                                </StackPanel>
-                            </Grid>
-                        </Border>
-                    </StackPanel>
-
-                </Grid>
-            </StackPanel>
-
-
         </Grid>
     </Grid>
 </UserControl>

@@ -23,6 +23,7 @@ namespace POMT_WPF.MVVM.ViewModel
 
         public OrderItemViewModel OrderItemVM { get; set; }
         public CatalogItemViewModel CatalogItemVM { get; set; }
+        public ConfigureLabelsViewModel ConfigureLabelsVM { get; set; }
 
 
         private object _currentView;
@@ -43,33 +44,40 @@ namespace POMT_WPF.MVVM.ViewModel
 			return _instance;
 		}
 
-        public void OrderItemViewCommand(object? o)
+        public void OpenOrderItemView(object? o)
         {
             if (o is PetsiOrder order) OrderItemVM = new OrderItemViewModel(order);
             else  OrderItemVM = new OrderItemViewModel(null);
             CurrentView = OrderItemVM;
         }
 
-        public void CatalogItemViewCommand(object? o)
+        public void OpenCatalogItemView(object? o)
         {
             if (o is CatalogItemPetsi order) CatalogItemVM = new CatalogItemViewModel(order);
             else CatalogItemVM = new CatalogItemViewModel(null);
             CurrentView = CatalogItemVM;
         }
 
-        public void OpenConfigureLabelViewCommand()
+        public void OpenConfigureLabelView()
         {
-
+            ConfigureLabelsVM = new ConfigureLabelsViewModel();
+            CurrentView = ConfigureLabelsVM;
         }
 
-        public void BackOrderViewCommand()
+        public void BackOrderView()
         {
             CurrentView = OrderVM;
         }
 
-        public void BackCatalogViewCommand()
+        public void BackCatalogView()
         {
             CurrentView = CatalogVM;
+        }
+
+
+        public void BackLabelView()
+        {
+            CurrentView = LabelVM;
         }
 
         private MainViewModel()
