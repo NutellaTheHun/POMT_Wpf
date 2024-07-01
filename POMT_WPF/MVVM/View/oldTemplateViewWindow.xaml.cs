@@ -10,11 +10,11 @@ namespace POMT_WPF.MVVM.View
     /// <summary>
     /// Interaction logic for TemplateViewWindow.xaml
     /// </summary>
-    public partial class TemplateViewWindow : Window
+    public partial class oldTemplateViewWindow : Window
     {
         public TemplateViewModel viewModel { get; set; }
 
-        public TemplateViewWindow(string? inputTemplateName)
+        public oldTemplateViewWindow(string? inputTemplateName)
         {
             InitializeComponent();
 

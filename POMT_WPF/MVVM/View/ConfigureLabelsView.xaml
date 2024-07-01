@@ -41,9 +41,18 @@
                             MouseAction="LeftDoubleClick" />
                     </DataGrid.InputBindings>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding ItemName, UpdateSourceTrigger=PropertyChanged}" Header="Item Name" />
-                        <DataGridTextColumn Binding="{Binding StandardLabelFilePath, UpdateSourceTrigger=PropertyChanged}" Header="Standard Label" />
-                        <DataGridTextColumn Binding="{Binding CutieLabelFilePath, UpdateSourceTrigger=PropertyChanged}" Header="Cutie Label" />
+                        <DataGridTextColumn
+                            Binding="{Binding ItemName, UpdateSourceTrigger=PropertyChanged}"
+                            Header="Item Name"
+                            IsReadOnly="True" />
+                        <DataGridTextColumn
+                            Binding="{Binding StandardLabelFilePath, UpdateSourceTrigger=PropertyChanged}"
+                            Header="Standard Label"
+                            IsReadOnly="True" />
+                        <DataGridTextColumn
+                            Binding="{Binding CutieLabelFilePath, UpdateSourceTrigger=PropertyChanged}"
+                            Header="Cutie Label"
+                            IsReadOnly="True" />
                     </DataGrid.Columns>
                 </DataGrid>
                 <StackPanel Orientation="Vertical">

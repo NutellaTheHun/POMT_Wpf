@@ -50,7 +50,7 @@ namespace POMT_WPF.MVVM.ViewModel
 
         public RelayCommand SetPieLabel {  get; set; }
         public RelayCommand SetCutieLabel {  get; set; }
-        public RelayCommand CleartPieLabel {  get; set; }
+        public RelayCommand ClearPieLabel {  get; set; }
         public RelayCommand ClearCutieLabel {  get; set; }
         public RelayCommand Done {  get; set; }
         public RelayCommand Cancel {  get; set; }
@@ -59,12 +59,12 @@ namespace POMT_WPF.MVVM.ViewModel
             _item = new CatalogItemPetsi(item);
             _view = view;
 
-            SetPieLabel = new RelayCommand(o => { } );
-            SetCutieLabel = new RelayCommand(o => { } );
-            CleartPieLabel = new RelayCommand(o => { } );
-            ClearCutieLabel = new RelayCommand(o => { } );
-            Done = new RelayCommand(o => { } );
-            Cancel = new RelayCommand(o => { } );
+            SetPieLabel = new RelayCommand(o => { SetPieCommand(); } );
+            SetCutieLabel = new RelayCommand(o => { SetCutieCommand(); } );
+            ClearPieLabel = new RelayCommand(o => { ClearPieCommand(); } );
+            ClearCutieLabel = new RelayCommand(o => { ClearCutieCommand(); } );
+            Done = new RelayCommand(o => { DoneCommand(); } );
+            Cancel = new RelayCommand(o => { CloseCommand(); } );
         }
 
         private void SetPieCommand()
@@ -106,6 +106,6 @@ namespace POMT_WPF.MVVM.ViewModel
             //Update Item
             _view.CloseWin();
         }
-        private void CancelCommand() { _view.CloseWin(); }
+        private void CloseCommand() { _view.CloseWin(); }
     }
 }

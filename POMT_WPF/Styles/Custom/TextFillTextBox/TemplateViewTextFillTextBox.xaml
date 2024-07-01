@@ -7,16 +7,13 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:TextFillTextBox}">
                     <Border
-                        Width="80"
-                        Height="40"
-                        Background="{StaticResource ColumbiaBlue}"
+
+                        Background="{StaticResource MintCream}"
                         BorderBrush="Transparent"
                         BorderThickness="0"
                         CornerRadius="10">
                         <Grid>
-
                             <Rectangle IsHitTestVisible="False" StrokeThickness="1" />
-
                             <TextBox
                                 x:Name="Text_Box"
                                 Margin="10,0,0,0"

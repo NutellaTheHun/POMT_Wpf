@@ -13,18 +13,15 @@ namespace POMT_WPF.MVVM.ViewModel
         public RelayCommand ReportViewCommand { get; set; }
         public RelayCommand SettingsViewCommand { get; set; }
 
-
         public CatalogViewModel CatalogVM { get; set; }
         public LabelViewModel LabelVM { get; set; }
         public OrderViewModel OrderVM { get; set; }
         public ReportViewModel ReportVM { get; set; }
         public SettingsViewModel SettingsVM { get; set; }
 
-
         public OrderItemViewModel OrderItemVM { get; set; }
         public CatalogItemViewModel CatalogItemVM { get; set; }
         public ConfigureLabelsViewModel ConfigureLabelsVM { get; set; }
-
 
         private object _currentView;
 		public object CurrentView
@@ -59,6 +56,12 @@ namespace POMT_WPF.MVVM.ViewModel
         }
 
         public void OpenConfigureLabelView()
+        {
+            ConfigureLabelsVM = new ConfigureLabelsViewModel();
+            CurrentView = ConfigureLabelsVM;
+        }
+
+        public void OpenTemplateListView()
         {
             ConfigureLabelsVM = new ConfigureLabelsViewModel();
             CurrentView = ConfigureLabelsVM;

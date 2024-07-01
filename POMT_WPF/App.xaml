@@ -109,6 +109,9 @@
                 <vw:CatalogItemView />
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type vm:TemplateListViewModel}">
+                <vw:TemplateListView />
+            </DataTemplate>
 
         </ResourceDictionary>
 

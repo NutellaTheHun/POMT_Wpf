@@ -30,8 +30,8 @@ namespace POMT_WPF.MVVM.View
         private void AddTemplate_BtnClk(object sender, RoutedEventArgs e)
         {
             
-            TemplateViewWindow tvw = new TemplateViewWindow(null);
-            tvw.ShowDialog();
+            //TemplateViewWindow tvw = new TemplateViewWindow(null);
+            //tvw.ShowDialog();
         }
         private void RemTemplate_BtnClk(object sender, RoutedEventArgs e)
         {
@@ -50,8 +50,8 @@ namespace POMT_WPF.MVVM.View
         private void templateListbox_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             string selectedItem = (string)templateListbox.SelectedItem;
-            TemplateViewWindow tvw = new TemplateViewWindow(selectedItem);
-            tvw.Show();
+            //TemplateViewWindow tvw = new TemplateViewWindow(selectedItem);
+            //tvw.Show();
         }
     }
 }

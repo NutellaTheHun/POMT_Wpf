@@ -1,0 +1,115 @@
+﻿<Window
+    x:Class="POMT_WPF.MVVM.View.TemplateItemViewWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:POMT_WPF.MVVM.View.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="TemplateItemViewWindow"
+    Width="600"
+    Height="720"
+    AllowsTransparency="True"
+    Background="Transparent"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Border
+        Background="{StaticResource ColumbiaBlueDark}"
+        BorderBrush="{StaticResource Licorice}"
+        BorderThickness="2">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Button
+                    Margin="10"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Style="{StaticResource GeneralCloseButton}" />
+            </Grid>
+            <Grid Grid.Row="1" Margin="10">
+                <local:TextFillTextBox
+                    x:Name="templateNameTextBox"
+                    Width="150"
+                    Height="30"
+                    Style="{StaticResource TemplateViewTextFillTextBox}"
+                    Text="{Binding viewModel.TemplateName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    TextFill="Template Name..." />
+
+
+            </Grid>
+            <Grid Grid.Row="2">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Margin="0,25,0,0" Orientation="Vertical">
+                        <Button
+                            Name="MoveItemUpBtn"
+                            Width="30"
+                            Height="30"
+                            Margin="5,0,5,5"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Click="MoveItemUpBtn_Click"
+                            Style="{StaticResource secondaryButton}">
+                            <Icon:PackIconMaterial Kind="ChevronUp" />
+                        </Button>
+                        <Button
+                            Name="MoveItemDownBtn"
+                            Width="30"
+                            Height="30"
+                            Margin="5,0,5,5"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Click="MoveItemDownBtn_Click"
+                            Style="{StaticResource secondaryButton}">
+                            <Icon:PackIconMaterial Kind="ChevronDown" />
+                        </Button>
+                    </StackPanel>
+                    <DataGrid Width="500" Height="500">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Item Name" />
+                            <DataGridTextColumn Header="Display Name" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Margin="0,25,0,0" Orientation="Vertical">
+                        <Button
+                            Width="30"
+                            Height="30"
+                            Margin="5,0,5,5"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Click="AddLineItem_BtnClk"
+                            Style="{StaticResource secondaryButton}">
+                            <Icon:PackIconMaterial Kind="Plus" />
+                        </Button>
+                        <Button
+                            Name="DeleteItemButton"
+                            Width="30"
+                            Height="30"
+                            Margin="5,0,5,5"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Background="{StaticResource ChiliRed}"
+                            Click="DeleteItemButton_Click"
+                            IsEnabled="{Binding ViewModel.NotReadOnly}"
+                            Style="{StaticResource secondaryButton}">
+                            <Icon:PackIconMaterial Kind="Minus" />
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="3">
+                <Button
+                    Width="80"
+                    Margin="0,0,60,0"
+                    Content="Done"
+                    Style="{StaticResource secondaryButton}" />
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

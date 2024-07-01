@@ -43,23 +43,28 @@
                                 <CheckBox
                                     x:Name="RetailCheckbox"
                                     Margin="5"
-                                    Content="Retail" />
+                                    Content="Retail"
+                                    IsChecked="{Binding RetailFilter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                                 <CheckBox
                                     x:Name="SquareCheckBox"
                                     Margin="5"
-                                    Content="Square" />
+                                    Content="Square"
+                                    IsChecked="{Binding SquareFilter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                                 <CheckBox
                                     x:Name="WholesaleCheckbox"
                                     Margin="5"
-                                    Content="Wholesale" />
+                                    Content="Wholesale"
+                                    IsChecked="{Binding WholesaleFilter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                                 <CheckBox
                                     x:Name="SpecialCheckbox"
                                     Margin="5"
-                                    Content="Special" />
+                                    Content="Special"
+                                    IsChecked="{Binding SpecialFilter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                                 <CheckBox
                                     x:Name="EzCaterCheckbox"
                                     Margin="5"
-                                    Content="Ez-Cater" />
+                                    Content="Ez-Cater"
+                                    IsChecked="{Binding EzCaterFilter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                             </StackPanel>
                         </Border>
                     </Grid>
@@ -84,11 +89,11 @@
                                         <StackPanel Orientation="Vertical">
                                             <Label Content="Start" />
                                             <DatePicker
-                                                x:Name="datePickerStart"
                                                 Width="150"
                                                 Height="40"
                                                 HorizontalAlignment="Center"
-                                                VerticalAlignment="Center" />
+                                                VerticalAlignment="Center"
+                                                SelectedDate="{Binding StartDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                                         </StackPanel>
                                         <StackPanel Orientation="Vertical">
                                             <Label Content="End" />
@@ -97,46 +102,47 @@
                                                 Width="150"
                                                 Height="40"
                                                 HorizontalAlignment="Center"
-                                                VerticalAlignment="Center" />
+                                                VerticalAlignment="Center"
+                                                SelectedDate="{Binding EndDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                                         </StackPanel>
                                     </StackPanel>
                                     <StackPanel
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         Orientation="Horizontal">
-                                        <RadioButton
-                                            Name="PrintFrontListButton"
-                                            Click="PrintFrontListButton_Click"
+                                        <Button
+                                            Width="100"
+                                            Margin="5"
+                                            Command="{Binding PrintFrontList}"
                                             Content="Print FrontList"
                                             Foreground="#efefef"
-                                            GroupName="1"
-                                            Style="{StaticResource reportLabelsRadioButtonTheme}" />
-                                        <RadioButton
-                                            Name="PrintBackListButton"
-                                            Click="PrintBackListButton_Click"
+                                            Style="{StaticResource secondaryButton}" />
+                                        <Button
+                                            Width="100"
+                                            Margin="5"
+                                            Command="{Binding PrintBackList}"
                                             Content="Print Backlist"
                                             Foreground="#efefef"
-                                            GroupName="1"
-                                            Style="{StaticResource reportLabelsRadioButtonTheme}" />
+                                            Style="{StaticResource secondaryButton}" />
                                     </StackPanel>
                                     <StackPanel
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         Orientation="Horizontal">
-                                        <RadioButton
-                                            Name="PrintWholesaleAggButton"
-                                            Click="PrintWholesaleAggButton_Click"
+                                        <Button
+                                            Width="100"
+                                            Margin="5"
+                                            Command="{Binding PrintWsAgg}"
                                             Content="Print Ws Agg"
                                             Foreground="#efefef"
-                                            GroupName="1"
-                                            Style="{StaticResource reportLabelsRadioButtonTheme}" />
-                                        <RadioButton
-                                            x:Name="PrintWholesaleButton"
-                                            Click="PrintWholesaleButton_Click"
+                                            Style="{StaticResource secondaryButton}" />
+                                        <Button
+                                            Width="100"
+                                            Margin="5"
+                                            Command="{Binding PrintWsBreakDown}"
                                             Content="Print Wholesale"
                                             Foreground="#efefef"
-                                            GroupName="1"
-                                            Style="{StaticResource reportLabelsRadioButtonTheme}" />
+                                            Style="{StaticResource secondaryButton}" />
                                     </StackPanel>
                                 </StackPanel>
                             </Grid>
@@ -181,11 +187,11 @@
                                             Text="{Binding PieTemplate, UpdateSourceTrigger=PropertyChanged}" />
                                     </StackPanel>
                                     <Button
-                                        x:Name="SetPieTemplateButton"
                                         Width="50"
-                                        Click="SetPieTemplateButton_Click"
+                                        Margin="5,20,0,0"
+                                        Command="{Binding SetPieTemplate}"
                                         Content="Set"
-                                        Style="{StaticResource settingsButton}" />
+                                        Style="{StaticResource secondaryButton}" />
                                 </StackPanel>
                                 <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                                     <StackPanel Margin="5" Orientation="Vertical">
@@ -202,18 +208,18 @@
                                             Text="{Binding PastryTemplate, UpdateSourceTrigger=PropertyChanged}" />
                                     </StackPanel>
                                     <Button
-                                        x:Name="SetPastryTemplateButton"
                                         Width="50"
-                                        Click="SetPastryTemplateButton_Click"
+                                        Margin="5,20,0,0"
+                                        Command="{Binding SetPastryTemplate}"
                                         Content="Set"
-                                        Style="{StaticResource settingsButton}" />
+                                        Style="{StaticResource secondaryButton}" />
                                 </StackPanel>
                                 <Button
-                                    Name="ManageCatalogButton"
                                     Width="140"
-                                    Click="ManageCatalogButton_Click"
-                                    Content="Manage Catalog"
-                                    Style="{StaticResource settingsButton}" />
+                                    Margin="10"
+                                    Command="{Binding OpenTemplateListView}"
+                                    Content="Manage Templates"
+                                    Style="{StaticResource secondaryButton}" />
                             </StackPanel>
                         </Grid>
 

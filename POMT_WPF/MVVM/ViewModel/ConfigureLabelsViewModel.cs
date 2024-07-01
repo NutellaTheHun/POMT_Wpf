@@ -13,8 +13,18 @@ namespace POMT_WPF.MVVM.ViewModel
     {
         CatalogModelPetsi cmp;
 
-        public CatalogItemPetsi? SelectedItem;
-        public ObservableCollection<CatalogItemPetsi> Items;
+        private CatalogItemPetsi _selectedItem;
+        public CatalogItemPetsi? SelectedItem { 
+            get { return _selectedItem; } 
+            set 
+            { 
+                if (_selectedItem != value) 
+                { _selectedItem = value; 
+                    OnPropertyChanged(nameof(SelectedItem));
+                } 
+            } 
+        }
+        public ObservableCollection<CatalogItemPetsi> Items { get; set; }
 
         public RelayCommand GoBack { get; set; }
         public RelayCommand ViewLabelMapping { get; set; }
@@ -24,7 +34,9 @@ namespace POMT_WPF.MVVM.ViewModel
         {
             cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
             Items = new ObservableCollection<CatalogItemPetsi>( SelectLabeledItems(cmp.GetItems()));
+
             SelectedItem = null;
+
             GoBack = new RelayCommand(o => { MainViewModel.Instance().BackLabelView(); });
             ViewLabelMapping = new RelayCommand(o => { OpenLabelMapCommand(o); } );
             RemoveLabelMapping = new RelayCommand(o => { } );

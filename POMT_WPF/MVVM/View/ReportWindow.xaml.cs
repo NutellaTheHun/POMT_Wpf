@@ -38,25 +38,25 @@ namespace POMT_WPF.MVVM.View
 
             if (selectedStartDate.HasValue)
             {
-                rwvm.ProduceReport((DateTime)selectedStartDate, (DateTime?)selectedEndDate);
+                //rwvm.ProduceReport((DateTime)selectedStartDate, (DateTime?)selectedEndDate);
             }
         }
 
         private void SelectFrontList_ButtonClick(Object sender, RoutedEventArgs e)
         {
-            rwvm.SetFrontList();
+            //rwvm.SetFrontList();
         }
         private void SelectBackList_ButtonClick(Object sender, RoutedEventArgs e)
         {
-            rwvm.SetBackList();
+            //rwvm.SetBackList();
         }
         private void SelectWsAggList_ButtonClick(Object sender, RoutedEventArgs e)
         {
-            rwvm.SetWsAggList();
+            //rwvm.SetWsAggList();
         }
         private void SelectWsList_ButtonClick(Object sender, RoutedEventArgs e)
         {
-            rwvm.SetWsList();
+            //rwvm.SetWsList();
         }
     }
 }

@@ -67,6 +67,12 @@
     <Compile Update="MVVM\View\SettingsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="MVVM\View\TemplateItemViewWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\TemplateListView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="MVVM\View\testNEWmainVIEW.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -136,6 +142,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\SettingsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\TemplateItemViewWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\TemplateListView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\testNEWmainVIEW.xaml">
