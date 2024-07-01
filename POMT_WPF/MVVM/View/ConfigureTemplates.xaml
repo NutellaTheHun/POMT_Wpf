@@ -63,7 +63,11 @@
                         Width="350"
                         Height="200"
                         Margin="20"
-                        MouseDoubleClick="templateListbox_MouseDoubleClick" />
+                        MouseDoubleClick="templateListbox_MouseDoubleClick">
+                        <ListBox.InputBindings>
+                            <MouseBinding Command="{Binding Path = SaveCommand }" Gesture="LeftClick" />
+                        </ListBox.InputBindings>
+                    </ListBox>
                 </Grid>
                 <Grid Grid.Column="0">
                     <Grid.RowDefinitions>

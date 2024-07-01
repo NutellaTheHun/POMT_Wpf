@@ -1,6 +1,8 @@
 ﻿using Petsi.Interfaces;
 using Petsi.Services;
+using Petsi.Units;
 using POMT_WPF.Core;
+using POMT_WPF.MVVM.View;
 using System.Collections.ObjectModel;
 
 namespace POMT_WPF.MVVM.ViewModel
@@ -9,19 +11,21 @@ namespace POMT_WPF.MVVM.ViewModel
     {
         public ObservableCollection<string> TemplateNames { get; set; }
         private ReportTemplateService _templateService;
-        RelayCommand RemoveTemplate { get; set; }
-        RelayCommand ViewTemplate { get; set; }
-        RelayCommand GoBack { get; set; }
+        public RelayCommand RemoveTemplate { get; set; }
+        public RelayCommand ViewTemplate { get; set; }
+        public RelayCommand GoBack { get; set; }
 
-        public TemplateListViewModel()
+        private bool _isFromSettingsVM;
+        public TemplateListViewModel(bool isFromSettingsVM)
         {
+            _isFromSettingsVM = isFromSettingsVM;
             _templateService = ReportTemplateService.Instance();
             _templateService.Subscribe(this);
             TemplateNames = new ObservableCollection<string>(_templateService.GetTemplateNames());
 
-            RemoveTemplate = new RelayCommand(o => { });
-            ViewTemplate = new RelayCommand(o => { });
-            GoBack = new RelayCommand(o => { });
+            RemoveTemplate = new RelayCommand(o => { RemoveTemplateCmd(o); });
+            ViewTemplate = new RelayCommand(o => { ViewTemplateCmd(o); });
+            GoBack = new RelayCommand(o => { MainViewModel.Instance().BackTmpltLstView(_isFromSettingsVM); });
         }
         public void Update()
         {
@@ -34,21 +38,23 @@ namespace POMT_WPF.MVVM.ViewModel
         }
         private void RemoveTemplateCmd(object o)
         {
-            if(o is string)
-            {
-
-            }
+            _templateService.RemoveTemplate((string)o);
         }
         private void ViewTemplateCmd(object? o)
         {
-            if(o == null)
+            TemplateItemViewWindow view;
+            if (o == null)
             {
-
+                view = new TemplateItemViewWindow(null, null);
+                view.Show();
             }
-            else if (o is string)
+            else
             {
-
+                List<BackListItem> items = _templateService.GetTemplate((string)o);
+                view = new TemplateItemViewWindow(items, (string)o);
+                view.Show();
             }
+            
         }
     }
 }

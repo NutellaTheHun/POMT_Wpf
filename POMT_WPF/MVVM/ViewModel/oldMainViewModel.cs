@@ -22,6 +22,7 @@ namespace POMT_WPF.MVVM.ViewModel
         public OrderItemViewModel OrderItemVM { get; set; }
         public CatalogItemViewModel CatalogItemVM { get; set; }
         public ConfigureLabelsViewModel ConfigureLabelsVM { get; set; }
+        public TemplateListViewModel TemplateListVM { get; set; }
 
         private object _currentView;
 		public object CurrentView
@@ -61,10 +62,10 @@ namespace POMT_WPF.MVVM.ViewModel
             CurrentView = ConfigureLabelsVM;
         }
 
-        public void OpenTemplateListView()
+        public void OpenTemplateListView(bool IsFromSettingsVM)
         {
-            ConfigureLabelsVM = new ConfigureLabelsViewModel();
-            CurrentView = ConfigureLabelsVM;
+            TemplateListVM = new TemplateListViewModel(IsFromSettingsVM);
+            CurrentView = TemplateListVM;
         }
 
         public void BackOrderView()
@@ -81,6 +82,18 @@ namespace POMT_WPF.MVVM.ViewModel
         public void BackLabelView()
         {
             CurrentView = LabelVM;
+        }
+
+        public void BackTmpltLstView(bool isFromSettingsVM)
+        {
+            if(isFromSettingsVM)
+            {
+                CurrentView = SettingsVM;
+            }
+            else
+            {
+                CurrentView = ReportVM;
+            }
         }
 
         private MainViewModel()

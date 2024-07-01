@@ -16,8 +16,10 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Button
+                Margin="0,80,0,0"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
+                VerticalAlignment="Top"
+                Command="{Binding GoBack}"
                 Style="{StaticResource GeneralBackButton}" />
         </Grid>
         <Grid Grid.Row="1">
@@ -30,7 +32,14 @@
                             Width="350"
                             Height="200"
                             Margin="10"
-                            ItemsSource="{Binding TemplateNames}" />
+                            ItemsSource="{Binding TemplateNames}">
+                            <ListBox.InputBindings>
+                                <MouseBinding
+                                    Command="{Binding ViewTemplate}"
+                                    CommandParameter="{Binding ElementName=TemplateListBox, Path=SelectedItem}"
+                                    MouseAction="LeftDoubleClick" />
+                            </ListBox.InputBindings>
+                        </ListBox>
                         <StackPanel Orientation="Vertical">
                             <Button
                                 Width="100"
@@ -51,8 +60,6 @@
                     </StackPanel>
                 </Border>
             </StackPanel>
-
-
         </Grid>
     </Grid>
 </UserControl>

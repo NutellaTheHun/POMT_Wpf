@@ -31,46 +31,48 @@
                     Margin="10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
+                    Command="{Binding Close}"
                     Style="{StaticResource GeneralCloseButton}" />
             </Grid>
             <Grid Grid.Row="1" Margin="10">
                 <local:TextFillTextBox
-                    x:Name="templateNameTextBox"
                     Width="150"
                     Height="30"
                     Style="{StaticResource TemplateViewTextFillTextBox}"
-                    Text="{Binding viewModel.TemplateName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    Text="{Binding TemplateName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                     TextFill="Template Name..." />
-
-
             </Grid>
             <Grid Grid.Row="2">
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Margin="0,25,0,0" Orientation="Vertical">
                         <Button
-                            Name="MoveItemUpBtn"
                             Width="30"
                             Height="30"
                             Margin="5,0,5,5"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
-                            Click="MoveItemUpBtn_Click"
+                            Command="{Binding MoveItemUp}"
+                            CommandParameter="{Binding ElementName=TemplateItemDataGrid, Path=SelectedItem}"
                             Style="{StaticResource secondaryButton}">
                             <Icon:PackIconMaterial Kind="ChevronUp" />
                         </Button>
                         <Button
-                            Name="MoveItemDownBtn"
                             Width="30"
                             Height="30"
                             Margin="5,0,5,5"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
-                            Click="MoveItemDownBtn_Click"
+                            Command="{Binding MoveItemDown}"
+                            CommandParameter="{Binding ElementName=TemplateItemDataGrid, Path=SelectedItem}"
                             Style="{StaticResource secondaryButton}">
                             <Icon:PackIconMaterial Kind="ChevronDown" />
                         </Button>
                     </StackPanel>
-                    <DataGrid Width="500" Height="500">
+                    <DataGrid
+                        x:Name="TemplateItemDataGrid"
+                        Width="500"
+                        Height="500"
+                        ItemsSource="{Binding TemplateItems}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Item Name" />
                             <DataGridTextColumn Header="Display Name" />
@@ -83,7 +85,7 @@
                             Margin="5,0,5,5"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Top"
-                            Click="AddLineItem_BtnClk"
+                            Command="{Binding AddItem}"
                             Style="{StaticResource secondaryButton}">
                             <Icon:PackIconMaterial Kind="Plus" />
                         </Button>
@@ -95,7 +97,8 @@
                             HorizontalAlignment="Right"
                             VerticalAlignment="Top"
                             Background="{StaticResource ChiliRed}"
-                            Click="DeleteItemButton_Click"
+                            Command="{Binding RemoveItem}"
+                            CommandParameter="{Binding ElementName=TemplateItemDataGrid, Path=SelectedItem}"
                             IsEnabled="{Binding ViewModel.NotReadOnly}"
                             Style="{StaticResource secondaryButton}">
                             <Icon:PackIconMaterial Kind="Minus" />
@@ -107,6 +110,7 @@
                 <Button
                     Width="80"
                     Margin="0,0,60,0"
+                    Command="{Binding Done}"
                     Content="Done"
                     Style="{StaticResource secondaryButton}" />
             </Grid>

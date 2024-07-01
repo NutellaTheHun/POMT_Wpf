@@ -131,9 +131,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }
-
         #endregion
-
         public RelayCommand PrintFrontList {  get; set; }
         public RelayCommand PrintBackList { get; set; }
         public RelayCommand PrintWsAgg { get; set; }
@@ -152,7 +150,7 @@ namespace POMT_WPF.MVVM.ViewModel
             PrintWsBreakDown = new RelayCommand(o => { if (IsValidDate()) rd.CreateWsDayName(StartDate); });
             SetPieTemplate = new RelayCommand(o => { StPieTempCmd(); });
             SetPastryTemplate = new RelayCommand(o => { StPastTempCmd(); });
-            OpenTemplateListView = new RelayCommand(o => { TmpltCmd(); });
+            OpenTemplateListView = new RelayCommand(o => { MainViewModel.Instance().OpenTemplateListView(false); });
 
             RetailFilter = true;
             SquareFilter = true;
@@ -160,8 +158,6 @@ namespace POMT_WPF.MVVM.ViewModel
             SquareFilter = true;
             EzCaterFilter = true;
         }
-
-
         private void StPieTempCmd()
         {
 
@@ -170,10 +166,7 @@ namespace POMT_WPF.MVVM.ViewModel
         {
 
         }
-        private void TmpltCmd()
-        {
 
-        }
         private bool IsValidDate()
         {
             if (StartDate == default) { return false; }

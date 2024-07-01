@@ -1,4 +1,5 @@
-﻿using POMT_WPF.MVVM.ViewModel;
+﻿using Petsi.Units;
+using POMT_WPF.MVVM.ViewModel;
 using System.Windows;
 
 namespace POMT_WPF.MVVM.View
@@ -8,10 +9,12 @@ namespace POMT_WPF.MVVM.View
     /// </summary>
     public partial class TemplateItemViewWindow : Window
     {
-        public TemplateItemViewWindow()
+        public TemplateItemViewWindow(List<BackListItem>? templateItemList, string? templateName)
         {
-            //TemplateItemViewModel viewModel = new TemplateItemViewModel();
+            TemplateItemViewModel viewModel = new TemplateItemViewModel(templateItemList, templateName, this);
             InitializeComponent();
         }
+
+        public void CloseWin() { Close(); }
     }
 }

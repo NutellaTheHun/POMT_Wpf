@@ -1,5 +1,4 @@
-﻿
-using Petsi.Interfaces;
+﻿using Petsi.Interfaces;
 using Petsi.Services;
 using System.Collections.ObjectModel;
 
