@@ -37,10 +37,14 @@ namespace POMT_WPF.MVVM.View
 
         public void NotifyUserMultiItemMatch(object sender, EventArgs e)
         {
+            /*
             SoiMultiItemEventArgs args = (SoiMultiItemEventArgs)e;
             NotifyCatalogValidateMultiItemView view = new NotifyCatalogValidateMultiItemView();
             view.UpdateListNames(args.MultItemList);
             view.SetItemContext(args.ItemContext);
+            view.Show();
+            */
+            NotifyMultiItemMatchWindow view = new NotifyMultiItemMatchWindow((SoiMultiItemEventArgs)e);
             view.Show();
         }
 

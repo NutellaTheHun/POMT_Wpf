@@ -34,6 +34,9 @@
     <Compile Update="MVVM\View\NotifyCatalogValidateMultiItemView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="MVVM\View\NotifyMultiItemMatchWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="MVVM\View\NotifyNewCatalogItemView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -109,6 +112,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\NotifyCatalogValidateMultiItemView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\NotifyMultiItemMatchWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\NotifyNewCatalogItemView.xaml">
