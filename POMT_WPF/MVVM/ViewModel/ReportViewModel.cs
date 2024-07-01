@@ -1,4 +1,5 @@
 ﻿using Petsi.Reports;
+using Petsi.Utils;
 using POMT_WPF.Core;
 
 namespace POMT_WPF.MVVM.ViewModel
@@ -78,7 +79,7 @@ namespace POMT_WPF.MVVM.ViewModel
         }
 
         private string _pieTemplateName;
-        private string PieTemplateName 
+        public string PieTemplateName 
         {
             get { return _pieTemplateName; }
             set
@@ -92,7 +93,7 @@ namespace POMT_WPF.MVVM.ViewModel
         }
 
         private string _pastryTemplateName;
-        private string PastryTemplateName
+        public string PastryTemplateName
         {
             get { return _pastryTemplateName; }
             set
@@ -157,6 +158,10 @@ namespace POMT_WPF.MVVM.ViewModel
             WholesaleFilter = true;
             SquareFilter = true;
             EzCaterFilter = true;
+
+            PetsiConfig config = PetsiConfig.GetInstance();
+            PieTemplateName = config.GetVariable(Identifiers.SETTING_PIE_TEMPLATE);
+            PastryTemplateName = config.GetVariable(Identifiers.SETTING_PASTRY_TEMPLATE);
         }
         private void StPieTempCmd()
         {

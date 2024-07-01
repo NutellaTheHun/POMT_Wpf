@@ -13,6 +13,7 @@ namespace POMT_WPF.MVVM.View
         {
             TemplateItemViewModel viewModel = new TemplateItemViewModel(templateItemList, templateName, this);
             InitializeComponent();
+            DataContext = viewModel;
         }
 
         public void CloseWin() { Close(); }

@@ -72,10 +72,16 @@
                         x:Name="TemplateItemDataGrid"
                         Width="500"
                         Height="500"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        CanUserDeleteRows="False"
+                        CanUserReorderColumns="False"
+                        CanUserResizeColumns="False"
+                        CanUserResizeRows="False"
                         ItemsSource="{Binding TemplateItems}">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Item Name" />
-                            <DataGridTextColumn Header="Display Name" />
+                            <DataGridTextColumn Binding="{Binding ItemName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Header="Item Name" />
+                            <DataGridTextColumn Binding="{Binding PageDisplayName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Header="Display Name" />
                         </DataGrid.Columns>
                     </DataGrid>
                     <StackPanel Margin="0,25,0,0" Orientation="Vertical">
@@ -83,23 +89,17 @@
                             Width="30"
                             Height="30"
                             Margin="5,0,5,5"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Top"
                             Command="{Binding AddItem}"
                             Style="{StaticResource secondaryButton}">
                             <Icon:PackIconMaterial Kind="Plus" />
                         </Button>
                         <Button
-                            Name="DeleteItemButton"
                             Width="30"
                             Height="30"
                             Margin="5,0,5,5"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Top"
                             Background="{StaticResource ChiliRed}"
                             Command="{Binding RemoveItem}"
                             CommandParameter="{Binding ElementName=TemplateItemDataGrid, Path=SelectedItem}"
-                            IsEnabled="{Binding ViewModel.NotReadOnly}"
                             Style="{StaticResource secondaryButton}">
                             <Icon:PackIconMaterial Kind="Minus" />
                         </Button>

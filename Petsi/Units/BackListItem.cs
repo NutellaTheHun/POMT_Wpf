@@ -35,7 +35,22 @@ namespace Petsi.Units
         /// </summary>
         public string CatalogObjId { get; set; }
 
-        public string ItemName { get; set; }
+        private string _itemName;
+        public string ItemName
+        {
+            get
+            {
+                return _itemName;
+            }
+            set
+            {
+                if (_itemName != value)
+                {
+                    _itemName = value;
+                    OnPropertyChanged(nameof(ItemName));
+                }
+            }
+        }
 
         public BackListItem() {}
         public BackListItem(string pageDisplayName, string catalogObjId)

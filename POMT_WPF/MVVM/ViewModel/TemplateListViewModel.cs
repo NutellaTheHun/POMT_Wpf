@@ -43,18 +43,17 @@ namespace POMT_WPF.MVVM.ViewModel
         private void ViewTemplateCmd(object? o)
         {
             TemplateItemViewWindow view;
-            if (o == null)
-            {
-                view = new TemplateItemViewWindow(null, null);
-                view.Show();
-            }
-            else
+            if(o is string)
             {
                 List<BackListItem> items = _templateService.GetTemplate((string)o);
                 view = new TemplateItemViewWindow(items, (string)o);
                 view.Show();
             }
-            
+            else if (o == null)
+            {
+                view = new TemplateItemViewWindow(null, null);
+                view.Show();
+            }
         }
     }
 }

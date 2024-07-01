@@ -27,19 +27,29 @@
                 <Label Content="Select Template" />
                 <Border Width="500" Style="{StaticResource GeneralBorder}">
                     <StackPanel Orientation="Horizontal">
-                        <ListBox
+                        <DataGrid
                             x:Name="TemplateListBox"
                             Width="350"
                             Height="200"
                             Margin="10"
+                            AutoGenerateColumns="False"
+                            CanUserAddRows="False"
+                            CanUserDeleteRows="False"
+                            CanUserReorderColumns="False"
+                            CanUserResizeColumns="False"
+                            CanUserResizeRows="False"
+                            IsReadOnly="true"
                             ItemsSource="{Binding TemplateNames}">
-                            <ListBox.InputBindings>
+                            <DataGrid.InputBindings>
                                 <MouseBinding
                                     Command="{Binding ViewTemplate}"
                                     CommandParameter="{Binding ElementName=TemplateListBox, Path=SelectedItem}"
                                     MouseAction="LeftDoubleClick" />
-                            </ListBox.InputBindings>
-                        </ListBox>
+                            </DataGrid.InputBindings>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding .}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
                         <StackPanel Orientation="Vertical">
                             <Button
                                 Width="100"
