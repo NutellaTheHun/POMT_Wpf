@@ -15,10 +15,13 @@ namespace POMT_WPF.MVVM.View
             ErrorService.Instance().TBOverflow += NotifyOverFlowEvent;
         }
         public void NotifyOverFlowEvent(object sender, EventArgs e)
-        {
+        {   /*
             TBOverflowEventArgs args = (TBOverflowEventArgs)e;
             NotifyTableBuilderOverFlow view = NotifyTableBuilderOverFlow.Instance();
             NotifyTableBuilderOverFlow.UpdateListNames(args.OverflowList);
+            view.Show();
+            */
+            NotifyTableBuilderOverFlowWindow view = new NotifyTableBuilderOverFlowWindow((TBOverflowEventArgs)e);
             view.Show();
         }
     }

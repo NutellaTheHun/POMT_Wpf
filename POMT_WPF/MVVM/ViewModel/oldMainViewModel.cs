@@ -78,7 +78,6 @@ namespace POMT_WPF.MVVM.ViewModel
             CurrentView = CatalogVM;
         }
 
-
         public void BackLabelView()
         {
             CurrentView = LabelVM;
@@ -115,8 +114,6 @@ namespace POMT_WPF.MVVM.ViewModel
 			ReportViewCommand = new RelayCommand(o =>{ CurrentView = ReportVM; });
 
 			SettingsViewCommand = new RelayCommand(o =>{ CurrentView = SettingsVM; });
-
         }
-
     }
 }

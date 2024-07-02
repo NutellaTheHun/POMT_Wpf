@@ -20,9 +20,11 @@ namespace POMT_WPF.MVVM.View
 
         public void NotifyOverFlowEvent(object sender, EventArgs e)//Error service is sender?
         {
-            TBOverflowEventArgs args = (TBOverflowEventArgs)e;
+            /*TBOverflowEventArgs args = (TBOverflowEventArgs)e;
             NotifyTableBuilderOverFlow view = NotifyTableBuilderOverFlow.Instance();
             NotifyTableBuilderOverFlow.UpdateListNames(args.OverflowList);
+            view.Show();*/
+            NotifyTableBuilderOverFlowWindow view = new NotifyTableBuilderOverFlowWindow((TBOverflowEventArgs)e);
             view.Show();
         }
 

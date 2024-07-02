@@ -25,6 +25,9 @@
     <Compile Update="MVVM\View\ConfigureLabelsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="MVVM\View\GeneralErrorWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="MVVM\View\LabelItemWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -40,7 +43,13 @@
     <Compile Update="MVVM\View\NotifyNewCatalogItemView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="MVVM\View\NotifyNewCatalogItemWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="MVVM\View\NotifyTableBuilderOverFlow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\NotifyTableBuilderOverFlowWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="MVVM\View\OrderItemView.xaml.cs">
@@ -105,6 +114,9 @@
     <Page Update="MVVM\View\ConfigureLabelsView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="MVVM\View\GeneralErrorWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MVVM\View\LabelItemWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -120,7 +132,13 @@
     <Page Update="MVVM\View\NotifyNewCatalogItemView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="MVVM\View\NotifyNewCatalogItemWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MVVM\View\NotifyTableBuilderOverFlow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\NotifyTableBuilderOverFlowWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\OrderItemView.xaml">
@@ -163,6 +181,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\Borders\GeneralBorder.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Borders\GeneralWindowBorder.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\Brushes.xaml">

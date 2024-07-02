@@ -15,11 +15,7 @@
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
-    <Border
-        Background="{StaticResource ColumbiaBlueDark}"
-        BorderBrush="{StaticResource Licorice}"
-        BorderThickness="2"
-        CornerRadius="5">
+    <Border Style="{StaticResource GeneralWindowBorder}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30" />

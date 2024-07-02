@@ -1,5 +1,4 @@
-﻿
-using Petsi.Events;
+﻿using Petsi.Events;
 using Petsi.Units;
 using POMT_WPF.Core;
 using POMT_WPF.MVVM.View;
@@ -7,9 +6,11 @@ using System.Collections.ObjectModel;
 
 namespace POMT_WPF.MVVM.ViewModel
 {
-    public class NotifyItemMatchViewModel : ViewModelBase
+    public class NotifyItemMultiMatchViewModel : ViewModelBase
     {
         private NotifyMultiItemMatchWindow _view;
+
+        ObservableCollection<CatalogItemPetsi> MultiItemList;
 
         private string _itemContext;
         public string ItemContext
@@ -24,11 +25,11 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }
-        ObservableCollection<CatalogItemPetsi> MultiItemList;
+        
         public RelayCommand CreateItem {  get; set; }
         public RelayCommand SelectItem {  get; set; }
 
-        public NotifyItemMatchViewModel(SoiMultiItemEventArgs args, NotifyMultiItemMatchWindow view)
+        public NotifyItemMultiMatchViewModel(SoiMultiItemEventArgs args, NotifyMultiItemMatchWindow view)
         {
             _view = view;
             ItemContext = args.ItemContext;
@@ -40,14 +41,26 @@ namespace POMT_WPF.MVVM.ViewModel
 
         private void CreateItemCommand()
         {
-
+            CatalogItemPetsi newItem = new CatalogItemPetsi();
+            newItem.ItemName = ItemContext;
+            _view.Close(); //????????????????????
+            MainViewModel.Instance().OpenCatalogItemView(newItem);
         }
 
         private void SelectItemCommand(object o)
         {
             if(o is CatalogItemPetsi)
             {
+                ((CatalogItemPetsi)o).NaturalNames.Add(ItemContext);
 
+                //Update
+
+                //ObsCatalogModelSingleton.ModifyItem(matchItem);
+
+                //OrderModelPetsi omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+                //omp.UpdateMultiLineMatchEvent();
+
+                _view.Close();
             }
         }
     }

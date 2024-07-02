@@ -14,11 +14,7 @@
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
-    <Border
-        Background="{StaticResource ColumbiaBlueDark}"
-        BorderBrush="{StaticResource Licorice}"
-        BorderThickness="2"
-        CornerRadius="2">
+    <Border Style="{StaticResource GeneralWindowBorder}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
@@ -38,7 +34,14 @@
                         Width="300"
                         Height="200"
                         HorizontalAlignment="Center"
-                        ItemsSource="{Binding MultiItemListNames}" />
+                        ItemsSource="{Binding MultiItemListNames}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding ItemName}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
                 </Border>
             </Grid>
             <Grid Grid.Row="2">
