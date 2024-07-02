@@ -1,5 +1,4 @@
-﻿using DocumentFormat.OpenXml.Wordprocessing;
-using Petsi.Managers;
+﻿using Petsi.Managers;
 using Petsi.Models;
 using Petsi.Units;
 using Petsi.Utils;
@@ -41,6 +40,7 @@ namespace POMT_WPF.MVVM.ObsModels
             
             CatalogItems = new ObservableCollection<CatalogItemPetsi>(_cmp.GetItems());
             _subscriptions = new List<IObsCatalogModelSubscriber>();
+            CatalogItems.CollectionChanged += (s,e) { }
         }
 
         private static ObsCatalogModelSingleton _instance;
