@@ -83,7 +83,7 @@ namespace POMT_WPF.MVVM.ObsModels
         private void UpdateOrderModel()
         {
             OrderModelPetsi model = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
-            //model.UpdateModel(Orders, FrozenOrders);
+            model.UpdateModel(Orders);
         }
 
         private void Notify()

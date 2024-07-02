@@ -1,9 +1,7 @@
 ﻿using Petsi.Events;
 using Petsi.Services;
 using Petsi.Units;
-using Petsi.Utils;
 using POMT_WPF.MVVM.ViewModel;
-using System.Windows;
 using System.Windows.Controls;
 
 namespace POMT_WPF.MVVM.View

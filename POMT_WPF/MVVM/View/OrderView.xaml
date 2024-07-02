@@ -146,6 +146,7 @@
                         VerticalContentAlignment="Center"
                         BorderThickness="0"
                         Foreground="{StaticResource TextFont}"
+                        Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextChanged="txtFilter_TextChanged" />
                 </Border>
             </Grid>

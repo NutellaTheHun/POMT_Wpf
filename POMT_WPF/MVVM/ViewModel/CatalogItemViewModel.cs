@@ -1,5 +1,4 @@
 ﻿using Petsi.Managers;
-using Petsi.Models;
 using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
@@ -327,7 +326,7 @@ namespace POMT_WPF.MVVM.ViewModel
             SetVeganPie = new RelayCommand(o => { SetVeganPieCmd(); });
             DeleteItem = new RelayCommand(o => { DeleteItemCmd(); });
             SaveItem = new RelayCommand(o => { SaveItemCmd(); });
-            BackCatalogItem = new RelayCommand(o => { BackCmd(); });
+            BackCatalogItem = new RelayCommand(o => { MainViewModel.Instance().BackCatalogView(); });
 
         }
 
@@ -395,18 +394,19 @@ namespace POMT_WPF.MVVM.ViewModel
             if (confirmationWindow.ControlBool)
             {
                 ObsCatalogModelSingleton.Instance.RemoveItem(cItem);
-                BackCmd();
+                MainViewModel.Instance().BackCatalogView();
             }
         }
 
         private void SaveItemCmd()
         {
-            ObsCatalogModelSingleton.Instance.AddItem(cItem);
-            BackCmd();
-        }
-        private void BackCmd()
-        {
-            MainViewModel.Instance().BackCatalogView();
+            //if valid
+            //else notify required fields
+
+           //ObsCatalogModelSingleton.Instance.AddItem(cItem);
+
+           MainViewModel.Instance().BackCatalogView();
+           //OR notify SAVED
         }
 
         public void AddNaturalName(string naturalName)

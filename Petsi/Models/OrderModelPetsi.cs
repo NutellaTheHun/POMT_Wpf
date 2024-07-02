@@ -48,11 +48,26 @@ namespace Petsi.Models
         {
             subscribers.Add(subscription);
         }
-        public void UpdateModel(ObservableCollection<PetsiOrder> orders, ObservableCollection<PetsiOrder> frozenOrders)
+        public void UpdateModel(ObservableCollection<PetsiOrder> orders)
         {
             Orders = orders.ToList();
             //FrozenOrders = frozenOrders.ToList();
             SaveAll();
+        }
+        private void SaveAll()
+        {
+            List<PetsiOrder> PeriodicOrders = new List<PetsiOrder>();
+            List<PetsiOrder> OneShotOrders = new List<PetsiOrder>();
+            foreach (var order in Orders)
+            {
+                if (order.IsPeriodic) PeriodicOrders.Add(order);
+                else if (order.IsOneShot) OneShotOrders.Add(order);
+            }
+            fileBehavior.DataListToFile(Identifiers.PERIODIC_ORDERS, PeriodicOrders);
+            fileBehavior.DataListToFile(Identifiers.ONE_SHOT_ORDERS, OneShotOrders);
+            //SavePeriodicModel();
+            //SaveOneShotModel();
+            //SaveFrozenOrders();
         }
         private HashSet<string>? InitOrderTypes()
         {
@@ -109,9 +124,6 @@ namespace Petsi.Models
             */
             List<PetsiOrder> OneShotOrders = fileBehavior.BuildDataListFile<PetsiOrder>(Identifiers.ONE_SHOT_ORDERS);
             List<PetsiOrder> PeriodicOrders = fileBehavior.BuildDataListFile<PetsiOrder>(Identifiers.PERIODIC_ORDERS);
-
-            //Orders.AddRange(fileBehavior.BuildDataListFile<PetsiOrder>(Identifiers.ONE_SHOT_ORDERS));
-            //Orders.AddRange(fileBehavior.BuildDataListFile<PetsiOrder>(Identifiers.PERIODIC_ORDERS));
             Orders.AddRange(OneShotOrders);
             Orders.AddRange(PeriodicOrders);
         }
@@ -140,15 +152,19 @@ namespace Petsi.Models
         public FileBehavior GetFileBehavior() { return fileBehavior; }
         public override void ClearModel() { Orders.Clear(); }
 
+        /*
         public void RemoveOrder(ModelUnitBase item)
         {
             int count = Orders.Count;
             Orders.Remove((PetsiOrder)item);
         }
+        */
+
         public override void Complete()
         {
             SortOrders();
         }
+
         private void SortOrders()
         {
             Orders = Orders.OrderBy(order => DateTime.Parse(order.OrderDueDate).Date)
@@ -342,21 +358,7 @@ namespace Petsi.Models
             reportFb.DataListToFile(Identifiers.ENV_OMP, Orders);
         }
 
-        private void SaveAll()
-        {
-            List<PetsiOrder> PeriodicOrders = new List<PetsiOrder>();
-            List<PetsiOrder> OneShotOrders = new List<PetsiOrder>();
-            foreach (var order in Orders)
-            {
-                if (order.IsPeriodic) PeriodicOrders.Add(order);
-                else if (order.IsOneShot) OneShotOrders.Add(order);
-            }
-            fileBehavior.DataListToFile(Identifiers.PERIODIC_ORDERS, PeriodicOrders);
-            fileBehavior.DataListToFile(Identifiers.ONE_SHOT_ORDERS, OneShotOrders);
-            //SavePeriodicModel();
-            //SaveOneShotModel();
-            //SaveFrozenOrders();
-        }
+        
         private void SavePeriodicModel() 
         { 
             List<PetsiOrder> PeriodicOrders = new List<PetsiOrder>();

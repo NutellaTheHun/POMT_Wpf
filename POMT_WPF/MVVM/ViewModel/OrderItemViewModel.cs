@@ -1,4 +1,5 @@
-﻿using Petsi.Managers;
+﻿using Petsi.Interfaces;
+using Petsi.Managers;
 using Petsi.Models;
 using Petsi.Units;
 using Petsi.Utils;
@@ -366,7 +367,15 @@ namespace POMT_WPF.MVVM.ViewModel
         
         private void DeleteLine(object o)
         {
-            if(o is PetsiOrderLineItem lineItem)
+            /*
+            ConfirmationWindow confirmationWindow = new ConfirmationWindow();
+            confirmationWindow.ShowDialog();
+            if (confirmationWindow.ControlBool)
+            {
+                
+            }
+            */
+            if (o is PetsiOrderLineItem lineItem)
             {
                 int count = LineItems.Count;
                 LineItems.Remove(lineItem);
@@ -379,12 +388,25 @@ namespace POMT_WPF.MVVM.ViewModel
 
         private void SaveOrder()
         {
+            //if valid
+            //else notify required fields
 
+            //ObsOrderModelSingleton.Instance.AddOrder(Order);
+
+            //either SAVED notification or GO BACK
         }
 
         private void DeleteOrder()
         {
-
+            /*
+              ConfirmationWindow confirmationWindow = new ConfirmationWindow();
+            confirmationWindow.ShowDialog();
+            if (confirmationWindow.ControlBool)
+            {
+                ObsOrderModelSingleton.Instance.RemoveOrder(Order);
+            }
+            */
+            MainViewModel.Instance().BackOrderView();
         }
 
         private void UpdateColumnTotals()
