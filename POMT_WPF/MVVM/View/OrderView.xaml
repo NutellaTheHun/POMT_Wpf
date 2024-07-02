@@ -84,33 +84,33 @@
                 Margin="0,10,0,10"
                 Orientation="Horizontal">
                 <RadioButton
-                    Click="FilterAll_Button_Click"
+                    Command="{Binding FilterNone}"
                     Content="All "
                     GroupName="g1"
                     IsChecked="True"
                     Style="{StaticResource tabButton}" />
                 <RadioButton
-                    Click="FilterWholesale_Button_Click"
+                    Command="{Binding FilterWholesale}"
                     Content="Wholesale"
                     GroupName="g1"
                     Style="{StaticResource tabButton}" />
                 <RadioButton
-                    Click="FilterSquare_Button_Click"
+                    Command="{Binding FilterSquare}"
                     Content="Square"
                     GroupName="g1"
                     Style="{StaticResource tabButton}" />
                 <RadioButton
-                    Click="FilterRetail_Button_Click"
+                    Command="{Binding FilterRetail}"
                     Content="Retail"
                     GroupName="g1"
                     Style="{StaticResource tabButton}" />
                 <RadioButton
-                    Click="FilterSpecial_Button_Click"
+                    Command="{Binding FilterSpecial}"
                     Content="Special"
                     GroupName="g1"
                     Style="{StaticResource tabButton}" />
                 <RadioButton
-                    Click="FilterFrozen_Button_Click"
+                    Command="{Binding FilterFrozen}"
                     Content="Frozen"
                     GroupName="g1"
                     Style="{StaticResource tabButton}" />
@@ -158,6 +158,7 @@
                 Margin="0,11,0,1"
                 CellStyle="{DynamicResource dashboardDataGridCellStyle}"
                 ColumnHeaderStyle="{DynamicResource dashboardDataGridColumnHeaderStyle}"
+                ItemsSource="{Binding DashBoardOrdersView}"
                 RowStyle="{DynamicResource dashboardDataGridRowStyle}"
                 Style="{DynamicResource dashboardDataGridStyle}">
                 <DataGrid.InputBindings>

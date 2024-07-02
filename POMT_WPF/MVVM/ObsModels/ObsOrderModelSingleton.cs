@@ -5,9 +5,7 @@ using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
 using POMT_WPF.Interfaces;
-using Square.Models;
 using System.Collections.ObjectModel;
-using System.Linq;
 
 namespace POMT_WPF.MVVM.ObsModels
 {
@@ -28,7 +26,7 @@ namespace POMT_WPF.MVVM.ObsModels
         }
 
         //private ObservableCollection<PetsiOrder> _orders;
-        public ObservableCollection<PetsiOrder> Orders;
+        public ObservableCollection<PetsiOrder> Orders { get; set; }
         /*{
             get
             {
@@ -48,7 +46,7 @@ namespace POMT_WPF.MVVM.ObsModels
         }*/
 
         //private ObservableCollection<PetsiOrder> _frozenOrders;
-        public ObservableCollection<PetsiOrder> FrozenOrders;
+        //public ObservableCollection<PetsiOrder> FrozenOrders;
         /*{
             get
             {
@@ -72,20 +70,20 @@ namespace POMT_WPF.MVVM.ObsModels
         private ObsOrderModelSingleton()
         {
             _subscriptions = new List<IObsOrderModelSubscriber>();
-            Orders = new ObservableCollection<PetsiOrder>();
-            FrozenOrders = new ObservableCollection<PetsiOrder>();
+            //Orders = new ObservableCollection<PetsiOrder>();
+            //FrozenOrders = new ObservableCollection<PetsiOrder>();
             _omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
-
+            Orders = new ObservableCollection<PetsiOrder>(_omp.GetOrders());
             Orders.CollectionChanged += (s, e) => { UpdateOrderModel(); };
 
-            _omp.Subscribe(this);
-            UpdateSubscriber();
+            //_omp.Subscribe(this);
+            //UpdateSubscriber();
         }
 
         private void UpdateOrderModel()
         {
             OrderModelPetsi model = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
-            model.UpdateModel(Orders, FrozenOrders);
+            //model.UpdateModel(Orders, FrozenOrders);
         }
 
         private void Notify()
@@ -123,7 +121,7 @@ namespace POMT_WPF.MVVM.ObsModels
             //AddOrderMainModel(orderItem);
             //Notify();
         }
-
+        /*
         public static void ModifyOrder(PetsiOrder modOrder)
         {
             int index = 0;
@@ -157,7 +155,7 @@ namespace POMT_WPF.MVVM.ObsModels
             }
 
         }
-        
+        */
         public void RemoveOrder(PetsiOrder orderItem)
         {
             int count = Orders.Count;
@@ -197,16 +195,18 @@ namespace POMT_WPF.MVVM.ObsModels
         {
             _omp.AddOrder(order);
         }
+        /*
         public void ModifyOrderMainModel(PetsiOrder order)
         {
             _omp.ModifyOrder(order);
         }
+        */
         public void RemoveOrderMainModel(string orderId)
         {
             //_omp.RemoveItem(orderId);
             throw new NotImplementedException();
         }
-
+        /*
         public static void UpdateMultiLineMatchEvent()
         {
             CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
@@ -224,13 +224,13 @@ namespace POMT_WPF.MVVM.ObsModels
                         }
                         else
                         {
-                            ModifyOrder(order);
+                            //ModifyOrder(order);
                         }
                     }
                 }
             }
         }
-
+        */
         public void UpdateSubscriber()
         {
             Orders.Clear();
@@ -239,14 +239,14 @@ namespace POMT_WPF.MVVM.ObsModels
             {
                 Orders.Add(order);
             }
-
+            /*
             FrozenOrders.Clear();
             List<PetsiOrder> frozenOrders = _omp.GetFrozenOrders();
             foreach(PetsiOrder order in frozenOrders)
             {
                 FrozenOrders.Add(order);
             }
-
+            */
             Notify();
         }
     }

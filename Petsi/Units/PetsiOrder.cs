@@ -37,8 +37,7 @@ namespace Petsi.Units
         public PetsiOrder(PetsiOrder? source)
         {
 
-            if(source == null) { }
-            else
+            if(source != null)
             {
                 frameBehavior = source.frameBehavior;
                 InputOriginType = source.InputOriginType;

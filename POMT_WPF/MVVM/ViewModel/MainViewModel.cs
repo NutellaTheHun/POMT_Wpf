@@ -54,7 +54,7 @@ namespace POMT_WPF.MVVM.ViewModel
             view = mainWindowView;
             ObsOrderModelSingleton.Instance.Subscribe(this);
             Orders = ObsOrderModelSingleton.Instance.Orders;
-            FrozenOrders = ObsOrderModelSingleton.Instance.FrozenOrders;
+            //FrozenOrders = ObsOrderModelSingleton.Instance.FrozenOrders;
             TotalOrderCount = Orders.Count();
             this.view = view;
         }
@@ -135,7 +135,7 @@ namespace POMT_WPF.MVVM.ViewModel
 
         public void UpdateFrozenOrderList()
         {
-            FrozenOrders = ObsOrderModelSingleton.Instance.FrozenOrders;
+            //FrozenOrders = ObsOrderModelSingleton.Instance.FrozenOrders;
         }
         public void Update()
         {

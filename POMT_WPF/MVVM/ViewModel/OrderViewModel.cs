@@ -3,6 +3,9 @@ using POMT_WPF.Core;
 using POMT_WPF.Interfaces;
 using POMT_WPF.MVVM.ObsModels;
 using System.Collections.ObjectModel;
+using Petsi.Utils;
+using System.Windows.Data;
+using System.ComponentModel;
 
 namespace POMT_WPF.MVVM.ViewModel
 {
@@ -11,10 +14,24 @@ namespace POMT_WPF.MVVM.ViewModel
         //private OrderView view;
 
         public RelayCommand OpenOrderItemView { get; set; }
+        public RelayCommand FilterNone { get; set; }
+        public RelayCommand FilterWholesale { get; set; }
+        public RelayCommand FilterSquare { get; set; }
+        public RelayCommand FilterRetail { get; set; }
+        public RelayCommand FilterSpecial { get; set; }
+        public RelayCommand FilterFrozen { get; set; }
 
-        private ObservableCollection<PetsiOrder> _orders;
-        public ObservableCollection<PetsiOrder> Orders
-        {
+        //private ObservableCollection<PetsiOrder> _orders;
+
+        //public ObservableCollection<PetsiOrder> Orders;
+        public ObservableCollection<PetsiOrder> _orders { get; set; }
+        //public ICollectionView DashboardOrders { get; private set; }
+        //public ObservableCollection<PetsiOrder> DashboardOrders { get; set; }
+        //public CollectionViewSource DashboardOrders {get; set;}
+        public CollectionViewSource DashboardOrders { get; } = new CollectionViewSource();
+        public ICollectionView DashBoardOrdersView => DashboardOrders.View;
+
+        /*{
             get { return _orders; }
             set
             {
@@ -24,8 +41,8 @@ namespace POMT_WPF.MVVM.ViewModel
                     OnPropertyChanged(nameof(Orders));
                 }
             }
-        }
-
+        }*/
+        /*
         private ObservableCollection<PetsiOrder> _frozenOrders;
         public ObservableCollection<PetsiOrder> FrozenOrders
         {
@@ -39,7 +56,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }
-
+        */
         private int _totalOrderCount;
         public int TotalOrderCount
         {
@@ -52,16 +69,109 @@ namespace POMT_WPF.MVVM.ViewModel
         }
 
         private string activeFilter;
+        private FilterEventHandler currentFilter;
         public OrderViewModel() 
         {
-            ObsOrderModelSingleton.Instance.Subscribe(this);
-            Orders = ObsOrderModelSingleton.Instance.Orders;
-            FrozenOrders = ObsOrderModelSingleton.Instance.FrozenOrders;
-            TotalOrderCount = Orders.Count();
+            //ObsOrderModelSingleton.Instance.Subscribe(this);
+            _orders = ObsOrderModelSingleton.Instance.Orders;
+
+            //DashboardOrders = CollectionViewSource.GetDefaultView(_orders);
+            //DashboardOrders.Filter = NoFilter;
+
+            DashboardOrders.Source = _orders;
+            currentFilter = NoFilter;
+            DashboardOrders.Filter += currentFilter;
+            //FrozenOrders = ObsOrderModelSingleton.Instance.FrozenOrders;
+
+            TotalOrderCount = _orders.Count();
 
             OpenOrderItemView = new RelayCommand(o => { MainViewModel.Instance().OpenOrderItemView(o); });
+
+            FilterNone = new RelayCommand(o => {
+                ChangeFilter(NoFilter);
+            });
+
+            FilterWholesale = new RelayCommand(o => {
+                ChangeFilter(WsFilter);
+            });
+
+            FilterSquare = new RelayCommand(o => { 
+               ChangeFilter(SqFilter);
+            });
+
+            FilterRetail = new RelayCommand(o => { 
+                ChangeFilter(RtFilter);
+            });
+
+            FilterSpecial = new RelayCommand(o => { 
+                ChangeFilter(SpFilter);
+            });
+
+            FilterFrozen = new RelayCommand(o => { 
+               ChangeFilter(FrFilter);
+            });
+        }
+        private void ChangeFilter(FilterEventHandler newFilter)
+        {
+            DashboardOrders.Filter -= currentFilter;
+            currentFilter = newFilter;
+            DashboardOrders.Filter += currentFilter;
+            DashBoardOrdersView.Refresh();
+        }
+        private void NoFilter(object sender, FilterEventArgs e)
+        {
+            PetsiOrder order = e.Item as PetsiOrder;
+            if (order != null)
+            {
+                e.Accepted = !order.IsFrozen;
+            }
         }
 
+        private void WsFilter(object sender, FilterEventArgs e)
+        {
+            PetsiOrder order = e.Item as PetsiOrder;
+            if (order != null)
+            {
+                e.Accepted = !order.IsFrozen && order.OrderType == Identifiers.ORDER_TYPE_WHOLESALE;
+            }
+        }
+
+        private void SqFilter(object sender, FilterEventArgs e)
+        {
+            PetsiOrder order = e.Item as PetsiOrder;
+            if (order != null)
+            {
+                e.Accepted = !order.IsFrozen && order.OrderType == Identifiers.ORDER_TYPE_SQUARE;
+            }
+        }
+
+        private void RtFilter(object sender, FilterEventArgs e)
+        {
+            PetsiOrder order = e.Item as PetsiOrder;
+            if (order != null)
+            {
+                e.Accepted = !order.IsFrozen && order.OrderType == Identifiers.ORDER_TYPE_RETAIL;
+            }
+        }
+
+        private void SpFilter(object sender, FilterEventArgs e)
+        {
+            PetsiOrder order = e.Item as PetsiOrder;
+            if (order != null)
+            {
+                e.Accepted = !order.IsFrozen && order.OrderType == Identifiers.ORDER_TYPE_SPECIAL;
+            }
+        }
+
+        private void FrFilter(object sender, FilterEventArgs e)
+        {
+            PetsiOrder order = e.Item as PetsiOrder;
+            if (order != null)
+            {
+                e.Accepted = order.IsFrozen;
+            }
+        }
+        /*
         public void AddOrder(PetsiOrder order)
         {
             Orders.Add(order);
@@ -73,6 +183,7 @@ namespace POMT_WPF.MVVM.ViewModel
             Orders.Remove(order);
             TotalOrderCount = Orders.Count;
         }
+        */
 
         /// <summary>
         /// filters:
@@ -96,13 +207,13 @@ namespace POMT_WPF.MVVM.ViewModel
 
             if (orderTypefilter == null)
             {
-                Orders = ObsOrderModelSingleton.Instance.Orders;
-                TotalOrderCount = Orders.Count;
+                _orders = ObsOrderModelSingleton.Instance.Orders;
+                TotalOrderCount = _orders.Count;
             }
             else
             {
-                Orders = new ObservableCollection<PetsiOrder>(ObsOrderModelSingleton.Instance.Orders.Where(x => x.OrderType == orderTypefilter));
-                TotalOrderCount = Orders.Count;
+                _orders = new ObservableCollection<PetsiOrder>(ObsOrderModelSingleton.Instance.Orders.Where(x => x.OrderType == orderTypefilter));
+                TotalOrderCount = _orders.Count;
             }
         }
 
@@ -126,24 +237,26 @@ namespace POMT_WPF.MVVM.ViewModel
                     }
                 }
             }
-            Orders = results;
-            TotalOrderCount = Orders.Count;
+            _orders = results;
+            TotalOrderCount = _orders.Count;
         }
 
         public void UpdateOrderList()
         {
-            Orders = ObsOrderModelSingleton.Instance.Orders;
+            _orders = ObsOrderModelSingleton.Instance.Orders;
             FilterOrderType(activeFilter);
         }
 
+        /*
         public void UpdateFrozenOrderList()
         {
             FrozenOrders = ObsOrderModelSingleton.Instance.FrozenOrders;
         }
+        */
         public void Update()
         {
-            UpdateOrderList();
-            UpdateFrozenOrderList();
+           // UpdateOrderList();
+            //UpdateFrozenOrderList();
             //view.UpdateDataGrid();
         }
     }

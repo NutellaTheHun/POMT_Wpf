@@ -401,7 +401,7 @@ namespace POMT_WPF.MVVM.ViewModel
 
         private void SaveItemCmd()
         {
-            ObsCatalogModelSingleton.AddItem(cItem);
+            ObsCatalogModelSingleton.Instance.AddItem(cItem);
             BackCmd();
         }
         private void BackCmd()
@@ -447,17 +447,19 @@ namespace POMT_WPF.MVVM.ViewModel
         }
         private void UpdateCatalogModel()
         {
+            /*
             CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
             if (IsNew)
             {
-                ObsCatalogModelSingleton.AddItem(cItem);
+                ObsCatalogModelSingleton.Instance.AddItem(cItem);
             }
             else
             {
                 //cmp.UpdateModel();
                 ObsCatalogModelSingleton.ModifyItem(cItem);
             }
-            
+            */
+            ObsCatalogModelSingleton.Instance.AddItem(cItem);
         }
 
         public object SetSelectedItem()

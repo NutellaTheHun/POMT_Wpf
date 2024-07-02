@@ -5,7 +5,6 @@ using Petsi.Utils;
 using POMT_WPF.MVVM.ViewModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace POMT_WPF.MVVM.View
 {
@@ -22,8 +21,7 @@ namespace POMT_WPF.MVVM.View
             ErrorService.Instance().SoiNewItem += NotifyUserNewItem;
             ErrorService.Instance().SoiMultiItem += NotifyUserMultiItemMatch;
 
-            dashboardDataGrid.ItemsSource = ViewModel.Orders;
-            //dashboardDataGrid.MouseDoubleClick += DashboardDataGrid_MouseDoubleClick;
+            //dashboardDataGrid.ItemsSource = ViewModel._orders;
 
             DataContext = ViewModel;
             ErrorService.RaiseMainWindowEvents();
@@ -37,29 +35,8 @@ namespace POMT_WPF.MVVM.View
 
         public void NotifyUserMultiItemMatch(object sender, EventArgs e)
         {
-            /*
-            SoiMultiItemEventArgs args = (SoiMultiItemEventArgs)e;
-            NotifyCatalogValidateMultiItemView view = new NotifyCatalogValidateMultiItemView();
-            view.UpdateListNames(args.MultItemList);
-            view.SetItemContext(args.ItemContext);
-            view.Show();
-            */
             NotifyMultiItemMatchWindow view = new NotifyMultiItemMatchWindow((SoiMultiItemEventArgs)e);
             view.Show();
-        }
-
-        private void DashboardDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            var dashboardDataGrid = sender as DataGrid;
-            if (dashboardDataGrid != null)
-            {
-                var selectedItem = dashboardDataGrid.SelectedItem;
-                if (selectedItem != null)
-                {
-                    PetsiOrderWindow petsiOrderWin = new PetsiOrderWindow(selectedItem as PetsiOrder, true);
-                    petsiOrderWin.ShowDialog();
-                }
-            }
         }
 
         private void DashboardDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -76,15 +53,8 @@ namespace POMT_WPF.MVVM.View
                 }
             }
         }
-
-        private void AddOrder_ButtonClick(object sender, RoutedEventArgs e)
-        {
-            PetsiOrderWindow petsiOrderWin = new PetsiOrderWindow(null, false);
-            petsiOrderWin.ShowDialog();
-            ViewModel.UpdateOrderList();
-
-        }
         public bool FrozenOrdersSelected { get; private set; }
+        /*
         public void UpdateDataGrid()
         {
             if (FrozenOrdersSelected) { dashboardDataGrid.ItemsSource = ViewModel.FrozenOrders; }
@@ -93,48 +63,50 @@ namespace POMT_WPF.MVVM.View
                 dashboardDataGrid.ItemsSource = ViewModel.Orders;
             }
         }
+        */
+        /*
         private void FilterAll_Button_Click(object sender, RoutedEventArgs e)
         {
             FrozenOrdersSelected = false;
             ViewModel.FilterOrderType(null);
-            dashboardDataGrid.ItemsSource = ViewModel.Orders;
+            dashboardDataGrid.ItemsSource = ViewModel._orders;
         }
         private void FilterWholesale_Button_Click(object sender, RoutedEventArgs e)
         {
             FrozenOrdersSelected = false;
             ViewModel.FilterOrderType(Identifiers.ORDER_TYPE_WHOLESALE);
-            dashboardDataGrid.ItemsSource = ViewModel.Orders;
+            dashboardDataGrid.ItemsSource = ViewModel._orders;
         }
         private void FilterSquare_Button_Click(object sender, RoutedEventArgs e)
         {
             FrozenOrdersSelected = false;
             ViewModel.FilterOrderType(Identifiers.ORDER_TYPE_SQUARE);
-            dashboardDataGrid.ItemsSource = ViewModel.Orders;
+            dashboardDataGrid.ItemsSource = ViewModel._orders;
         }
         private void FilterSpecial_Button_Click(object sender, RoutedEventArgs e)
         {
             FrozenOrdersSelected = false;
             ViewModel.FilterOrderType(Identifiers.ORDER_TYPE_SPECIAL);
-            dashboardDataGrid.ItemsSource = ViewModel.Orders;
+            dashboardDataGrid.ItemsSource = ViewModel._orders;
         }
 
         private void FilterRetail_Button_Click(object sender, RoutedEventArgs e)
         {
             FrozenOrdersSelected = false;
             ViewModel.FilterOrderType(Identifiers.ORDER_TYPE_RETAIL);
-            dashboardDataGrid.ItemsSource = ViewModel.Orders;
+            dashboardDataGrid.ItemsSource = ViewModel._orders;
         }
 
         private void FilterFrozen_Button_Click(object sender, RoutedEventArgs e)
         {
             FrozenOrdersSelected = true;
-            dashboardDataGrid.ItemsSource = ViewModel.FrozenOrders;
+           // dashboardDataGrid.ItemsSource = ViewModel.FrozenOrders;
         }
-
+        */
         private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
         {
             ViewModel.FilterSearchBar(txtFilter.Text);
-            dashboardDataGrid.ItemsSource = ViewModel.Orders;
+            //dashboardDataGrid.ItemsSource = ViewModel._orders;
         }
     }
 }

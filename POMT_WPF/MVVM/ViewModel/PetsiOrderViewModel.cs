@@ -308,14 +308,14 @@ namespace POMT_WPF.MVVM.ViewModel
 
             omp.AddOrder(_order);
         }
-
+        /*
         public void ModifyOrder(string pickupTime)
         {
             string Date = DateTime.Parse(VMPickupDate).ToShortDateString();
             _order.OrderDueDate = DateTime.Parse(Date + " " + pickupTime).ToString();
             omp.ModifyOrder(_order);
         }
-
+        */
         public void RemoveOrder()
         {
             omp.RemoveItem(_order);

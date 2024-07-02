@@ -1,6 +1,5 @@
 ﻿using Petsi.Units;
 using Petsi.Utils;
-using POMT_WPF.MVVM.ObsModels;
 using POMT_WPF.MVVM.View.Controls;
 using POMT_WPF.MVVM.ViewModel;
 using System.Windows;
@@ -159,7 +158,7 @@ namespace POMT_WPF.MVVM.View
             }
             else
             {
-                ViewModel.ModifyOrder(orderTimeTextBox.Text);
+                //ViewModel.ModifyOrder(orderTimeTextBox.Text);
             }
             Close();
         }
