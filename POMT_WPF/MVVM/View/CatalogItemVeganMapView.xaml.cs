@@ -59,7 +59,7 @@ namespace POMT_WPF.MVVM.View
             }
             else
             {
-                PetsiOrderFormErrorWindow errorWin = new PetsiOrderFormErrorWindow("Please select an item");
+                GeneralErrorWindow errorWin = new GeneralErrorWindow("Please select an item");
                 errorWin.ShowDialog();
             }
         }

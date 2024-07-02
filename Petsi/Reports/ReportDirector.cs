@@ -45,7 +45,11 @@ namespace Petsi.Reports
             }
             else //otherwise printing all orders (for testing purposes) or is printing a range, displaying targetDate as a range not implemented yet, make arg param[] dateTime?
             {
-                builder.BuildReport(orderModel.GetBackListData(targetDate, endDate), null, null);
+                if(targetDate < endDate)
+                {
+                    builder.BuildReport(orderModel.GetBackListData(targetDate, endDate), null, null);
+                }
+                
             }
 
             report.FinalizeReport();

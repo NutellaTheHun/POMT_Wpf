@@ -1,9 +1,4 @@
 ﻿using Petsi.Events;
-using Petsi.Managers;
-using Petsi.Models;
-using Petsi.Units;
-using Petsi.Utils;
-using POMT_WPF.MVVM.ObsModels;
 using POMT_WPF.MVVM.ViewModel;
 using System.Windows;
 

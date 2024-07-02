@@ -11,6 +11,7 @@ namespace POMT_WPF.MVVM.View
     public partial class ReportWindow : Window
     {
         ReportViewModel rwvm;
+        NotifyTableBuilderOverFlowWindow _overflowErrorWin;
         public ReportWindow()
         {
             InitializeComponent();
@@ -24,8 +25,6 @@ namespace POMT_WPF.MVVM.View
             NotifyTableBuilderOverFlow view = NotifyTableBuilderOverFlow.Instance();
             NotifyTableBuilderOverFlow.UpdateListNames(args.OverflowList);
             view.Show();*/
-            NotifyTableBuilderOverFlowWindow view = new NotifyTableBuilderOverFlowWindow((TBOverflowEventArgs)e);
-            view.Show();
         }
 
         private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)

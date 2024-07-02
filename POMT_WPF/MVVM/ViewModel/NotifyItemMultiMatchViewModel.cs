@@ -10,7 +10,7 @@ namespace POMT_WPF.MVVM.ViewModel
     {
         private NotifyMultiItemMatchWindow _view;
 
-        ObservableCollection<CatalogItemPetsi> MultiItemList;
+        public ObservableCollection<CatalogItemPetsi> MultiItemList { get; set; }
 
         private string _itemContext;
         public string ItemContext

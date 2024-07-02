@@ -89,13 +89,13 @@ namespace Petsi.Services
         /// <returns></returns>
         public string ValidateModifyItemName(string name)
         {
-            //test notification windows
-            /* 
+            //test multiMatch notification windows
+            /*
             if (name == "Lemon Glaze")
             {
                 return ValidateModifyItemName("Lemon");
-            }*/
-
+            }
+            */
             List<CatalogItemPetsi> results = new List<CatalogItemPetsi>();
             results = GetItemNameValidationResults(name);
             
@@ -117,8 +117,8 @@ namespace Petsi.Services
                 return ValidateModifyItemName(name);
             }
             else if (results.Count > 1)
-            {
-                /*if (name == "Lemon")//temporary until square updates "Lemon" to "Lemon Glaze"
+            {/*
+                if (name == "Lemon")//temporary until square updates "Lemon" to "Lemon Glaze"
                 {
                     return ValidateModifyItemName("Lemon Glaze");
                 }

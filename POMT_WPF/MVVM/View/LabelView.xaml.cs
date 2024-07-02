@@ -23,7 +23,7 @@ namespace POMT_WPF.MVVM.View
             LabelServiceValidateFpEventArgs args = (LabelServiceValidateFpEventArgs)e;
             CatalogService cmp = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
             CatalogItemPetsi item = cmp.GetCatalogItemById(args.CatalogId);
-            PetsiOrderFormErrorWindow errorWindow = new PetsiOrderFormErrorWindow(
+            GeneralErrorWindow errorWindow = new GeneralErrorWindow(
                 "Item: " + item.ItemName + " filepath: " + args.Filepath + " for " + args.PieType + " could not be validated. Please verify that the item's file assoicated with the label currently exists or is correct.");
             errorWindow.Show();
         }

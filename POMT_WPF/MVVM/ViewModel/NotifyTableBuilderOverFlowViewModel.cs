@@ -17,5 +17,13 @@ namespace POMT_WPF.MVVM.ViewModel
             OverflowListNames = new ObservableCollection<string>(args.OverflowList.Select(x => x.ItemName));
             Close = new RelayCommand(o => { _view.Close(); });
         }
+
+        public void AddItems(TBOverflowEventArgs args)
+        {
+            foreach(var item in args.OverflowList)
+            {
+                OverflowListNames.Add(item.ItemName);
+            }
+        }
     }
 }

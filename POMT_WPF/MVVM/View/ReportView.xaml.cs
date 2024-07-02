@@ -9,20 +9,24 @@ namespace POMT_WPF.MVVM.View
     /// </summary>
     public partial class ReportView : UserControl
     {
+        NotifyTableBuilderOverFlowWindow _overflowErrorWin;
         public ReportView()
         {
             InitializeComponent();
             ErrorService.Instance().TBOverflow += NotifyOverFlowEvent;
         }
         public void NotifyOverFlowEvent(object sender, EventArgs e)
-        {   /*
-            TBOverflowEventArgs args = (TBOverflowEventArgs)e;
-            NotifyTableBuilderOverFlow view = NotifyTableBuilderOverFlow.Instance();
-            NotifyTableBuilderOverFlow.UpdateListNames(args.OverflowList);
-            view.Show();
-            */
-            NotifyTableBuilderOverFlowWindow view = new NotifyTableBuilderOverFlowWindow((TBOverflowEventArgs)e);
-            view.Show();
+        {   
+            if (_overflowErrorWin == null)
+            {
+                _overflowErrorWin = new NotifyTableBuilderOverFlowWindow((TBOverflowEventArgs)e);
+                _overflowErrorWin.Show();
+            }
+            else
+            {
+                _overflowErrorWin.AddItems((TBOverflowEventArgs)e);
+            }
+            
         }
     }
 }

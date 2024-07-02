@@ -35,8 +35,8 @@ namespace POMT_WPF.MVVM.View
             }
             else
             {
-                PetsiOrderFormErrorWindow errorWindow =
-                   new PetsiOrderFormErrorWindow("Template must have a name,\n must have 1 item,\n and all items must have a validated item name");
+                GeneralErrorWindow errorWindow =
+                   new GeneralErrorWindow("Template must have a name,\n must have 1 item,\n and all items must have a validated item name");
                 errorWindow.Show();
                 return;
             }

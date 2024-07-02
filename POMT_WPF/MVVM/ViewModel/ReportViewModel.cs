@@ -119,15 +119,15 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }
-        private DateTime _endDate;
-        public DateTime EndDate
+        private DateTime? _endDate;
+        public DateTime? EndDate
         {
             get { return _endDate; }
             set
             {
                 if (_endDate != value)
                 {
-                    _endDate = value;
+                    _endDate = (DateTime)value;
                     OnPropertyChanged(nameof(EndDate));
                 }
             }
@@ -157,7 +157,11 @@ namespace POMT_WPF.MVVM.ViewModel
             SquareFilter = true;
             WholesaleFilter = true;
             SquareFilter = true;
+            SpecialFilter = true;
             EzCaterFilter = true;
+
+            StartDate = DateTime.Now;
+            EndDate = null;
 
             PetsiConfig config = PetsiConfig.GetInstance();
             PieTemplateName = config.GetVariable(Identifiers.SETTING_PIE_TEMPLATE);

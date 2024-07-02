@@ -15,6 +15,12 @@ namespace POMT_WPF.MVVM.View
         {
             viewModel = new NotifyTableBuilderOverFlowViewModel(args, this);
             InitializeComponent();
+            DataContext = viewModel;
+        }
+
+        public void AddItems(TBOverflowEventArgs e)
+        {
+            viewModel.AddItems(e);
         }
     }
 }

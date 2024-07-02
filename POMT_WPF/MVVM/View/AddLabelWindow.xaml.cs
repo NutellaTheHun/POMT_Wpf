@@ -33,8 +33,8 @@ namespace POMT_WPF.MVVM.View
             {
                 if (isNewItem && viewModel.HasDuplicate())
                 {
-                    PetsiOrderFormErrorWindow errorWindow =
-                   new PetsiOrderFormErrorWindow("Item already has labels assigned, please modify the existing item.");
+                    GeneralErrorWindow errorWindow =
+                   new GeneralErrorWindow("Item already has labels assigned, please modify the existing item.");
                     errorWindow.Show();
                     return;
                 }
@@ -46,8 +46,8 @@ namespace POMT_WPF.MVVM.View
             }
             else
             {
-                PetsiOrderFormErrorWindow errorWindow =
-                   new PetsiOrderFormErrorWindow("Item name must be valid and have atleast one label set.");
+                GeneralErrorWindow errorWindow =
+                   new GeneralErrorWindow("Item name must be valid and have atleast one label set.");
                 errorWindow.Show();
                 return;
             }

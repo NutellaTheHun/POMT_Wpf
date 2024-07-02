@@ -61,7 +61,7 @@ namespace POMT_WPF.MVVM.View
                 }
                 else
                 {
-                    PetsiOrderFormErrorWindow errorWindow = new PetsiOrderFormErrorWindow("Invalid catalog item entry.");
+                    GeneralErrorWindow errorWindow = new GeneralErrorWindow("Invalid catalog item entry.");
                     errorWindow.Show();
                 }
             }
