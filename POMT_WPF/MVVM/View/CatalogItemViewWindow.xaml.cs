@@ -222,7 +222,7 @@ namespace POMT_WPF.MVVM.View
             confirmationWindow.ShowDialog();
             if (confirmationWindow.ControlBool)
             {
-                ObsCatalogModelSingleton.RemoveItem(viewModel.cItem);
+                //ObsCatalogModelSingleton.RemoveItem(viewModel.cItem);
                 Close();
             }
         }

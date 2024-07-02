@@ -5,6 +5,7 @@ using Petsi.Managers;
 using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
+using System.Collections.ObjectModel;
 
 namespace Petsi.Models
 {
@@ -19,6 +20,7 @@ namespace Petsi.Models
         HashSet<string> OrderTypesSet;
         OrderModelFrameBehavior frameBehavior;
         FileBehavior fileBehavior;
+
         public OrderModelPetsi()
         {
             subscribers = new List<IOrderModelSubscriber>();
@@ -45,6 +47,12 @@ namespace Petsi.Models
         public void Subscribe(IOrderModelSubscriber subscription)
         {
             subscribers.Add(subscription);
+        }
+        public void UpdateModel(ObservableCollection<PetsiOrder> orders, ObservableCollection<PetsiOrder> frozenOrders)
+        {
+            Orders = orders.ToList();
+            FrozenOrders = frozenOrders.ToList();
+            SaveAll();
         }
         private HashSet<string>? InitOrderTypes()
         {
@@ -327,9 +335,11 @@ namespace Petsi.Models
         {
             SavePeriodicModel();
             SaveOneShotModel();
+            SaveFrozenOrders();
         }
         private void SavePeriodicModel() { fileBehavior.DataListToFile(Identifiers.PERIODIC_ORDERS, PeriodicOrders); }
         private void SaveOneShotModel() { fileBehavior.DataListToFile(Identifiers.ONE_SHOT_ORDERS, OneShotOrders); }
+        private void SaveFrozenOrders() { fileBehavior.DataListToFile(Identifiers.FROZEN_ORDERS, FrozenOrders); }
 
         private void SaveDeletedOrder(PetsiOrder order)
         {
@@ -581,6 +591,8 @@ namespace Petsi.Models
                 }
             }
         }
+
+       
     }
 }
 

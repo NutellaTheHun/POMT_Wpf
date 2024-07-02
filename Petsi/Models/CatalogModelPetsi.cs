@@ -6,6 +6,7 @@ using Petsi.Managers;
 using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
+using System.Collections.ObjectModel;
 
 namespace Petsi.Models
 {
@@ -41,6 +42,12 @@ namespace Petsi.Models
             ModelManagerSingleton.GetInstance().Register(this);
             CommandFrame.GetInstance().RegisterFrame("cmp", frameBehavior);
             EnvironCaptureRegistrySingleton.GetInstance().Register(this);
+        }
+        public void UpdateModel(ObservableCollection<CatalogItemPetsi> catalogItems)
+        {
+            items = catalogItems.ToList();
+            SaveMainModel();
+            NotifyModelServices();
         }
 
         public override void AddData(ModelUnitBase item)
@@ -274,5 +281,7 @@ namespace Petsi.Models
                 SystemLogger.Log("CatalogModelPetsi modifyItem not found: " + catalogItem.ItemName + " " + ": " + catalogItem.CatalogObjectId);
             }
         }
+
+        
     }
 }

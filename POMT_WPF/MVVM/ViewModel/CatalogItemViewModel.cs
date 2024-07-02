@@ -17,21 +17,6 @@ namespace POMT_WPF.MVVM.ViewModel
 
         #region props
 
-        /*
-        private CatalogItemPetsi? _catalogItem;
-        public CatalogItemPetsi? CatalogItem
-        {
-            get { return _catalogItem; }
-            set
-            {
-                if (_catalogItem != value)
-                {
-                    _catalogItem = value;
-                    OnPropertyChanged(nameof(CatalogItem));
-                }
-            }
-        }*/
-
         public CatalogItemPetsi? VeganMapping
         {
             get { return cItem.VeganPieAssociation; }
@@ -255,7 +240,9 @@ namespace POMT_WPF.MVVM.ViewModel
             }
         }
 
-        #endregion    
+        #endregion
+
+        #region Commands
 
         public RelayCommand AddAltName { get; set; }
         public RelayCommand RemoveAltName { get; set; }
@@ -266,6 +253,8 @@ namespace POMT_WPF.MVVM.ViewModel
         public RelayCommand SaveItem { get; set; }
         public RelayCommand BackCatalogItem { get; set; }
 
+        #endregion
+
         public CatalogItemViewModel(CatalogItemPetsi? inputItem)
         {
             cItem = new CatalogItemPetsi(inputItem);
@@ -275,10 +264,13 @@ namespace POMT_WPF.MVVM.ViewModel
                 IsNew = true;
                 CanDelete = false;
                 IsEdit = true;
+
                 NaturalNames = new ObservableCollection<string>();
                 NaturalNames.CollectionChanged += (s, e) => cItem.NaturalNames = NaturalNames.ToList();
+
                 CategoryService cs = GetCategoryService();
                 CategoryNames = new ObservableCollection<string>(cs.GetCategoryNames());
+
                 CatalogService catalogService = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
                 cItem.CatalogObjectId = catalogService.GenerateCatalogId();
             }
@@ -287,6 +279,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 CanDelete = true;
                 IsNew = false;
                 IsEdit = false;
+
                 //Variations
                 foreach ((string key, string value) in cItem.VariationList)
                 {
@@ -314,8 +307,6 @@ namespace POMT_WPF.MVVM.ViewModel
 
                 NaturalNames = new ObservableCollection<string>(inputItem.NaturalNames);
                 NaturalNames.CollectionChanged += (s, e) => cItem.NaturalNames = NaturalNames.ToList();
-                //StandardLabelFilePath = inputItem.StandardLabelFilePath;
-                //CutieLabelFilePath = inputItem.CutieLabelFilePath;
 
                 CategoryId = inputItem.CategoryId;
 
@@ -323,12 +314,8 @@ namespace POMT_WPF.MVVM.ViewModel
                 CategoryNames = new ObservableCollection<string>(cs.GetCategoryNames());
                 CategoryName = cs.GetCategoryName(CategoryId);
 
-                //IsPOTM = inputItem.IsPOTM;
-                //ItemName = inputItem.ItemName;
-
                 if (inputItem.VeganPieAssociation != null)
                 {
-                    //_veganMapping = inputItem.VeganPieAssociation;
                     VeganMappedItemName = inputItem.VeganPieAssociation.ItemName;
                 }
             }
@@ -407,13 +394,15 @@ namespace POMT_WPF.MVVM.ViewModel
             confirmationWindow.ShowDialog();
             if (confirmationWindow.ControlBool)
             {
-                //ObsCatalogModelSingleton.RemoveItem(viewModel.cItem);
+                ObsCatalogModelSingleton.Instance.RemoveItem(cItem);
                 BackCmd();
             }
         }
+
         private void SaveItemCmd()
         {
-
+            ObsCatalogModelSingleton.AddItem(cItem);
+            BackCmd();
         }
         private void BackCmd()
         {
@@ -423,15 +412,11 @@ namespace POMT_WPF.MVVM.ViewModel
         public void AddNaturalName(string naturalName)
         {
             NaturalNames.Add(naturalName);
-            //Item.AddNaturalName(naturalName);
-            //UpdateCatalogModel();
         }
 
         public void RemoveNaturalName(string selectedItem)
         {
             NaturalNames.Remove(selectedItem);
-            //Item.RemoveNaturalName(selectedItem);
-            //UpdateCatalogModel();
         }
 
         public void SetCutieFile()
@@ -444,8 +429,6 @@ namespace POMT_WPF.MVVM.ViewModel
                 if (fileDialog.ShowDialog() == DialogResult.OK)
                 {
                     CutieLabelFilePath = fileDialog.FileName;
-                    //Item.CutieLabelFilePath = fileDialog.FileName;
-                    //UpdateCatalogModel();
                 }
             }
         }
@@ -459,8 +442,6 @@ namespace POMT_WPF.MVVM.ViewModel
                 if (fileDialog.ShowDialog() == DialogResult.OK)
                 {
                     StandardLabelFilePath = fileDialog.FileName;
-                    //Item.StandardLabelFilePath = fileDialog.FileName;
-                    //UpdateCatalogModel();
                 }
             }
         }

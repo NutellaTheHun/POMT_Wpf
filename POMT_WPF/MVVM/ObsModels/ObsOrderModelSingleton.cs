@@ -5,7 +5,9 @@ using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
 using POMT_WPF.Interfaces;
+using Square.Models;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace POMT_WPF.MVVM.ObsModels
 {
@@ -25,9 +27,9 @@ namespace POMT_WPF.MVVM.ObsModels
             }
         }
 
-        private ObservableCollection<PetsiOrder> _orders;
-        public ObservableCollection<PetsiOrder> Orders
-        {
+        //private ObservableCollection<PetsiOrder> _orders;
+        public ObservableCollection<PetsiOrder> Orders;
+        /*{
             get
             {
                 if (_orders == null)
@@ -43,11 +45,11 @@ namespace POMT_WPF.MVVM.ObsModels
                     _orders = value;
                 }
             }
-        }
+        }*/
 
-        private ObservableCollection<PetsiOrder> _frozenOrders;
-        public ObservableCollection<PetsiOrder> FrozenOrders
-        {
+        //private ObservableCollection<PetsiOrder> _frozenOrders;
+        public ObservableCollection<PetsiOrder> FrozenOrders;
+        /*{
             get
             {
                 if (_frozenOrders == null)
@@ -63,7 +65,7 @@ namespace POMT_WPF.MVVM.ObsModels
                     _frozenOrders = value;
                 }
             }
-        }
+        }*/
 
         private List<IObsOrderModelSubscriber> _subscriptions;
 
@@ -73,8 +75,17 @@ namespace POMT_WPF.MVVM.ObsModels
             Orders = new ObservableCollection<PetsiOrder>();
             FrozenOrders = new ObservableCollection<PetsiOrder>();
             _omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+
+            Orders.CollectionChanged += (s, e) => { UpdateOrderModel(); };
+
             _omp.Subscribe(this);
             UpdateSubscriber();
+        }
+
+        private void UpdateOrderModel()
+        {
+            OrderModelPetsi model = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+            model.UpdateModel(Orders, FrozenOrders);
         }
 
         private void Notify()
@@ -87,11 +98,30 @@ namespace POMT_WPF.MVVM.ObsModels
 
         public void Subscribe(IObsOrderModelSubscriber subscriber) { _subscriptions.Add(subscriber); }
 
-        public static void AddOrder(PetsiOrder order)
+        public void AddOrder(PetsiOrder orderItem)
         {
-            Instance.Orders.Add(order);
-            Instance.AddOrderMainModel(order);
-            Instance.Notify();
+            bool isFound = false;
+
+            //Try to modify
+            foreach (var order in Orders)
+            {
+                if (order.OrderId == orderItem.OrderId)
+                {
+                    isFound = true;
+                    int index = Orders.IndexOf(order);
+                    Orders[index] = orderItem;
+                    break;
+                }
+            }
+
+            //HANDLE FROZEN, FIX FROZEN ENTIRELY
+
+            //If not modify, add new item
+            if (!isFound) { Orders.Add(orderItem); }
+
+            //Orders.Add(orderItem);
+            //AddOrderMainModel(orderItem);
+            //Notify();
         }
 
         public static void ModifyOrder(PetsiOrder modOrder)
@@ -127,26 +157,42 @@ namespace POMT_WPF.MVVM.ObsModels
             }
 
         }
-        /*
-        public static void RemoveOrder(string orderId)
+        
+        public void RemoveOrder(PetsiOrder orderItem)
         {
-            var orderToRemove = Instance.Orders.FirstOrDefault(order => order.OrderId == orderId);
+            int count = Orders.Count;
+            foreach (var item in Orders)
+            {
+                if (item.OrderId == orderItem.OrderId)
+                {
+                    Orders.Remove(item);
+                    break;
+                }
+            }
+            if (count - 1 != Orders.Count)
+            {
+                SystemLogger.Log("ObsOrders RemoveItem failure: " + orderItem.Recipient);
+            }
+            /*
+            var orderToRemove = Orders.FirstOrDefault(order => order.OrderId == orderId);
             if (orderToRemove != null)
             {
-                int count = Instance.Orders.Count;
-                Instance.Orders.Remove(orderToRemove);
-                if(count-1 != Instance.Orders.Count)
+                int count = Orders.Count;
+                Orders.Remove(orderToRemove);
+                if(count-1 != Orders.Count)
                 {
                     SystemLogger.Log("ObsOrderModel RemoveOrder failed with order: " + orderToRemove.Recipient + " : " + orderToRemove.OrderId);
                 }
-                Instance.RemoveOrderMainModel(orderId);
-                Instance.Notify();
+                
             }
             else
             {
                 SystemLogger.Log("ObsOrderModel RemoveOrder could not locat order with id: " + orderId);
             }
-        }*/
+            */
+            //RemoveOrderMainModel(orderId);
+            //Notify();
+        }
         public void AddOrderMainModel(PetsiOrder order)
         {
             _omp.AddOrder(order);

@@ -14,25 +14,8 @@ namespace POMT_WPF.MVVM.ObsModels
 
         private List<IObsCatalogModelSubscriber> _subscriptions;
 
-        private ObservableCollection<CatalogItemPetsi> _catalogItems;
-        public ObservableCollection<CatalogItemPetsi> CatalogItems
-        {
-            get
-            {
-                if (_catalogItems == null)
-                {
-                    _catalogItems = new ObservableCollection<CatalogItemPetsi>();
-                }
-                return _catalogItems;
-            }
-            set
-            {
-                if (_catalogItems != value)
-                {
-                    _catalogItems = value;
-                }
-            }
-        }
+        public ObservableCollection<CatalogItemPetsi> CatalogItems;
+    
 
         private ObsCatalogModelSingleton()
         {
@@ -40,7 +23,7 @@ namespace POMT_WPF.MVVM.ObsModels
             
             CatalogItems = new ObservableCollection<CatalogItemPetsi>(_cmp.GetItems());
             _subscriptions = new List<IObsCatalogModelSubscriber>();
-            CatalogItems.CollectionChanged += (s,e) { }
+            CatalogItems.CollectionChanged += (s, e) => { UpdateCatalogModel(); };
         }
 
         private static ObsCatalogModelSingleton _instance;
@@ -64,39 +47,63 @@ namespace POMT_WPF.MVVM.ObsModels
             }
         }
 
+        private void UpdateCatalogModel()
+        {
+            CatalogModelPetsi model = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
+            model.UpdateModel(CatalogItems);
+        }
+
         public void Subscribe(IObsCatalogModelSubscriber subscriber) { _subscriptions.Add(subscriber); }
 
-        public static void AddItem(CatalogItemPetsi catalogItem)
+        public void AddItem(CatalogItemPetsi catalogItem)
         {
-            int count = Instance.CatalogItems.Count;
-            Instance.CatalogItems.Add(catalogItem);
-            if(count+1 != Instance.CatalogItems.Count)
+            bool isFound = false;
+
+            //Try to modify
+            foreach (CatalogItemPetsi item in CatalogItems)
             {
-                SystemLogger.Log("ObsCatalog AddItem failure: " + catalogItem.ItemName);
+                if (item.CatalogObjectId == catalogItem.CatalogObjectId)
+                {
+                    int index = CatalogItems.IndexOf(item);
+                    CatalogItems[index] = catalogItem;
+                    isFound = true;
+                    break;
+                }
             }
-            else
-            {
-                Instance.AddItemMainModel(catalogItem);
-                Instance.Notify();
-            }
+
+            //If not modify, add new item
+            if(!isFound) CatalogItems.Add(catalogItem);
+            
+            /*
+            AddItemMainModel(catalogItem);
+            Notify();
+            */
         }
         private void AddItemMainModel(CatalogItemPetsi catalogItem)
         {
             _cmp.AddOrder(catalogItem);
         }
-        public static void RemoveItem(CatalogItemPetsi catalogItem)
+        public void RemoveItem(CatalogItemPetsi catalogItem)
         {
-            int count = Instance.CatalogItems.Count;
-            Instance.CatalogItems.Remove(catalogItem);
-            if (count - 1 != Instance.CatalogItems.Count)
+            int count = CatalogItems.Count;
+            foreach(var item in CatalogItems)
+            {
+                if(item.CatalogObjectId == catalogItem.CatalogObjectId)
+                {
+                    CatalogItems.Remove(item);
+                    break;
+                }
+            }
+            if (count - 1 != CatalogItems.Count)
             {
                 SystemLogger.Log("ObsCatalog RemoveItem failure: " + catalogItem.ItemName);
             }
+            /*
             else
             {
-                Instance.RemoveItemMainModel(catalogItem);
-                Instance.Notify();
-            }
+                RemoveItemMainModel(catalogItem);
+                Notify();
+            }*/
         }
         private void RemoveItemMainModel(CatalogItemPetsi catalogItem)
         {
