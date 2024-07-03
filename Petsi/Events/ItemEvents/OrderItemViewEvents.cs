@@ -1,5 +1,5 @@
 ﻿
-namespace Petsi.Events.OrderItemEvents
+namespace Petsi.Events.ItemEvents
 {
     public class OrderItemViewEvents
     {

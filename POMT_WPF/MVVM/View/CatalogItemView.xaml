@@ -56,12 +56,18 @@
                             Orientation="Vertical">
                             <StackPanel Orientation="Vertical">
                                 <Label Content="Item Name" />
-                                <Border Style="{StaticResource GeneralBorder}">
-                                    <TextBox
-                                        IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
-                                        Style="{StaticResource GeneralTextBox}"
-                                        Text="{Binding ItemName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                <Border x:Name="ItemNameErrBdr" Style="{StaticResource OrderFormErrorBorder}">
+                                    <Grid Margin="2">
+                                        <Border Style="{StaticResource GeneralBorder}">
+                                            <TextBox
+                                                GotFocus="TextBox_GotFocus"
+                                                IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
+                                                Style="{StaticResource GeneralTextBox}"
+                                                Text="{Binding ItemName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                        </Border>
+                                    </Grid>
                                 </Border>
+
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
                                 <Label Content="Alternative Names" />

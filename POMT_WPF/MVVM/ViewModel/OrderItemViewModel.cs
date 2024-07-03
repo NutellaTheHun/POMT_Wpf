@@ -3,7 +3,7 @@ using Petsi.Models;
 using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
-using Petsi.Events.OrderItemEvents;
+using Petsi.Events.ItemEvents;
 using POMT_WPF.Core;
 using System.Collections.ObjectModel;
 using POMT_WPF.MVVM.View;

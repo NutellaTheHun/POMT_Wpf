@@ -1,4 +1,5 @@
-﻿using Petsi.Managers;
+﻿using Petsi.Events.ItemEvents;
+using Petsi.Managers;
 using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
@@ -400,12 +401,11 @@ namespace POMT_WPF.MVVM.ViewModel
 
         private void SaveItemCmd()
         {
-            //if valid
-            //else notify required fields
-
-           //ObsCatalogModelSingleton.Instance.AddItem(cItem);
-
-           MainViewModel.Instance().BackCatalogView();
+           if(IsValidItem())
+           {
+                ObsCatalogModelSingleton.Instance.AddItem(cItem);
+           }
+           //MainViewModel.Instance().BackCatalogView();
            //OR notify SAVED
         }
 
@@ -559,6 +559,13 @@ namespace POMT_WPF.MVVM.ViewModel
             cItem.NaturalNames = NaturalNames.ToList();
 
             UpdateCatalogModel();
+        }
+
+        private bool IsValidItem()
+        {
+            bool controlBool = true;
+            if (ItemName == "" || ItemName == null) { controlBool = false; CatalogItemViewEvents.OnItemNameInvalid(); }
+            return controlBool;
         }
     }
 }
