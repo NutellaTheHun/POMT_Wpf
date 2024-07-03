@@ -111,7 +111,7 @@
                     Width="80"
                     Margin="0,0,60,0"
                     Command="{Binding Done}"
-                    Content="Done"
+                    Content="Save"
                     Style="{StaticResource secondaryButton}" />
             </Grid>
         </Grid>

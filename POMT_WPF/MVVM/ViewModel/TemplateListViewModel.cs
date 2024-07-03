@@ -10,12 +10,16 @@ namespace POMT_WPF.MVVM.ViewModel
     public class TemplateListViewModel : ViewModelBase, ITemplateService
     {
         public ObservableCollection<string> TemplateNames { get; set; }
+
         private ReportTemplateService _templateService;
+
         public RelayCommand RemoveTemplate { get; set; }
         public RelayCommand ViewTemplate { get; set; }
         public RelayCommand GoBack { get; set; }
 
+
         private bool _isFromSettingsVM;
+
         public TemplateListViewModel(bool isFromSettingsVM)
         {
             _isFromSettingsVM = isFromSettingsVM;

@@ -24,7 +24,7 @@ namespace POMT_WPF.MVVM.ViewModel
             }
         }
         public RelayCommand Close {  get; set; }
-        public RelayCommand Done {  get; set; }
+        public RelayCommand Save {  get; set; }
         public RelayCommand AddItem {  get; set; }
         public RelayCommand RemoveItem {  get; set; }
         public RelayCommand MoveItemUp {  get; set; }
@@ -40,20 +40,53 @@ namespace POMT_WPF.MVVM.ViewModel
                 TemplateName = templateName;
             }
 
-            Close = new RelayCommand(o => { _view.CloseWin(); });
-            Done = new RelayCommand(o => { DoneCmd(); });
+            Close = new RelayCommand(o => { _view.Close(); });
+            Save = new RelayCommand(o => { SaveCmd(); });
             AddItem = new RelayCommand(o => { if(TemplateItems != null) TemplateItems.Add(new BackListItem()); });
             RemoveItem = new RelayCommand(o => { if (TemplateItems != null) TemplateItems.Remove((BackListItem)o); });
             MoveItemUp = new RelayCommand(o => { SwapItemUpCmd(o); });
             MoveItemDown = new RelayCommand(o => { SawpItemDownCmd(o); });
         }
 
-        private void DoneCmd()
+        private void SaveCmd()
         {
-            //validate
-            //save
-            _view.CloseWin();
+            if(IsValid()) //IMPLEMENT
+            {
+                SaveTemplate(); //IMPLEMENT
+                _view.Close();
+            }         
         }
+        private bool IsValid() //IMPLEMENT
+        {
+            bool controlBool = true;
+
+            return controlBool;
+        }
+
+        private void SaveTemplate() //IMPLEMENT
+        {
+
+        }
+        /* OLD TEMPLATE FUNCTION
+          public void SaveTemplate()
+        {
+            List<BackListItem> backListItems = TemplateItems.ToList();
+            rts.AddTemplate((TemplateName, backListItems));
+        }
+
+          public bool IsValidTemplate()
+        {
+            if(TemplateName == "" || TemplateName == null) { return false; }
+            if(TemplateItems.Count == 0) { return false; };
+            foreach (BackListItem item in TemplateItems)
+            {
+                if(item.ItemName == "" || item.ItemName == null) { return false; }
+                if(item.CatalogObjId == "" || item.CatalogObjId==null) { return false; }
+                if(item.PageDisplayName == "" || item.PageDisplayName == null) { return false; }
+            }
+            return true;
+        }
+         */
 
         private void SwapItemUpCmd(object targetItem)
         {

@@ -15,7 +15,5 @@ namespace POMT_WPF.MVVM.View
             InitializeComponent();
             DataContext = viewModel;
         }
-
-        public void CloseWin() { Close(); }
     }
 }

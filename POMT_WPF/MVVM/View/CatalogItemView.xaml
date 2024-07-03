@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:POMT_WPF.MVVM.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:v="clr-namespace:POMT_WPF.Validation"
     d:DesignHeight="700"
     d:DesignWidth="860"
     mc:Ignorable="d">
@@ -59,11 +60,29 @@
                                 <Border x:Name="ItemNameErrBdr" Style="{StaticResource OrderFormErrorBorder}">
                                     <Grid Margin="2">
                                         <Border Style="{StaticResource GeneralBorder}">
-                                            <TextBox
-                                                GotFocus="TextBox_GotFocus"
-                                                IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
-                                                Style="{StaticResource GeneralTextBox}"
-                                                Text="{Binding ItemName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                            <Grid>
+                                                <ComboBox
+                                                    x:Name="ItemNameComboBox"
+                                                    Style="{StaticResource ItemNameComboBox}"
+                                                    Text="{Binding ElementName=ItemNameTextBox, Path=Text}" />
+                                                <TextBox
+                                                    x:Name="ItemNameTextBox"
+                                                    GotFocus="TextBox_GotFocus"
+                                                    IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
+                                                    Style="{StaticResource ItemNameTextBox}"
+                                                    TextChanged="ItemNameTextBox_TextChanged">
+                                                    <TextBox.Text>
+                                                        <Binding
+                                                            Mode="TwoWay"
+                                                            Path="ItemName"
+                                                            UpdateSourceTrigger="PropertyChanged">
+                                                            <Binding.ValidationRules>
+                                                                <v:ItemNameValidation />
+                                                            </Binding.ValidationRules>
+                                                        </Binding>
+                                                    </TextBox.Text>
+                                                </TextBox>
+                                            </Grid>
                                         </Border>
                                     </Grid>
                                 </Border>
