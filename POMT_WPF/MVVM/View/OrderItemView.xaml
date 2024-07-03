@@ -17,36 +17,6 @@
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
         <convert:StringToIntConverter x:Key="StringToIntConverter" />
         <convert:InvertBoolConverter x:Key="InvertBool" />
-
-        <DataTemplate x:Key="OrderFormItemNameTemplate">
-            <Grid>
-                <ComboBox
-                    x:Name="ItemNameComboBox"
-                    Width="120"
-                    Height="40"
-                    IsEditable="True"
-                    IsHitTestVisible="False"
-                    IsReadOnly="False"
-                    StaysOpenOnEdit="True"
-                    Text="{Binding ElementName=ItemNameTextBox, Path=Text}" />
-                <TextBox
-                    x:Name="ItemNameTextBox"
-                    Width="120"
-                    Height="40"
-                    Background="{StaticResource MintCream}"
-                    IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
-                    Style="{StaticResource ItemNameTextBox}"
-                    TextChanged="ItemNameTextBox_TextChanged">
-                    <TextBox.Text>
-                        <Binding Path="ItemName" UpdateSourceTrigger="PropertyChanged">
-                            <Binding.ValidationRules>
-                                <v:ItemNameValidation />
-                            </Binding.ValidationRules>
-                        </Binding>
-                    </TextBox.Text>
-                </TextBox>
-            </Grid>
-        </DataTemplate>
     </UserControl.Resources>
 
     <Grid Background="{StaticResource ColumbiaBlue}">
@@ -60,7 +30,10 @@
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <Grid
+            Grid.Row="0"
+            Width="860"
+            HorizontalAlignment="Right">
             <!--  BACK  -->
             <Button
                 Name="BackButton"
@@ -90,6 +63,7 @@
                     Margin="0,5,20,5"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
+                    Command="{Binding EditCommand}"
                     Content="Edit"
                     IsChecked="{Binding IsEdit, Mode=TwoWay}"
                     Style="{StaticResource orderFormEditButton}"
@@ -288,19 +262,11 @@
                                                 <Grid>
                                                     <ComboBox
                                                         x:Name="ItemNameComboBox"
-                                                        Width="120"
-                                                        Height="40"
-                                                        IsEditable="True"
-                                                        IsHitTestVisible="False"
-                                                        IsReadOnly="False"
-                                                        StaysOpenOnEdit="True"
+                                                        Style="{StaticResource ItemNameComboBox}"
                                                         Text="{Binding ElementName=ItemNameTextBox, Path=Text}" />
                                                     <TextBox
                                                         x:Name="ItemNameTextBox"
-                                                        Width="120"
-                                                        Height="40"
-                                                        Background="{StaticResource MintCream}"
-                                                        IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
+                                                        IsReadOnly="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged}"
                                                         Style="{StaticResource ItemNameTextBox}"
                                                         TextChanged="ItemNameTextBox_TextChanged">
                                                         <TextBox.Text>
@@ -393,7 +359,6 @@
                             </DataGrid>
                         </Grid>
                     </Border>
-
                     <StackPanel Orientation="Vertical">
                         <Button
                             Name="AddLineButton"

@@ -85,10 +85,12 @@ namespace POMT_WPF.MVVM.ViewModel
 
             _orders = ObsOrderModelSingleton.Instance.Orders;
 
+            
             DashboardOrders.Source = _orders;
+            DashBoardOrdersView.MoveCurrentTo(null);
             currentFilter = NoFilter;
             DashboardOrders.Filter += currentFilter;
-
+            
             //FrozenOrders = ObsOrderModelSingleton.Instance.FrozenOrders;
 
             TotalOrderCount = _orders.Count();
@@ -112,6 +114,7 @@ namespace POMT_WPF.MVVM.ViewModel
             DashboardOrders.Filter -= currentFilter;
             currentFilter = newFilter;
             DashboardOrders.Filter += currentFilter;
+            DashBoardOrdersView.MoveCurrentTo(null);
             DashBoardOrdersView.Refresh();
         }
         private void NoFilter(object sender, FilterEventArgs e)

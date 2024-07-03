@@ -11,17 +11,17 @@ namespace POMT_WPF.MVVM.View
     /// </summary>
     public partial class OrderView : UserControl
     {
-        OrderViewModel ViewModel { get; set; }
+       // OrderViewModel ViewModel { get; set; }
         public OrderView()
         {
-            ViewModel = new OrderViewModel();
+            //ViewModel = new OrderViewModel();
             InitializeComponent();
             ErrorService.Instance().SoiNewItem += NotifyUserNewItem;
             ErrorService.Instance().SoiMultiItem += NotifyUserMultiItemMatch;
-
+            //dashboardDataGrid.SelectedItem = null;
             //dashboardDataGrid.ItemsSource = ViewModel._orders;
 
-            DataContext = ViewModel;
+            //DataContext = ViewModel;
             ErrorService.RaiseMainWindowEvents();
         }
 
@@ -36,7 +36,7 @@ namespace POMT_WPF.MVVM.View
             NotifyMultiItemMatchWindow view = new NotifyMultiItemMatchWindow((SoiMultiItemEventArgs)e);
             view.Show();
         }
-
+        /*
         private void DashboardDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var dashboardDataGrid = sender as DataGrid;
@@ -51,7 +51,7 @@ namespace POMT_WPF.MVVM.View
                 }
             }
         }
-        public bool FrozenOrdersSelected { get; private set; }
+        public bool FrozenOrdersSelected { get; private set; }*/
         /*
         public void UpdateDataGrid()
         {
@@ -101,10 +101,16 @@ namespace POMT_WPF.MVVM.View
            // dashboardDataGrid.ItemsSource = ViewModel.FrozenOrders;
         }
         */
+
         private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
         {
-            ViewModel.FilterSearchBar(txtFilter.Text);
+            //ViewModel.FilterSearchBar(txtFilter.Text);
             //dashboardDataGrid.ItemsSource = ViewModel._orders;
+        }
+
+        private void dashboardDataGrid_LostFocus(object sender, System.Windows.RoutedEventArgs e)
+        {
+            //dashboardDataGrid.SelectedItem = null;
         }
     }
 }

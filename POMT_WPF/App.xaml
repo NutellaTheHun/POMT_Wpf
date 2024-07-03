@@ -28,6 +28,8 @@
                 <ResourceDictionary Source="Styles/Button/dashboardDataGridSelectAllButtonStyle.xaml" />
                 <ResourceDictionary Source="Styles/Button/DataGridSelectAllButtonStyle.xaml" />
 
+                <ResourceDictionary Source="Styles/ComboBox/ItemNameComboBox.xaml" />
+
                 <ResourceDictionary Source="Styles/RadioButton/radioButtonTheme.xaml" />
                 <ResourceDictionary Source="Styles/RadioButton/reportLabelsRadioButtonTheme.xaml" />
 
@@ -73,7 +75,6 @@
                 <ResourceDictionary Source="Styles/Templates/GeneralField.xaml" />
                 <ResourceDictionary Source="Styles/Templates/GeneralBackButton.xaml" />
                 <ResourceDictionary Source="Styles/Templates/GeneralCloseButton.xaml" />
-                <ResourceDictionary Source="Styles/Templates/ValidationTemplates/ItemNameValidationFail.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
 

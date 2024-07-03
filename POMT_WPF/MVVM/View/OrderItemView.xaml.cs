@@ -32,10 +32,9 @@ namespace POMT_WPF.MVVM.View
             events.OrderTypeInvalid += HighlightOrderType;
             events.LineItemsInvalid += HighlightLineItems;
         }
-
-
         private void ItemNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            
             TextBox itemNameTextBox = sender as TextBox;
 
             if (itemNameTextBox.Text != "")
@@ -50,8 +49,6 @@ namespace POMT_WPF.MVVM.View
                 }
             }
         }
-
-
         private void HighlightRecipient(object sender, EventArgs e) { SetBorderThickness(RecipientErrBdr, 2); }
         private void HighlightFulfillment(object sender, EventArgs e) { SetBorderThickness(FulfillmentErrBdr, 2); }
         private void HighlightOrderType(object sender, EventArgs e) { SetBorderThickness(OrderTypeErrBdr, 2); }
@@ -62,7 +59,7 @@ namespace POMT_WPF.MVVM.View
         private void HighlightDatePicker(object sender, EventArgs e) { SetBorderThickness(DatePickerErrBdr, 2); }
         private void HighlightDOTW(object sender, EventArgs e) { /*SetBorderThickness(, 2);*/ }
 
-        private void SetBorderThickness(Border border, int val) { border.BorderThickness = new Thickness(val, val, val, val); }
+        private void SetBorderThickness(Border border, int val) { if(border.BorderThickness.Left != val) border.BorderThickness = new Thickness(val, val, val, val); }
 
         private void Recipient_GotFocus(object sender, RoutedEventArgs e){ SetBorderThickness(RecipientErrBdr, 0); }
 

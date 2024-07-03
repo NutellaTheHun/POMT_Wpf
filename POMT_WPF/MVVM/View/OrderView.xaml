@@ -160,6 +160,7 @@
                 CellStyle="{DynamicResource dashboardDataGridCellStyle}"
                 ColumnHeaderStyle="{DynamicResource dashboardDataGridColumnHeaderStyle}"
                 ItemsSource="{Binding DashBoardOrdersView}"
+                LostFocus="dashboardDataGrid_LostFocus"
                 RowStyle="{DynamicResource dashboardDataGridRowStyle}"
                 Style="{DynamicResource dashboardDataGridStyle}">
                 <DataGrid.InputBindings>
