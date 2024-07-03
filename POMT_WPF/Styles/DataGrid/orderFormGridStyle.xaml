@@ -5,7 +5,7 @@
         <Setter Property="BorderBrush" Value="#FF688CAF" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="RowDetailsVisibilityMode" Value="VisibleWhenSelected" />
-        <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
+        <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
         <Setter Property="GridLinesVisibility" Value="None" />
         <Setter Property="AutoGenerateColumns" Value="False" />
         <Setter Property="CanUserAddRows" Value="False" />

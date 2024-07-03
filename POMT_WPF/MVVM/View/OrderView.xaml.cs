@@ -107,13 +107,13 @@ namespace POMT_WPF.MVVM.View
             //ViewModel.FilterSearchBar(txtFilter.Text);
             //dashboardDataGrid.ItemsSource = ViewModel._orders;
         }
-
+        /*
         private void dashboardDataGrid_LostFocus(object sender, System.Windows.RoutedEventArgs e)
         {
             DataGrid dg = (DataGrid)sender;
             dg.SelectedItem = null;
             dg.SelectedValue = null;
-        }
+        }*/
     }
 }
 

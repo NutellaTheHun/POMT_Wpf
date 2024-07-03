@@ -12,10 +12,6 @@ namespace Petsi.Models
     public class OrderModelPetsi : ModelBase, IModelInput, IOrderModelPublisher
     {
         List<PetsiOrder> Orders;
-        //List<PetsiOrder> OneShotOrders;
-        //List<PetsiOrder> PeriodicOrders;
-        //List<PetsiOrder> FrozenOrders;
-
         List<IOrderModelSubscriber> subscribers;
         HashSet<string> OrderTypesSet;
         OrderModelFrameBehavior frameBehavior;
@@ -31,9 +27,6 @@ namespace Petsi.Models
             CommandFrame.GetInstance().RegisterFrame("omp", frameBehavior);
             EnvironCaptureRegistrySingleton.GetInstance().Register(this);
             Orders = new List<PetsiOrder>();
-            //OneShotOrders = new List<PetsiOrder>();
-            //PeriodicOrders = new List<PetsiOrder>();
-            //FrozenOrders = new List<PetsiOrder>();
             InitSerializedOrders();
             OrderTypesSet = InitOrderTypes();
         }
@@ -51,7 +44,6 @@ namespace Petsi.Models
         public void UpdateModel(ObservableCollection<PetsiOrder> orders)
         {
             Orders = orders.ToList();
-            //FrozenOrders = frozenOrders.ToList();
             SaveAll();
         }
         private void SaveAll()
@@ -68,9 +60,6 @@ namespace Petsi.Models
             }
             fileBehavior.DataListToFile(Identifiers.PERIODIC_ORDERS, PeriodicOrders);
             fileBehavior.DataListToFile(Identifiers.ONE_SHOT_ORDERS, OneShotOrders);
-            //SavePeriodicModel();
-            //SaveOneShotModel();
-            //SaveFrozenOrders();
         }
         private HashSet<string>? InitOrderTypes()
         {
@@ -105,26 +94,6 @@ namespace Petsi.Models
 
         private void InitSerializedOrders()
         {
-            /*
-            OneShotOrders = fileBehavior.BuildDataListFile<PetsiOrder>(Identifiers.ONE_SHOT_ORDERS);
-            if (OneShotOrders == null)
-            {
-                OneShotOrders = new List<PetsiOrder>();
-            }
-            PeriodicOrders = fileBehavior.BuildDataListFile<PetsiOrder>(Identifiers.PERIODIC_ORDERS);
-            if (PeriodicOrders == null)
-            {
-                PeriodicOrders = new List<PetsiOrder>();
-            }
-            FrozenOrders = fileBehavior.BuildDataListFile<PetsiOrder>(Identifiers.FROZEN_ORDERS);
-            if (FrozenOrders == null)
-            {
-                FrozenOrders = new List<PetsiOrder>();
-            }
-            
-            Orders.AddRange(OneShotOrders);
-            Orders.AddRange(PeriodicOrders);
-            */
             List<PetsiOrder> OneShotOrders = fileBehavior.BuildDataListFile<PetsiOrder>(Identifiers.ONE_SHOT_ORDERS);
             List<PetsiOrder> PeriodicOrders = fileBehavior.BuildDataListFile<PetsiOrder>(Identifiers.PERIODIC_ORDERS);
             Orders.AddRange(OneShotOrders);
@@ -135,33 +104,12 @@ namespace Petsi.Models
         {
             Orders.Add((PetsiOrder)unit);
             OrderTypesSet.Add(((PetsiOrder)unit).OrderType);
-            /*
-            if (order.IsUserEntered)
-            {
-                if (order.IsPeriodic)
-                {
-                    PeriodicOrders.Add(order);
-                }
-                else if (order.IsOneShot)
-                {
-                    OneShotOrders.Add(order);
-                }
-            }
-            */
         }
         public override FrameBehaviorBase GetFrameBehavior() { return frameBehavior; }
         public List<PetsiOrder> GetOrders() { return Orders; }
         public void SetOrders(List<PetsiOrder> newOrders) { Orders = newOrders; }
         public FileBehavior GetFileBehavior() { return fileBehavior; }
         public override void ClearModel() { Orders.Clear(); }
-
-        /*
-        public void RemoveOrder(ModelUnitBase item)
-        {
-            int count = Orders.Count;
-            Orders.Remove((PetsiOrder)item);
-        }
-        */
 
         public override void Complete()
         {
@@ -344,6 +292,7 @@ namespace Petsi.Models
             result.AddRange(otherOrders.Where(order => !result.Contains(order)));
             return result;
         }
+
         /// <summary>
         /// Returns all orders where input is contained within the recipient variable
         /// </summary>
@@ -356,12 +305,12 @@ namespace Petsi.Models
             result.AddRange(Orders.Where(order => order.Recipient.ToLower().Contains(searchTerm)));
             return result;
         }
+
         public override void CaptureEnvironment(FileBehavior reportFb)
         {
             reportFb.DataListToFile(Identifiers.ENV_OMP, Orders);
         }
 
-        
         private void SavePeriodicModel() 
         { 
             List<PetsiOrder> PeriodicOrders = new List<PetsiOrder>();
@@ -371,6 +320,7 @@ namespace Petsi.Models
             }
             fileBehavior.DataListToFile(Identifiers.PERIODIC_ORDERS, PeriodicOrders); 
         }
+
         private void SaveOneShotModel() 
         {
             List<PetsiOrder> OneShotOrders = new List<PetsiOrder>();
@@ -380,7 +330,6 @@ namespace Petsi.Models
             }
             fileBehavior.DataListToFile(Identifiers.ONE_SHOT_ORDERS, OneShotOrders);
         }
-        //private void SaveFrozenOrders() { fileBehavior.DataListToFile(Identifiers.FROZEN_ORDERS, FrozenOrders); }
 
         private void SaveDeletedOrder(PetsiOrder order)
         {
@@ -389,35 +338,14 @@ namespace Petsi.Models
             deletedOrders.Add(order);
             fileBehavior.DataListToFile(Identifiers.DELETED_ORDERS, deletedOrders);
         }
+
         public override void AddOrder(ModelUnitBase order)
         {
-
-            //PetsiOrder o = (PetsiOrder)order;
-            /*
-            if (o.IsFrozen)
-            {
-                FrozenOrders.Add(o);
-                fileBehavior.DataListToFile(Identifiers.FROZEN_ORDERS, FrozenOrders);
-                Notify();
-                return;
-            }
-            */
             Orders.Add((PetsiOrder)order); SortOrders();
-            /*
-            if (o.IsPeriodic)
-            {
-                PeriodicOrders.Add(o);
-                fileBehavior.DataListToFile(Identifiers.PERIODIC_ORDERS, PeriodicOrders);
-            }
-            else if (o.IsOneShot)
-            {
-                OneShotOrders.Add(o);
-                fileBehavior.DataListToFile(Identifiers.ONE_SHOT_ORDERS, OneShotOrders);
-            }
-            */
             Notify();
 
         }
+
         public void RemoveItem(PetsiOrder targetOrder)
         {
             foreach (PetsiOrder order in Orders)
@@ -425,204 +353,11 @@ namespace Petsi.Models
                 if (order.OrderId == targetOrder.OrderId)
                 {
                     Orders.Remove(order);
-                    /*
-                    if (!order.IsFrozen)
-                    {
-                        SaveDeletedOrder(order);
-                    }
-
-                    if (order.IsOneShot)
-                    {
-                        OneShotOrders.Remove(order);
-                        SaveOneShotModel();
-                    }
-                    else
-                    {
-                        PeriodicOrders.Remove(order);
-                        SavePeriodicModel();
-                    }
-                    */
                     Notify();
                     return;
                 }
             }
-            /*
-            foreach (PetsiOrder o in FrozenOrders)
-            {
-                if (o.OrderId == targetOrder.OrderId)
-                {
-                    FrozenOrders.Remove(o);
-                    fileBehavior.DataListToFile(Identifiers.FROZEN_ORDERS, FrozenOrders);
-                    break;
-                }
-            }
-            
-            Notify();*/
         }
-        /*
-        public void ModifyOrder(PetsiOrder modOrder)
-        {
-            if (modOrder.IsFrozen)
-            {
-                FreezeOrder(modOrder);
-                return;
-            }
-            else
-            {
-                if (ThawOrder(modOrder)) return;
-            }
-            int index = 0;
-            foreach (PetsiOrder order in Orders)
-            {
-                if (order.OrderId == modOrder.OrderId)
-                {
-                    index = Orders.IndexOf(order);
-                    break;
-                }
-            }
-            Orders[index] = modOrder;
-
-            if (modOrder.IsPeriodic)
-            {
-                UpdatePeriodicOrders(modOrder);
-                if (HandleOneShotOrdersContains(modOrder))
-                {
-                    UpdateOneShotOrders(null);
-                }
-            }
-            else if (modOrder.IsOneShot)
-            {
-                UpdateOneShotOrders(modOrder);
-                if (HandlePeriodicOrdersContains(modOrder))
-                {
-                    UpdatePeriodicOrders(null);
-                }
-            }
-
-            Notify();
-
-        }
-        */
-        /*
-        public void FreezeOrder(PetsiOrder order)
-        {
-            FrozenOrders.Add(order);
-            fileBehavior.DataListToFile(Identifiers.FROZEN_ORDERS, FrozenOrders);
-            RemoveItem(order); // !! RemoveItem() Calls Notify so should happen after updating frozen orders!!
-        }
-        */
-
-        /// <summary>
-        /// If order is found on list of Frozen Orders, will be removed from Frozen list,
-        /// and added to active order lists. If not found on frozen orders, no action is taken.
-        /// </summary>
-        /// <param name="orderTarget"></param>
-        /*
-        public bool ThawOrder(PetsiOrder orderTarget)
-        {
-            foreach (PetsiOrder order in FrozenOrders)
-            {
-                if (order.OrderId == orderTarget.OrderId)
-                {
-                    FrozenOrders.Remove(order);
-                    fileBehavior.DataListToFile(Identifiers.FROZEN_ORDERS, FrozenOrders);
-                    AddOrder(orderTarget); // !! AddOrder() Calls Notify so should happen after updating frozen orders!!
-                    return true;
-                }
-            }
-            return false;
-        }
-        */
-        /// <summary>
-        /// If modOrder is found in the OneShotOrders list, it is removed.
-        /// Neccessary for the case that a order is changed from periodic to oneshot.
-        /// </summary>
-        /// <param name="modOrder"></param>
-        /// <returns></returns>
-        /*
-        private bool HandleOneShotOrdersContains(PetsiOrder modOrder)
-        {
-            foreach (PetsiOrder order in OneShotOrders)
-            {
-                if (order.OrderId == modOrder.OrderId)
-                {
-                    OneShotOrders.Remove(order);
-                    return true;
-                }
-            }
-            return false;
-        }
-        */
-        /// <summary>
-        /// If modOrder is found in the PeriodicOrders list, it is removed.
-        /// Neccessary for the case that a order is changed from oneshot to periodic.
-        /// </summary>
-        /// <param name="modOrder"></param>
-        /// <returns></returns>
-        
-        /*
-        private bool HandlePeriodicOrdersContains(PetsiOrder modOrder)
-        {
-            foreach (PetsiOrder order in PeriodicOrders)
-            {
-                if (order.OrderId == modOrder.OrderId)
-                {
-                    PeriodicOrders.Remove(order);
-                    return true;
-                }
-            }
-            return false;
-        }
-        */
-        /*
-        private void UpdateOneShotOrders(PetsiOrder? modOrder)
-        {
-            if (modOrder != null)
-            {
-                bool isFound = false;
-                int index = 0;
-                foreach (PetsiOrder order in OneShotOrders)
-                {
-                    if (order.OrderId == modOrder.OrderId)
-                    {
-                        index = OneShotOrders.IndexOf(order);
-                        isFound = true;
-                        break;
-                    }
-                }
-                if (isFound) { OneShotOrders[index] = modOrder; }
-            }
-
-            fileBehavior.DataListToFile(Identifiers.ONE_SHOT_ORDERS, OneShotOrders);
-        }
-        */
-        /*
-        private void UpdatePeriodicOrders(PetsiOrder? modOrder)
-        {
-            if (modOrder != null)
-            {
-                int index = 0;
-                bool isFound = false;
-                foreach (PetsiOrder order in PeriodicOrders)
-                {
-                    if (order.OrderId == modOrder.OrderId)
-                    {
-                        index = PeriodicOrders.IndexOf(order);
-                        isFound = true;
-                        break;
-                    }
-                }
-                if (isFound) { PeriodicOrders[index] = modOrder; }
-            }
-            fileBehavior.DataListToFile(Identifiers.PERIODIC_ORDERS, PeriodicOrders);
-        }
-        */
-        /*
-        public List<PetsiOrder> GetFrozenOrders()
-        {
-            return FrozenOrders;
-        }
-        */
 
         //Searches Current Order's lineitems for a newly added catalog item to update it's catalogObjectId to the user intervention's result.
         public void UpdateMultiLineMatchEvent()
@@ -642,7 +377,6 @@ namespace Petsi.Models
                         }
                         else
                         {
-                            //ModifyOrder(order);
                             AddOrder(order);
                         }
                     }

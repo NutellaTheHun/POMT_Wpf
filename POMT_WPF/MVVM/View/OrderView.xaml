@@ -161,7 +161,6 @@
                 ColumnHeaderStyle="{DynamicResource dashboardDataGridColumnHeaderStyle}"
                 IsSynchronizedWithCurrentItem="True"
                 ItemsSource="{Binding DashBoardOrdersView}"
-                LostFocus="dashboardDataGrid_LostFocus"
                 RowStyle="{DynamicResource dashboardDataGridRowStyle}"
                 Style="{DynamicResource dashboardDataGridStyle}">
                 <DataGrid.InputBindings>
