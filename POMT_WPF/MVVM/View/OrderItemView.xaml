@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:POMT_WPF.MVVM.View.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:v="clr-namespace:POMT_WPF.Validation"
     d:DesignHeight="700"
     d:DesignWidth="860"
     mc:Ignorable="d">
@@ -28,14 +29,22 @@
                     IsReadOnly="False"
                     StaysOpenOnEdit="True"
                     Text="{Binding ElementName=ItemNameTextBox, Path=Text}" />
-                <local:TextFillTextBox
+                <TextBox
                     x:Name="ItemNameTextBox"
+                    Width="120"
+                    Height="40"
                     Background="{StaticResource MintCream}"
-                    IsReadOnly="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged}"
-                    Style="{StaticResource orderFormItemnameTextFillTextBox}"
-                    Text="{Binding ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    TextChanged="ItemNameTextBox_TextChanged"
-                    TextFill="Item Name ..." />
+                    IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
+                    Style="{StaticResource ItemNameTextBox}"
+                    TextChanged="ItemNameTextBox_TextChanged">
+                    <TextBox.Text>
+                        <Binding Path="ItemName" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <v:ItemNameValidation />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
             </Grid>
         </DataTemplate>
     </UserControl.Resources>
@@ -88,7 +97,7 @@
             </StackPanel>
         </Grid>
 
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2" Margin="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="auto" />
@@ -107,10 +116,7 @@
                                     Style="{StaticResource GeneralField}"
                                     Text="{Binding Recipient, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                             </Grid>
-
                         </Border>
-
-
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
                         <Label Content="Email" />
@@ -263,8 +269,8 @@
                         <Grid Margin="1">
                             <DataGrid
                                 x:Name="orderFormDataGrid"
-                                Width="800"
-                                Height="350"
+                                Width="775"
+                                Height="325"
                                 BorderBrush="Transparent"
                                 CellStyle="{DynamicResource orderFormDataGridCellStyle}"
                                 ColumnHeaderStyle="{DynamicResource orderFormDataGridColumnHeaderStyle}"
@@ -276,8 +282,42 @@
                                     <DataGridTemplateColumn
                                         x:Name="orderFormTemplate"
                                         Width="auto"
-                                        CellTemplate="{StaticResource OrderFormItemNameTemplate}"
-                                        Header="Item Name" />
+                                        Header="Item Name">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <ComboBox
+                                                        x:Name="ItemNameComboBox"
+                                                        Width="120"
+                                                        Height="40"
+                                                        IsEditable="True"
+                                                        IsHitTestVisible="False"
+                                                        IsReadOnly="False"
+                                                        StaysOpenOnEdit="True"
+                                                        Text="{Binding ElementName=ItemNameTextBox, Path=Text}" />
+                                                    <TextBox
+                                                        x:Name="ItemNameTextBox"
+                                                        Width="120"
+                                                        Height="40"
+                                                        Background="{StaticResource MintCream}"
+                                                        IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
+                                                        Style="{StaticResource ItemNameTextBox}"
+                                                        TextChanged="ItemNameTextBox_TextChanged">
+                                                        <TextBox.Text>
+                                                            <Binding
+                                                                Mode="TwoWay"
+                                                                Path="ItemName"
+                                                                UpdateSourceTrigger="PropertyChanged">
+                                                                <Binding.ValidationRules>
+                                                                    <v:ItemNameValidation />
+                                                                </Binding.ValidationRules>
+                                                            </Binding>
+                                                        </TextBox.Text>
+                                                    </TextBox>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
                                     <DataGridTemplateColumn Width="*" Header="Regular">
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>

@@ -1,4 +1,4 @@
-﻿D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\GeneratedInternalTypeHelper.g.cs
+﻿
 FD:\Git-Repos\POMT_WPF\POMT_WPF\App.xaml;;
 FD:\Git-Repos\POMT_WPF\POMT_WPF\MainWindow.xaml;;
 FD:\Git-Repos\POMT_WPF\POMT_WPF\MVVM\View\AddLabelWindow.xaml;;
@@ -47,4 +47,5 @@ FD:\Git-Repos\POMT_WPF\POMT_WPF\Styles\Custom\TextFillTextBox\orderFormItemnameT
 FD:\Git-Repos\POMT_WPF\POMT_WPF\Styles\Custom\TextFillTextBox\orderFormTextFillTextBox.xaml;;
 FD:\Git-Repos\POMT_WPF\POMT_WPF\Styles\Custom\TextFillTextBox\TemplateViewTextFillTextBox.xaml;;
 FD:\Git-Repos\POMT_WPF\POMT_WPF\Styles\Custom\TextFillTextBox\textFillTextBox.xaml;;
+FD:\Git-Repos\POMT_WPF\POMT_WPF\Styles\Templates\ValidationTemplates\ItemNameValidationFail.xaml;;
 

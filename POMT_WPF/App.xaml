@@ -42,6 +42,7 @@
                 <ResourceDictionary Source="Styles/TextBox/textBoxSearch.xaml" />
                 <ResourceDictionary Source="Styles/TextBox/textBoxFilter.xaml" />
                 <ResourceDictionary Source="Styles/TextBox/GeneralTextBox.xaml" />
+                <ResourceDictionary Source="Styles/TextBox/ItemNameTextBox.xaml" />
 
                 <ResourceDictionary Source="Styles/ToggleButton/tabButton.xaml" />
                 <ResourceDictionary Source="Styles/ToggleButton/orderFormFreezeButton.xaml" />
@@ -72,6 +73,7 @@
                 <ResourceDictionary Source="Styles/Templates/GeneralField.xaml" />
                 <ResourceDictionary Source="Styles/Templates/GeneralBackButton.xaml" />
                 <ResourceDictionary Source="Styles/Templates/GeneralCloseButton.xaml" />
+                <ResourceDictionary Source="Styles/Templates/ValidationTemplates/ItemNameValidationFail.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
 

@@ -58,6 +58,7 @@ namespace Petsi.Services
             }
             return false;
         }
+
         //For ItemName form validating
         public bool TryValidateItemName(string name, out string catalogId)
         {
@@ -76,6 +77,24 @@ namespace Petsi.Services
                 return true;
             }
             catalogId = "";
+            return false;
+        }
+        //For ItemName form validating
+        public bool ValidateItemName(string name)
+        {
+            List<CatalogItemPetsi> results = new List<CatalogItemPetsi>();
+
+            foreach (CatalogItemPetsi item in catalog)
+            {
+                if (item.ItemName.ToLower().Equals(name.ToLower()) || item.NaturalNameEquals(name.ToLower()))
+                {
+                    results.Add(item);
+                }
+            }
+            if (results.Count == 1)
+            {
+                return true;
+            }
             return false;
         }
 

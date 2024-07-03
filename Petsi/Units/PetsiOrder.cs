@@ -103,25 +103,5 @@ namespace Petsi.Units
         public override FrameBehaviorBase GetFrameBehavior(){return frameBehavior;}
 
         public List<PetsiOrderLineItem> GetLineItems(){ return LineItems;}
-
-        /*
-        isValidOrder:
-        Name not null
-        is pickup or delivery
-            if delivery and not wholesale:
-                deliveryAddr not null
-                phoneNumber not null
-
-        OrderType not null
-
-        is weekly or oneTime
-                if oneTime datepicker is not null
-                if weekly day of week is not null
-
-        if isValidLineItems
-           lineitem name is valid
-           has atleast 1 quantity
-
-         */
     }
 }

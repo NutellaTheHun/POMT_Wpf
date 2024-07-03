@@ -297,10 +297,16 @@
     <Page Update="Styles\Templates\GeneralField.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Styles\Templates\ValidationTemplates\ItemNameValidationFail.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Styles\TextBlock\orderTextBlock.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\TextBox\GeneralTextBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\TextBox\ItemNameTextBox.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\TextBox\newOrderTextBox.xaml">

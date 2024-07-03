@@ -218,6 +218,7 @@ namespace POMT_WPF.MVVM.View
             }
         }
 
+        //Makes Red
         private void ItemNameTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             //# D64933 chili red
@@ -237,6 +238,8 @@ namespace POMT_WPF.MVVM.View
                 itemNameTextBox.Background = brush;
             }
         }
+
+        //Makes Red
         private void itemNameComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //#D64933 chili red
@@ -260,6 +263,7 @@ namespace POMT_WPF.MVVM.View
             }
         }
 
+        /// Makes Red
         private void itemNameComboBox_LostFocus(object sender, RoutedEventArgs e)
         {
              //#D64933 chili red
