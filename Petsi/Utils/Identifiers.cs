@@ -12,6 +12,9 @@ namespace Petsi.Utils
         public const string ONE_SHOT_ORDERS = "oneShotOrder";
         public const string FROZEN_ORDERS = "frozenOrders";
 
+        public const string ORDER_FREQUENCY_WEEKLY = "Weekly";
+        public const string ORDER_FREQUENCY_ONE_TIME = "OneTime";
+
         public const string DELETED_ORDERS = "deletedOrders";
 
         public const string ORDER_TYPE_SQUARE = "Square";

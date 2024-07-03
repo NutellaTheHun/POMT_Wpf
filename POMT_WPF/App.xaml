@@ -65,6 +65,7 @@
 
                 <ResourceDictionary Source="Styles/Borders/GeneralBorder.xaml" />
                 <ResourceDictionary Source="Styles/Borders/GeneralWindowBorder.xaml" />
+                <ResourceDictionary Source="Styles/Borders/OrderFormErrorBorder.xaml" />
 
                 <ResourceDictionary Source="Styles/CheckBox/CheckBoxStyle1.xaml" />
 

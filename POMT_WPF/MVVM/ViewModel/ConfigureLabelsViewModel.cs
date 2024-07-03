@@ -49,6 +49,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 CatalogItemPetsi item = (CatalogItemPetsi)o;
                 item.StandardLabelFilePath = null;
                 item.CutieLabelFilePath = null;
+                //save?
             }
         }
 

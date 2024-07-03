@@ -1,10 +1,13 @@
-﻿using Petsi.Interfaces;
-using Petsi.Managers;
+﻿using Petsi.Managers;
 using Petsi.Models;
+using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
+using Petsi.Events.OrderItemEvents;
 using POMT_WPF.Core;
 using System.Collections.ObjectModel;
+using POMT_WPF.MVVM.View;
+using POMT_WPF.MVVM.ObsModels;
 
 namespace POMT_WPF.MVVM.ViewModel
 {
@@ -38,6 +41,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }
+
         public string PhoneNumber
         {
             get { return Order.PhoneNumber; }
@@ -50,6 +54,75 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }
+       
+        public string DeliveryAddr
+        {
+            get { return Order.DeliveryAddress;  }
+            set
+            {
+                if (value != Order.DeliveryAddress)
+                {
+                    Order.DeliveryAddress = value;
+                    OnPropertyChanged(nameof(DeliveryAddr));
+                }
+            }
+        }
+
+        public string Notes
+        {
+            get { return Order.Note; }
+            set
+            {
+                if (value != Order.Note)
+                {
+                    Order.Note = value;
+                    OnPropertyChanged(nameof(Notes));
+                }
+            }
+        }
+
+        public string OrderType
+        {
+            get { return Order.OrderType;  }
+            set
+            {
+                if (value != Order.OrderType)
+                {
+                    Order.OrderType = value;
+                    OnPropertyChanged(nameof(OrderType));
+                }
+            }
+        }
+
+        public string FulfillmentType
+        {
+            get { return Order.FulfillmentType;}
+            set
+            {
+                if (value != Order.FulfillmentType)
+                {
+                    Order.FulfillmentType = value;
+                    OnPropertyChanged(nameof(FulfillmentType));
+                }
+            }
+        }
+
+        private string _orderFrequency;
+        public string OrderFrequency
+        {
+            get { if (_orderFrequency != null) return _orderFrequency; return ""; }
+            set
+            {
+                if (value != _orderFrequency)
+                {
+                    _orderFrequency = value;
+                    if (OrderFrequency == Identifiers.ORDER_FREQUENCY_WEEKLY) { Order.IsPeriodic = true; }
+                    else if (OrderFrequency == Identifiers.ORDER_FREQUENCY_ONE_TIME) { Order.IsOneShot = true; }
+                    OnPropertyChanged(nameof(OrderFrequency));
+                }
+            }
+        }
+
         private string _time;
         public string Time
         {
@@ -63,68 +136,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }
-        public string DeliveryAddr
-        {
-            get { return Order.DeliveryAddress;  }
-            set
-            {
-                if (value != Order.DeliveryAddress)
-                {
-                    Order.DeliveryAddress = value;
-                    OnPropertyChanged(nameof(DeliveryAddr));
-                }
-            }
-        }
-        public string Notes
-        {
-            get { return Order.Note; }
-            set
-            {
-                if (value != Order.Note)
-                {
-                    Order.Note = value;
-                    OnPropertyChanged(nameof(Notes));
-                }
-            }
-        }
-        public string OrderType
-        {
-            get { return Order.OrderType;  }
-            set
-            {
-                if (value != Order.OrderType)
-                {
-                    Order.OrderType = value;
-                    OnPropertyChanged(nameof(OrderType));
-                }
-            }
-        }
-        public string FulfillmentType
-        {
-            get { return Order.FulfillmentType;}
-            set
-            {
-                if (value != Order.FulfillmentType)
-                {
-                    Order.FulfillmentType = value;
-                    OnPropertyChanged(nameof(FulfillmentType));
-                }
-            }
-        }
-        private string _orderFrequency;
-        public string OrderFrequency
-        {
-            get { if (_orderFrequency != null) return _orderFrequency; return ""; }
-            set
-            {
-                if (value != _orderFrequency)
-                {
-                    _orderFrequency = value;
-                    OnPropertyChanged(nameof(OrderFrequency));
-                }
-            }
-        }
-        
+
         private DateTime _fulfillmentDate;
         public DateTime FulfillmentDate
         {
@@ -138,6 +150,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }
+
         private bool _canDelete;
         public bool CanDelete
         {
@@ -151,6 +164,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }
+
         private bool _canSave;
         public bool CanSave
         {
@@ -164,6 +178,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }
+
         private bool _canFreeze;
         public bool CanFreeze
         {
@@ -177,6 +192,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }
+
         private bool _canModify;
         public bool CanModify
         {
@@ -202,6 +218,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }
+
         private bool _isEdit;
         public bool IsEdit
         {
@@ -229,6 +246,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }
+
         private int _totalAmount5;
         public int TotalAmount5
         {
@@ -242,6 +260,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }
+
         private int _totalAmount8;
         public int TotalAmount8
         {
@@ -255,6 +274,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }
+
         private int _totalAmount10;
         public int TotalAmount10
         {
@@ -268,6 +288,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }
+
         private int _totalAmountReg;
         public int TotalAmountReg
         {
@@ -311,14 +332,15 @@ namespace POMT_WPF.MVVM.ViewModel
                 CanFreeze = true;
                 CanModify = true;
                 LineItems = new ObservableCollection<PetsiOrderLineItem>();
+                FulfillmentDate = DateTime.Now;
             }
             else
             {
                 Time = DateTime.Parse(orderContext.OrderDueDate).ToShortTimeString();
                 FulfillmentDate = DateTime.Parse(orderContext.OrderDueDate);
 
-                if (orderContext.IsPeriodic) { OrderFrequency = "Weekly"; }
-                else if (orderContext.IsOneShot) { OrderFrequency = "One Time"; }
+                if (orderContext.IsPeriodic) { OrderFrequency = Identifiers.ORDER_FREQUENCY_WEEKLY; }
+                else if (orderContext.IsOneShot) { OrderFrequency = Identifiers.ORDER_FREQUENCY_ONE_TIME; }
 
                 if(Order.IsUserEntered)
                 {
@@ -335,13 +357,14 @@ namespace POMT_WPF.MVVM.ViewModel
 
                 LineItems = new ObservableCollection<PetsiOrderLineItem>(orderContext.LineItems);
             }
+
             UpdateColumnTotals();
 
             OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
 
             OrderTypes = new ObservableCollection<string>(orderModel.GetOrderTypes());
-            OrderFrequencies = new ObservableCollection<string>() { "Weekly", "One Time" };
-            FulfillmentTypes = new ObservableCollection<string>() { "PICKUP", "DELIVERY" };
+            OrderFrequencies = new ObservableCollection<string>() { Identifiers.ORDER_FREQUENCY_WEEKLY, Identifiers.ORDER_FREQUENCY_ONE_TIME };
+            FulfillmentTypes = new ObservableCollection<string>() { Identifiers.FULFILLMENT_PICKUP, Identifiers.FULFILLMENT_DELIVERY };
 
             LineItems.CollectionChanged += (s, e) => Order.LineItems = LineItems.ToList();
             LineItems.CollectionChanged += (s, e) => UpdateColumnTotals();
@@ -367,46 +390,51 @@ namespace POMT_WPF.MVVM.ViewModel
         
         private void DeleteLine(object o)
         {
-            /*
-            ConfirmationWindow confirmationWindow = new ConfirmationWindow();
-            confirmationWindow.ShowDialog();
-            if (confirmationWindow.ControlBool)
-            {
-                
-            }
-            */
             if (o is PetsiOrderLineItem lineItem)
             {
-                int count = LineItems.Count;
-                LineItems.Remove(lineItem);
-                if(LineItems.Count != count - 1)
+                ConfirmationWindow confirmationWindow = new ConfirmationWindow();
+                confirmationWindow.ShowDialog();
+                if (confirmationWindow.ControlBool)
                 {
-                    SystemLogger.Log("Delete Line Command failed to remove");
+                    int count = LineItems.Count;
+                    LineItems.Remove(lineItem);
+                    if (LineItems.Count != count - 1)
+                    {
+                        SystemLogger.Log("Delete Line Command failed to remove");
+                    }
                 }
+                
             }
         }
 
         private void SaveOrder()
         {
-            //if valid
-            //else notify required fields
+            // TEST!!!!!!!!!!!!!!!!!!!
+            //Time = DateTime.Parse(orderContext.OrderDueDate).ToShortTimeString();
+            //FulfillmentDate = DateTime.Parse(orderContext.OrderDueDate);
+            Order.OrderDueDate = DateTime.Parse(FulfillmentDate.ToShortDateString() +" " + Time).ToString();
 
-            //ObsOrderModelSingleton.Instance.AddOrder(Order);
-
-            //either SAVED notification or GO BACK
+            //if (OrderFrequency == Identifiers.ORDER_FREQUENCY_WEEKLY) { Order.IsPeriodic = true; }
+            //else if(OrderFrequency == Identifiers.ORDER_FREQUENCY_ONE_TIME) { Order.IsOneShot = true; }
+            
+            if(IsValidOrder())
+            {
+                //if valid
+                //else notify required fields
+                ObsOrderModelSingleton.Instance.AddOrder(Order);
+                //either SAVED notification or GO BACK
+            }
         }
 
         private void DeleteOrder()
-        {
-            /*
-              ConfirmationWindow confirmationWindow = new ConfirmationWindow();
+        {     
+            ConfirmationWindow confirmationWindow = new ConfirmationWindow();
             confirmationWindow.ShowDialog();
             if (confirmationWindow.ControlBool)
             {
                 ObsOrderModelSingleton.Instance.RemoveOrder(Order);
-            }
-            */
-            MainViewModel.Instance().BackOrderView();
+                MainViewModel.Instance().BackOrderView();
+            }   
         }
 
         private void UpdateColumnTotals()
@@ -429,6 +457,54 @@ namespace POMT_WPF.MVVM.ViewModel
             TotalAmount8 = amount8Sum;
             TotalAmount10 = amount10Sum;
             TotalAmountReg = amountRegSum;
+        }
+        private bool IsValidOrder()
+        {
+            bool controlbool = true;
+
+            //Make events to highlight the relevant fields red? Already want events to modify order state based on changs, like to order type
+            // weekly -> DOTW combo box, oneTime -> datepicker, ect.
+            
+            if(Recipient == null) { controlbool = false; OrderItemViewEvents.OnRecipientInvalid(); }
+            if(FulfillmentType == null) { controlbool = false; OrderItemViewEvents.OnFulfillmentInvalid(); }
+            if(OrderType == null) { controlbool = false; OrderItemViewEvents.OnOrderTypeInvalid(); }
+            if(OrderFrequency == "") { controlbool = false; OrderItemViewEvents.OnFrequencyInvalid(); }
+
+            CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
+            if (!IsValidLineItems(cs)) { controlbool = false; OrderItemViewEvents.OnLineItemsInvalid(); }
+
+            if(OrderType != Identifiers.ORDER_TYPE_WHOLESALE && FulfillmentType == Identifiers.FULFILLMENT_DELIVERY) 
+            {
+                if(DeliveryAddr == null) { controlbool = false; OrderItemViewEvents.OnDelAddressInvalid(); }
+                if(PhoneNumber == null) { controlbool = false; OrderItemViewEvents.OnPhoneInvalid(); }
+            }
+
+            if(OrderFrequency == Identifiers.ORDER_FREQUENCY_ONE_TIME && FulfillmentDate == default) { controlbool = false; OrderItemViewEvents.OnDatePickerInvalid(); }
+            if(OrderFrequency == Identifiers.ORDER_FREQUENCY_ONE_TIME && FulfillmentDate < DateTime.Today) { controlbool = false; OrderItemViewEvents.OnDatePickerLessThanInvalid(); }
+
+            if(OrderFrequency == Identifiers.ORDER_FREQUENCY_WEEKLY /* && DOTW == null */) { controlbool = false; OrderItemViewEvents.OnDOTWInvalid(); }
+
+            return controlbool;
+        }
+
+        private bool IsValidLineItems(CatalogService cs)
+        {
+            foreach (PetsiOrderLineItem lineItem in LineItems)
+            {
+                string id = cs.GetCatalogObjectId(lineItem.ItemName);
+                if (id == "") { return false; }
+                if (lineItem.CatalogObjectId != id) { return false; }
+                if (lineItem.ItemName == "" || lineItem.ItemName == null) { return false; }
+                if (lineItem.AmountRegular == 0
+                       && lineItem.Amount3 == 0
+                       && lineItem.Amount5 == 0
+                       && lineItem.Amount8 == 0
+                      && lineItem.Amount10 == 0)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

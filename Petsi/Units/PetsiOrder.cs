@@ -35,8 +35,7 @@ namespace Petsi.Units
         public List<PetsiOrderLineItem> LineItems{ get; set; }
 
         public PetsiOrder(PetsiOrder? source)
-        {
-
+        { 
             if(source != null)
             {
                 frameBehavior = source.frameBehavior;
@@ -101,47 +100,28 @@ namespace Petsi.Units
             LineItems = lineItems;
             frameBehavior = new PetsiOrderFrameBehavior(this);
         }
-        public override FrameBehaviorBase GetFrameBehavior()
-        {
-            return frameBehavior;
-        }
+        public override FrameBehaviorBase GetFrameBehavior(){return frameBehavior;}
 
-        public List<PetsiOrderLineItem> GetLineItems()
-        {
-            return LineItems;
-        }
+        public List<PetsiOrderLineItem> GetLineItems(){ return LineItems;}
 
-        //public bool Equals(PetsiOrder? other)
-        //{
-        //    if (InputOriginType != other.InputOriginType)
-        //    {
-        //        return false;
-        //    }
-        //    if (Recipient.ToLower() != other.Recipient.ToLower())
-        //    {
-        //        return false;
-        //    }
-        //    if(OrderId != other.OrderId)
-        //    {
-        //        return false;
-        //    }
-        //    if(OrderDueDate != other.OrderDueDate)
-        //    {
-        //        return false;
-        //    }
-        //    if(FulfillmentType != other.FulfillmentType)
-        //    {
-        //        return false;
-        //    }
-        //    if (Note != other.Note)
-        //    {
-        //        return false;
-        //    }
-        //    foreach(PetsiOrderLineItem lineItem in other.LineItems)
-        //    {
-        //        if (!LineItems.Contains(lineItem)){ return false; }
-        //    }
-        //    return true;
-        //}
+        /*
+        isValidOrder:
+        Name not null
+        is pickup or delivery
+            if delivery and not wholesale:
+                deliveryAddr not null
+                phoneNumber not null
+
+        OrderType not null
+
+        is weekly or oneTime
+                if oneTime datepicker is not null
+                if weekly day of week is not null
+
+        if isValidLineItems
+           lineitem name is valid
+           has atleast 1 quantity
+
+         */
     }
 }

@@ -415,8 +415,6 @@ namespace POMT_WPF.MVVM.ViewModel
             {
                 _order.IsFrozen = false;
             }
-        }
-
-        
+        }  
     }
 }

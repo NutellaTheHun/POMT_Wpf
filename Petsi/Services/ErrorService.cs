@@ -5,13 +5,13 @@ using Petsi.Utils;
 
 namespace Petsi.Services
 {
-    public class ErrorService : ServiceBase
+    public class ErrorService
     {
         #region singleton/Observer
         public static ErrorService instance;
         private ErrorService()
         {
-            SetServiceName(Identifiers.SERVICE_ERROR);
+            //SetServiceName(Identifiers.SERVICE_ERROR);
         }
 
         public static ErrorService Instance()
@@ -19,11 +19,12 @@ namespace Petsi.Services
             if (instance == null) { instance = new ErrorService(); }
             return instance;
         }
+        /*
         public override void Update(ModelBase model)
         {
             throw new NotImplementedException();
         }
-
+        */
         #endregion
 
         #region events
@@ -94,8 +95,6 @@ namespace Petsi.Services
                     Instance().SoiMultiItem?.Invoke(Instance(), args);
                 }
             }
-        }
-
-        
+        }  
     }
 }

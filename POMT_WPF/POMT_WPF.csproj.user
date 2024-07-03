@@ -186,6 +186,9 @@
     <Page Update="Styles\Borders\GeneralWindowBorder.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Styles\Borders\OrderFormErrorBorder.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Styles\Brushes.xaml">
       <SubType>Designer</SubType>
     </Page>
