@@ -106,6 +106,7 @@ namespace Petsi.Units
             AmountRegular += sourceItem.AmountRegular;
         }
 
+        
         public bool Equals(PetsiOrderLineItem? other)
         {
             if(other.ItemName != null && ItemName.ToLower() != other.ItemName.ToLower()) {  return false; }
@@ -118,7 +119,7 @@ namespace Petsi.Units
             
             return true;
         }
-
+        
         public bool IsPOTM()
         {
            CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);

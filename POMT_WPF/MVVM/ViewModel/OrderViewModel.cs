@@ -14,6 +14,7 @@ namespace POMT_WPF.MVVM.ViewModel
         //private OrderView view;
 
         public RelayCommand OpenOrderItemView { get; set; }
+        public RelayCommand OpenNewOrderItemView { get; set; }
         public RelayCommand FilterNone { get; set; }
         public RelayCommand FilterWholesale { get; set; }
         public RelayCommand FilterSquare { get; set; }
@@ -84,8 +85,7 @@ namespace POMT_WPF.MVVM.ViewModel
             //ObsOrderModelSingleton.Instance.Subscribe(this);
 
             _orders = ObsOrderModelSingleton.Instance.Orders;
-
-            
+         
             DashboardOrders.Source = _orders;
             DashBoardOrdersView.MoveCurrentTo(null);
             currentFilter = NoFilter;
@@ -95,7 +95,9 @@ namespace POMT_WPF.MVVM.ViewModel
 
             TotalOrderCount = _orders.Count();
 
-            OpenOrderItemView = new RelayCommand(o => { MainViewModel.Instance().OpenOrderItemView(o); });
+            OpenOrderItemView = new RelayCommand(o => { MainViewModel.Instance().OpenOrderItemView(o); DashBoardOrdersView.MoveCurrentTo(null); });
+
+            OpenNewOrderItemView = new RelayCommand(o => { MainViewModel.Instance().OpenNewOrderItemView(); DashBoardOrdersView.MoveCurrentTo(null); });
 
             FilterNone = new RelayCommand(o => { ChangeFilter(NoFilter);});
 

@@ -326,13 +326,13 @@ namespace POMT_WPF.MVVM.ViewModel
 
             if(orderContext == null)
             {
+                Order.IsUserEntered = true;
                 IsEdit = true;
                 CanDelete = false;
                 CanSave = true;
                 CanFreeze = true;
                 CanModify = true;
                 LineItems = new ObservableCollection<PetsiOrderLineItem>();
-                FulfillmentDate = DateTime.Now;
             }
             else
             {
@@ -493,6 +493,7 @@ namespace POMT_WPF.MVVM.ViewModel
             {
                 string id = cs.GetCatalogObjectId(lineItem.ItemName);
                 if (id == "") { return false; }
+                if(lineItem.CatalogObjectId == "") { lineItem.CatalogObjectId = id; }
                 if (lineItem.CatalogObjectId != id) { return false; }
                 if (lineItem.ItemName == "" || lineItem.ItemName == null) { return false; }
                 if (lineItem.AmountRegular == 0

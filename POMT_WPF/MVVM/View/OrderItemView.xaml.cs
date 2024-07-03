@@ -31,6 +31,8 @@ namespace POMT_WPF.MVVM.View
             events.DelAddressInvalid += HighlightDelAddress;
             events.OrderTypeInvalid += HighlightOrderType;
             events.LineItemsInvalid += HighlightLineItems;
+
+            OrderDatePicker.SelectedDate = null;
         }
         private void ItemNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {

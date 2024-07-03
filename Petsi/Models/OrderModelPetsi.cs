@@ -60,8 +60,11 @@ namespace Petsi.Models
             List<PetsiOrder> OneShotOrders = new List<PetsiOrder>();
             foreach (var order in Orders)
             {
-                if (order.IsPeriodic) PeriodicOrders.Add(order);
-                else if (order.IsOneShot) OneShotOrders.Add(order);
+                if (order.IsUserEntered)
+                {
+                    if (order.IsPeriodic) PeriodicOrders.Add(order);
+                    else if (order.IsOneShot) OneShotOrders.Add(order);
+                }
             }
             fileBehavior.DataListToFile(Identifiers.PERIODIC_ORDERS, PeriodicOrders);
             fileBehavior.DataListToFile(Identifiers.ONE_SHOT_ORDERS, OneShotOrders);

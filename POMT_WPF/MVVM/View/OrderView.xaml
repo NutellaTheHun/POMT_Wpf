@@ -56,7 +56,7 @@
                 Grid.Row="1"
                 Margin="0,0,0,4"
                 VerticalAlignment="Center"
-                Command="{Binding OpenOrderItemView}"
+                Command="{Binding OpenNewOrderItemView}"
                 Style="{StaticResource addButton}">
                 <StackPanel Orientation="Horizontal">
                     <Icon:PackIconMaterial
@@ -159,6 +159,7 @@
                 Margin="0,11,0,1"
                 CellStyle="{DynamicResource dashboardDataGridCellStyle}"
                 ColumnHeaderStyle="{DynamicResource dashboardDataGridColumnHeaderStyle}"
+                IsSynchronizedWithCurrentItem="True"
                 ItemsSource="{Binding DashBoardOrdersView}"
                 LostFocus="dashboardDataGrid_LostFocus"
                 RowStyle="{DynamicResource dashboardDataGridRowStyle}"

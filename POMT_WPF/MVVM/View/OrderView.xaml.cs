@@ -110,7 +110,9 @@ namespace POMT_WPF.MVVM.View
 
         private void dashboardDataGrid_LostFocus(object sender, System.Windows.RoutedEventArgs e)
         {
-            //dashboardDataGrid.SelectedItem = null;
+            DataGrid dg = (DataGrid)sender;
+            dg.SelectedItem = null;
+            dg.SelectedValue = null;
         }
     }
 }
