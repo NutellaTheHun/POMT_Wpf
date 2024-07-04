@@ -104,8 +104,8 @@ namespace POMT_WPF.MVVM.ViewModel
         private void DoneCommand() 
         {
             //Update Item
-            _view.CloseWin();
+            _view.Close();
         }
-        private void CloseCommand() { _view.CloseWin(); }
+        private void CloseCommand() { _view.Close(); }
     }
 }

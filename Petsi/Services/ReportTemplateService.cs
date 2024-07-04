@@ -58,7 +58,8 @@ namespace Petsi.Services
             if (existingTemplate != default) { items.Remove(existingTemplate); } //Needs testing, default in this case?
             items.Add(newTemplate);
             NotifySubscribers();
-            Save(); }
+            Save(); 
+        }
 
         /// <summary>
         /// removes template and saves new list to file

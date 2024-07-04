@@ -42,14 +42,13 @@ namespace POMT_WPF.MVVM.ViewModel
         }
         private void RemoveTemplateCmd(object o)
         {
-            /*
             ConfirmationWindow confirmationWindow = new ConfirmationWindow();
             confirmationWindow.ShowDialog();
             if (confirmationWindow.ControlBool)
             {
-                _templateService.RemoveTemplate((string)o);
+                ReportTemplateService rts = ReportTemplateService.Instance();
+                rts.RemoveTemplate((string)o);
             }
-            */
         }
         private void ViewTemplateCmd(object? o)
         {

@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:POMT_WPF.MVVM.View.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:v="clr-namespace:POMT_WPF.Validation"
     Title="TemplateItemViewWindow"
     Width="600"
     Height="720"
@@ -80,7 +81,33 @@
                         CanUserResizeRows="False"
                         ItemsSource="{Binding TemplateItems}">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding ItemName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Header="Item Name" />
+                            <DataGridTemplateColumn Width="auto" Header="Item Name">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <ComboBox
+                                                x:Name="ItemNameComboBox"
+                                                Style="{StaticResource ItemNameComboBox}"
+                                                Text="{Binding ElementName=ItemNameTextBox, Path=Text}" />
+                                            <TextBox
+                                                x:Name="ItemNameTextBox"
+                                                Style="{StaticResource ItemNameTextBox}"
+                                                TextChanged="ItemNameTextBox_TextChanged">
+                                                <TextBox.Text>
+                                                    <Binding
+                                                        Mode="TwoWay"
+                                                        Path="ItemName"
+                                                        UpdateSourceTrigger="PropertyChanged">
+                                                        <Binding.ValidationRules>
+                                                            <v:ItemNameValidation />
+                                                        </Binding.ValidationRules>
+                                                    </Binding>
+                                                </TextBox.Text>
+                                            </TextBox>
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                             <DataGridTextColumn Binding="{Binding PageDisplayName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Header="Display Name" />
                         </DataGrid.Columns>
                     </DataGrid>
@@ -110,7 +137,7 @@
                 <Button
                     Width="80"
                     Margin="0,0,60,0"
-                    Command="{Binding Done}"
+                    Command="{Binding Save}"
                     Content="Save"
                     Style="{StaticResource secondaryButton}" />
             </Grid>
