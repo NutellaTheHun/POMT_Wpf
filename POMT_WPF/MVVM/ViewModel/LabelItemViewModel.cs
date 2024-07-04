@@ -5,7 +5,6 @@ using Petsi.Utils;
 using POMT_WPF.Core;
 using POMT_WPF.MVVM.ObsModels;
 using POMT_WPF.MVVM.View;
-using System.IO;
 using System.Windows.Forms;
 
 namespace POMT_WPF.MVVM.ViewModel
@@ -96,7 +95,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 fileDialog.InitialDirectory = labelsFilepath + "\\Pie";
                 if (fileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    PieFile = Path.GetFileName(fileDialog.FileName);
+                    PieFile = System.IO.Path.GetFileName(fileDialog.FileName);
                 }
             }
         }
@@ -109,7 +108,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 fileDialog.InitialDirectory = labelsFilepath + "\\Cuties";
                 if (fileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    CutieFile = Path.GetFileName(fileDialog.FileName);
+                    CutieFile = System.IO.Path.GetFileName(fileDialog.FileName);
                 }
             }
         }

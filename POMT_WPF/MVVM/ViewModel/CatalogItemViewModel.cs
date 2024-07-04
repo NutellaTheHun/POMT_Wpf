@@ -16,6 +16,7 @@ namespace POMT_WPF.MVVM.ViewModel
     {
         public CatalogItemPetsi cItem;
         private CategoryService _categoryService;
+
         #region props
 
         public CatalogItemPetsi? VeganMapping
@@ -363,7 +364,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 fileDialog.InitialDirectory = labelsFilepath + "\\Pie";
                 if (fileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    StandardLabelFilePath = fileDialog.FileName;
+                    StandardLabelFilePath = System.IO.Path.GetFileName(fileDialog.FileName);
                 }
             }
         }
@@ -376,7 +377,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 fileDialog.InitialDirectory = labelsFilepath + "\\Cuties";
                 if (fileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    CutieLabelFilePath = fileDialog.FileName;
+                    CutieLabelFilePath = System.IO.Path.GetFileName(fileDialog.FileName);
                 }
             }
         }
