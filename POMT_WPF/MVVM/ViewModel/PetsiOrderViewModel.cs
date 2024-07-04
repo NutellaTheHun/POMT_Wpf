@@ -304,7 +304,7 @@ namespace POMT_WPF.MVVM.ViewModel
             _order.OrderDueDate = DateTime.Parse(Date + " " + pickupTime).ToString();
             _order.InputOriginType = Identifiers.USER_ENTERED_INPUT;
             _order.IsUserEntered = true;
-            _order.OrderId = omp.GenerateOrderId();
+            _order.OrderId = PetsiOrder.GenerateOrderId();
 
             omp.AddItem(_order);
         }

@@ -3,6 +3,7 @@ using Petsi.CommandLine;
 using Petsi.Managers;
 using Petsi.Models;
 using Petsi.Reports.ReportBuilder;
+using Petsi.Units;
 using Petsi.Utils;
 
 namespace Petsi.Reports
@@ -19,27 +20,49 @@ namespace Petsi.Reports
 
         public FrameBehaviorBase GetFrameBehavior() { return frameBehavior; }
 
-        public IXLWorkbook CreateFrontList(DateTime? targetDate)
+        public IXLWorkbook CreateFrontList(DateTime? targetDate, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater)
         {
             Report report = new Report("FrontList");
             ReportBuilderFrontList builder = new ReportBuilderFrontList(report);
 
             orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+            List<PetsiOrder> orders = FilterOrders(orderModel.GetOrders(), isRetail, isSquare, isWholesale, isSpecial, isEzCater);
 
-            builder.BuildReport(orderModel.GetFrontListData(targetDate), targetDate, null);
+            IEnumerable<PetsiOrder> query;
+            if (targetDate != null)
+            {//doesn't filter out wholesale because they're used for Coverpage and notes page, order data is filtered out in report builders
+                query =
+                from order in orders
+                where (order.IsPeriodic == true && DateTime.Parse(order.OrderDueDate).DayOfWeek == targetDate.Value.DayOfWeek)  //wholesale/periodic is weekly, so by day of week
+                      ||
+                     (order.IsPeriodic == false && DateTime.Parse(order.OrderDueDate).ToShortDateString() == targetDate.Value.ToShortDateString())
+                orderby order.FulfillmentType, DateTime.Parse(order.OrderDueDate).TimeOfDay
+                select order;
+            }
+            else
+            {
+                query =
+                from order in orders
+                orderby order.FulfillmentType, DateTime.Parse(order.OrderDueDate).TimeOfDay
+                select order;
+            }
+
+            //builder.BuildReport(orderModel.GetFrontListData(targetDate), targetDate, null);
+            builder.BuildReport(query.ToList(), targetDate, null);
 
             report.FinalizeReport();
 
             return report.Wb;
         }
-        public IXLWorkbook CreateBackList(DateTime? targetDate, DateTime? endDate)
+        public IXLWorkbook CreateBackList(DateTime? targetDate, DateTime? endDate, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater)
         {
             Report report = new Report("BackList");
             ReportBuilderBackList builder = new ReportBuilderBackList(report);
 
             orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+            List<PetsiOrder> orders = FilterOrders(orderModel.GetOrders(), isRetail, isSquare, isWholesale, isSpecial, isEzCater);
 
-            if(endDate == null)//if endDate is null, report is for single day, targetDate is used in report header as targetDate
+            if (endDate == null)//if endDate is null, report is for single day, targetDate is used in report header as targetDate
             {
                 builder.BuildReport(orderModel.GetBackListData(targetDate, endDate), targetDate, endDate);
             }
@@ -56,12 +79,13 @@ namespace Petsi.Reports
 
             return report.Wb;
         }
-        public IXLWorkbook CreateWsDay(DateTime? targetDate)
+        public IXLWorkbook CreateWsDay(DateTime? targetDate, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater)
         {
             Report report = new Report("WholesaleByDay");
             ReportBuilderWsDay builder = new ReportBuilderWsDay(report);
 
             orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+            List<PetsiOrder> orders = FilterOrders(orderModel.GetOrders(), isRetail, isSquare, isWholesale, isSpecial, isEzCater);
 
             builder.BuildReport(orderModel.GetWsDayData(targetDate), targetDate, null);
 
@@ -69,18 +93,38 @@ namespace Petsi.Reports
 
             return report.Wb;
         }
-        public IXLWorkbook CreateWsDayName(DateTime? targetDate)
+
+        public IXLWorkbook CreateWsDayName(DateTime? targetDate, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater)
         {
             Report report = new Report("WholesaleByDaybyName");
             ReportBuilderWsDayName builder = new ReportBuilderWsDayName(report);
 
             orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+            List<PetsiOrder> orders = FilterOrders(orderModel.GetOrders(), isRetail, isSquare, isWholesale, isSpecial, isEzCater);
 
             builder.BuildReport(orderModel.GetWsDayNameData(targetDate), targetDate, null);
             report.isLandscape = true;
             report.FinalizeReport();
 
             return report.Wb;
+        }
+
+       //
+        private List<PetsiOrder> FilterOrders(List<PetsiOrder> petsiOrders, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater)
+        {
+            List<PetsiOrder> result = new List<PetsiOrder>();
+            foreach (PetsiOrder order in petsiOrders)
+            {
+                if(order.IsFrozen) { continue; }
+
+                if(isRetail) { if (order.OrderType == Identifiers.ORDER_TYPE_RETAIL) result.Add(order); continue; }
+                if(isSquare) { if (order.OrderType == Identifiers.ORDER_TYPE_SQUARE) result.Add(order); continue; }
+                if(isWholesale) { if (order.OrderType == Identifiers.ORDER_TYPE_WHOLESALE) result.Add(order); continue; } 
+                if(isSpecial) { if (order.OrderType == Identifiers.ORDER_TYPE_SPECIAL) result.Add(order); continue; }
+                if(isEzCater) { if (order.OrderType == Identifiers.ORDER_TYPE_EZ_CATER) result.Add(order); continue; }
+            }
+
+            return result;
         }
     }
 }
