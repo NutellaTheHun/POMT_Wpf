@@ -96,8 +96,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 fileDialog.InitialDirectory = labelsFilepath + "\\Pie";
                 if (fileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    //PieFile = Path.GetFileName(fileDialog.FileName);
-                    PieFile = fileDialog.FileName;
+                    PieFile = Path.GetFileName(fileDialog.FileName);
                 }
             }
         }
@@ -115,15 +114,9 @@ namespace POMT_WPF.MVVM.ViewModel
             }
         }
 
-        private void ClearPieCommand()
-        {
-            PieFile = null;
-        }
+        private void ClearPieCommand(){ PieFile = null; }
 
-        private void ClearCutieCommand()
-        {
-            CutieFile = null;
-        }
+        private void ClearCutieCommand(){CutieFile = null; }
 
         private void DoneCommand() 
         {
