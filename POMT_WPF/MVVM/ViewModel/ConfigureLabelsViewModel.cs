@@ -26,7 +26,19 @@ namespace POMT_WPF.MVVM.ViewModel
                 } 
             } 
         }
-        public ObservableCollection<CatalogItemPetsi> Items { get; set; }
+        private ObservableCollection<CatalogItemPetsi> _items;
+        public ObservableCollection<CatalogItemPetsi> Items 
+        {
+            get { return _items; }
+            set
+            {
+                if (_items != value)
+                {
+                    _items = value;
+                    OnPropertyChanged(nameof(Items));
+                }
+            }
+        }
 
         public RelayCommand GoBack { get; set; }
         public RelayCommand ViewLabelMapping { get; set; }
@@ -57,10 +69,28 @@ namespace POMT_WPF.MVVM.ViewModel
                 window.ShowDialog();
                 if(window.ControlBool)
                 {
+                    /*
                     CatalogItemPetsi item = (CatalogItemPetsi)o;
                     item.StandardLabelFilePath = null;
                     item.CutieLabelFilePath = null;
                     //save?
+                    */
+                    CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
+                    CatalogItemPetsi itemToUpdate = cs.GetCatalogItem(((CatalogItemPetsi)o).ItemName);
+                    if (itemToUpdate != null)
+                    {
+                        itemToUpdate.StandardLabelFilePath = null;
+                        itemToUpdate.CutieLabelFilePath = null;
+
+                        //Bad naming in this instance, AddItem function modifies before adding, 
+                        //removing an item in this context is clearing the filepaths from the catalog item
+                        //not a true delete from the model.
+                        ObsCatalogModelSingleton.Instance.AddItem(itemToUpdate);
+                    }
+                    else
+                    {
+                        SystemLogger.Log("Label Configuration cannot find catalog item in model: " + ((CatalogItemPetsi)o).ItemName);
+                    }
                 }
             }
         }
@@ -99,7 +129,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 //Bad naming in this instance, AddItem function modifies before adding, 
                 //removing an item in this context is clearing the filepaths from the catalog item
                 //not a true delete from the model.
-                ObsCatalogModelSingleton.Instance.AddItem(item);
+                ObsCatalogModelSingleton.Instance.AddItem(item); //this is updating the wrong item lol
             }
             else
             {

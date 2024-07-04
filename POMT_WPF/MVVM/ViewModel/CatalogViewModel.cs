@@ -10,33 +10,8 @@ namespace POMT_WPF.MVVM.ViewModel
     public class CatalogViewModel : ViewModelBase, IObsCatalogModelSubscriber
     {
         CatalogModelPetsi cmp;
-
-        //ObservableCollection<CatalogItemPetsi> _items;
         public ObservableCollection<CatalogItemPetsi> Items { get; set; }
-        /*{
-            get { return _items; }
-            set {
-                if(_items != value)
-                {
-                    _items = value;
-                    OnPropertyChanged(nameof(Items));
-                }     
-            }
-        }*/
-
-        //ObservableCollection<CatalogItemPetsi> _filterItems;
         public ObservableCollection<CatalogItemPetsi> FilterItems { get; set; }
-        /*{
-            get { return _filterItems; }
-            set
-            {
-                if (_filterItems != value)
-                {
-                    _filterItems = value;
-                    OnPropertyChanged(nameof(FilterItems));
-                }
-            }
-        }*/
 
         public RelayCommand OpenCatalogItemView {  get; set; }
 
