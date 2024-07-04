@@ -52,7 +52,7 @@ namespace POMT_WPF.MVVM.View
             if (templateViewDataGrid.SelectedItem != null)
             {
                 bool deleteConfirmation = false;
-                ConfirmationWindow confirmationWindow = new ConfirmationWindow();
+                ConfirmationWindow confirmationWindow = new ConfirmationWindow(null);
                 confirmationWindow.ShowDialog();
                 if (confirmationWindow.ControlBool)
                 {

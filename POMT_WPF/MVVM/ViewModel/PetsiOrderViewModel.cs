@@ -306,7 +306,7 @@ namespace POMT_WPF.MVVM.ViewModel
             _order.IsUserEntered = true;
             _order.OrderId = omp.GenerateOrderId();
 
-            omp.AddOrder(_order);
+            omp.AddItem(_order);
         }
         /*
         public void ModifyOrder(string pickupTime)

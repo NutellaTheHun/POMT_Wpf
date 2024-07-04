@@ -123,5 +123,20 @@ namespace POMT_WPF.MVVM.ObsModels
             }
             Notify();
         }
+
+        public bool ContainsItem(CatalogItemPetsi cItem)
+        {
+            foreach (var item in Orders)
+            {
+                foreach(var lineItem in item.LineItems)
+                {
+                    if(lineItem.CatalogObjectId == cItem.CatalogObjectId)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
     }
 }

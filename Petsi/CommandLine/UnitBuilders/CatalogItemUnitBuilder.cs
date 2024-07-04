@@ -134,7 +134,7 @@ namespace Petsi.CommandLine.UnitBuilders
                         break;
                     case 4:
                         catalogObjectId = catalogService.GenerateCatalogId();
-                        model.AddOrder(new CatalogItemPetsi(categoryId, catalogObjectId, itemName, variations, naturalNames));
+                        model.AddItem(new CatalogItemPetsi(categoryId, catalogObjectId, itemName, variations, naturalNames));
                         contextChain.Pop();
                         step++;
                         break;

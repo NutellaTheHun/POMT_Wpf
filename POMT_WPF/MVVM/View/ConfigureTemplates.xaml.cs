@@ -38,7 +38,7 @@ namespace POMT_WPF.MVVM.View
             if (templateListbox.SelectedItem != null)
             {
                 bool deleteConfirmation = false;
-                ConfirmationWindow confirmationWindow = new ConfirmationWindow();
+                ConfirmationWindow confirmationWindow = new ConfirmationWindow(null);
                 confirmationWindow.ShowDialog();
                 if (confirmationWindow.ControlBool)
                 {

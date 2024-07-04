@@ -42,7 +42,7 @@ namespace POMT_WPF.MVVM.ViewModel
         }
         private void RemoveTemplateCmd(object o)
         {
-            ConfirmationWindow confirmationWindow = new ConfirmationWindow();
+            ConfirmationWindow confirmationWindow = new ConfirmationWindow(null);
             confirmationWindow.ShowDialog();
             if (confirmationWindow.ControlBool)
             {

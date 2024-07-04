@@ -55,7 +55,7 @@ namespace POMT_WPF.MVVM.View
                 CatalogItemPetsi matchItem = MultiItemList.FirstOrDefault(x => x.ItemName == selectedItemName);
                 matchItem.NaturalNames.Add(ItemContext);
 
-                ObsCatalogModelSingleton.ModifyItem(matchItem);
+                //ObsCatalogModelSingleton.ModifyItem(matchItem);
                 //CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
                 //cmp.ModifyItem(matchItem);
 

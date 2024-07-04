@@ -103,5 +103,10 @@ namespace Petsi.Units
         public override FrameBehaviorBase GetFrameBehavior(){return frameBehavior;}
 
         public List<PetsiOrderLineItem> GetLineItems(){ return LineItems;}
+
+        public static string GenerateOrderId()
+        {
+            return Guid.NewGuid().ToString();
+        }
     }
 }

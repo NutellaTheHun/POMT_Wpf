@@ -82,7 +82,7 @@ namespace Petsi.Models
         public FileBehavior GetFileBehavior(){ return fileBehavior; }
         public override void ClearModel() { items.Clear(); }
 
-        public override void AddOrder(ModelUnitBase item)
+        public override void AddItem(ModelUnitBase item)
         {
             int count = items.Count;
             items.Add((CatalogItemPetsi)item);
@@ -94,6 +94,19 @@ namespace Petsi.Models
             {
                 SaveMainModel();
                 NotifyModelServices();
+            }
+        }
+        public void RemoveItem(CatalogItemPetsi order)
+        {
+            int count = items.Count;
+            items.Remove(order);
+            if (count - 1 == items.Count)
+            {
+                UpdateModel();
+            }
+            else
+            {
+                SystemLogger.Log("CatalogModel remove item failed, original count:  " + count + " after operation: " + items.Count);
             }
         }
 
@@ -244,20 +257,9 @@ namespace Petsi.Models
             SaveMainModel();
         }
 
-        public void RemoveItem(CatalogItemPetsi order)
-        {
-            int count = items.Count;
-            items.Remove(order);
-            if (count - 1 == items.Count)
-            {
-                UpdateModel();
-            }
-            else
-            {
-                SystemLogger.Log("CatalogModel remove item failed, original count:  " + count + " after operation: " + items.Count);
-            }
-        }
+       
 
+        /*
         public void ModifyItem(CatalogItemPetsi catalogItem)
         {
             int index = 0;
@@ -280,8 +282,6 @@ namespace Petsi.Models
             {
                 SystemLogger.Log("CatalogModelPetsi modifyItem not found: " + catalogItem.ItemName + " " + ": " + catalogItem.CatalogObjectId);
             }
-        }
-
-        
+        }  */
     }
 }

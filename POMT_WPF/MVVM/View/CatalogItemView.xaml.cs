@@ -15,6 +15,8 @@ namespace POMT_WPF.MVVM.View
     {
         CatalogItemViewEvents events;
         CatalogService cs;
+        private string originalItemName;
+        private bool existingItem;
         public CatalogItemView()
         {
             events = CatalogItemViewEvents.Instance;
@@ -23,31 +25,28 @@ namespace POMT_WPF.MVVM.View
             InitializeComponent();
 
             events.ItemNameInvalid += HighlightItemName;
+            events.CategoryNameInvalid += HighlightCategoryName;
+            events.CategorySizesInvalid += HighlightSizes;
         }
-        private void SetBorderThickness(Border border, int val) { border.BorderThickness = new Thickness(val, val, val, val); }
+        private void SetBorderThickness(Border border, int val) { if(border.BorderThickness.Left != val) border.BorderThickness = new Thickness(val, val, val, val); }
 
         private void HighlightItemName(object sender, EventArgs e) { SetBorderThickness(ItemNameErrBdr, 2); }
+        private void HighlightSizes(object sender, EventArgs e) { SetBorderThickness(ItemSizesErrBdr, 2); }
+        private void HighlightCategoryName(object sender, EventArgs e) { SetBorderThickness(CategoryNameErrBdr, 2); }
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             SetBorderThickness(ItemNameErrBdr, 0);
         }
-        private void ItemNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+
+        private void ComboBox_GotFocus(object sender, RoutedEventArgs e)
         {
+            SetBorderThickness(CategoryNameErrBdr, 0);
+        }
 
-            TextBox itemNameTextBox = sender as TextBox;
-
-            if (itemNameTextBox.Text != "")
-            {
-                ComboBox itemNameCb = (itemNameTextBox.Parent as Grid).FindName("ItemNameComboBox") as ComboBox;
-
-                List<CatalogItemPetsi> results = cs.GetItemNameValidationResults(itemNameTextBox.Text);
-                itemNameCb.ItemsSource = results.Select(x => x.ItemName);
-                if (results.Count != 0)
-                {
-                    itemNameCb.IsDropDownOpen = true;
-                }
-            }
+        private void StackPanel_GotFocus(object sender, RoutedEventArgs e)
+        {
+            SetBorderThickness(ItemSizesErrBdr, 0);
         }
     }
 }

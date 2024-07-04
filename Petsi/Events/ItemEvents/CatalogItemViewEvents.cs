@@ -24,5 +24,16 @@ namespace Petsi.Events.ItemEvents
         {
             Instance.ItemNameInvalid?.Invoke(Instance, EventArgs.Empty);
         }
+
+        public event EventHandler CategoryNameInvalid;
+        public static void OnCategoryNameInvalid()
+        {
+            Instance.CategoryNameInvalid?.Invoke(Instance, EventArgs.Empty);
+        }
+        public event EventHandler CategorySizesInvalid;
+        public static void OnCategorySizesInvalid()
+        {
+            Instance.CategorySizesInvalid?.Invoke(Instance, EventArgs.Empty);
+        }
     }
 }

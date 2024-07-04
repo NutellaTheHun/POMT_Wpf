@@ -186,7 +186,8 @@ namespace Petsi.Services
 
         public bool NameExists(string input)
         {
-            return catalog.Any(item => item.ItemName.ToLower().Equals(input.ToLower()));  
+            if(input == null || input == "") { return false; }
+            return catalog.Any(item => item.ItemName.ToLower().Equals(input.ToLower())); 
         }
 
         public string GenerateCatalogId()

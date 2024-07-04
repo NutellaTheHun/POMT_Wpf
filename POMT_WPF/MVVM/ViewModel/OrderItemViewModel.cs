@@ -326,6 +326,7 @@ namespace POMT_WPF.MVVM.ViewModel
 
             if(orderContext == null)
             {
+                Order.OrderId = PetsiOrder.GenerateOrderId();
                 Order.IsUserEntered = true;
                 IsEdit = true;
                 CanDelete = false;
@@ -392,7 +393,7 @@ namespace POMT_WPF.MVVM.ViewModel
         {
             if (o is PetsiOrderLineItem lineItem)
             {
-                ConfirmationWindow confirmationWindow = new ConfirmationWindow();
+                ConfirmationWindow confirmationWindow = new ConfirmationWindow(null);
                 confirmationWindow.ShowDialog();
                 if (confirmationWindow.ControlBool)
                 {
@@ -428,7 +429,7 @@ namespace POMT_WPF.MVVM.ViewModel
 
         private void DeleteOrder()
         {     
-            ConfirmationWindow confirmationWindow = new ConfirmationWindow();
+            ConfirmationWindow confirmationWindow = new ConfirmationWindow(null);
             confirmationWindow.ShowDialog();
             if (confirmationWindow.ControlBool)
             {

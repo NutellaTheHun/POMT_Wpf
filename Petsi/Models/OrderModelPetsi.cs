@@ -339,11 +339,11 @@ namespace Petsi.Models
             fileBehavior.DataListToFile(Identifiers.DELETED_ORDERS, deletedOrders);
         }
 
-        public override void AddOrder(ModelUnitBase order)
+        public override void AddItem(ModelUnitBase order)
         {
-            Orders.Add((PetsiOrder)order); SortOrders();
+            Orders.Add((PetsiOrder)order); 
+            SortOrders();
             Notify();
-
         }
 
         public void RemoveItem(PetsiOrder targetOrder)
@@ -377,7 +377,7 @@ namespace Petsi.Models
                         }
                         else
                         {
-                            AddOrder(order);
+                            AddItem(order);
                         }
                     }
                 }

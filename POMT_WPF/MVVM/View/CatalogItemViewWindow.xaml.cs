@@ -100,7 +100,7 @@ namespace POMT_WPF.MVVM.View
             if (NaturalNamesListBox.SelectedItem != null)
             {
                 bool deleteConfirmation = false;
-                ConfirmationWindow confirmationWindow = new ConfirmationWindow();
+                ConfirmationWindow confirmationWindow = new ConfirmationWindow(null);
                 confirmationWindow.ShowDialog();
                 if (confirmationWindow.ControlBool)
                 {
@@ -218,7 +218,7 @@ namespace POMT_WPF.MVVM.View
         private void deleteItemBtn_Click(object sender, RoutedEventArgs e)
         {
             
-            ConfirmationWindow confirmationWindow = new ConfirmationWindow();
+            ConfirmationWindow confirmationWindow = new ConfirmationWindow(null);
             confirmationWindow.ShowDialog();
             if (confirmationWindow.ControlBool)
             {

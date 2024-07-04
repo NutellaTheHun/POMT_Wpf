@@ -11,9 +11,9 @@ namespace POMT_WPF.MVVM.ViewModel
     {
         CatalogModelPetsi cmp;
 
-        ObservableCollection<CatalogItemPetsi> _items;
-        public ObservableCollection<CatalogItemPetsi> Items
-        {
+        //ObservableCollection<CatalogItemPetsi> _items;
+        public ObservableCollection<CatalogItemPetsi> Items { get; set; }
+        /*{
             get { return _items; }
             set {
                 if(_items != value)
@@ -22,11 +22,11 @@ namespace POMT_WPF.MVVM.ViewModel
                     OnPropertyChanged(nameof(Items));
                 }     
             }
-        }
+        }*/
 
-        ObservableCollection<CatalogItemPetsi> _filterItems;
-        public ObservableCollection<CatalogItemPetsi> FilterItems
-        {
+        //ObservableCollection<CatalogItemPetsi> _filterItems;
+        public ObservableCollection<CatalogItemPetsi> FilterItems { get; set; }
+        /*{
             get { return _filterItems; }
             set
             {
@@ -36,7 +36,7 @@ namespace POMT_WPF.MVVM.ViewModel
                     OnPropertyChanged(nameof(FilterItems));
                 }
             }
-        }
+        }*/
 
         public RelayCommand OpenCatalogItemView {  get; set; }
 
@@ -44,7 +44,6 @@ namespace POMT_WPF.MVVM.ViewModel
         {
             ObsCatalogModelSingleton.Instance.Subscribe(this);
             Items = ObsCatalogModelSingleton.Instance.CatalogItems;
-
             OpenCatalogItemView = new RelayCommand(o => { MainViewModel.Instance().OpenCatalogItemView(o); });
         }
 

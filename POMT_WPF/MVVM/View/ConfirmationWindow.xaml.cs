@@ -7,9 +7,20 @@ namespace POMT_WPF.MVVM.View
     public partial class ConfirmationWindow : Window
     {
         public bool ControlBool;
-        public ConfirmationWindow()
+        public string Message { get; set; }
+        public ConfirmationWindow(string? message)
         {
             InitializeComponent();
+            DataContext = this;
+            if (message == null) 
+            {
+                Message = "Are you sure?";
+            }
+            else
+            {
+                Message = message;
+            }
+            
         }
 
         private void Accept_ButtonClick(object sender, RoutedEventArgs e)

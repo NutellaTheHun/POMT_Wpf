@@ -277,5 +277,10 @@ namespace Petsi.Units
             }
             return false;
         }
+
+        public static string GenerateCatalogId()
+        {
+            return Identifiers.USER_BASED_ID_TAG + Guid.NewGuid().ToString();
+        }
     }
 }

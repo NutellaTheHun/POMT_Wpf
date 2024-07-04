@@ -29,9 +29,10 @@
                 Margin="0,40,0,50"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                FontSize="24"
+                FontSize="18"
                 Foreground="{StaticResource Licorice}"
-                Text="Are you sure?" />
+                Text="{Binding Message}"
+                TextWrapping="Wrap" />
             <StackPanel
                 Grid.Row="2"
                 HorizontalAlignment="Center"

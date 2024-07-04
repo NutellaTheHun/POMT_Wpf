@@ -70,18 +70,7 @@
                                                     GotFocus="TextBox_GotFocus"
                                                     IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
                                                     Style="{StaticResource ItemNameTextBox}"
-                                                    TextChanged="ItemNameTextBox_TextChanged">
-                                                    <TextBox.Text>
-                                                        <Binding
-                                                            Mode="TwoWay"
-                                                            Path="ItemName"
-                                                            UpdateSourceTrigger="PropertyChanged">
-                                                            <Binding.ValidationRules>
-                                                                <v:ItemNameValidation />
-                                                            </Binding.ValidationRules>
-                                                        </Binding>
-                                                    </TextBox.Text>
-                                                </TextBox>
+                                                    Text="{Binding ItemName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                                             </Grid>
                                         </Border>
                                     </Grid>
@@ -129,46 +118,53 @@
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
                                 <Label Content="Attributes" />
-                                <Border Style="{StaticResource GeneralBorder}">
-                                    <Grid>
-                                        <StackPanel IsHitTestVisible="{Binding IsEdit}" Orientation="Horizontal">
-                                            <StackPanel Orientation="Vertical">
-                                                <CheckBox
-                                                    Content="Small"
-                                                    FontSize="16"
-                                                    Foreground="{StaticResource maybeDark}"
-                                                    IsChecked="{Binding IsSmall, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                                                <CheckBox
-                                                    Margin="0,10,0,10"
-                                                    Content="Medium"
-                                                    FontSize="16"
-                                                    Foreground="{StaticResource maybeDark}"
-                                                    IsChecked="{Binding IsMedium, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                                                <CheckBox
-                                                    Content="Large"
-                                                    FontSize="16"
-                                                    Foreground="{StaticResource maybeDark}"
-                                                    IsChecked="{Binding IsLarge, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                                            </StackPanel>
-                                            <StackPanel Orientation="Vertical">
-                                                <CheckBox
-                                                    Content="Regular"
-                                                    FontSize="16"
-                                                    Foreground="{StaticResource maybeDark}"
-                                                    IsChecked="{Binding IsRegular, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                                                <CheckBox
-                                                    Margin="0,10,0,10"
-                                                    Content="Cutie"
-                                                    FontSize="16"
-                                                    Foreground="{StaticResource maybeDark}"
-                                                    IsChecked="{Binding IsCutie, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                                                <CheckBox
-                                                    Content="POTM"
-                                                    FontSize="16"
-                                                    Foreground="{StaticResource maybeDark}"
-                                                    IsChecked="{Binding IsPOTM, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                                            </StackPanel>
-                                        </StackPanel>
+                                <Border x:Name="ItemSizesErrBdr" Style="{StaticResource OrderFormErrorBorder}">
+                                    <Grid Margin="2">
+                                        <Border Style="{StaticResource GeneralBorder}">
+                                            <Grid>
+                                                <StackPanel
+                                                    GotFocus="StackPanel_GotFocus"
+                                                    IsHitTestVisible="{Binding IsEdit}"
+                                                    Orientation="Horizontal">
+                                                    <StackPanel Orientation="Vertical">
+                                                        <CheckBox
+                                                            Content="Small"
+                                                            FontSize="16"
+                                                            Foreground="{StaticResource maybeDark}"
+                                                            IsChecked="{Binding IsSmall, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                                        <CheckBox
+                                                            Margin="0,10,0,10"
+                                                            Content="Medium"
+                                                            FontSize="16"
+                                                            Foreground="{StaticResource maybeDark}"
+                                                            IsChecked="{Binding IsMedium, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                                        <CheckBox
+                                                            Content="Large"
+                                                            FontSize="16"
+                                                            Foreground="{StaticResource maybeDark}"
+                                                            IsChecked="{Binding IsLarge, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                                    </StackPanel>
+                                                    <StackPanel Orientation="Vertical">
+                                                        <CheckBox
+                                                            Content="Regular"
+                                                            FontSize="16"
+                                                            Foreground="{StaticResource maybeDark}"
+                                                            IsChecked="{Binding IsRegular, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                                        <CheckBox
+                                                            Margin="0,10,0,10"
+                                                            Content="Cutie"
+                                                            FontSize="16"
+                                                            Foreground="{StaticResource maybeDark}"
+                                                            IsChecked="{Binding IsCutie, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                                        <CheckBox
+                                                            Content="POTM"
+                                                            FontSize="16"
+                                                            Foreground="{StaticResource maybeDark}"
+                                                            IsChecked="{Binding IsPOTM, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </Grid>
+                                        </Border>
                                     </Grid>
                                 </Border>
                             </StackPanel>
@@ -183,14 +179,19 @@
                             <StackPanel Orientation="Vertical">
                                 <StackPanel Orientation="Vertical">
                                     <Label Content="Category" />
-                                    <Border Style="{StaticResource GeneralBorder}">
-                                        <ComboBox
-                                            Width="150"
-                                            Height="30"
-                                            Foreground="{StaticResource TextFont}"
-                                            IsHitTestVisible="{Binding IsEdit}"
-                                            ItemsSource="{Binding CategoryNames}"
-                                            SelectedItem="{Binding Path=CategoryName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                    <Border x:Name="CategoryNameErrBdr" Style="{StaticResource OrderFormErrorBorder}">
+                                        <Grid Margin="2">
+                                            <Border Style="{StaticResource GeneralBorder}">
+                                                <ComboBox
+                                                    Width="150"
+                                                    Height="30"
+                                                    Foreground="{StaticResource TextFont}"
+                                                    GotFocus="ComboBox_GotFocus"
+                                                    IsHitTestVisible="{Binding IsEdit}"
+                                                    ItemsSource="{Binding CategoryNames}"
+                                                    SelectedItem="{Binding Path=CategoryName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                            </Border>
+                                        </Grid>
                                     </Border>
                                 </StackPanel>
                                 <StackPanel Orientation="Vertical">

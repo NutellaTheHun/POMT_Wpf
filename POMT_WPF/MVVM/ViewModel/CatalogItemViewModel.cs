@@ -1,4 +1,5 @@
 ﻿using Petsi.Events.ItemEvents;
+using Petsi.Interfaces;
 using Petsi.Managers;
 using Petsi.Services;
 using Petsi.Units;
@@ -14,7 +15,7 @@ namespace POMT_WPF.MVVM.ViewModel
     public class CatalogItemViewModel : ViewModelBase
     {
         public CatalogItemPetsi cItem;
-
+        private CategoryService _categoryService;
         #region props
 
         public CatalogItemPetsi? VeganMapping
@@ -71,6 +72,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
         }
+
         public string CategoryId 
         { 
             get { return cItem.CategoryId; }
@@ -94,6 +96,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 {
                     _categoryName = value;
                     OnPropertyChanged(nameof(CategoryName));
+                    cItem.CategoryId = _categoryService.GetCategoryIdByCategoryName(CategoryName);
                 }
             }
         }
@@ -258,7 +261,8 @@ namespace POMT_WPF.MVVM.ViewModel
         public CatalogItemViewModel(CatalogItemPetsi? inputItem)
         {
             cItem = new CatalogItemPetsi(inputItem);
-
+            _categoryService = GetCategoryService();
+   
             if (inputItem == null)
             {
                 IsNew = true;
@@ -268,11 +272,9 @@ namespace POMT_WPF.MVVM.ViewModel
                 NaturalNames = new ObservableCollection<string>();
                 NaturalNames.CollectionChanged += (s, e) => cItem.NaturalNames = NaturalNames.ToList();
 
-                CategoryService cs = GetCategoryService();
-                CategoryNames = new ObservableCollection<string>(cs.GetCategoryNames());
+                CategoryNames = new ObservableCollection<string>(GetCategoryService().GetCategoryNames());
 
-                CatalogService catalogService = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
-                cItem.CatalogObjectId = catalogService.GenerateCatalogId();
+                cItem.CatalogObjectId = CatalogItemPetsi.GenerateCatalogId();
             }
             else
             {
@@ -344,7 +346,7 @@ namespace POMT_WPF.MVVM.ViewModel
         {
             if (o is string)
             {
-                ConfirmationWindow confirmationWindow = new ConfirmationWindow();
+                ConfirmationWindow confirmationWindow = new ConfirmationWindow(null);
                 confirmationWindow.ShowDialog();
                 if (confirmationWindow.ControlBool)
                 {
@@ -390,7 +392,13 @@ namespace POMT_WPF.MVVM.ViewModel
         }
         private void DeleteItemCmd()
         {
-            ConfirmationWindow confirmationWindow = new ConfirmationWindow();
+            string warningMsg = null;
+            if (ObsOrderModelSingleton.Instance.ContainsItem(cItem))
+            {
+                warningMsg = "WARNING: This item currently exists in active orders,\n are you sure you want to delete?";
+            }
+
+            ConfirmationWindow confirmationWindow = new ConfirmationWindow(warningMsg);
             confirmationWindow.ShowDialog();
             if (confirmationWindow.ControlBool)
             {
@@ -403,10 +411,20 @@ namespace POMT_WPF.MVVM.ViewModel
         {
            if(IsValidItem())
            {
+                UpdateSizes();
                 ObsCatalogModelSingleton.Instance.AddItem(cItem);
            }
            //MainViewModel.Instance().BackCatalogView();
            //OR notify SAVED
+        }
+
+        private void UpdateSizes()
+        {
+            cItem.UpdateSizeVariation(Identifiers.SIZE_SMALL, IsSmall);
+            cItem.UpdateSizeVariation(Identifiers.SIZE_MEDIUM, IsMedium);
+            cItem.UpdateSizeVariation(Identifiers.SIZE_LARGE, IsLarge);
+            cItem.UpdateSizeVariation(Identifiers.SIZE_REGULAR, IsRegular);
+            cItem.UpdateSizeVariation(Identifiers.SIZE_CUTIE, IsCutie);
         }
 
         public void AddNaturalName(string naturalName)
@@ -564,8 +582,38 @@ namespace POMT_WPF.MVVM.ViewModel
         private bool IsValidItem()
         {
             bool controlBool = true;
-            if (ItemName == "" || ItemName == null) { controlBool = false; CatalogItemViewEvents.OnItemNameInvalid(); }
+            if (ItemName == "" || ItemName == null) { CatalogItemViewEvents.OnItemNameInvalid(); controlBool = false; }
+            if (CategoryName == "" || CategoryName == null) { CatalogItemViewEvents.OnCategoryNameInvalid(); controlBool = false; }
+            if (!IsValidSizes()) { CatalogItemViewEvents.OnCategorySizesInvalid(); controlBool = false; }
+
+            //Validate that the item name doesn't exist except for itself.
+            //A new item cannot be name already existing in the catalog
+            //Viewing a existing item in the catalog can be itself or a new name in the catalog
+            CatalogService service = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
+            CatalogItemPetsi result = service.GetCatalogItemById(cItem.CatalogObjectId);
+            if (result == null) 
+            {
+                //if new -> new ID, new Name
+                //if name doesnt exist, TRUE
+                if (service.NameExists(cItem.ItemName)) { CatalogItemViewEvents.OnItemNameInvalid(); controlBool = false;  }
+            }
+            else 
+            {
+                //if exists -> existing ID, existing Name
+                //if name matches ID or name doesn't exist return TRUE
+                if(result.ItemName != cItem.ItemName && service.NameExists(cItem.ItemName)) { CatalogItemViewEvents.OnItemNameInvalid(); controlBool = false; }
+            }
             return controlBool;
+        }
+
+        private bool IsValidSizes()
+        {
+            if(IsSmall) return true;
+            if(IsMedium) return true;
+            if(IsLarge) return true;
+            if(IsRegular) return true;
+            if(IsCutie) return true;
+            return false;
         }
     }
 }

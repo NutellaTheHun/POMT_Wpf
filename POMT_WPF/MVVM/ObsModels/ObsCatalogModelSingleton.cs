@@ -15,16 +15,6 @@ namespace POMT_WPF.MVVM.ObsModels
         private List<IObsCatalogModelSubscriber> _subscriptions;
 
         public ObservableCollection<CatalogItemPetsi> CatalogItems;
-    
-
-        private ObsCatalogModelSingleton()
-        {
-            _cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
-            
-            CatalogItems = new ObservableCollection<CatalogItemPetsi>(_cmp.GetItems());
-            _subscriptions = new List<IObsCatalogModelSubscriber>();
-            CatalogItems.CollectionChanged += (s, e) => { UpdateCatalogModel(); };
-        }
 
         private static ObsCatalogModelSingleton _instance;
         public static ObsCatalogModelSingleton Instance
@@ -38,13 +28,21 @@ namespace POMT_WPF.MVVM.ObsModels
                 return _instance;
             }
         }
-
         private void Notify()
         {
             foreach (var subscriptions in _subscriptions)
             {
                 subscriptions.Update();
             }
+        }
+
+        private ObsCatalogModelSingleton()
+        {
+            _cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
+            
+            CatalogItems = new ObservableCollection<CatalogItemPetsi>(_cmp.GetItems());
+            _subscriptions = new List<IObsCatalogModelSubscriber>();
+            CatalogItems.CollectionChanged += (s, e) => { UpdateCatalogModel(); };
         }
 
         private void UpdateCatalogModel()
@@ -79,10 +77,13 @@ namespace POMT_WPF.MVVM.ObsModels
             Notify();
             */
         }
+        /*
         private void AddItemMainModel(CatalogItemPetsi catalogItem)
         {
             _cmp.AddOrder(catalogItem);
         }
+        */
+
         public void RemoveItem(CatalogItemPetsi catalogItem)
         {
             int count = CatalogItems.Count;
@@ -105,11 +106,13 @@ namespace POMT_WPF.MVVM.ObsModels
                 Notify();
             }*/
         }
+        /*
         private void RemoveItemMainModel(CatalogItemPetsi catalogItem)
         {
             _cmp.RemoveItem(catalogItem);
         }
-
+        */
+        /*
         public static void ModifyItem(CatalogItemPetsi modCatalogItem)
         {
             int index = 0;
@@ -138,5 +141,6 @@ namespace POMT_WPF.MVVM.ObsModels
         {
             _cmp.ModifyItem(catalogItem);
         }
+        */
     }
 }

@@ -13,7 +13,7 @@ namespace Petsi.Models
         public abstract void AddData(ModelUnitBase unit);
         public abstract FrameBehaviorBase GetFrameBehavior();
         public abstract void ClearModel();
-        public abstract void AddOrder(ModelUnitBase item);
+        public abstract void AddItem(ModelUnitBase item);
         public abstract void Complete();
         public abstract void CaptureEnvironment(FileBehavior reportFb);
     }
