@@ -45,6 +45,8 @@ namespace POMT_WPF.MVVM.ViewModel
                 {
                     _searchQuery = value;
                     OnPropertyChanged(nameof(SearchQuery));
+                    //ApplySearchFilter();
+                    DashBoardOrdersView.Refresh();
                 }
             }
         }
@@ -78,6 +80,19 @@ namespace POMT_WPF.MVVM.ViewModel
 
             FilterFrozen = new RelayCommand(o => { ChangeFilter(FrFilter);});
         }
+        /*
+        private void ApplySearchFilter()
+        {
+            if (SearchQuery != "")
+            {
+                DashboardOrders.Filter += SearchBarFilter;
+            }
+            else
+            {
+                DashboardOrders.Filter -= SearchBarFilter;
+            }
+        }
+        */
         private void ChangeFilter(FilterEventHandler newFilter)
         {
             DashboardOrders.Filter -= currentFilter;
@@ -89,45 +104,45 @@ namespace POMT_WPF.MVVM.ViewModel
         private void NoFilter(object sender, FilterEventArgs e)
         {
             PetsiOrder order = e.Item as PetsiOrder;
-            if (order != null)
+            if (order != null && !order.IsFrozen)
             {
-                e.Accepted = !order.IsFrozen;
+                e.Accepted = OrderContainsSearchQuery(order);
             }
         }
 
         private void WsFilter(object sender, FilterEventArgs e)
         {
             PetsiOrder order = e.Item as PetsiOrder;
-            if (order != null)
+            if (order != null && !order.IsFrozen)
             {
-                e.Accepted = !order.IsFrozen && order.OrderType == Identifiers.ORDER_TYPE_WHOLESALE;
+                e.Accepted = OrderContainsSearchQuery(order) && order.OrderType == Identifiers.ORDER_TYPE_WHOLESALE;
             }
         }
 
         private void SqFilter(object sender, FilterEventArgs e)
         {
             PetsiOrder order = e.Item as PetsiOrder;
-            if (order != null)
+            if (order != null && !order.IsFrozen)
             {
-                e.Accepted = !order.IsFrozen && order.OrderType == Identifiers.ORDER_TYPE_SQUARE;
+                e.Accepted = OrderContainsSearchQuery(order) && order.OrderType == Identifiers.ORDER_TYPE_SQUARE;
             }
         }
 
         private void RtFilter(object sender, FilterEventArgs e)
         {
             PetsiOrder order = e.Item as PetsiOrder;
-            if (order != null)
+            if (order != null && !order.IsFrozen)
             {
-                e.Accepted = !order.IsFrozen && order.OrderType == Identifiers.ORDER_TYPE_RETAIL;
+                e.Accepted = OrderContainsSearchQuery(order) && order.OrderType == Identifiers.ORDER_TYPE_RETAIL;
             }
         }
 
         private void SpFilter(object sender, FilterEventArgs e)
         {
             PetsiOrder order = e.Item as PetsiOrder;
-            if (order != null)
+            if (order != null && !order.IsFrozen)
             {
-                e.Accepted = !order.IsFrozen && order.OrderType == Identifiers.ORDER_TYPE_SPECIAL;
+                e.Accepted = OrderContainsSearchQuery(order) && order.OrderType == Identifiers.ORDER_TYPE_SPECIAL;
             }
         }
 
@@ -136,16 +151,23 @@ namespace POMT_WPF.MVVM.ViewModel
             PetsiOrder order = e.Item as PetsiOrder;
             if (order != null)
             {
-                e.Accepted = order.IsFrozen;
+                e.Accepted = OrderContainsSearchQuery(order) && order.IsFrozen;
             }
         }
-        private void SearchBarFilter(object sender, FilterEventArgs e)
+
+        private bool OrderContainsSearchQuery(PetsiOrder order)
         {
-            PetsiOrder order = e.Item as PetsiOrder;
-            if (order != null)
+            if(SearchQuery == "" || SearchQuery == null) { return true; }
+
+            if (order != null && !order.IsFrozen)
             {
-                e.Accepted = order.IsFrozen;
+                if (order.Recipient.ToLower().Contains(SearchQuery.ToLower())) { return true; }
+                foreach (PetsiOrderLineItem lineItem in order.LineItems)
+                {
+                    if (lineItem.ItemName.ToLower().Contains(SearchQuery.ToLower())) { return true; }
+                }
             }
+            return false;
         }
 
         /// <summary>
