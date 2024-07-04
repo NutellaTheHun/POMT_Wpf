@@ -15,6 +15,7 @@ namespace POMT_WPF.MVVM.ViewModel
 
         public RelayCommand RemoveTemplate { get; set; }
         public RelayCommand ViewTemplate { get; set; }
+        public RelayCommand CreateTemplate { get; set; }
         public RelayCommand GoBack { get; set; }
 
 
@@ -29,6 +30,7 @@ namespace POMT_WPF.MVVM.ViewModel
 
             RemoveTemplate = new RelayCommand(o => { RemoveTemplateCmd(o); });
             ViewTemplate = new RelayCommand(o => { ViewTemplateCmd(o); });
+            CreateTemplate = new RelayCommand(o => {CreateTemplateCmd();});
             GoBack = new RelayCommand(o => { MainViewModel.Instance().BackTmpltLstView(_isFromSettingsVM); });
         }
         public void Update()
@@ -59,11 +61,12 @@ namespace POMT_WPF.MVVM.ViewModel
                 view = new TemplateItemViewWindow(items, (string)o);
                 view.Show();
             }
-            else if (o == null)
-            {
+        }
+        private void CreateTemplateCmd()
+        {
+            TemplateItemViewWindow view;
                 view = new TemplateItemViewWindow(null, null);
                 view.Show();
-            }
         }
     }
 }
