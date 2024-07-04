@@ -18,29 +18,34 @@
     <Border Style="{StaticResource GeneralWindowBorder}">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="50" />
+                <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Button
-                    Margin="10"
                     HorizontalAlignment="Right"
+                    Click="Button_Click"
                     Style="{StaticResource GeneralCloseButton}" />
             </Grid>
-            <Grid Grid.Row="1">
-                <Label
+            <Grid
+                Grid.Row="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+                <TextBlock
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    Content="{Binding ErrorMessage}"
                     FontSize="18"
-                    Foreground="{StaticResource LicoriceDark}" />
+                    Foreground="{StaticResource LicoriceDark}"
+                    Text="{Binding ErrorMessage}"
+                    TextWrapping="Wrap" />
             </Grid>
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="2">
                 <Button
                     Width="100"
                     Height="40"
                     Margin="0,0,20,0"
+                    Click="Button_Click"
                     Content="OK"
                     Style="{StaticResource secondaryButton}" />
             </Grid>

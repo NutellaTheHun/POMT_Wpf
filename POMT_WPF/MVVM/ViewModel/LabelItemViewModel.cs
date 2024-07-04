@@ -1,52 +1,64 @@
-﻿using Petsi.Units;
+﻿using Petsi.Managers;
+using Petsi.Services;
+using Petsi.Units;
 using Petsi.Utils;
 using POMT_WPF.Core;
+using POMT_WPF.MVVM.ObsModels;
 using POMT_WPF.MVVM.View;
+using System.IO;
 using System.Windows.Forms;
 
 namespace POMT_WPF.MVVM.ViewModel
 {
     class LabelItemViewModel : ViewModelBase
     {
-        private CatalogItemPetsi _item;
         private LabelItemWindow _view;
 
+        #region Props
+
+        private string _itemName;
         public string ItemName
         {
-            get { return _item.ItemName; }
-            set 
+            get { return _itemName; }
+            set
             {
-                if (_item.ItemName != value)
+                if (_itemName != value)
                 {
-                    _item.ItemName = value;
+                    _itemName = value;
                     OnPropertyChanged(nameof(ItemName)); 
                 } 
             }
         }
+
+        private string _pieFile;
         public string PieFile
         {
-            get { return _item.StandardLabelFilePath; }
+            get { return _pieFile; }
             set
             {
-                if (_item.StandardLabelFilePath != value)
+                if (_pieFile != value)
                 {
-                    _item.StandardLabelFilePath = value;
+                    _pieFile = value;
                     OnPropertyChanged(nameof(PieFile));
                 }
             }
         }
+
+        private string _cutieFile;
         public string CutieFile
         {
-            get { return _item.CutieLabelFilePath; }
+            get { return _cutieFile; }
             set
             {
-                if (_item.CutieLabelFilePath != value)
-                { 
-                    _item.CutieLabelFilePath = value;
+                if (_cutieFile != value)
+                {
+                    _cutieFile = value;
                     OnPropertyChanged(nameof(CutieFile));
                 }
             }
         }
+
+        #endregion
 
         public RelayCommand SetPieLabel {  get; set; }
         public RelayCommand SetCutieLabel {  get; set; }
@@ -54,17 +66,25 @@ namespace POMT_WPF.MVVM.ViewModel
         public RelayCommand ClearCutieLabel {  get; set; }
         public RelayCommand Done {  get; set; }
         public RelayCommand Cancel {  get; set; }
+
         public LabelItemViewModel(CatalogItemPetsi? item, LabelItemWindow view) 
         {
-            _item = new CatalogItemPetsi(item);
+
             _view = view;
+
+            if (item != null)
+            {
+                ItemName = item.ItemName;
+                CutieFile = item.CutieLabelFilePath;
+                PieFile = item.StandardLabelFilePath;
+            }
 
             SetPieLabel = new RelayCommand(o => { SetPieCommand(); } );
             SetCutieLabel = new RelayCommand(o => { SetCutieCommand(); } );
             ClearPieLabel = new RelayCommand(o => { ClearPieCommand(); } );
             ClearCutieLabel = new RelayCommand(o => { ClearCutieCommand(); } );
             Done = new RelayCommand(o => { DoneCommand(); } );
-            Cancel = new RelayCommand(o => { CloseCommand(); } );
+            Cancel = new RelayCommand(o => { _view.Close(); } );
         }
 
         private void SetPieCommand()
@@ -76,6 +96,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 fileDialog.InitialDirectory = labelsFilepath + "\\Pie";
                 if (fileDialog.ShowDialog() == DialogResult.OK)
                 {
+                    //PieFile = Path.GetFileName(fileDialog.FileName);
                     PieFile = fileDialog.FileName;
                 }
             }
@@ -89,23 +110,51 @@ namespace POMT_WPF.MVVM.ViewModel
                 fileDialog.InitialDirectory = labelsFilepath + "\\Cuties";
                 if (fileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    CutieFile = fileDialog.FileName;
+                    CutieFile = Path.GetFileName(fileDialog.FileName);
                 }
             }
         }
+
         private void ClearPieCommand()
         {
             PieFile = null;
         }
+
         private void ClearCutieCommand()
         {
             CutieFile = null;
         }
+
         private void DoneCommand() 
         {
-            //Update Item
-            _view.Close();
+            CatalogItemPetsi item = new CatalogItemPetsi();
+            if(ValidateItem(out item))
+            {
+                ObsCatalogModelSingleton.Instance.AddItem(item);
+                _view.Close();
+            } 
         }
-        private void CloseCommand() { _view.Close(); }
+
+        /// <summary>
+        /// Validates that the ItemName exists in the catalog and prepares an object to be sent to the model as a modification.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        private bool ValidateItem(out CatalogItemPetsi item)
+        {
+            CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
+
+            item = new CatalogItemPetsi(cs.GetCatalogItem(ItemName));
+            if (item == null) 
+            {
+                SystemLogger.Log("LABEL ITEM VALIDATION FAILED: " + ItemName);
+                return false;
+            }
+
+            item.StandardLabelFilePath = PieFile;
+            item.CutieLabelFilePath = CutieFile;
+
+            return true;
+        }
     }
 }

@@ -15,8 +15,9 @@ namespace POMT_WPF.MVVM.View
     {
         public LabelView()
         {
-            ErrorService.Instance().LabelServiceValidateFilePath += ValidateFileServiceErrorWindow;
             InitializeComponent();
+            ErrorService.Instance().LabelServiceValidateFilePath += ValidateFileServiceErrorWindow;
+            ErrorService.RaiseLabelEvents();
         }
         private void ValidateFileServiceErrorWindow(object sender, EventArgs e)
         {

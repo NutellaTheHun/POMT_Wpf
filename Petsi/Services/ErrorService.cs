@@ -1,4 +1,5 @@
 ﻿using Petsi.Events;
+using Petsi.Events.ItemEvents;
 using Petsi.Models;
 using Petsi.Units;
 using Petsi.Utils;
@@ -29,6 +30,9 @@ namespace Petsi.Services
 
         #region events
         List<EventArgs> mainWindowEvents = new List<EventArgs>();
+
+        List<EventArgs> labelViewEvents = new List<EventArgs>();
+
         //Table Builder Overflow Event
         public delegate void TableBuilderOverflowEvent(object sender, EventArgs e);
 
@@ -73,28 +77,45 @@ namespace Petsi.Services
         public void RaiseLabelServiceValidateFilePathEvent(string catalogId, string fileName, string pieType)
         {
             LabelServiceValidateFpEventArgs args = new LabelServiceValidateFpEventArgs(catalogId, fileName, pieType);
-            LabelServiceValidateFilePath?.Invoke(this, args);
+            //LabelServiceValidateFilePath?.Invoke(this, args);
+            labelViewEvents.Add(args);
         }
 
         #endregion
 
         /// <summary>
-        /// Events that occur before the MainWindow is initialized are added to the mainWindowEvents list
+        /// Events that occur before the LabelView is initialized are added to the mainWindowEvents list
         /// and is called in the mainWindow view constructor.
         /// </summary>
-        public static void RaiseMainWindowEvents()
+        public static void RaiseLabelEvents()
         {
-            foreach(var args in Instance().mainWindowEvents)
+            List<EventArgs> argsList = new List<EventArgs>(Instance().labelViewEvents);
+            foreach(var arg in argsList)
             {
-                if (args.GetType() == typeof(SoiNewItemEventArgs))
+                if (arg.GetType() == typeof(LabelServiceValidateFpEventArgs))
                 {
-                    Instance().SoiNewItem?.Invoke(Instance(), args);
-                }
-                if (args.GetType() == typeof(SoiMultiItemEventArgs))
-                {
-                    Instance().SoiMultiItem?.Invoke(Instance(), args);
+                    Instance().LabelServiceValidateFilePath?.Invoke(Instance(), arg);
+                    Instance().labelViewEvents.Remove(arg);
                 }
             }
-        }  
+        }
+
+        public static void RaiseWindowEvents()
+        {
+            List<EventArgs> argsList = new List<EventArgs>(Instance().mainWindowEvents);
+            foreach (var arg in argsList)
+            {
+                if (arg.GetType() == typeof(SoiMultiItemEventArgs))
+                {
+                    Instance().SoiMultiItem?.Invoke(Instance(), arg);
+                    Instance().mainWindowEvents.Remove(arg);
+                }
+                if (arg.GetType() == typeof(SoiNewItemEventArgs))
+                {
+                    Instance().SoiNewItem?.Invoke(Instance(), arg);
+                    Instance().mainWindowEvents.Remove(arg);
+                }
+            }
+        }
     }
 }

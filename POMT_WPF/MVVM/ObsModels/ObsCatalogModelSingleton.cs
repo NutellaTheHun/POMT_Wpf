@@ -1,4 +1,5 @@
-﻿using Petsi.Managers;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using Petsi.Managers;
 using Petsi.Models;
 using Petsi.Units;
 using Petsi.Utils;
@@ -42,7 +43,7 @@ namespace POMT_WPF.MVVM.ObsModels
             
             CatalogItems = new ObservableCollection<CatalogItemPetsi>(_cmp.GetItems());
             _subscriptions = new List<IObsCatalogModelSubscriber>();
-            CatalogItems.CollectionChanged += (s, e) => { UpdateCatalogModel(); };
+            CatalogItems.CollectionChanged += (s, e) => { UpdateCatalogModel(); Notify(); };
         }
 
         private void UpdateCatalogModel()
@@ -53,8 +54,17 @@ namespace POMT_WPF.MVVM.ObsModels
 
         public void Subscribe(IObsCatalogModelSubscriber subscriber) { _subscriptions.Add(subscriber); }
 
+        /// <summary>
+        /// Will check for a catalogObjectId match and replace if found, otherwise will add a new item.
+        /// </summary>
+        /// <param name="catalogItem"></param>
         public void AddItem(CatalogItemPetsi catalogItem)
         {
+            if(catalogItem == null)
+            {
+                SystemLogger.Log("CATALOG ITEM ADD IS NULL");
+                return;
+            }
             bool isFound = false;
 
             //Try to modify
@@ -71,18 +81,7 @@ namespace POMT_WPF.MVVM.ObsModels
 
             //If not modify, add new item
             if(!isFound) CatalogItems.Add(catalogItem);
-            
-            /*
-            AddItemMainModel(catalogItem);
-            Notify();
-            */
         }
-        /*
-        private void AddItemMainModel(CatalogItemPetsi catalogItem)
-        {
-            _cmp.AddOrder(catalogItem);
-        }
-        */
 
         public void RemoveItem(CatalogItemPetsi catalogItem)
         {
@@ -99,48 +98,6 @@ namespace POMT_WPF.MVVM.ObsModels
             {
                 SystemLogger.Log("ObsCatalog RemoveItem failure: " + catalogItem.ItemName);
             }
-            /*
-            else
-            {
-                RemoveItemMainModel(catalogItem);
-                Notify();
-            }*/
         }
-        /*
-        private void RemoveItemMainModel(CatalogItemPetsi catalogItem)
-        {
-            _cmp.RemoveItem(catalogItem);
-        }
-        */
-        /*
-        public static void ModifyItem(CatalogItemPetsi modCatalogItem)
-        {
-            int index = 0;
-            bool isfound = false;
-            foreach (CatalogItemPetsi item in Instance.CatalogItems)
-            {
-                if (item.CatalogObjectId == modCatalogItem.CatalogObjectId)
-                {
-                    index = Instance.CatalogItems.IndexOf(item);
-                    isfound = true;
-                    break;
-                }
-            }
-            if (isfound)
-            {
-                Instance.CatalogItems[index] = modCatalogItem;
-                Instance.ModifyItemMainModel(modCatalogItem);
-                Instance.Notify();
-            }
-            else
-            {
-                SystemLogger.Log("ObsCatalogModel item not found: " + modCatalogItem.ItemName + " : " +  modCatalogItem.CatalogObjectId);
-            }
-        }
-        private void ModifyItemMainModel(CatalogItemPetsi catalogItem)
-        {
-            _cmp.ModifyItem(catalogItem);
-        }
-        */
     }
 }

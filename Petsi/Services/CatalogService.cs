@@ -285,6 +285,11 @@ namespace Petsi.Services
             return results;
         }
 
+        /// <summary>
+        /// Given a item name, returns the corresponding CatalogItemPetsi object, returns null if fails.
+        /// </summary>
+        /// <param name="itemName"></param>
+        /// <returns></returns>
         public CatalogItemPetsi GetCatalogItem(string itemName)
         {
             CatalogItemPetsi result = null;

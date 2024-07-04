@@ -4,12 +4,14 @@ using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
 using POMT_WPF.Core;
+using POMT_WPF.Interfaces;
+using POMT_WPF.MVVM.ObsModels;
 using POMT_WPF.MVVM.View;
 using System.Collections.ObjectModel;
 
 namespace POMT_WPF.MVVM.ViewModel
 {
-    public class ConfigureLabelsViewModel : ViewModelBase
+    public class ConfigureLabelsViewModel : ViewModelBase, IObsCatalogModelSubscriber
     {
         CatalogModelPetsi cmp;
 
@@ -28,34 +30,53 @@ namespace POMT_WPF.MVVM.ViewModel
 
         public RelayCommand GoBack { get; set; }
         public RelayCommand ViewLabelMapping { get; set; }
+        public RelayCommand CreateLabelMapping { get; set; }
         public RelayCommand RemoveLabelMapping { get; set; }
 
         public ConfigureLabelsViewModel()
         {
             cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
-            Items = new ObservableCollection<CatalogItemPetsi>( SelectLabeledItems(cmp.GetItems()));
+            ObsCatalogModelSingleton.Instance.Subscribe(this);
+            Items = new ObservableCollection<CatalogItemPetsi>( 
+                SelectLabeledItems(
+                    ObsCatalogModelSingleton.Instance.CatalogItems.ToList()));
 
             SelectedItem = null;
 
             GoBack = new RelayCommand(o => { MainViewModel.Instance().BackLabelView(); });
             ViewLabelMapping = new RelayCommand(o => { OpenLabelMapCommand(o); } );
-            RemoveLabelMapping = new RelayCommand(o => { } );
+            RemoveLabelMapping = new RelayCommand(o => { RemoveLabelMapCommand(o); } );
+            CreateLabelMapping = new RelayCommand(o => { CreateLabelMapCommand(); } );
         }
 
         private void RemoveLabelMapCommand(object o)
         {
             if (o is CatalogItemPetsi)
             {
-                CatalogItemPetsi item = (CatalogItemPetsi)o;
-                item.StandardLabelFilePath = null;
-                item.CutieLabelFilePath = null;
-                //save?
+                ConfirmationWindow window = new ConfirmationWindow(null);
+                window.ShowDialog();
+                if(window.ControlBool)
+                {
+                    CatalogItemPetsi item = (CatalogItemPetsi)o;
+                    item.StandardLabelFilePath = null;
+                    item.CutieLabelFilePath = null;
+                    //save?
+                }
             }
         }
 
         private void OpenLabelMapCommand(object o) 
         {
-            LabelItemWindow view = new LabelItemWindow((CatalogItemPetsi)o);
+            if(o is CatalogItemPetsi)
+            {
+                LabelItemWindow view = new LabelItemWindow((CatalogItemPetsi)o);
+                view.Show();
+            }
+        }
+
+        private void CreateLabelMapCommand()
+        {
+            LabelItemWindow view = new LabelItemWindow(null);
             view.Show();
         }
 
@@ -74,7 +95,11 @@ namespace POMT_WPF.MVVM.ViewModel
             {
                 itemToUpdate.StandardLabelFilePath = null;
                 itemToUpdate.CutieLabelFilePath = null;
-                cmp.UpdateModel();
+
+                //Bad naming in this instance, AddItem function modifies before adding, 
+                //removing an item in this context is clearing the filepaths from the catalog item
+                //not a true delete from the model.
+                ObsCatalogModelSingleton.Instance.AddItem(item);
             }
             else
             {
@@ -90,6 +115,13 @@ namespace POMT_WPF.MVVM.ViewModel
             {
                 Items.Add(item);
             }
+        }
+
+        public void Update()
+        {
+            Items = new ObservableCollection<CatalogItemPetsi>(
+               SelectLabeledItems(
+                   ObsCatalogModelSingleton.Instance.CatalogItems.ToList()));
         }
     }
 }

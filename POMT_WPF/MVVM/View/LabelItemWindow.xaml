@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:POMT_WPF.MVVM.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:v="clr-namespace:POMT_WPF.Validation"
     Title="LabelItemWindow"
     Width="500"
     Height="300"
@@ -36,7 +37,33 @@
                             <StackPanel Orientation="Vertical">
                                 <Label Content="Item Name" />
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBox Style="{StaticResource GeneralField}" Text="{Binding ItemName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                    <Border x:Name="ItemNameErrBdr" Style="{StaticResource OrderFormErrorBorder}">
+                                        <Grid Margin="2">
+                                            <Border Style="{StaticResource GeneralBorder}">
+                                                <Grid>
+                                                    <ComboBox
+                                                        x:Name="ItemNameComboBox"
+                                                        Style="{StaticResource ItemNameComboBox}"
+                                                        Text="{Binding ElementName=ItemNameTextBox, Path=Text}" />
+                                                    <TextBox
+                                                        x:Name="ItemNameTextBox"
+                                                        Style="{StaticResource ItemNameTextBox}"
+                                                        TextChanged="ItemNameTextBox_TextChanged">
+                                                        <TextBox.Text>
+                                                            <Binding
+                                                                Mode="TwoWay"
+                                                                Path="ItemName"
+                                                                UpdateSourceTrigger="PropertyChanged">
+                                                                <Binding.ValidationRules>
+                                                                    <v:ItemNameValidation />
+                                                                </Binding.ValidationRules>
+                                                            </Binding>
+                                                        </TextBox.Text>
+                                                    </TextBox>
+                                                </Grid>
+                                            </Border>
+                                        </Grid>
+                                    </Border>
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">

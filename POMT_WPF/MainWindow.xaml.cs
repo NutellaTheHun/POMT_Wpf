@@ -28,7 +28,7 @@ namespace POMT_WPF
             dashboardDataGrid.MouseDoubleClick += DashboardDataGrid_MouseDoubleClick;
 
             DataContext = viewModel;
-            ErrorService.RaiseMainWindowEvents();
+            //ErrorService.RaiseLabelEvents();
         }
 
         public void NotifyUserNewItem(object sender, EventArgs e)

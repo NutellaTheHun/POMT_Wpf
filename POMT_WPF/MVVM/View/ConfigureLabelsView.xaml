@@ -21,6 +21,7 @@
                 Margin="10"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
+                Command="{Binding GoBack}"
                 Style="{StaticResource GeneralBackButton}" />
         </Grid>
         <Grid Grid.Row="1">
@@ -62,7 +63,7 @@
                         Margin="5,0,5,5"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Top"
-                        Command="{Binding ViewLabelMapping}"
+                        Command="{Binding CreateLabelMapping}"
                         Style="{StaticResource secondaryButton}">
                         <Icon:PackIconMaterial Kind="Plus" />
                     </Button>

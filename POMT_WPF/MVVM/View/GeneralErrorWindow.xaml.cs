@@ -14,5 +14,10 @@ namespace POMT_WPF.MVVM.View
             DataContext = this;
             ErrorMessage = message;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

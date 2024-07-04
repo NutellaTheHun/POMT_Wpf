@@ -16,7 +16,7 @@ namespace POMT_WPF.MVVM.View
             InitializeComponent();
             ErrorService.Instance().SoiNewItem += NotifyUserNewItem;
             ErrorService.Instance().SoiMultiItem += NotifyUserMultiItemMatch;
-            ErrorService.RaiseMainWindowEvents();
+            ErrorService.RaiseWindowEvents();
         }
 
         public void NotifyUserNewItem(object sender, EventArgs e)
