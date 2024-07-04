@@ -7,7 +7,7 @@ using POMT_WPF.Core;
 
 namespace POMT_WPF.MVVM.ViewModel
 {
-    public class CatalogViewModel : ViewModelBase, IObsCatalogModelSubscriber
+    public class CatalogViewModel : ViewModelBase
     {
         CatalogModelPetsi cmp;
         public ObservableCollection<CatalogItemPetsi> Items { get; set; }
@@ -17,14 +17,8 @@ namespace POMT_WPF.MVVM.ViewModel
 
         public CatalogViewModel()
         {
-            ObsCatalogModelSingleton.Instance.Subscribe(this);
             Items = ObsCatalogModelSingleton.Instance.CatalogItems;
             OpenCatalogItemView = new RelayCommand(o => { MainViewModel.Instance().OpenCatalogItemView(o); });
-        }
-
-        public void Update()
-        {
-           Items = ObsCatalogModelSingleton.Instance.CatalogItems;
         }
 
         public void FilterSearchBar(string text)

@@ -45,7 +45,6 @@ namespace POMT_WPF.MVVM.ViewModel
                 {
                     _searchQuery = value;
                     OnPropertyChanged(nameof(SearchQuery));
-                    //ApplySearchFilter();
                     DashBoardOrdersView.Refresh();
                 }
             }
@@ -80,19 +79,7 @@ namespace POMT_WPF.MVVM.ViewModel
 
             FilterFrozen = new RelayCommand(o => { ChangeFilter(FrFilter);});
         }
-        /*
-        private void ApplySearchFilter()
-        {
-            if (SearchQuery != "")
-            {
-                DashboardOrders.Filter += SearchBarFilter;
-            }
-            else
-            {
-                DashboardOrders.Filter -= SearchBarFilter;
-            }
-        }
-        */
+
         private void ChangeFilter(FilterEventHandler newFilter)
         {
             DashboardOrders.Filter -= currentFilter;
@@ -169,7 +156,7 @@ namespace POMT_WPF.MVVM.ViewModel
             }
             return false;
         }
-
+        /*
         /// <summary>
         /// filters:
         /// Square -> InputOriginType: SQUARE_ORDER_INPUT
@@ -225,7 +212,7 @@ namespace POMT_WPF.MVVM.ViewModel
             _orders = results;
             TotalOrderCount = _orders.Count;
         }
-
+        */
         public void Update()
         {
            // UpdateOrderList();
