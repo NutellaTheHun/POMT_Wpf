@@ -14,14 +14,21 @@ namespace POMT_WPF.MVVM.View
     /// </summary>
     public partial class LabelItemWindow : Window
     {
-        LabelItemViewModel vm;
-        CatalogService cs;
-        public LabelItemWindow(CatalogItemPetsi? item)
+        private LabelItemViewModel vm;
+        private CatalogService cs;
+        private List<CatalogItemPetsi> ExistingItems;
+        public LabelItemWindow(CatalogItemPetsi? item, List<CatalogItemPetsi> existingItems)
         {
-            vm = new LabelItemViewModel(item, this);
+            vm = new LabelItemViewModel(item, this, existingItems);
             cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
+            ExistingItems = existingItems;
             DataContext = vm;
             InitializeComponent();
+
+            if(item != null)
+            {
+                ItemNameTextBox.IsReadOnly = true;
+            }
 
             LabelItemViewEvents.Instance.ItemNameInvalid += HighlightItemName;
         }
@@ -35,6 +42,18 @@ namespace POMT_WPF.MVVM.View
                 ComboBox itemNameCb = (itemNameTextBox.Parent as Grid).FindName("ItemNameComboBox") as ComboBox;
 
                 List<CatalogItemPetsi> results = cs.GetItemNameValidationResults(itemNameTextBox.Text);
+                if (results != null || results.Count != 0)
+                {
+                    List<CatalogItemPetsi> copy = new List<CatalogItemPetsi>(results);
+                    foreach (CatalogItemPetsi item in copy)
+                    {
+                        foreach (CatalogItemPetsi existingItem in ExistingItems)
+                        {
+                            if (existingItem.CatalogObjectId == item.CatalogObjectId) { results.Remove(item); break; }
+                        }
+                    }
+                }
+
                 itemNameCb.ItemsSource = results.Select(x => x.ItemName);
                 if (results.Count != 0)
                 {

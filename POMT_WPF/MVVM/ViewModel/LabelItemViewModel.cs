@@ -66,16 +66,23 @@ namespace POMT_WPF.MVVM.ViewModel
         public RelayCommand Done {  get; set; }
         public RelayCommand Cancel {  get; set; }
 
-        public LabelItemViewModel(CatalogItemPetsi? item, LabelItemWindow view) 
-        {
+        private List<CatalogItemPetsi> ExistingItems;
+        private bool _isNew;
 
+        public LabelItemViewModel(CatalogItemPetsi? item, LabelItemWindow view, List<CatalogItemPetsi> existingItems) 
+        {
             _view = view;
+            ExistingItems = existingItems;
 
             if (item != null)
             {
                 ItemName = item.ItemName;
                 CutieFile = item.CutieLabelFilePath;
                 PieFile = item.StandardLabelFilePath;
+            }
+            else
+            {
+                _isNew = false;
             }
 
             SetPieLabel = new RelayCommand(o => { SetPieCommand(); } );
@@ -135,8 +142,18 @@ namespace POMT_WPF.MVVM.ViewModel
         private bool ValidateItem(out CatalogItemPetsi item)
         {
             CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
-
+            
             item = new CatalogItemPetsi(cs.GetCatalogItem(ItemName));
+            if (_isNew)
+            {
+                foreach (CatalogItemPetsi existingItem in ExistingItems)
+                {
+                    if (existingItem.ItemName == ItemName)
+                    {
+                        return false;
+                    }
+                }
+            }
             if (item == null) 
             {
                 SystemLogger.Log("LABEL ITEM VALIDATION FAILED: " + ItemName);

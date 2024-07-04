@@ -1,4 +1,5 @@
-﻿using Petsi.Managers;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using Petsi.Managers;
 using Petsi.Models;
 using Petsi.Services;
 using Petsi.Units;
@@ -99,14 +100,14 @@ namespace POMT_WPF.MVVM.ViewModel
         {
             if(o is CatalogItemPetsi)
             {
-                LabelItemWindow view = new LabelItemWindow((CatalogItemPetsi)o);
+                LabelItemWindow view = new LabelItemWindow((CatalogItemPetsi)o, Items.ToList());
                 view.Show();
             }
         }
 
         private void CreateLabelMapCommand()
         {
-            LabelItemWindow view = new LabelItemWindow(null);
+            LabelItemWindow view = new LabelItemWindow(null, Items.ToList());
             view.Show();
         }
 
