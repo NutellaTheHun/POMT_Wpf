@@ -13,7 +13,7 @@ namespace POMT_WPF.MVVM.View
         public ConfigureLabels()
         {
             InitializeComponent();
-            viewModel = new ConfigureLabelsViewModel();
+            viewModel = new ConfigureLabelsViewModel(false);
             labelDataGrid.ItemsSource = viewModel.Items;
         }
         private void CloseWindow_ButtonClick(object sender, RoutedEventArgs e)

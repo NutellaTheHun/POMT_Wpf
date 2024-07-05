@@ -15,45 +15,5 @@ namespace POMT_WPF.MVVM.View
             ViewModel = new SettingsViewModel();
             DataContext = ViewModel;
         }
-
-        private void SetLabelPrinterButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
-        }
-
-        private void SetStandardPrinterButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
-        }
-
-        private void SetLabelFilePathButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
-        }
-
-        private void SetPieTemplateButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
-        }
-
-        private void SetPastryTemplateButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
-        }
-
-        private void ConfigureLabelsButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
-        }
-
-        private void ConfigureTemplatesButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
-        }
-
-        private void ManageCatalogButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
-        }
     }
 }

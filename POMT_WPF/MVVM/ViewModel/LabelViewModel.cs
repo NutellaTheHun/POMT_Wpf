@@ -41,7 +41,7 @@ namespace POMT_WPF.MVVM.ViewModel
             PrintStandard = new RelayCommand(o => { ls.Print_4x2(SelectedDate); });
             PrintSmall = new RelayCommand(o => { ls.Print_2x1(SelectedDate); });
             PrintRound = new RelayCommand(o => { ls.Print_4x2(SelectedDate); });
-            ConfigureLabels = new RelayCommand(o => { MainViewModel.Instance().OpenConfigureLabelView(); });
+            ConfigureLabels = new RelayCommand(o => { MainViewModel.Instance().OpenConfigureLabelView(false); });
         }
     }
 }

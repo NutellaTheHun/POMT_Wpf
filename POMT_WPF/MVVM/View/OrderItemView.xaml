@@ -8,7 +8,7 @@
     xmlns:local="clr-namespace:POMT_WPF.MVVM.View.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:v="clr-namespace:POMT_WPF.Validation"
-    d:DesignHeight="700"
+    d:DesignHeight="660"
     d:DesignWidth="860"
     mc:Ignorable="d">
 
@@ -244,7 +244,7 @@
                             <DataGrid
                                 x:Name="orderFormDataGrid"
                                 Width="775"
-                                Height="325"
+                                Height="290"
                                 BorderBrush="Transparent"
                                 CellStyle="{DynamicResource orderFormDataGridCellStyle}"
                                 ColumnHeaderStyle="{DynamicResource orderFormDataGridColumnHeaderStyle}"
@@ -471,7 +471,7 @@
                 Visibility="{Binding CanModify, Converter={StaticResource BoolToVis}}" />
             <Button
                 Name="DeleteOrderButton"
-                Margin="100,10,10,0"
+                Margin="0,0,10,0"
                 HorizontalAlignment="Right"
                 Background="{StaticResource ChiliRed}"
                 Command="{Binding DeleteOrderCommand}"

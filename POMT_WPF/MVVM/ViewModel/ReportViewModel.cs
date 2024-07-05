@@ -1,6 +1,8 @@
 ﻿using Petsi.Reports;
+using Petsi.Services;
 using Petsi.Utils;
 using POMT_WPF.Core;
+using POMT_WPF.MVVM.View;
 
 namespace POMT_WPF.MVVM.ViewModel
 {
@@ -87,6 +89,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 if( _pieTemplateName != value)
                 {
                     _pieTemplateName = value;
+                    config.SetValue(Identifiers.SETTING_PIE_TEMPLATE, PieTemplateName);
                     OnPropertyChanged(nameof(PieTemplateName));
                 }
             } 
@@ -101,13 +104,14 @@ namespace POMT_WPF.MVVM.ViewModel
                 if (_pastryTemplateName != value)
                 {
                     _pastryTemplateName = value;
+                    config.SetValue(Identifiers.SETTING_PASTRY_TEMPLATE, PastryTemplateName);
                     OnPropertyChanged(nameof(PastryTemplateName));
                 }
             }
         }
 
-        private DateTime _startDate;
-        public DateTime StartDate
+        private DateTime? _startDate;
+        public DateTime? StartDate
         {
             get { return _startDate; }
             set
@@ -141,8 +145,14 @@ namespace POMT_WPF.MVVM.ViewModel
         public RelayCommand SetPastryTemplate { get; set; }
         public RelayCommand OpenTemplateListView { get; set; }
 
+        private PetsiConfig config = PetsiConfig.GetInstance();
+
         public ReportViewModel()
         {
+            //PetsiConfig config 
+            PieTemplateName = config.GetVariable(Identifiers.SETTING_PIE_TEMPLATE);
+            PastryTemplateName = config.GetVariable(Identifiers.SETTING_PASTRY_TEMPLATE);
+
             ReportDirector rd = new ReportDirector();
 
             PrintFrontList = new RelayCommand(o => { if(IsValidDate()) rd.CreateFrontList(StartDate, RetailFilter, SquareFilter, WholesaleFilter, SpecialFilter, EzCaterFilter); });
@@ -159,20 +169,26 @@ namespace POMT_WPF.MVVM.ViewModel
             SpecialFilter = true;
             EzCaterFilter = true;
 
-            StartDate = DateTime.Now;
+            StartDate = null;
             EndDate = null;
-
-            PetsiConfig config = PetsiConfig.GetInstance();
-            PieTemplateName = config.GetVariable(Identifiers.SETTING_PIE_TEMPLATE);
-            PastryTemplateName = config.GetVariable(Identifiers.SETTING_PASTRY_TEMPLATE);
         }
         private void StPieTempCmd()
         {
-
+            SetSettingsVariableWindow win = new SetSettingsVariableWindow("Select Pie Template", ReportTemplateService.Instance().GetTemplateNames());
+            win.ShowDialog();
+            if (win.selectionMade)
+            {
+                PieTemplateName = win.VariableSelection;
+            }
         }
         private void StPastTempCmd()
         {
-
+            SetSettingsVariableWindow win = new SetSettingsVariableWindow("Select Pastry Template", ReportTemplateService.Instance().GetTemplateNames());
+            win.ShowDialog();
+            if (win.selectionMade)
+            {
+                PastryTemplateName = win.VariableSelection;
+            }
         }
 
         private bool IsValidDate()

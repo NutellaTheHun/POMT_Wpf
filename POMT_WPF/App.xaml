@@ -27,6 +27,7 @@
                 <ResourceDictionary Source="Styles/Button/topButton.xaml" />
                 <ResourceDictionary Source="Styles/Button/dashboardDataGridSelectAllButtonStyle.xaml" />
                 <ResourceDictionary Source="Styles/Button/DataGridSelectAllButtonStyle.xaml" />
+                <ResourceDictionary Source="Styles/Button/GeneralSetButton.xaml" />
 
                 <ResourceDictionary Source="Styles/ComboBox/ItemNameComboBox.xaml" />
 

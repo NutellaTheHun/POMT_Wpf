@@ -7,6 +7,7 @@ namespace POMT_WPF.MVVM.ViewModel
     {
 		public PetsiOrder SelectedOrder;
 
+        public RelayCommand CloseApp { get; set; }
         public RelayCommand CatalogViewCommand { get; set; }
         public RelayCommand LabelViewCommand { get; set; }
         public RelayCommand OrderViewCommand { get; set; }
@@ -61,9 +62,9 @@ namespace POMT_WPF.MVVM.ViewModel
             CurrentView = CatalogItemVM;
         }
 
-        public void OpenConfigureLabelView()
+        public void OpenConfigureLabelView(bool IsFromSettingsVM)
         {
-            ConfigureLabelsVM = new ConfigureLabelsViewModel();
+            ConfigureLabelsVM = new ConfigureLabelsViewModel(IsFromSettingsVM);
             CurrentView = ConfigureLabelsVM;
         }
 
@@ -71,6 +72,11 @@ namespace POMT_WPF.MVVM.ViewModel
         {
             TemplateListVM = new TemplateListViewModel(IsFromSettingsVM);
             CurrentView = TemplateListVM;
+        }
+
+        public void OpenCatalogListView()
+        {
+            CurrentView = CatalogVM;
         }
 
         public void BackOrderView()
@@ -83,9 +89,16 @@ namespace POMT_WPF.MVVM.ViewModel
             CurrentView = CatalogVM;
         }
 
-        public void BackLabelView()
+        public void BackLabelView(bool isFromSettingsVM)
         {
-            CurrentView = LabelVM;
+            if(isFromSettingsVM)
+            {
+                CurrentView = SettingsVM;
+            }
+            else
+            {
+                CurrentView = LabelVM;
+            }
         }
 
         public void BackTmpltLstView(bool isFromSettingsVM)
@@ -109,6 +122,8 @@ namespace POMT_WPF.MVVM.ViewModel
             SettingsVM = new SettingsViewModel();
 
             CurrentView = OrderVM;
+
+            CloseApp = new RelayCommand(o =>{ System.Windows.Application.Current.Shutdown(); });
 
 			CatalogViewCommand = new RelayCommand(o =>{ CurrentView = CatalogVM; });
 

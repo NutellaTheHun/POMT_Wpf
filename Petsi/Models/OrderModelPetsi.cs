@@ -12,6 +12,7 @@ namespace Petsi.Models
     public class OrderModelPetsi : ModelBase, IModelInput, IOrderModelPublisher
     {
         List<PetsiOrder> Orders;
+
         List<IOrderModelSubscriber> subscribers;
         HashSet<string> OrderTypesSet;
         OrderModelFrameBehavior frameBehavior;
@@ -135,38 +136,18 @@ namespace Petsi.Models
             return Guid.NewGuid().ToString();
         }*/
         //----------
-        private List<PetsiOrderLineItem> AggregatePetsiOrders(List<PetsiOrder> orders)
-        {
-            //List<PetsiOrder> orderCpy = new List<PetsiOrder>(orders);
-            Dictionary<string, PetsiOrderLineItem> aggregate = new Dictionary<string, PetsiOrderLineItem>();
-
-            foreach (PetsiOrder order in orders)
-            {
-                foreach (PetsiOrderLineItem lineItem in order.LineItems)
-                {
-                    if (aggregate.ContainsKey(lineItem.CatalogObjectId))
-                    {
-                        aggregate[lineItem.CatalogObjectId].Merge(lineItem);
-                    }
-                    else
-                    {
-                        aggregate[lineItem.CatalogObjectId] = new PetsiOrderLineItem(lineItem);
-                    }
-                }
-
-            }
-            return aggregate.Values.ToList();
-        }
 
         #region Report Pulls
 
-        public List<PetsiOrder> GetFrontListData(DateTime? targetDate)
+        public List<PetsiOrder> GetFrontListData(DateTime? targetDate, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater)
         {
+            List<PetsiOrder> filteredOrders = FilterOrders(Orders, isRetail, isSquare, isWholesale, isSpecial, isEzCater);
+
             IEnumerable<PetsiOrder> query;
             if (targetDate != null)
             {//doesn't filter out wholesale because they're used for Coverpage and notes page, order data is filtered out in report builders
                 query =
-                from order in Orders
+                from order in filteredOrders
                 where (order.IsPeriodic == true && DateTime.Parse(order.OrderDueDate).DayOfWeek == targetDate.Value.DayOfWeek)  //wholesale/periodic is weekly, so by day of week
                       ||
                      (order.IsPeriodic == false && DateTime.Parse(order.OrderDueDate).ToShortDateString() == targetDate.Value.ToShortDateString())
@@ -176,27 +157,29 @@ namespace Petsi.Models
             else
             {
                 query =
-                from order in Orders
+                from order in filteredOrders
                 orderby order.FulfillmentType, DateTime.Parse(order.OrderDueDate).TimeOfDay
                 select order;
             }
             return query.ToList();
         }
 
-        public List<PetsiOrderLineItem> GetBackListData(DateTime? targetDate, DateTime? endDate)
+        public List<PetsiOrderLineItem> GetBackListData(DateTime? targetDate, DateTime? endDate, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater)
         {
+            List<PetsiOrder> filteredOrders = FilterOrders(Orders, isRetail, isSquare, isWholesale, isSpecial, isEzCater);
+
             IEnumerable<PetsiOrder> query;
             List<PetsiOrder> periodicOrders = new List<PetsiOrder>();
             if (targetDate == null) //all data, WARNING WHOLESALE ONLY ONCE CURRENTLY, add ws orders up to max day, or end of week of max day?
             {
                 query =
-                from order in Orders
+                from order in filteredOrders
                 select order;
             }
             else if (endDate == null) //target date
             {
                 query =
-                from order in Orders
+                from order in filteredOrders
                 where (order.IsPeriodic == true && DateTime.Parse(order.OrderDueDate).DayOfWeek == targetDate.Value.DayOfWeek)  //wholesale/periodic is weekly, so by day of week
                        ||
                       (order.IsPeriodic == false && DateTime.Parse(order.OrderDueDate).Date == targetDate.Value.Date)
@@ -207,7 +190,7 @@ namespace Petsi.Models
                 //Gather Non-periodic Orders
 
                 query =
-                from order in Orders
+                from order in filteredOrders
                 where
                     order.IsOneShot == true
                     && DateTime.Parse(order.OrderDueDate) >= targetDate.Value
@@ -227,17 +210,6 @@ namespace Petsi.Models
             }
             return AggregatePetsiOrders(query.ToList());
         }
-
-        private void AccumulatePeriodicOrders(List<PetsiOrder> periodicOrders, DateTime targetDate)
-        {
-            IEnumerable<PetsiOrder> query;
-            query =
-              from order in Orders
-              where (order.IsPeriodic == true && DateTime.Parse(order.OrderDueDate).DayOfWeek == targetDate.DayOfWeek)  //wholesale/periodic is weekly, so by day of week
-              select order;
-            periodicOrders.AddRange(query.ToList());
-        }
-
 
         //Label Service uses it, WS_Day_report still needs day separation tho, and day info
         public List<PetsiOrderLineItem> GetWsDayData(DateTime? targetDate)
@@ -284,7 +256,65 @@ namespace Petsi.Models
             }
             return result;
         }
+        private List<PetsiOrderLineItem> AggregatePetsiOrders(List<PetsiOrder> orders)
+        {
+            //List<PetsiOrder> orderCpy = new List<PetsiOrder>(orders);
+            Dictionary<string, PetsiOrderLineItem> aggregate = new Dictionary<string, PetsiOrderLineItem>();
 
+            foreach (PetsiOrder order in orders)
+            {
+                foreach (PetsiOrderLineItem lineItem in order.LineItems)
+                {
+                    if (aggregate.ContainsKey(lineItem.CatalogObjectId))
+                    {
+                        aggregate[lineItem.CatalogObjectId].Merge(lineItem);
+                    }
+                    else
+                    {
+                        aggregate[lineItem.CatalogObjectId] = new PetsiOrderLineItem(lineItem);
+                    }
+                }
+
+            }
+            return aggregate.Values.ToList();
+        }
+
+        private void AccumulatePeriodicOrders(List<PetsiOrder> periodicOrders, DateTime targetDate)
+        {
+            IEnumerable<PetsiOrder> query;
+            query =
+              from order in Orders
+              where (order.IsPeriodic == true && DateTime.Parse(order.OrderDueDate).DayOfWeek == targetDate.DayOfWeek)  //wholesale/periodic is weekly, so by day of week
+              select order;
+            periodicOrders.AddRange(query.ToList());
+        }
+
+        /// <summary>
+        /// Filters orders based on given booleans representing order types, and discounting frozen orders
+        /// </summary>
+        /// <param name="petsiOrders"></param>
+        /// <param name="isRetail"></param>
+        /// <param name="isSquare"></param>
+        /// <param name="isWholesale"></param>
+        /// <param name="isSpecial"></param>
+        /// <param name="isEzCater"></param>
+        /// <returns></returns>
+        private List<PetsiOrder> FilterOrders(List<PetsiOrder> petsiOrders, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater)
+        {
+            List<PetsiOrder> result = new List<PetsiOrder>();
+            foreach (PetsiOrder order in petsiOrders)
+            {
+                if (order.IsFrozen) { continue; }
+
+                if (isRetail) { if (order.OrderType == Identifiers.ORDER_TYPE_RETAIL) result.Add(order); continue; }
+                if (isSquare) { if (order.OrderType == Identifiers.ORDER_TYPE_SQUARE) result.Add(order); continue; }
+                if (isWholesale) { if (order.OrderType == Identifiers.ORDER_TYPE_WHOLESALE) result.Add(order); continue; }
+                if (isSpecial) { if (order.OrderType == Identifiers.ORDER_TYPE_SPECIAL) result.Add(order); continue; }
+                if (isEzCater) { if (order.OrderType == Identifiers.ORDER_TYPE_EZ_CATER) result.Add(order); continue; }
+            }
+
+            return result;
+        }
         #endregion
 
         public static List<PetsiOrder> MergeOrders(List<PetsiOrder> mainOrders, List<PetsiOrder> otherOrders)

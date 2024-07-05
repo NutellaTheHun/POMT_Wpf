@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:POMT_WPF.MVVM.View.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="700"
+    d:DesignHeight="660"
     d:DesignWidth="860"
     mc:Ignorable="d">
     <Grid Background="{StaticResource ColumbiaBlue}">
@@ -28,21 +28,13 @@
                                 BorderBrush="{StaticResource TextFont}"
                                 BorderThickness="1"
                                 CornerRadius="10">
-                                <local:TextFillTextBox
+                                <TextBox
                                     IsReadOnly="true"
-                                    Style="{StaticResource textFillTextBox}"
-                                    Text="{Binding LabelPrinter, UpdateSourceTrigger=PropertyChanged}"
-                                    TextFill="getListOfPrinters()" />
+                                    Style="{StaticResource GeneralField}"
+                                    Text="{Binding LabelPrinter, UpdateSourceTrigger=PropertyChanged}" />
                             </Border>
                         </StackPanel>
-                        <Button
-                            Name="SetLabelPrinterButton"
-                            Width="50"
-                            Margin="5,25,0,0"
-                            VerticalAlignment="Center"
-                            Click="SetLabelPrinterButton_Click"
-                            Content="Set"
-                            Style="{StaticResource settingsButton}" />
+                        <Button Command="{Binding SetLabelPrinterCommand}" Style="{StaticResource GeneralSetButton}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Vertical">
@@ -51,20 +43,13 @@
                                 BorderBrush="{StaticResource TextFont}"
                                 BorderThickness="1"
                                 CornerRadius="10">
-                                <local:TextFillTextBox
+                                <TextBox
                                     IsReadOnly="true"
-                                    Style="{StaticResource textFillTextBox}"
-                                    Text="{Binding StandardPrinter, UpdateSourceTrigger=PropertyChanged}"
-                                    TextFill="getListOfPrinters()" />
+                                    Style="{StaticResource GeneralField}"
+                                    Text="{Binding StandardPrinter, UpdateSourceTrigger=PropertyChanged}" />
                             </Border>
                         </StackPanel>
-                        <Button
-                            Name="SetStandardPrinterButton"
-                            Width="50"
-                            Margin="5,25,0,0"
-                            Click="SetStandardPrinterButton_Click"
-                            Content="Set"
-                            Style="{StaticResource settingsButton}" />
+                        <Button Command="{Binding SetStandardPrinterCommand}" Style="{StaticResource GeneralSetButton}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Vertical">
@@ -73,22 +58,14 @@
                                 BorderBrush="{StaticResource TextFont}"
                                 BorderThickness="1"
                                 CornerRadius="10">
-                                <local:TextFillTextBox
+                                <TextBox
                                     IsReadOnly="true"
-                                    Style="{StaticResource textFillTextBox}"
-                                    Text="{Binding LabelsFilepath, UpdateSourceTrigger=PropertyChanged}"
-                                    TextFill="selectFolderPath()" />
+                                    Style="{StaticResource GeneralField}"
+                                    Text="{Binding LabelsFilepath, UpdateSourceTrigger=PropertyChanged}" />
                             </Border>
                         </StackPanel>
-                        <Button
-                            Name="SetLabelFilePathButton"
-                            Width="50"
-                            Margin="5,25,0,0"
-                            Click="SetLabelFilePathButton_Click"
-                            Content="Set"
-                            Style="{StaticResource settingsButton}" />
+                        <Button Command="{Binding SetLabelFilePathCommand}" Style="{StaticResource GeneralSetButton}" />
                     </StackPanel>
-
                 </StackPanel>
             </Grid>
             <Grid Grid.Column="1" Margin="10">
@@ -100,20 +77,13 @@
                                 BorderBrush="{StaticResource TextFont}"
                                 BorderThickness="1"
                                 CornerRadius="10">
-                                <local:TextFillTextBox
+                                <TextBox
                                     IsReadOnly="true"
-                                    Style="{StaticResource textFillTextBox}"
-                                    Text="{Binding PieTemplate, UpdateSourceTrigger=PropertyChanged}"
-                                    TextFill="SelectFromListBox()" />
+                                    Style="{StaticResource GeneralField}"
+                                    Text="{Binding PieTemplate, UpdateSourceTrigger=PropertyChanged}" />
                             </Border>
                         </StackPanel>
-                        <Button
-                            Name="SetPieTemplateButton"
-                            Width="50"
-                            Margin="5,25,0,0"
-                            Click="SetPieTemplateButton_Click"
-                            Content="Set"
-                            Style="{StaticResource settingsButton}" />
+                        <Button Command="{Binding SetPieTemplateCommand}" Style="{StaticResource GeneralSetButton}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Vertical">
@@ -122,20 +92,13 @@
                                 BorderBrush="{StaticResource TextFont}"
                                 BorderThickness="1"
                                 CornerRadius="10">
-                                <local:TextFillTextBox
+                                <TextBox
                                     IsReadOnly="true"
-                                    Style="{StaticResource textFillTextBox}"
-                                    Text="{Binding PastryTemplate, UpdateSourceTrigger=PropertyChanged}"
-                                    TextFill="SelectFromListBox()" />
+                                    Style="{StaticResource GeneralField}"
+                                    Text="{Binding PastryTemplate, UpdateSourceTrigger=PropertyChanged}" />
                             </Border>
                         </StackPanel>
-                        <Button
-                            Name="SetPastryTemplateButton"
-                            Width="50"
-                            Margin="5,25,0,0"
-                            Click="SetPastryTemplateButton_Click"
-                            Content="Set"
-                            Style="{StaticResource settingsButton}" />
+                        <Button Command="{Binding SetPastryTemplateCommand}" Style="{StaticResource GeneralSetButton}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Vertical">
@@ -144,10 +107,7 @@
                                 BorderBrush="{StaticResource TextFont}"
                                 BorderThickness="1"
                                 CornerRadius="10">
-                                <local:TextFillTextBox
-                                    Style="{StaticResource textFillTextBox}"
-                                    Text="{Binding NumberOfDays, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                    TextFill=".." />
+                                <TextBox Style="{StaticResource GeneralField}" Text="{Binding NumberOfDays, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                             </Border>
                         </StackPanel>
                     </StackPanel>
@@ -160,26 +120,23 @@
             HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal">
                 <Button
-                    Name="ConfigureLabelsButton"
-                    Width="140"
+                    Width="150"
                     Margin="5"
-                    Click="ConfigureLabelsButton_Click"
+                    Command="{Binding ConfigureLabelsCommand}"
                     Content="Configure Labels"
-                    Style="{StaticResource settingsButton}" />
+                    Style="{StaticResource GeneralSetButton}" />
                 <Button
-                    Name="ConfigureTemplatesButton"
-                    Width="140"
+                    Width="150"
                     Margin="5"
-                    Click="ConfigureTemplatesButton_Click"
+                    Command="{Binding ConfigureTemplatesCommand}"
                     Content="Configure Templates"
-                    Style="{StaticResource settingsButton}" />
+                    Style="{StaticResource GeneralSetButton}" />
                 <Button
-                    Name="ManageCatalogButton"
-                    Width="140"
+                    Width="150"
                     Margin="5"
-                    Click="ManageCatalogButton_Click"
+                    Command="{Binding ManageCatalogCommand}"
                     Content="Manage Catalog"
-                    Style="{StaticResource settingsButton}" />
+                    Style="{StaticResource GeneralSetButton}" />
             </StackPanel>
         </Grid>
     </Grid>

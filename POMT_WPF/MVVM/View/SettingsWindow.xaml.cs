@@ -31,7 +31,6 @@ namespace POMT_WPF.MVVM.View
             ConfigureLabels ConfigureLabelsWin = new ConfigureLabels();
             ConfigureLabelsWin.Show();
             //Do something
-
         }
         private void ConfigureTemplatesWin_BtnClk(object sender, RoutedEventArgs e)
         {

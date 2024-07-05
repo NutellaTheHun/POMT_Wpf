@@ -73,6 +73,9 @@
     <Compile Update="MVVM\View\SetPieTemplateView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="MVVM\View\SetSettingsVariableWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="MVVM\View\SetStandardPrinterView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -162,6 +165,9 @@
     <Page Update="MVVM\View\SetPieTemplateView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="MVVM\View\SetSettingsVariableWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MVVM\View\SetStandardPrinterView.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -199,6 +205,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\Button\DataGridSelectAllButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Button\GeneralSetButton.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\ComboBox\ItemNameComboBox.xaml">
