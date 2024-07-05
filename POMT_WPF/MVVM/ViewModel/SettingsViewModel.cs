@@ -9,7 +9,7 @@ namespace POMT_WPF.MVVM.ViewModel
     public class SettingsViewModel : ViewModelBase
     {
         #region Properties
-        private string _labelPrinter; //config, getPrinters()
+        private string _labelPrinter;
         public string LabelPrinter
         {
             get { return _labelPrinter; }
@@ -24,7 +24,7 @@ namespace POMT_WPF.MVVM.ViewModel
             }
         }
 
-        private string _standardPrinter;  //config, getPrinters()
+        private string _standardPrinter;
         public string StandardPrinter
         {
             get { return _standardPrinter; }
@@ -39,7 +39,7 @@ namespace POMT_WPF.MVVM.ViewModel
             }
         }
 
-        private string _labelsFilepath;  //config
+        private string _labelsFilepath;
         public string LabelsFilepath
         {
             get { return _labelsFilepath; }
@@ -54,7 +54,7 @@ namespace POMT_WPF.MVVM.ViewModel
             }
         }
 
-        private string _numberOfDays;  //config
+        private string _numberOfDays;
         public string NumberOfDays
         {
             get { return _numberOfDays; }
@@ -69,7 +69,7 @@ namespace POMT_WPF.MVVM.ViewModel
             }
         }
 
-        private string _pieTemplate;  //config
+        private string _pieTemplate;
         public string PieTemplate
         {
             get { return _pieTemplate; }
@@ -84,7 +84,7 @@ namespace POMT_WPF.MVVM.ViewModel
             }
         }
 
-        private string _pastryTemplate;  //config
+        private string _pastryTemplate;
         public string PastryTemplate
         {
             get { return _pastryTemplate; }
@@ -120,9 +120,9 @@ namespace POMT_WPF.MVVM.ViewModel
             PieTemplate = config.GetVariable(Identifiers.SETTING_PIE_TEMPLATE);
             PastryTemplate = config.GetVariable(Identifiers.SETTING_PASTRY_TEMPLATE);
 
-            SetLabelPrinterCommand = new RelayCommand(o => { SetLabelsFilePath(); });
+            SetLabelPrinterCommand = new RelayCommand(o => { SetLabelPrinter(); });
             SetStandardPrinterCommand = new RelayCommand(o => { SetStandardPrinter(); });
-            SetLabelFilePathCommand = new RelayCommand(o => { SetLabelPrinter(); });
+            SetLabelFilePathCommand = new RelayCommand(o => { SetLabelsFilePath(); });
             SetPieTemplateCommand = new RelayCommand(o => { SetPieTemplate(); });
             SetPastryTemplateCommand = new RelayCommand(o => { SetPastryTemplate(); });
             ConfigureLabelsCommand = new RelayCommand(o => { MainViewModel.Instance().OpenConfigureLabelView(true); });
@@ -189,27 +189,6 @@ namespace POMT_WPF.MVVM.ViewModel
                 result.Add(printer);
             }
             return result;
-        }
-
-        //---*-*-*--*
-        public void SetPieTemplate(string templateName)
-        {
-            PieTemplate = templateName;
-        }
-
-        public void SetPastryTemplate(string templateName)
-        {
-            PastryTemplate = templateName;
-        }
-
-        public void SetStandardPrinter(string printerName)
-        {
-            StandardPrinter = printerName;
-        }
-
-        public void SetLabelPrinter(string printerName)
-        {
-            LabelPrinter = printerName;
         }
     }
 }

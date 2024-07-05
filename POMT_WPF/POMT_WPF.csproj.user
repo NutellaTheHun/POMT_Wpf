@@ -13,9 +13,6 @@
     <Compile Update="MVVM\View\AddNaturalNameWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="MVVM\View\CatalogItemVeganMapView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="MVVM\View\CatalogItemView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -34,19 +31,10 @@
     <Compile Update="MVVM\View\LabelView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="MVVM\View\NotifyCatalogValidateMultiItemView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="MVVM\View\NotifyMultiItemMatchWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="MVVM\View\NotifyNewCatalogItemView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="MVVM\View\NotifyNewCatalogItemWindow.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="MVVM\View\NotifyTableBuilderOverFlow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="MVVM\View\NotifyTableBuilderOverFlowWindow.xaml.cs">
@@ -58,25 +46,10 @@
     <Compile Update="MVVM\View\OrderView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="MVVM\View\PetsiOrderFormErrorWindow.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="MVVM\View\ReportView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="MVVM\View\SetLabelPrinterView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="MVVM\View\SetPastryTemplateView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="MVVM\View\SetPieTemplateView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="MVVM\View\SetSettingsVariableWindow.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="MVVM\View\SetStandardPrinterView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="MVVM\View\SettingsView.xaml.cs">
@@ -105,9 +78,6 @@
     <Page Update="MVVM\View\AddNaturalNameWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MVVM\View\CatalogItemVeganMapView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="MVVM\View\CatalogItemView.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -126,19 +96,10 @@
     <Page Update="MVVM\View\LabelView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MVVM\View\NotifyCatalogValidateMultiItemView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="MVVM\View\NotifyMultiItemMatchWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MVVM\View\NotifyNewCatalogItemView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="MVVM\View\NotifyNewCatalogItemWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="MVVM\View\NotifyTableBuilderOverFlow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\NotifyTableBuilderOverFlowWindow.xaml">
@@ -150,25 +111,10 @@
     <Page Update="MVVM\View\OrderView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MVVM\View\PetsiOrderFormErrorWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="MVVM\View\ReportView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MVVM\View\SetLabelPrinterView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="MVVM\View\SetPastryTemplateView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="MVVM\View\SetPieTemplateView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="MVVM\View\SetSettingsVariableWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="MVVM\View\SetStandardPrinterView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\SettingsView.xaml">

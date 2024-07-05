@@ -74,14 +74,14 @@
                                 </StackPanel>
                             </Button>
 
-                            <Button Click="ReportWindow_ButtonClick" Style="{StaticResource menuButton}">
+                            <Button  Style="{StaticResource menuButton}">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="FileTableOutline" Style="{StaticResource menuButtonIcon}" />
                                     <TextBlock Text="Reports" />
                                 </StackPanel>
                             </Button>
 
-                            <Button Click="LabelWindow_ButtonClick" Style="{StaticResource menuButton}">
+                            <Button  Style="{StaticResource menuButton}">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Label" Style="{StaticResource menuButtonIcon}" />
                                     <TextBlock Text="Labels" />
@@ -96,7 +96,6 @@
                             HorizontalAlignment="Left"
                             VerticalAlignment="Bottom"
                             Background="#dcdcdc"
-                            Click="SettingsWindow_ButtonClick"
                             DockPanel.Dock="Left"
                             Style="{StaticResource topButton}">
                             <Icon:PackIconMaterial Kind="Cog" />
@@ -159,7 +158,6 @@
                     Grid.Row="1"
                     Margin="0,0,0,4"
                     VerticalAlignment="Center"
-                    Click="AddOrder_ButtonClick"
                     Style="{StaticResource addButton}">
                     <StackPanel Orientation="Horizontal">
                         <Icon:PackIconMaterial

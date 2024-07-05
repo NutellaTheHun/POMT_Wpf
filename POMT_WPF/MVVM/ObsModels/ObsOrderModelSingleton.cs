@@ -34,9 +34,6 @@ namespace POMT_WPF.MVVM.ObsModels
             _omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
             Orders = new ObservableCollection<PetsiOrder>(_omp.GetOrders());
             Orders.CollectionChanged += (s, e) => { UpdateOrderModel(); };
-
-            //_omp.Subscribe(this);
-            //UpdateSubscriber();
         }
 
         private void UpdateOrderModel()
@@ -73,10 +70,6 @@ namespace POMT_WPF.MVVM.ObsModels
 
             //If not modify, add new item
             if (!isFound) { Orders.Add(orderItem); }
-
-            //Orders.Add(orderItem);
-            //AddOrderMainModel(orderItem);
-            //Notify();
         }
         public void RemoveOrder(PetsiOrder orderItem)
         {
@@ -93,26 +86,8 @@ namespace POMT_WPF.MVVM.ObsModels
             {
                 SystemLogger.Log("ObsOrders RemoveItem failure: " + orderItem.Recipient);
             }
-            /*
-            var orderToRemove = Orders.FirstOrDefault(order => order.OrderId == orderId);
-            if (orderToRemove != null)
-            {
-                int count = Orders.Count;
-                Orders.Remove(orderToRemove);
-                if(count-1 != Orders.Count)
-                {
-                    SystemLogger.Log("ObsOrderModel RemoveOrder failed with order: " + orderToRemove.Recipient + " : " + orderToRemove.OrderId);
-                }
-                
-            }
-            else
-            {
-                SystemLogger.Log("ObsOrderModel RemoveOrder could not locat order with id: " + orderId);
-            }
-            */
-            //RemoveOrderMainModel(orderId);
-            //Notify();
         }
+
         public void UpdateSubscriber()
         {
             Orders.Clear();

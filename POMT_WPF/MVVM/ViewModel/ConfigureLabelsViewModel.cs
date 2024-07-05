@@ -44,9 +44,9 @@ namespace POMT_WPF.MVVM.ViewModel
         public RelayCommand ViewLabelMapping { get; set; }
         public RelayCommand CreateLabelMapping { get; set; }
         public RelayCommand RemoveLabelMapping { get; set; }
+
         private bool _isFromSettingsVM;
 
-            
         public ConfigureLabelsViewModel(bool isFromSettingsVM)
         {
             _isFromSettingsVM = isFromSettingsVM;
@@ -116,38 +116,6 @@ namespace POMT_WPF.MVVM.ViewModel
         private List<CatalogItemPetsi> SelectLabeledItems(List<CatalogItemPetsi> inputList)
         {
             return inputList.Where(x => x.StandardLabelFilePath != null || x.CutieLabelFilePath != null).ToList();
-        }
-
-        public void RemoveItem(object selectedItem)
-        {
-            CatalogItemPetsi item = (CatalogItemPetsi)selectedItem;
-
-            CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
-            CatalogItemPetsi itemToUpdate = cs.GetCatalogItem(item.ItemName);
-            if (itemToUpdate != null)
-            {
-                itemToUpdate.StandardLabelFilePath = null;
-                itemToUpdate.CutieLabelFilePath = null;
-
-                //Bad naming in this instance, AddItem function modifies before adding, 
-                //removing an item in this context is clearing the filepaths from the catalog item
-                //not a true delete from the model.
-                ObsCatalogModelSingleton.Instance.AddItem(item); //this is updating the wrong item lol
-            }
-            else
-            {
-                SystemLogger.Log("Label Configuration cannot find catalog item in model: " + item.ItemName);
-            }
-
-        }
-        public void UpdateLabelList()
-        {
-            Items.Clear();
-            List<CatalogItemPetsi> catalogList = SelectLabeledItems(cmp.GetItems());
-            foreach (CatalogItemPetsi item in catalogList)
-            {
-                Items.Add(item);
-            }
         }
 
         public void Update()

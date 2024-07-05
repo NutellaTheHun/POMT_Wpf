@@ -1,6 +1,5 @@
 ﻿using Petsi.Units;
 using POMT_WPF.Core;
-using POMT_WPF.Interfaces;
 using POMT_WPF.MVVM.ObsModels;
 using System.Collections.ObjectModel;
 using Petsi.Utils;
@@ -9,7 +8,7 @@ using System.ComponentModel;
 
 namespace POMT_WPF.MVVM.ViewModel
 {
-    public class OrderViewModel : ViewModelBase, IObsOrderModelSubscriber
+    public class OrderViewModel : ViewModelBase
     {
         public RelayCommand OpenOrderItemView { get; set; }
         public RelayCommand OpenNewOrderItemView { get; set; }
@@ -155,69 +154,6 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
             return false;
-        }
-        /*
-        /// <summary>
-        /// filters:
-        /// Square -> InputOriginType: SQUARE_ORDER_INPUT
-        ///  Wholesale -> orderType: wholesale, IsPeriodic? (isUserEntered)
-        /// SpecialOrders(Other) -> IsUserEntered, IsOneShot?      (isUserEntered)
-        /// OrderTypes:
-        ///     Square
-        ///     Wholesale
-        ///     Ez-Cater
-        ///     SpecialOrder
-        /// InputOriginType:
-        ///     Square
-        ///     UserEntered
-        ///     Ez-Cater
-        /// </summary>
-        /// <param name="filter"></param>
-        public void FilterOrderType(string? orderTypefilter)
-        {
-            activeFilter = orderTypefilter;
-
-            if (orderTypefilter == null)
-            {
-                _orders = ObsOrderModelSingleton.Instance.Orders;
-                TotalOrderCount = _orders.Count;
-            }
-            else
-            {
-                _orders = new ObservableCollection<PetsiOrder>(ObsOrderModelSingleton.Instance.Orders.Where(x => x.OrderType == orderTypefilter));
-                TotalOrderCount = _orders.Count;
-            }
-        }
-
-        public void FilterSearchBar(string text)
-        {
-            ObservableCollection<PetsiOrder> modelOrders = ObsOrderModelSingleton.Instance.Orders;
-            ObservableCollection<PetsiOrder> results = new ObservableCollection<PetsiOrder>();
-            foreach (PetsiOrder order in modelOrders)
-            {
-                if (order.Recipient.ToLower().Contains(text.ToLower()))
-                {
-                    results.Add(order);
-                    continue;
-                }
-                foreach (PetsiOrderLineItem lineItem in order.LineItems)
-                {
-                    if (lineItem.ItemName.ToLower().Contains(text.ToLower()))
-                    {
-                        results.Add(order);
-                        continue;
-                    }
-                }
-            }
-            _orders = results;
-            TotalOrderCount = _orders.Count;
-        }
-        */
-        public void Update()
-        {
-           // UpdateOrderList();
-            //UpdateFrozenOrderList();
-            //view.UpdateDataGrid();
         }
     }
 }

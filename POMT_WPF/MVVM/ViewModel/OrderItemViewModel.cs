@@ -368,7 +368,7 @@ namespace POMT_WPF.MVVM.ViewModel
             FulfillmentTypes = new ObservableCollection<string>() { Identifiers.FULFILLMENT_PICKUP, Identifiers.FULFILLMENT_DELIVERY };
 
             LineItems.CollectionChanged += (s, e) => Order.LineItems = LineItems.ToList();
-            LineItems.CollectionChanged += (s, e) => UpdateColumnTotals();
+            LineItems.CollectionChanged += (s, e) => UpdateColumnTotals(); //Doesnt work?
 
             BackCommand = new RelayCommand(o => { MainViewModel.Instance().BackOrderView(); });
             EditCommand = new RelayCommand(o => { ToggleEditing(); });
@@ -410,20 +410,11 @@ namespace POMT_WPF.MVVM.ViewModel
 
         private void SaveOrder()
         {
-            // TEST!!!!!!!!!!!!!!!!!!!
-            //Time = DateTime.Parse(orderContext.OrderDueDate).ToShortTimeString();
-            //FulfillmentDate = DateTime.Parse(orderContext.OrderDueDate);
             Order.OrderDueDate = DateTime.Parse(FulfillmentDate.ToShortDateString() +" " + Time).ToString();
 
-            //if (OrderFrequency == Identifiers.ORDER_FREQUENCY_WEEKLY) { Order.IsPeriodic = true; }
-            //else if(OrderFrequency == Identifiers.ORDER_FREQUENCY_ONE_TIME) { Order.IsOneShot = true; }
-            
             if(IsValidOrder())
             {
-                //if valid
-                //else notify required fields
                 ObsOrderModelSingleton.Instance.AddOrder(Order);
-                //either SAVED notification or GO BACK
             }
         }
 

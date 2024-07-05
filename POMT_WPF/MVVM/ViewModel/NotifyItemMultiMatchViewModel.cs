@@ -43,7 +43,7 @@ namespace POMT_WPF.MVVM.ViewModel
         {
             CatalogItemPetsi newItem = new CatalogItemPetsi();
             newItem.ItemName = ItemContext;
-            _view.Close(); //????????????????????
+            _view.Close();
             MainViewModel.Instance().OpenCatalogItemView(newItem);
         }
 

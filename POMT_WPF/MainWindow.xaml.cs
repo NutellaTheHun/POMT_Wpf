@@ -21,45 +21,16 @@ namespace POMT_WPF
             InitializeComponent();
             viewModel = new MainWindowViewModel(this);
 
-            ErrorService.Instance().SoiNewItem += NotifyUserNewItem;
-            ErrorService.Instance().SoiMultiItem += NotifyUserMultiItemMatch;
+            //ErrorService.Instance().SoiNewItem += NotifyUserNewItem;
+            //ErrorService.Instance().SoiMultiItem += NotifyUserMultiItemMatch;
 
             dashboardDataGrid.ItemsSource = viewModel.Orders;
-            dashboardDataGrid.MouseDoubleClick += DashboardDataGrid_MouseDoubleClick;
+            //dashboardDataGrid.MouseDoubleClick += DashboardDataGrid_MouseDoubleClick;
 
             DataContext = viewModel;
             //ErrorService.RaiseLabelEvents();
         }
-
-        public void NotifyUserNewItem(object sender, EventArgs e)
-        {
-            NotifyNewCatalogItemView view = new NotifyNewCatalogItemView((SoiNewItemEventArgs)e);
-            view.Show();
-        }
-
-        public void NotifyUserMultiItemMatch(object sender, EventArgs e)
-        {
-            SoiMultiItemEventArgs args = (SoiMultiItemEventArgs)e;
-            NotifyCatalogValidateMultiItemView view = new NotifyCatalogValidateMultiItemView();
-            view.UpdateListNames(args.MultItemList);
-            view.SetItemContext(args.ItemContext);
-            view.Show();
-        }
-
-        private void DashboardDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            var dashboardDataGrid = sender as DataGrid;
-            if (dashboardDataGrid != null)
-            {
-                var selectedItem = dashboardDataGrid.SelectedItem;
-                if (selectedItem != null)
-                {
-                    PetsiOrderWindow petsiOrderWin = new PetsiOrderWindow(selectedItem as PetsiOrder, true);
-                    petsiOrderWin.ShowDialog();
-                }
-            }
-        }
-
+        /*
         public void UpdateDataGrid()
         {
             if (FrozenOrdersSelected) { dashboardDataGrid.ItemsSource = viewModel.FrozenOrders; }
@@ -68,6 +39,7 @@ namespace POMT_WPF
                 dashboardDataGrid.ItemsSource = viewModel.Orders;
             }  
         }
+        */
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -75,7 +47,6 @@ namespace POMT_WPF
             if (e.LeftButton == MouseButtonState.Pressed)
                 this.DragMove();
         }
-
 
         private bool isMaximized = false;
 
@@ -100,7 +71,7 @@ namespace POMT_WPF
                 isMaximized = true;
             }
         }
-
+        /*
         private void DashboardDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var dashboardDataGrid = sender as DataGrid;
@@ -115,7 +86,7 @@ namespace POMT_WPF
                 }
             }
         }
-
+        
         private void AddOrder_ButtonClick(object sender, RoutedEventArgs e)
         {
             PetsiOrderWindow petsiOrderWin = new PetsiOrderWindow(null, false);
@@ -134,12 +105,13 @@ namespace POMT_WPF
             LabelWin.Show();
         }
 
+        
         private void SettingsWindow_ButtonClick(object sender, RoutedEventArgs e)
         {
             SettingsWindow SettingsWin = new SettingsWindow();
             SettingsWin.Show();
         }
-
+        */
         private void CloseMainWindow(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();

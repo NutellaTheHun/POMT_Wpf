@@ -34,8 +34,8 @@ namespace POMT_WPF.MVVM.View
                 var selectedItem = catalogListDataGrid.SelectedItem;
                 if (selectedItem != null)
                 {
-                    CatalogItemViewWindow view = new CatalogItemViewWindow(selectedItem as CatalogItemPetsi);
-                    view.Show();
+                    //CatalogItemViewWindow view = new CatalogItemViewWindow(selectedItem as CatalogItemPetsi);
+                    //view.Show();
                 }
             }
         }

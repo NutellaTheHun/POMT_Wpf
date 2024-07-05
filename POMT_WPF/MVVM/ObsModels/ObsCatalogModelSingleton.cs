@@ -1,5 +1,4 @@
-﻿using DocumentFormat.OpenXml.Spreadsheet;
-using Petsi.Managers;
+﻿using Petsi.Managers;
 using Petsi.Models;
 using Petsi.Units;
 using Petsi.Utils;
@@ -78,7 +77,6 @@ namespace POMT_WPF.MVVM.ObsModels
                     break;
                 }
             }
-
             //If not modify, add new item
             if(!isFound) CatalogItems.Add(catalogItem);
         }

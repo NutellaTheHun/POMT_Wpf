@@ -141,7 +141,7 @@ namespace POMT_WPF.MVVM.ViewModel
         {
             UpdateOrderList();
             UpdateFrozenOrderList();
-            view.UpdateDataGrid();
+            //view.UpdateDataGrid();
         }
 
         public void SetActiveFilter(string v)
