@@ -7,6 +7,7 @@ namespace Petsi.Reports.TableBuilder
     {
         public TableBackListPastryOverflow((int row, int col) rootPosition, int maxColumns, int maxRows) : base(rootPosition, maxColumns, maxRows)
         {
+
         }
 
         public override void BuildTable<T>(IXLWorksheet page, List<T> tableOrders, DateTime reportDate, string? recipient)
