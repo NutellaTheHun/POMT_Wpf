@@ -126,9 +126,9 @@
                 </Grid.RowDefinitions>
                 <Button
                     Grid.Row="0"
-                    Height="30"
                     Width="30"
-                    Margin="0 0 20 0"
+                    Height="30"
+                    Margin="0,0,20,0"
                     HorizontalAlignment="Right"
                     Command="{Binding CloseApp}"
                     Foreground="{StaticResource LicoriceDark}"
@@ -138,8 +138,6 @@
                     Margin="10"
                     Content="{Binding CurrentView}" />
             </Grid>
-
-
         </Grid>
     </Border>
 </Window>

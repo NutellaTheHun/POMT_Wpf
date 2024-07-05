@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using Petsi.Events.ReportEvents;
 using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
@@ -53,6 +54,7 @@ namespace Petsi.Reports.TableBuilder
                 if (remainders.Count > 0)
                 {
                     ErrorService.Instance().RaiseTBOverflowEvent(remainders);
+                    BackListOverflowEvent.OnPastryOverflow(remainders);
                 }
             }
             FormatTable(page);
