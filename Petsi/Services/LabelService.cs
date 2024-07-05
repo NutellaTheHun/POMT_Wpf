@@ -40,7 +40,9 @@ namespace Petsi.Services
         public void LoadLabelMap(List<CatalogItemPetsi> inputList)
         {
             //CLEAR OR TRYADD
-            foreach(CatalogItemPetsi item in inputList)
+            _standardLabelMap["round"] = "Round-Allergen-Label-01.png";
+            _standardLabelMap["care"] = "pie-care-directory-label-v2-03.jpg";
+            foreach (CatalogItemPetsi item in inputList)
             {
                 if(item.StandardLabelFilePath != null)
                 {
@@ -74,7 +76,7 @@ namespace Petsi.Services
             List<LabelPrintData> printList = LoadPrintList(omp.GetWsDayData(targetDate));
             PrintRound(printList);
         }
-        
+
         private void PrintStandard(List<LabelPrintData> inputList)
         {
             PrintDocument pd;
@@ -85,6 +87,7 @@ namespace Petsi.Services
                 pd.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("Custom", 400, 200); //hundreths of an inch
                 pd.PrinterSettings.Copies = (short)printItem.GetStandardAmount();
                 //pd.PrinterSettings.Copies = 1;
+                if (pd.PrinterSettings.Copies == 0) { continue; }
                 pd.PrintPage += (sender, args) =>
                 {
                     System.Drawing.Image img = System.Drawing.Image.FromFile(pieDirectoryPath + _standardLabelMap[printItem.Id]);
@@ -95,7 +98,7 @@ namespace Petsi.Services
                 pd.Print();
             }
         }
-        
+
         private void PrintCutie(List<LabelPrintData> inputList)
         {
             PrintDocument pd;
@@ -103,11 +106,12 @@ namespace Petsi.Services
             {
                 pd = new PrintDocument();
                 pd.PrinterSettings.PrinterName = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_LABEL_PRINTER);
-                pd.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("Custom", 400, 200); //hundreths of an inch
+                pd.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("Custom", 200, 100); //hundreths of an inch
                 pd.PrinterSettings.Copies = (short)printItem.GetCutieAmount();
+                if (pd.PrinterSettings.Copies == 0) { continue; }
                 pd.PrintPage += (sender, args) =>
                 {
-                    System.Drawing.Image img = System.Drawing.Image.FromFile(pieDirectoryPath + _standardLabelMap[printItem.Id]);
+                    System.Drawing.Image img = System.Drawing.Image.FromFile(cutieDirectoryPath + _cutieLabelMap[printItem.Id]);
                     Point loc = new Point(0, 0);
                     args.Graphics.DrawImage(img, loc);
                 };
@@ -123,8 +127,9 @@ namespace Petsi.Services
             }
             PrintDocument pd = new PrintDocument();
             pd.PrinterSettings.PrinterName = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_LABEL_PRINTER);
-            pd.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("Custom", 400, 200); //hundreths of an inch
+            pd.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("Custom", 200, 100); //hundreths of an inch
             pd.PrinterSettings.Copies = (short)count;
+            //pd.PrinterSettings.Copies = 1;
             pd.PrintPage += (sender, args) =>
             {
                 System.Drawing.Image img = System.Drawing.Image.FromFile(pieDirectoryPath + _standardLabelMap["care"]);
@@ -142,8 +147,9 @@ namespace Petsi.Services
             }
             PrintDocument pd = new PrintDocument();
             pd.PrinterSettings.PrinterName = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_LABEL_PRINTER);
-            pd.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("Custom", 400, 200); //hundreths of an inch
+            pd.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("Custom", 200, 200); //hundreths of an inch
             pd.PrinterSettings.Copies = (short)count;
+            //pd.PrinterSettings.Copies = 1;
             pd.PrintPage += (sender, args) =>
             {
                 System.Drawing.Image img = System.Drawing.Image.FromFile(pieDirectoryPath + _standardLabelMap["round"]);
