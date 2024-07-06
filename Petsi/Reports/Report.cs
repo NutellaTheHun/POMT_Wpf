@@ -49,7 +49,7 @@ namespace Petsi.Reports
             if(Wb.Worksheets.Count > 0)
             {
                 ReportUtil.Save(Wb, _filePath + ReportName + ReportId);
-                //PrintReport(_filePath + ReportName+ ReportId);
+                PrintReport(_filePath + ReportName+ ReportId);
                 CaptureEnvironment();
             }
         }
@@ -75,7 +75,7 @@ namespace Petsi.Reports
 
             wb.PrintOut(
                 Type.Missing, Type.Missing, Type.Missing, Type.Missing,
-                PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_STD_PRINTER), Type.Missing, Type.Missing, Type.Missing);
+                /*PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_STD_PRINTER)*/"testPrinter", Type.Missing, Type.Missing, Type.Missing);
 
             // Cleanup:
             GC.Collect();

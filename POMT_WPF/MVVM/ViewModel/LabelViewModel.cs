@@ -38,9 +38,9 @@ namespace POMT_WPF.MVVM.ViewModel
 
             SelectedDate = DateTime.Today;
 
-            PrintStandard = new RelayCommand(o => { ls.Print_4x2(SelectedDate); });
-            PrintSmall = new RelayCommand(o => { ls.Print_2x1(SelectedDate); });
-            PrintRound = new RelayCommand(o => { ls.Print_4x2(SelectedDate); });
+            PrintStandard = new RelayCommand(o => { ls.ValidateFilePaths(); ls.Print_4x2(SelectedDate); });
+            PrintSmall = new RelayCommand(o => { ls.ValidateFilePaths(); ls.Print_2x1(SelectedDate); });
+            PrintRound = new RelayCommand(o => { ls.ValidateFilePaths(); ls.Print_Round(SelectedDate); });
             ConfigureLabels = new RelayCommand(o => { MainViewModel.Instance().OpenConfigureLabelView(false); });
         }
     }

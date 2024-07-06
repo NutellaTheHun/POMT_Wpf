@@ -1,14 +1,13 @@
 ﻿using Petsi.Events;
-using Petsi.Events.ItemEvents;
-using Petsi.Models;
 using Petsi.Units;
-using Petsi.Utils;
 
 namespace Petsi.Services
 {
     public class ErrorService
     {
+
         #region singleton/Observer
+
         public static ErrorService instance;
         private ErrorService()
         {
@@ -20,18 +19,10 @@ namespace Petsi.Services
             if (instance == null) { instance = new ErrorService(); }
             return instance;
         }
-        /*
-        public override void Update(ModelBase model)
-        {
-            throw new NotImplementedException();
-        }
-        */
+
         #endregion
 
-        #region events
-        List<EventArgs> mainWindowEvents = new List<EventArgs>();
-
-        List<EventArgs> labelViewEvents = new List<EventArgs>();
+        #region Report Events
 
         //Table Builder Overflow Event
         public delegate void TableBuilderOverflowEvent(object sender, EventArgs e);
@@ -43,6 +34,12 @@ namespace Petsi.Services
             TBOverflow?.Invoke(this, args);
         }
 
+        #endregion
+
+        #region SquareOrderInput Events
+
+        List<EventArgs> mainWindowEvents = new List<EventArgs>()
+            ;
         //Square Order Input New Item Event
         public delegate void SquareOrderInputNewItemEvent(object sender, EventArgs e);
 
@@ -72,6 +69,12 @@ namespace Petsi.Services
             }          
         }
 
+        #endregion
+
+        #region Label Events
+
+        List<EventArgs> labelViewEvents = new List<EventArgs>();
+
         public delegate void LabelServiceValidateFilePathEvent(object sender, EventArgs e);
         public event LabelServiceValidateFilePathEvent LabelServiceValidateFilePath;
         public void RaiseLabelServiceValidateFilePathEvent(string catalogId, string fileName, string pieType)
@@ -100,7 +103,7 @@ namespace Petsi.Services
             }
         }
 
-        public static void RaiseWindowEvents()
+        public static void RaiseOrderViewEvents()
         {
             List<EventArgs> argsList = new List<EventArgs>(Instance().mainWindowEvents);
             foreach (var arg in argsList)

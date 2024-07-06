@@ -11,6 +11,7 @@ namespace Petsi.Services
     {
         string cutieDirectoryPath;
         string pieDirectoryPath;
+
         /// <summary>
         /// Key: CatalogObjectId, Value:pdfFilepath
         /// </summary>
@@ -84,14 +85,12 @@ namespace Petsi.Services
             {
                 pd = new PrintDocument();
                 pd.PrinterSettings.PrinterName = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_LABEL_PRINTER);
-                pd.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("Custom", 400, 200); //hundreths of an inch
+                pd.DefaultPageSettings.PaperSize = new PaperSize("Custom", 400, 200); //hundreths of an inch
                 pd.PrinterSettings.Copies = (short)printItem.GetStandardAmount();
-                //pd.PrinterSettings.Copies = 1;
                 if (pd.PrinterSettings.Copies == 0) { continue; }
                 pd.PrintPage += (sender, args) =>
                 {
-                    System.Drawing.Image img = System.Drawing.Image.FromFile(pieDirectoryPath + _standardLabelMap[printItem.Id]);
-                    //System.Drawing.Image img = System.Drawing.Image.FromFile("D:\\Git-Repos\\POMT_WPF\\Petsi\\Labels\\Files\\Pie\\Apple-Pear-Cran_pie_ingredient.jpg");
+                    Image img = Image.FromFile(pieDirectoryPath + _standardLabelMap[printItem.Id]);
                     Point loc = new Point(0, 0);
                     args.Graphics.DrawImage(img, loc);
                 };
@@ -106,12 +105,12 @@ namespace Petsi.Services
             {
                 pd = new PrintDocument();
                 pd.PrinterSettings.PrinterName = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_LABEL_PRINTER);
-                pd.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("Custom", 200, 100); //hundreths of an inch
+                pd.DefaultPageSettings.PaperSize = new PaperSize("Custom", 200, 100); //hundreths of an inch
                 pd.PrinterSettings.Copies = (short)printItem.GetCutieAmount();
                 if (pd.PrinterSettings.Copies == 0) { continue; }
                 pd.PrintPage += (sender, args) =>
                 {
-                    System.Drawing.Image img = System.Drawing.Image.FromFile(cutieDirectoryPath + _cutieLabelMap[printItem.Id]);
+                    Image img = Image.FromFile(cutieDirectoryPath + _cutieLabelMap[printItem.Id]);
                     Point loc = new Point(0, 0);
                     args.Graphics.DrawImage(img, loc);
                 };
@@ -127,12 +126,12 @@ namespace Petsi.Services
             }
             PrintDocument pd = new PrintDocument();
             pd.PrinterSettings.PrinterName = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_LABEL_PRINTER);
-            pd.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("Custom", 200, 100); //hundreths of an inch
+            pd.DefaultPageSettings.PaperSize = new PaperSize("Custom", 200, 100); //hundreths of an inch
             pd.PrinterSettings.Copies = (short)count;
             //pd.PrinterSettings.Copies = 1;
             pd.PrintPage += (sender, args) =>
             {
-                System.Drawing.Image img = System.Drawing.Image.FromFile(pieDirectoryPath + _standardLabelMap["care"]);
+                Image img = Image.FromFile(pieDirectoryPath + _standardLabelMap["care"]);
                 Point loc = new Point(0, 0);
                 args.Graphics.DrawImage(img, loc);
             };
@@ -147,12 +146,12 @@ namespace Petsi.Services
             }
             PrintDocument pd = new PrintDocument();
             pd.PrinterSettings.PrinterName = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_LABEL_PRINTER);
-            pd.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("Custom", 200, 200); //hundreths of an inch
+            pd.DefaultPageSettings.PaperSize = new PaperSize("Custom", 200, 200); //hundreths of an inch
             pd.PrinterSettings.Copies = (short)count;
             //pd.PrinterSettings.Copies = 1;
             pd.PrintPage += (sender, args) =>
             {
-                System.Drawing.Image img = System.Drawing.Image.FromFile(pieDirectoryPath + _standardLabelMap["round"]);
+                Image img = Image.FromFile(pieDirectoryPath + _standardLabelMap["round"]);
                 Point loc = new Point(0, 0);
                 args.Graphics.DrawImage(img, loc);
             };
@@ -162,19 +161,32 @@ namespace Petsi.Services
         //--------------
         public void ValidateFilePaths()
         {
+            CatalogService cmp = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
+
+            if (!File.Exists(pieDirectoryPath + "Round-Allergen-Label-01.png"))
+            {
+                ErrorService.Instance().RaiseLabelServiceValidateFilePathEvent("round label", "Round-Allergen-Label-01.png", "Pie");
+            }
+            if(!File.Exists(pieDirectoryPath + "pie-care-directory-label-v2-03.jpg"))
+            {
+                ErrorService.Instance().RaiseLabelServiceValidateFilePathEvent("care sticker", "pie-care-directory-label-v2-03.jpg", "Pie");
+            }
+
             //key: catalog id, val: fileName
             foreach (KeyValuePair<string, string> entry in _standardLabelMap)
             {
                 if (!File.Exists(pieDirectoryPath + entry.Value)) 
                 {
-                    ErrorService.Instance().RaiseLabelServiceValidateFilePathEvent(entry.Key, entry.Value, "Pie");
+                    CatalogItemPetsi item = cmp.GetCatalogItemById(entry.Key);
+                    ErrorService.Instance().RaiseLabelServiceValidateFilePathEvent(item.ItemName, entry.Value, "Pie");
                 }
             }
             foreach (KeyValuePair<string, string> entry in _cutieLabelMap)
             {
                 if (!File.Exists(cutieDirectoryPath + entry.Value))
                 {
-                    ErrorService.Instance().RaiseLabelServiceValidateFilePathEvent(entry.Key, entry.Value, "Cutie");
+                    CatalogItemPetsi item = cmp.GetCatalogItemById(entry.Key);
+                    ErrorService.Instance().RaiseLabelServiceValidateFilePathEvent(item.ItemName, entry.Value, "Cutie");
                 }
             }
         }

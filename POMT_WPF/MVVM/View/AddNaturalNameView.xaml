@@ -31,19 +31,9 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Button
-                    Margin="5"
+                    Margin="10"
                     HorizontalAlignment="Right"
-                    VerticalAlignment="Bottom"
-                    Click="CloseWindow_ButtonClick"
-                    DockPanel.Dock="Bottom"
-                    Style="{StaticResource menuButton}">
-                    <StackPanel Orientation="Horizontal">
-                        <Icon:PackIconMaterial
-                            Foreground="{StaticResource Licorice}"
-                            Kind="Close"
-                            Style="{StaticResource menuButtonIcon}" />
-                    </StackPanel>
-                </Button>
+                    Style="{StaticResource GeneralCloseButton}" />
             </Grid>
             <Grid Grid.Row="1">
                 <StackPanel HorizontalAlignment="Center" Orientation="Vertical">

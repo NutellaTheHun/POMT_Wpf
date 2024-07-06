@@ -1,9 +1,5 @@
 ﻿using Petsi.Events;
-using Petsi.Managers;
 using Petsi.Services;
-using Petsi.Units;
-using Petsi.Utils;
-using POMT_WPF.MVVM.ViewModel;
 using System.Windows.Controls;
 
 namespace POMT_WPF.MVVM.View
@@ -22,10 +18,9 @@ namespace POMT_WPF.MVVM.View
         private void ValidateFileServiceErrorWindow(object sender, EventArgs e)
         {
             LabelServiceValidateFpEventArgs args = (LabelServiceValidateFpEventArgs)e;
-            CatalogService cmp = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
-            CatalogItemPetsi item = cmp.GetCatalogItemById(args.CatalogId);
+            
             GeneralErrorWindow errorWindow = new GeneralErrorWindow(
-                "Item: " + item.ItemName + " filepath: " + args.Filepath + " for " + args.PieType + " could not be validated. Please verify that the item's file assoicated with the label currently exists or is correct.");
+                "Item: " + args.ItemName + " filepath: " + args.Filepath + " for " + args.PieType + " could not be validated.\n Please verify that the item's file assoicated with the label currently exists or is correct.");
             errorWindow.Show();
         }
     }
