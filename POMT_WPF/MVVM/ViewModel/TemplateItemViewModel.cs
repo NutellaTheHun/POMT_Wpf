@@ -1,4 +1,5 @@
-﻿using Petsi.Managers;
+﻿using Petsi.Events.ItemEvents;
+using Petsi.Managers;
 using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
@@ -61,6 +62,7 @@ namespace POMT_WPF.MVVM.ViewModel
             {
                 SaveTemplate();
                 _view.Close();
+                TemplateItemViewEvents.OnSaveSuccessful();
             }         
         }
 

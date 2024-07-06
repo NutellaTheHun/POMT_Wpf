@@ -1,4 +1,5 @@
-﻿using Petsi.Managers;
+﻿using Petsi.Events.ItemEvents;
+using Petsi.Managers;
 using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
@@ -131,6 +132,7 @@ namespace POMT_WPF.MVVM.ViewModel
             {
                 ObsCatalogModelSingleton.Instance.AddItem(item);
                 _view.Close();
+                LabelItemViewEvents.RaiseSaveSuccessEvents();
             } 
         }
 

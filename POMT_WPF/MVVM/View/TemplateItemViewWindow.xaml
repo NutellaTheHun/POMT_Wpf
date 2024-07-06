@@ -140,6 +140,10 @@
                     Command="{Binding Save}"
                     Content="Save"
                     Style="{StaticResource secondaryButton}" />
+                <Icon:PackIconBoxIcons
+                    x:Name="SaveCheckMark"
+                    Margin="315,50,0,0"
+                    Style="{StaticResource CheckMark}" />
             </Grid>
         </Grid>
     </Border>

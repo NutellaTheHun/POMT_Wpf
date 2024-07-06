@@ -25,12 +25,15 @@ namespace POMT_WPF.MVVM.View
             DataContext = vm;
             InitializeComponent();
 
-            if(item != null)
+            SaveCheckMark.Visibility = Visibility.Hidden;
+
+            if (item != null)
             {
                 ItemNameTextBox.IsReadOnly = true;
             }
 
             LabelItemViewEvents.Instance.ItemNameInvalid += HighlightItemName;
+            LabelItemViewEvents.Instance.SaveSuccess += ShowSaveCheckMark;
         }
         private void ItemNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -70,5 +73,7 @@ namespace POMT_WPF.MVVM.View
         }
 
         private void HighlightItemName(object sender, EventArgs e) { SetBorderThickness(ItemNameErrBdr, 2); }
+        private void ShowSaveCheckMark(object sender, EventArgs e) { SaveCheckMark.Visibility = Visibility.Visible; }
+
     }
 }

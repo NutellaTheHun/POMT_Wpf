@@ -23,5 +23,11 @@ namespace Petsi.Events.ItemEvents
         {
             Instance.ItemNameInvalid?.Invoke(Instance, EventArgs.Empty);
         }
+
+        public event EventHandler SaveSuccess;
+        public static void RaiseSaveSuccessEvents()
+        {
+            Instance.SaveSuccess?.Invoke(Instance, EventArgs.Empty);
+        }
     }
 }

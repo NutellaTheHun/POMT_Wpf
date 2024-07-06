@@ -1,4 +1,5 @@
-﻿using Petsi.Managers;
+﻿using Petsi.Events.ItemEvents;
+using Petsi.Managers;
 using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
@@ -21,6 +22,9 @@ namespace POMT_WPF.MVVM.View
             cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
             InitializeComponent();
             DataContext = viewModel;
+            SaveCheckMark.Visibility = Visibility.Hidden;
+
+            TemplateItemViewEvents.Instance.SaveSuccessful += ShowSaveCheckMark;
         }
 
         private void ItemNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -38,6 +42,11 @@ namespace POMT_WPF.MVVM.View
                     itemNameCb.IsDropDownOpen = true;
                 }
             }
+        }
+
+        private void ShowSaveCheckMark(object sender, EventArgs e)
+        {
+            SaveCheckMark.Visibility =Visibility.Visible;
         }
     }
 }

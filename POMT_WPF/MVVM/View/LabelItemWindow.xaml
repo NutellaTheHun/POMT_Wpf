@@ -127,9 +127,13 @@
                     <Button
                         Width="80"
                         Command="{Binding Done}"
-                        Content="Confirm"
+                        Content="Save"
                         Style="{StaticResource secondaryButton}" />
                 </StackPanel>
+                <Icon:PackIconBoxIcons
+                    x:Name="SaveCheckMark"
+                    Margin="295,15,0,0"
+                    Style="{StaticResource CheckMark}" />
             </Grid>
         </Grid>
 
