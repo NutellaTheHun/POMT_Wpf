@@ -28,6 +28,7 @@
                 Width="200"
                 Margin="5"
                 HorizontalAlignment="Center">
+
                 <TextBlock
                     Margin="15,0"
                     VerticalAlignment="Center"

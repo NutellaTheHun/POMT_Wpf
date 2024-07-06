@@ -16,9 +16,9 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Button
-                Margin="0,80,0,0"
+                Margin="10"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Top"
+                VerticalAlignment="Bottom"
                 Command="{Binding GoBack}"
                 Style="{StaticResource GeneralBackButton}" />
         </Grid>

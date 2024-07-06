@@ -131,12 +131,6 @@
                     Command="{Binding ConfigureTemplatesCommand}"
                     Content="Configure Templates"
                     Style="{StaticResource GeneralSetButton}" />
-                <Button
-                    Width="150"
-                    Margin="5"
-                    Command="{Binding ManageCatalogCommand}"
-                    Content="Manage Catalog"
-                    Style="{StaticResource GeneralSetButton}" />
             </StackPanel>
         </Grid>
     </Grid>

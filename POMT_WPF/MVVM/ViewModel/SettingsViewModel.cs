@@ -107,7 +107,6 @@ namespace POMT_WPF.MVVM.ViewModel
         public RelayCommand SetPastryTemplateCommand { get; set; }
         public RelayCommand ConfigureLabelsCommand { get; set; }
         public RelayCommand ConfigureTemplatesCommand { get; set; }
-        public RelayCommand ManageCatalogCommand { get; set; }
 
         PetsiConfig config;
         public SettingsViewModel()
@@ -127,7 +126,6 @@ namespace POMT_WPF.MVVM.ViewModel
             SetPastryTemplateCommand = new RelayCommand(o => { SetPastryTemplate(); });
             ConfigureLabelsCommand = new RelayCommand(o => { MainViewModel.Instance().OpenConfigureLabelView(true); });
             ConfigureTemplatesCommand = new RelayCommand(o => { MainViewModel.Instance().OpenTemplateListView(true); });
-            ManageCatalogCommand = new RelayCommand(o => { MainViewModel.Instance().OpenCatalogListView(); });
         }
 
         public void SetLabelsFilePath()

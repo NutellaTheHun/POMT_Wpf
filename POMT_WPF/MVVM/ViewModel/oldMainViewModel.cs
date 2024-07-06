@@ -89,6 +89,11 @@ namespace POMT_WPF.MVVM.ViewModel
             CurrentView = CatalogVM;
         }
 
+        public void BackSettingsView()
+        {
+            CurrentView = SettingsVM;
+        }
+
         public void BackLabelView(bool isFromSettingsVM)
         {
             if(isFromSettingsVM)
