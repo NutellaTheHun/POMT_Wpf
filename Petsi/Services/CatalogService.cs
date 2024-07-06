@@ -35,9 +35,14 @@ namespace Petsi.Services
         /// <returns></returns>
         public string GetCatalogObjectId(string input)
         {
-            CatalogItemPetsi source;
+            CatalogItemPetsi source = null;
             string result = "";
-            catalogIdDict.TryGetValue(input, out source);
+            try { catalogIdDict.TryGetValue(input, out source); }
+            catch(ArgumentNullException e)
+            {
+                SystemLogger.Log("GetCatalogObjectID TryGetValue input is null");
+            }
+            
             if (source != null)
             {
                 result = source.CatalogObjectId;

@@ -131,7 +131,6 @@ namespace POMT_WPF.MVVM.ViewModel
             if(ValidateItem(out item))
             {
                 ObsCatalogModelSingleton.Instance.AddItem(item);
-                _view.Close();
                 LabelItemViewEvents.RaiseSaveSuccessEvents();
             } 
         }

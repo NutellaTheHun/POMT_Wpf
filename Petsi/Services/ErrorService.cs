@@ -98,6 +98,7 @@ namespace Petsi.Services
 
         #endregion
 
+
         /// <summary>
         /// Events that occur before the LabelView is initialized are added to the mainWindowEvents list
         /// and is called in the mainWindow view constructor.

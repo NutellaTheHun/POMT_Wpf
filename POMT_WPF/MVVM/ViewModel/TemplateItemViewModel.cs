@@ -61,8 +61,7 @@ namespace POMT_WPF.MVVM.ViewModel
             if (IsValid())
             {
                 SaveTemplate();
-                _view.Close();
-                TemplateItemViewEvents.OnSaveSuccessful();
+                TemplateItemViewEvents.OnSaveSuccessful(); 
             }         
         }
 
@@ -80,6 +79,12 @@ namespace POMT_WPF.MVVM.ViewModel
             foreach (BackListItem item in TemplateItems)
             {
                 string id = cs.GetCatalogObjectId(item.ItemName);
+                if (id == "")
+                {
+                    GeneralErrorWindow errWin = new GeneralErrorWindow("item: " + item.ItemName + " cound not be validated, template was not saved.");
+                    errWin.Show();
+                    return false;
+                }
                 item.CatalogObjId = id;
 
                 if (item.ItemName == "" || item.ItemName == null) { return false; }
