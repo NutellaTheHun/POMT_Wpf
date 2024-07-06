@@ -24,15 +24,19 @@ namespace POMT_WPF.MVVM.View
             
             InitializeComponent();
 
+            SaveCheckMark.Visibility = Visibility.Hidden;
+
             events.ItemNameInvalid += HighlightItemName;
             events.CategoryNameInvalid += HighlightCategoryName;
             events.CategorySizesInvalid += HighlightSizes;
+            events.SaveSuccessful += ShowCheckMark;
         }
         private void SetBorderThickness(Border border, int val) { if(border.BorderThickness.Left != val) border.BorderThickness = new Thickness(val, val, val, val); }
 
         private void HighlightItemName(object sender, EventArgs e) { SetBorderThickness(ItemNameErrBdr, 2); }
         private void HighlightSizes(object sender, EventArgs e) { SetBorderThickness(ItemSizesErrBdr, 2); }
         private void HighlightCategoryName(object sender, EventArgs e) { SetBorderThickness(CategoryNameErrBdr, 2); }
+        private void ShowCheckMark(object sender, EventArgs e) { SaveCheckMark.Visibility = Visibility.Visible; }
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {

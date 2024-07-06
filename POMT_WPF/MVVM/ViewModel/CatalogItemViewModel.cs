@@ -413,6 +413,7 @@ namespace POMT_WPF.MVVM.ViewModel
            {
                 UpdateSizes();
                 ObsCatalogModelSingleton.Instance.AddItem(cItem);
+                CatalogItemViewEvents.OnSaveSuccessful();
            }
            //MainViewModel.Instance().BackCatalogView();
            //OR notify SAVED

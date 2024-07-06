@@ -276,6 +276,7 @@
                 Command="{Binding SaveItem}"
                 Content="Save"
                 Style="{StaticResource secondaryButton}" />
+            <Icon:PackIconBoxIcons x:Name="SaveCheckMark" Style="{StaticResource CheckMark}" />
             <Button
                 Margin="0,0,200,0"
                 HorizontalAlignment="Right"

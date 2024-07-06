@@ -19,65 +19,71 @@ namespace Petsi.Events.ItemEvents
         }
 
         public event EventHandler RecipientInvalid;
-        public static void OnRecipientInvalid()
+        public static void RaiseRecipientInvalidEvent()
         {
             Instance.RecipientInvalid?.Invoke(Instance, EventArgs.Empty);
         }
 
         public event EventHandler FulfillmentInvalid;
-        public static void OnFulfillmentInvalid()
+        public static void RaiseFulfillmentInvalidEvent()
         {
             Instance.FulfillmentInvalid?.Invoke(Instance, EventArgs.Empty);
         }
 
 
         public event EventHandler OrderTypeInvalid;
-        public static void OnOrderTypeInvalid()
+        public static void RaiseOrderTypeInvalidEvent()
         {
             Instance.OrderTypeInvalid?.Invoke(Instance, EventArgs.Empty);
         }
 
 
         public event EventHandler FrequencyInvalid;
-        public static void OnFrequencyInvalid()
+        public static void RaiseFrequencyInvalidEvent()
         {
             Instance.FrequencyInvalid?.Invoke(Instance, EventArgs.Empty);
         }
 
         public event EventHandler LineItemsInvalid;
-        public static void OnLineItemsInvalid()
+        public static void RaiseLineItemsInvalidEvent()
         {
             Instance.LineItemsInvalid?.Invoke(Instance, EventArgs.Empty);
         }
 
         public event EventHandler DelAddressInvalid;
-        public static void OnDelAddressInvalid()
+        public static void RaiseDelAddressEvent()
         {
             Instance.DelAddressInvalid?.Invoke(Instance, EventArgs.Empty);
         }
 
         public event EventHandler PhoneInvalid;
-        public static void OnPhoneInvalid()
+        public static void RaisePhoneInvalidEvent()
         {
             Instance.PhoneInvalid?.Invoke(Instance, EventArgs.Empty);
         }
 
         public event EventHandler DatePickerInvalid;
-        public static void OnDatePickerInvalid()
+        public static void RaiseDatePickerInvalidEvent()
         {
             Instance.DatePickerInvalid?.Invoke(Instance, EventArgs.Empty);
         }
 
         public event EventHandler DatePickerLessThanInvalid;
-        public static void OnDatePickerLessThanInvalid()
+        public static void RaiseDatePickerLessThanEvent()
         {
             Instance.DatePickerLessThanInvalid?.Invoke(Instance, EventArgs.Empty);
         }
 
         public event EventHandler DOTWInvalid;
-        public static void OnDOTWInvalid()
+        public static void RaiseDOTWInvalidEvent()
         {
             Instance.DOTWInvalid?.Invoke(Instance, EventArgs.Empty);
+        }
+
+        public event EventHandler SaveSuccess;
+        public static void RaiseSaveSuccessEvent()
+        {
+            Instance.SaveSuccess?.Invoke(Instance, EventArgs.Empty);
         }
     }
 }

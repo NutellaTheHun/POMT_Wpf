@@ -35,5 +35,11 @@ namespace Petsi.Events.ItemEvents
         {
             Instance.CategorySizesInvalid?.Invoke(Instance, EventArgs.Empty);
         }
+
+        public event EventHandler SaveSuccessful;
+        public static void OnSaveSuccessful()
+        {
+            Instance.SaveSuccessful?.Invoke(Instance, EventArgs.Empty);
+        }
     }
 }

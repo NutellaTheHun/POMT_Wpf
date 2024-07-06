@@ -469,6 +469,10 @@
                 Content="Save"
                 Style="{StaticResource secondaryButton}"
                 Visibility="{Binding CanModify, Converter={StaticResource BoolToVis}}" />
+            <Icon:PackIconBoxIcons
+                x:Name="SaveCheckMark"
+                Margin="460,5,0,0"
+                Style="{StaticResource CheckMark}" />
             <Button
                 Name="DeleteOrderButton"
                 Margin="0,0,10,0"

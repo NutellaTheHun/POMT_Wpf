@@ -45,6 +45,7 @@ namespace POMT_WPF.MVVM.ViewModel
                     _searchQuery = value;
                     OnPropertyChanged(nameof(SearchQuery));
                     DashBoardOrdersView.Refresh();
+                    TotalOrderCount = DashboardOrders.View.Cast<object>().Count();
                 }
             }
         }
@@ -86,6 +87,7 @@ namespace POMT_WPF.MVVM.ViewModel
             DashboardOrders.Filter += currentFilter;
             DashBoardOrdersView.MoveCurrentTo(null);
             DashBoardOrdersView.Refresh();
+            TotalOrderCount = DashboardOrders.View.Cast<object>().Count();
         }
         private void NoFilter(object sender, FilterEventArgs e)
         {

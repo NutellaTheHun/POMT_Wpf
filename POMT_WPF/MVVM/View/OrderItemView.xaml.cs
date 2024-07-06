@@ -32,7 +32,10 @@ namespace POMT_WPF.MVVM.View
             events.OrderTypeInvalid += HighlightOrderType;
             events.LineItemsInvalid += HighlightLineItems;
 
+            events.SaveSuccess += ShowCheckMark;
+
             OrderDatePicker.SelectedDate = null;
+            SaveCheckMark.Visibility = Visibility.Hidden;
         }
         private void ItemNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -60,6 +63,7 @@ namespace POMT_WPF.MVVM.View
         private void HighlightPhone(object sender, EventArgs e) { SetBorderThickness(PhoneErrBdr, 2); }
         private void HighlightDatePicker(object sender, EventArgs e) { SetBorderThickness(DatePickerErrBdr, 2); }
         private void HighlightDOTW(object sender, EventArgs e) { /*SetBorderThickness(, 2);*/ }
+        private void ShowCheckMark(object sender, EventArgs e) { SaveCheckMark.Visibility = Visibility.Visible; }
 
         private void SetBorderThickness(Border border, int val) { if(border.BorderThickness.Left != val) border.BorderThickness = new Thickness(val, val, val, val); }
 

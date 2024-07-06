@@ -415,6 +415,7 @@ namespace POMT_WPF.MVVM.ViewModel
             if(IsValidOrder())
             {
                 ObsOrderModelSingleton.Instance.AddOrder(Order);
+                OrderItemViewEvents.RaiseSaveSuccessEvent();
             }
         }
 
@@ -457,24 +458,24 @@ namespace POMT_WPF.MVVM.ViewModel
             //Make events to highlight the relevant fields red? Already want events to modify order state based on changs, like to order type
             // weekly -> DOTW combo box, oneTime -> datepicker, ect.
             
-            if(Recipient == null) { controlbool = false; OrderItemViewEvents.OnRecipientInvalid(); }
-            if(FulfillmentType == null) { controlbool = false; OrderItemViewEvents.OnFulfillmentInvalid(); }
-            if(OrderType == null) { controlbool = false; OrderItemViewEvents.OnOrderTypeInvalid(); }
-            if(OrderFrequency == "") { controlbool = false; OrderItemViewEvents.OnFrequencyInvalid(); }
+            if(Recipient == null) { controlbool = false; OrderItemViewEvents.RaiseRecipientInvalidEvent(); }
+            if(FulfillmentType == null) { controlbool = false; OrderItemViewEvents.RaiseFulfillmentInvalidEvent(); }
+            if(OrderType == null) { controlbool = false; OrderItemViewEvents.RaiseOrderTypeInvalidEvent(); }
+            if(OrderFrequency == "") { controlbool = false; OrderItemViewEvents.RaiseFrequencyInvalidEvent(); }
 
             CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
-            if (!IsValidLineItems(cs)) { controlbool = false; OrderItemViewEvents.OnLineItemsInvalid(); }
+            if (!IsValidLineItems(cs)) { controlbool = false; OrderItemViewEvents.RaiseLineItemsInvalidEvent(); }
 
             if(OrderType != Identifiers.ORDER_TYPE_WHOLESALE && FulfillmentType == Identifiers.FULFILLMENT_DELIVERY) 
             {
-                if(DeliveryAddr == null) { controlbool = false; OrderItemViewEvents.OnDelAddressInvalid(); }
-                if(PhoneNumber == null) { controlbool = false; OrderItemViewEvents.OnPhoneInvalid(); }
+                if(DeliveryAddr == null) { controlbool = false; OrderItemViewEvents.RaiseDelAddressEvent(); }
+                if(PhoneNumber == null) { controlbool = false; OrderItemViewEvents.RaisePhoneInvalidEvent(); }
             }
 
-            if(OrderFrequency == Identifiers.ORDER_FREQUENCY_ONE_TIME && FulfillmentDate == default) { controlbool = false; OrderItemViewEvents.OnDatePickerInvalid(); }
-            if(OrderFrequency == Identifiers.ORDER_FREQUENCY_ONE_TIME && FulfillmentDate < DateTime.Today) { controlbool = false; OrderItemViewEvents.OnDatePickerLessThanInvalid(); }
+            if(OrderFrequency == Identifiers.ORDER_FREQUENCY_ONE_TIME && FulfillmentDate == default) { controlbool = false; OrderItemViewEvents.RaiseDatePickerInvalidEvent(); }
+            if(OrderFrequency == Identifiers.ORDER_FREQUENCY_ONE_TIME && FulfillmentDate < DateTime.Today) { controlbool = false; OrderItemViewEvents.RaiseDatePickerLessThanEvent(); }
 
-            if(OrderFrequency == Identifiers.ORDER_FREQUENCY_WEEKLY /* && DOTW == null */) { controlbool = false; OrderItemViewEvents.OnDOTWInvalid(); }
+            if(OrderFrequency == Identifiers.ORDER_FREQUENCY_WEEKLY /* && DOTW == null */) { controlbool = false; OrderItemViewEvents.RaiseDOTWInvalidEvent(); }
 
             return controlbool;
         }

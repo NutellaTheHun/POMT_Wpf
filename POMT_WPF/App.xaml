@@ -37,6 +37,7 @@
                 <ResourceDictionary Source="Styles/Icons/gridButtonIcon.xaml" />
                 <ResourceDictionary Source="Styles/Icons/menuButtonIcon.xaml" />
                 <ResourceDictionary Source="Styles/Icons/pagingButtonIcon.xaml" />
+                <ResourceDictionary Source="Styles/Icons/CheckMark.xaml" />
 
                 <ResourceDictionary Source="Styles/TextBlock/orderTextBlock.xaml" />
 
