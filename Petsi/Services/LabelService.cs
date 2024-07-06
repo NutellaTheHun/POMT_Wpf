@@ -94,7 +94,12 @@ namespace Petsi.Services
                     Point loc = new Point(0, 0);
                     args.Graphics.DrawImage(img, loc);
                 };
-                pd.Print();
+                try { pd.Print(); }
+                catch (InvalidPrinterException e)
+                {
+                    ErrorService.RaisePrinterNotFoundEvent();
+                    return;
+                }
             }
         }
 
@@ -114,7 +119,12 @@ namespace Petsi.Services
                     Point loc = new Point(0, 0);
                     args.Graphics.DrawImage(img, loc);
                 };
-                pd.Print();
+                try { pd.Print(); }
+                catch (InvalidPrinterException e) 
+                {
+                    ErrorService.RaisePrinterNotFoundEvent();
+                    return;
+                }
             }
         }
         private void PrintCare(List<LabelPrintData> inputList)
@@ -135,7 +145,12 @@ namespace Petsi.Services
                 Point loc = new Point(0, 0);
                 args.Graphics.DrawImage(img, loc);
             };
-            pd.Print();
+            try { pd.Print(); }
+            catch (InvalidPrinterException e)
+            {
+                ErrorService.RaisePrinterNotFoundEvent();
+                return;
+            }
         }
         private void PrintRound(List<LabelPrintData> inputList)
         {
@@ -155,7 +170,12 @@ namespace Petsi.Services
                 Point loc = new Point(0, 0);
                 args.Graphics.DrawImage(img, loc);
             };
-            pd.Print();
+            try { pd.Print(); }
+            catch (InvalidPrinterException e)
+            {
+                ErrorService.RaisePrinterNotFoundEvent();
+                return;
+            }
         }
 
         //--------------

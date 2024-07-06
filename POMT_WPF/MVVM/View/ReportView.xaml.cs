@@ -14,6 +14,7 @@ namespace POMT_WPF.MVVM.View
         {
             InitializeComponent();
             ErrorService.Instance().TBOverflow += NotifyOverFlowEvent;
+            ErrorService.Instance().ReportPrintEmptyInput += NotifyReportPrintNoData;
         }
         public void NotifyOverFlowEvent(object sender, EventArgs e)
         {   
@@ -27,6 +28,11 @@ namespace POMT_WPF.MVVM.View
                 _overflowErrorWin.AddItems((TBOverflowEventArgs)e);
             }
             
+        }
+        public void NotifyReportPrintNoData(object sender, EventArgs e)
+        {
+            GeneralErrorWindow window = new GeneralErrorWindow("No orders found for report.");
+            window.Show();
         }
     }
 }

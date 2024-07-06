@@ -34,6 +34,12 @@ namespace Petsi.Services
             TBOverflow?.Invoke(this, args);
         }
 
+        public event EventHandler ReportPrintEmptyInput;
+        public static void RaiseReportEmptyInput()
+        {
+            Instance().ReportPrintEmptyInput?.Invoke(Instance(), EventArgs.Empty);
+        }
+
         #endregion
 
         #region SquareOrderInput Events
@@ -82,6 +88,12 @@ namespace Petsi.Services
             LabelServiceValidateFpEventArgs args = new LabelServiceValidateFpEventArgs(catalogId, fileName, pieType);
             //LabelServiceValidateFilePath?.Invoke(this, args);
             labelViewEvents.Add(args);
+        }
+
+        public event EventHandler LabelPrinterNotFoundEvent;
+        public static void RaisePrinterNotFoundEvent()
+        {
+            Instance().LabelPrinterNotFoundEvent?.Invoke(Instance(), EventArgs.Empty);
         }
 
         #endregion

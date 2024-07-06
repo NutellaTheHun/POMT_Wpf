@@ -306,13 +306,43 @@ namespace Petsi.Models
             {
                 if (order.IsFrozen) { continue; }
 
-                if (isRetail) { if (order.OrderType == Identifiers.ORDER_TYPE_RETAIL) result.Add(order); continue; }
-                if (isSquare) { if (order.OrderType == Identifiers.ORDER_TYPE_SQUARE) result.Add(order); continue; }
-                if (isWholesale) { if (order.OrderType == Identifiers.ORDER_TYPE_WHOLESALE) result.Add(order); continue; }
-                if (isSpecial) { if (order.OrderType == Identifiers.ORDER_TYPE_SPECIAL) result.Add(order); continue; }
-                if (isEzCater) { if (order.OrderType == Identifiers.ORDER_TYPE_EZ_CATER) result.Add(order); continue; }
+                if (isRetail) {
+                    if (order.OrderType == Identifiers.ORDER_TYPE_RETAIL)
+                    { 
+                        result.Add(order); 
+                        continue; 
+                    }
+                }
+                if (isSquare)
+                {
+                    if (order.OrderType == Identifiers.ORDER_TYPE_SQUARE)
+                    { 
+                        result.Add(order); 
+                        continue;
+                    } 
+                }
+                if (isWholesale)
+                {
+                    if (order.OrderType == Identifiers.ORDER_TYPE_WHOLESALE)
+                    {   result.Add(order);
+                        continue;
+                    } 
+                }
+                if (isSpecial) 
+                { if (order.OrderType == Identifiers.ORDER_TYPE_SPECIAL)
+                    {
+                        result.Add(order);
+                        continue;
+                    }
+                }
+                if (isEzCater) 
+                { if (order.OrderType == Identifiers.ORDER_TYPE_EZ_CATER)
+                    {
+                        result.Add(order);
+                        continue;
+                    }
+                }
             }
-
             return result;
         }
         #endregion
