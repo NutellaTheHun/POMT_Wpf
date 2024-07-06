@@ -46,6 +46,7 @@ namespace Petsi.Models
         {
             Orders = orders.ToList();
             SaveAll();
+            Notify();
         }
         private void SaveAll()
         {
@@ -429,7 +430,7 @@ namespace Petsi.Models
             {
                 foreach (PetsiOrderLineItem line in order.LineItems)
                 {
-                    if (line.CatalogObjectId == Identifiers.SOI_MULTI_LINE_EVENT_ID_SIG)
+                    if (line.CatalogObjectId == Identifiers.SOI_MULTI_ITEM_MATCH_EVENT_ID_SIG)
                     {
                         line.CatalogObjectId = cs.GetCatalogObjectId(line.ItemName);
                         if (line.CatalogObjectId == "")

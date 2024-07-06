@@ -23,16 +23,26 @@ namespace POMT_WPF.MVVM.ViewModel
         }
 
         public RelayCommand ViewItem { get; set; }
-        public RelayCommand Close { get; set; }
+        public RelayCommand Select { get; set; }
 
 
         public NotifyNewCatalogItemViewModel(SoiNewItemEventArgs args, NotifyNewCatalogItemWindow view)
         {
             _view = view;
             _newItem = args.NewItem;
-
             ViewItem = new RelayCommand(o  => { _view.Close(); MainViewModel.Instance().OpenCatalogItemView(_newItem); });
-            Close = new RelayCommand(o  => { _view.Close(); });
+            Select = new RelayCommand(o  => {  });
+        }
+
+        private void OpenSelectItemViewWindow()
+        {
+            NewItemEventWindow window = new NewItemEventWindow(true, NewItemName);
+            window.Show();
+        }
+        private void OpenNewItemViewWindow()
+        {
+            NewItemEventWindow window = new NewItemEventWindow(false);
+            window.Show();
         }
     }
 }

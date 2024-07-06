@@ -167,7 +167,7 @@ namespace Petsi.Input
                     if(boxedli.CatalogObjectId == "")//will return "" if ValidateModifyItemName finds multiple results.
                     {
                         //Temporary ID for an item when a multiItem match event occurs, is resolved after user intervention window. (NotifyCatalogValidateMultiItemView.cs)
-                        boxedli.CatalogObjectId = Identifiers.SOI_MULTI_LINE_EVENT_ID_SIG;
+                        boxedli.CatalogObjectId = Identifiers.SOI_MULTI_ITEM_MATCH_EVENT_ID_SIG;
                     }
 
                     boxedli.VariationId = "modifierItem"+ boxedli.ItemName;
@@ -198,7 +198,7 @@ namespace Petsi.Input
                     if (sconeLi.CatalogObjectId == "") //will return "" if ValidateModifyItemName finds multiple results.
                     {
                         //Temporary ID for an item when a multiItem match event occurs, is resolved after user intervention window. (NotifyCatalogValidateMultiItemView.cs)
-                        sconeLi.CatalogObjectId = Identifiers.SOI_MULTI_LINE_EVENT_ID_SIG;
+                        sconeLi.CatalogObjectId = Identifiers.SOI_MULTI_ITEM_MATCH_EVENT_ID_SIG;
                     }
 
                     sconeLi.VariationName = Identifiers.SIZE_REGULAR;

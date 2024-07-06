@@ -31,6 +31,9 @@
     <Compile Update="MVVM\View\LabelView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="MVVM\View\NewItemEventWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="MVVM\View\NotifyMultiItemMatchWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -94,6 +97,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\LabelView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\NewItemEventWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\NotifyMultiItemMatchWindow.xaml">

@@ -64,6 +64,7 @@ namespace POMT_WPF.MVVM.ObsModels
                 SystemLogger.Log("CATALOG ITEM ADD IS NULL");
                 return;
             }
+
             bool isFound = false;
 
             //Try to modify
@@ -79,6 +80,7 @@ namespace POMT_WPF.MVVM.ObsModels
             }
             //If not modify, add new item
             if(!isFound) CatalogItems.Add(catalogItem);
+            ObsOrderModelSingleton.Instance.CheckMultiMatchEvent();
         }
 
         public void RemoveItem(CatalogItemPetsi catalogItem)

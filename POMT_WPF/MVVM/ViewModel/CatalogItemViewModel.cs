@@ -258,6 +258,8 @@ namespace POMT_WPF.MVVM.ViewModel
 
         #endregion
 
+
+
         public CatalogItemViewModel(CatalogItemPetsi? inputItem)
         {
             cItem = new CatalogItemPetsi(inputItem);

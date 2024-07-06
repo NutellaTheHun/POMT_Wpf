@@ -1,6 +1,7 @@
 ﻿using Petsi.Interfaces;
 using Petsi.Managers;
 using Petsi.Models;
+using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
 using POMT_WPF.Interfaces;
@@ -33,10 +34,10 @@ namespace POMT_WPF.MVVM.ObsModels
             _subscriptions = new List<IObsOrderModelSubscriber>();
             _omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
             Orders = new ObservableCollection<PetsiOrder>(_omp.GetOrders());
-            Orders.CollectionChanged += (s, e) => { UpdateOrderModel(); };
+            Orders.CollectionChanged += (s, e) => { UpdateBackEndOrderModel(); };
         }
 
-        private void UpdateOrderModel()
+        private void UpdateBackEndOrderModel()
         {
             OrderModelPetsi model = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
             model.UpdateModel(Orders);
@@ -52,7 +53,12 @@ namespace POMT_WPF.MVVM.ObsModels
 
         public void Subscribe(IObsOrderModelSubscriber subscriber) { _subscriptions.Add(subscriber); }
 
-        public void AddOrder(PetsiOrder orderItem)
+        /// <summary>
+        /// If the order is matched by OrderId, the order is modified, if the id is not matched,
+        /// the order is added as a new item.
+        /// </summary>
+        /// <param name="orderItem"></param>
+        public void UpdateOrder(PetsiOrder orderItem)
         {
             bool isFound = false;
 
@@ -112,6 +118,33 @@ namespace POMT_WPF.MVVM.ObsModels
                 }
             }
             return false;
+        }
+
+        public void CheckMultiMatchEvent()
+        {
+            bool matchFound = false;
+            CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
+            List<PetsiOrder> copy = new List<PetsiOrder>(Orders);
+            foreach (PetsiOrder order in copy)
+            {
+                foreach (PetsiOrderLineItem line in order.LineItems)
+                {
+                    if (line.CatalogObjectId == Identifiers.SOI_MULTI_ITEM_MATCH_EVENT_ID_SIG)
+                    {
+                        matchFound = true;
+                        line.CatalogObjectId = cs.GetCatalogObjectId(line.ItemName);
+                        if (line.CatalogObjectId == "")
+                        {
+                            SystemLogger.Log("Update MultiLineMatch Event FAILED: recipient " + order.Recipient + " item: " + line.ItemName);
+                        }
+                        else
+                        {
+                            UpdateOrder(order);
+                        }
+                    }
+                }
+            }
+            if (matchFound) { UpdateBackEndOrderModel(); }
         }
     }
 }

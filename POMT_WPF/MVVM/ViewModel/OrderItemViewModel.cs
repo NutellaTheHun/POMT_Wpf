@@ -414,7 +414,7 @@ namespace POMT_WPF.MVVM.ViewModel
 
             if(IsValidOrder())
             {
-                ObsOrderModelSingleton.Instance.AddOrder(Order);
+                ObsOrderModelSingleton.Instance.UpdateOrder(Order);
                 OrderItemViewEvents.RaiseSaveSuccessEvent();
             }
         }

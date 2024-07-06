@@ -9,12 +9,18 @@ namespace POMT_WPF.MVVM.View
     /// </summary>
     public partial class NotifyNewCatalogItemWindow : Window
     {
-        NotifyNewCatalogItemViewModel viewModel;
-        public NotifyNewCatalogItemWindow(SoiNewItemEventArgs args)
+       // NotifyNewCatalogItemViewModel viewModel;
+       public string ItemName { get; set; }
+        public NotifyNewCatalogItemWindow(string itemName)
         {
-            viewModel = new NotifyNewCatalogItemViewModel(args, this);
+            ItemName = itemName;
             InitializeComponent();
-            DataContext = viewModel;
+            DataContext = this;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

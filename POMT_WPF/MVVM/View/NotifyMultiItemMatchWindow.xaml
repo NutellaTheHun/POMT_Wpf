@@ -22,7 +22,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
-                <Label HorizontalAlignment="Center" Content="Multiple items matched for item: " />
+                <TextBlock HorizontalAlignment="Center" Text="{Binding ItemContext, StringFormat='Multiple items matched for item: {o} '}" />
             </Grid>
             <Grid Grid.Row="1">
                 <Border
