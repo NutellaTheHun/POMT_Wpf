@@ -74,7 +74,25 @@ namespace Petsi.Reports.TableBuilder
             TableFormat.ColWidthFitSizeOfText(page, "A:F");
 
             TableFormat.RangeBold(page, headerRange);
+            int lastRow = page.LastRowUsed().RowNumber();
+            for(int i = 1; i <= lastRow; i++)
+            {
+                string test;
+                int amount = 0;
+                try
+                {
+                    amount = page.Cell(i, 6).GetValue<int>();
+                    //test = page.Cell(i, 6).GetValue<string>();
+                }
+                catch (Exception ex) 
+                {
 
+                }
+                if(amount > 1)
+                {
+                    page.Cell(i,6).Style.Font.SetBold(true);
+                }
+            }
         }
         private string CHECKNOTES(PetsiOrder order)
         {
