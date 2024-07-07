@@ -118,7 +118,7 @@ namespace Petsi.Units
         {
             return new BackListItem("SALTY", "HFGEU3EQQ266MTQ4S7IR4B2S");
         }
-        public static BackListItem LEMON()
+        public static BackListItem LEMON_CHESS_LAV()
         {
             return new BackListItem("LEMON", "LPM5UVEKCHV5RERZJYUJMVQE");
         }
@@ -214,15 +214,15 @@ namespace Petsi.Units
         }
         public static BackListItem CURRANT()//Scone flavors dont exist in catalog, catalog id is built in SquareOrderInput.ParseOrderLineItem()
         {
-            return new BackListItem("CURRANT", "Buttermilk Currant scone");
+            return new BackListItem("CURRANT", "fd3eba39-067b-422f-8ccc-01036fabaa13");
         }
         public static BackListItem LEMON_SCONE()
         {
-            return new BackListItem("LEMON", "Lemon scone");
+            return new BackListItem("LEMON", "12e6b7e0-c2fb-4ad4-be3b-1d960bd63cfd");
         }
         public static BackListItem TRIPLE()
         {
-            return new BackListItem("TRIPLE", "Triple Berry scone");
+            return new BackListItem("TRIPLE", "87b878ad-a45a-44f3-a1b3-8acdc03a8062");
         }
         public static BackListItem BISCUIT()
         {
@@ -246,7 +246,7 @@ namespace Petsi.Units
         }
         public static BackListItem SNICK()
         {
-            return new BackListItem("Almond Brioche", "CXNP6DDA2TSYGJQPULZEPPK5");
+            return new BackListItem("SNICK", "CXNP6DDA2TSYGJQPULZEPPK5");
         }
         public static BackListItem PB()
         {

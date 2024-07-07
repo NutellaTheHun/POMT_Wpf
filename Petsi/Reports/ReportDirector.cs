@@ -26,7 +26,7 @@ namespace Petsi.Reports
 
             OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
 
-            builder.BuildReport(orderModel.GetFrontListData(targetDate, isRetail, isSpecial, isWholesale, isSpecial, isEzCater), targetDate, null);
+            builder.BuildReport(orderModel.GetFrontListData(targetDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater), targetDate, null);
 
             report.FinalizeReport();
 
@@ -41,13 +41,13 @@ namespace Petsi.Reports
 
             if (endDate == null)//if endDate is null, report is for single day, targetDate is used in report header as targetDate
             {
-                builder.BuildReport(orderModel.GetBackListData(targetDate, endDate, isRetail, isSpecial, isWholesale, isSpecial, isEzCater), targetDate, endDate);
+                builder.BuildReport(orderModel.GetBackListData(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater), targetDate, endDate);
             }
             else //otherwise printing all orders (for testing purposes) or is printing a range, displaying targetDate as a range not implemented yet, make arg param[] dateTime?
             {
                 if(targetDate < endDate)
                 {
-                    builder.BuildReport(orderModel.GetBackListData(targetDate, endDate, isRetail, isSpecial, isWholesale, isSpecial, isEzCater), null, null);
+                    builder.BuildReport(orderModel.GetBackListData(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater), null, null);
                 }
             }
 
@@ -55,7 +55,7 @@ namespace Petsi.Reports
 
             return report.Wb;
         }
-        public IXLWorkbook CreateWsDay(DateTime? targetDate, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater)
+        public IXLWorkbook CreateWsDay(DateTime? targetDate)
         {
             Report report = new Report("WholesaleByDay");
             ReportBuilderWsDay builder = new ReportBuilderWsDay(report);
@@ -69,7 +69,7 @@ namespace Petsi.Reports
             return report.Wb;
         }
 
-        public IXLWorkbook CreateWsDayName(DateTime? targetDate, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater)
+        public IXLWorkbook CreateWsDayName(DateTime? targetDate)
         {
             Report report = new Report("WholesaleByDaybyName");
             ReportBuilderWsDayName builder = new ReportBuilderWsDayName(report);

@@ -1,6 +1,5 @@
 ﻿using ClosedXML.Excel;
 using Petsi.Units;
-using Petsi.Utils;
 
 namespace Petsi.Reports.TableBuilder
 {
@@ -82,7 +81,6 @@ namespace Petsi.Reports.TableBuilder
                 try
                 {
                     amount = page.Cell(i, 6).GetValue<int>();
-                    //test = page.Cell(i, 6).GetValue<string>();
                 }
                 catch (Exception ex) 
                 {

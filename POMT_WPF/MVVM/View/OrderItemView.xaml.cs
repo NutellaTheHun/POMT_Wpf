@@ -23,7 +23,7 @@ namespace POMT_WPF.MVVM.View
 
             events.RecipientInvalid += HighlightRecipient;
             events.FulfillmentInvalid += HighlightFulfillment;
-            events.DOTWInvalid += HighlightDOTW;
+            events.TimeInvalid += HighlightTime;
             events.FrequencyInvalid += HighlightFrequency;
             events.PhoneInvalid += HighlightPhone;
             events.DatePickerLessThanInvalid += HighlightDatePicker;
@@ -62,7 +62,7 @@ namespace POMT_WPF.MVVM.View
         private void HighlightDelAddress(object sender, EventArgs e) { SetBorderThickness(DelAddrErrBdr, 2); }
         private void HighlightPhone(object sender, EventArgs e) { SetBorderThickness(PhoneErrBdr, 2); }
         private void HighlightDatePicker(object sender, EventArgs e) { SetBorderThickness(DatePickerErrBdr, 2); }
-        private void HighlightDOTW(object sender, EventArgs e) { /*SetBorderThickness(, 2);*/ }
+        private void HighlightTime(object sender, EventArgs e) { SetBorderThickness(TimeErrBdr, 2); }
         private void ShowCheckMark(object sender, EventArgs e) { SaveCheckMark.Visibility = Visibility.Visible; }
 
         private void SetBorderThickness(Border border, int val) { if(border.BorderThickness.Left != val) border.BorderThickness = new Thickness(val, val, val, val); }

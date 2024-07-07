@@ -155,10 +155,10 @@ namespace POMT_WPF.MVVM.ViewModel
 
             ReportDirector rd = new ReportDirector();
 
-            PrintFrontList = new RelayCommand(o => { if(IsValidDate()) rd.CreateFrontList(StartDate, RetailFilter, SquareFilter, WholesaleFilter, SpecialFilter, EzCaterFilter); });
+            PrintFrontList = new RelayCommand(o => { if(IsValidDate()) rd.CreateFrontList(StartDate,         RetailFilter, SquareFilter, WholesaleFilter, SpecialFilter, EzCaterFilter); });
             PrintBackList = new RelayCommand(o => { if (IsValidDate()) rd.CreateBackList(StartDate, EndDate, RetailFilter, SquareFilter, WholesaleFilter, SpecialFilter, EzCaterFilter); });
-            PrintWsAgg = new RelayCommand(o => { if (IsValidDate()) rd.CreateWsDay(StartDate, RetailFilter, SquareFilter, WholesaleFilter, SpecialFilter, EzCaterFilter); });
-            PrintWsBreakDown = new RelayCommand(o => { if (IsValidDate()) rd.CreateWsDayName(StartDate, RetailFilter, SquareFilter, WholesaleFilter, SpecialFilter, EzCaterFilter); });
+            PrintWsAgg = new RelayCommand(o => { if (IsValidDate()) rd.CreateWsDay(StartDate); });
+            PrintWsBreakDown = new RelayCommand(o => { if (IsValidDate()) rd.CreateWsDayName(StartDate); });
             SetPieTemplate = new RelayCommand(o => { StPieTempCmd(); });
             SetPastryTemplate = new RelayCommand(o => { StPastTempCmd(); });
             OpenTemplateListView = new RelayCommand(o => { MainViewModel.Instance().OpenTemplateListView(false); });

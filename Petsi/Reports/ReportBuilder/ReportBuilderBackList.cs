@@ -21,11 +21,11 @@ namespace Petsi.Reports.ReportBuilder
 
         private void AddPieOverflowPageBuilder(object sender, EventArgs e)
         {
-            pageBuilders.Add(new PageBuilderPieOverflow(_report));
+            //pageBuilders.Add(new PageBuilderPieOverflow(_report));
         }
         private void AddPastryOverflowPageBuilder(object sender, EventArgs e)
         {
-            pageBuilders.Add(new PageBuilderPastryOverflow(_report));
+            //pageBuilders.Add(new PageBuilderPastryOverflow(_report));
         }
     }
 }

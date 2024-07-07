@@ -13,11 +13,11 @@ namespace Petsi.Reports.PageBuilder
         public override int GetItemLineCount<T>(T item)
         {
             PetsiOrder order = item as PetsiOrder;
-            if (order.Note != "")
+            if (order.Note == "" || order.Note == null)
             {
-                return 1;
+                return 0;
             }
-            return 0;
+            return 1;
         }
 
         protected override void ConfigureMaxRows()

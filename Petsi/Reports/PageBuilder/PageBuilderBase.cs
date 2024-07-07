@@ -42,11 +42,12 @@ namespace Petsi.Reports.PageBuilder
             {
                 throw new Exception("Table input empty");
             }
+            /*
             //if a mono-table page
             else if (_tables.Count == 1)
             {
                 _tables[0].BuildTable(page, pageSizeOrders, _report.GetReportTargetDate(), HandleTableTitle(pageSizeOrders[0]));
-            }
+            }*/
             else //a multi table page
             {
                 List<T> tableSizeOrders = new List<T>();

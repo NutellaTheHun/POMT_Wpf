@@ -74,10 +74,10 @@ namespace Petsi.Events.ItemEvents
             Instance.DatePickerLessThanInvalid?.Invoke(Instance, EventArgs.Empty);
         }
 
-        public event EventHandler DOTWInvalid;
-        public static void RaiseDOTWInvalidEvent()
+        public event EventHandler TimeInvalid;
+        public static void RaiseTimeInvalidEvent()
         {
-            Instance.DOTWInvalid?.Invoke(Instance, EventArgs.Empty);
+            Instance.TimeInvalid?.Invoke(Instance, EventArgs.Empty);
         }
 
         public event EventHandler SaveSuccess;

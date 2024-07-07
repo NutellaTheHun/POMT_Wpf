@@ -41,7 +41,7 @@ namespace Petsi.Reports
             }
         }
         public void FinalizeReport()
-        {
+        { 
             FinalizeTotalPageCount();
             FormatReportHeader();
             if(Wb.Worksheets.Count > 0)

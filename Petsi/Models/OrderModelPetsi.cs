@@ -215,16 +215,17 @@ namespace Petsi.Models
         //Label Service uses it, WS_Day_report still needs day separation tho, and day info
         public List<PetsiOrderLineItem> GetWsDayData(DateTime? targetDate)
         {
+            List<PetsiOrder> filteredOrders = FilterOrders(Orders, false, false, true, false, false);
             IEnumerable<PetsiOrder> query;
             if (targetDate == null)
             {
-                query = from order in Orders
+                query = from order in filteredOrders
                         where order.OrderType == Identifiers.ORDER_TYPE_WHOLESALE
                         select order;
             }
             else
             {
-                query = from order in Orders
+                query = from order in filteredOrders
                         where order.OrderType == Identifiers.ORDER_TYPE_WHOLESALE
                         where DateTime.Parse(order.OrderDueDate).DayOfWeek == targetDate.Value.DayOfWeek
                         select order;
@@ -234,16 +235,17 @@ namespace Petsi.Models
 
         public List<PetsiOrder> GetWsDayNameData(DateTime? targetDate)
         {
+            List<PetsiOrder> filteredOrders = FilterOrders(Orders, false, false, true, false, false);
             IEnumerable<PetsiOrder> query;
             if (targetDate == null)
             {
-                query = from order in Orders
+                query = from order in filteredOrders
                         where order.OrderType == Identifiers.ORDER_TYPE_WHOLESALE
                         select order;
             }
             else
             {
-                query = from order in Orders
+                query = from order in filteredOrders
                         where order.OrderType == Identifiers.ORDER_TYPE_WHOLESALE
                         where DateTime.Parse(order.OrderDueDate).DayOfWeek == targetDate.Value.DayOfWeek
                         select order;

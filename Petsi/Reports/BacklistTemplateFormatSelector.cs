@@ -85,7 +85,7 @@ namespace Petsi.Reports
                 bli.PEACH(),
                 bli.PEACH_BLACK(),
                 bli.BLUE(),
-                bli.LEMON(),
+                bli.LEMON_CHESS_LAV(),
                 bli.KEY_LIME(), 
                 bli.BACON(),
                 bli.MOZZ(),
@@ -111,7 +111,7 @@ namespace Petsi.Reports
                 bli.STRAWBARB(),
                 bli.STRAWOAT(),
                 bli.VEGAN(),
-                bli.LEMON(),
+                bli.LEMON_CHESS_LAV(),
                 bli.KEY_LIME(),
                 bli.POTM(),
                 bli.BACON(),
@@ -131,7 +131,7 @@ namespace Petsi.Reports
             return ("Standard Pastry", new List<BackListItem>
             {
                 bli.CURRANT(),
-                bli.LEMON(),
+                bli.LEMON_SCONE(),
                 bli.TRIPLE(),
                 bli.BISCUIT(),
                 bli.MUFFINS(),

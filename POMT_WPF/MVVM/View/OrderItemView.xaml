@@ -128,7 +128,22 @@
                                         Foreground="Black"
                                         GotFocus="OrderDatePicker_GotFocus"
                                         IsHitTestVisible="{Binding IsEdit}"
-                                        SelectedDate="{Binding FulfillmentDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                        SelectedDate="{Binding FulfillmentDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                        Visibility="{Binding IsNotWeekly, Converter={StaticResource BoolToVis}}" />
+
+                                </Border>
+                                <Border Style="{StaticResource GeneralBorder}">
+                                    <ComboBox
+                                        x:Name="FulfillmentDateDOTW"
+                                        Width="200"
+                                        Height="40"
+                                        Background="{StaticResource MintCream}"
+                                        GotFocus="OrderDatePicker_GotFocus"
+                                        IsHitTestVisible="{Binding IsEdit}"
+                                        IsReadOnly="True"
+                                        ItemsSource="{Binding Path=DaysOfWeek}"
+                                        SelectedItem="{Binding Path=FulfillmentDayOfWeek, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                        Visibility="{Binding IsWeekly, Converter={StaticResource BoolToVis}}" />
                                 </Border>
                             </Grid>
                         </Border>

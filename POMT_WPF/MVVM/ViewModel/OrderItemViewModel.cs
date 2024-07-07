@@ -17,6 +17,40 @@ namespace POMT_WPF.MVVM.ViewModel
 
         #region Properties
 
+        /// <summary>
+        /// Controls the type of fulfillment date control in the view. If orderType is wholesale => DOTW combo box, else -> datepicker
+        /// </summary>
+        private bool _isWeekly;
+        public bool IsWeekly 
+        { 
+            get { return _isWeekly;}
+            set 
+            { 
+                if(_isWeekly != value)
+                {
+                    _isWeekly = value;
+                    IsNotWeekly = !IsWeekly;
+                    OnPropertyChanged(nameof(IsWeekly));
+                }
+            }
+        }
+        /// <summary>
+        /// Inverse binding of IsWholesale, View binding uses boolToVis converter, simpler than making a converter that combines boolToVis+invertBool
+        /// </summary>
+        private bool _isNotWeekly;
+        public bool IsNotWeekly
+        {
+            get { return _isNotWeekly; }
+            set
+            {
+                if (_isNotWeekly != value)
+                {
+                    _isNotWeekly = value;
+                    OnPropertyChanged(nameof(IsNotWeekly));
+                }
+            }
+        }
+
         public string Recipient 
         {
             get { return Order.Recipient; }
@@ -88,7 +122,7 @@ namespace POMT_WPF.MVVM.ViewModel
             {
                 if (value != Order.OrderType)
                 {
-                    Order.OrderType = value;
+                    Order.OrderType = value;   
                     OnPropertyChanged(nameof(OrderType));
                 }
             }
@@ -116,8 +150,8 @@ namespace POMT_WPF.MVVM.ViewModel
                 if (value != _orderFrequency)
                 {
                     _orderFrequency = value;
-                    if (OrderFrequency == Identifiers.ORDER_FREQUENCY_WEEKLY) { Order.IsPeriodic = true; }
-                    else if (OrderFrequency == Identifiers.ORDER_FREQUENCY_ONE_TIME) { Order.IsOneShot = true; }
+                    if (OrderFrequency == Identifiers.ORDER_FREQUENCY_WEEKLY) { Order.IsPeriodic = true; Order.IsOneShot = false; IsWeekly = true; }
+                    else if (OrderFrequency == Identifiers.ORDER_FREQUENCY_ONE_TIME) { Order.IsOneShot = true; Order.IsPeriodic = false; IsWeekly = false; }
                     OnPropertyChanged(nameof(OrderFrequency));
                 }
             }
@@ -137,8 +171,8 @@ namespace POMT_WPF.MVVM.ViewModel
             }
         }
 
-        private DateTime _fulfillmentDate;
-        public DateTime FulfillmentDate
+        private DateTime? _fulfillmentDate;
+        public DateTime? FulfillmentDate
         {
             get { if (_fulfillmentDate != null) return _fulfillmentDate; return default; }
             set
@@ -146,7 +180,24 @@ namespace POMT_WPF.MVVM.ViewModel
                 if (value != _fulfillmentDate)
                 {
                     _fulfillmentDate = value;
+                    UpdateFulfillmentDayOfWeek(FulfillmentDayOfWeek, FulfillmentDate);
                     OnPropertyChanged(nameof(FulfillmentDate));
+                }
+            }
+        }
+      
+
+        private string _fulfillmentDayOfWeek;
+        public string FulfillmentDayOfWeek
+        {
+            get { return _fulfillmentDayOfWeek;}
+            set
+            {
+                if (value != _fulfillmentDayOfWeek)
+                {
+                    _fulfillmentDayOfWeek = value;
+                    UpdateFulfillmentDate(FulfillmentDayOfWeek, FulfillmentDate);
+                    OnPropertyChanged(nameof(FulfillmentDayOfWeek));
                 }
             }
         }
@@ -307,6 +358,7 @@ namespace POMT_WPF.MVVM.ViewModel
         public ObservableCollection<string> OrderTypes { get; set; }
         public ObservableCollection<string> OrderFrequencies { get; set; }
         public ObservableCollection<string> FulfillmentTypes { get; set; }
+        public ObservableCollection<string> DaysOfWeek { get; set; }
         #endregion
 
         #region Commands
@@ -367,8 +419,12 @@ namespace POMT_WPF.MVVM.ViewModel
             OrderTypes = new ObservableCollection<string>(orderModel.GetOrderTypes());
             OrderFrequencies = new ObservableCollection<string>() { Identifiers.ORDER_FREQUENCY_WEEKLY, Identifiers.ORDER_FREQUENCY_ONE_TIME };
             FulfillmentTypes = new ObservableCollection<string>() { Identifiers.FULFILLMENT_PICKUP, Identifiers.FULFILLMENT_DELIVERY };
+            DaysOfWeek = InitDayOfWeekSelection();
 
             LineItems.CollectionChanged += (s, e) => Order.LineItems = LineItems.ToList();
+
+            IsWeekly = Order.OrderType == Identifiers.ORDER_TYPE_WHOLESALE;
+            IsNotWeekly = !IsWeekly;
 
             BackCommand = new RelayCommand(o => { MainViewModel.Instance().BackOrderView(); });
             EditCommand = new RelayCommand(o => { ToggleEditing(); });
@@ -379,6 +435,12 @@ namespace POMT_WPF.MVVM.ViewModel
 
             OrderLineItemEvents.Instance.OnQuantityChange += UpdateColumnTotals;
         }
+
+        private ObservableCollection<string> InitDayOfWeekSelection()
+        {
+            return new ObservableCollection<string> { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+        }
+
         private void ToggleEditing()
         {
             foreach(var item in LineItems)
@@ -412,8 +474,18 @@ namespace POMT_WPF.MVVM.ViewModel
 
         private void SaveOrder()
         {
-            Order.OrderDueDate = DateTime.Parse(FulfillmentDate.ToShortDateString() +" " + Time).ToString();
-
+            if (FulfillmentDate != null)
+            {
+                try
+                {
+                    Order.OrderDueDate = DateTime.Parse(FulfillmentDate.Value.ToShortDateString() + " " + Time).ToString();
+                }
+                catch (FormatException e) 
+                {
+                    OrderItemViewEvents.RaiseTimeInvalidEvent();
+                    return;
+                }
+            }
             if(IsValidOrder())
             {
                 ObsOrderModelSingleton.Instance.UpdateOrder(Order);
@@ -477,7 +549,7 @@ namespace POMT_WPF.MVVM.ViewModel
             if(OrderFrequency == Identifiers.ORDER_FREQUENCY_ONE_TIME && FulfillmentDate == default) { controlbool = false; OrderItemViewEvents.RaiseDatePickerInvalidEvent(); }
             if(OrderFrequency == Identifiers.ORDER_FREQUENCY_ONE_TIME && FulfillmentDate < DateTime.Today) { controlbool = false; OrderItemViewEvents.RaiseDatePickerLessThanEvent(); }
 
-            if(OrderFrequency == Identifiers.ORDER_FREQUENCY_WEEKLY /* && DOTW == null */) { controlbool = false; OrderItemViewEvents.RaiseDOTWInvalidEvent(); }
+            //if(OrderFrequency == Identifiers.ORDER_FREQUENCY_WEEKLY /* && DOTW == null */) { controlbool = false; OrderItemViewEvents.RaiseDOTWInvalidEvent(); }
 
             return controlbool;
         }
@@ -501,6 +573,39 @@ namespace POMT_WPF.MVVM.ViewModel
                 }
             }
             return true;
+        }
+
+        /// <summary>
+        /// When FulfillmentDayofWeek is set, update FulfillmentDate to reflect new day, based on current setting of FulfillmentDate.
+        /// </summary>
+        /// <param name="fulfillmentDayOfWeek"></param>
+        /// <param name="fulfillmentDate"></param>
+        private void UpdateFulfillmentDate(string fulfillmentDayOfWeek, DateTime? fulfillmentDate)
+        {
+            if (fulfillmentDate == default || fulfillmentDate == null)
+            {
+                fulfillmentDate = DateTime.Today;
+            }
+
+            if (!Enum.TryParse(fulfillmentDayOfWeek, true, out DayOfWeek targetDayOfWeek))
+            {
+                SystemLogger.Log("OrderItemView FulfillmentDate update Invalid day of the week.");
+            }
+
+            int currentDayOfWeek = (int)fulfillmentDate.Value.DayOfWeek;
+            int targetDayOfWeekInt = (int)targetDayOfWeek;
+
+            int dayDifference = targetDayOfWeekInt - currentDayOfWeek;
+            FulfillmentDate = fulfillmentDate.Value.AddDays(dayDifference);
+        }
+        /// <summary>
+        /// When FulfillmentDate is set, update FulfillmentDate to reflect the date, converts the date to day of week.
+        /// </summary>
+        /// <param name="fulfillmentDayOfWeek"></param>
+        /// <param name="fulfillmentDate"></param>
+        private void UpdateFulfillmentDayOfWeek(string fulfillmentDayOfWeek, DateTime? fulfillmentDate)
+        {
+            FulfillmentDayOfWeek = fulfillmentDate.Value.DayOfWeek.ToString();
         }
     }
 }
