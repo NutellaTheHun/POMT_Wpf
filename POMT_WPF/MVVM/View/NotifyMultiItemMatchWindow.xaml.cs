@@ -11,25 +11,11 @@ namespace POMT_WPF.MVVM.View
     {
         private NotifyItemMultiMatchViewModel viewModel;
 
-        //public ObservableCollection<string> MultiItemListNames = new ObservableCollection<string>();
-        //public List<CatalogItemPetsi> MultiItemList = new List<CatalogItemPetsi>();
-        //string ItemContext { get; set; }
         public NotifyMultiItemMatchWindow(SoiMultiItemEventArgs args)
         {
             viewModel = new NotifyItemMultiMatchViewModel(args, this);
             InitializeComponent();
             DataContext = viewModel;
         }
-
-        /*
-        public void UpdateListNames(List<CatalogItemPetsi> overflowList)
-        {
-            MultiItemList = overflowList;
-            foreach (var item in overflowList)
-            {
-                MultiItemListNames.Add(item.ItemName);
-            }
-        }
-        */
     }
 }

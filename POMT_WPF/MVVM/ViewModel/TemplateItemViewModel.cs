@@ -82,6 +82,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 if (id == "")
                 {
                     GeneralErrorWindow errWin = new GeneralErrorWindow("item: " + item.ItemName + " cound not be validated, template was not saved.");
+                    errWin.Owner = System.Windows.Application.Current.MainWindow;
                     errWin.Show();
                     return false;
                 }

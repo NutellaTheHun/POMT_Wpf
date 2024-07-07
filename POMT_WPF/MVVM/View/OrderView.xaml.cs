@@ -19,15 +19,15 @@ namespace POMT_WPF.MVVM.View
 
         public void NotifyUserNewItem(object sender, EventArgs e)
         {
-            //NotifyNewCatalogItemWindow view = new NotifyNewCatalogItemWindow((SoiNewItemEventArgs)e);
-            //view.Show();
             NewItemEventWindow window = new NewItemEventWindow((SoiNewItemEventArgs)e);
+            window.Owner = System.Windows.Application.Current.MainWindow;
             window.Show();
         }
 
         public void NotifyUserMultiItemMatch(object sender, EventArgs e)
         {
             NotifyMultiItemMatchWindow view = new NotifyMultiItemMatchWindow((SoiMultiItemEventArgs)e);
+            view.Owner = System.Windows.Application.Current.MainWindow;
             view.Show();
         }
     }

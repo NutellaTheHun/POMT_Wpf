@@ -10,6 +10,7 @@ namespace POMT_WPF.MVVM.View
         public TemplateListView()
         {
             InitializeComponent();
+            
         }
     }
 }

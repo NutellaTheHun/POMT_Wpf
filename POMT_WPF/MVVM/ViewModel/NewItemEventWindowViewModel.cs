@@ -1,8 +1,10 @@
 ﻿using Petsi.Events;
+using Petsi.Models;
 using Petsi.Units;
 using POMT_WPF.Core;
 using POMT_WPF.MVVM.ObsModels;
 using POMT_WPF.MVVM.View;
+using System.Collections.ObjectModel;
 
 namespace POMT_WPF.MVVM.ViewModel
 {
@@ -25,9 +27,12 @@ namespace POMT_WPF.MVVM.ViewModel
         public RelayCommand SelectCatalogItem {  get; set; }
         public RelayCommand CreateCatalogItem {  get; set; }
 
-        public string ItemName { get { return _newItem.ItemName; } }
+        public string ItemName { get { return _newItem.ItemName; } set { } }
         private CatalogItemPetsi _newItem;
         private NewItemEventWindow _view;
+
+        CatalogModelPetsi cmp;
+        public ObservableCollection<CatalogItemPetsi> Items { get; set; }
 
         public NewItemEventWindowViewModel(SoiNewItemEventArgs args, NewItemEventWindow view)
         {
@@ -40,6 +45,7 @@ namespace POMT_WPF.MVVM.ViewModel
 
             SelectCatalogItem = new RelayCommand(o => { SelectItemCommand(o); });
             CreateCatalogItem = new RelayCommand(o => { CreateItemCommand(); });
+            Items = ObsCatalogModelSingleton.Instance.CatalogItems;
         }
 
         private void CreateItemCommand()
@@ -57,6 +63,20 @@ namespace POMT_WPF.MVVM.ViewModel
                 ObsCatalogModelSingleton.Instance.AddItem((CatalogItemPetsi)o);
                 _view.Close();
             }
+        }
+        public void FilterSearchBar(string text)
+        {
+            ObservableCollection<CatalogItemPetsi> catalogItems = ObsCatalogModelSingleton.Instance.CatalogItems;
+            ObservableCollection<CatalogItemPetsi> results = new ObservableCollection<CatalogItemPetsi>();
+            foreach (CatalogItemPetsi item in catalogItems)
+            {
+                if (item.ItemName.ToLower().Contains(text.ToLower()))
+                {
+                    results.Add(item);
+                    continue;
+                }
+            }
+            Items = results;
         }
     }
 }

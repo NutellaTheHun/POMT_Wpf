@@ -1,5 +1,4 @@
-﻿using Petsi.Units;
-using POMT_WPF.MVVM.ViewModel;
+﻿using POMT_WPF.MVVM.ViewModel;
 using System.Windows.Controls;
 
 namespace POMT_WPF.MVVM.View
@@ -22,10 +21,7 @@ namespace POMT_WPF.MVVM.View
             catalogListDataGrid.ItemsSource = ViewModel.Items;
         }
 
-        private void AddCatalogItemButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
-        }
+        /*
         private void catalogListDataGrid_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var catalogListDataGrid = sender as DataGrid;
@@ -39,5 +35,6 @@ namespace POMT_WPF.MVVM.View
                 }
             }
         }
+        */
     }
 }

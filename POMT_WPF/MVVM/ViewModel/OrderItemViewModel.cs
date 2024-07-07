@@ -328,6 +328,7 @@ namespace POMT_WPF.MVVM.ViewModel
             {
                 Order.OrderId = PetsiOrder.GenerateOrderId();
                 Order.IsUserEntered = true;
+                Order.InputOriginType = Identifiers.USER_ENTERED_INPUT;
                 IsEdit = true;
                 CanDelete = false;
                 CanSave = true;
@@ -359,7 +360,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 LineItems = new ObservableCollection<PetsiOrderLineItem>(orderContext.LineItems);
             }
 
-            UpdateColumnTotals();
+            UpdateColumnTotals(this, EventArgs.Empty);
 
             OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
 
@@ -368,7 +369,6 @@ namespace POMT_WPF.MVVM.ViewModel
             FulfillmentTypes = new ObservableCollection<string>() { Identifiers.FULFILLMENT_PICKUP, Identifiers.FULFILLMENT_DELIVERY };
 
             LineItems.CollectionChanged += (s, e) => Order.LineItems = LineItems.ToList();
-            LineItems.CollectionChanged += (s, e) => UpdateColumnTotals(); //Doesnt work?
 
             BackCommand = new RelayCommand(o => { MainViewModel.Instance().BackOrderView(); });
             EditCommand = new RelayCommand(o => { ToggleEditing(); });
@@ -376,6 +376,8 @@ namespace POMT_WPF.MVVM.ViewModel
             DeleteLineCommand = new RelayCommand(o => { DeleteLine(o); });
             SaveOrderCommand = new RelayCommand(o => { SaveOrder();  });
             DeleteOrderCommand = new RelayCommand(o => { DeleteOrder();  });
+
+            OrderLineItemEvents.Instance.OnQuantityChange += UpdateColumnTotals;
         }
         private void ToggleEditing()
         {
@@ -430,7 +432,7 @@ namespace POMT_WPF.MVVM.ViewModel
             }   
         }
 
-        private void UpdateColumnTotals()
+        private void UpdateColumnTotals(object sender, EventArgs e)
         {
             int amount3Sum = 0;
             int amount5Sum = 0;

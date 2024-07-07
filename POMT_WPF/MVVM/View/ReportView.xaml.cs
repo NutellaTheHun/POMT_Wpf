@@ -21,6 +21,7 @@ namespace POMT_WPF.MVVM.View
             if (_overflowErrorWin == null)
             {
                 _overflowErrorWin = new NotifyTableBuilderOverFlowWindow((TBOverflowEventArgs)e);
+                _overflowErrorWin.Owner = System.Windows.Application.Current.MainWindow;
                 _overflowErrorWin.Show();
             }
             else
@@ -32,6 +33,7 @@ namespace POMT_WPF.MVVM.View
         public void NotifyReportPrintNoData(object sender, EventArgs e)
         {
             GeneralErrorWindow window = new GeneralErrorWindow("No orders found for report.");
+            window.Owner = System.Windows.Application.Current.MainWindow;
             window.Show();
         }
     }

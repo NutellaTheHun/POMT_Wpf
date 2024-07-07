@@ -80,7 +80,7 @@ namespace POMT_WPF.MVVM.ObsModels
             }
             //If not modify, add new item
             if(!isFound) CatalogItems.Add(catalogItem);
-            ObsOrderModelSingleton.Instance.CheckMultiMatchEvent();
+            ObsOrderModelSingleton.Instance.CheckCatalogItemErrorHandleEvent();
         }
 
         public void RemoveItem(CatalogItemPetsi catalogItem)

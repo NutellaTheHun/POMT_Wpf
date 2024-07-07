@@ -22,11 +22,13 @@ namespace POMT_WPF.MVVM.View
             
             GeneralErrorWindow errorWindow = new GeneralErrorWindow(
                 "Item: " + args.ItemName + " filepath: " + args.Filepath + " for " + args.PieType + " could not be validated.\n Please verify that the item's file assoicated with the label currently exists or is correct.");
+            errorWindow.Owner = System.Windows.Application.Current.MainWindow;
             errorWindow.Show();
         }
         private void PrinterNotFoundErrorWindow(object sender, EventArgs e)
         {
             GeneralErrorWindow errorWindow = new GeneralErrorWindow("Printer not found, please check settings for correct printer.");
+            errorWindow.Owner = System.Windows.Application.Current.MainWindow;
             errorWindow.Show();
         }
     }

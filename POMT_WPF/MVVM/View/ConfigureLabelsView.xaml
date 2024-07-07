@@ -34,6 +34,7 @@
                     Width="450"
                     Height="300"
                     AutoGenerateColumns="False"
+                    CanUserAddRows="False"
                     ItemsSource="{Binding Items}">
                     <DataGrid.InputBindings>
                         <MouseBinding

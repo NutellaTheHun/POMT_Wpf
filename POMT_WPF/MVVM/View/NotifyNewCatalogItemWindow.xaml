@@ -26,7 +26,7 @@
                 <TextBlock
                     HorizontalAlignment="Center"
                     FontSize="18"
-                    Text="{Binding ItemName, StringFormat='New item {0} added to catalog, If this item exists please select the relevant item from the catalog, Or click create new Item '}"
+                    Text="{Binding ItemName, StringFormat='New item &quot;{0}&quot; added to catalog, If this item exists please select the relevant item from the catalog, Or click create new Item '}"
                     TextWrapping="Wrap" />
             </Grid>
             <Grid Grid.Row="2">
@@ -36,7 +36,6 @@
                         Height="40"
                         Margin="0,0,20,0"
                         Click="Button_Click"
-                        Command="{Binding Close}"
                         Content="Ok"
                         Style="{StaticResource secondaryButton}" />
                 </StackPanel>

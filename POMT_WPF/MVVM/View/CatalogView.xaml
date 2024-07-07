@@ -28,16 +28,22 @@
                 Width="200"
                 Margin="5"
                 HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="87*" />
+                    <ColumnDefinition Width="113*" />
+                </Grid.ColumnDefinitions>
 
                 <TextBlock
-                    Margin="15,0"
+                    Grid.ColumnSpan="2"
+                    Margin="15,0,15,0"
                     VerticalAlignment="Center"
                     Panel.ZIndex="1"
                     Foreground="{StaticResource TextFont}"
                     IsHitTestVisible="False"
                     Text="Search catalog ..."
-                    Visibility="{Binding ElementName=txtFilter, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}" />
+                    Visibility="{Binding ElementName=SearchTextBox, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}" />
                 <Border
+                    Grid.ColumnSpan="2"
                     Background="#ffffff"
                     BorderBrush="#e0e6ed"
                     BorderThickness="1"
@@ -72,6 +78,7 @@
                         AutoGenerateColumns="False"
                         Background="Transparent"
                         BorderBrush="Transparent"
+                        CanUserAddRows="False"
                         ItemsSource="{Binding Items}">
                         <DataGrid.InputBindings>
                             <MouseBinding

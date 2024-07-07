@@ -1,4 +1,5 @@
-﻿using Petsi.Managers;
+﻿using Petsi.Events.ItemEvents;
+using Petsi.Managers;
 using Petsi.Services;
 using Petsi.Utils;
 using System.ComponentModel;
@@ -9,11 +10,39 @@ namespace Petsi.Units
     {
         public string ItemName { get; set; }
         public string CatalogObjectId { get; set; }
-        public int Amount3 { get; set; }
-        public int Amount5 { get; set; }
-        public int Amount8 { get; set; }
-        public int Amount10 { get; set; }
-        public int AmountRegular { get; set; }
+
+        private int _amount3;
+        public int Amount3 
+        { 
+            get { return _amount3; }
+            set { _amount3 = value; OrderLineItemEvents.RaiseOnQuantityChange(); }
+        }
+        private int _amount5;
+        public int Amount5
+        {
+            get { return _amount5; }
+            set { _amount5 = value; OrderLineItemEvents.RaiseOnQuantityChange(); }
+        }
+        private int _amount8;
+        public int Amount8
+        {
+            get { return _amount8; }
+            set { _amount8 = value; OrderLineItemEvents.RaiseOnQuantityChange(); }
+        }
+
+        private int _amount10;
+        public int Amount10
+        {
+            get { return _amount10; }
+            set { _amount10 = value; OrderLineItemEvents.RaiseOnQuantityChange(); }
+        }
+
+        private int _amountRegular;
+        public int AmountRegular
+        {
+            get { return _amountRegular; }
+            set { _amountRegular = value; OrderLineItemEvents.RaiseOnQuantityChange(); }
+        }
         public bool IsValid { get; set; }
 
         //The only way I could get the datagrid for the order form to propertly be set to read only.

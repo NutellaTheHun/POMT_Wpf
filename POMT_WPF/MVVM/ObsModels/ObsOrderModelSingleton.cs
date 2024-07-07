@@ -120,7 +120,7 @@ namespace POMT_WPF.MVVM.ObsModels
             return false;
         }
 
-        public void CheckMultiMatchEvent()
+        public void CheckCatalogItemErrorHandleEvent()
         {
             bool matchFound = false;
             CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
@@ -129,7 +129,7 @@ namespace POMT_WPF.MVVM.ObsModels
             {
                 foreach (PetsiOrderLineItem line in order.LineItems)
                 {
-                    if (line.CatalogObjectId == Identifiers.SOI_MULTI_ITEM_MATCH_EVENT_ID_SIG)
+                    if (line.CatalogObjectId == Identifiers.SOI_MULTI_ITEM_MATCH_EVENT_ID_SIG || line.CatalogObjectId == Identifiers.SOI_NEW_ITEM_EVENT_ID_SIG)
                     {
                         matchFound = true;
                         line.CatalogObjectId = cs.GetCatalogObjectId(line.ItemName);

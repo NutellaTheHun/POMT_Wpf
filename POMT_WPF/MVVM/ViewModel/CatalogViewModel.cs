@@ -10,7 +10,7 @@ namespace POMT_WPF.MVVM.ViewModel
     {
         CatalogModelPetsi cmp;
         public ObservableCollection<CatalogItemPetsi> Items { get; set; }
-        public ObservableCollection<CatalogItemPetsi> FilterItems { get; set; }
+        //public ObservableCollection<CatalogItemPetsi> FilterItems { get; set; }
 
         public RelayCommand OpenCatalogItemView {  get; set; }
 
