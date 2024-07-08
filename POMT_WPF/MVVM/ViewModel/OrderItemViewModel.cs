@@ -410,6 +410,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 IsEdit = false;
 
                 LineItems = new ObservableCollection<PetsiOrderLineItem>(orderContext.LineItems);
+                
             }
 
             UpdateColumnTotals(this, EventArgs.Empty);

@@ -93,6 +93,7 @@
                                     <TextBlock Text="Labels" />
                                 </StackPanel>
                             </Button>
+
                             <Button
                                 x:Name="CatalogButton"
                                 Command="{Binding CatalogViewCommand}"
@@ -102,7 +103,6 @@
                                     <TextBlock Text="Catalog" />
                                 </StackPanel>
                             </Button>
-
                         </StackPanel>
 
                         <!--  Settings  -->
@@ -122,21 +122,26 @@
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40" />
-                    <RowDefinition Height="*" />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
-                <Button
-                    Grid.Row="0"
-                    Width="30"
-                    Height="30"
-                    Margin="0,0,20,0"
-                    HorizontalAlignment="Right"
-                    Command="{Binding CloseApp}"
-                    Foreground="{StaticResource LicoriceDark}"
-                    Style="{StaticResource GeneralCloseButton}" />
-                <ContentControl
-                    Grid.Row="1"
-                    Margin="10"
-                    Content="{Binding CurrentView}" />
+                <Grid Grid.Row="0">
+                    <Rectangle
+                        Width="820"
+                        HorizontalAlignment="Left"
+                        Fill="Transparent"
+                        MouseLeftButtonDown="Border_MouseDown" />
+                    <Button
+                        Width="30"
+                        Height="30"
+                        Margin="0,0,20,0"
+                        HorizontalAlignment="Right"
+                        Command="{Binding CloseApp}"
+                        Foreground="{StaticResource LicoriceDark}"
+                        Style="{StaticResource GeneralCloseButton}" />
+                </Grid>
+                <Grid Grid.Row="1">
+                    <ContentControl Margin="10" Content="{Binding CurrentView}" />
+                </Grid>
             </Grid>
         </Grid>
     </Border>

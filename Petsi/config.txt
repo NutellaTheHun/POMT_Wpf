@@ -11,4 +11,4 @@ labelDirectory=D:\Git-Repos\POMT_WPF\Petsi\Labels\Files
 labelPrinter=Brother HL-2280DW Printer
 standardPrinter=Brother HL-2280DW Printer
 pieTemplateName=Summer Pies
-pastryTemplateName=Standard Pastry
+pastryTemplateName=Summer Pastry

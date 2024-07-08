@@ -16,7 +16,7 @@
 
     <Grid Background="{StaticResource ColumbiaBlue}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
@@ -74,12 +74,16 @@
                     <DataGrid
                         x:Name="catalogListDataGrid"
                         Width="500"
-                        Height="500"
+                        Height="520"
                         AutoGenerateColumns="False"
                         Background="Transparent"
                         BorderBrush="Transparent"
                         CanUserAddRows="False"
-                        ItemsSource="{Binding Items}">
+                        CellStyle="{StaticResource CatalogViewDgCellStyle}"
+                        ColumnHeaderStyle="{StaticResource CatalogViewColHeaderStyle}"
+                        ItemsSource="{Binding Items}"
+                        RowStyle="{StaticResource CatalogViewDgRowStyle}"
+                        Style="{StaticResource CatalogViewDgStyle}">
                         <DataGrid.InputBindings>
                             <MouseBinding
                                 Command="{Binding OpenCatalogItemView}"
@@ -91,10 +95,10 @@
                                 Binding="{Binding ItemName, UpdateSourceTrigger=PropertyChanged}"
                                 Header="Item Name"
                                 IsReadOnly="True" />
-                            <DataGridTextColumn
+                            <!--  <DataGridTextColumn
                                 Binding="{Binding CatalogObjectId, UpdateSourceTrigger=PropertyChanged}"
                                 Header="Catalog ID"
-                                IsReadOnly="True" />
+                                IsReadOnly="True" />-->
                             <!--  Sizes  -->
                             <!--  hasLabels  -->
                         </DataGrid.Columns>

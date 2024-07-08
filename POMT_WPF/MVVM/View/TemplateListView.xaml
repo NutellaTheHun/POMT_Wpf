@@ -38,6 +38,7 @@
                             CanUserReorderColumns="False"
                             CanUserResizeColumns="False"
                             CanUserResizeRows="False"
+                            GridLinesVisibility="None"
                             IsReadOnly="true"
                             ItemsSource="{Binding TemplateNames}">
                             <DataGrid.InputBindings>

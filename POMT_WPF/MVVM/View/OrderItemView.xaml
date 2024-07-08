@@ -263,8 +263,9 @@
                                 BorderBrush="Transparent"
                                 CellStyle="{DynamicResource orderFormDataGridCellStyle}"
                                 ColumnHeaderStyle="{DynamicResource orderFormDataGridColumnHeaderStyle}"
+                                DataContextChanged="orderFormDataGrid_DataContextChanged"
                                 GotFocus="orderFormDataGrid_GotFocus"
-                                ItemsSource="{Binding LineItems}"
+                                ItemsSource="{Binding Path=LineItems}"
                                 RowStyle="{DynamicResource orderFormDataGridRowStyle}"
                                 Style="{DynamicResource orderFormGridStyle}">
                                 <DataGrid.Columns>
@@ -382,6 +383,7 @@
                             Margin="3,0,5,5"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Top"
+                            Click="AddLineButton_Click"
                             Command="{Binding AddLineCommand}"
                             IsHitTestVisible="{Binding IsEdit}"
                             Style="{StaticResource secondaryButton}"

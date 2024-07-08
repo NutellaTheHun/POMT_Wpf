@@ -5,6 +5,7 @@ using Petsi.Units;
 using Petsi.Utils;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace POMT_WPF.MVVM.View
 {
@@ -36,23 +37,27 @@ namespace POMT_WPF.MVVM.View
 
             OrderDatePicker.SelectedDate = null;
             SaveCheckMark.Visibility = Visibility.Hidden;
+            
         }
         private void ItemNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
-            TextBox itemNameTextBox = sender as TextBox;
-
-            if (itemNameTextBox.Text != "")
+            //prevents focus on last item combo box, causing double clicking with scroll viewer being moved first!
+            if(IsLoaded)
             {
-                ComboBox itemNameCb = (itemNameTextBox.Parent as Grid).FindName("ItemNameComboBox") as ComboBox;
+                TextBox itemNameTextBox = sender as TextBox;
 
-                List<CatalogItemPetsi> results = cs.GetItemNameValidationResults(itemNameTextBox.Text);
-                itemNameCb.ItemsSource = results.Select(x => x.ItemName);
-                if (results.Count != 0)
+                if (itemNameTextBox.Text != "")
                 {
-                    itemNameCb.IsDropDownOpen = true;
+                    ComboBox itemNameCb = (itemNameTextBox.Parent as Grid).FindName("ItemNameComboBox") as ComboBox;
+
+                    List<CatalogItemPetsi> results = cs.GetItemNameValidationResults(itemNameTextBox.Text);
+                    itemNameCb.ItemsSource = results.Select(x => x.ItemName);
+                    if (results.Count != 0)
+                    {
+                        itemNameCb.IsDropDownOpen = true;
+                    }
                 }
-            }
+            } 
         }
         private void HighlightRecipient(object sender, EventArgs e) { SetBorderThickness(RecipientErrBdr, 2); }
         private void HighlightFulfillment(object sender, EventArgs e) { SetBorderThickness(FulfillmentErrBdr, 2); }
@@ -82,5 +87,25 @@ namespace POMT_WPF.MVVM.View
         private void OrderFrequencyTypeComboBox_GotFocus(object sender, RoutedEventArgs e){ SetBorderThickness(FrequencyErrBdr, 0); }
 
         private void orderFormDataGrid_GotFocus(object sender, RoutedEventArgs e){ SetBorderThickness(LineItemsErrBdr, 0); }
+
+        private void orderFormDataGrid_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
+            {
+                orderFormDataGrid.SelectedIndex = orderFormDataGrid.Items.Count - 1;
+                if(orderFormDataGrid.Items.Count != 0) { orderFormDataGrid.ScrollIntoView(orderFormDataGrid.Items[orderFormDataGrid.Items.Count - 1]); }
+                
+            }));
+        }
+
+        private void AddLineButton_Click(object sender, RoutedEventArgs e)
+        {
+            Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
+            {
+                orderFormDataGrid.SelectedIndex = orderFormDataGrid.Items.Count - 1;
+                orderFormDataGrid.ScrollIntoView(orderFormDataGrid.Items[orderFormDataGrid.Items.Count - 1]);
+            }));
+        }
     }
+    
 }

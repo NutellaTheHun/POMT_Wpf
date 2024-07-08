@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
+using System.Windows.Input;
 using POMT_WPF.MVVM.ViewModel;
 
 namespace POMT_WPF.MVVM.View
@@ -15,6 +15,14 @@ namespace POMT_WPF.MVVM.View
             vm = MainViewModel.Instance();
             DataContext = vm;
             InitializeComponent();
+        }
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
         }
     }
 }

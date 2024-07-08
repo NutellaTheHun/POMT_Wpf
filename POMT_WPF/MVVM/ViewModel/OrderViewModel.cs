@@ -92,7 +92,11 @@ namespace POMT_WPF.MVVM.ViewModel
         private void NoFilter(object sender, FilterEventArgs e)
         {
             PetsiOrder order = e.Item as PetsiOrder;
-            if (order != null && !order.IsFrozen)
+            if (order == null || order.IsFrozen)
+            {
+                e.Accepted = false;
+            }
+            else
             {
                 e.Accepted = OrderContainsSearchQuery(order);
             }
@@ -101,16 +105,25 @@ namespace POMT_WPF.MVVM.ViewModel
         private void WsFilter(object sender, FilterEventArgs e)
         {
             PetsiOrder order = e.Item as PetsiOrder;
-            if (order != null && !order.IsFrozen)
+            if(order == null || order.IsFrozen)
+            {
+                e.Accepted = false;
+            }
+            else
             {
                 e.Accepted = OrderContainsSearchQuery(order) && order.OrderType == Identifiers.ORDER_TYPE_WHOLESALE;
             }
+            
         }
 
         private void SqFilter(object sender, FilterEventArgs e)
         {
             PetsiOrder order = e.Item as PetsiOrder;
-            if (order != null && !order.IsFrozen)
+            if (order == null || order.IsFrozen)
+            {
+                e.Accepted = false;
+            }
+            else
             {
                 e.Accepted = OrderContainsSearchQuery(order) && order.OrderType == Identifiers.ORDER_TYPE_SQUARE;
             }
@@ -119,7 +132,11 @@ namespace POMT_WPF.MVVM.ViewModel
         private void RtFilter(object sender, FilterEventArgs e)
         {
             PetsiOrder order = e.Item as PetsiOrder;
-            if (order != null && !order.IsFrozen)
+            if (order == null || order.IsFrozen)
+            {
+                e.Accepted = false;
+            }
+            else
             {
                 e.Accepted = OrderContainsSearchQuery(order) && order.OrderType == Identifiers.ORDER_TYPE_RETAIL;
             }
@@ -128,7 +145,11 @@ namespace POMT_WPF.MVVM.ViewModel
         private void SpFilter(object sender, FilterEventArgs e)
         {
             PetsiOrder order = e.Item as PetsiOrder;
-            if (order != null && !order.IsFrozen)
+            if (order == null || order.IsFrozen)
+            {
+                e.Accepted = false;
+            }
+            else
             {
                 e.Accepted = OrderContainsSearchQuery(order) && order.OrderType == Identifiers.ORDER_TYPE_SPECIAL;
             }
@@ -137,7 +158,11 @@ namespace POMT_WPF.MVVM.ViewModel
         private void FrFilter(object sender, FilterEventArgs e)
         {
             PetsiOrder order = e.Item as PetsiOrder;
-            if (order != null)
+            if (order == null)
+            {
+                e.Accepted = false;
+            }
+            else
             {
                 e.Accepted = OrderContainsSearchQuery(order) && order.IsFrozen;
             }

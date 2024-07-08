@@ -43,9 +43,8 @@ namespace POMT_WPF
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            //if (e.ChangedButton == MouseButton.Left) { this.DragMove(); }
             if (e.LeftButton == MouseButtonState.Pressed)
-                this.DragMove();
+                DragMove();
         }
 
         private bool isMaximized = false;
