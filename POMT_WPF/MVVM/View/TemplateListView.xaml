@@ -48,7 +48,7 @@
                                     MouseAction="LeftDoubleClick" />
                             </DataGrid.InputBindings>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding .}" />
+                                <DataGridTextColumn Binding="{Binding .}" FontSize="16" />
                             </DataGrid.Columns>
                         </DataGrid>
                         <StackPanel Orientation="Vertical">

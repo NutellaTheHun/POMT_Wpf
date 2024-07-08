@@ -176,5 +176,20 @@ namespace Petsi.Units
             CatalogItemPetsi item = cs.GetCatalogItemById(CatalogObjectId);
             return item.CategoryId == categoryId;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="targetSize">A Size identifier string</param>
+        /// <returns></returns>
+        public bool IsValidSize(string targetSize)
+        {
+            CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
+            CatalogItemPetsi item = cs.GetCatalogItemById(CatalogObjectId);
+
+            if (!item.VariationExists(targetSize)) { return false; }
+
+            return true;
+        }
     }
 }

@@ -5,6 +5,7 @@
         <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="FontSize" Value="14" />
+        <Setter Property="Padding" Value="5,0,0,0" />
         <Setter Property="Background" Value="{StaticResource MintCream}" />
         <Setter Property="Foreground" Value="{StaticResource LicoriceDark}" />
     </Style>

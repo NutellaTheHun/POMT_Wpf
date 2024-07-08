@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:POMT_WPF.MVVM.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:v="clr-namespace:POMT_WPF.Validation"
     d:DesignHeight="660"
     d:DesignWidth="860"
     mc:Ignorable="d">
@@ -66,14 +67,14 @@
         <Grid Grid.Row="2" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal">
                 <Border
-                    Width="520"
-                    Height="520"
+                    Width="320"
+                    Height="560"
                     BorderBrush="{StaticResource TextFont}"
                     BorderThickness="1"
                     CornerRadius="5">
                     <DataGrid
                         x:Name="catalogListDataGrid"
-                        Width="500"
+                        Width="300"
                         Height="520"
                         AutoGenerateColumns="False"
                         Background="Transparent"
@@ -91,16 +92,37 @@
                                 MouseAction="LeftDoubleClick" />
                         </DataGrid.InputBindings>
                         <DataGrid.Columns>
-                            <DataGridTextColumn
-                                Binding="{Binding ItemName, UpdateSourceTrigger=PropertyChanged}"
-                                Header="Item Name"
-                                IsReadOnly="True" />
-                            <!--  <DataGridTextColumn
-                                Binding="{Binding CatalogObjectId, UpdateSourceTrigger=PropertyChanged}"
-                                Header="Catalog ID"
-                                IsReadOnly="True" />-->
-                            <!--  Sizes  -->
-                            <!--  hasLabels  -->
+                            <DataGridTemplateColumn
+                                x:Name="orderFormTemplate"
+                                Width="225"
+                                Header="Item Name">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <TextBox
+                                                x:Name="ItemNameTextBox"
+                                                Width="225"
+                                                HorizontalContentAlignment="Left"
+                                                VerticalContentAlignment="Center"
+                                                BorderThickness="0"
+                                                IsHitTestVisible="False"
+                                                IsReadOnly="True"
+                                                Style="{StaticResource CatalogListItemTB}">
+                                                <TextBox.Text>
+                                                    <Binding
+                                                        Mode="TwoWay"
+                                                        Path="ItemName"
+                                                        UpdateSourceTrigger="PropertyChanged">
+                                                        <Binding.ValidationRules>
+                                                            <v:CatalogItemValidation ValidatesOnTargetUpdated="True" />
+                                                        </Binding.ValidationRules>
+                                                    </Binding>
+                                                </TextBox.Text>
+                                            </TextBox>
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>

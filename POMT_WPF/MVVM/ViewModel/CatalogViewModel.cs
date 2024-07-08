@@ -26,7 +26,7 @@ namespace POMT_WPF.MVVM.ViewModel
             ObservableCollection<CatalogItemPetsi> results = new ObservableCollection<CatalogItemPetsi>();
             foreach (CatalogItemPetsi item in catalogItems)
             {
-                if (item.ItemName.ToLower().Contains(text.ToLower()))
+                if (item.ItemName.ToLower().Contains(text.ToLower()) || item.NaturalNameContains(text.ToLower()))
                 {
                     results.Add(item);
                     continue;

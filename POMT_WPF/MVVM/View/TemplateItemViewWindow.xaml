@@ -44,7 +44,7 @@
                     TextFill="Template Name..." />
             </Grid>
             <Grid Grid.Row="2">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                     <StackPanel Margin="0,25,0,0" Orientation="Vertical">
                         <Button
                             Width="30"
@@ -71,7 +71,7 @@
                     </StackPanel>
                     <DataGrid
                         x:Name="TemplateItemDataGrid"
-                        Width="500"
+                        Width="460"
                         Height="500"
                         AutoGenerateColumns="False"
                         CanUserAddRows="False"
@@ -79,19 +79,32 @@
                         CanUserReorderColumns="False"
                         CanUserResizeColumns="False"
                         CanUserResizeRows="False"
+                        GridLinesVisibility="None"
                         ItemsSource="{Binding TemplateItems}">
                         <DataGrid.Columns>
+                            <DataGridTemplateColumn Width="125" Header="Display Name">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <TextBox
+                                                FontWeight="Bold"
+                                                Style="{StaticResource TemplateItemTB}"
+                                                Text="{Binding PageDisplayName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                             <DataGridTemplateColumn Width="auto" Header="Item Name">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <Grid>
                                             <ComboBox
                                                 x:Name="ItemNameComboBox"
-                                                Style="{StaticResource ItemNameComboBox}"
+                                                Style="{StaticResource TemplateItemCB}"
                                                 Text="{Binding ElementName=ItemNameTextBox, Path=Text}" />
                                             <TextBox
                                                 x:Name="ItemNameTextBox"
-                                                Style="{StaticResource ItemNameTextBox}"
+                                                Style="{StaticResource TemplateItemTB}"
                                                 TextChanged="ItemNameTextBox_TextChanged">
                                                 <TextBox.Text>
                                                     <Binding
@@ -108,7 +121,7 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTextColumn Binding="{Binding PageDisplayName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Header="Display Name" />
+
                         </DataGrid.Columns>
                     </DataGrid>
                     <StackPanel Margin="0,25,0,0" Orientation="Vertical">
@@ -136,13 +149,13 @@
             <Grid Grid.Row="3">
                 <Button
                     Width="80"
-                    Margin="0,0,60,0"
+                    HorizontalAlignment="Center"
                     Command="{Binding Save}"
                     Content="Save"
                     Style="{StaticResource secondaryButton}" />
                 <Icon:PackIconBoxIcons
                     x:Name="SaveCheckMark"
-                    Margin="315,50,0,0"
+                    Margin="345,50,0,0"
                     Style="{StaticResource CheckMark}" />
             </Grid>
         </Grid>

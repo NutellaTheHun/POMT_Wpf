@@ -2,6 +2,9 @@
     <Style x:Key="ItemNameTextBox" TargetType="TextBox">
         <Setter Property="Width" Value="225" />
         <Setter Property="Height" Value="30" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Background" Value="{StaticResource MintCream}" />
         <Style.Triggers>
             <Trigger Property="Validation.HasError" Value="true">

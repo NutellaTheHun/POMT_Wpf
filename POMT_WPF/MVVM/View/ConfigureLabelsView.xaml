@@ -31,7 +31,7 @@
                 Orientation="Horizontal">
                 <DataGrid
                     x:Name="labelDataGrid"
-                    Width="600"
+                    Width="800"
                     Height="515"
                     AutoGenerateColumns="False"
                     CanUserAddRows="False"
@@ -48,20 +48,26 @@
                     </DataGrid.InputBindings>
                     <DataGrid.Columns>
                         <DataGridTextColumn
+                            Width="300"
                             Binding="{Binding ItemName, UpdateSourceTrigger=PropertyChanged}"
+                            FontSize="14"
                             Header="Item Name"
                             IsReadOnly="True" />
                         <DataGridTextColumn
+                            Width="250"
                             Binding="{Binding StandardLabelFilePath, UpdateSourceTrigger=PropertyChanged}"
+                            FontSize="11"
                             Header="Standard Label"
                             IsReadOnly="True" />
                         <DataGridTextColumn
+                            Width="250"
                             Binding="{Binding CutieLabelFilePath, UpdateSourceTrigger=PropertyChanged}"
+                            FontSize="11"
                             Header="Cutie Label"
                             IsReadOnly="True" />
                     </DataGrid.Columns>
                 </DataGrid>
-                <StackPanel Orientation="Vertical">
+                <StackPanel Margin="0,35,0,0" Orientation="Vertical">
                     <Button
                         Width="30"
                         Height="30"

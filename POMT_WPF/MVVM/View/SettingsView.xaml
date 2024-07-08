@@ -24,45 +24,37 @@
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Vertical">
                             <Label Content="Label Printer" />
-                            <Border
-                                BorderBrush="{StaticResource TextFont}"
-                                BorderThickness="1"
-                                CornerRadius="10">
-                                <TextBox
-                                    IsReadOnly="true"
-                                    Style="{StaticResource GeneralField}"
-                                    Text="{Binding LabelPrinter, UpdateSourceTrigger=PropertyChanged}" />
-                            </Border>
+                            <TextBox
+                                Width="225"
+                                IsReadOnly="true"
+                                Style="{StaticResource GeneralTextBox}"
+                                Text="{Binding LabelPrinter, UpdateSourceTrigger=PropertyChanged}" />
                         </StackPanel>
                         <Button Command="{Binding SetLabelPrinterCommand}" Style="{StaticResource GeneralSetButton}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Vertical">
                             <Label Content="Standard Printer" />
-                            <Border
-                                BorderBrush="{StaticResource TextFont}"
-                                BorderThickness="1"
-                                CornerRadius="10">
-                                <TextBox
-                                    IsReadOnly="true"
-                                    Style="{StaticResource GeneralField}"
-                                    Text="{Binding StandardPrinter, UpdateSourceTrigger=PropertyChanged}" />
-                            </Border>
+                            <TextBox
+                                Width="225"
+                                IsReadOnly="true"
+                                Style="{StaticResource GeneralTextBox}"
+                                Text="{Binding StandardPrinter, UpdateSourceTrigger=PropertyChanged}" />
+
                         </StackPanel>
                         <Button Command="{Binding SetStandardPrinterCommand}" Style="{StaticResource GeneralSetButton}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Vertical">
                             <Label Content="Labels Filepath" />
-                            <Border
-                                BorderBrush="{StaticResource TextFont}"
-                                BorderThickness="1"
-                                CornerRadius="10">
-                                <TextBox
-                                    IsReadOnly="true"
-                                    Style="{StaticResource GeneralField}"
-                                    Text="{Binding LabelsFilepath, UpdateSourceTrigger=PropertyChanged}" />
-                            </Border>
+
+                            <TextBox
+                                Width="225"
+                                FontSize="12"
+                                IsReadOnly="true"
+                                Style="{StaticResource GeneralTextBox}"
+                                Text="{Binding LabelsFilepath, UpdateSourceTrigger=PropertyChanged}" />
+
                         </StackPanel>
                         <Button Command="{Binding SetLabelFilePathCommand}" Style="{StaticResource GeneralSetButton}" />
                     </StackPanel>
@@ -73,44 +65,34 @@
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Vertical">
                             <Label Content="Select Pie Template" />
-                            <Border
-                                BorderBrush="{StaticResource TextFont}"
-                                BorderThickness="1"
-                                CornerRadius="10">
-                                <TextBox
-                                    IsReadOnly="true"
-                                    Style="{StaticResource GeneralField}"
-                                    Text="{Binding PieTemplate, UpdateSourceTrigger=PropertyChanged}" />
-                            </Border>
+
+                            <TextBox
+                                IsReadOnly="true"
+                                Style="{StaticResource GeneralTextBox}"
+                                Text="{Binding PieTemplate, UpdateSourceTrigger=PropertyChanged}" />
+
                         </StackPanel>
                         <Button Command="{Binding SetPieTemplateCommand}" Style="{StaticResource GeneralSetButton}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Vertical">
                             <Label Content="Select PastryTemplate" />
-                            <Border
-                                BorderBrush="{StaticResource TextFont}"
-                                BorderThickness="1"
-                                CornerRadius="10">
-                                <TextBox
-                                    IsReadOnly="true"
-                                    Style="{StaticResource GeneralField}"
-                                    Text="{Binding PastryTemplate, UpdateSourceTrigger=PropertyChanged}" />
-                            </Border>
+                            <TextBox
+                                IsReadOnly="true"
+                                Style="{StaticResource GeneralTextBox}"
+                                Text="{Binding PastryTemplate, UpdateSourceTrigger=PropertyChanged}" />
                         </StackPanel>
                         <Button Command="{Binding SetPastryTemplateCommand}" Style="{StaticResource GeneralSetButton}" />
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <StackPanel Orientation="Vertical">
-                            <Label Content="NumberOfDays" />
-                            <Border
-                                BorderBrush="{StaticResource TextFont}"
-                                BorderThickness="1"
-                                CornerRadius="10">
-                                <TextBox Style="{StaticResource GeneralField}" Text="{Binding NumberOfDays, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                            </Border>
-                        </StackPanel>
-                    </StackPanel>
+
+                    <!--  Number of days  -->
+                    <!--<StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="NumberOfDays" />
+                                <TextBox Style="{StaticResource GeneralTextBox}" Text="{Binding NumberOfDays, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                            </StackPanel>
+                        </StackPanel>-->
+
                 </StackPanel>
             </Grid>
         </Grid>

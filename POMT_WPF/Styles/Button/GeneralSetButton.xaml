@@ -3,8 +3,8 @@
         <Setter Property="Width" Value="50" />
         <Setter Property="Height" Value="30" />
         <Setter Property="Background" Value="{StaticResource LapisLazuli}" />
-        <Setter Property="Foreground" Value="{StaticResource Licorice}" />
-        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{StaticResource CosmicLatte}" />
+        <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="Margin" Value="5,25,0,0" />
         <Setter Property="VerticalAlignment" Value="Center" />

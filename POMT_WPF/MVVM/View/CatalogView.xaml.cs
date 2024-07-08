@@ -21,20 +21,5 @@ namespace POMT_WPF.MVVM.View
             catalogListDataGrid.ItemsSource = ViewModel.Items;
         }
 
-        /*
-        private void catalogListDataGrid_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            var catalogListDataGrid = sender as DataGrid;
-            if (catalogListDataGrid != null)
-            {
-                var selectedItem = catalogListDataGrid.SelectedItem;
-                if (selectedItem != null)
-                {
-                    //CatalogItemViewWindow view = new CatalogItemViewWindow(selectedItem as CatalogItemPetsi);
-                    //view.Show();
-                }
-            }
-        }
-        */
     }
 }

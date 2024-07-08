@@ -30,6 +30,8 @@
                 <ResourceDictionary Source="Styles/Button/GeneralSetButton.xaml" />
 
                 <ResourceDictionary Source="Styles/ComboBox/ItemNameComboBox.xaml" />
+                <ResourceDictionary Source="Styles/ComboBox/TemplateItemCB.xaml" />
+                <ResourceDictionary Source="Styles/ComboBox/OrderItemComboBox.xaml" />
 
                 <ResourceDictionary Source="Styles/RadioButton/radioButtonTheme.xaml" />
                 <ResourceDictionary Source="Styles/RadioButton/reportLabelsRadioButtonTheme.xaml" />
@@ -48,6 +50,8 @@
                 <ResourceDictionary Source="Styles/TextBox/GeneralTextBox.xaml" />
                 <ResourceDictionary Source="Styles/TextBox/ItemNameTextBox.xaml" />
                 <ResourceDictionary Source="Styles/TextBox/OrderLineItemTextBox.xaml" />
+                <ResourceDictionary Source="Styles/TextBox/TemplateItemTB.xaml" />
+                <ResourceDictionary Source="Styles/TextBox/CatalogListItemTextBox.xaml" />
 
                 <ResourceDictionary Source="Styles/ToggleButton/tabButton.xaml" />
                 <ResourceDictionary Source="Styles/ToggleButton/orderFormFreezeButton.xaml" />
