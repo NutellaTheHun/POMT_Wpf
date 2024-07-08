@@ -561,25 +561,34 @@ namespace POMT_WPF.MVVM.ViewModel
             {
                 string id = cs.GetCatalogObjectId(lineItem.ItemName);
 
-                if (id == "") { return false; }
+                if (id == "") 
+                { return false; }
 
                 if(lineItem.CatalogObjectId == "") { lineItem.CatalogObjectId = id; }
 
-                if (lineItem.CatalogObjectId != id) { return false; }
+                if (lineItem.CatalogObjectId != id) 
+                { return false; }
 
-                if (lineItem.ItemName == "" || lineItem.ItemName == null) { return false; }
+                if (lineItem.ItemName == "" || lineItem.ItemName == null) 
+                { return false; }
 
-                if(lineItem.AmountRegular != 0 && !lineItem.IsValidSize(Identifiers.SIZE_REGULAR)) { return false; }
-                if(lineItem.Amount3 != 0 && !lineItem.IsValidSize(Identifiers.SIZE_CUTIE)) { return false; }
-                if(lineItem.Amount5 != 0 && !lineItem.IsValidSize(Identifiers.SIZE_SMALL)) { return false; }
-                if(lineItem.Amount8 != 0 && !lineItem.IsValidSize(Identifiers.SIZE_MEDIUM)) { return false; }
-                if(lineItem.Amount10 != 0 && !lineItem.IsValidSize(Identifiers.SIZE_LARGE)) { return false; }
+                if(lineItem.AmountRegular != 0 && !lineItem.IsValidSize(Identifiers.SIZE_REGULAR)) 
+                { return false; }
+                if(lineItem.Amount3 != 0 && !lineItem.IsValidSize(Identifiers.SIZE_CUTIE)) 
+                { return false; }
+                if(lineItem.Amount5 != 0 && !lineItem.IsValidSize(Identifiers.SIZE_SMALL)) 
+                { return false; }
+                if(lineItem.Amount8 != 0 && !lineItem.IsValidSize(Identifiers.SIZE_MEDIUM)) 
+                { return false; }
+                if(lineItem.Amount10 != 0 && !lineItem.IsValidSize(Identifiers.SIZE_LARGE)) 
+                { return false; }
 
                 if (lineItem.AmountRegular == 0
                        && lineItem.Amount3 == 0
                        && lineItem.Amount5 == 0
                        && lineItem.Amount8 == 0
-                      && lineItem.Amount10 == 0) { return false; }
+                      && lineItem.Amount10 == 0) 
+                { return false; }
             }
             return true;
         }

@@ -279,6 +279,7 @@
                             GotFocus="orderFormDataGrid_GotFocus"
                             ItemsSource="{Binding Path=LineItems}"
                             RowStyle="{DynamicResource orderFormDataGridRowStyle}"
+                            SelectionMode="Single"
                             Style="{DynamicResource orderFormGridStyle}">
                             <DataGrid.Columns>
                                 <DataGridTemplateColumn

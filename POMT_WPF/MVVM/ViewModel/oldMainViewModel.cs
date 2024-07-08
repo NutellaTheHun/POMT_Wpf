@@ -45,8 +45,11 @@ namespace POMT_WPF.MVVM.ViewModel
 
         public void OpenOrderItemView(object? o)
         {
-            if (o is PetsiOrder order) OrderItemVM = new OrderItemViewModel(order);
-            CurrentView = OrderItemVM;
+            if (o is PetsiOrder order)
+            {
+                OrderItemVM = new OrderItemViewModel(order);
+                CurrentView = OrderItemVM;
+            }
         }
 
         public void OpenNewOrderItemView()

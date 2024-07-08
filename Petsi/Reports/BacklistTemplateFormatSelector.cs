@@ -90,7 +90,6 @@ namespace Petsi.Reports
                 bli.BACON(),
                 bli.MOZZ(),
                 bli.JALAPENO(),
-                bli.VEGAN(),
                 bli.POTM()
             });
             
@@ -110,7 +109,6 @@ namespace Petsi.Reports
                 bli.BLUE(),
                 bli.STRAWBARB(),
                 bli.STRAWOAT(),
-                bli.VEGAN(),
                 bli.LEMON_CHESS_LAV(),
                 bli.KEY_LIME(),
                 bli.POTM(),

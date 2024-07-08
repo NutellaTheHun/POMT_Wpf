@@ -74,13 +74,15 @@
                         Width="460"
                         Height="500"
                         AutoGenerateColumns="False"
+                        BorderBrush="Transparent"
                         CanUserAddRows="False"
                         CanUserDeleteRows="False"
                         CanUserReorderColumns="False"
                         CanUserResizeColumns="False"
                         CanUserResizeRows="False"
                         GridLinesVisibility="None"
-                        ItemsSource="{Binding TemplateItems}">
+                        ItemsSource="{Binding TemplateItems}"
+                        ScrollViewer.CanContentScroll="False">
                         <DataGrid.Columns>
                             <DataGridTemplateColumn Width="125" Header="Display Name">
                                 <DataGridTemplateColumn.CellTemplate>

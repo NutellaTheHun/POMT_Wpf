@@ -94,14 +94,14 @@
                         <DataGrid.Columns>
                             <DataGridTemplateColumn
                                 x:Name="orderFormTemplate"
-                                Width="225"
+                                Width="275"
                                 Header="Item Name">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                                             <TextBox
                                                 x:Name="ItemNameTextBox"
-                                                Width="225"
+                                                Width="275"
                                                 HorizontalContentAlignment="Left"
                                                 VerticalContentAlignment="Center"
                                                 BorderThickness="0"

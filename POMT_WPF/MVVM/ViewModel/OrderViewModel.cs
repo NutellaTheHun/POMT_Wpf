@@ -63,9 +63,9 @@ namespace POMT_WPF.MVVM.ViewModel
 
             TotalOrderCount = _orders.Count();
 
-            OpenOrderItemView = new RelayCommand(o => { MainViewModel.Instance().OpenOrderItemView(o); DashBoardOrdersView.MoveCurrentTo(null); });
+            OpenOrderItemView = new RelayCommand(o => { MainViewModel.Instance().OpenOrderItemView(o);  });
 
-            OpenNewOrderItemView = new RelayCommand(o => { MainViewModel.Instance().OpenNewOrderItemView(); DashBoardOrdersView.MoveCurrentTo(null); });
+            OpenNewOrderItemView = new RelayCommand(o => { MainViewModel.Instance().OpenNewOrderItemView();  });
 
             FilterNone = new RelayCommand(o => { ChangeFilter(NoFilter);});
 

@@ -78,6 +78,7 @@ namespace POMT_WPF.MVVM.ViewModel
             if (TemplateItems.Count == 0) { return false; };
             foreach (BackListItem item in TemplateItems)
             {
+                if(item.PageDisplayName == "POTM" || item.PageDisplayName == "PARBAKES"){ continue; }
                 string id = cs.GetCatalogObjectId(item.ItemName);
                 if (id == "")
                 {

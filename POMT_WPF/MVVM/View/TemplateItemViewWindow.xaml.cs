@@ -29,19 +29,22 @@ namespace POMT_WPF.MVVM.View
 
         private void ItemNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            TextBox itemNameTextBox = sender as TextBox;
-
-            if (itemNameTextBox.Text != "")
+            if(IsLoaded)
             {
-                ComboBox itemNameCb = (itemNameTextBox.Parent as Grid).FindName("ItemNameComboBox") as ComboBox;
+                TextBox itemNameTextBox = sender as TextBox;
 
-                List<CatalogItemPetsi> results = cs.GetItemNameValidationResults(itemNameTextBox.Text);
-                itemNameCb.ItemsSource = results.Select(x => x.ItemName);
-                if (results.Count != 0)
+                if (itemNameTextBox.Text != "")
                 {
-                    itemNameCb.IsDropDownOpen = true;
+                    ComboBox itemNameCb = (itemNameTextBox.Parent as Grid).FindName("ItemNameComboBox") as ComboBox;
+
+                    List<CatalogItemPetsi> results = cs.GetItemNameValidationResults(itemNameTextBox.Text);
+                    itemNameCb.ItemsSource = results.Select(x => x.ItemName);
+                    if (results.Count != 0)
+                    {
+                        itemNameCb.IsDropDownOpen = true;
+                    }
                 }
-            }
+            } 
         }
 
         private void ShowSaveCheckMark(object sender, EventArgs e)
