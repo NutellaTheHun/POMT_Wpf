@@ -147,6 +147,9 @@
     <Page Update="Styles\Borders\OrderFormErrorBorder.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Styles\Borders\OrderLineItemBorder.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Styles\Brushes.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -289,6 +292,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\TextBox\newOrderTextBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\TextBox\OrderLineItemTextBox.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\TextBox\orderTextBox.xaml">

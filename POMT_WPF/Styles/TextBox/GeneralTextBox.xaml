@@ -2,7 +2,10 @@
     <Style x:Key="GeneralTextBox" TargetType="TextBox">
         <Setter Property="Width" Value="150" />
         <Setter Property="Height" Value="40" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="14" />
         <Setter Property="Background" Value="{StaticResource MintCream}" />
-        <Setter Property="Foreground" Value="{StaticResource Licorice}" />
+        <Setter Property="Foreground" Value="{StaticResource LicoriceDark}" />
     </Style>
 </ResourceDictionary>
