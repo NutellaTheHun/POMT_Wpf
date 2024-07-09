@@ -77,13 +77,12 @@
                         Width="300"
                         Height="520"
                         AutoGenerateColumns="False"
-                        Background="Transparent"
-                        BorderBrush="Transparent"
                         CanUserAddRows="False"
                         CellStyle="{StaticResource CatalogViewDgCellStyle}"
                         ColumnHeaderStyle="{StaticResource CatalogViewColHeaderStyle}"
                         ItemsSource="{Binding Items}"
                         RowStyle="{StaticResource CatalogViewDgRowStyle}"
+                        SelectionUnit="FullRow"
                         Style="{StaticResource CatalogViewDgStyle}">
                         <DataGrid.InputBindings>
                             <MouseBinding
@@ -92,37 +91,18 @@
                                 MouseAction="LeftDoubleClick" />
                         </DataGrid.InputBindings>
                         <DataGrid.Columns>
-                            <DataGridTemplateColumn
-                                x:Name="orderFormTemplate"
-                                Width="275"
-                                Header="Item Name">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-                                            <TextBox
-                                                x:Name="ItemNameTextBox"
-                                                Width="275"
-                                                HorizontalContentAlignment="Left"
-                                                VerticalContentAlignment="Center"
-                                                BorderThickness="0"
-                                                IsHitTestVisible="False"
-                                                IsReadOnly="True"
-                                                Style="{StaticResource CatalogListItemTB}">
-                                                <TextBox.Text>
-                                                    <Binding
-                                                        Mode="TwoWay"
-                                                        Path="ItemName"
-                                                        UpdateSourceTrigger="PropertyChanged">
-                                                        <Binding.ValidationRules>
-                                                            <v:CatalogItemValidation ValidatesOnTargetUpdated="True" />
-                                                        </Binding.ValidationRules>
-                                                    </Binding>
-                                                </TextBox.Text>
-                                            </TextBox>
-                                        </Grid>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Item Name" IsReadOnly="True">
+                                <DataGridTextColumn.Binding>
+                                    <Binding
+                                        Mode="TwoWay"
+                                        Path="ItemName"
+                                        UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules>
+                                            <v:CatalogItemValidation ValidatesOnTargetUpdated="True" />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </DataGridTextColumn.Binding>
+                            </DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>

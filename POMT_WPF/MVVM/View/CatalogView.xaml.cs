@@ -13,6 +13,7 @@ namespace POMT_WPF.MVVM.View
         {
             InitializeComponent();
             ViewModel = new CatalogViewModel();
+            catalogListDataGrid.Focus();
         }
 
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -20,6 +21,5 @@ namespace POMT_WPF.MVVM.View
             ViewModel.FilterSearchBar(SearchTextBox.Text);
             catalogListDataGrid.ItemsSource = ViewModel.Items;
         }
-
     }
 }

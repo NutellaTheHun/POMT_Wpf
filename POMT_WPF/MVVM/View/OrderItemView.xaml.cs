@@ -3,8 +3,11 @@ using Petsi.Managers;
 using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
+
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace POMT_WPF.MVVM.View
@@ -105,6 +108,175 @@ namespace POMT_WPF.MVVM.View
                 orderFormDataGrid.SelectedIndex = orderFormDataGrid.Items.Count - 1;
                 orderFormDataGrid.ScrollIntoView(orderFormDataGrid.Items[orderFormDataGrid.Items.Count - 1]);
             }));
+        }
+
+        private void amountRegTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int amount;
+            if(sender is TextBox AmountTb)
+            {
+                if (int.TryParse(AmountTb.Text, out amount))
+                {
+                    PetsiOrderLineItem line = (PetsiOrderLineItem)AmountTb.DataContext;
+
+                    if(line.ItemName == "" || line.ItemName == null) { return; }
+
+                    CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
+                    CatalogItemPetsi item = cs.GetCatalogItemById(line.CatalogObjectId);
+
+                    if(item == null) { return; }
+
+                    Color backgroundColor;
+                    if (amount == 0 || item.VariationExists(Identifiers.SIZE_REGULAR))
+                    {
+                        //MintCream
+                        backgroundColor = (Color)ColorConverter.ConvertFromString("#F7FFF7");
+                    }
+                    else
+                    {
+                        //Chili Red
+                        backgroundColor = (Color)ColorConverter.ConvertFromString("#D64933");
+                    }
+                    AmountTb.Background = new SolidColorBrush(backgroundColor);
+                }
+            }
+        }
+
+        private void amount3TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int amount;
+            if (sender is TextBox AmountTb)
+            {
+                if (int.TryParse(AmountTb.Text, out amount))
+                {
+
+                    PetsiOrderLineItem line = (PetsiOrderLineItem)AmountTb.DataContext;
+
+                    if (line.ItemName == "" || line.ItemName == null) { return; }
+
+                    CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
+                    CatalogItemPetsi item = cs.GetCatalogItem(line.ItemName);
+
+                    if (item == null) { return; }
+
+                    Color backgroundColor;
+                    if (amount == 0 || item.VariationExists(Identifiers.SIZE_CUTIE))
+                    {
+                        //MintCream
+                        backgroundColor = (Color)ColorConverter.ConvertFromString("#F7FFF7");
+                    }
+                    else
+                    {
+                        //Chili Red
+                        backgroundColor = (Color)ColorConverter.ConvertFromString("#D64933");
+                    }
+                    AmountTb.Background = new SolidColorBrush(backgroundColor);
+                }
+            }
+        }
+
+        private void amount5TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int amount;
+            if (sender is TextBox AmountTb)
+            {
+                if (int.TryParse(AmountTb.Text, out amount))
+                {
+                    PetsiOrderLineItem line = (PetsiOrderLineItem)AmountTb.DataContext;
+
+                    if (line.ItemName == "" || line.ItemName == null) { return; }
+
+                    CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
+                    CatalogItemPetsi item = cs.GetCatalogItemById(line.CatalogObjectId);
+
+                    if (item == null) { return; }
+
+                    Color backgroundColor;
+                    if (amount == 0 || item.VariationExists(Identifiers.SIZE_SMALL))
+                    {
+                        //MintCream
+                        backgroundColor = (Color)ColorConverter.ConvertFromString("#F7FFF7");
+                    }
+                    else
+                    {
+                        //Chili Red
+                        backgroundColor = (Color)ColorConverter.ConvertFromString("#D64933");
+                    }
+                    AmountTb.Background = new SolidColorBrush(backgroundColor);
+                }
+            }
+        }
+
+        private void amount8TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int amount;
+            if (sender is TextBox AmountTb)
+            {
+                if (int.TryParse(AmountTb.Text, out amount))
+                {
+                    PetsiOrderLineItem line = (PetsiOrderLineItem)AmountTb.DataContext;
+
+                    if (line.ItemName == "" || line.ItemName == null) { return; }
+
+                    CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
+                    CatalogItemPetsi item = cs.GetCatalogItemById(line.CatalogObjectId);
+
+                    if (item == null) { return; }
+
+                    Color backgroundColor;
+                    if (amount == 0 || item.VariationExists(Identifiers.SIZE_MEDIUM))
+                    {
+                        //MintCream
+                        backgroundColor = (Color)ColorConverter.ConvertFromString("#F7FFF7");
+                    }
+                    else
+                    {
+                        //Chili Red
+                        backgroundColor = (Color)ColorConverter.ConvertFromString("#D64933");
+                    }
+                    AmountTb.Background = new SolidColorBrush(backgroundColor);
+                }
+            }
+        }
+
+        private void amount10TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int amount;
+            if (sender is TextBox AmountTb)
+            {
+                if (int.TryParse(AmountTb.Text, out amount))
+                {
+
+                    PetsiOrderLineItem line = (PetsiOrderLineItem)AmountTb.DataContext;
+
+                    if (line.ItemName == "" || line.ItemName == null) { return; }
+
+                    CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
+                    CatalogItemPetsi item = cs.GetCatalogItemById(line.CatalogObjectId);
+
+                    if (item == null) { return; }
+                   
+                    Color backgroundColor;
+                    if (amount == 0 || item.VariationExists(Identifiers.SIZE_LARGE))
+                    {
+                        //MintCream
+                        backgroundColor = (Color)ColorConverter.ConvertFromString("#F7FFF7");
+                    }
+                    else
+                    {
+                        //Chili Red
+                        backgroundColor = (Color)ColorConverter.ConvertFromString("#D64933");
+                    }
+                    AmountTb.Background = new SolidColorBrush(backgroundColor);
+                }
+            }
+        }
+
+        //for selecting all text when clicking a field
+        private void TextBox_GotKeyboardFocus(Object sender, KeyboardFocusChangedEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.Dispatcher.BeginInvoke(new Action(() => tb.SelectAll()));
         }
     }
     

@@ -60,7 +60,7 @@ namespace POMT_WPF.MVVM.ViewModel
 
         public void OpenCatalogItemView(object? o)
         {
-            if (o is CatalogItemPetsi order) CatalogItemVM = new CatalogItemViewModel(order);
+            if (o is CatalogItemPetsi item) CatalogItemVM = new CatalogItemViewModel(item);
             else CatalogItemVM = new CatalogItemViewModel(null);
             CurrentView = CatalogItemVM;
         }
