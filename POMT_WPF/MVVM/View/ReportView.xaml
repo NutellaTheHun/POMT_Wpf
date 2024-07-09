@@ -110,17 +110,17 @@
                                         VerticalAlignment="Center"
                                         Orientation="Horizontal">
                                         <Button
-                                            Width="100"
+                                            Width="150"
                                             Margin="5"
                                             Command="{Binding PrintFrontList}"
-                                            Content="Print FrontList"
+                                            Content="Print Customer Orders"
                                             Foreground="#efefef"
                                             Style="{StaticResource secondaryButton}" />
                                         <Button
-                                            Width="100"
+                                            Width="150"
                                             Margin="5"
                                             Command="{Binding PrintBackList}"
-                                            Content="Print Backlist"
+                                            Content="Print Baker's List"
                                             Foreground="#efefef"
                                             Style="{StaticResource secondaryButton}" />
                                     </StackPanel>
@@ -129,17 +129,17 @@
                                         VerticalAlignment="Center"
                                         Orientation="Horizontal">
                                         <Button
-                                            Width="100"
+                                            Width="150"
                                             Margin="5"
                                             Command="{Binding PrintWsAgg}"
-                                            Content="Print Ws Agg"
+                                            Content="Print Wholesale Aggregate"
                                             Foreground="#efefef"
                                             Style="{StaticResource secondaryButton}" />
                                         <Button
-                                            Width="100"
+                                            Width="150"
                                             Margin="5"
                                             Command="{Binding PrintWsBreakDown}"
-                                            Content="Print Wholesale"
+                                            Content="Print Wholesale Breakdown"
                                             Foreground="#efefef"
                                             Style="{StaticResource secondaryButton}" />
                                     </StackPanel>

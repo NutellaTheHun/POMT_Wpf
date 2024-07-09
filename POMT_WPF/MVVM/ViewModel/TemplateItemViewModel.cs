@@ -82,16 +82,25 @@ namespace POMT_WPF.MVVM.ViewModel
                 string id = cs.GetCatalogObjectId(item.ItemName);
                 if (id == "")
                 {
-                    GeneralErrorWindow errWin = new GeneralErrorWindow("item: " + item.ItemName + " cound not be validated, template was not saved.");
-                    errWin.Owner = System.Windows.Application.Current.MainWindow;
+                    GeneralErrorWindow errWin = new GeneralErrorWindow("item: " + item.ItemName + " could not be validated, template was not saved.");
                     errWin.Show();
                     return false;
                 }
                 item.CatalogObjId = id;
 
-                if (item.ItemName == "" || item.ItemName == null) { return false; }
-                //if (item.CatalogObjId == "" || item.CatalogObjId == null) { return false; }
-                if (item.PageDisplayName == "" || item.PageDisplayName == null) { return false; }
+                if (item.ItemName == "" || item.ItemName == null) 
+                {
+                    GeneralErrorWindow errWin = new GeneralErrorWindow("A item in the template list doesn't have a name, template was not saved.");
+                    errWin.Show();
+                    return false;
+                }
+                
+                if (item.PageDisplayName == "" || item.PageDisplayName == null) 
+                {
+                    GeneralErrorWindow errWin = new GeneralErrorWindow("A item in the template list doesn't have a display name, template was not saved.");
+                    errWin.Show();
+                    return false;
+                }
             }
             return true;
         }

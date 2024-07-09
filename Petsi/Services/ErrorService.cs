@@ -96,6 +96,12 @@ namespace Petsi.Services
             Instance().LabelPrinterNotFoundEvent?.Invoke(Instance(), EventArgs.Empty);
         }
 
+        public event EventHandler InputLabelNotFoundEvent;
+        public static void RaiseInputLabelNotFound()
+        {
+            Instance().InputLabelNotFoundEvent?.Invoke(Instance(), EventArgs.Empty);
+        }
+
         #endregion
 
 

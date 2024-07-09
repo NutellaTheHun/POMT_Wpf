@@ -19,7 +19,7 @@
     <Border Style="{StaticResource GeneralWindowBorder}">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="30" />
+                <RowDefinition Height="40" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
@@ -39,29 +39,28 @@
                                 <StackPanel Orientation="Horizontal">
                                     <Border x:Name="ItemNameErrBdr" Style="{StaticResource OrderFormErrorBorder}">
                                         <Grid Margin="2">
-                                            <Border Style="{StaticResource GeneralBorder}">
-                                                <Grid>
-                                                    <ComboBox
-                                                        x:Name="ItemNameComboBox"
-                                                        Style="{StaticResource ItemNameComboBox}"
-                                                        Text="{Binding ElementName=ItemNameTextBox, Path=Text}" />
-                                                    <TextBox
-                                                        x:Name="ItemNameTextBox"
-                                                        Style="{StaticResource ItemNameTextBox}"
-                                                        TextChanged="ItemNameTextBox_TextChanged">
-                                                        <TextBox.Text>
-                                                            <Binding
-                                                                Mode="TwoWay"
-                                                                Path="ItemName"
-                                                                UpdateSourceTrigger="PropertyChanged">
-                                                                <Binding.ValidationRules>
-                                                                    <v:ItemNameValidation />
-                                                                </Binding.ValidationRules>
-                                                            </Binding>
-                                                        </TextBox.Text>
-                                                    </TextBox>
-                                                </Grid>
-                                            </Border>
+                                            <Grid>
+                                                <ComboBox
+                                                    x:Name="ItemNameComboBox"
+                                                    Style="{StaticResource ItemNameComboBox}"
+                                                    Text="{Binding ElementName=ItemNameTextBox, Path=Text}" />
+                                                <TextBox
+                                                    x:Name="ItemNameTextBox"
+                                                    Height="40"
+                                                    Style="{StaticResource ItemNameTextBox}"
+                                                    TextChanged="ItemNameTextBox_TextChanged">
+                                                    <TextBox.Text>
+                                                        <Binding
+                                                            Mode="TwoWay"
+                                                            Path="ItemName"
+                                                            UpdateSourceTrigger="PropertyChanged">
+                                                            <Binding.ValidationRules>
+                                                                <v:ItemNameValidation />
+                                                            </Binding.ValidationRules>
+                                                        </Binding>
+                                                    </TextBox.Text>
+                                                </TextBox>
+                                            </Grid>
                                         </Grid>
                                     </Border>
                                 </StackPanel>
@@ -70,8 +69,9 @@
                                 <Label Content="Standard Label File" />
                                 <StackPanel Orientation="Horizontal">
                                     <TextBox
+                                        Width="225"
                                         IsReadOnly="True"
-                                        Style="{StaticResource GeneralField}"
+                                        Style="{StaticResource GeneralTextBox}"
                                         Text="{Binding PieFile, UpdateSourceTrigger=PropertyChanged}" />
                                     <Button
                                         Width="100"
@@ -94,8 +94,9 @@
                                 <Label Content="Cutie Label File" />
                                 <StackPanel Orientation="Horizontal">
                                     <TextBox
+                                        Width="225"
                                         IsReadOnly="True"
-                                        Style="{StaticResource GeneralField}"
+                                        Style="{StaticResource GeneralTextBox}"
                                         Text="{Binding CutieFile, UpdateSourceTrigger=PropertyChanged}" />
                                     <Button
                                         Width="100"

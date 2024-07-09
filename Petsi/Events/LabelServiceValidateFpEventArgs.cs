@@ -11,4 +11,13 @@ namespace Petsi.Events
             ItemName = itemName; Filepath = filepath; PieType = pieType;
         }
     }
+    public class LabelServiceInputLabelNotFoundArgs : EventArgs
+    {
+        public string ItemId { get; set; }
+
+        public LabelServiceInputLabelNotFoundArgs(string itemId)
+        {
+            ItemId = itemId;
+        }
+    }
 }

@@ -1,4 +1,5 @@
 ﻿using Petsi.CommandLine;
+using Petsi.Events;
 using Petsi.Managers;
 using Petsi.Models;
 using Petsi.Units;
@@ -80,6 +81,8 @@ namespace Petsi.Services
 
         private void PrintStandard(List<LabelPrintData> inputList)
         {
+            if(!ValidateInputLabelMap(inputList, _standardLabelMap)){ return; }
+
             PrintDocument pd;
             foreach (LabelPrintData printItem in inputList)
             {
@@ -94,6 +97,7 @@ namespace Petsi.Services
                     Point loc = new Point(0, 0);
                     args.Graphics.DrawImage(img, loc);
                 };
+
                 try { pd.Print(); }
                 catch (InvalidPrinterException e)
                 {
@@ -103,8 +107,26 @@ namespace Petsi.Services
             }
         }
 
+        private bool ValidateInputLabelMap(List<LabelPrintData> inputList, Dictionary<string, string> labelMap)
+        {
+            string test;
+            foreach (LabelPrintData printItem in inputList)
+            {
+                try { test = labelMap[printItem.Id]; }
+                catch (KeyNotFoundException e)
+                {
+                    LabelServiceInputLabelNotFoundArgs args = new LabelServiceInputLabelNotFoundArgs(printItem.Id);
+                    ErrorService.RaiseInputLabelNotFound();
+                    return false;
+                }
+            }
+            return true;
+        }
+
         private void PrintCutie(List<LabelPrintData> inputList)
         {
+            if (!ValidateInputLabelMap(inputList, _cutieLabelMap)) { return; }
+
             PrintDocument pd;
             foreach (LabelPrintData printItem in inputList)
             {
@@ -119,6 +141,7 @@ namespace Petsi.Services
                     Point loc = new Point(0, 0);
                     args.Graphics.DrawImage(img, loc);
                 };
+
                 try { pd.Print(); }
                 catch (InvalidPrinterException e) 
                 {
@@ -170,6 +193,7 @@ namespace Petsi.Services
                 Point loc = new Point(0, 0);
                 args.Graphics.DrawImage(img, loc);
             };
+
             try { pd.Print(); }
             catch (InvalidPrinterException e)
             {
