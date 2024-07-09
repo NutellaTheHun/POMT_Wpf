@@ -9,7 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="config.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Square" Version="34.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="config.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

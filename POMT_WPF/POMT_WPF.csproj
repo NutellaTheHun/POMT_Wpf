@@ -11,8 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Images\petsiLogo.png" />
-    <None Remove="Images\petsiLogoNoBackground.png" />
+    <None Remove="Images\petsilogonobackground.png" />
+    <None Remove="Images\POMT_Splash.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,8 +25,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Images\petsiLogo.png" />
-    <Resource Include="Images\petsiLogoNoBackground.png" />
+    <Resource Include="Images\petsilogonobackground.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <SplashScreen Include="Images\POMT_Splash.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Images\POMT_Icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

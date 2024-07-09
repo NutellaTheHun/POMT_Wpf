@@ -11,6 +11,62 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="config.txt" />
+    <None Remove="Labels\Files\Cuties\Apple-Crumb_cutie-pie-ingred-labels-07.jpg" />
+    <None Remove="Labels\Files\Cuties\Apple-Pear-Cranberry-cutie-pie.jpg" />
+    <None Remove="Labels\Files\Cuties\Blueberry-Crumb-cutiepie-labels-19.jpg" />
+    <None Remove="Labels\Files\Cuties\Blueberry_cutie-pie-ingred-labels-09.jpg" />
+    <None Remove="Labels\Files\Cuties\Brown-Butter-Pecan_cutie-pie-ingred-labels-11.jpg" />
+    <None Remove="Labels\Files\Cuties\Cherry-Crumb_cutie-pie-ingred-labels-08.jpg" />
+    <None Remove="Labels\Files\Cuties\Chocolate-Bourbon-Pecan_cutie-pie-ingred-labels-12.jpg" />
+    <None Remove="Labels\Files\Cuties\Classic-Apple_cutie-pie-ingred-labels-05.jpg" />
+    <None Remove="Labels\Files\Cuties\cutiepie-labels_mississippi-mud-13.jpg" />
+    <None Remove="Labels\Files\Cuties\Key-Lime-cutie-labels-14.jpg" />
+    <None Remove="Labels\Files\Cuties\Mixed-Berry_cutie-pie-ingred-labels-10.jpg" />
+    <None Remove="Labels\Files\Cuties\Peach-Crumb-cutiepie-labels-15.jpg" />
+    <None Remove="Labels\Files\Cuties\Pumpkin_cutie-pie-ingred-labels-06.jpg" />
+    <None Remove="Labels\Files\Cuties\Sweet-Potato-Pecan-cutie-pie.jpg" />
+    <None Remove="Labels\Files\Cuties\Vegan-Apple_cutie-pie-ingred-labels-02.jpg" />
+    <None Remove="Labels\Files\Cuties\Vegan-Blueberry_cutie-pie-ingred-labels-01.jpg" />
+    <None Remove="Labels\Files\Cuties\Vegan-Cherry_cutie-pie-ingred-labels-03.jpg" />
+    <None Remove="Labels\Files\Cuties\Vegan-Mixed-Berry_cutie-pie-ingred-labels-04.jpg" />
+    <None Remove="Labels\Files\Pie\Apple-Crumb_pie_ingredient_labels.jpg" />
+    <None Remove="Labels\Files\Pie\Apple-Pear-Cran_pie_ingredient.jpg" />
+    <None Remove="Labels\Files\Pie\Bacon-Corn-Jalapeno-pie_ingredient_label-29.jpg" />
+    <None Remove="Labels\Files\Pie\Bacon-Leek-Gruyere-pie_ingredient_label-02.jpg" />
+    <None Remove="Labels\Files\Pie\Blueberry_ingredient_label.jpg" />
+    <None Remove="Labels\Files\Pie\Brown-Butter-Pecan_pie_ingredient.jpg" />
+    <None Remove="Labels\Files\Pie\cherry-crumb-pie_ingredient.jpg" />
+    <None Remove="Labels\Files\Pie\Chocolate-Bourbon-Pecan_pie_ingredient.jpg" />
+    <None Remove="Labels\Files\Pie\Classic-Apple_pie_ingredient.jpg" />
+    <None Remove="Labels\Files\Pie\Classic-Strawberry-Rhubarb-pie_ingredient.jpg" />
+    <None Remove="Labels\Files\Pie\Fresh-Mozz-Tomato-Basil_pie_ingredient.jpg" />
+    <None Remove="Labels\Files\Pie\Italian-Ricotta-pie_ingredient-28.jpg" />
+    <None Remove="Labels\Files\Pie\Key-Lime_pie_ingredient.jpg" />
+    <None Remove="Labels\Files\Pie\Lemon-Chess_pie_ingredient.jpg" />
+    <None Remove="Labels\Files\Pie\Mango-Lassi-pie-ingredient.PNG" />
+    <None Remove="Labels\Files\Pie\Mississippi-Mud_pie_ingredient.jpg" />
+    <None Remove="Labels\Files\Pie\Mixed-Berry_pie_ingredient.jpg" />
+    <None Remove="Labels\Files\Pie\Peach-Blackberry-pie_ingredient_label.jpg" />
+    <None Remove="Labels\Files\Pie\pie-care-directory-label-v2-03.jpg" />
+    <None Remove="Labels\Files\Pie\Potato-Leek-Goat-Cheese-pie_ingredient_label-25.jpg" />
+    <None Remove="Labels\Files\Pie\Pumpkin_pie_ingredient_label.jpg" />
+    <None Remove="Labels\Files\Pie\Roast-Veg onion -pie_ingredient.jpg" />
+    <None Remove="Labels\Files\Pie\Round-Allergen-Label-01.png" />
+    <None Remove="Labels\Files\Pie\Salted-Caramel-Apple_pie_ingredient.jpg" />
+    <None Remove="Labels\Files\Pie\Strawberry-Rhubarb-Oat-Crumb-pie_ingredient.jpg" />
+    <None Remove="Labels\Files\Pie\Summer-Peach_pie_ingredient.jpg" />
+    <None Remove="Labels\Files\Pie\Sweet-Potato-Pecan_pie_ingredient.jpg" />
+    <None Remove="Labels\Files\Pie\Sweet-Potato_pie_ingredient.jpg" />
+    <None Remove="Labels\Files\Pie\Vegan-Apple_pie_ingredient.jpg" />
+    <None Remove="Labels\Files\Pie\Vegan-Blueberry_pie_ingredient.jpg" />
+    <None Remove="Labels\Files\Pie\Vegan-Cherry_pie_ingredient.jpg" />
+    <None Remove="Labels\Files\Pie\Vegan-Mixed-Berry_pie_ingredient.jpg" />
+    <None Remove="Labels\Files\Pie\Vegan-Strawberry-Rhubarb-pie_ingredient-29.jpg" />
+    <None Remove="Labels\Files\Pie\Walden-Local-Ham-ingredient-label-30.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <COMReference Include="Microsoft.Office.Interop.Excel">
       <WrapperTool>tlbimp</WrapperTool>
       <VersionMinor>9</VersionMinor>
@@ -24,7 +80,6 @@
 
   <ItemGroup>
     <Folder Include="controllers\" />
-    <Folder Include="Labels\Files\Cuties\" />
     <Folder Include="views\" />
   </ItemGroup>
 
@@ -41,6 +96,168 @@
     <Reference Include="office">
       <HintPath>C:\Program Files\Microsoft Office\root\vfs\ProgramFilesX86\Microsoft Office\Office16\DCF\office.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="config.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Cuties\Apple-Crumb_cutie-pie-ingred-labels-07.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Cuties\Apple-Pear-Cranberry-cutie-pie.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Cuties\Blueberry-Crumb-cutiepie-labels-19.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Cuties\Blueberry_cutie-pie-ingred-labels-09.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Cuties\Brown-Butter-Pecan_cutie-pie-ingred-labels-11.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Cuties\Cherry-Crumb_cutie-pie-ingred-labels-08.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Cuties\Chocolate-Bourbon-Pecan_cutie-pie-ingred-labels-12.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Cuties\Classic-Apple_cutie-pie-ingred-labels-05.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Cuties\cutiepie-labels_mississippi-mud-13.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Cuties\Key-Lime-cutie-labels-14.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Cuties\Mixed-Berry_cutie-pie-ingred-labels-10.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Cuties\Peach-Crumb-cutiepie-labels-15.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Cuties\Pumpkin_cutie-pie-ingred-labels-06.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Cuties\Sweet-Potato-Pecan-cutie-pie.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Cuties\Vegan-Apple_cutie-pie-ingred-labels-02.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Cuties\Vegan-Blueberry_cutie-pie-ingred-labels-01.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Cuties\Vegan-Cherry_cutie-pie-ingred-labels-03.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Cuties\Vegan-Mixed-Berry_cutie-pie-ingred-labels-04.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\Apple-Crumb_pie_ingredient_labels.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\Apple-Pear-Cran_pie_ingredient.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\Bacon-Corn-Jalapeno-pie_ingredient_label-29.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\Bacon-Leek-Gruyere-pie_ingredient_label-02.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\Blueberry_ingredient_label.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\Brown-Butter-Pecan_pie_ingredient.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\cherry-crumb-pie_ingredient.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\Chocolate-Bourbon-Pecan_pie_ingredient.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\Classic-Apple_pie_ingredient.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\Classic-Strawberry-Rhubarb-pie_ingredient.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\Fresh-Mozz-Tomato-Basil_pie_ingredient.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\Italian-Ricotta-pie_ingredient-28.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\Key-Lime_pie_ingredient.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\Lemon-Chess_pie_ingredient.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\Mango-Lassi-pie-ingredient.PNG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\Mississippi-Mud_pie_ingredient.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\Mixed-Berry_pie_ingredient.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\Peach-Blackberry-pie_ingredient_label.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\pie-care-directory-label-v2-03.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\Potato-Leek-Goat-Cheese-pie_ingredient_label-25.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\Pumpkin_pie_ingredient_label.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\Roast-Veg onion -pie_ingredient.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\Round-Allergen-Label-01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\Salted-Caramel-Apple_pie_ingredient.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\Strawberry-Rhubarb-Oat-Crumb-pie_ingredient.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\Summer-Peach_pie_ingredient.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\Sweet-Potato-Pecan_pie_ingredient.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\Sweet-Potato_pie_ingredient.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\Vegan-Apple_pie_ingredient.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\Vegan-Blueberry_pie_ingredient.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\Vegan-Cherry_pie_ingredient.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\Vegan-Mixed-Berry_pie_ingredient.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\Vegan-Strawberry-Rhubarb-pie_ingredient-29.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Labels\Files\Pie\Walden-Local-Ham-ingredient-label-30.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>

@@ -65,7 +65,7 @@ namespace POMT_WPF {
             
             #line default
             #line hidden
-            System.Uri resourceLocater = new System.Uri("/POMT_WPF;component/app.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/POMT_WPF;V1.0.0.0;component/app.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\App.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
@@ -105,6 +105,8 @@ namespace POMT_WPF {
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "8.0.5.0")]
         public static void Main() {
+            SplashScreen splashScreen = new SplashScreen("images/pomt_splash.png");
+            splashScreen.Show(true);
             POMT_WPF.App app = new POMT_WPF.App();
             app.InitializeComponent();
             app.Run();

@@ -1,0 +1,13 @@
+D:\Git-Repos\POMT_WPF\Square.Service\bin\x64\Release\net6.0\Square.Service.deps.json
+D:\Git-Repos\POMT_WPF\Square.Service\bin\x64\Release\net6.0\Square.Service.dll
+D:\Git-Repos\POMT_WPF\Square.Service\bin\x64\Release\net6.0\Square.Service.pdb
+D:\Git-Repos\POMT_WPF\Square.Service\obj\x64\Release\net6.0\Square.Service.csproj.AssemblyReference.cache
+D:\Git-Repos\POMT_WPF\Square.Service\obj\x64\Release\net6.0\Square.Service.GeneratedMSBuildEditorConfig.editorconfig
+D:\Git-Repos\POMT_WPF\Square.Service\obj\x64\Release\net6.0\Square.Service.AssemblyInfoInputs.cache
+D:\Git-Repos\POMT_WPF\Square.Service\obj\x64\Release\net6.0\Square.Service.AssemblyInfo.cs
+D:\Git-Repos\POMT_WPF\Square.Service\obj\x64\Release\net6.0\Square.Service.csproj.CoreCompileInputs.cache
+D:\Git-Repos\POMT_WPF\Square.Service\obj\x64\Release\net6.0\Square.Service.sourcelink.json
+D:\Git-Repos\POMT_WPF\Square.Service\obj\x64\Release\net6.0\Square.Service.dll
+D:\Git-Repos\POMT_WPF\Square.Service\obj\x64\Release\net6.0\refint\Square.Service.dll
+D:\Git-Repos\POMT_WPF\Square.Service\obj\x64\Release\net6.0\Square.Service.pdb
+D:\Git-Repos\POMT_WPF\Square.Service\obj\x64\Release\net6.0\ref\Square.Service.dll
