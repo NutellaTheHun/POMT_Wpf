@@ -1,7 +1,9 @@
 ﻿namespace Petsi.Labels
 {
+    //FrameBehavior Functionality
     public static class LoadLabels
     {
+        //FrameBehavior Functionality
         public static List<(string, string)> GetStandardInitialMap()
         {
             List<(string id, string path)> standardLabelMap = new List<(string id, string path)>()

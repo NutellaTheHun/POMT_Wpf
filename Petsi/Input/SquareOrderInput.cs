@@ -32,7 +32,7 @@ namespace Petsi.Input
 
             this.squareClient = squareClient;
             frameBehavior = new SquareOrderInputFrameBehavior(this);
-            fileBehavior = new FileBehavior("SquareOrderInput");
+            fileBehavior = new FileBehavior(Identifiers.SQUARE_ORDER_INPUT);
             isFileExecute = false;
             hasExecuted = true;
             SetInputName(Identifiers.SQUARE_ORDER_INPUT);
@@ -175,7 +175,8 @@ namespace Petsi.Input
 
                     //boxedli.ItemName = modifier.Name; //??? second assignment?
 
-                    boxedli.Quantity = modifier.Quantity;
+                    //boxedli.Quantity = modifier.Quantity;
+                    boxedli.Quantity = (int.Parse(modifier.Quantity) * int.Parse(squareOrderlineItem.Quantity)).ToString();
 
                     lineItems.Add(boxedli);
                 }
@@ -329,17 +330,7 @@ namespace Petsi.Input
         {
             var stateFilter = new SearchOrdersStateFilter.Builder(states: states)
               .Build();
-            /*
-            var createdAt = new TimeRange.Builder()
-               .StartAt("2024-04-01T00:00:00.00Z")
-               .EndAt("2024-05-17T00:00:00.00Z")
-               .Build();
-            */
-            /*
-            var dateTimeFilter = new SearchOrdersDateTimeFilter.Builder()
-              .CreatedAt(createdAt)
-              .Build();
-            */
+
             var fulfillmentFilter = new SearchOrdersFulfillmentFilter.Builder()
                 .FulfillmentTypes(fulfillmentTypes)
                 .Build();
@@ -397,7 +388,7 @@ namespace Petsi.Input
         public void SetSquareResponses(List<BatchRetrieveOrdersResponse> newResponse) { squareResponses = newResponse; }
         public void SetIsFileExecute(bool v) { isFileExecute = v; }
         public bool GetHasExecuted() { return hasExecuted ; }
-        public void SetHasExecuted(bool v) {  hasExecuted = v; }
+        //public void SetHasExecuted(bool v) {  hasExecuted = v; }
         public override void CaptureEnvironment(FileBehavior reportFb){reportFb.DataListToFile(Identifiers.ENV_SOI, squareResponses);}
     }
 }

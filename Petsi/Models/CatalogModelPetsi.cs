@@ -1,5 +1,4 @@
-﻿using DocumentFormat.OpenXml.Bibliography;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Petsi.CommandLine;
 using Petsi.Filing;
 using Petsi.Interfaces;
@@ -9,7 +8,6 @@ using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
 using System.Collections.ObjectModel;
-using System.IO;
 
 namespace Petsi.Models
 {
@@ -150,9 +148,9 @@ namespace Petsi.Models
         {
             string backupFp = null;
             backupFp = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_BACKUP_PATH);
-            if (backupFp != null) 
+            if (backupFp != null && backupFp != "") 
             {
-                File.WriteAllText(backupFp, JsonConvert.SerializeObject(items));
+                File.WriteAllText(backupFp + "\\" + Identifiers.MAIN_MODEL_CATALOG_FILE, JsonConvert.SerializeObject(items));
             }
         }
 
@@ -252,6 +250,7 @@ namespace Petsi.Models
             //Categories?
         }
 
+        //FrameBehavior function
         public void InitialLabelMapBoot()
         {
             List<(string id, string path)> cuties = LoadLabels.GetCutieInitialMap();

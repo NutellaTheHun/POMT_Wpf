@@ -10,6 +10,8 @@ namespace Petsi.Filing
         {
             directoryName = componentName;
         }
+        
+        //Frame Behavior Function
         public void ListFileDirectory()
         {
             string[] result = FileService.GetFileDirectoryList(directoryName);

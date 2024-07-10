@@ -83,7 +83,7 @@
                                 Style="{StaticResource GeneralTextBox}"
                                 Text="{Binding BackupFilepath, UpdateSourceTrigger=PropertyChanged}" />
                         </StackPanel>
-                        <Button Command="{Binding SetReportExportFilePathCommand}" Style="{StaticResource GeneralSetButton}" />
+                        <Button Command="{Binding SetBackupFilePathCommand}" Style="{StaticResource GeneralSetButton}" />
                     </StackPanel>
                 </StackPanel>
             </Grid>

@@ -171,17 +171,6 @@ namespace Petsi.Units
         /// <param name="isChecked"></param>
         public void UpdateSizeVariation(string sizeVariation, bool isChecked)
         {
-            //if isChecked
-            //if VariationList contains size variation -> do nothing
-            //else
-            //if disabled list contains size variation -> move to VariationList
-            //else -> generate size variation and add to Variation List
-
-            //else noChecked
-            //if VariationList contains size variation -> remove from VariationList, add to disabled list
-            //else
-            //do nothing
-
             if (isChecked)
             {
                 //if sizeVariation is found in VariationList, do nothing
@@ -227,44 +216,8 @@ namespace Petsi.Units
                     }
                 }
             }
-            /*
-            bool isCached = false;
-            if (isChecked)
-            {
-                List<(string variationId, string variationName)> DisabledVariationListCopy = new List<(string variationId, string variationName)>(DisabledVariationList);
-                foreach (var item in DisabledVariationListCopy)
-                {
-                    if (item.variationName == sizeVariation)
-                    {
-                        VariationList.Add(item);
-                        DisabledVariationList.Remove(item);
-                        isCached = true;
-                    }
-                }
-                if (!isCached)
-                {
-                    CatalogService cs = GetCatalogService();
-                    VariationList.Add((cs.GenerateCatalogId(), sizeVariation));
-                }      
-            }
-            else
-            {
-                List<(string variationId, string variationName)> VariationListCopy = new List<(string variationId, string variationName)>(VariationList);
-                foreach (var item in VariationListCopy)
-                {
-                    if (item.variationName == sizeVariation)
-                    {
-                        DisabledVariationList.Add(item);
-                        VariationList.Remove(item);
-                    }
-                }
-            }
-            */
         }
         private CatalogService GetCatalogService() { return (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG); }
-
-
-        //public List<(string variationId, string variationName)> VariationList { get; set; }
 
         public bool VariationExists(string variationName) 
         {

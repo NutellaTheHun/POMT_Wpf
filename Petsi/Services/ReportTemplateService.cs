@@ -85,9 +85,9 @@ namespace Petsi.Services
         {
             string backupFp = null;
             backupFp = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_BACKUP_PATH);
-            if (backupFp != null)
+            if (backupFp != null && backupFp != "")
             {
-                File.WriteAllText(backupFp, JsonConvert.SerializeObject(items));
+                File.WriteAllText(backupFp + "\\templateItems", JsonConvert.SerializeObject(items));
             }
         }
 

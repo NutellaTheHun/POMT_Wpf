@@ -3,6 +3,9 @@ using Petsi.Services;
 
 namespace Petsi.Utils
 {
+    /// <summary>
+    /// Responsible for system variables, facilitates getting and setting config variables and reflecting the file i/o with changes
+    /// </summary>
     public class PetsiConfig
     {
         private static PetsiConfig _instance;
@@ -76,7 +79,8 @@ namespace Petsi.Utils
                 Identifiers.SETTING_PIE_TEMPLATE,
                 Identifiers.SETTING_PASTRY_TEMPLATE,
                 Identifiers.SETTING_STARTUP,
-                Identifiers.SETTING_STARTUP_STATUS
+                Identifiers.SETTING_STARTUP_STATUS,
+                Identifiers.SETTING_BACKUP_PATH
             };
             
             //Write Config file with defaul variables, some variables are initialized to start, empty variables are user managed
@@ -150,7 +154,7 @@ namespace Petsi.Utils
                 sb.AppendLine($"{variable.Item1}={variable.Item2}");
             }
 
-            File.WriteAllText(/*configPath*/configFilePath, sb.ToString());
+            File.WriteAllText(configFilePath, sb.ToString());
         }
         
         /// <summary>

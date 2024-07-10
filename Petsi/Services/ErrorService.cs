@@ -11,7 +11,7 @@ namespace Petsi.Services
         public static ErrorService instance;
         private ErrorService()
         {
-            //SetServiceName(Identifiers.SERVICE_ERROR);
+           
         }
 
         public static ErrorService Instance()
@@ -86,7 +86,6 @@ namespace Petsi.Services
         public void RaiseLabelServiceValidateFilePathEvent(string catalogId, string fileName, string pieType)
         {
             LabelServiceValidateFpEventArgs args = new LabelServiceValidateFpEventArgs(catalogId, fileName, pieType);
-            //LabelServiceValidateFilePath?.Invoke(this, args);
             labelViewEvents.Add(args);
         }
 
@@ -114,7 +113,6 @@ namespace Petsi.Services
         public event SquareMissingKeyEvent NewStartupEvent;
         public void RaiseNewStartupEvent()
         {
-            //Instance().SquareKeyMissingEvent?.Invoke(Instance, EventArgs.Empty);
             SquareMissingKeyEventArgs args = new SquareMissingKeyEventArgs();
             mainWindowEvents.Add(args);
         }

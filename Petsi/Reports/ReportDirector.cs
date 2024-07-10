@@ -3,7 +3,6 @@ using Petsi.CommandLine;
 using Petsi.Managers;
 using Petsi.Models;
 using Petsi.Reports.ReportBuilder;
-using Petsi.Units;
 using Petsi.Utils;
 
 namespace Petsi.Reports

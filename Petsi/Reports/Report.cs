@@ -46,7 +46,7 @@ namespace Petsi.Reports
             FormatReportHeader();
             if(Wb.Worksheets.Count > 0)
             {
-                ReportUtil.Save(Wb, _filePath + ReportName + ReportId);
+                ReportUtil.Save(Wb, PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_REPORT_EXPORT_PATH) + "\\" + ReportName + ReportId);
                 //PrintReport(_filePath + ReportName+ ReportId);
                 CaptureEnvironment();
             }
@@ -112,7 +112,5 @@ namespace Petsi.Reports
         {
             EnvironCaptureRegistrySingleton.GetInstance().CaptureEnvironment(fileBehavior);
         }
-
-
     }
 }

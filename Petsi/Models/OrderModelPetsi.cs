@@ -1,5 +1,4 @@
-﻿using DocumentFormat.OpenXml.Spreadsheet;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Petsi.CommandLine;
 using Petsi.Filing;
 using Petsi.Interfaces;
@@ -76,10 +75,10 @@ namespace Petsi.Models
         {
             string backupFp = null;
             backupFp = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_BACKUP_PATH);
-            if (backupFp != null)
+            if (backupFp != null && backupFp != "")
             {
-                File.WriteAllText(backupFp, JsonConvert.SerializeObject(PeriodicOrders));
-                File.WriteAllText(backupFp, JsonConvert.SerializeObject(OneShotOrders));
+                File.WriteAllText(backupFp + "\\" + Identifiers.PERIODIC_ORDERS, JsonConvert.SerializeObject(PeriodicOrders));
+                File.WriteAllText(backupFp + "\\" + Identifiers.ONE_SHOT_ORDERS, JsonConvert.SerializeObject(OneShotOrders));
             }
         }
 
@@ -152,17 +151,6 @@ namespace Petsi.Models
         }
         public override string GetModelName() { return ModelName; }
         public override void SetModelName(string modelName) { ModelName = modelName; }
-       
-        /*
-        /// <summary>
-        /// Generates a new order ID, use inputOrigin as prefix
-        /// </summary>
-        /// <returns></returns>
-        public string GenerateOrderId()
-        {
-            return Guid.NewGuid().ToString();
-        }*/
-        //----------
 
         #region Report Pulls
 
@@ -313,7 +301,7 @@ namespace Petsi.Models
             IEnumerable<PetsiOrder> query;
             query =
               from order in Orders
-              where (order.IsPeriodic == true && DateTime.Parse(order.OrderDueDate).DayOfWeek == targetDate.DayOfWeek)  //wholesale/periodic is weekly, so by day of week
+              where (order.IsPeriodic == true && DateTime.Parse(order.OrderDueDate).DayOfWeek == targetDate.DayOfWeek)
               select order;
             periodicOrders.AddRange(query.ToList());
         }
@@ -449,6 +437,7 @@ namespace Petsi.Models
             }
         }
 
+        /*
         //Searches Current Order's lineitems for a newly added catalog item to update it's catalogObjectId to the user intervention's result.
         public void UpdateMultiLineMatchEvent()
         {
@@ -472,7 +461,7 @@ namespace Petsi.Models
                     }
                 }
             }
-        }
+        }*/
 
         public void Update(List<(string fileName, string filePath)> FileList)
         {

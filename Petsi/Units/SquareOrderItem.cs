@@ -34,7 +34,6 @@ namespace Petsi.Units
         public PetsiOrder ToPetsiOrder()
         {
             PetsiOrder o = new PetsiOrder();
-            //o.InputOriginType = Identifiers.SQUARE_ORDER_INPUT;
             o.InputOriginType = Identifiers.ORDER_INPUT_ORIGIN_SQUARE;
             o.Recipient = RecipientName;
             o.OrderId = Id;

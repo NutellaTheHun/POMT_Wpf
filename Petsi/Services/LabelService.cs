@@ -29,8 +29,8 @@ namespace Petsi.Services
             frameBehavior = new LabelServiceFrameBehavior(this);
             _standardLabelMap = new Dictionary<string, string>();
             _cutieLabelMap = new Dictionary<string, string>();
-            cutieDirectoryPath = PetsiConfig.GetInstance().GetVariable("cutieDirectory");
-            pieDirectoryPath = PetsiConfig.GetInstance().GetVariable("standardDirectory");
+            cutieDirectoryPath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_CUTIE_LBL_PATH);
+            pieDirectoryPath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_PIE_LBL_PATH);
             SetServiceName(Identifiers.SERVICE_LABEL);
             ServiceManagerSingleton.GetInstance().Register(this);
             CommandFrame.GetInstance().RegisterFrame("lbl", frameBehavior);
@@ -216,10 +216,10 @@ namespace Petsi.Services
         //--------------
         public void ValidateFilePaths()
         {
-            CatalogService cmp = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
+            if (cutieDirectoryPath == null || pieDirectoryPath == "") { ErrorService.RaiseLabelFilePathNotSet(); return; }
+            if (cutieDirectoryPath == null || pieDirectoryPath == "") { ErrorService.RaiseLabelFilePathNotSet(); return; }
 
-            if (cutieDirectoryPath == null || pieDirectoryPath == "") { ErrorService.RaiseLabelFilePathNotSet(); return; }
-            if (cutieDirectoryPath == null || pieDirectoryPath == "") { ErrorService.RaiseLabelFilePathNotSet(); return; }
+            CatalogService cmp = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
 
             if (!File.Exists(pieDirectoryPath + "Round-Allergen-Label-01.png"))
             {
