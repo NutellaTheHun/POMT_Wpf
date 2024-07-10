@@ -26,6 +26,7 @@ D:\Git-Repos\POMT_WPF\Petsi\bin\x64\Release\net6.0-windows\Square.Service.pdb
 D:\Git-Repos\POMT_WPF\Petsi\obj\x64\Release\net6.0-windows\Petsi.csproj.AssemblyReference.cache
 D:\Git-Repos\POMT_WPF\Petsi\obj\x64\Release\net6.0-windows\Interop.Microsoft.Office.Interop.Excel.dll
 D:\Git-Repos\POMT_WPF\Petsi\obj\x64\Release\net6.0-windows\Petsi.csproj.ResolveComReference.cache
+D:\Git-Repos\POMT_WPF\Petsi\obj\x64\Release\net6.0-windows\Petsi.g.resources
 D:\Git-Repos\POMT_WPF\Petsi\obj\x64\Release\net6.0-windows\Petsi.Form1.resources
 D:\Git-Repos\POMT_WPF\Petsi\obj\x64\Release\net6.0-windows\Petsi.Properties.Resources.resources
 D:\Git-Repos\POMT_WPF\Petsi\obj\x64\Release\net6.0-windows\Petsi.csproj.GenerateResource.cache
@@ -40,4 +41,3 @@ D:\Git-Repos\POMT_WPF\Petsi\obj\x64\Release\net6.0-windows\refint\Petsi.dll
 D:\Git-Repos\POMT_WPF\Petsi\obj\x64\Release\net6.0-windows\Petsi.pdb
 D:\Git-Repos\POMT_WPF\Petsi\obj\x64\Release\net6.0-windows\Petsi.genruntimeconfig.cache
 D:\Git-Repos\POMT_WPF\Petsi\obj\x64\Release\net6.0-windows\ref\Petsi.dll
-D:\Git-Repos\POMT_WPF\Petsi\obj\x64\Release\net6.0-windows\Petsi.g.resources

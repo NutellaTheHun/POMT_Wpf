@@ -40,3 +40,4 @@ D:\Git-Repos\POMT_WPF\Petsi\obj\x64\Debug\net6.0-windows\refint\Petsi.dll
 D:\Git-Repos\POMT_WPF\Petsi\obj\x64\Debug\net6.0-windows\Petsi.pdb
 D:\Git-Repos\POMT_WPF\Petsi\obj\x64\Debug\net6.0-windows\Petsi.genruntimeconfig.cache
 D:\Git-Repos\POMT_WPF\Petsi\obj\x64\Debug\net6.0-windows\ref\Petsi.dll
+D:\Git-Repos\POMT_WPF\Petsi\obj\x64\Debug\net6.0-windows\Petsi.g.resources

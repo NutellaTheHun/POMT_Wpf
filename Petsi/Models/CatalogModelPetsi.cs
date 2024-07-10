@@ -143,7 +143,10 @@ namespace Petsi.Models
         {
             List<CatalogItemPetsi> mainList = fileBehavior.BuildDataListFile<CatalogItemPetsi>(Identifiers.MAIN_MODEL_CATALOG_FILE);
             List<CatalogItemPetsi> squareList = new List<CatalogItemPetsi>(GetItems());
-            List<CatalogItemPetsi> newList = new List<CatalogItemPetsi>(mainList);
+            List<CatalogItemPetsi> newList;
+            if (mainList != null) {newList = new List<CatalogItemPetsi>(mainList); }
+            else { newList = new List<CatalogItemPetsi>();}
+ 
 
             foreach(CatalogItemPetsi squareItem in squareList)
             {

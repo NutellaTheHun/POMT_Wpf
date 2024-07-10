@@ -21,12 +21,12 @@ namespace Petsi.Reports
         FileBehavior fileBehavior;
         public Report(string name)
         {
-            _filePath = PetsiConfig.GetInstance().GetVariable("createdReportPath");
+            _filePath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_REPORT_EXPORT_PATH);
             ReportName = name;//might need to expand, include date/time, or id/count?
             DatePrinted = DateTime.Now.ToShortDateString();
             ReportId = ReportUtil.CreateReportId();
             Wb = new XLWorkbook();
-            fileBehavior = new FileBehavior("environs/"+ReportId.ToString());
+            fileBehavior = new FileBehavior(Identifiers.SETTING_ENVIRON_PATH+ReportId.ToString());
         }
         public int GetPageCount()
         {

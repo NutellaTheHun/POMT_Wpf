@@ -379,7 +379,7 @@ namespace POMT_WPF.MVVM.ViewModel
             {
                 OpenFileDialog fileDialog = new OpenFileDialog();
                 //fileDialog.InitialDirectory = labelsFilepath + "\\Cuties";
-                fileDialog.InitialDirectory = labelsFilepat;
+                fileDialog.InitialDirectory = labelsFilepath;
                 if (fileDialog.ShowDialog() == DialogResult.OK)
                 {
                     CutieLabelFilePath = System.IO.Path.GetFileName(fileDialog.FileName);

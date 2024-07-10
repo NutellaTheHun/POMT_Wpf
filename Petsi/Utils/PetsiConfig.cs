@@ -32,8 +32,12 @@ namespace Petsi.Utils
             if (!File.Exists(configFilePath))
             { 
                 File.Create(configFilePath);
-                InitConfigFile(); 
-                SystemLogger.Log("PetsiConfig file created at: " + configFilePath); 
+                SystemLogger.Log("PetsiConfig file created at: " + configFilePath);
+                InitConfigFile();             
+            }
+            else
+            {
+                LoadVariables();
             }
         }
 
@@ -62,13 +66,12 @@ namespace Petsi.Utils
             foreach (var variable in defaultVars)
             {
                 sb.AppendLine($"{variable}=");
+                variables.Add((variable, null));
             }
 
             // Write the updated contents back to the config file
             File.WriteAllText(configPath, sb.ToString());
-
-            LoadVariables();
-
+            
             SetValue(Identifiers.SETTING_REPORT_CNT_PATH, "0");
             SetValue(Identifiers.SETTING_FILESERVICE_PATH, rootDir+"fileService");
         }

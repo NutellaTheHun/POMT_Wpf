@@ -104,6 +104,14 @@ namespace Petsi.Services
 
         #endregion
 
+        public delegate void SquareMissingKeyEvent(object sender, EventArgs e);
+        public event SquareMissingKeyEvent SquareKeyMissingEvent;
+        public void RaiseSquareKeyMissing()
+        {
+            //Instance().SquareKeyMissingEvent?.Invoke(Instance, EventArgs.Empty);
+            SquareMissingKeyEventArgs args = new SquareMissingKeyEventArgs();
+            mainWindowEvents.Add(args);
+        }
 
         /// <summary>
         /// Events that occur before the LabelView is initialized are added to the mainWindowEvents list
@@ -143,7 +151,21 @@ namespace Petsi.Services
                     Instance().SoiNewItem?.Invoke(Instance(), arg);
                     Instance().mainWindowEvents.Remove(arg);
                 }
+                if (arg.GetType() == typeof(SquareMissingKeyEventArgs))
+                {
+                    Instance().SquareKeyMissingEvent?.Invoke(Instance(), arg);
+                    Instance().mainWindowEvents.Remove(arg);
+                }
             }
         }
     }
+
+    public class SquareMissingKeyEventArgs : EventArgs
+    {
+        public SquareMissingKeyEventArgs()
+        {
+            
+        }
+    }
+
 }

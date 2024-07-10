@@ -7,7 +7,7 @@ namespace Petsi.Filing
     {
         private static string ServicePath()
         {
-            return PetsiConfig.GetInstance().GetFilepath("fileServicePath");
+            return PetsiConfig.GetInstance().GetFilepath(Identifiers.SETTING_FILESERVICE_PATH);
         }
         public static void DataObjectToFile<T>(string directory, string fileName, List<T> target)
         {

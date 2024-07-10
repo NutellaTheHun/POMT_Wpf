@@ -29,9 +29,15 @@ namespace POMT_WPF
 
             SquareCatalogInput sci = new SquareCatalogInput(scf);
             SquareOrderInput soi = new SquareOrderInput(scf);
-            
-            sci.Execute().Wait();
-            soi.Execute().Wait();
+            if(!scf.BuildFailed)
+            {
+                sci.Execute().Wait();
+                soi.Execute().Wait();
+            }
+            else
+            {
+                ErrorService.Instance().RaiseSquareKeyMissing();
+            }
         }
 
         //https://stackoverflow.com/questions/53500915/how-to-select-all-text-in-textbox-wpf-when-focused

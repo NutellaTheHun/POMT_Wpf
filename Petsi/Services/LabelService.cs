@@ -219,6 +219,8 @@ namespace Petsi.Services
             //key: catalog id, val: fileName
             foreach (KeyValuePair<string, string> entry in _standardLabelMap)
             {
+                if(entry.Key == "round") { continue; }
+                if(entry.Key == "care") { continue; }
                 if (!File.Exists(pieDirectoryPath + entry.Value)) 
                 {
                     CatalogItemPetsi item = cmp.GetCatalogItemById(entry.Key);

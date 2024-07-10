@@ -98,8 +98,14 @@ namespace Petsi.Models
         {
             List<PetsiOrder> OneShotOrders = fileBehavior.BuildDataListFile<PetsiOrder>(Identifiers.ONE_SHOT_ORDERS);
             List<PetsiOrder> PeriodicOrders = fileBehavior.BuildDataListFile<PetsiOrder>(Identifiers.PERIODIC_ORDERS);
-            Orders.AddRange(OneShotOrders);
-            Orders.AddRange(PeriodicOrders);
+            if (OneShotOrders != null)
+            {
+                Orders.AddRange(OneShotOrders);
+            }
+            if (PeriodicOrders != null)
+            {
+                Orders.AddRange(PeriodicOrders);
+            }
         }
 
         public override void AddData(ModelUnitBase unit)

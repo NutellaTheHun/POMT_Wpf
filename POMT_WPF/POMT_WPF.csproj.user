@@ -58,6 +58,9 @@
     <Compile Update="MVVM\View\SettingsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="MVVM\View\SquareKeyMissingWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="MVVM\View\TemplateItemViewWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -124,6 +127,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\SettingsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\SquareKeyMissingWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\TemplateItemViewWindow.xaml">

@@ -186,3 +186,6 @@ D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Debug\net6.0-windows7.0\refint\POMT_WPF.d
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Debug\net6.0-windows7.0\POMT_WPF.pdb
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Debug\net6.0-windows7.0\POMT_WPF.genruntimeconfig.cache
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Debug\net6.0-windows7.0\ref\POMT_WPF.dll
+D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Debug\net6.0-windows7.0\Images\POMT_Icon.png
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Debug\net6.0-windows7.0\MVVM\View\SquareKeyMissingWindow.g.cs
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Debug\net6.0-windows7.0\MVVM\View\SquareKeyMissingWindow.baml
