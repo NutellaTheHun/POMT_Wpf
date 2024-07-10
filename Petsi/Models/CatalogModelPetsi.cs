@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using DocumentFormat.OpenXml.Bibliography;
+using Newtonsoft.Json;
 using Petsi.CommandLine;
 using Petsi.Filing;
 using Petsi.Interfaces;
@@ -142,7 +143,19 @@ namespace Petsi.Models
         private void SaveMainModel()
         {
             fileBehavior.DataListToFile(Identifiers.MAIN_MODEL_CATALOG_FILE, GetItems());
+            SaveBackup();
         }
+
+        private void SaveBackup()
+        {
+            string backupFp = null;
+            backupFp = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_BACKUP_PATH);
+            if (backupFp != null) 
+            {
+                File.WriteAllText(backupFp, JsonConvert.SerializeObject(items));
+            }
+        }
+
         private void FinalizeMainModel()
         {
             List<CatalogItemPetsi> mainList = fileBehavior.BuildDataListFile<CatalogItemPetsi>(Identifiers.MAIN_MODEL_CATALOG_FILE);
@@ -287,30 +300,5 @@ namespace Petsi.Models
                 items = JsonConvert.DeserializeObject<List<CatalogItemPetsi>>(input);
             }        
         }
-
-        /*
-        public void ModifyItem(CatalogItemPetsi catalogItem)
-        {
-            int index = 0;
-            bool isFound = false;
-            foreach (CatalogItemPetsi item in items)
-            {
-                if (item.CatalogObjectId == catalogItem.CatalogObjectId)
-                {
-                    index = items.IndexOf(item);
-                    isFound = true;
-                    break;
-                }
-            }
-            if(isFound)
-            {
-                items[index] = catalogItem;
-                UpdateModel();
-            }
-            else
-            {
-                SystemLogger.Log("CatalogModelPetsi modifyItem not found: " + catalogItem.ItemName + " " + ": " + catalogItem.CatalogObjectId);
-            }
-        }  */
     }
 }

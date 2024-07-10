@@ -69,7 +69,20 @@ namespace Petsi.Models
             }
             fileBehavior.DataListToFile(Identifiers.PERIODIC_ORDERS, PeriodicOrders);
             fileBehavior.DataListToFile(Identifiers.ONE_SHOT_ORDERS, OneShotOrders);
+            SaveBackup(PeriodicOrders, OneShotOrders);
         }
+
+        private void SaveBackup(List<PetsiOrder> PeriodicOrders, List<PetsiOrder> OneShotOrders)
+        {
+            string backupFp = null;
+            backupFp = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_BACKUP_PATH);
+            if (backupFp != null)
+            {
+                File.WriteAllText(backupFp, JsonConvert.SerializeObject(PeriodicOrders));
+                File.WriteAllText(backupFp, JsonConvert.SerializeObject(OneShotOrders));
+            }
+        }
+
         private HashSet<string>? InitOrderTypes()
         {
             List<string> filedList = fileBehavior.BuildDataListFile<string>("OrderTypeSet");

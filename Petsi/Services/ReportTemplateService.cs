@@ -78,6 +78,17 @@ namespace Petsi.Services
         private void Save()
         {
             filebehavior.DataListToFile(filename, items);
+            SaveBackup();
+        }
+
+        private void SaveBackup()
+        {
+            string backupFp = null;
+            backupFp = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_BACKUP_PATH);
+            if (backupFp != null)
+            {
+                File.WriteAllText(backupFp, JsonConvert.SerializeObject(items));
+            }
         }
 
         private void NotifySubscribers()

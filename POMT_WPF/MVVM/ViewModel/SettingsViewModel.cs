@@ -99,6 +99,21 @@ namespace POMT_WPF.MVVM.ViewModel
             }
         }
 
+        private string _backupFilepath;
+        public string BackupFilepath
+        {
+            get { return _backupFilepath; }
+            set
+            {
+                if (_backupFilepath != value)
+                {
+                    _backupFilepath = value;
+                    config.SetVariable(Identifiers.SETTING_BACKUP_PATH, BackupFilepath);
+                    OnPropertyChanged(nameof(BackupFilepath));
+                }
+            }
+        }
+
         private string _numberOfDays;
         public string NumberOfDays
         {
@@ -151,6 +166,7 @@ namespace POMT_WPF.MVVM.ViewModel
         public RelayCommand SetCutieLabelFilePathCommand { get; set; }
         public RelayCommand SetEnvironmentFilePathCommand { get; set; }
         public RelayCommand SetReportExportFilePathCommand { get; set; }
+        public RelayCommand SetBackupFilePathCommand { get; set; }
         public RelayCommand SetPieTemplateCommand { get; set; }
         public RelayCommand SetPastryTemplateCommand { get; set; }
         public RelayCommand ConfigureLabelsCommand { get; set; }
@@ -174,6 +190,7 @@ namespace POMT_WPF.MVVM.ViewModel
             SetCutieLabelFilePathCommand = new RelayCommand(o => { SetFilePath(Identifiers.SETTING_CUTIE_LBL_PATH); });
             SetEnvironmentFilePathCommand = new RelayCommand(o => { SetFilePath(Identifiers.SETTING_ENVIRON_PATH);  });
             SetReportExportFilePathCommand = new RelayCommand(o => { SetFilePath(Identifiers.SETTING_REPORT_EXPORT_PATH);  });
+            SetBackupFilePathCommand = new RelayCommand(o => { SetFilePath(Identifiers.SETTING_BACKUP_PATH);  });
             SetPieTemplateCommand = new RelayCommand(o => { SetPieTemplate(); });
             SetPastryTemplateCommand = new RelayCommand(o => { SetPastryTemplate(); });
             ConfigureLabelsCommand = new RelayCommand(o => { MainViewModel.Instance().OpenConfigureLabelView(true); });
@@ -206,6 +223,10 @@ namespace POMT_WPF.MVVM.ViewModel
                 else if (pieFp == Identifiers.SETTING_REPORT_EXPORT_PATH)
                 {
                     ReportExportFilepath = sSelectedPath;
+                }
+                else if (pieFp == Identifiers.SETTING_BACKUP_PATH)
+                {
+                    BackupFilepath = sSelectedPath;
                 }
             }
         }

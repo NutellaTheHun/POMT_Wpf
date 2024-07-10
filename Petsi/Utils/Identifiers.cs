@@ -102,6 +102,7 @@ namespace Petsi.Utils
         public const string SETTING_CUTIE_LBL_PATH = "cutieDirectory";
         public const string SETTING_PIE_LBL_PATH = "standardDirectory";
         public const string SETTING_SQUARE = "squareKey";
+        public const string SETTING_BACKUP_PATH = "backupPath";
         public const string SETTING_STARTUP = "startUp";
         public const string SETTING_STARTUP_STATUS = "startUpStatus";
         public const string SETTING_STARTUP_STATUS_PENDING = "startUpPending";
