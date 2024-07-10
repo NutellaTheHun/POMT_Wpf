@@ -120,6 +120,12 @@ namespace Petsi.Services
         /// <returns></returns>
         private bool ValidateInputLabelMap(List<LabelPrintData> inputList, Dictionary<string, string> labelMap)
         {
+            string labelsFilepath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_CUTIE_LBL_PATH);
+            if (labelsFilepath == null || labelsFilepath == "") { return  false; }
+            
+            labelsFilepath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_PIE_LBL_PATH);
+            if (labelsFilepath == null || labelsFilepath == "") { return false; }
+
             string test;
             foreach (LabelPrintData printItem in inputList)
             {
@@ -221,11 +227,11 @@ namespace Petsi.Services
 
             CatalogService cmp = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
 
-            if (!File.Exists(pieDirectoryPath + "Round-Allergen-Label-01.png"))
+            if (!File.Exists(pieDirectoryPath + "\\" + "Round-Allergen-Label-01.png"))
             {
                 ErrorService.Instance().RaiseLabelServiceValidateFilePathEvent("round label", "Round-Allergen-Label-01.png", "Pie");
             }
-            if(!File.Exists(pieDirectoryPath + "pie-care-directory-label-v2-03.jpg"))
+            if(!File.Exists(pieDirectoryPath + "\\" + "pie-care-directory-label-v2-03.jpg"))
             {
                 ErrorService.Instance().RaiseLabelServiceValidateFilePathEvent("care sticker", "pie-care-directory-label-v2-03.jpg", "Pie");
             }
@@ -235,7 +241,7 @@ namespace Petsi.Services
             {
                 if(entry.Key == "round") { continue; }
                 if(entry.Key == "care") { continue; }
-                if (!File.Exists(pieDirectoryPath + entry.Value)) 
+                if (!File.Exists(pieDirectoryPath + "\\" + entry.Value)) 
                 {
                     CatalogItemPetsi item = cmp.GetCatalogItemById(entry.Key);
                     ErrorService.Instance().RaiseLabelServiceValidateFilePathEvent(item.ItemName, entry.Value, "Pie");
@@ -243,7 +249,7 @@ namespace Petsi.Services
             }
             foreach (KeyValuePair<string, string> entry in _cutieLabelMap)
             {
-                if (!File.Exists(cutieDirectoryPath + entry.Value))
+                if (!File.Exists(cutieDirectoryPath + "\\" + entry.Value))
                 {
                     CatalogItemPetsi item = cmp.GetCatalogItemById(entry.Key);
                     ErrorService.Instance().RaiseLabelServiceValidateFilePathEvent(item.ItemName, entry.Value, "Cutie");

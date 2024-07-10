@@ -183,6 +183,9 @@ namespace POMT_WPF.MVVM.ViewModel
             NumberOfDays = config.GetVariable(Identifiers.SETTING_DAYNUM);
             PieTemplate = config.GetVariable(Identifiers.SETTING_PIE_TEMPLATE);
             PastryTemplate = config.GetVariable(Identifiers.SETTING_PASTRY_TEMPLATE);
+            ReportExportFilepath = config.GetVariable(Identifiers.SETTING_REPORT_EXPORT_PATH);
+            EnvironmentFilepath = config.GetVariable(Identifiers.SETTING_ENVIRON_PATH);
+            BackupFilepath = config.GetVariable(Identifiers.SETTING_BACKUP_PATH);
 
             SetLabelPrinterCommand = new RelayCommand(o => { SetLabelPrinter(); });
             SetStandardPrinterCommand = new RelayCommand(o => { SetStandardPrinter(); });
