@@ -84,21 +84,6 @@ namespace POMT_WPF.MVVM.ViewModel
             }
         }
 
-        private string _startupFilepath;
-        public string StartUpFilepath
-        {
-            get { return _startupFilepath; }
-            set
-            {
-                if (_startupFilepath != value)
-                {
-                    _startupFilepath = value;
-                    config.SetVariable(Identifiers.SETTING_SQUARE, StartUpFilepath);
-                    OnPropertyChanged(nameof(StartUpFilepath));
-                }
-            }
-        }
-
         private string _cutieLabelsFilepath;
         public string CutieLabelsFilepath
         {
@@ -166,7 +151,6 @@ namespace POMT_WPF.MVVM.ViewModel
         public RelayCommand SetCutieLabelFilePathCommand { get; set; }
         public RelayCommand SetEnvironmentFilePathCommand { get; set; }
         public RelayCommand SetReportExportFilePathCommand { get; set; }
-        public RelayCommand SetStartupFilePathCommand { get; set; }
         public RelayCommand SetPieTemplateCommand { get; set; }
         public RelayCommand SetPastryTemplateCommand { get; set; }
         public RelayCommand ConfigureLabelsCommand { get; set; }
@@ -190,7 +174,6 @@ namespace POMT_WPF.MVVM.ViewModel
             SetCutieLabelFilePathCommand = new RelayCommand(o => { SetFilePath(Identifiers.SETTING_CUTIE_LBL_PATH); });
             SetEnvironmentFilePathCommand = new RelayCommand(o => { SetFilePath(Identifiers.SETTING_ENVIRON_PATH);  });
             SetReportExportFilePathCommand = new RelayCommand(o => { SetFilePath(Identifiers.SETTING_REPORT_EXPORT_PATH);  });
-            SetStartupFilePathCommand = new RelayCommand(o => { SetFilePath(Identifiers.SETTING_STARTUP);  });
             SetPieTemplateCommand = new RelayCommand(o => { SetPieTemplate(); });
             SetPastryTemplateCommand = new RelayCommand(o => { SetPastryTemplate(); });
             ConfigureLabelsCommand = new RelayCommand(o => { MainViewModel.Instance().OpenConfigureLabelView(true); });
@@ -223,10 +206,6 @@ namespace POMT_WPF.MVVM.ViewModel
                 else if (pieFp == Identifiers.SETTING_REPORT_EXPORT_PATH)
                 {
                     ReportExportFilepath = sSelectedPath;
-                }
-                else if (pieFp == Identifiers.SETTING_STARTUP)
-                {
-                    StartUpFilepath = sSelectedPath;
                 }
             }
         }
@@ -266,7 +245,6 @@ namespace POMT_WPF.MVVM.ViewModel
                 PastryTemplate = win.VariableSelection;
             }
         }
-
         List<string> GetPrinterNames()
         {
             List<string> result = new List<string>();

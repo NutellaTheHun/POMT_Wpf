@@ -103,6 +103,10 @@ namespace Petsi.Utils
         public const string SETTING_PIE_LBL_PATH = "standardDirectory";
         public const string SETTING_SQUARE = "squareKey";
         public const string SETTING_STARTUP = "startUp";
+        public const string SETTING_STARTUP_STATUS = "startUp";
+        public const string SETTING_STARTUP_STATUS_PENDING = "startUpPending";
+        public const string SETTING_STARTUP_STATUS_INIT = "startUpInit";
+        public const string SETTING_STARTUP_STATUS_NEUTRAL = "startUpNeutral";
 
         public static List<string> GetOrderTypes()
         {

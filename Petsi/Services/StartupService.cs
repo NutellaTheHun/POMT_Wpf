@@ -31,25 +31,25 @@ namespace Petsi.Services
         {
             startupFp = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_STARTUP);
             subscribers = new List<IStartupSubscriber>();
-            if (!IsDirectoryEmpty(startupFp))
-            {
-                InitStartup();
-            }
         }
 
-        private void InitStartup()
+        public void Start()
         {
-            DirectoryInfo d = new DirectoryInfo(startupFp);
-            FileList = new List<(string fileName, string filePath)>();
-            foreach (var file in d.GetFiles())
+            if (!IsDirectoryEmpty(startupFp))
             {
-                FileList.Add((file.Name, file.FullName));
-            }
-            Notify();
+                DirectoryInfo d = new DirectoryInfo(startupFp);
+                FileList = new List<(string fileName, string filePath)>();
+                foreach (var file in d.GetFiles())
+                {
+                    FileList.Add((file.Name, file.FullName));
+                }
+                Notify();
+            } 
         }
 
         public bool IsDirectoryEmpty(string path)
         {
+            if(path == null) { return false; }
             return !Directory.EnumerateFileSystemEntries(path).Any();
         }
 

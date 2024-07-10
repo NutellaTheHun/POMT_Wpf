@@ -53,11 +53,17 @@ namespace Square.Service
             if (!Directory.Exists(configDir)) { Directory.CreateDirectory(configDir); }
             if (!File.Exists(configFp)) { File.Create(configFp); }
             string result = null;
-            using (StreamReader sr = new StreamReader(configFp))
+            try
             {
-                result = sr.ReadLine();
+                using (StreamReader sr = new StreamReader(configFp))
+                {
+                    result = sr.ReadLine();
+                }
             }
-            if(result == null) { }
+            catch (Exception ex) 
+            {
+
+            }
             return result;
         }
     }

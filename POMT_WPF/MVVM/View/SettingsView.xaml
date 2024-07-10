@@ -73,18 +73,6 @@
                         </StackPanel>
                         <Button Command="{Binding SetReportExportFilePathCommand}" Style="{StaticResource GeneralSetButton}" />
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <StackPanel Orientation="Vertical">
-                            <Label Content="Startup Directory" />
-                            <TextBox
-                                Width="225"
-                                FontSize="12"
-                                IsReadOnly="true"
-                                Style="{StaticResource GeneralTextBox}"
-                                Text="{Binding StartUpFilepath, UpdateSourceTrigger=PropertyChanged}" />
-                        </StackPanel>
-                        <Button Command="{Binding SetStartupFilePathCommand}" Style="{StaticResource GeneralSetButton}" />
-                    </StackPanel>
                 </StackPanel>
             </Grid>
             <Grid Grid.Column="1" Margin="10">

@@ -1,7 +1,5 @@
 ﻿using System.Text;
-using Petsi.Filing;
 using Petsi.Services;
-using Petsi.Utils;
 
 namespace Petsi.Utils
 {
@@ -10,9 +8,6 @@ namespace Petsi.Utils
         private static PetsiConfig _instance;
         List<(string,string)> variables;
 
-        //static readonly string hardPath = "D:/Git-Repos/POMT_WPF/";
-        //static readonly string configPath = "D:/Git-Repos/POMT_WPF/Petsi/config.txt";
-
         static readonly string rootDir = System.AppDomain.CurrentDomain.BaseDirectory + "/petsiDir/";
         static readonly string configFile = "petsiConfig.txt";
         static readonly string configFilePath = rootDir + configFile;
@@ -20,7 +15,6 @@ namespace Petsi.Utils
         {
             variables = new List<(string,string)>();
             InitConfig();
-            //InitVariables();
         }
 
         public static PetsiConfig GetInstance() { if (_instance == null) { _instance = new PetsiConfig(); }; return _instance; }
@@ -32,7 +26,7 @@ namespace Petsi.Utils
                 Directory.CreateDirectory(rootDir); 
                 SystemLogger.Log("PetsiConfig created root path at: " + rootDir); 
             }
-
+            //Creates new config file, signals to start startup process
             if (!File.Exists(configFilePath))
             { 
                 SystemLogger.Log("PetsiConfig file created at: " + configFilePath);
@@ -40,33 +34,39 @@ namespace Petsi.Utils
             }
             else
             {
+                //Normal boot up of loading variables from existing config file
                 LoadVariables();
+            }
+
+            //signal to run startup service, service is started and signal is set to neutral, REGARDLESS OF SUCCESS
+            if(GetVariable(Identifiers.SETTING_STARTUP_STATUS) == Identifiers.SETTING_STARTUP_STATUS_INIT)
+            {
+                StartupService.Instance.Start();
+                SetVariable(Identifiers.SETTING_STARTUP_STATUS, Identifiers.SETTING_STARTUP_STATUS_NEUTRAL);
             }
         }
 
         private void InitConfigFile()
         {
-            //File.Create(configFilePath);
+            //Default Config Variables
             List<string> defaultVars = new List<string> 
             {
-                Identifiers.SETTING_FILESERVICE_PATH, //A
-                Identifiers.SETTING_ENVIRON_PATH, //U
-                Identifiers.SETTING_DAYNUM, //U
-                Identifiers.SETTING_REPORT_CNT_PATH, //A
-                Identifiers.SETTING_REPORT_EXPORT_PATH, //U
-                Identifiers.SETTING_CUTIE_LBL_PATH, //U
-                Identifiers.SETTING_PIE_LBL_PATH, //U
-                //Identifiers.SETTING_LABEL_FP, //U
-                Identifiers.SETTING_LABEL_PRINTER, //U
-                Identifiers.SETTING_STD_PRINTER, //U
-                Identifiers.SETTING_PIE_TEMPLATE, //U
-                Identifiers.SETTING_PASTRY_TEMPLATE, //U
-                Identifiers.SETTING_SQUARE //~AU
+                Identifiers.SETTING_FILESERVICE_PATH,
+                Identifiers.SETTING_ENVIRON_PATH,
+                Identifiers.SETTING_DAYNUM,
+                Identifiers.SETTING_REPORT_CNT_PATH,
+                Identifiers.SETTING_REPORT_EXPORT_PATH,
+                Identifiers.SETTING_CUTIE_LBL_PATH,
+                Identifiers.SETTING_PIE_LBL_PATH,
+                Identifiers.SETTING_LABEL_PRINTER,
+                Identifiers.SETTING_STD_PRINTER,
+                Identifiers.SETTING_PIE_TEMPLATE,
+                Identifiers.SETTING_PASTRY_TEMPLATE,
+                Identifiers.SETTING_STARTUP_STATUS
             };
             
-
+            //Write Config file with defaul variables, some variables are initialized to start, empty variables are user managed
             StringBuilder sb = new StringBuilder();
-            
             foreach (var variable in defaultVars)
             {
                 if(variable == Identifiers.SETTING_REPORT_CNT_PATH)
@@ -79,25 +79,40 @@ namespace Petsi.Utils
                     sb.AppendLine($"{variable}="+ rootDir + "fileService");
                     variables.Add((variable, rootDir + "fileService"));
                 }
+                else if (variable == Identifiers.SETTING_STARTUP_STATUS)
+                {
+                    sb.AppendLine($"{variable}=" + Identifiers.SETTING_STARTUP_STATUS_INIT);
+                    variables.Add((variable, rootDir + "fileService"));
+                }
                 else
                 {
                     sb.AppendLine($"{variable}=");
                     variables.Add((variable, null));
                 }
             }
-
             File.WriteAllText(configFilePath, sb.ToString());
 
-            ErrorService.Instance().RaiseNewStartupEvent();
+            //Upon Initialization, Startup event queues user to set square key and startup location
+            //the startup status is a signal to run the startup service, signal is then set to neutral
+            ErrorService.Instance().RaiseNewStartupEvent();  
         }
 
-       
+       /// <summary>
+       /// Returns a variable value from the variables list
+       /// </summary>
+       /// <param name="key"></param>
+       /// <returns></returns>
         public string GetVariable(string key)
         {
             var variable = variables.Find(x => x.Item1 == key);
             return variable.Item2;
         }
 
+        /// <summary>
+        /// Sets a currently existing variable in the variables list to a value and updates the config file.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
         public void SetVariable(string key, string value)
         {
             var variable = variables.FirstOrDefault(v => v.Item1 == key);
@@ -108,36 +123,25 @@ namespace Petsi.Utils
             }
             UpdateConfigFile();
         }
+
+        /// <summary>
+        /// Updates Config file to reflect current state of the variables list
+        /// </summary>
         private void UpdateConfigFile()
-        {
-            // Create a StringBuilder to store the updated contents
+        {  
             StringBuilder sb = new StringBuilder();
 
-            // Iterate through the variables list and append each variable to the StringBuilder
             foreach (var variable in variables)
             {
                 sb.AppendLine($"{variable.Item1}={variable.Item2}");
             }
 
-            // Write the updated contents back to the config file
             File.WriteAllText(/*configPath*/configFilePath, sb.ToString());
         }
-
-        /*
-        public void InitVariables()
-        {
-            using (StreamReader sr = new StreamReader(configPath))
-            {
-                string[] args;
-                string line;
-                while ((line = sr.ReadLine()) != null)
-                {
-                    args = line.Split("=");
-                    variables.Add((args[0], args[1]));
-                }
-            }
-        }*/
         
+        /// <summary>
+        /// Load Variables from existing config file
+        /// </summary>
         public void LoadVariables()
         {
             using (StreamReader sr = new StreamReader(configFilePath))
