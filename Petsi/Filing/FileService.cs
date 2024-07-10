@@ -7,7 +7,7 @@ namespace Petsi.Filing
     {
         private static string ServicePath()
         {
-            return PetsiConfig.GetInstance().GetFilepath(Identifiers.SETTING_FILESERVICE_PATH);
+            return PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_FILESERVICE_PATH);
         }
         public static void DataObjectToFile<T>(string directory, string fileName, List<T> target)
         {
@@ -18,21 +18,21 @@ namespace Petsi.Filing
         {
             if (!Directory.Exists(ServicePath() + dirFileName))
             {
-                Directory.CreateDirectory(ServicePath() + dirFileName);
+                Directory.CreateDirectory(ServicePath() + "/" + dirFileName);
             }
         }
         public static string[] GetFileDirectoryList(string directoryName)
         {
-            if (!Directory.Exists(ServicePath() + directoryName))
+            if (!Directory.Exists(ServicePath() + "/" + directoryName))
             {
-                Directory.CreateDirectory(ServicePath() + directoryName);
+                Directory.CreateDirectory(ServicePath() + "/" + directoryName);
             }
-            return Directory.GetFiles(ServicePath() + directoryName);
+            return Directory.GetFiles(ServicePath() + "/" + directoryName);
         }
         public static void Save<T>(string directory, string fileName, T target)
         {
             ValidateDirectory(directory);
-            File.WriteAllText(ServicePath() + directory + "/" + fileName, JsonConvert.SerializeObject(target));
+            File.WriteAllText(ServicePath() + "/" + directory + "/" + fileName, JsonConvert.SerializeObject(target));
         }
         public static List<T> FileToDataList<T>(string directory, string fileName)
         {
@@ -40,7 +40,7 @@ namespace Petsi.Filing
             string input;
             try
             {
-                input = File.ReadAllText(ServicePath() + directory + "/" + fileName);
+                input = File.ReadAllText(ServicePath() + "/" + directory + "/" + fileName);
             }catch(FileNotFoundException ex)
             {
                 return null;

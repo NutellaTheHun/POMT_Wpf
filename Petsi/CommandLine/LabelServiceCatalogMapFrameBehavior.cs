@@ -18,8 +18,8 @@ namespace Petsi.CommandLine
             _labelService = ls;
             var catalog = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
             itemList = catalog.GetItems();
-            cutieFileNames = GetFileDirectoryList("Cuties");
-            standardFileNames = GetFileDirectoryList("Pie");
+            //cutieFileNames = GetFileDirectoryList("Cuties");
+            //standardFileNames = GetFileDirectoryList("Pie");
         }
         //List of cutie directory
         //List of pie directory
@@ -89,9 +89,10 @@ namespace Petsi.CommandLine
         {
             return "Label Service Catalog Mapping";
         }
-
+        /*
         private List<string> GetFileDirectoryList(string directoryName)
         {
+            
             string path = PetsiConfig.GetInstance().GetFilepath("labelDirectory");
             if (!Directory.Exists(path + directoryName))
             {
@@ -99,6 +100,7 @@ namespace Petsi.CommandLine
             }
             return Directory.GetFiles(path + directoryName).ToList();
         }
+        */
         private void PrintLabelList(List<string> inputList)
         {
             int i = 0;

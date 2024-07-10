@@ -19,7 +19,7 @@ namespace Petsi.Input
         public WholesaleInput()
         {
             items = new List<WholesaleItem>();
-            csvh = new CSVHandler(PetsiConfig.GetInstance().GetFilepath("onOrderPath"));
+           // csvh = new CSVHandler(PetsiConfig.GetInstance().GetFilepath("onOrderPath"));
             frameBehavior = new WholesaleInputFrameBehavior(this);
             fileBehavior = new FileBehavior("WholesaleInput");
             isFileExecute = false;
@@ -32,7 +32,7 @@ namespace Petsi.Input
             CommandFrame.GetInstance().RegisterFrame("wsi", frameBehavior);
         }
         public override async Task Execute()
-        {
+        {/*
             if(!isFileExecute)
             {
                 items = csvh.LoadWholesaleData();
@@ -42,7 +42,7 @@ namespace Petsi.Input
             {
                 Model.AddData(item);
             }
-            hasExecuted = true;
+            hasExecuted = true;*/
         }
         public List<PetsiOrder> WholesaleItemsToPetsiOrders()
         {

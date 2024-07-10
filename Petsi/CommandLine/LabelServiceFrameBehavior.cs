@@ -66,21 +66,21 @@ namespace Petsi.CommandLine
         }
 
         private void PrintCutieLabels()
-        {
+        {/*
             foreach(string name in GetFileDirectoryList("Cuties"))
             {
                 Console.WriteLine(name);
-            }
+            }*/
         }
 
         private void PrintPieLabels()
-        {
+        {/*
             foreach (string name in GetFileDirectoryList("Pie"))
             {
                 Console.WriteLine(name);
-            }
+            }*/
         }
-
+        /*
         private List<string> GetFileDirectoryList(string directoryName)
         {
             string path = PetsiConfig.GetInstance().GetFilepath("labelDirectory");
@@ -90,7 +90,7 @@ namespace Petsi.CommandLine
             }
             return Directory.GetFiles(path + directoryName).ToList();
         }
-
+        */
         public override void CommandFrameView()
         {
             Console.WriteLine("4x2: Print 4x2 Labels");

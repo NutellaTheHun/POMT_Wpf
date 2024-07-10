@@ -56,19 +56,6 @@ namespace Square.Service
             using (StreamReader sr = new StreamReader(configFp))
             {
                 result = sr.ReadLine();
-                /*
-                string[] args;
-                string line;
-                
-                while ((line = sr.ReadLine()) != null)
-                {
-                    if (line.Contains("squareKey"))
-                    {
-                        args = line.Split("=");
-                        result = args[1];
-                        break;
-                    }
-                }*/
             }
             if(result == null) { }
             return result;

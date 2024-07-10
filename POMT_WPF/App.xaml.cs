@@ -2,6 +2,7 @@
 using Petsi.Models;
 using Petsi.Reports;
 using Petsi.Services;
+using Petsi.Utils;
 using Square.Service;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,6 +17,7 @@ namespace POMT_WPF
     {
         public App()
         {
+            PetsiConfig config = PetsiConfig.GetInstance();
             SquareClientFactory scf = new SquareClientFactory();
 
             OrderModelPetsi omp = new OrderModelPetsi();

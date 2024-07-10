@@ -1,0 +1,12 @@
+fileServicePath=D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Debug\net6.0-windows7.0\/petsiDir/fileService
+environFileServicePath=
+environPeriod=
+reportCountPath=0
+createdReportPath=
+cutieDirectory=D:\Git-Repos\POMT_WPF\Petsi\Labels\Files\Cuties
+standardDirectory=D:\Git-Repos\POMT_WPF\Petsi\Labels\Files\Cuties
+labelPrinter=Brother HL-2280DW Printer
+standardPrinter=Brother HL-2280DW Printer
+pieTemplateName=Summer Pies
+pastryTemplateName=Standard Pies
+squareKey=

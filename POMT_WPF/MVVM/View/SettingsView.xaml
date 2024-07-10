@@ -53,7 +53,7 @@
                                 FontSize="12"
                                 IsReadOnly="true"
                                 Style="{StaticResource GeneralTextBox}"
-                                Text="{Binding LabelsFilepath, UpdateSourceTrigger=PropertyChanged}" />
+                                Text="{Binding CutieLabelsFilepath, UpdateSourceTrigger=PropertyChanged}" />
 
                         </StackPanel>
                         <Button Command="{Binding SetCutieLabelFilePathCommand}" Style="{StaticResource GeneralSetButton}" />
@@ -67,7 +67,7 @@
                                 FontSize="12"
                                 IsReadOnly="true"
                                 Style="{StaticResource GeneralTextBox}"
-                                Text="{Binding LabelsFilepath, UpdateSourceTrigger=PropertyChanged}" />
+                                Text="{Binding PieLabelsFilepath, UpdateSourceTrigger=PropertyChanged}" />
 
                         </StackPanel>
                         <Button Command="{Binding SetPieLabelFilePathCommand}" Style="{StaticResource GeneralSetButton}" />

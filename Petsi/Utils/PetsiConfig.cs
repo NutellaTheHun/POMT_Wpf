@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Petsi.Filing;
 using Petsi.Utils;
 
 namespace Petsi.Utils
@@ -31,7 +32,7 @@ namespace Petsi.Utils
 
             if (!File.Exists(configFilePath))
             { 
-                File.Create(configFilePath);
+                
                 SystemLogger.Log("PetsiConfig file created at: " + configFilePath);
                 InitConfigFile();             
             }
@@ -43,6 +44,7 @@ namespace Petsi.Utils
 
         private void InitConfigFile()
         {
+            //File.Create(configFilePath);
             List<string> defaultVars = new List<string> 
             {
                 Identifiers.SETTING_FILESERVICE_PATH, //A
@@ -65,29 +67,31 @@ namespace Petsi.Utils
             // Iterate through the variables list and append each variable to the StringBuilder
             foreach (var variable in defaultVars)
             {
-                sb.AppendLine($"{variable}=");
-                variables.Add((variable, null));
+                if(variable == Identifiers.SETTING_REPORT_CNT_PATH)
+                {
+                    sb.AppendLine($"{variable}=0");
+                    variables.Add((variable, "0"));
+                }
+                else if(variable == Identifiers.SETTING_FILESERVICE_PATH)
+                {
+                    sb.AppendLine($"{variable}="+ rootDir + "fileService");
+                    variables.Add((variable, rootDir + "fileService"));
+                }
+                else
+                {
+                    sb.AppendLine($"{variable}=");
+                    variables.Add((variable, null));
+                }
             }
 
             // Write the updated contents back to the config file
-            File.WriteAllText(configPath, sb.ToString());
+            File.WriteAllText(configFilePath, sb.ToString());
             
-            SetValue(Identifiers.SETTING_REPORT_CNT_PATH, "0");
-            SetValue(Identifiers.SETTING_FILESERVICE_PATH, rootDir+"fileService");
+           // SetValue(Identifiers.SETTING_REPORT_CNT_PATH, "0");
+            //SetValue(Identifiers.SETTING_FILESERVICE_PATH, rootDir+"fileService");
         }
 
-        
-
-        /// <summary>
-        /// Returns variable with the filepath
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        public string GetFilepath(string key)
-        {
-            var variable = variables.Find(x => x.Item1 == key);
-            return hardPath+variable.Item2;
-        }
+       
         public string GetVariable(string key)
         {
             var variable = variables.Find(x => x.Item1 == key);

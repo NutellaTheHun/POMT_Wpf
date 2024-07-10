@@ -1,7 +1,7 @@
-fileServicePath=
+fileServicePath=D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Debug\net6.0-windows7.0\/petsiDir/fileService
 environFileServicePath=
 environPeriod=
-reportCountPath=
+reportCountPath=0
 createdReportPath=
 cutieDirectory=
 standardDirectory=
