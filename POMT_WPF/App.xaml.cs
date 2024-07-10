@@ -38,7 +38,7 @@ namespace POMT_WPF
             }
             else
             {
-                ErrorService.Instance().RaiseSquareKeyMissing();
+                SystemLogger.Log("Square Service Build Failed, square API's not called.");
             }
         }
 

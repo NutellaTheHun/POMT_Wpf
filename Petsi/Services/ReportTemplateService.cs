@@ -1,4 +1,5 @@
-﻿using Petsi.Filing;
+﻿using Newtonsoft.Json;
+using Petsi.Filing;
 using Petsi.Interfaces;
 using Petsi.Reports;
 using Petsi.Units;
@@ -6,7 +7,7 @@ using Petsi.Utils;
 
 namespace Petsi.Services
 {
-    public class ReportTemplateService
+    public class ReportTemplateService : IStartupSubscriber
     {
         List<(string templateName, List<BackListItem> templateItems)> items;
         FileBehavior filebehavior;
@@ -29,6 +30,8 @@ namespace Petsi.Services
                 items.Add(btfs.BootSummerFormat());
                 Save();
             }
+
+            StartupService.Instance.Register(this);
         }
 
         public static ReportTemplateService Instance()
@@ -97,6 +100,30 @@ namespace Petsi.Services
         {
             string templateName = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_PASTRY_TEMPLATE);
             return GetTemplate(templateName);
+        }
+
+        public void Update(List<(string fileName, string filePath)> FileList)
+        {
+            if (FileList == null || FileList.Count == 0) { return; }
+            foreach (var fileListing in FileList)
+            {
+                if (fileListing.fileName == "templateItems")
+                {
+                    StartupLoadTemplates(fileListing.filePath);
+                    Save();
+                    StartupService.Instance.Deregister(this);
+                }
+            }
+        }
+
+        private void StartupLoadTemplates(string filePath)
+        {
+            string input;
+            if (Directory.Exists(filePath))
+            {
+                input = File.ReadAllText(filePath);
+                items = JsonConvert.DeserializeObject<List<(string, List<BackListItem>)>>(input);
+            }
         }
     }
 }

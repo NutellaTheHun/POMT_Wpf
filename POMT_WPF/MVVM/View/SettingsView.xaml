@@ -21,29 +21,8 @@
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0" Margin="10">
                 <StackPanel Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal">
-                        <StackPanel Orientation="Vertical">
-                            <Label Content="Label Printer" />
-                            <TextBox
-                                Width="225"
-                                IsReadOnly="true"
-                                Style="{StaticResource GeneralTextBox}"
-                                Text="{Binding LabelPrinter, UpdateSourceTrigger=PropertyChanged}" />
-                        </StackPanel>
-                        <Button Command="{Binding SetLabelPrinterCommand}" Style="{StaticResource GeneralSetButton}" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <StackPanel Orientation="Vertical">
-                            <Label Content="Standard Printer" />
-                            <TextBox
-                                Width="225"
-                                IsReadOnly="true"
-                                Style="{StaticResource GeneralTextBox}"
-                                Text="{Binding StandardPrinter, UpdateSourceTrigger=PropertyChanged}" />
 
-                        </StackPanel>
-                        <Button Command="{Binding SetStandardPrinterCommand}" Style="{StaticResource GeneralSetButton}" />
-                    </StackPanel>
+
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Vertical">
                             <Label Content="Cutie Labels Filepath" />
@@ -61,16 +40,50 @@
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Vertical">
                             <Label Content="Pie Labels Filepath" />
-
                             <TextBox
                                 Width="225"
                                 FontSize="12"
                                 IsReadOnly="true"
                                 Style="{StaticResource GeneralTextBox}"
                                 Text="{Binding PieLabelsFilepath, UpdateSourceTrigger=PropertyChanged}" />
-
                         </StackPanel>
                         <Button Command="{Binding SetPieLabelFilePathCommand}" Style="{StaticResource GeneralSetButton}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="Environment Filepath" />
+                            <TextBox
+                                Width="225"
+                                FontSize="12"
+                                IsReadOnly="true"
+                                Style="{StaticResource GeneralTextBox}"
+                                Text="{Binding EnvironmentFilepath, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+                        <Button Command="{Binding SetEnvironmentFilePathCommand}" Style="{StaticResource GeneralSetButton}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="Report Export Filepath" />
+                            <TextBox
+                                Width="225"
+                                FontSize="12"
+                                IsReadOnly="true"
+                                Style="{StaticResource GeneralTextBox}"
+                                Text="{Binding ReportExportFilepath, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+                        <Button Command="{Binding SetReportExportFilePathCommand}" Style="{StaticResource GeneralSetButton}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="Startup Directory" />
+                            <TextBox
+                                Width="225"
+                                FontSize="12"
+                                IsReadOnly="true"
+                                Style="{StaticResource GeneralTextBox}"
+                                Text="{Binding StartUpFilepath, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+                        <Button Command="{Binding SetStartupFilePathCommand}" Style="{StaticResource GeneralSetButton}" />
                     </StackPanel>
                 </StackPanel>
             </Grid>
@@ -98,7 +111,27 @@
                         </StackPanel>
                         <Button Command="{Binding SetPastryTemplateCommand}" Style="{StaticResource GeneralSetButton}" />
                     </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="Label Printer" />
+                            <TextBox
+                                IsReadOnly="true"
+                                Style="{StaticResource GeneralTextBox}"
+                                Text="{Binding LabelPrinter, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+                        <Button Command="{Binding SetLabelPrinterCommand}" Style="{StaticResource GeneralSetButton}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="Standard Printer" />
+                            <TextBox
+                                IsReadOnly="true"
+                                Style="{StaticResource GeneralTextBox}"
+                                Text="{Binding StandardPrinter, UpdateSourceTrigger=PropertyChanged}" />
 
+                        </StackPanel>
+                        <Button Command="{Binding SetStandardPrinterCommand}" Style="{StaticResource GeneralSetButton}" />
+                    </StackPanel>
                     <!--  Number of days  -->
                     <!--<StackPanel Orientation="Horizontal">
                             <StackPanel Orientation="Vertical">

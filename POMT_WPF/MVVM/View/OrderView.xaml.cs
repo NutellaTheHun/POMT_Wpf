@@ -14,7 +14,7 @@ namespace POMT_WPF.MVVM.View
             InitializeComponent();
             ErrorService.Instance().SoiNewItem += NotifyUserNewItem;
             ErrorService.Instance().SoiMultiItem += NotifyUserMultiItemMatch;
-            ErrorService.Instance().SquareKeyMissingEvent += NotifyUserSquareKeyMissing;
+            ErrorService.Instance().NewStartupEvent += NotifyUserSquareKeyMissing;
             ErrorService.RaiseOrderViewEvents();
         }
 

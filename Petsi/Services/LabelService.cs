@@ -39,6 +39,11 @@ namespace Petsi.Services
             LoadLabelMap(cmp.GetItems());
         }
         public FrameBehaviorBase GetFrameBehavior() { return frameBehavior; }
+        
+        /// <summary>
+        /// Recieves the Catalaog and maps any item that contains a standard or cutie label file
+        /// </summary>
+        /// <param name="inputList"></param>
         public void LoadLabelMap(List<CatalogItemPetsi> inputList)
         {
             //CLEAR OR TRYADD
@@ -107,6 +112,12 @@ namespace Petsi.Services
             }
         }
 
+        /// <summary>
+        /// Before print standard and cutie labels, the input to print is verified that the required items have a label mapping in the given dictionary.
+        /// </summary>
+        /// <param name="inputList"></param>
+        /// <param name="labelMap"></param>
+        /// <returns></returns>
         private bool ValidateInputLabelMap(List<LabelPrintData> inputList, Dictionary<string, string> labelMap)
         {
             string test;
@@ -206,6 +217,9 @@ namespace Petsi.Services
         public void ValidateFilePaths()
         {
             CatalogService cmp = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
+
+            if (cutieDirectoryPath == null || pieDirectoryPath == "") { ErrorService.RaiseLabelFilePathNotSet(); return; }
+            if (cutieDirectoryPath == null || pieDirectoryPath == "") { ErrorService.RaiseLabelFilePathNotSet(); return; }
 
             if (!File.Exists(pieDirectoryPath + "Round-Allergen-Label-01.png"))
             {

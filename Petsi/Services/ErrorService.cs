@@ -102,11 +102,17 @@ namespace Petsi.Services
             Instance().InputLabelNotFoundEvent?.Invoke(Instance(), EventArgs.Empty);
         }
 
+        public event EventHandler LabelFilePathNotSetEvent;
+        public static void RaiseLabelFilePathNotSet()
+        {
+            Instance().LabelFilePathNotSetEvent?.Invoke(Instance(), EventArgs.Empty);
+        }
+
         #endregion
 
         public delegate void SquareMissingKeyEvent(object sender, EventArgs e);
-        public event SquareMissingKeyEvent SquareKeyMissingEvent;
-        public void RaiseSquareKeyMissing()
+        public event SquareMissingKeyEvent NewStartupEvent;
+        public void RaiseNewStartupEvent()
         {
             //Instance().SquareKeyMissingEvent?.Invoke(Instance, EventArgs.Empty);
             SquareMissingKeyEventArgs args = new SquareMissingKeyEventArgs();
@@ -153,7 +159,7 @@ namespace Petsi.Services
                 }
                 if (arg.GetType() == typeof(SquareMissingKeyEventArgs))
                 {
-                    Instance().SquareKeyMissingEvent?.Invoke(Instance(), arg);
+                    Instance().NewStartupEvent?.Invoke(Instance(), arg);
                     Instance().mainWindowEvents.Remove(arg);
                 }
             }

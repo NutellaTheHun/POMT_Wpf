@@ -1,10 +1,14 @@
-﻿using Petsi.Filing;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using Newtonsoft.Json;
+using Petsi.Filing;
+using Petsi.Interfaces;
+using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
 using bli = Petsi.Units.BackListItem;
 namespace Petsi.Reports
 {
-    public class BacklistTemplateFormatSelector
+    public class BacklistTemplateFormatSelector : IStartupSubscriber
     {
         private static BacklistTemplateFormatSelector _instance;
         private List<(string name, List<bli> template)> templates;
@@ -143,6 +147,29 @@ namespace Petsi.Reports
                 bli.OAT(),
                 bli.MOCHA()
             });
+        }
+
+        public void Update(List<(string fileName, string filePath)> FileList)
+        {
+            if (FileList == null || FileList.Count == 0) { return; }
+            foreach (var fileListing in FileList)
+            {
+                if (fileListing.fileName == "templates")
+                {
+                    StartupLoadTemplates(fileListing.filePath);
+                    fileBehavior.DataListToFile("templates", templates);
+                    StartupService.Instance.Deregister(this);
+                }
+            }
+        }
+        private void StartupLoadTemplates(string filePath)
+        {
+            string input;
+            if (Directory.Exists(filePath))
+            {
+                input = File.ReadAllText(filePath);
+                templates = JsonConvert.DeserializeObject<List<(string name, List<bli> template)>>(input);
+            }
         }
     }
 }

@@ -18,7 +18,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 if (_labelPrinter != value)
                 {
                     _labelPrinter = value;
-                    config.SetValue(Identifiers.SETTING_LABEL_PRINTER, LabelPrinter);
+                    config.SetVariable(Identifiers.SETTING_LABEL_PRINTER, LabelPrinter);
                     OnPropertyChanged(nameof(LabelPrinter));
                 }
             }
@@ -33,7 +33,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 if(_standardPrinter != value)
                 {
                     _standardPrinter = value;
-                    config.SetValue(Identifiers.SETTING_STD_PRINTER, StandardPrinter);                 
+                    config.SetVariable(Identifiers.SETTING_STD_PRINTER, StandardPrinter);                 
                     OnPropertyChanged(nameof(StandardPrinter));
                 }
             }
@@ -48,8 +48,53 @@ namespace POMT_WPF.MVVM.ViewModel
                 if (_pieLabelsFilepath != value)
                 {
                     _pieLabelsFilepath = value;
-                    config.SetValue(Identifiers.SETTING_PIE_LBL_PATH, PieLabelsFilepath);
+                    config.SetVariable(Identifiers.SETTING_PIE_LBL_PATH, PieLabelsFilepath);
                     OnPropertyChanged(nameof(PieLabelsFilepath));
+                }
+            }
+        }
+
+        private string _environementFilepath;
+        public string EnvironmentFilepath
+        {
+            get { return _environementFilepath; }
+            set
+            {
+                if (_environementFilepath != value)
+                {
+                    _environementFilepath = value;
+                    config.SetVariable(Identifiers.SETTING_ENVIRON_PATH, EnvironmentFilepath);
+                    OnPropertyChanged(nameof(EnvironmentFilepath));
+                }
+            }
+        }
+
+        private string _reportExportFilepath;
+        public string ReportExportFilepath
+        {
+            get { return _reportExportFilepath; }
+            set
+            {
+                if (_reportExportFilepath != value)
+                {
+                    _reportExportFilepath = value;
+                    config.SetVariable(Identifiers.SETTING_REPORT_EXPORT_PATH, ReportExportFilepath);
+                    OnPropertyChanged(nameof(ReportExportFilepath));
+                }
+            }
+        }
+
+        private string _startupFilepath;
+        public string StartUpFilepath
+        {
+            get { return _startupFilepath; }
+            set
+            {
+                if (_startupFilepath != value)
+                {
+                    _startupFilepath = value;
+                    config.SetVariable(Identifiers.SETTING_SQUARE, StartUpFilepath);
+                    OnPropertyChanged(nameof(StartUpFilepath));
                 }
             }
         }
@@ -63,7 +108,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 if (_cutieLabelsFilepath != value)
                 {
                     _cutieLabelsFilepath = value;
-                    config.SetValue(Identifiers.SETTING_CUTIE_LBL_PATH, CutieLabelsFilepath);
+                    config.SetVariable(Identifiers.SETTING_CUTIE_LBL_PATH, CutieLabelsFilepath);
                     OnPropertyChanged(nameof(CutieLabelsFilepath));
                 }
             }
@@ -78,7 +123,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 if (_numberOfDays != value)
                 {
                     _numberOfDays = value;
-                    config.SetValue(Identifiers.SETTING_DAYNUM, NumberOfDays);
+                    config.SetVariable(Identifiers.SETTING_DAYNUM, NumberOfDays);
                     OnPropertyChanged(nameof(_numberOfDays));
                 }
             }
@@ -93,7 +138,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 if (_pieTemplate != value)
                 {
                     _pieTemplate = value;
-                    config.SetValue(Identifiers.SETTING_PIE_TEMPLATE, PieTemplate);
+                    config.SetVariable(Identifiers.SETTING_PIE_TEMPLATE, PieTemplate);
                     OnPropertyChanged(nameof(PieTemplate));
                 }
             }
@@ -108,7 +153,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 if (_pastryTemplate != value)
                 {
                     _pastryTemplate = value;
-                    config.SetValue(Identifiers.SETTING_PASTRY_TEMPLATE, PastryTemplate);
+                    config.SetVariable(Identifiers.SETTING_PASTRY_TEMPLATE, PastryTemplate);
                     OnPropertyChanged(nameof(PastryTemplate));
                 }
             }
@@ -119,6 +164,9 @@ namespace POMT_WPF.MVVM.ViewModel
         public RelayCommand SetStandardPrinterCommand { get; set; }
         public RelayCommand SetPieLabelFilePathCommand { get; set; }
         public RelayCommand SetCutieLabelFilePathCommand { get; set; }
+        public RelayCommand SetEnvironmentFilePathCommand { get; set; }
+        public RelayCommand SetReportExportFilePathCommand { get; set; }
+        public RelayCommand SetStartupFilePathCommand { get; set; }
         public RelayCommand SetPieTemplateCommand { get; set; }
         public RelayCommand SetPastryTemplateCommand { get; set; }
         public RelayCommand ConfigureLabelsCommand { get; set; }
@@ -138,15 +186,18 @@ namespace POMT_WPF.MVVM.ViewModel
 
             SetLabelPrinterCommand = new RelayCommand(o => { SetLabelPrinter(); });
             SetStandardPrinterCommand = new RelayCommand(o => { SetStandardPrinter(); });
-            SetPieLabelFilePathCommand = new RelayCommand(o => { SetLabelsFilePath(Identifiers.SETTING_PIE_LBL_PATH); });
-            SetCutieLabelFilePathCommand = new RelayCommand(o => { SetLabelsFilePath(Identifiers.SETTING_CUTIE_LBL_PATH); });
+            SetPieLabelFilePathCommand = new RelayCommand(o => { SetFilePath(Identifiers.SETTING_PIE_LBL_PATH); });
+            SetCutieLabelFilePathCommand = new RelayCommand(o => { SetFilePath(Identifiers.SETTING_CUTIE_LBL_PATH); });
+            SetEnvironmentFilePathCommand = new RelayCommand(o => { SetFilePath(Identifiers.SETTING_ENVIRON_PATH);  });
+            SetReportExportFilePathCommand = new RelayCommand(o => { SetFilePath(Identifiers.SETTING_REPORT_EXPORT_PATH);  });
+            SetStartupFilePathCommand = new RelayCommand(o => { SetFilePath(Identifiers.SETTING_STARTUP);  });
             SetPieTemplateCommand = new RelayCommand(o => { SetPieTemplate(); });
             SetPastryTemplateCommand = new RelayCommand(o => { SetPastryTemplate(); });
             ConfigureLabelsCommand = new RelayCommand(o => { MainViewModel.Instance().OpenConfigureLabelView(true); });
             ConfigureTemplatesCommand = new RelayCommand(o => { MainViewModel.Instance().OpenTemplateListView(true); });
         }
 
-        public void SetLabelsFilePath(string pieFp)
+        public void SetFilePath(string pieFp)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             fbd.Description = "Select folder containing pie and cutie label folders";
@@ -161,9 +212,21 @@ namespace POMT_WPF.MVVM.ViewModel
                 {
                     PieLabelsFilepath = sSelectedPath;
                 }
-                else
+                else if(pieFp == Identifiers.SETTING_CUTIE_LBL_PATH)
                 {
                     CutieLabelsFilepath = sSelectedPath;
+                }
+                else if (pieFp == Identifiers.SETTING_ENVIRON_PATH)
+                {
+                    EnvironmentFilepath = sSelectedPath;
+                }
+                else if (pieFp == Identifiers.SETTING_REPORT_EXPORT_PATH)
+                {
+                    ReportExportFilepath = sSelectedPath;
+                }
+                else if (pieFp == Identifiers.SETTING_STARTUP)
+                {
+                    StartUpFilepath = sSelectedPath;
                 }
             }
         }

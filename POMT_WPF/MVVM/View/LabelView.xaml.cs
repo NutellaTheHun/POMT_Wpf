@@ -18,6 +18,7 @@ namespace POMT_WPF.MVVM.View
             ErrorService.Instance().LabelServiceValidateFilePath += ValidateFileServiceErrorWindow;
             ErrorService.Instance().LabelPrinterNotFoundEvent += PrinterNotFoundErrorWindow;
             ErrorService.Instance().LabelPrinterNotFoundEvent += PrinterNotFoundErrorWindow;
+            ErrorService.Instance().LabelFilePathNotSetEvent += LabelFilePathsNotSetErrorWindow;
             ErrorService.RaiseLabelEvents();
         }
         private void ValidateFileServiceErrorWindow(object sender, EventArgs e)
@@ -32,6 +33,12 @@ namespace POMT_WPF.MVVM.View
         private void PrinterNotFoundErrorWindow(object sender, EventArgs e)
         {
             GeneralErrorWindow errorWindow = new GeneralErrorWindow("Printer not found, please check settings for correct printer.");
+            errorWindow.Owner = System.Windows.Application.Current.MainWindow;
+            errorWindow.Show();
+        }
+        private void LabelFilePathsNotSetErrorWindow(object sender, EventArgs e)
+        {
+            GeneralErrorWindow errorWindow = new GeneralErrorWindow("Standard or Cutie Label Filepath in settings not set.");
             errorWindow.Owner = System.Windows.Application.Current.MainWindow;
             errorWindow.Show();
         }

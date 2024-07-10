@@ -52,6 +52,7 @@ namespace POMT_WPF.MVVM.ViewModel
         {
             _newItem.CatalogObjectId = CatalogItemPetsi.GenerateCatalogId();
             _view.Close();
+            ObsCatalogModelSingleton.Instance.AddItem(_newItem);
             MainViewModel.Instance().OpenCatalogItemView(_newItem);
         }
 

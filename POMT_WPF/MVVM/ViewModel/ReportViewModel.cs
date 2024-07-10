@@ -89,7 +89,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 if( _pieTemplateName != value)
                 {
                     _pieTemplateName = value;
-                    config.SetValue(Identifiers.SETTING_PIE_TEMPLATE, PieTemplateName);
+                    config.SetVariable(Identifiers.SETTING_PIE_TEMPLATE, PieTemplateName);
                     OnPropertyChanged(nameof(PieTemplateName));
                 }
             } 
@@ -104,7 +104,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 if (_pastryTemplateName != value)
                 {
                     _pastryTemplateName = value;
-                    config.SetValue(Identifiers.SETTING_PASTRY_TEMPLATE, PastryTemplateName);
+                    config.SetVariable(Identifiers.SETTING_PASTRY_TEMPLATE, PastryTemplateName);
                     OnPropertyChanged(nameof(PastryTemplateName));
                 }
             }

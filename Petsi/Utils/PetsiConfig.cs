@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using Petsi.Filing;
+using Petsi.Services;
 using Petsi.Utils;
 
 namespace Petsi.Utils
@@ -8,8 +9,10 @@ namespace Petsi.Utils
     {
         private static PetsiConfig _instance;
         List<(string,string)> variables;
-        static readonly string hardPath = "D:/Git-Repos/POMT_WPF/";
-        static readonly string configPath = "D:/Git-Repos/POMT_WPF/Petsi/config.txt";
+
+        //static readonly string hardPath = "D:/Git-Repos/POMT_WPF/";
+        //static readonly string configPath = "D:/Git-Repos/POMT_WPF/Petsi/config.txt";
+
         static readonly string rootDir = System.AppDomain.CurrentDomain.BaseDirectory + "/petsiDir/";
         static readonly string configFile = "petsiConfig.txt";
         static readonly string configFilePath = rootDir + configFile;
@@ -32,7 +35,6 @@ namespace Petsi.Utils
 
             if (!File.Exists(configFilePath))
             { 
-                
                 SystemLogger.Log("PetsiConfig file created at: " + configFilePath);
                 InitConfigFile();             
             }
@@ -61,10 +63,10 @@ namespace Petsi.Utils
                 Identifiers.SETTING_PASTRY_TEMPLATE, //U
                 Identifiers.SETTING_SQUARE //~AU
             };
-            // Create a StringBuilder to store the updated contents
-            StringBuilder sb = new StringBuilder();
+            
 
-            // Iterate through the variables list and append each variable to the StringBuilder
+            StringBuilder sb = new StringBuilder();
+            
             foreach (var variable in defaultVars)
             {
                 if(variable == Identifiers.SETTING_REPORT_CNT_PATH)
@@ -84,11 +86,9 @@ namespace Petsi.Utils
                 }
             }
 
-            // Write the updated contents back to the config file
             File.WriteAllText(configFilePath, sb.ToString());
-            
-           // SetValue(Identifiers.SETTING_REPORT_CNT_PATH, "0");
-            //SetValue(Identifiers.SETTING_FILESERVICE_PATH, rootDir+"fileService");
+
+            ErrorService.Instance().RaiseNewStartupEvent();
         }
 
        
@@ -98,7 +98,7 @@ namespace Petsi.Utils
             return variable.Item2;
         }
 
-        public void SetValue(string key, string value)
+        public void SetVariable(string key, string value)
         {
             var variable = variables.FirstOrDefault(v => v.Item1 == key);
             if (variable != default)
@@ -123,6 +123,7 @@ namespace Petsi.Utils
             File.WriteAllText(/*configPath*/configFilePath, sb.ToString());
         }
 
+        /*
         public void InitVariables()
         {
             using (StreamReader sr = new StreamReader(configPath))
@@ -135,7 +136,7 @@ namespace Petsi.Utils
                     variables.Add((args[0], args[1]));
                 }
             }
-        }
+        }*/
         
         public void LoadVariables()
         {

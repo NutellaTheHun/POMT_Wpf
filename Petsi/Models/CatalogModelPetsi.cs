@@ -1,4 +1,5 @@
-﻿using Petsi.CommandLine;
+﻿using Newtonsoft.Json;
+using Petsi.CommandLine;
 using Petsi.Filing;
 using Petsi.Interfaces;
 using Petsi.Labels;
@@ -7,6 +8,7 @@ using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
 using System.Collections.ObjectModel;
+using System.IO;
 
 namespace Petsi.Models
 {
@@ -14,7 +16,7 @@ namespace Petsi.Models
     ///  <para>Data model of products from squares catalog API. products are represented as CatalogItemPetsi data types. </para> 
     ///  <para>INTERFACES: ICatalogService</para> 
     /// </summary>
-    public class CatalogModelPetsi : ModelBase, IModelInput, IModelPublishable
+    public class CatalogModelPetsi : ModelBase, IModelInput, IModelPublishable, IStartupSubscriber
     {
         List<ServiceBase> ServiceListeners;
         /// <summary>
@@ -37,6 +39,8 @@ namespace Petsi.Models
             frameBehavior = new CatalogModelFrameBehavior(this);
             fileBehavior = new FileBehavior("CatalogModel");
             ServiceListeners = new List<ServiceBase>();
+
+            StartupService.Instance.Register(this);
 
             SetModelName(Identifiers.MODEL_CATALOG);
             ModelManagerSingleton.GetInstance().Register(this);
@@ -137,7 +141,7 @@ namespace Petsi.Models
         }
         private void SaveMainModel()
         {
-            GetFileBehavior().DataListToFile(Identifiers.MAIN_MODEL_CATALOG_FILE, GetItems());
+            fileBehavior.DataListToFile(Identifiers.MAIN_MODEL_CATALOG_FILE, GetItems());
         }
         private void FinalizeMainModel()
         {
@@ -260,7 +264,29 @@ namespace Petsi.Models
             SaveMainModel();
         }
 
-       
+        public void Update(List<(string fileName, string filePath)> FileList)
+        {
+            if(FileList == null || FileList.Count == 0) { return; }
+            foreach (var fileListing in FileList)
+            {
+                if(fileListing.fileName == "mainCatalogModel")
+                {
+                    StartupLoadCatalog(fileListing.filePath);
+                    fileBehavior.DataListToFile(Identifiers.MAIN_MODEL_CATALOG_FILE, GetItems());
+                    StartupService.Instance.Deregister(this);
+                }
+            }
+        }
+
+        private void StartupLoadCatalog(string filePath)
+        {
+            string input;
+            if (Directory.Exists(filePath))
+            {
+                input = File.ReadAllText(filePath);
+                items = JsonConvert.DeserializeObject<List<CatalogItemPetsi>>(input);
+            }        
+        }
 
         /*
         public void ModifyItem(CatalogItemPetsi catalogItem)

@@ -1,4 +1,6 @@
-﻿using Petsi.CommandLine;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using Newtonsoft.Json;
+using Petsi.CommandLine;
 using Petsi.Filing;
 using Petsi.Interfaces;
 using Petsi.Managers;
@@ -9,7 +11,7 @@ using System.Collections.ObjectModel;
 
 namespace Petsi.Models
 {
-    public class OrderModelPetsi : ModelBase, IModelInput, IOrderModelPublisher
+    public class OrderModelPetsi : ModelBase, IModelInput, IOrderModelPublisher, IStartupSubscriber
     {
         List<PetsiOrder> Orders;
 
@@ -17,6 +19,9 @@ namespace Petsi.Models
         HashSet<string> OrderTypesSet;
         OrderModelFrameBehavior frameBehavior;
         FileBehavior fileBehavior;
+
+        private bool oneShotStartupRecieved;
+        private bool periodicStartupRecieved;
 
         public OrderModelPetsi()
         {
@@ -30,6 +35,8 @@ namespace Petsi.Models
             Orders = new List<PetsiOrder>();
             InitSerializedOrders();
             OrderTypesSet = InitOrderTypes();
+
+            StartupService.Instance.Register(this);
         }
         public void Notify()
         {
@@ -454,7 +461,46 @@ namespace Petsi.Models
             }
         }
 
-       
+        public void Update(List<(string fileName, string filePath)> FileList)
+        {
+            if (FileList == null || FileList.Count == 0) { return; }
+            foreach (var fileListing in FileList)
+            {
+                if (fileListing.fileName == Identifiers.PERIODIC_ORDERS)
+                {
+                    StartupLoadPeriodicOrders(fileListing.filePath);
+                    fileBehavior.DataListToFile(Identifiers.PERIODIC_ORDERS, Orders);
+                    periodicStartupRecieved = true;
+                }
+                if (fileListing.fileName == Identifiers.ONE_SHOT_ORDERS)
+                {
+                    StartupLoadOneShotOrders(fileListing.filePath);
+                    fileBehavior.DataListToFile(Identifiers.ONE_SHOT_ORDERS, Orders);
+                    oneShotStartupRecieved = true;
+                }
+            }
+            if (oneShotStartupRecieved && periodicStartupRecieved) { StartupService.Instance.Deregister(this); }
+        }
+        private void StartupLoadPeriodicOrders(string filePath)
+        {
+            string input;
+            if (Directory.Exists(filePath))
+            {
+                input = File.ReadAllText(filePath);
+                List<PetsiOrder> items = JsonConvert.DeserializeObject<List<PetsiOrder>>(input);
+                Orders.AddRange(items);
+            }
+        }
+        private void StartupLoadOneShotOrders(string filePath)
+        {
+            string input;
+            if (Directory.Exists(filePath))
+            {
+                input = File.ReadAllText(filePath);
+                List<PetsiOrder> items = JsonConvert.DeserializeObject<List<PetsiOrder>>(input);
+                Orders.AddRange(items);
+            }
+        }
     }
 }
 
