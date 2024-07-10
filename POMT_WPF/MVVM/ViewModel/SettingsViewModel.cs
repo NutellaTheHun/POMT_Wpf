@@ -39,17 +39,32 @@ namespace POMT_WPF.MVVM.ViewModel
             }
         }
 
-        private string _labelsFilepath;
-        public string LabelsFilepath
+        private string _pieLabelsFilepath;
+        public string PieLabelsFilepath
         {
-            get { return _labelsFilepath; }
+            get { return _pieLabelsFilepath; }
             set
             {
-                if (_labelsFilepath != value)
+                if (_pieLabelsFilepath != value)
                 {
-                    _labelsFilepath = value;
-                    config.SetValue(Identifiers.SETTING_LABEL_FP, LabelsFilepath);
-                    OnPropertyChanged(nameof(LabelsFilepath));
+                    _pieLabelsFilepath = value;
+                    config.SetValue(Identifiers.SETTING_PIE_LBL_PATH, PieLabelsFilepath);
+                    OnPropertyChanged(nameof(PieLabelsFilepath));
+                }
+            }
+        }
+
+        private string _cutieLabelsFilepath;
+        public string CutieLabelsFilepath
+        {
+            get { return _cutieLabelsFilepath; }
+            set
+            {
+                if (_cutieLabelsFilepath != value)
+                {
+                    _cutieLabelsFilepath = value;
+                    config.SetValue(Identifiers.SETTING_CUTIE_LBL_PATH, CutieLabelsFilepath);
+                    OnPropertyChanged(nameof(CutieLabelsFilepath));
                 }
             }
         }
@@ -102,7 +117,8 @@ namespace POMT_WPF.MVVM.ViewModel
 
         public RelayCommand SetLabelPrinterCommand { get; set; }
         public RelayCommand SetStandardPrinterCommand { get; set; }
-        public RelayCommand SetLabelFilePathCommand { get; set; }
+        public RelayCommand SetPieLabelFilePathCommand { get; set; }
+        public RelayCommand SetCutieLabelFilePathCommand { get; set; }
         public RelayCommand SetPieTemplateCommand { get; set; }
         public RelayCommand SetPastryTemplateCommand { get; set; }
         public RelayCommand ConfigureLabelsCommand { get; set; }
@@ -114,21 +130,23 @@ namespace POMT_WPF.MVVM.ViewModel
             config = PetsiConfig.GetInstance();
             LabelPrinter = config.GetVariable(Identifiers.SETTING_LABEL_PRINTER);
             StandardPrinter = config.GetVariable(Identifiers.SETTING_STD_PRINTER);
-            LabelsFilepath = config.GetVariable(Identifiers.SETTING_LABEL_FP);
+            PieLabelsFilepath = config.GetVariable(Identifiers.SETTING_PIE_LBL_PATH);
+            CutieLabelsFilepath = config.GetVariable(Identifiers.SETTING_CUTIE_LBL_PATH);
             NumberOfDays = config.GetVariable(Identifiers.SETTING_DAYNUM);
             PieTemplate = config.GetVariable(Identifiers.SETTING_PIE_TEMPLATE);
             PastryTemplate = config.GetVariable(Identifiers.SETTING_PASTRY_TEMPLATE);
 
             SetLabelPrinterCommand = new RelayCommand(o => { SetLabelPrinter(); });
             SetStandardPrinterCommand = new RelayCommand(o => { SetStandardPrinter(); });
-            SetLabelFilePathCommand = new RelayCommand(o => { SetLabelsFilePath(); });
+            SetPieLabelFilePathCommand = new RelayCommand(o => { SetLabelsFilePath(Identifiers.SETTING_PIE_LBL_PATH); });
+            SetCutieLabelFilePathCommand = new RelayCommand(o => { SetLabelsFilePath(Identifiers.SETTING_CUTIE_LBL_PATH); });
             SetPieTemplateCommand = new RelayCommand(o => { SetPieTemplate(); });
             SetPastryTemplateCommand = new RelayCommand(o => { SetPastryTemplate(); });
             ConfigureLabelsCommand = new RelayCommand(o => { MainViewModel.Instance().OpenConfigureLabelView(true); });
             ConfigureTemplatesCommand = new RelayCommand(o => { MainViewModel.Instance().OpenTemplateListView(true); });
         }
 
-        public void SetLabelsFilePath()
+        public void SetLabelsFilePath(string pieFp)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             fbd.Description = "Select folder containing pie and cutie label folders";
@@ -139,7 +157,14 @@ namespace POMT_WPF.MVVM.ViewModel
             }
             if(sSelectedPath != "")
             {
-                LabelsFilepath = sSelectedPath;
+                if(pieFp == Identifiers.SETTING_PIE_LBL_PATH)
+                {
+                    PieLabelsFilepath = sSelectedPath;
+                }
+                else
+                {
+                    CutieLabelsFilepath = sSelectedPath;
+                }
             }
         }
         private void SetStandardPrinter()

@@ -358,11 +358,13 @@ namespace POMT_WPF.MVVM.ViewModel
         }
         private void SetStdLblFileCmd()
         {
-            string labelsFilepath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_LABEL_FP);
+            //string labelsFilepath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_LABEL_FP);
+            string labelsFilepath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_PIE_LBL_PATH);
             if (labelsFilepath != null || labelsFilepath != "")
             {
                 OpenFileDialog fileDialog = new OpenFileDialog();
-                fileDialog.InitialDirectory = labelsFilepath + "\\Pie";
+                //fileDialog.InitialDirectory = labelsFilepath + "\\Pie";
+                fileDialog.InitialDirectory = labelsFilepath;
                 if (fileDialog.ShowDialog() == DialogResult.OK)
                 {
                     StandardLabelFilePath = System.IO.Path.GetFileName(fileDialog.FileName);
@@ -371,11 +373,13 @@ namespace POMT_WPF.MVVM.ViewModel
         }
         private void SetCutieLblFileCmd()
         {
-            string labelsFilepath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_LABEL_FP);
+            //string labelsFilepath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_LABEL_FP);
+            string labelsFilepath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_CUTIE_LBL_PATH);
             if (labelsFilepath != null || labelsFilepath != "")
             {
                 OpenFileDialog fileDialog = new OpenFileDialog();
-                fileDialog.InitialDirectory = labelsFilepath + "\\Cuties";
+                //fileDialog.InitialDirectory = labelsFilepath + "\\Cuties";
+                fileDialog.InitialDirectory = labelsFilepat;
                 if (fileDialog.ShowDialog() == DialogResult.OK)
                 {
                     CutieLabelFilePath = System.IO.Path.GetFileName(fileDialog.FileName);

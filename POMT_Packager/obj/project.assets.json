@@ -23254,7 +23254,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\nbril\\.nuget\\packages\\": {},
+    "C:\\Users\\Nathan\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
@@ -23263,14 +23263,14 @@
       "projectUniqueName": "D:\\Git-Repos\\POMT_WPF\\POMT_Packager\\POMT_Packager.wapproj",
       "projectName": "POMT_Packager",
       "projectPath": "D:\\Git-Repos\\POMT_WPF\\POMT_Packager\\POMT_Packager.wapproj",
-      "packagesPath": "C:\\Users\\nbril\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\Nathan\\.nuget\\packages\\",
       "outputPath": "D:\\Git-Repos\\POMT_WPF\\POMT_Packager\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\nbril\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Nathan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -23321,7 +23321,6 @@
           "net471",
           "net472",
           "net48",
-          "net481",
           "net8.0-windows10.0.22621"
         ],
         "assetTargetFallback": true,
@@ -23357,7 +23356,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'APIMatic.Core 0.3.6' was restored using '.NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1, net8.0-windows10.0.22621' instead of the project target framework 'UAP,Version=v10.0.14393'. This package may not be fully compatible with your project.",
+      "message": "Package 'APIMatic.Core 0.3.6' was restored using '.NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, net8.0-windows10.0.22621' instead of the project target framework 'UAP,Version=v10.0.14393'. This package may not be fully compatible with your project.",
       "libraryId": "APIMatic.Core",
       "targetGraphs": [
         "UAP,Version=v10.0.14393"
@@ -23367,7 +23366,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'ClosedXML 0.102.2' was restored using '.NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1, net8.0-windows10.0.22621' instead of the project target framework 'UAP,Version=v10.0.14393'. This package may not be fully compatible with your project.",
+      "message": "Package 'ClosedXML 0.102.2' was restored using '.NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, net8.0-windows10.0.22621' instead of the project target framework 'UAP,Version=v10.0.14393'. This package may not be fully compatible with your project.",
       "libraryId": "ClosedXML",
       "targetGraphs": [
         "UAP,Version=v10.0.14393"
@@ -23377,7 +23376,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'CsvHelper 30.1.0' was restored using '.NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1, net8.0-windows10.0.22621' instead of the project target framework 'UAP,Version=v10.0.14393'. This package may not be fully compatible with your project.",
+      "message": "Package 'CsvHelper 30.1.0' was restored using '.NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, net8.0-windows10.0.22621' instead of the project target framework 'UAP,Version=v10.0.14393'. This package may not be fully compatible with your project.",
       "libraryId": "CsvHelper",
       "targetGraphs": [
         "UAP,Version=v10.0.14393"
@@ -23387,7 +23386,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'Irony.NetCore 1.0.11' was restored using '.NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1, net8.0-windows10.0.22621' instead of the project target framework 'UAP,Version=v10.0.14393'. This package may not be fully compatible with your project.",
+      "message": "Package 'Irony.NetCore 1.0.11' was restored using '.NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, net8.0-windows10.0.22621' instead of the project target framework 'UAP,Version=v10.0.14393'. This package may not be fully compatible with your project.",
       "libraryId": "Irony.NetCore",
       "targetGraphs": [
         "UAP,Version=v10.0.14393"
@@ -23397,7 +23396,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'MahApps.Metro.IconPacks 4.11.0' was restored using '.NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1, net8.0-windows10.0.22621' instead of the project target framework 'UAP,Version=v10.0.14393'. This package may not be fully compatible with your project.",
+      "message": "Package 'MahApps.Metro.IconPacks 4.11.0' was restored using '.NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, net8.0-windows10.0.22621' instead of the project target framework 'UAP,Version=v10.0.14393'. This package may not be fully compatible with your project.",
       "libraryId": "MahApps.Metro.IconPacks",
       "targetGraphs": [
         "UAP,Version=v10.0.14393"
@@ -23407,7 +23406,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'Microsoft.Bcl.HashCode 1.1.1' was restored using '.NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1, net8.0-windows10.0.22621' instead of the project target framework 'UAP,Version=v10.0.14393'. This package may not be fully compatible with your project.",
+      "message": "Package 'Microsoft.Bcl.HashCode 1.1.1' was restored using '.NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, net8.0-windows10.0.22621' instead of the project target framework 'UAP,Version=v10.0.14393'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.Bcl.HashCode",
       "targetGraphs": [
         "UAP,Version=v10.0.14393"
@@ -23417,7 +23416,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'Microsoft.Json.Pointer 2.3.0' was restored using '.NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1, net8.0-windows10.0.22621' instead of the project target framework 'UAP,Version=v10.0.14393'. This package may not be fully compatible with your project.",
+      "message": "Package 'Microsoft.Json.Pointer 2.3.0' was restored using '.NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, net8.0-windows10.0.22621' instead of the project target framework 'UAP,Version=v10.0.14393'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.Json.Pointer",
       "targetGraphs": [
         "UAP,Version=v10.0.14393"
@@ -23427,7 +23426,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'SixLabors.Fonts 1.0.0' was restored using '.NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1, net8.0-windows10.0.22621' instead of the project target framework 'UAP,Version=v10.0.14393'. This package may not be fully compatible with your project.",
+      "message": "Package 'SixLabors.Fonts 1.0.0' was restored using '.NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, net8.0-windows10.0.22621' instead of the project target framework 'UAP,Version=v10.0.14393'. This package may not be fully compatible with your project.",
       "libraryId": "SixLabors.Fonts",
       "targetGraphs": [
         "UAP,Version=v10.0.14393"
@@ -23437,7 +23436,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'Square 34.0.1' was restored using '.NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1, net8.0-windows10.0.22621' instead of the project target framework 'UAP,Version=v10.0.14393'. This package may not be fully compatible with your project.",
+      "message": "Package 'Square 34.0.1' was restored using '.NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, net8.0-windows10.0.22621' instead of the project target framework 'UAP,Version=v10.0.14393'. This package may not be fully compatible with your project.",
       "libraryId": "Square",
       "targetGraphs": [
         "UAP,Version=v10.0.14393"
@@ -23447,7 +23446,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'System.Collections.Immutable 7.0.0' was restored using '.NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1, net8.0-windows10.0.22621' instead of the project target framework 'UAP,Version=v10.0.14393'. This package may not be fully compatible with your project.",
+      "message": "Package 'System.Collections.Immutable 7.0.0' was restored using '.NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, net8.0-windows10.0.22621' instead of the project target framework 'UAP,Version=v10.0.14393'. This package may not be fully compatible with your project.",
       "libraryId": "System.Collections.Immutable",
       "targetGraphs": [
         "UAP,Version=v10.0.14393"
@@ -23457,7 +23456,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'System.IO.Packaging 6.0.0' was restored using '.NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1, net8.0-windows10.0.22621' instead of the project target framework 'UAP,Version=v10.0.14393'. This package may not be fully compatible with your project.",
+      "message": "Package 'System.IO.Packaging 6.0.0' was restored using '.NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, net8.0-windows10.0.22621' instead of the project target framework 'UAP,Version=v10.0.14393'. This package may not be fully compatible with your project.",
       "libraryId": "System.IO.Packaging",
       "targetGraphs": [
         "UAP,Version=v10.0.14393"
@@ -23467,7 +23466,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'System.Linq.Async 4.0.0' was restored using '.NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1, net8.0-windows10.0.22621' instead of the project target framework 'UAP,Version=v10.0.14393'. This package may not be fully compatible with your project.",
+      "message": "Package 'System.Linq.Async 4.0.0' was restored using '.NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, net8.0-windows10.0.22621' instead of the project target framework 'UAP,Version=v10.0.14393'. This package may not be fully compatible with your project.",
       "libraryId": "System.Linq.Async",
       "targetGraphs": [
         "UAP,Version=v10.0.14393"
@@ -23477,7 +23476,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'System.Runtime.CompilerServices.Unsafe 6.0.0' was restored using '.NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1, net8.0-windows10.0.22621' instead of the project target framework 'UAP,Version=v10.0.14393'. This package may not be fully compatible with your project.",
+      "message": "Package 'System.Runtime.CompilerServices.Unsafe 6.0.0' was restored using '.NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, net8.0-windows10.0.22621' instead of the project target framework 'UAP,Version=v10.0.14393'. This package may not be fully compatible with your project.",
       "libraryId": "System.Runtime.CompilerServices.Unsafe",
       "targetGraphs": [
         "UAP,Version=v10.0.14393"
@@ -23487,7 +23486,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'XLParser 1.5.2' was restored using '.NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1, net8.0-windows10.0.22621' instead of the project target framework 'UAP,Version=v10.0.14393'. This package may not be fully compatible with your project.",
+      "message": "Package 'XLParser 1.5.2' was restored using '.NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, net8.0-windows10.0.22621' instead of the project target framework 'UAP,Version=v10.0.14393'. This package may not be fully compatible with your project.",
       "libraryId": "XLParser",
       "targetGraphs": [
         "UAP,Version=v10.0.14393"

@@ -95,6 +95,13 @@ namespace Petsi.Utils
         public const string SETTING_PASTRY_TEMPLATE = "pastryTemplateName";
         public const string SETTING_LABEL_FP = "labelDirectory";
         public const string SETTING_DAYNUM = "environPeriod";
+        public const string SETTING_FILESERVICE_PATH = "fileServicePath";
+        public const string SETTING_ENVIRON_PATH = "environFileServicePath";
+        public const string SETTING_REPORT_CNT_PATH = "reportCountPath";
+        public const string SETTING_REPORT_EXPORT_PATH = "createdReportPath";
+        public const string SETTING_CUTIE_LBL_PATH = "cutieDirectory";
+        public const string SETTING_PIE_LBL_PATH = "standardDirectory";
+        public const string SETTING_SQUARE = "squareKey";
 
         public static List<string> GetOrderTypes()
         {
