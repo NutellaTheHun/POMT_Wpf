@@ -19,11 +19,11 @@ namespace POMT_WPF.MVVM.ViewModel
         public RelayCommand GoBack { get; set; }
 
 
-        private bool _isFromSettingsVM;
+        public bool IsFromSettingsVM;
 
-        public TemplateListViewModel(bool isFromSettingsVM)
+        public TemplateListViewModel(/*bool isFromSettingsVM*/)
         {
-            _isFromSettingsVM = isFromSettingsVM;
+            //_isFromSettingsVM = isFromSettingsVM;
             _templateService = ReportTemplateService.Instance();
             _templateService.Subscribe(this);
             TemplateNames = new ObservableCollection<string>(_templateService.GetTemplateNames());
@@ -31,7 +31,7 @@ namespace POMT_WPF.MVVM.ViewModel
             RemoveTemplate = new RelayCommand(o => { RemoveTemplateCmd(o); });
             ViewTemplate = new RelayCommand(o => { ViewTemplateCmd(o); });
             CreateTemplate = new RelayCommand(o => {CreateTemplateCmd();});
-            GoBack = new RelayCommand(o => { MainViewModel.Instance().BackTmpltLstView(_isFromSettingsVM); });
+            GoBack = new RelayCommand(o => { MainViewModel.Instance().BackTmpltLstView(IsFromSettingsVM); });
         }
         public void Update()
         {

@@ -5,6 +5,10 @@ namespace POMT_WPF.MVVM.ViewModel
 {
     public class MainViewModel : ObservableObject
     {
+        public CatalogItemPetsi viewedCatalogItem;
+        public PetsiOrder viewedOrderItem;
+        public string orderViewFilter;
+
 		public PetsiOrder SelectedOrder;
 
         public RelayCommand CloseApp { get; set; }
@@ -48,6 +52,7 @@ namespace POMT_WPF.MVVM.ViewModel
             if (o is PetsiOrder order)
             {
                 OrderItemVM = new OrderItemViewModel(order);
+                viewedOrderItem = order;
                 CurrentView = OrderItemVM;
             }
         }
@@ -60,20 +65,26 @@ namespace POMT_WPF.MVVM.ViewModel
 
         public void OpenCatalogItemView(object? o)
         {
-            if (o is CatalogItemPetsi item) CatalogItemVM = new CatalogItemViewModel(item);
+            if (o is CatalogItemPetsi item)
+            {
+                CatalogItemVM = new CatalogItemViewModel(item);
+                viewedCatalogItem = item;
+            }
             else CatalogItemVM = new CatalogItemViewModel(null);
             CurrentView = CatalogItemVM;
         }
 
         public void OpenConfigureLabelView(bool IsFromSettingsVM)
         {
-            ConfigureLabelsVM = new ConfigureLabelsViewModel(IsFromSettingsVM);
+            if(ConfigureLabelsVM == null) { ConfigureLabelsVM = new ConfigureLabelsViewModel(/*IsFromSettingsVM*/); }
+            ConfigureLabelsVM.IsFromSettingsVM = IsFromSettingsVM;
             CurrentView = ConfigureLabelsVM;
         }
 
         public void OpenTemplateListView(bool IsFromSettingsVM)
         {
-            TemplateListVM = new TemplateListViewModel(IsFromSettingsVM);
+            if(TemplateListVM == null) { TemplateListVM = new TemplateListViewModel(/*IsFromSettingsVM*/); }
+            TemplateListVM.IsFromSettingsVM = IsFromSettingsVM;
             CurrentView = TemplateListVM;
         }
 
@@ -123,12 +134,13 @@ namespace POMT_WPF.MVVM.ViewModel
 
         private MainViewModel()
 		{
+            
             CatalogVM = new CatalogViewModel();
             LabelVM = new LabelViewModel();
             OrderVM = new OrderViewModel();
             ReportVM = new ReportViewModel();
             SettingsVM = new SettingsViewModel();
-
+            
             CurrentView = OrderVM;
 
             CloseApp = new RelayCommand(o =>{ System.Windows.Application.Current.Shutdown(); });
@@ -142,6 +154,8 @@ namespace POMT_WPF.MVVM.ViewModel
 			ReportViewCommand = new RelayCommand(o =>{ CurrentView = ReportVM; });
 
 			SettingsViewCommand = new RelayCommand(o =>{ CurrentView = SettingsVM; });
-        }
+
+            orderViewFilter = "All_rb";
+        } 
     }
 }

@@ -45,11 +45,11 @@ namespace POMT_WPF.MVVM.ViewModel
         public RelayCommand CreateLabelMapping { get; set; }
         public RelayCommand RemoveLabelMapping { get; set; }
 
-        private bool _isFromSettingsVM;
+        public bool IsFromSettingsVM;
 
-        public ConfigureLabelsViewModel(bool isFromSettingsVM)
+        public ConfigureLabelsViewModel(/*bool isFromSettingsVM*/)
         {
-            _isFromSettingsVM = isFromSettingsVM;
+            //_isFromSettingsVM = isFromSettingsVM;
             cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
             ObsCatalogModelSingleton.Instance.Subscribe(this);
             Items = new ObservableCollection<CatalogItemPetsi>( 
@@ -58,7 +58,7 @@ namespace POMT_WPF.MVVM.ViewModel
 
             SelectedItem = null;
 
-            GoBack = new RelayCommand(o => { MainViewModel.Instance().BackLabelView(isFromSettingsVM); });
+            GoBack = new RelayCommand(o => { MainViewModel.Instance().BackLabelView(IsFromSettingsVM); });
             ViewLabelMapping = new RelayCommand(o => { OpenLabelMapCommand(o); } );
             RemoveLabelMapping = new RelayCommand(o => { RemoveLabelMapCommand(o); } );
             CreateLabelMapping = new RelayCommand(o => { CreateLabelMapCommand(); } );

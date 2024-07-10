@@ -75,32 +75,44 @@
                     Margin="0,10,0,10"
                     Orientation="Horizontal">
                     <RadioButton
+                        x:Name="All_rb"
+                        Click="All_rb_Click"
                         Command="{Binding FilterNone}"
                         Content="All "
                         GroupName="g1"
                         IsChecked="True"
                         Style="{StaticResource tabButton}" />
                     <RadioButton
+                        x:Name="Wholesale_rb"
+                        Click="Wholesale_rb_Click"
                         Command="{Binding FilterWholesale}"
                         Content="Wholesale"
                         GroupName="g1"
                         Style="{StaticResource tabButton}" />
                     <RadioButton
+                        x:Name="Square_rb"
+                        Click="Square_rb_Click"
                         Command="{Binding FilterSquare}"
                         Content="Square"
                         GroupName="g1"
                         Style="{StaticResource tabButton}" />
                     <RadioButton
+                        x:Name="Retail_rb"
+                        Click="Retail_rb_Click"
                         Command="{Binding FilterRetail}"
                         Content="Retail"
                         GroupName="g1"
                         Style="{StaticResource tabButton}" />
                     <RadioButton
+                        x:Name="Special_rb"
+                        Click="Special_rb_Click"
                         Command="{Binding FilterSpecial}"
                         Content="Special"
                         GroupName="g1"
                         Style="{StaticResource tabButton}" />
                     <RadioButton
+                        x:Name="Frozen_rb"
+                        Click="Frozen_rb_Click"
                         Command="{Binding FilterFrozen}"
                         Content="Frozen"
                         GroupName="g1"

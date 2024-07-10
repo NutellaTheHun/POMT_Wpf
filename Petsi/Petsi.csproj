@@ -13,10 +13,13 @@
   <ItemGroup>
     <Compile Remove="controllers\**" />
     <Compile Remove="Labels\Files\**" />
+    <Compile Remove="views\**" />
     <EmbeddedResource Remove="controllers\**" />
     <EmbeddedResource Remove="Labels\Files\**" />
+    <EmbeddedResource Remove="views\**" />
     <None Remove="controllers\**" />
     <None Remove="Labels\Files\**" />
+    <None Remove="views\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,10 +39,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="views\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="ClosedXML" Version="0.102.2" />
     <PackageReference Include="CsvHelper" Version="30.1.0" />
   </ItemGroup>
@@ -52,12 +51,6 @@
     <Reference Include="office">
       <HintPath>C:\Program Files\Microsoft Office\root\vfs\ProgramFilesX86\Microsoft Office\Office16\DCF\office.dll</HintPath>
     </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="config.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
   </ItemGroup>
 
   <ItemGroup>

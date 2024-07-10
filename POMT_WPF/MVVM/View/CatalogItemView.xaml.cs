@@ -1,7 +1,6 @@
 ﻿using Petsi.Events.ItemEvents;
 using Petsi.Managers;
 using Petsi.Services;
-using Petsi.Units;
 using Petsi.Utils;
 using System.Windows;
 using System.Windows.Controls;
