@@ -1,0 +1,13 @@
+fileServicePath=D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Debug\net6.0-windows7.0\/petsiDir/fileService
+environFileServicePath=
+environPeriod=
+reportCountPath=0
+createdReportPath=
+cutieDirectory=
+standardDirectory=
+labelPrinter=
+standardPrinter=
+pieTemplateName=
+pastryTemplateName=
+startUp=C:\Users\nbril\OneDrive\Desktop\STARTUP
+startUpStatus=startUpNeutral

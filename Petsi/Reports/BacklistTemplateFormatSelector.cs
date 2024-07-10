@@ -165,7 +165,7 @@ namespace Petsi.Reports
         private void StartupLoadTemplates(string filePath)
         {
             string input;
-            if (Directory.Exists(filePath))
+            if (File.Exists(filePath))
             {
                 input = File.ReadAllText(filePath);
                 templates = JsonConvert.DeserializeObject<List<(string name, List<bli> template)>>(input);

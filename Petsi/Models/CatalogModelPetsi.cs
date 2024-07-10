@@ -269,7 +269,7 @@ namespace Petsi.Models
             if(FileList == null || FileList.Count == 0) { return; }
             foreach (var fileListing in FileList)
             {
-                if(fileListing.fileName == "mainCatalogModel")
+                if(fileListing.fileName == Identifiers.MAIN_MODEL_CATALOG_FILE)
                 {
                     StartupLoadCatalog(fileListing.filePath);
                     fileBehavior.DataListToFile(Identifiers.MAIN_MODEL_CATALOG_FILE, GetItems());
@@ -281,7 +281,7 @@ namespace Petsi.Models
         private void StartupLoadCatalog(string filePath)
         {
             string input;
-            if (Directory.Exists(filePath))
+            if (File.Exists(filePath))
             {
                 input = File.ReadAllText(filePath);
                 items = JsonConvert.DeserializeObject<List<CatalogItemPetsi>>(input);

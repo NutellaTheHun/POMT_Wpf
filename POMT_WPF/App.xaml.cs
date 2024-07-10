@@ -17,11 +17,13 @@ namespace POMT_WPF
     {
         public App()
         {
+            OrderModelPetsi omp = new OrderModelPetsi();
+            CatalogModelPetsi cmp = new CatalogModelPetsi();
+
             PetsiConfig config = PetsiConfig.GetInstance();
             SquareClientFactory scf = new SquareClientFactory();
 
-            OrderModelPetsi omp = new OrderModelPetsi();
-            CatalogModelPetsi cmp = new CatalogModelPetsi();
+            
 
             CategoryService categoryService = new CategoryService();
             CatalogService catalogIdService = new CatalogService();

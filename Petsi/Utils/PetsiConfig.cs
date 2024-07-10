@@ -6,6 +6,8 @@ namespace Petsi.Utils
     public class PetsiConfig
     {
         private static PetsiConfig _instance;
+        private static readonly object padlock = new object();
+
         List<(string,string)> variables;
 
         static readonly string rootDir = System.AppDomain.CurrentDomain.BaseDirectory + "/petsiDir/";
@@ -17,7 +19,17 @@ namespace Petsi.Utils
             InitConfig();
         }
 
-        public static PetsiConfig GetInstance() { if (_instance == null) { _instance = new PetsiConfig(); }; return _instance; }
+        public static PetsiConfig GetInstance() 
+        { 
+            lock(padlock)
+            {
+                if (_instance == null)
+                {
+                    _instance = new PetsiConfig();
+                };
+                return _instance;
+            }
+        }
 
         private void InitConfig()
         {
@@ -39,9 +51,10 @@ namespace Petsi.Utils
             }
 
             //signal to run startup service, service is started and signal is set to neutral, REGARDLESS OF SUCCESS
-            if(GetVariable(Identifiers.SETTING_STARTUP_STATUS) == Identifiers.SETTING_STARTUP_STATUS_INIT)
+            //Once users sets square key and startup location, status is set to pending.
+            if(GetVariable(Identifiers.SETTING_STARTUP_STATUS) == Identifiers.SETTING_STARTUP_STATUS_PENDING)
             {
-                StartupService.Instance.Start();
+                StartupService.Instance.Start(GetVariable(Identifiers.SETTING_STARTUP));
                 SetVariable(Identifiers.SETTING_STARTUP_STATUS, Identifiers.SETTING_STARTUP_STATUS_NEUTRAL);
             }
         }
@@ -62,6 +75,7 @@ namespace Petsi.Utils
                 Identifiers.SETTING_STD_PRINTER,
                 Identifiers.SETTING_PIE_TEMPLATE,
                 Identifiers.SETTING_PASTRY_TEMPLATE,
+                Identifiers.SETTING_STARTUP,
                 Identifiers.SETTING_STARTUP_STATUS
             };
             
@@ -82,7 +96,7 @@ namespace Petsi.Utils
                 else if (variable == Identifiers.SETTING_STARTUP_STATUS)
                 {
                     sb.AppendLine($"{variable}=" + Identifiers.SETTING_STARTUP_STATUS_INIT);
-                    variables.Add((variable, rootDir + "fileService"));
+                    variables.Add((variable, Identifiers.SETTING_STARTUP_STATUS_INIT));
                 }
                 else
                 {

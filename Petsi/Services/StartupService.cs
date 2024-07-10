@@ -29,11 +29,11 @@ namespace Petsi.Services
 
         private StartupService() 
         {
-            startupFp = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_STARTUP);
+            FileList = new List<(string fileName, string filePath)>();
             subscribers = new List<IStartupSubscriber>();
         }
 
-        public void Start()
+        public void Start(string startupFp)
         {
             if (!IsDirectoryEmpty(startupFp))
             {
@@ -49,7 +49,7 @@ namespace Petsi.Services
 
         public bool IsDirectoryEmpty(string path)
         {
-            if(path == null) { return false; }
+            if(path == null) { return true; }
             return !Directory.EnumerateFileSystemEntries(path).Any();
         }
 
@@ -70,7 +70,8 @@ namespace Petsi.Services
 
         public void Notify()
         {
-            foreach(var subscriber in subscribers)
+            List<IStartupSubscriber> copy = new List< IStartupSubscriber >(subscribers);
+            foreach(var subscriber in copy)
             {
                 subscriber.Update(FileList);
             }

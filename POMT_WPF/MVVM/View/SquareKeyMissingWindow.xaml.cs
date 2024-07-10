@@ -10,8 +10,8 @@ namespace POMT_WPF.MVVM.View
     /// </summary>
     public partial class SquareKeyMissingWindow : Window
     {
-        string Key {  get; set; }
-        string StartupPath {  get; set; }
+       // string Key {  get; set; }
+        //string StartupPath {  get; set; }
         string SquareConfigFp = System.AppDomain.CurrentDomain.BaseDirectory + "/petsiDir/squareConfig.txt";
         public SquareKeyMissingWindow()
         {
@@ -21,15 +21,15 @@ namespace POMT_WPF.MVVM.View
 
         private void DoneButton_Click(object sender, RoutedEventArgs e)
         {
-            if(textBox.Text != "" && StartupPath != "")
+            if(SquareTextBox.Text != "" && StartupTextBox.Text != "")
             {
                 
                 StringBuilder sb = new StringBuilder();
-                sb.AppendLine(textBox.Text);
+                sb.AppendLine(SquareTextBox.Text);
                 File.WriteAllText(SquareConfigFp, sb.ToString());
 
-                PetsiConfig.GetInstance().SetVariable(Identifiers.SETTING_STARTUP, StartupPath);
-
+                PetsiConfig.GetInstance().SetVariable(Identifiers.SETTING_STARTUP, StartupTextBox.Text);
+                PetsiConfig.GetInstance().SetVariable(Identifiers.SETTING_STARTUP_STATUS, Identifiers.SETTING_STARTUP_STATUS_PENDING);
                 System.Windows.Application.Current.Shutdown();
             }
         }
@@ -46,8 +46,7 @@ namespace POMT_WPF.MVVM.View
             }
             if (sSelectedPath != "")
             {
-
-                StartupPath = sSelectedPath;
+                StartupTextBox.Text = sSelectedPath;
             }
         }
     }

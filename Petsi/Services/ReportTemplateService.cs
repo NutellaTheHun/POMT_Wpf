@@ -119,7 +119,7 @@ namespace Petsi.Services
         private void StartupLoadTemplates(string filePath)
         {
             string input;
-            if (Directory.Exists(filePath))
+            if (File.Exists(filePath))
             {
                 input = File.ReadAllText(filePath);
                 items = JsonConvert.DeserializeObject<List<(string, List<BackListItem>)>>(input);

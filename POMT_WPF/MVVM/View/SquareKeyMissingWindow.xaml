@@ -31,8 +31,7 @@
                         <TextBox
                             x:Name="SquareTextBox"
                             Width="300"
-                            Style="{StaticResource GeneralTextBox}"
-                            Text="{Binding Key, Mode=TwoWay}" />
+                            Style="{StaticResource GeneralTextBox}" />
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Left" Orientation="Vertical">
                         <Label Content="Startup Path Required:" />
@@ -40,8 +39,8 @@
                             <TextBox
                                 x:Name="StartupTextBox"
                                 Width="300"
-                                Style="{StaticResource GeneralTextBox}"
-                                Text="{Binding StartupPath, Mode=TwoWay}" />
+                                IsReadOnly="True"
+                                Style="{StaticResource GeneralTextBox}" />
                             <Button
                                 Margin="10,0,0,0"
                                 Click="Button_Click"

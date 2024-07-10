@@ -484,7 +484,7 @@ namespace Petsi.Models
         private void StartupLoadPeriodicOrders(string filePath)
         {
             string input;
-            if (Directory.Exists(filePath))
+            if (File.Exists(filePath))
             {
                 input = File.ReadAllText(filePath);
                 List<PetsiOrder> items = JsonConvert.DeserializeObject<List<PetsiOrder>>(input);
@@ -494,7 +494,7 @@ namespace Petsi.Models
         private void StartupLoadOneShotOrders(string filePath)
         {
             string input;
-            if (Directory.Exists(filePath))
+            if (File.Exists(filePath))
             {
                 input = File.ReadAllText(filePath);
                 List<PetsiOrder> items = JsonConvert.DeserializeObject<List<PetsiOrder>>(input);
