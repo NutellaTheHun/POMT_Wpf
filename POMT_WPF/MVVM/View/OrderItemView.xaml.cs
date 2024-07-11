@@ -122,9 +122,9 @@ namespace POMT_WPF.MVVM.View
                     if(line.ItemName == "" || line.ItemName == null) { return; }
 
                     CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
-                    CatalogItemPetsi item = cs.GetCatalogItemById(line.CatalogObjectId);
+                    CatalogItemPetsi item = cs.GetCatalogItem(line.ItemName);
 
-                    if(item == null) { return; }
+                    if (item == null) { return; }
 
                     Color backgroundColor;
                     if (amount == 0 || item.VariationExists(Identifiers.SIZE_REGULAR))
@@ -187,7 +187,7 @@ namespace POMT_WPF.MVVM.View
                     if (line.ItemName == "" || line.ItemName == null) { return; }
 
                     CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
-                    CatalogItemPetsi item = cs.GetCatalogItemById(line.CatalogObjectId);
+                    CatalogItemPetsi item = cs.GetCatalogItem(line.ItemName);
 
                     if (item == null) { return; }
 
@@ -219,7 +219,7 @@ namespace POMT_WPF.MVVM.View
                     if (line.ItemName == "" || line.ItemName == null) { return; }
 
                     CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
-                    CatalogItemPetsi item = cs.GetCatalogItemById(line.CatalogObjectId);
+                    CatalogItemPetsi item = cs.GetCatalogItem(line.ItemName);
 
                     if (item == null) { return; }
 
@@ -252,7 +252,7 @@ namespace POMT_WPF.MVVM.View
                     if (line.ItemName == "" || line.ItemName == null) { return; }
 
                     CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
-                    CatalogItemPetsi item = cs.GetCatalogItemById(line.CatalogObjectId);
+                    CatalogItemPetsi item = cs.GetCatalogItem(line.ItemName);
 
                     if (item == null) { return; }
                    
