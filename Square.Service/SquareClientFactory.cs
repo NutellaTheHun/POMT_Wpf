@@ -1,12 +1,13 @@
 ﻿using Square.Service.Interface;
-using System.Text;
-
 
 namespace Square.Service
 {
     public class SquareClientFactory : ISquareClientFactory
     {
-        static readonly string configDir = System.AppDomain.CurrentDomain.BaseDirectory + "/petsiDir/";
+        /// <summary>
+        /// WARNING This filepath is hardcoded For PetsiConfig and The SquareKeyMissingWindow.xaml.cs
+        /// </summary>
+        static readonly string configDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "\\petsiDir\\";
         static readonly string configFp = configDir + "squareConfig.txt";
         
         public bool BuildFailed;

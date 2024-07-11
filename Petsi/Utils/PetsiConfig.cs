@@ -13,7 +13,12 @@ namespace Petsi.Utils
 
         List<(string,string)> variables;
 
-        static readonly string rootDir = System.AppDomain.CurrentDomain.BaseDirectory + "/petsiDir/";
+        //static readonly string rootDir = System.AppDomain.CurrentDomain.BaseDirectory + "/petsiDir/";s
+
+        /// <summary>
+        /// WARNING This filepath is hardcoded For and SquareKeyMissingWindow.xaml.cs and The SquareClientFactory.cs for square key
+        /// </summary>
+        static readonly string rootDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\petsiDir\\";
         static readonly string configFile = "petsiConfig.txt";
         static readonly string configFilePath = rootDir + configFile;
         private PetsiConfig()

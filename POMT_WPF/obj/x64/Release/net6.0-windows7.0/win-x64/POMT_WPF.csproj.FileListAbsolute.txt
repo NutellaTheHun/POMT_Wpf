@@ -619,7 +619,6 @@ D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\win-x64\Styles\
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\win-x64\Styles\ToggleButton\orderFormFreezeButton.baml
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\win-x64\Styles\ToggleButton\tabButton.baml
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\win-x64\MainWindow.g.cs
-D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\win-x64\MVVM\View\AddNaturalNameView.g.cs
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\win-x64\MVVM\View\AddNaturalNameWindow.g.cs
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\win-x64\MVVM\View\CatalogItemView.g.cs
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\win-x64\MVVM\View\CatalogView.g.cs
@@ -647,7 +646,6 @@ D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\win-x64\POMT_WP
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\win-x64\POMT_WPF_MarkupCompile.lref
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\win-x64\App.baml
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\win-x64\MainWindow.baml
-D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\win-x64\MVVM\View\AddNaturalNameView.baml
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\win-x64\MVVM\View\AddNaturalNameWindow.baml
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\win-x64\MVVM\View\CatalogItemView.baml
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\win-x64\MVVM\View\CatalogView.baml
@@ -685,3 +683,5 @@ D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\win-x64\refint\
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\win-x64\POMT_WPF.pdb
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\win-x64\POMT_WPF.genruntimeconfig.cache
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\win-x64\ref\POMT_WPF.dll
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\win-x64\MVVM\View\SquareKeyMissingWindow.g.cs
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\win-x64\MVVM\View\SquareKeyMissingWindow.baml

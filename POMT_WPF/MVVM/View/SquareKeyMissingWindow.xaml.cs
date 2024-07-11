@@ -10,9 +10,11 @@ namespace POMT_WPF.MVVM.View
     /// </summary>
     public partial class SquareKeyMissingWindow : Window
     {
-       // string Key {  get; set; }
-        //string StartupPath {  get; set; }
-        string SquareConfigFp = System.AppDomain.CurrentDomain.BaseDirectory + "/petsiDir/squareConfig.txt";
+
+        /// <summary>
+        /// WARNING This filepath is hardcoded For PetsiConfig and The SquareClientFactory.cs
+        /// </summary>
+        string SquareConfigFp = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "\\petsiDir\\squareConfig.txt";
         public SquareKeyMissingWindow()
         {
             InitializeComponent();

@@ -538,4 +538,3 @@ D:\Git-Repos\POMT_WPF\Petsi\obj\x64\Release\net6.0-windows\win-x64\refint\Petsi.
 D:\Git-Repos\POMT_WPF\Petsi\obj\x64\Release\net6.0-windows\win-x64\Petsi.pdb
 D:\Git-Repos\POMT_WPF\Petsi\obj\x64\Release\net6.0-windows\win-x64\Petsi.genruntimeconfig.cache
 D:\Git-Repos\POMT_WPF\Petsi\obj\x64\Release\net6.0-windows\win-x64\ref\Petsi.dll
-D:\Git-Repos\POMT_WPF\Petsi\obj\x64\Release\net6.0-windows\win-x64\Petsi.g.resources
