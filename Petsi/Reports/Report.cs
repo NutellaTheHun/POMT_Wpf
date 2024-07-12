@@ -5,28 +5,44 @@ using Petsi.Reports.TableBuilder;
 using Petsi.Utils;
 using Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
+using Petsi.Services;
+using System.Drawing.Printing;
 
 namespace Petsi.Reports
 {
     public class Report
     {
         private DateTime _targetDate;
+
         private string _filePath;
         public string ReportName { get; private set; }
         public string DatePrinted { get; private set; } //change to date time
         public int ReportId { get; private set; }
 
         public bool isLandscape;
+
+        private bool isPrint;
+        private bool isExport;
         public XLWorkbook Wb { get; private set; }
         FileBehavior fileBehavior;
-        public Report(string name)
+        public Report(string name, bool isPrint, bool isExport)
         {
             _filePath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_REPORT_EXPORT_PATH);
             ReportName = name;//might need to expand, include date/time, or id/count?
+            this.isPrint = isPrint;
+            this.isExport = isExport;
             DatePrinted = DateTime.Now.ToShortDateString();
             ReportId = ReportUtil.CreateReportId();
             Wb = new XLWorkbook();
-            fileBehavior = new FileBehavior(Identifiers.SETTING_ENVIRON_PATH+ReportId.ToString());
+            string fp = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_ENVIRON_PATH);
+            if(fp != null && fp != "")
+            {
+                fileBehavior = new FileBehavior(fp + "\\" + ReportId.ToString());
+            }
+            else
+            {
+                fileBehavior = new FileBehavior("ERROR");
+            }
         }
         public int GetPageCount()
         {
@@ -46,10 +62,34 @@ namespace Petsi.Reports
             FormatReportHeader();
             if(Wb.Worksheets.Count > 0)
             {
-                ReportUtil.Save(Wb, PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_REPORT_EXPORT_PATH) + "\\" + ReportName + ReportId);
-                //PrintReport(_filePath + ReportName+ ReportId);
                 CaptureEnvironment();
+
+                ReportUtil.Save(Wb, PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_REPORT_EXPORT_PATH) + "\\" + ReportName + ReportId);
+               
+                if(isPrint)
+                {
+                    if (!PrinterReady()) { ErrorService.RaiseSoftExceptionHandlerError("Report Printer is not available."); }
+                    //PrintReport(_filePath + "\\" + ReportName + ReportId);
+                    PrintReport(PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_REPORT_EXPORT_PATH) + "\\" + ReportName + ReportId);
+                }
+                if (!isExport)
+                {
+                    //ReportUtil.Save(Wb, PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_REPORT_EXPORT_PATH) + "\\" + ReportName + ReportId);
+                    File.Delete(PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_REPORT_EXPORT_PATH) + "\\" + ReportName + ReportId + ".xlsx");
+                }
             }
+        }
+
+        private bool PrinterReady()
+        {
+            PrinterSettings settings = new PrinterSettings();
+            settings.PrinterName = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_STD_PRINTER);
+
+            
+
+
+            if (settings.IsValid) { return true; }
+            return false;
         }
 
         private void PrintReport(string filepathFileName)
@@ -85,7 +125,6 @@ namespace Petsi.Reports
 
             app.Quit();
             Marshal.FinalReleaseComObject(app);
-
         }
 
         private void FormatReportHeader()
@@ -110,6 +149,7 @@ namespace Petsi.Reports
         /// </summary>
         private void CaptureEnvironment()
         {
+            Directory.CreateDirectory(fileBehavior.GetDirectoryName());
             EnvironCaptureRegistrySingleton.GetInstance().CaptureEnvironment(fileBehavior);
         }
     }

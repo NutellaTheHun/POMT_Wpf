@@ -59,12 +59,13 @@
                                     Margin="5"
                                     Content="Special"
                                     IsChecked="{Binding SpecialFilter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                                <CheckBox
+
+                            </StackPanel>
+                            <!-- " <CheckBox
                                     x:Name="EzCaterCheckbox"
                                     Margin="5"
                                     Content="Ez-Cater"
-                                    IsChecked="{Binding EzCaterFilter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                            </StackPanel>
+                                    IsChecked="{Binding EzCaterFilter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />-->
                         </Border>
                     </Grid>
                     <StackPanel Orientation="Vertical">
@@ -147,6 +148,31 @@
                             </Grid>
                         </Border>
                     </StackPanel>
+                    <Grid>
+                        <Label Height="200" Content="Output Options" />
+                        <Border
+                            Height="150"
+                            Margin="5"
+                            BorderBrush="{StaticResource TextFont}"
+                            BorderThickness="1"
+                            CornerRadius="5">
+                            <StackPanel
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                Orientation="Vertical">
+                                <CheckBox
+                                    x:Name="IsPrintCheckBox"
+                                    Margin="5"
+                                    Content="Print"
+                                    IsChecked="{Binding IsPrint, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                <CheckBox
+                                    x:Name="IsExportCheckBox"
+                                    Margin="5"
+                                    Content="Export"
+                                    IsChecked="{Binding IsExport, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                            </StackPanel>
+                        </Border>
+                    </Grid>
                 </StackPanel>
 
 
@@ -179,7 +205,7 @@
                                             FontSize="14"
                                             FontWeight="SemiBold"
                                             Foreground="{StaticResource maybeDark}"
-                                            Text="Select Pie Template" />
+                                            Text="Active Pie Template" />
                                         <TextBox
                                             IsReadOnly="true"
                                             Style="{StaticResource GeneralField}"
@@ -200,7 +226,7 @@
                                             FontSize="14"
                                             FontWeight="SemiBold"
                                             Foreground="{StaticResource maybeDark}"
-                                            Text="Select PastryTemplate" />
+                                            Text="Active Pastry Template" />
                                         <TextBox
                                             IsReadOnly="true"
                                             Style="{StaticResource GeneralField}"

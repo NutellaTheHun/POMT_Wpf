@@ -86,7 +86,7 @@ namespace Petsi.Services
 
         private void PrintStandard(List<LabelPrintData> inputList)
         {
-            if(!ValidateInputLabelMap(inputList, _standardLabelMap)){ return; }
+            if(!ValidateStandardLabelMap(inputList)){ return; }
 
             PrintDocument pd;
             foreach (LabelPrintData printItem in inputList)
@@ -98,11 +98,11 @@ namespace Petsi.Services
                 if (pd.PrinterSettings.Copies == 0) { continue; }
                 pd.PrintPage += (sender, args) =>
                 {
-                    Image img = Image.FromFile(pieDirectoryPath + _standardLabelMap[printItem.Id]);
+                    Image img = Image.FromFile(pieDirectoryPath + "\\" + _standardLabelMap[printItem.Id]);
                     Point loc = new Point(0, 0);
                     args.Graphics.DrawImage(img, loc);
                 };
-
+                
                 try { pd.Print(); }
                 catch (InvalidPrinterException e)
                 {
@@ -113,28 +113,66 @@ namespace Petsi.Services
         }
 
         /// <summary>
-        /// Before print standard and cutie labels, the input to print is verified that the required items have a label mapping in the given dictionary.
+        /// Before print cutie labels, verify every item in inputlist has a label mapping, and that all filepaths are valid.
         /// </summary>
         /// <param name="inputList"></param>
         /// <param name="labelMap"></param>
         /// <returns></returns>
-        private bool ValidateInputLabelMap(List<LabelPrintData> inputList, Dictionary<string, string> labelMap)
-        {
+        private bool ValidateCutieLabelMap(List<LabelPrintData> inputList)
+        { 
             string labelsFilepath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_CUTIE_LBL_PATH);
-            if (labelsFilepath == null || labelsFilepath == "") { return  false; }
-            
+            if (labelsFilepath == null || labelsFilepath == "") { return false; }
+
             labelsFilepath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_PIE_LBL_PATH);
             if (labelsFilepath == null || labelsFilepath == "") { return false; }
 
             string test;
             foreach (LabelPrintData printItem in inputList)
             {
-                try { test = labelMap[printItem.Id]; }
+                try { test = _cutieLabelMap[printItem.Id]; }
                 catch (KeyNotFoundException e)
                 {
                     LabelServiceInputLabelNotFoundArgs args = new LabelServiceInputLabelNotFoundArgs(printItem.Id);
                     ErrorService.RaiseInputLabelNotFound();
                     return false;
+                }
+                if(!File.Exists(cutieDirectoryPath + "\\" + _cutieLabelMap[printItem.Id]))
+                {
+
+                    ErrorService.RaiseExceptionHandlerError("Label file path invalid: " + cutieDirectoryPath + "\\" + _cutieLabelMap[printItem.Id]);
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Before print standard labels, verify every item in inputlist has a label mapping, and that all filepaths are valid.
+        /// </summary>
+        /// <param name="inputList"></param>
+        /// <param name="labelMap"></param>
+        /// <returns></returns>
+        private bool ValidateStandardLabelMap(List<LabelPrintData> inputList)
+        {
+            string labelsFilepath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_CUTIE_LBL_PATH);
+            if (labelsFilepath == null || labelsFilepath == "") { return false; }
+
+            labelsFilepath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_PIE_LBL_PATH);
+            if (labelsFilepath == null || labelsFilepath == "") { return false; }
+
+            string test;
+            foreach (LabelPrintData printItem in inputList)
+            {
+                try { test = _standardLabelMap[printItem.Id]; }
+                catch (KeyNotFoundException e)
+                {
+                    LabelServiceInputLabelNotFoundArgs args = new LabelServiceInputLabelNotFoundArgs(printItem.Id);
+                    ErrorService.RaiseInputLabelNotFound();
+                    return false;
+                }
+                if (!File.Exists(pieDirectoryPath + "\\" + _standardLabelMap[printItem.Id]))
+                {
+
+                    ErrorService.RaiseExceptionHandlerError("Label file path invalid: " + pieDirectoryPath + "\\" + _standardLabelMap[printItem.Id]);
                 }
             }
             return true;
@@ -142,7 +180,8 @@ namespace Petsi.Services
 
         private void PrintCutie(List<LabelPrintData> inputList)
         {
-            if (!ValidateInputLabelMap(inputList, _cutieLabelMap)) { return; }
+            //Validate label filepaths
+            if (!ValidateCutieLabelMap(inputList)) { return; }
 
             PrintDocument pd;
             foreach (LabelPrintData printItem in inputList)
@@ -154,7 +193,7 @@ namespace Petsi.Services
                 if (pd.PrinterSettings.Copies == 0) { continue; }
                 pd.PrintPage += (sender, args) =>
                 {
-                    Image img = Image.FromFile(cutieDirectoryPath + _cutieLabelMap[printItem.Id]);
+                    Image img = Image.FromFile(cutieDirectoryPath + "\\" + _cutieLabelMap[printItem.Id]);
                     Point loc = new Point(0, 0);
                     args.Graphics.DrawImage(img, loc);
                 };
@@ -169,6 +208,13 @@ namespace Petsi.Services
         }
         private void PrintCare(List<LabelPrintData> inputList)
         {
+            //Validate Filepath
+            if (!File.Exists(pieDirectoryPath + "\\" + _standardLabelMap["care"]))
+            {
+                ErrorService.RaiseExceptionHandlerError("Label file path invalid: " + pieDirectoryPath + "\\" + _standardLabelMap["care"]);
+                return;
+            }
+
             int count = 0;
             foreach (LabelPrintData printItem in inputList)
             {
@@ -181,7 +227,7 @@ namespace Petsi.Services
             //pd.PrinterSettings.Copies = 1;
             pd.PrintPage += (sender, args) =>
             {
-                Image img = Image.FromFile(pieDirectoryPath + _standardLabelMap["care"]);
+                Image img = Image.FromFile(pieDirectoryPath + "\\" + _standardLabelMap["care"]);
                 Point loc = new Point(0, 0);
                 args.Graphics.DrawImage(img, loc);
             };
@@ -194,6 +240,13 @@ namespace Petsi.Services
         }
         private void PrintRound(List<LabelPrintData> inputList)
         {
+            //Validate Filepath
+            if (!File.Exists(pieDirectoryPath + "\\" + _standardLabelMap["round"]))
+            {
+                ErrorService.RaiseExceptionHandlerError("Label file path invalid: " + pieDirectoryPath + "\\" + _standardLabelMap["round"]);
+                return;
+            }
+
             int count = 0;
             foreach (LabelPrintData printItem in inputList)
             {
@@ -206,7 +259,7 @@ namespace Petsi.Services
             //pd.PrinterSettings.Copies = 1;
             pd.PrintPage += (sender, args) =>
             {
-                Image img = Image.FromFile(pieDirectoryPath + _standardLabelMap["round"]);
+                Image img = Image.FromFile(pieDirectoryPath + "\\" + _standardLabelMap["round"]);
                 Point loc = new Point(0, 0);
                 args.Graphics.DrawImage(img, loc);
             };
@@ -222,8 +275,8 @@ namespace Petsi.Services
         //--------------
         public void ValidateFilePaths()
         {
-            if (cutieDirectoryPath == null || pieDirectoryPath == "") { ErrorService.RaiseLabelFilePathNotSet(); return; }
-            if (cutieDirectoryPath == null || pieDirectoryPath == "") { ErrorService.RaiseLabelFilePathNotSet(); return; }
+            if (cutieDirectoryPath == null || cutieDirectoryPath == "") { ErrorService.RaiseLabelFilePathNotSet(); return; }
+            if (pieDirectoryPath == null || pieDirectoryPath == "") { ErrorService.RaiseLabelFilePathNotSet(); return; }
 
             CatalogService cmp = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
 

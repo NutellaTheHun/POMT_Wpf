@@ -125,6 +125,6 @@ namespace Petsi.Input
         public override FrameBehaviorBase GetFrameBehavior(){ return frameBehavior; }
         public bool GetHasExecuted() { return hasExecuted; }
         //public void SetHasExecuted(bool v) { hasExecuted = v; }
-        public override void CaptureEnvironment(FileBehavior reportFb){reportFb.DataListToFile(Identifiers.ENV_SCI, squareResponses); }
+        public override void CaptureEnvironment(FileBehavior reportFb){/*reportFb.DataListToFile(Identifiers.ENV_SCI, squareResponses);*/ reportFb.DataListToPureFilePath(Identifiers.ENV_SCI, squareResponses); }
     }
 }

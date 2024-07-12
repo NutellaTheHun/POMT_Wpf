@@ -28,7 +28,7 @@ namespace Petsi.Input
             SetModel(ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS));
             SetInputName(Identifiers.WHOLESALE_INPUT);
             InputManagerSingleton.GetInstance().Register(this);
-            EnvironCaptureRegistrySingleton.GetInstance().Register(this);
+            //EnvironCaptureRegistrySingleton.GetInstance().Register(this);
             CommandFrame.GetInstance().RegisterFrame("wsi", frameBehavior);
         }
         public override async Task Execute()
@@ -72,6 +72,6 @@ namespace Petsi.Input
         public void SetIsFileExecute(bool v){ isFileExecute = v;}
         public bool GetHasExecuted() { return hasExecuted; }
         public void SetHasExecuted(bool v) { hasExecuted = v; }
-        public override void CaptureEnvironment(FileBehavior reportFb){reportFb.DataListToFile(Identifiers.ENV_WSI, items); }
+        public override void CaptureEnvironment(FileBehavior reportFb){/*reportFb.DataListToFile(Identifiers.ENV_WSI, items);*//*reportFb.DataListToPureFilePath(items);*/ }
     }
 }

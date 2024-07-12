@@ -87,7 +87,11 @@ namespace Petsi.Services
             backupFp = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_BACKUP_PATH);
             if (backupFp != null && backupFp != "")
             {
-                File.WriteAllText(backupFp + "\\templateItems", JsonConvert.SerializeObject(items));
+                try
+                {
+                    File.WriteAllText(backupFp + "\\templateItems", JsonConvert.SerializeObject(items));
+                }
+                catch (Exception ex) { ErrorService.RaiseExceptionHandlerError(ex.Message); }
             }
         }
 
@@ -113,7 +117,7 @@ namespace Petsi.Services
             return GetTemplate(templateName);
         }
 
-        public void Update(List<(string fileName, string filePath)> FileList)
+        public void LoadStartupFiles(List<(string fileName, string filePath)> FileList)
         {
             if (FileList == null || FileList.Count == 0) { return; }
             foreach (var fileListing in FileList)

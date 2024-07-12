@@ -150,7 +150,11 @@ namespace Petsi.Models
             backupFp = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_BACKUP_PATH);
             if (backupFp != null && backupFp != "") 
             {
-                File.WriteAllText(backupFp + "\\" + Identifiers.MAIN_MODEL_CATALOG_FILE, JsonConvert.SerializeObject(items));
+                try
+                {
+                    File.WriteAllText(backupFp + "\\" + Identifiers.MAIN_MODEL_CATALOG_FILE, JsonConvert.SerializeObject(items));
+                }
+                catch (Exception ex) { ErrorService.RaiseExceptionHandlerError(ex.Message); }
             }
         }
 
@@ -246,7 +250,8 @@ namespace Petsi.Models
 
         public override void CaptureEnvironment(FileBehavior reportFb)
         {
-            reportFb.DataListToFile(Identifiers.ENV_CMP, items);
+            //reportFb.DataListToFile(Identifiers.ENV_CMP, items);
+            reportFb.DataListToPureFilePath(Identifiers.ENV_CMP, items);
             //Categories?
         }
 
@@ -276,7 +281,7 @@ namespace Petsi.Models
             SaveMainModel();
         }
 
-        public void Update(List<(string fileName, string filePath)> FileList)
+        public void LoadStartupFiles(List<(string fileName, string filePath)> FileList)
         {
             if(FileList == null || FileList.Count == 0) { return; }
             foreach (var fileListing in FileList)

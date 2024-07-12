@@ -1,4 +1,5 @@
 ﻿using Petsi.CommandLine;
+using System.Text.Json.Serialization;
 
 namespace Petsi.Units
 {
@@ -20,10 +21,11 @@ namespace Petsi.Units
         public bool IsFrozen { get; set; }
         public string OrderType { get; set; }
         public string OrderFrequency { get; set; }
+
         public string DisplayOrderDueDate
         {
             get 
-            { 
+            {
                 if(IsPeriodic)
                 {
                     return DateTime.Parse(OrderDueDate).DayOfWeek.ToString();

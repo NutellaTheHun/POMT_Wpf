@@ -108,6 +108,11 @@ namespace Petsi.Utils
         public const string SETTING_STARTUP_STATUS_PENDING = "startUpPending";
         public const string SETTING_STARTUP_STATUS_INIT = "startUpInit";
         public const string SETTING_STARTUP_STATUS_NEUTRAL = "startUpNeutral";
+        public const string SETTING_ERROR_LOG_PATH = "errorLog";
+        public const string SETTING_ROOT_DIR = "rootDirectory";
+
+        public const string PETSI_CONFIG = "petsiConfig.txt";
+     
 
         public static List<string> GetOrderTypes()
         {

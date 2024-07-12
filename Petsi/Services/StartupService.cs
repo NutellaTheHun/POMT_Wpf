@@ -70,7 +70,7 @@ namespace Petsi.Services
             List<IStartupSubscriber> copy = new List< IStartupSubscriber >(subscribers);
             foreach(var subscriber in copy)
             {
-                subscriber.Update(FileList);
+                subscriber.LoadStartupFiles(FileList);
             }
         }
     }

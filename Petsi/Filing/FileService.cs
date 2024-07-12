@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Petsi.Services;
 using Petsi.Utils;
 
 namespace Petsi.Filing
@@ -12,10 +13,15 @@ namespace Petsi.Filing
         public static void DataObjectToFile<T>(string directory, string fileName, List<T> target)
         {
             ValidateDirectory(directory);
-            File.WriteAllText(ServicePath() + directory + "/" + fileName, JsonConvert.SerializeObject(target));
+            try
+            {
+                File.WriteAllText(ServicePath() + directory + "/" + fileName, JsonConvert.SerializeObject(target));
+            }
+            catch (Exception ex) { ErrorService.RaiseExceptionHandlerError(ex.Message); }
         }
         private static void ValidateDirectory(string dirFileName)
         {
+            string x = ServicePath();
             if (!Directory.Exists(ServicePath() + dirFileName))
             {
                 Directory.CreateDirectory(ServicePath() + "/" + dirFileName);
@@ -29,11 +35,19 @@ namespace Petsi.Filing
             }
             return Directory.GetFiles(ServicePath() + "/" + directoryName);
         }
+
+        //------
         public static void Save<T>(string directory, string fileName, T target)
         {
             ValidateDirectory(directory);
-            File.WriteAllText(ServicePath() + "/" + directory + "/" + fileName, JsonConvert.SerializeObject(target));
+            try
+            {
+                File.WriteAllText(ServicePath() + "/" + directory + "/" + fileName, JsonConvert.SerializeObject(target));
+            }
+            catch (Exception ex) { ErrorService.RaiseExceptionHandlerError(ex.Message); }
         }
+        //-------
+
         public static List<T> FileToDataList<T>(string directory, string fileName)
         {
             ValidateDirectory(directory);
@@ -41,8 +55,10 @@ namespace Petsi.Filing
             try
             {
                 input = File.ReadAllText(ServicePath() + "/" + directory + "/" + fileName);
-            }catch(FileNotFoundException ex)
+            }
+            catch(Exception ex)
             {
+                ErrorService.RaiseExceptionHandlerError(ex.Message);
                 return null;
             }
             

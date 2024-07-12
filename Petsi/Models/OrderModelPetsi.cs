@@ -89,6 +89,7 @@ namespace Petsi.Models
             {
                 filedList = new List<string> { Identifiers.ORDER_TYPE_RETAIL, Identifiers.ORDER_TYPE_EZ_CATER,
                     Identifiers.ORDER_TYPE_SPECIAL, Identifiers.ORDER_TYPE_SQUARE, Identifiers.ORDER_TYPE_WHOLESALE };
+                fileBehavior.DataListToFile("OrderTypeSet", filedList);
             }
             HashSet<string> result = new HashSet<string>(filedList);
             foreach (PetsiOrder o in Orders)
@@ -386,7 +387,8 @@ namespace Petsi.Models
 
         public override void CaptureEnvironment(FileBehavior reportFb)
         {
-            reportFb.DataListToFile(Identifiers.ENV_OMP, Orders);
+            //reportFb.DataListToFile(Identifiers.ENV_OMP, Orders);
+            reportFb.DataListToPureFilePath(Identifiers.ENV_OMP, Orders);
         }
 
         private void SavePeriodicModel() 
@@ -437,33 +439,7 @@ namespace Petsi.Models
             }
         }
 
-        /*
-        //Searches Current Order's lineitems for a newly added catalog item to update it's catalogObjectId to the user intervention's result.
-        public void UpdateMultiLineMatchEvent()
-        {
-            CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
-            List<PetsiOrder> copy = new List<PetsiOrder>(Orders);
-            foreach (PetsiOrder order in copy)
-            {
-                foreach (PetsiOrderLineItem line in order.LineItems)
-                {
-                    if (line.CatalogObjectId == Identifiers.SOI_MULTI_ITEM_MATCH_EVENT_ID_SIG)
-                    {
-                        line.CatalogObjectId = cs.GetCatalogObjectId(line.ItemName);
-                        if (line.CatalogObjectId == "")
-                        {
-                            SystemLogger.Log("Update MultiLineMatch Event FAILED: recipient " + order.Recipient + " item: " + line.ItemName);
-                        }
-                        else
-                        {
-                            AddItem(order);
-                        }
-                    }
-                }
-            }
-        }*/
-
-        public void Update(List<(string fileName, string filePath)> FileList)
+        public void LoadStartupFiles(List<(string fileName, string filePath)> FileList)
         {
             if (FileList == null || FileList.Count == 0) { return; }
             foreach (var fileListing in FileList)

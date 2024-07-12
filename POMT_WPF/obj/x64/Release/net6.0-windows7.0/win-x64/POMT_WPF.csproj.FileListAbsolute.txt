@@ -685,3 +685,5 @@ D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\win-x64\POMT_WP
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\win-x64\ref\POMT_WPF.dll
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\win-x64\MVVM\View\SquareKeyMissingWindow.g.cs
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\win-x64\MVVM\View\SquareKeyMissingWindow.baml
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\win-x64\MVVM\View\ExceptionHandlerShowWindow.g.cs
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\win-x64\MVVM\View\ExceptionHandlerShowWindow.baml

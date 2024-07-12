@@ -148,7 +148,7 @@ namespace Petsi.Reports
             });
         }
 
-        public void Update(List<(string fileName, string filePath)> FileList)
+        public void LoadStartupFiles(List<(string fileName, string filePath)> FileList)
         {
             if (FileList == null || FileList.Count == 0) { return; }
             foreach (var fileListing in FileList)

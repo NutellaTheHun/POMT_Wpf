@@ -389,7 +389,7 @@ namespace Petsi.Input
         public void SetIsFileExecute(bool v) { isFileExecute = v; }
         public bool GetHasExecuted() { return hasExecuted ; }
         //public void SetHasExecuted(bool v) {  hasExecuted = v; }
-        public override void CaptureEnvironment(FileBehavior reportFb){reportFb.DataListToFile(Identifiers.ENV_SOI, squareResponses);}
+        public override void CaptureEnvironment(FileBehavior reportFb) {/*reportFb.DataListToFile(Identifiers.ENV_SOI, squareResponses);*/ reportFb.DataListToPureFilePath(Identifiers.ENV_SOI, squareResponses); }
     }
 }
 

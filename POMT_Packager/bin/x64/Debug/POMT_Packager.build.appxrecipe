@@ -1,0 +1,434 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>DESKTOP-EC4PVTT</Machine>
+    <WindowsUser>nbril</WindowsUser>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetOsVersion>10.0</TargetOsVersion>
+    <TargetOsDescription>Windows 10.0</TargetOsDescription>
+    <SolutionConfiguration>Debug|x64</SolutionConfiguration>
+    <PackageArchitecture>x64</PackageArchitecture>
+    <PackageIdentityName>8a0d09d0-3b29-4557-8333-306f04f5dd24</PackageIdentityName>
+    <PackageIdentityPublisher>CN=Nathan Brilmayer</PackageIdentityPublisher>
+    <IntermediateOutputPath>D:\Git-Repos\POMT_WPF\POMT_Packager\obj\x64\Debug\</IntermediateOutputPath>
+    <RemoteDeploymentType></RemoteDeploymentType>
+    <PackageRegistrationPath></PackageRegistrationPath>
+    <RemoveNonLayoutFiles>true</RemoveNonLayoutFiles>
+    <DeployOptionalPackages>false</DeployOptionalPackages>
+    <WindowsSdkPath></WindowsSdkPath>
+    <LayoutDir>D:\Git-Repos\POMT_WPF\POMT_Packager\bin\x64\Debug\AppX</LayoutDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="D:\Git-Repos\POMT_WPF\POMT_Packager\bin\x64\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\BadgeLogo.scale-100.png">
+      <PackagePath>Images\BadgeLogo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\BadgeLogo.scale-125.png">
+      <PackagePath>Images\BadgeLogo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\BadgeLogo.scale-150.png">
+      <PackagePath>Images\BadgeLogo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\BadgeLogo.scale-200.png">
+      <PackagePath>Images\BadgeLogo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\BadgeLogo.scale-400.png">
+      <PackagePath>Images\BadgeLogo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\LargeTile.scale-100.png">
+      <PackagePath>Images\LargeTile.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\LargeTile.scale-125.png">
+      <PackagePath>Images\LargeTile.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\LargeTile.scale-150.png">
+      <PackagePath>Images\LargeTile.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\LargeTile.scale-200.png">
+      <PackagePath>Images\LargeTile.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\LargeTile.scale-400.png">
+      <PackagePath>Images\LargeTile.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\SmallTile.scale-100.png">
+      <PackagePath>Images\SmallTile.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\SmallTile.scale-125.png">
+      <PackagePath>Images\SmallTile.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\SmallTile.scale-150.png">
+      <PackagePath>Images\SmallTile.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\SmallTile.scale-200.png">
+      <PackagePath>Images\SmallTile.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\SmallTile.scale-400.png">
+      <PackagePath>Images\SmallTile.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\SplashScreen.scale-100.png">
+      <PackagePath>Images\SplashScreen.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\SplashScreen.scale-125.png">
+      <PackagePath>Images\SplashScreen.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\SplashScreen.scale-150.png">
+      <PackagePath>Images\SplashScreen.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\SplashScreen.scale-200.png">
+      <PackagePath>Images\SplashScreen.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\LockScreenLogo.scale-200.png">
+      <PackagePath>Images\LockScreenLogo.scale-200.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\SplashScreen.scale-400.png">
+      <PackagePath>Images\SplashScreen.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\Square150x150Logo.scale-100.png">
+      <PackagePath>Images\Square150x150Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\Square150x150Logo.scale-125.png">
+      <PackagePath>Images\Square150x150Logo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\Square150x150Logo.scale-150.png">
+      <PackagePath>Images\Square150x150Logo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\Square150x150Logo.scale-200.png">
+      <PackagePath>Images\Square150x150Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\Square150x150Logo.scale-400.png">
+      <PackagePath>Images\Square150x150Logo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\Square44x44Logo.altform-lightunplated_targetsize-16.png">
+      <PackagePath>Images\Square44x44Logo.altform-lightunplated_targetsize-16.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\Square44x44Logo.altform-lightunplated_targetsize-24.png">
+      <PackagePath>Images\Square44x44Logo.altform-lightunplated_targetsize-24.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\Square44x44Logo.altform-lightunplated_targetsize-256.png">
+      <PackagePath>Images\Square44x44Logo.altform-lightunplated_targetsize-256.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\Square44x44Logo.altform-lightunplated_targetsize-32.png">
+      <PackagePath>Images\Square44x44Logo.altform-lightunplated_targetsize-32.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\Square44x44Logo.altform-lightunplated_targetsize-48.png">
+      <PackagePath>Images\Square44x44Logo.altform-lightunplated_targetsize-48.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\Square44x44Logo.altform-unplated_targetsize-16.png">
+      <PackagePath>Images\Square44x44Logo.altform-unplated_targetsize-16.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\Square44x44Logo.altform-unplated_targetsize-256.png">
+      <PackagePath>Images\Square44x44Logo.altform-unplated_targetsize-256.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\Square44x44Logo.altform-unplated_targetsize-32.png">
+      <PackagePath>Images\Square44x44Logo.altform-unplated_targetsize-32.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\Square44x44Logo.altform-unplated_targetsize-48.png">
+      <PackagePath>Images\Square44x44Logo.altform-unplated_targetsize-48.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\Square44x44Logo.scale-100.png">
+      <PackagePath>Images\Square44x44Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\Square44x44Logo.scale-125.png">
+      <PackagePath>Images\Square44x44Logo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\Square44x44Logo.scale-150.png">
+      <PackagePath>Images\Square44x44Logo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\Square44x44Logo.scale-200.png">
+      <PackagePath>Images\Square44x44Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\Square44x44Logo.scale-400.png">
+      <PackagePath>Images\Square44x44Logo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\Square44x44Logo.targetsize-16.png">
+      <PackagePath>Images\Square44x44Logo.targetsize-16.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\Square44x44Logo.targetsize-24.png">
+      <PackagePath>Images\Square44x44Logo.targetsize-24.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\Square44x44Logo.targetsize-24_altform-unplated.png">
+      <PackagePath>Images\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\Square44x44Logo.targetsize-256.png">
+      <PackagePath>Images\Square44x44Logo.targetsize-256.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\Square44x44Logo.targetsize-32.png">
+      <PackagePath>Images\Square44x44Logo.targetsize-32.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\Square44x44Logo.targetsize-48.png">
+      <PackagePath>Images\Square44x44Logo.targetsize-48.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\StoreLogo.scale-100.png">
+      <PackagePath>Images\StoreLogo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\StoreLogo.scale-125.png">
+      <PackagePath>Images\StoreLogo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\StoreLogo.scale-150.png">
+      <PackagePath>Images\StoreLogo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\StoreLogo.scale-200.png">
+      <PackagePath>Images\StoreLogo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\StoreLogo.scale-400.png">
+      <PackagePath>Images\StoreLogo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\Wide310x150Logo.scale-100.png">
+      <PackagePath>Images\Wide310x150Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\Wide310x150Logo.scale-125.png">
+      <PackagePath>Images\Wide310x150Logo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\Wide310x150Logo.scale-150.png">
+      <PackagePath>Images\Wide310x150Logo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\Wide310x150Logo.scale-200.png">
+      <PackagePath>Images\Wide310x150Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\Images\Wide310x150Logo.scale-400.png">
+      <PackagePath>Images\Wide310x150Logo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\bin\x64\Debug\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\apimatic.core\0.3.6\lib\netstandard2.0\APIMatic.Core.dll">
+      <PackagePath>POMT_WPF\APIMatic.Core.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\closedxml\0.102.2\lib\netstandard2.1\ClosedXML.dll">
+      <PackagePath>POMT_WPF\ClosedXML.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\csvhelper\30.1.0\lib\net6.0\CsvHelper.dll">
+      <PackagePath>POMT_WPF\CsvHelper.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\documentformat.openxml\2.16.0\lib\netstandard2.0\DocumentFormat.OpenXml.dll">
+      <PackagePath>POMT_WPF\DocumentFormat.OpenXml.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\excelnumberformat\1.1.0\lib\netstandard2.0\ExcelNumberFormat.dll">
+      <PackagePath>POMT_WPF\ExcelNumberFormat.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\irony.netcore\1.0.11\lib\netstandard1.6\Irony.dll">
+      <PackagePath>POMT_WPF\Irony.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.BootstrapIcons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.BootstrapIcons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.BoxIcons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.BoxIcons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Codicons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Codicons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Coolicons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Coolicons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Core.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Core.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Entypo.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Entypo.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.EvaIcons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.EvaIcons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.FeatherIcons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.FeatherIcons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.FileIcons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.FileIcons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.FontAwesome.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.FontAwesome.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Fontaudio.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Fontaudio.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Fontisto.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Fontisto.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.ForkAwesome.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.ForkAwesome.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Ionicons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Ionicons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.JamIcons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.JamIcons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Material.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Material.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.MaterialDesign.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.MaterialDesign.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.MaterialLight.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.MaterialLight.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Microns.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Microns.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Modern.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Modern.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Octicons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Octicons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.PicolIcons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.PicolIcons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.PixelartIcons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.PixelartIcons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.RPGAwesome.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.RPGAwesome.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.RadixIcons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.RadixIcons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.RemixIcon.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.RemixIcon.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.SimpleIcons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.SimpleIcons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Typicons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Typicons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Unicons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Unicons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.VaadinIcons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.VaadinIcons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.WeatherIcons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.WeatherIcons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Zondicons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Zondicons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\microsoft.bcl.hashcode\1.1.1\lib\netcoreapp2.1\Microsoft.Bcl.HashCode.dll">
+      <PackagePath>POMT_WPF\Microsoft.Bcl.HashCode.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\microsoft.json.pointer\2.3.0\lib\netstandard2.0\Microsoft.Json.Pointer.dll">
+      <PackagePath>POMT_WPF\Microsoft.Json.Pointer.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\newtonsoft.json\13.0.2\lib\net6.0\Newtonsoft.Json.dll">
+      <PackagePath>POMT_WPF\Newtonsoft.Json.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\polly\7.2.3\lib\netstandard2.0\Polly.dll">
+      <PackagePath>POMT_WPF\Polly.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\sixlabors.fonts\1.0.0\lib\netcoreapp3.1\SixLabors.Fonts.dll">
+      <PackagePath>POMT_WPF\SixLabors.Fonts.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\square\34.0.1\lib\netstandard2.0\Square.dll">
+      <PackagePath>POMT_WPF\Square.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\system.collections.immutable\7.0.0\lib\net6.0\System.Collections.Immutable.dll">
+      <PackagePath>POMT_WPF\System.Collections.Immutable.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\system.linq.async\4.0.0\lib\netcoreapp3.0\System.Linq.Async.dll">
+      <PackagePath>POMT_WPF\System.Linq.Async.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\xlparser\1.5.2\lib\netstandard1.6\XLParser.dll">
+      <PackagePath>POMT_WPF\XLParser.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\Petsi\bin\x64\Debug\net6.0-windows\Petsi.dll">
+      <PackagePath>POMT_WPF\Petsi.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\Square.Service\bin\x64\Debug\net6.0-windows\Square.Service.dll">
+      <PackagePath>POMT_WPF\Square.Service.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\Petsi\bin\x64\Debug\net6.0-windows\Petsi.dll.config">
+      <PackagePath>POMT_WPF\Petsi.dll.config</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Debug\net6.0-windows7.0\POMT_WPF.deps.json">
+      <PackagePath>POMT_WPF\POMT_WPF.deps.json</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\Images\POMT_Icon.png">
+      <PackagePath>POMT_WPF\Images\POMT_Icon.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\Petsi\bin\x64\Debug\net6.0-windows\Petsi.deps.json">
+      <PackagePath>POMT_WPF\Petsi.deps.json</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\Petsi\bin\x64\Debug\net6.0-windows\Petsi.runtimeconfig.json">
+      <PackagePath>POMT_WPF\Petsi.runtimeconfig.json</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\Petsi\obj\x64\Debug\net6.0-windows\apphost.exe">
+      <PackagePath>POMT_WPF\Petsi.exe</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Debug\net6.0-windows7.0\apphost.exe">
+      <PackagePath>POMT_WPF\POMT_WPF.exe</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Debug\net6.0-windows7.0\POMT_WPF.runtimeconfig.json">
+      <PackagePath>POMT_WPF\POMT_WPF.runtimeconfig.json</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Debug\net6.0-windows7.0\POMT_WPF.dll">
+      <PackagePath>POMT_WPF\POMT_WPF.dll</PackagePath>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>

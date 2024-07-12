@@ -19,6 +19,9 @@
     <Compile Update="MVVM\View\ConfigureLabelsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="MVVM\View\ExceptionHandlerShowWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="MVVM\View\GeneralErrorWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -85,6 +88,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\ConfigureLabelsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\ExceptionHandlerShowWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\GeneralErrorWindow.xaml">

@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Wordprocessing;
 using Petsi.CommandLine;
 using Petsi.Managers;
 using Petsi.Models;
@@ -18,9 +19,9 @@ namespace Petsi.Reports
 
         public FrameBehaviorBase GetFrameBehavior() { return frameBehavior; }
 
-        public IXLWorkbook CreateFrontList(DateTime? targetDate, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater)
+        public IXLWorkbook CreateFrontList(DateTime? targetDate, bool isPrint, bool isExport, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater)
         {
-            Report report = new Report("FrontList");
+            Report report = new Report("FrontList", isPrint, isExport);
             ReportBuilderFrontList builder = new ReportBuilderFrontList(report);
 
             OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
@@ -31,9 +32,9 @@ namespace Petsi.Reports
 
             return report.Wb;
         }
-        public IXLWorkbook CreateBackList(DateTime? targetDate, DateTime? endDate, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater)
+        public IXLWorkbook CreateBackList(DateTime? targetDate, DateTime? endDate, bool isPrint, bool isExport, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater)
         {
-            Report report = new Report("BackList");
+            Report report = new Report("BackList", isPrint, isExport);
             ReportBuilderBackList builder = new ReportBuilderBackList(report);
 
             OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
@@ -54,9 +55,9 @@ namespace Petsi.Reports
 
             return report.Wb;
         }
-        public IXLWorkbook CreateWsDay(DateTime? targetDate)
+        public IXLWorkbook CreateWsDay(DateTime? targetDate, bool isPrint, bool isExport)
         {
-            Report report = new Report("WholesaleByDay");
+            Report report = new Report("WholesaleByDay", isPrint, isExport);
             ReportBuilderWsDay builder = new ReportBuilderWsDay(report);
 
             OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
@@ -68,9 +69,9 @@ namespace Petsi.Reports
             return report.Wb;
         }
 
-        public IXLWorkbook CreateWsDayName(DateTime? targetDate)
+        public IXLWorkbook CreateWsDayName(DateTime? targetDate, bool isPrint, bool isExport)
         {
-            Report report = new Report("WholesaleByDaybyName");
+            Report report = new Report("WholesaleByDaybyName", isPrint, isExport);
             ReportBuilderWsDayName builder = new ReportBuilderWsDayName(report);
 
             OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);

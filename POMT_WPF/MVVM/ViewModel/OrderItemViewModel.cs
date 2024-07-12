@@ -463,6 +463,14 @@ namespace POMT_WPF.MVVM.ViewModel
                 if (confirmationWindow.ControlBool)
                 {
                     int count = LineItems.Count;
+
+                    //Setting quantities to 0 before removing triggers the update quantity event to properly update the column totals
+                    lineItem.AmountRegular = 0;
+                    lineItem.Amount3 = 0;
+                    lineItem.Amount5 = 0;
+                    lineItem.Amount8 = 0;
+                    lineItem.Amount10 = 0;
+
                     LineItems.Remove(lineItem);
                     if (LineItems.Count != count - 1)
                     {
@@ -547,16 +555,17 @@ namespace POMT_WPF.MVVM.ViewModel
                 if(PhoneNumber == null) { controlbool = false; OrderItemViewEvents.RaisePhoneInvalidEvent(); }
             }
 
-            if(OrderFrequency == Identifiers.ORDER_FREQUENCY_ONE_TIME && FulfillmentDate == default) { controlbool = false; OrderItemViewEvents.RaiseDatePickerInvalidEvent(); }
+            //if(OrderFrequency == Identifiers.ORDER_FREQUENCY_ONE_TIME && FulfillmentDate == default) { controlbool = false; OrderItemViewEvents.RaiseDatePickerInvalidEvent(); }
             if(OrderFrequency == Identifiers.ORDER_FREQUENCY_ONE_TIME && FulfillmentDate < DateTime.Today) { controlbool = false; OrderItemViewEvents.RaiseDatePickerLessThanEvent(); }
 
-            //if(OrderFrequency == Identifiers.ORDER_FREQUENCY_WEEKLY /* && DOTW == null */) { controlbool = false; OrderItemViewEvents.RaiseDOTWInvalidEvent(); }
+            if(FulfillmentDate == null || FulfillmentDayOfWeek == null) { controlbool = false; OrderItemViewEvents.RaiseDatePickerInvalidEvent(); }
 
             return controlbool;
         }
 
         private bool IsValidLineItems(CatalogService cs)
         {
+            if(LineItems.Count == 0) { return false; }
             foreach (PetsiOrderLineItem lineItem in LineItems)
             {
                 string id = cs.GetCatalogObjectId(lineItem.ItemName);

@@ -18,7 +18,8 @@ namespace Petsi.Input
         }
         public override void CaptureEnvironment(FileBehavior reportFb)
         {
-            fileBehavior.DataListToFile(Identifiers.ENV_OSI, Items);
+            //fileBehavior.DataListToFile(Identifiers.ENV_OSI, Items);
+           // reportFb.DataListToPureFilePath(Items);
         }
 
         public override async Task Execute()

@@ -12,3 +12,4 @@ pastryTemplateName=Summer Pastry
 startUp=C:\Users\nbril\OneDrive\Desktop\STARTUP
 startUpStatus=startUpNeutral
 backupPath=C:\Users\nbril\OneDrive\Desktop\test\Backups
+errorLog=

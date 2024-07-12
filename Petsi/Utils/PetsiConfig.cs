@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Petsi.Interfaces;
 using Petsi.Services;
 
 namespace Petsi.Utils
@@ -6,7 +7,7 @@ namespace Petsi.Utils
     /// <summary>
     /// Responsible for system variables, facilitates getting and setting config variables and reflecting the file i/o with changes
     /// </summary>
-    public class PetsiConfig
+    public class PetsiConfig : IStartupSubscriber
     {
         private static PetsiConfig _instance;
         private static readonly object padlock = new object();
@@ -18,9 +19,9 @@ namespace Petsi.Utils
         /// <summary>
         /// WARNING This filepath is hardcoded For and SquareKeyMissingWindow.xaml.cs and The SquareClientFactory.cs for square key
         /// </summary>
-        static readonly string rootDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\petsiDir\\";
+        static readonly string rootDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\petsiDir";
         static readonly string configFile = "petsiConfig.txt";
-        static readonly string configFilePath = rootDir + configFile;
+        static readonly string configFilePath = rootDir + "\\" +  configFile;
         private PetsiConfig()
         {
             variables = new List<(string,string)>();
@@ -44,12 +45,14 @@ namespace Petsi.Utils
             if(!Directory.Exists(rootDir)) 
             { 
                 Directory.CreateDirectory(rootDir); 
-                SystemLogger.Log("PetsiConfig created root path at: " + rootDir); 
+                SystemLogger.Log("PetsiConfig created root path at: " + rootDir);
+                SystemLogger.LogError("PetsiConfig created root path at: " + rootDir);
             }
             //Creates new config file, signals to start startup process
             if (!File.Exists(configFilePath))
             { 
                 SystemLogger.Log("PetsiConfig file created at: " + configFilePath);
+                SystemLogger.LogError("PetsiConfig file created at: " + configFilePath);
                 InitConfigFile();             
             }
             else
@@ -57,10 +60,17 @@ namespace Petsi.Utils
                 //Normal boot up of loading variables from existing config file
                 LoadVariables();
             }
+            /*
+            //Setup ErrorLog
+            if (!File.Exists(rootDir + "errorLog.txt"))
+            {
+                File.Create(rootDir + "errorLog.txt");
+                SetVariable(Identifiers.SETTING_ERROR_LOG_PATH, rootDir + "errorLog.txt");
+            }*/
 
             //signal to run startup service, service is started and signal is set to neutral, REGARDLESS OF SUCCESS
             //Once users sets square key and startup location, status is set to pending.
-            if(GetVariable(Identifiers.SETTING_STARTUP_STATUS) == Identifiers.SETTING_STARTUP_STATUS_PENDING)
+            if (GetVariable(Identifiers.SETTING_STARTUP_STATUS) == Identifiers.SETTING_STARTUP_STATUS_PENDING)
             {
                 StartupService.Instance.Start(GetVariable(Identifiers.SETTING_STARTUP));
                 SetVariable(Identifiers.SETTING_STARTUP_STATUS, Identifiers.SETTING_STARTUP_STATUS_NEUTRAL);
@@ -85,7 +95,9 @@ namespace Petsi.Utils
                 Identifiers.SETTING_PASTRY_TEMPLATE,
                 Identifiers.SETTING_STARTUP,
                 Identifiers.SETTING_STARTUP_STATUS,
-                Identifiers.SETTING_BACKUP_PATH
+                Identifiers.SETTING_BACKUP_PATH,
+                Identifiers.SETTING_ERROR_LOG_PATH,
+                Identifiers.SETTING_ROOT_DIR
             };
             
             //Write Config file with defaul variables, some variables are initialized to start, empty variables are user managed
@@ -99,13 +111,23 @@ namespace Petsi.Utils
                 }
                 else if(variable == Identifiers.SETTING_FILESERVICE_PATH)
                 {
-                    sb.AppendLine($"{variable}="+ rootDir + "fileService");
-                    variables.Add((variable, rootDir + "fileService"));
+                    sb.AppendLine($"{variable}="+ rootDir + "\\" + "fileService");
+                    variables.Add((variable, rootDir + "\\" + "fileService"));
                 }
                 else if (variable == Identifiers.SETTING_STARTUP_STATUS)
                 {
                     sb.AppendLine($"{variable}=" + Identifiers.SETTING_STARTUP_STATUS_INIT);
                     variables.Add((variable, Identifiers.SETTING_STARTUP_STATUS_INIT));
+                }
+                else if (variable == Identifiers.SETTING_ERROR_LOG_PATH)
+                {
+                    sb.AppendLine($"{variable}=" + rootDir + "\\" + "errorLog.txt");
+                    variables.Add((variable, rootDir + "\\" + "errorLog.txt"));
+                }
+                else if (variable == Identifiers.SETTING_ROOT_DIR)
+                {
+                    sb.AppendLine($"{variable}=" + rootDir);
+                    variables.Add((variable, rootDir));
                 }
                 else
                 {
@@ -113,7 +135,12 @@ namespace Petsi.Utils
                     variables.Add((variable, null));
                 }
             }
-            File.WriteAllText(configFilePath, sb.ToString());
+            try
+            {
+                File.WriteAllText(configFilePath, sb.ToString());
+            }
+            catch (Exception ex) { ErrorService.RaiseExceptionHandlerError(ex.Message); }
+            
 
             //Upon Initialization, Startup event queues user to set square key and startup location
             //the startup status is a signal to run the startup service, signal is then set to neutral
@@ -159,9 +186,26 @@ namespace Petsi.Utils
                 sb.AppendLine($"{variable.Item1}={variable.Item2}");
             }
 
-            File.WriteAllText(configFilePath, sb.ToString());
+            try
+            {
+                File.WriteAllText(configFilePath, sb.ToString());
+            }
+            catch (Exception ex)  { ErrorService.RaiseExceptionHandlerError(ex.Message); }
+
+            WriteBackup();
         }
-        
+
+        private void WriteBackup()
+        {
+            string fp = GetVariable(Identifiers.SETTING_BACKUP_PATH);
+            if (fp == null || fp == "") { return; }
+            try
+            {
+                File.Copy(configFilePath, GetVariable(Identifiers.SETTING_BACKUP_PATH) + "\\"+ configFile, true);
+            }
+            catch(Exception ex) {  ErrorService.RaiseExceptionHandlerError(ex.Message); }
+        }
+
         /// <summary>
         /// Load Variables from existing config file
         /// </summary>
@@ -175,6 +219,22 @@ namespace Petsi.Utils
                 {
                     args = line.Split("=");
                     variables.Add((args[0], args[1]));
+                }
+            }
+        }
+
+        public void LoadStartupFiles(List<(string fileName, string filePath)> FileList)
+        {
+            if (FileList == null || FileList.Count == 0) { return; }
+            foreach (var file in FileList)
+            {
+                if(file.fileName == Identifiers.PETSI_CONFIG)
+                {
+                    try
+                    {
+                        File.Copy(file.filePath, configFilePath, true);
+                    }
+                    catch (Exception ex) { ErrorService.RaiseExceptionHandlerError(ex.Message); }
                 }
             }
         }

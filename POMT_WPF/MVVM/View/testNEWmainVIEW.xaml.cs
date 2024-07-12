@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using Petsi.Services;
 using POMT_WPF.MVVM.ViewModel;
 
 namespace POMT_WPF.MVVM.View
@@ -15,6 +16,7 @@ namespace POMT_WPF.MVVM.View
             vm = MainViewModel.Instance();
             DataContext = vm;
             InitializeComponent();
+            ErrorService.Instance().ExceptionHandlerErrorEvent += ExceptionHandlerShow;
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -23,6 +25,12 @@ namespace POMT_WPF.MVVM.View
             {
                 DragMove();
             }
+        }
+
+        private void ExceptionHandlerShow(object sender, string errorMessage)
+        {
+            ExceptionHandlerShowWindow ErrWin = new ExceptionHandlerShowWindow(errorMessage);
+            ErrWin.Show();
         }
     }
 }

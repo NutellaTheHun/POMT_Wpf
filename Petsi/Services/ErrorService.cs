@@ -1,5 +1,6 @@
 ﻿using Petsi.Events;
 using Petsi.Units;
+using Petsi.Utils;
 
 namespace Petsi.Services
 {
@@ -109,12 +110,31 @@ namespace Petsi.Services
 
         #endregion
 
+        #region Startup Events
+
         public delegate void SquareMissingKeyEvent(object sender, EventArgs e);
         public event SquareMissingKeyEvent NewStartupEvent;
         public void RaiseNewStartupEvent()
         {
             SquareMissingKeyEventArgs args = new SquareMissingKeyEventArgs();
             mainWindowEvents.Add(args);
+        }
+
+        #endregion
+
+        public delegate void ExceptionHandlerEvent(object sender, string errorMessage);
+        public ExceptionHandlerEvent ExceptionHandlerErrorEvent;
+
+        public static void RaiseExceptionHandlerError(string errorMessage)
+        {
+            Instance().ExceptionHandlerErrorEvent?.Invoke(Instance(), errorMessage);
+            SystemLogger.LogError(errorMessage);
+        }
+
+        public static void RaiseSoftExceptionHandlerError(string errorMessage)
+        {
+            Instance().ExceptionHandlerErrorEvent?.Invoke(Instance(), errorMessage);
+ 
         }
 
         /// <summary>
