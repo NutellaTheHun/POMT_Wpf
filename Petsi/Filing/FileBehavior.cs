@@ -31,12 +31,12 @@ namespace Petsi.Filing
         }
         public List<T> BuildDataListFile<T>(string fileName)
         {
-            if(directoryName == "ERROR") { return null; }
+            //if(directoryName == "ERROR") { return null; }
             return FileService.FileToDataList<T>(directoryName, fileName);
         }
         public void DataListToFile<T>(string fileName, List<T> dataList)
         {
-            if (directoryName == "ERROR") { return; }
+            //if (directoryName == "ERROR") { return; }
             FileService.Save(directoryName, fileName, dataList);
         }
 
@@ -48,7 +48,7 @@ namespace Petsi.Filing
         public void DataListToPureFilePath<T>(string fileName, List<T> dataList)
         {
             //File.WriteAllText(directoryName, JsonConvert.SerializeObject(dataList));
-            if (directoryName == "ERROR") { return; }
+            //if (directoryName == "ERROR") { return; }
             try
             {
                 File.WriteAllText(directoryName + "\\" + fileName, JsonConvert.SerializeObject(dataList));

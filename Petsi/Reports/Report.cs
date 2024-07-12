@@ -35,14 +35,7 @@ namespace Petsi.Reports
             ReportId = ReportUtil.CreateReportId();
             Wb = new XLWorkbook();
             string fp = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_ENVIRON_PATH);
-            if(fp != null && fp != "")
-            {
-                fileBehavior = new FileBehavior(fp + "\\" + ReportId.ToString());
-            }
-            else
-            {
-                fileBehavior = new FileBehavior("ERROR");
-            }
+            fileBehavior = new FileBehavior(fp + "\\" + ReportId.ToString());
         }
         public int GetPageCount()
         {

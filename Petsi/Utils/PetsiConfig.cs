@@ -46,13 +46,11 @@ namespace Petsi.Utils
             { 
                 Directory.CreateDirectory(rootDir); 
                 SystemLogger.Log("PetsiConfig created root path at: " + rootDir);
-                SystemLogger.LogError("PetsiConfig created root path at: " + rootDir);
             }
             //Creates new config file, signals to start startup process
             if (!File.Exists(configFilePath))
             { 
                 SystemLogger.Log("PetsiConfig file created at: " + configFilePath);
-                SystemLogger.LogError("PetsiConfig file created at: " + configFilePath);
                 InitConfigFile();             
             }
             else
