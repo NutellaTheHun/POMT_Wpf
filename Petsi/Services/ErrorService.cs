@@ -125,10 +125,10 @@ namespace Petsi.Services
         public delegate void ExceptionHandlerEvent(object sender, string errorMessage);
         public ExceptionHandlerEvent ExceptionHandlerErrorEvent;
 
-        public static void RaiseExceptionHandlerError(string errorMessage)
+        public static void RaiseExceptionHandlerError(string errorMessage, string sender)
         {
             Instance().ExceptionHandlerErrorEvent?.Invoke(Instance(), errorMessage);
-            SystemLogger.LogError(errorMessage);
+            SystemLogger.LogError(errorMessage, sender);
         }
 
         public static void RaiseSoftExceptionHandlerError(string errorMessage)

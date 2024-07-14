@@ -3,7 +3,6 @@ using Petsi.Managers;
 using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
-
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;

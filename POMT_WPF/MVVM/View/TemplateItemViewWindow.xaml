@@ -87,7 +87,7 @@
                             <DataGridTemplateColumn Width="125" Header="Display Name">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Grid>
+                                        <Grid Focusable="False">
                                             <TextBox
                                                 FontWeight="Bold"
                                                 Style="{StaticResource TemplateItemTB}"
@@ -99,13 +99,14 @@
                             <DataGridTemplateColumn Width="auto" Header="Item Name">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Grid>
+                                        <Grid Focusable="False">
                                             <ComboBox
                                                 x:Name="ItemNameComboBox"
                                                 Style="{StaticResource TemplateItemCB}"
                                                 Text="{Binding ElementName=ItemNameTextBox, Path=Text}" />
                                             <TextBox
                                                 x:Name="ItemNameTextBox"
+                                                Focusable="False"
                                                 Style="{StaticResource TemplateItemTB}"
                                                 TextChanged="ItemNameTextBox_TextChanged">
                                                 <TextBox.Text>

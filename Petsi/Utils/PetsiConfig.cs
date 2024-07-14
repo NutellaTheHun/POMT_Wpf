@@ -10,9 +10,9 @@ namespace Petsi.Utils
     public class PetsiConfig : IStartupSubscriber
     {
         private static PetsiConfig _instance;
-        private static readonly object padlock = new object();
+        //private static readonly object padlock = new object();
 
-        List<(string,string)> variables;
+        List<(string Name,string Value)> variables;
 
         //static readonly string rootDir = System.AppDomain.CurrentDomain.BaseDirectory + "/petsiDir/";s
 
@@ -30,14 +30,14 @@ namespace Petsi.Utils
 
         public static PetsiConfig GetInstance() 
         { 
-            lock(padlock)
-            {
+           // lock(padlock)
+           // {
                 if (_instance == null)
                 {
                     _instance = new PetsiConfig();
                 };
                 return _instance;
-            }
+         //   }
         }
 
         private void InitConfig()
@@ -51,20 +51,13 @@ namespace Petsi.Utils
             if (!File.Exists(configFilePath))
             { 
                 SystemLogger.Log("PetsiConfig file created at: " + configFilePath);
-                InitConfigFile();             
+                InitializeConfiguration();             
             }
             else
             {
                 //Normal boot up of loading variables from existing config file
                 LoadVariables();
             }
-            /*
-            //Setup ErrorLog
-            if (!File.Exists(rootDir + "errorLog.txt"))
-            {
-                File.Create(rootDir + "errorLog.txt");
-                SetVariable(Identifiers.SETTING_ERROR_LOG_PATH, rootDir + "errorLog.txt");
-            }*/
 
             //signal to run startup service, service is started and signal is set to neutral, REGARDLESS OF SUCCESS
             //Once users sets square key and startup location, status is set to pending.
@@ -75,7 +68,7 @@ namespace Petsi.Utils
             }
         }
 
-        private void InitConfigFile()
+        private void InitializeConfiguration()
         {
             //Default Config Variables
             List<string> defaultVars = new List<string> 
@@ -137,7 +130,7 @@ namespace Petsi.Utils
             {
                 File.WriteAllText(configFilePath, sb.ToString());
             }
-            catch (Exception ex) { ErrorService.RaiseExceptionHandlerError(ex.Message); }
+            catch (Exception ex) { ErrorService.RaiseExceptionHandlerError(ex.Message, "PetsiConfig, InitializeConfiguration"); }
             
 
             //Upon Initialization, Startup event queues user to set square key and startup location
@@ -146,7 +139,7 @@ namespace Petsi.Utils
         }
 
        /// <summary>
-       /// Returns a variable value from the variables list
+       /// Returns a variable value from the variables list, if value is empty, returns empty string ("")
        /// </summary>
        /// <param name="key"></param>
        /// <returns></returns>
@@ -188,7 +181,7 @@ namespace Petsi.Utils
             {
                 File.WriteAllText(configFilePath, sb.ToString());
             }
-            catch (Exception ex)  { ErrorService.RaiseExceptionHandlerError(ex.Message); }
+            catch (Exception ex)  { ErrorService.RaiseExceptionHandlerError(ex.Message, "PetsiConfig, UpdateConfigFile"); }
 
             WriteBackup();
         }
@@ -201,7 +194,7 @@ namespace Petsi.Utils
             {
                 File.Copy(configFilePath, GetVariable(Identifiers.SETTING_BACKUP_PATH) + "\\"+ configFile, true);
             }
-            catch(Exception ex) {  ErrorService.RaiseExceptionHandlerError(ex.Message); }
+            catch(Exception ex) {  ErrorService.RaiseExceptionHandlerError(ex.Message, "PetsiConfig, WriteBackup"); }
         }
 
         /// <summary>
@@ -232,7 +225,7 @@ namespace Petsi.Utils
                     {
                         File.Copy(file.filePath, configFilePath, true);
                     }
-                    catch (Exception ex) { ErrorService.RaiseExceptionHandlerError(ex.Message); }
+                    catch (Exception ex) { ErrorService.RaiseExceptionHandlerError(ex.Message, "PetsiConfig, LoadStartupFile"); }
                 }
             }
         }

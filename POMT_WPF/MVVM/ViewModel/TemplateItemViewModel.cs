@@ -78,8 +78,18 @@ namespace POMT_WPF.MVVM.ViewModel
             if (TemplateItems.Count == 0) { return false; };
             foreach (BackListItem item in TemplateItems)
             {
-                if(item.PageDisplayName == "POTM" || item.PageDisplayName == "PARBAKES"){ continue; }
-                string id = cs.GetCatalogObjectId(item.ItemName);
+                if (item.PageDisplayName.ToLower() == "potm")
+                {
+                    item.CatalogObjId = Identifiers.CATEGORY_POTM;
+                    continue;
+                }
+                if(item.PageDisplayName.ToLower().Contains("parbake"))
+                {
+                    item.CatalogObjId = Identifiers.CATEGORY_PARBAKE;
+                    continue;
+                }
+
+                    string id = cs.GetCatalogObjectId(item.ItemName);
                 if (id == "")
                 {
                     GeneralErrorWindow errWin = new GeneralErrorWindow("item: " + item.ItemName + " could not be validated, template was not saved.");

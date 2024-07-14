@@ -17,16 +17,14 @@ namespace POMT_WPF
     {
         public App()
         {
+            PetsiConfig config = PetsiConfig.GetInstance();
+
             //These three items utilize StartupService, they're initialized first to ensure the registration is smooth
             OrderModelPetsi omp = new OrderModelPetsi();
             CatalogModelPetsi cmp = new CatalogModelPetsi();
             ReportTemplateService rts = ReportTemplateService.Instance();
 
-            PetsiConfig config = PetsiConfig.GetInstance();
-
             SquareClientFactory scf = new SquareClientFactory();
-
-            
 
             CategoryService categoryService = new CategoryService();
             CatalogService catalogIdService = new CatalogService();

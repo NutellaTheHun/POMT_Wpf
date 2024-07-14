@@ -33,32 +33,39 @@ namespace Petsi.Reports.TableBuilder
             foreach (BackListItem item in listFormat)
             {
                 string amount3 = "", amount5 = "", amount8 = "", amount10 = "";
-                foreach (PetsiOrderLineItem lineItem in items)
+                if(item.CatalogObjId == Identifiers.CATEGORY_PARBAKE)
                 {
-                    bool isVegan = false;
-                    if (MatchCatalogId(lineItem, item.CatalogObjId, out isVegan))
+                    HandleParbake(items, out amount5, out amount8, out amount10);
+                }
+                else
+                {
+                    foreach (PetsiOrderLineItem lineItem in items)
                     {
-                        if(isVegan)
+                        bool isVegan = false;
+                        if (MatchCatalogId(lineItem, item.CatalogObjId, out isVegan))
                         {
-                            if (lineItem.Amount3 != 0) { amount3 = HandleVeganLineAmount(lineItem.Amount3.ToString(), amount3); }
-                            if (lineItem.Amount5 != 0) { amount5 = HandleVeganLineAmount(lineItem.Amount5.ToString(), amount5); }
-                            if (lineItem.Amount8 != 0) { amount8 = HandleVeganLineAmount(lineItem.Amount8.ToString(), amount8); }
-                            if (lineItem.Amount10 != 0) { amount10 = HandleVeganLineAmount(lineItem.Amount10.ToString(), amount10); }
-                            itemTracker.Remove(lineItem);
-                            continue;
-                        }
-                        else
-                        {
-                            if (lineItem.Amount3 != 0) { amount3 = HandleLineAmount(lineItem.Amount3.ToString(), amount3); }
-                            if (lineItem.Amount5 != 0) { amount5 = HandleLineAmount(lineItem.Amount5.ToString(), amount5); }
-                            if (lineItem.Amount8 != 0) { amount8 = HandleLineAmount(lineItem.Amount8.ToString(), amount8); }
-                            if (lineItem.Amount10 != 0) { amount10 = HandleLineAmount(lineItem.Amount10.ToString(), amount10); }
-                            itemTracker.Remove(lineItem);
-                            continue;
+                            if (isVegan)
+                            {
+                                if (lineItem.Amount3 != 0) { amount3 = HandleVeganLineAmount(lineItem.Amount3.ToString(), amount3); }
+                                if (lineItem.Amount5 != 0) { amount5 = HandleVeganLineAmount(lineItem.Amount5.ToString(), amount5); }
+                                if (lineItem.Amount8 != 0) { amount8 = HandleVeganLineAmount(lineItem.Amount8.ToString(), amount8); }
+                                if (lineItem.Amount10 != 0) { amount10 = HandleVeganLineAmount(lineItem.Amount10.ToString(), amount10); }
+                                itemTracker.Remove(lineItem);
+                                continue;
+                            }
+                            else
+                            {
+                                if (lineItem.Amount3 != 0) { amount3 = HandleLineAmount(lineItem.Amount3.ToString(), amount3); }
+                                if (lineItem.Amount5 != 0) { amount5 = HandleLineAmount(lineItem.Amount5.ToString(), amount5); }
+                                if (lineItem.Amount8 != 0) { amount8 = HandleLineAmount(lineItem.Amount8.ToString(), amount8); }
+                                if (lineItem.Amount10 != 0) { amount10 = HandleLineAmount(lineItem.Amount10.ToString(), amount10); }
+                                itemTracker.Remove(lineItem);
+                                continue;
+                            }
                         }
                     }
-                    
                 }
+                
                 AddLine(page, ref _rowIndex, _rootPosition.col,
                         item.PageDisplayName, amount3, amount5, amount8, amount10);
             }
@@ -81,6 +88,25 @@ namespace Petsi.Reports.TableBuilder
             }
             FormatTable(page);
             _rowIndex = _rootPosition.row;
+        }
+
+        private void HandleParbake(List<PetsiOrderLineItem> items, out string amount5, out string amount8, out string amount10)
+        {
+             int a5 = 0, a8 = 0, a10 = 0;
+             amount5 = ""; amount8 = ""; amount10 = "";
+
+            foreach (PetsiOrderLineItem item in items)
+            {
+                if (!item.IsParbake()){ continue; }
+
+                if (item.Amount5 != 0) { a5 += item.Amount5; }
+                if (item.Amount8 != 0) { a8 += item.Amount8; }
+                if (item.Amount10 != 0) { a10 += item.Amount10; }
+            }
+
+            if(a5 != 0) { amount5 = a5.ToString(); }
+            if(a8 != 0) { amount8 = a8.ToString(); }
+            if(a10 != 0){ amount10 = a10.ToString(); }
         }
 
         /// <summary>

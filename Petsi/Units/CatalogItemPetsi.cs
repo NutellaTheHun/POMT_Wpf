@@ -34,6 +34,7 @@ namespace Petsi.Units
         public string StandardLabelFilePath { get; set; }
         public string CutieLabelFilePath { get; set; }
         public bool IsPOTM {  get; set; }
+        public bool IsParbake {  get; set; }
 
         public CatalogItemPetsi(CatalogItemPetsi? copyItem)
         {
@@ -57,6 +58,7 @@ namespace Petsi.Units
                 StandardLabelFilePath = copyItem.StandardLabelFilePath;
                 CutieLabelFilePath = copyItem.CutieLabelFilePath;
                 IsPOTM = copyItem.IsPOTM;
+                IsParbake = copyItem.IsParbake;
             }
             else
             {

@@ -87,6 +87,7 @@ namespace Petsi.Services
         //For ItemName form validating
         public bool ValidateItemName(string name)
         {
+            /*
             List<CatalogItemPetsi> results = new List<CatalogItemPetsi>();
 
             foreach (CatalogItemPetsi item in catalog)
@@ -101,6 +102,12 @@ namespace Petsi.Services
                 return true;
             }
             return false;
+            */
+            CatalogItemPetsi item = GetCatalogItem(name);
+
+            if (item == null) { return false; }
+
+            return true;
         }
 
         /// <summary>
@@ -322,6 +329,17 @@ namespace Petsi.Services
                 if(item.CatalogObjectId ==  catalogObjectId)
                 {
                     return item.IsPOTM;
+                }
+            }
+            return false;
+        }
+        public bool IsParbake(string catalogObjectId)
+        {
+            foreach (CatalogItemPetsi item in catalog)
+            {
+                if (item.CatalogObjectId == catalogObjectId)
+                {
+                    return item.IsParbake;
                 }
             }
             return false;

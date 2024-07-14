@@ -154,7 +154,7 @@ namespace Petsi.Models
                 {
                     File.WriteAllText(backupFp + "\\" + Identifiers.MAIN_MODEL_CATALOG_FILE, JsonConvert.SerializeObject(items));
                 }
-                catch (Exception ex) { ErrorService.RaiseExceptionHandlerError(ex.Message); }
+                catch (Exception ex) { ErrorService.RaiseExceptionHandlerError(ex.Message, "CatalogModel, SaveBackup"); }
             }
         }
 

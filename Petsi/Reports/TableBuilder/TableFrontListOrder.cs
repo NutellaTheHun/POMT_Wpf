@@ -18,7 +18,7 @@ namespace Petsi.Reports.TableBuilder
 
             //Header
             AddLine(page, ref _rowIndex, _rootPosition.col,
-                "Name", "Time", "Type", "Size", "Item", "Quantity");
+                "Name", "Time", "Type", "Size", "Item", "Qty");
             foreach(PetsiOrder order in orderList)
             {
                 //name, time, type, size, item, quantity
@@ -29,19 +29,19 @@ namespace Petsi.Reports.TableBuilder
                     { 
                         lineItemAmount = lineItem.Amount5.ToString();
                         size = "5\"";
-                        AddLine(page, ref _rowIndex, _rootPosition.col, "", "", "", size, TableFormat.MaxLineLength(lineItem.ItemName, 25), lineItemAmount);
+                        AddLine(page, ref _rowIndex, _rootPosition.col, "", "", "", size, TableFormat.MaxLineLength(lineItem.ItemName, 35), lineItemAmount);
                     }
                     if(lineItem.Amount8 != 0)
                     { 
                         lineItemAmount = lineItem.Amount8.ToString();
                         size = "8\"";
-                        AddLine(page, ref _rowIndex, _rootPosition.col, "", "", "", size, TableFormat.MaxLineLength(lineItem.ItemName, 25), lineItemAmount);
+                        AddLine(page, ref _rowIndex, _rootPosition.col, "", "", "", size, TableFormat.MaxLineLength(lineItem.ItemName, 35), lineItemAmount);
                     }
                     if(lineItem.Amount10 != 0)
                     { 
                         lineItemAmount = lineItem.Amount10.ToString();
                         size = "10\"";
-                        AddLine(page, ref _rowIndex, _rootPosition.col, "", "", "", size, TableFormat.MaxLineLength(lineItem.ItemName, 25), lineItemAmount);
+                        AddLine(page, ref _rowIndex, _rootPosition.col, "", "", "", size, TableFormat.MaxLineLength(lineItem.ItemName, 35), lineItemAmount);
                     }
                     if(lineItem.AmountRegular != 0)
                     {

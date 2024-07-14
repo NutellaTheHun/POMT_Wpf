@@ -243,6 +243,19 @@ namespace POMT_WPF.MVVM.ViewModel
             }
         }
 
+        public bool IsParbake
+        {
+            get { return cItem.IsParbake; }
+            set
+            {
+                if (cItem.IsParbake != value)
+                {
+                    cItem.IsParbake = value;
+                    OnPropertyChanged(nameof(IsParbake));
+                }
+            }
+        }
+
         #endregion
 
         #region Commands

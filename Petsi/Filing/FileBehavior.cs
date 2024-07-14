@@ -53,7 +53,7 @@ namespace Petsi.Filing
             {
                 File.WriteAllText(directoryName + "\\" + fileName, JsonConvert.SerializeObject(dataList));
             }
-            catch (Exception ex) { ErrorService.RaiseExceptionHandlerError(ex.Message); }
+            catch (Exception ex) { ErrorService.RaiseExceptionHandlerError(ex.Message, "FileBehavior, DataListToPureFilePath"); }
         }
 
         public string GetDirectoryName() { return directoryName; }

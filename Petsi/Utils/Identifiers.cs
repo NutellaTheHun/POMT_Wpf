@@ -57,6 +57,7 @@ namespace Petsi.Utils
         public const string CATEGORY_BOXED_TEA_PLATTERS = "PCM22LM7KMUAUOPP7MKQNRBL";
         public const string CATEGORY_MERCH_ICECREAM = "HDB76BYHJ2NCXIZUMTI3WJIB";
         public const string CATEGORY_POTM = "POTM_ID";
+        public const string CATEGORY_PARBAKE = "PARBAKE_ID";
 
         public const string MODIFY_NAME_NOTE_CARD = "Add your note in \"notes\" section in checkout";
         public const string BOX_OF_6 = "Box of 6";

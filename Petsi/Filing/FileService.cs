@@ -17,7 +17,7 @@ namespace Petsi.Filing
             {
                 File.WriteAllText(ServicePath() + directory + "/" + fileName, JsonConvert.SerializeObject(target));
             }
-            catch (Exception ex) { ErrorService.RaiseExceptionHandlerError(ex.Message); }
+            catch (Exception ex) { ErrorService.RaiseExceptionHandlerError(ex.Message, "FileService, DataObjectToFile"); }
         }
         private static void ValidateDirectory(string dirFileName)
         {
@@ -36,7 +36,7 @@ namespace Petsi.Filing
             return Directory.GetFiles(ServicePath() + "/" + directoryName);
         }
 
-        //------
+        
         public static void Save<T>(string directory, string fileName, T target)
         {
             ValidateDirectory(directory);
@@ -44,9 +44,9 @@ namespace Petsi.Filing
             {
                 File.WriteAllText(ServicePath() + "/" + directory + "/" + fileName, JsonConvert.SerializeObject(target));
             }
-            catch (Exception ex) { ErrorService.RaiseExceptionHandlerError(ex.Message); }
+            catch (Exception ex) { ErrorService.RaiseExceptionHandlerError(ex.Message, "FileService, Save()"); }
         }
-        //-------
+        
 
         public static List<T> FileToDataList<T>(string directory, string fileName)
         {
@@ -58,7 +58,7 @@ namespace Petsi.Filing
             }
             catch(Exception ex)
             {
-                ErrorService.RaiseExceptionHandlerError(ex.Message);
+                ErrorService.RaiseExceptionHandlerError(ex.Message, "FileService, FileToDataList");
                 return null;
             }
             

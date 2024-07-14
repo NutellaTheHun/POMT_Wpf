@@ -15,11 +15,13 @@
     <UserControl.Resources>
         <convert:StringToBoolConverter x:Key="StringToBoolConverter" />
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <convert:BoolToNavigationConverter x:Key="BoolToNav" />
+        <convert:InvertBoolToNavigationConverter x:Key="InvertBoolToNav" />
         <convert:StringToIntConverter x:Key="StringToIntConverter" />
         <convert:InvertBoolConverter x:Key="InvertBool" />
     </UserControl.Resources>
 
-    <Grid Background="{StaticResource ColumbiaBlue}">
+    <Grid Background="{StaticResource ColumbiaBlue}" KeyboardNavigation.TabNavigation="{Binding IsEdit, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource InvertBoolToNav}}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -290,7 +292,11 @@
                                     Header="Item Name">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <Grid
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Focusable="False"
+                                                KeyboardNavigation.TabNavigation="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToNav}}">
                                                 <ComboBox
                                                     x:Name="ItemNameComboBox"
                                                     Width="225"
@@ -310,7 +316,7 @@
                                                             Path="ItemName"
                                                             UpdateSourceTrigger="PropertyChanged">
                                                             <Binding.ValidationRules>
-                                                                <v:ItemNameValidation />
+                                                                <v:ItemNameValidation ValidatesOnTargetUpdated="True" />
                                                             </Binding.ValidationRules>
                                                         </Binding>
                                                     </TextBox.Text>
@@ -326,6 +332,7 @@
                                                 x:Name="amountRegTextBox"
                                                 GotKeyboardFocus="TextBox_GotKeyboardFocus"
                                                 IsReadOnly="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged}"
+                                                KeyboardNavigation.TabNavigation="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToNav}}"
                                                 Style="{StaticResource OrderLineItemTB}"
                                                 Text="{Binding AmountRegular, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}, Mode=TwoWay}"
                                                 TextChanged="amountRegTextBox_TextChanged" />
@@ -339,6 +346,7 @@
                                                 x:Name="amount3TextBox"
                                                 GotKeyboardFocus="TextBox_GotKeyboardFocus"
                                                 IsReadOnly="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged}"
+                                                KeyboardNavigation.TabNavigation="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToNav}}"
                                                 Style="{StaticResource OrderLineItemTB}"
                                                 Text="{Binding Amount3, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}, Mode=TwoWay}"
                                                 TextChanged="amount3TextBox_TextChanged" />
@@ -352,6 +360,7 @@
                                                 x:Name="amount5TextBox"
                                                 GotKeyboardFocus="TextBox_GotKeyboardFocus"
                                                 IsReadOnly="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged}"
+                                                KeyboardNavigation.TabNavigation="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToNav}}"
                                                 Style="{StaticResource OrderLineItemTB}"
                                                 Text="{Binding Amount5, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}, Mode=TwoWay}"
                                                 TextChanged="amount5TextBox_TextChanged" />
@@ -365,6 +374,7 @@
                                                 x:Name="amount8TextBox"
                                                 GotKeyboardFocus="TextBox_GotKeyboardFocus"
                                                 IsReadOnly="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged}"
+                                                KeyboardNavigation.TabNavigation="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToNav}}"
                                                 Style="{StaticResource OrderLineItemTB}"
                                                 Text="{Binding Amount8, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}, Mode=TwoWay}"
                                                 TextChanged="amount8TextBox_TextChanged" />
@@ -378,6 +388,7 @@
                                                 x:Name="amount10TextBox"
                                                 GotKeyboardFocus="TextBox_GotKeyboardFocus"
                                                 IsReadOnly="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged}"
+                                                KeyboardNavigation.TabNavigation="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToNav}}"
                                                 Style="{StaticResource OrderLineItemTB}"
                                                 Text="{Binding Amount10, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToIntConverter}, Mode=TwoWay}"
                                                 TextChanged="amount10TextBox_TextChanged" />

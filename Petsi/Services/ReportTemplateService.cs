@@ -91,7 +91,7 @@ namespace Petsi.Services
                 {
                     File.WriteAllText(backupFp + "\\templateItems", JsonConvert.SerializeObject(items));
                 }
-                catch (Exception ex) { ErrorService.RaiseExceptionHandlerError(ex.Message); }
+                catch (Exception ex) { ErrorService.RaiseExceptionHandlerError(ex.Message, "ReportTemplateService, SaveBackup"); }
             }
         }
 

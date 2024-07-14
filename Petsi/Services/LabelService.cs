@@ -123,12 +123,13 @@ namespace Petsi.Services
             string labelsFilepath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_CUTIE_LBL_PATH);
             if (labelsFilepath == null || labelsFilepath == "") { return false; }
 
-            labelsFilepath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_PIE_LBL_PATH);
-            if (labelsFilepath == null || labelsFilepath == "") { return false; }
 
             string test;
             foreach (LabelPrintData printItem in inputList)
             {
+
+                if(printItem.GetCutieAmount() == 0) { continue;}
+
                 try { test = _cutieLabelMap[printItem.Id]; }
                 catch (KeyNotFoundException e)
                 {
@@ -139,7 +140,10 @@ namespace Petsi.Services
                 if(!File.Exists(cutieDirectoryPath + "\\" + _cutieLabelMap[printItem.Id]))
                 {
 
-                    ErrorService.RaiseExceptionHandlerError("Label file path invalid: " + cutieDirectoryPath + "\\" + _cutieLabelMap[printItem.Id]);
+                    ErrorService.RaiseExceptionHandlerError("Label file path invalid: " + cutieDirectoryPath + "\\" + _cutieLabelMap[printItem.Id], "LabelService, ValidateCutieMap");
+                    LabelServiceInputLabelNotFoundArgs args = new LabelServiceInputLabelNotFoundArgs(printItem.Id);
+                    ErrorService.RaiseInputLabelNotFound();
+                    return false;
                 }
             }
             return true;
@@ -153,15 +157,15 @@ namespace Petsi.Services
         /// <returns></returns>
         private bool ValidateStandardLabelMap(List<LabelPrintData> inputList)
         {
-            string labelsFilepath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_CUTIE_LBL_PATH);
-            if (labelsFilepath == null || labelsFilepath == "") { return false; }
-
-            labelsFilepath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_PIE_LBL_PATH);
+            string labelsFilepath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_PIE_LBL_PATH);
             if (labelsFilepath == null || labelsFilepath == "") { return false; }
 
             string test;
             foreach (LabelPrintData printItem in inputList)
             {
+
+                if(printItem.GetStandardAmount() == 0) { continue; }
+
                 try { test = _standardLabelMap[printItem.Id]; }
                 catch (KeyNotFoundException e)
                 {
@@ -172,7 +176,10 @@ namespace Petsi.Services
                 if (!File.Exists(pieDirectoryPath + "\\" + _standardLabelMap[printItem.Id]))
                 {
 
-                    ErrorService.RaiseExceptionHandlerError("Label file path invalid: " + pieDirectoryPath + "\\" + _standardLabelMap[printItem.Id]);
+                    ErrorService.RaiseExceptionHandlerError("Label file path invalid: " + pieDirectoryPath + "\\" + _standardLabelMap[printItem.Id], "LabelService, ValidateStandardLabelMap");
+                    LabelServiceInputLabelNotFoundArgs args = new LabelServiceInputLabelNotFoundArgs(printItem.Id);
+                    ErrorService.RaiseInputLabelNotFound();
+                    return false;
                 }
             }
             return true;
@@ -211,7 +218,7 @@ namespace Petsi.Services
             //Validate Filepath
             if (!File.Exists(pieDirectoryPath + "\\" + _standardLabelMap["care"]))
             {
-                ErrorService.RaiseExceptionHandlerError("Label file path invalid: " + pieDirectoryPath + "\\" + _standardLabelMap["care"]);
+                ErrorService.RaiseExceptionHandlerError("Label file path invalid: " + pieDirectoryPath + "\\" + _standardLabelMap["care"], "LabelService, PrintCare");
                 return;
             }
 
@@ -220,6 +227,9 @@ namespace Petsi.Services
             {
                 count += printItem.GetStandardAmount();
             }
+
+            if(count == 0) { return; }
+
             PrintDocument pd = new PrintDocument();
             pd.PrinterSettings.PrinterName = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_LABEL_PRINTER);
             pd.DefaultPageSettings.PaperSize = new PaperSize("Custom", 200, 100); //hundreths of an inch
@@ -243,7 +253,7 @@ namespace Petsi.Services
             //Validate Filepath
             if (!File.Exists(pieDirectoryPath + "\\" + _standardLabelMap["round"]))
             {
-                ErrorService.RaiseExceptionHandlerError("Label file path invalid: " + pieDirectoryPath + "\\" + _standardLabelMap["round"]);
+                ErrorService.RaiseExceptionHandlerError("Label file path invalid: " + pieDirectoryPath + "\\" + _standardLabelMap["round"], "LabelService, PrintRound");
                 return;
             }
 

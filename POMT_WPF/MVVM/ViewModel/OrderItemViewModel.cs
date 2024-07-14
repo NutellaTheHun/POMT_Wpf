@@ -573,10 +573,7 @@ namespace POMT_WPF.MVVM.ViewModel
                 if (id == "") 
                 { return false; }
 
-                if(lineItem.CatalogObjectId == "") { lineItem.CatalogObjectId = id; }
-
-                if (lineItem.CatalogObjectId != id) 
-                { return false; }
+                lineItem.CatalogObjectId = id;
 
                 if (lineItem.ItemName == "" || lineItem.ItemName == null) 
                 { return false; }
@@ -598,6 +595,8 @@ namespace POMT_WPF.MVVM.ViewModel
                        && lineItem.Amount8 == 0
                       && lineItem.Amount10 == 0) 
                 { return false; }
+
+                
             }
             return true;
         }

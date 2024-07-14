@@ -29,15 +29,12 @@ namespace Petsi.Reports
             int number = 0;
             try
             {
-                if (File.Exists(PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_REPORT_CNT_PATH)))
-                {
-                    string content = File.ReadAllText(PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_REPORT_CNT_PATH));
-                    int.TryParse(content, out number);
-                }
+                string content = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_REPORT_CNT_PATH);
+                int.TryParse(content, out number);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error reading file: " + ex.Message);
+                SystemLogger.LogError(ex.Message, "ReportUtil, CreateReportID");
             }
 
             IncrementReportId(number);
@@ -48,11 +45,11 @@ namespace Petsi.Reports
             int num = number + 1;
             try
             {
-                File.WriteAllText(PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_REPORT_CNT_PATH), num.ToString());
+                PetsiConfig.GetInstance().SetVariable(Identifiers.SETTING_REPORT_CNT_PATH, num.ToString());
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error writing file: " + ex.Message);
+                SystemLogger.LogError(ex.Message, "ReportUtil, IncrementReportId");
             }
         }
         public static void InitPageReportHeader(IXLWorksheet page, Report report)

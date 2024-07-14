@@ -43,7 +43,19 @@ namespace Petsi.Units
             get { return _amountRegular; }
             set { _amountRegular = value; OrderLineItemEvents.RaiseOnQuantityChange(); }
         }
-        public bool IsValid { get; set; }
+        private bool _isValid;
+        public bool IsValid 
+        {
+            get { return _isValid; }
+            set 
+            { 
+                if (_isValid == value) 
+                { 
+                    _isValid = value;
+                    OnPropertyChanged(nameof(IsValid));
+                } 
+            }
+        }
 
         //The only way I could get the datagrid for the order form to propertly be set to read only.
         private bool _isReadOnly;
@@ -155,6 +167,12 @@ namespace Petsi.Units
            return cs.IsPOTM(CatalogObjectId);
         }
 
+        public bool IsParbake()
+        {
+            CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
+            return cs.IsParbake(CatalogObjectId);
+        }
+
         /// <summary>
         /// returns true if the lineItem is a vegan pie assoicated with the backListItemId.
         /// If lineItem is a Vegan apple and the backlistItemId is for classic Apple, returns true
@@ -188,6 +206,20 @@ namespace Petsi.Units
             CatalogItemPetsi item = cs.GetCatalogItemById(CatalogObjectId);
 
             if (!item.VariationExists(targetSize)) { return false; }
+
+            return true;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="targetSize">A Size identifier string</param>
+        /// <returns></returns>
+        public bool IsValidName(string targetSize)
+        {
+            CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
+            CatalogItemPetsi item = cs.GetCatalogItem(ItemName);
+
+            if(item == null) { return false; }
 
             return true;
         }
