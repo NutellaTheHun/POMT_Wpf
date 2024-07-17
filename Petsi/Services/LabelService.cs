@@ -102,7 +102,7 @@ namespace Petsi.Services
                     Point loc = new Point(0, 0);
                     args.Graphics.DrawImage(img, loc);
                 };
-                
+                int a = 1;
                 try { pd.Print(); }
                 catch (InvalidPrinterException e)
                 {
@@ -134,7 +134,7 @@ namespace Petsi.Services
                 catch (KeyNotFoundException e)
                 {
                     LabelServiceInputLabelNotFoundArgs args = new LabelServiceInputLabelNotFoundArgs(printItem.Id);
-                    ErrorService.RaiseInputLabelNotFound();
+                    ErrorService.RaiseInputLabelNotFound(args);
                     return false;
                 }
                 if(!File.Exists(cutieDirectoryPath + "\\" + _cutieLabelMap[printItem.Id]))
@@ -142,7 +142,7 @@ namespace Petsi.Services
 
                     ErrorService.RaiseExceptionHandlerError("Label file path invalid: " + cutieDirectoryPath + "\\" + _cutieLabelMap[printItem.Id], "LabelService, ValidateCutieMap");
                     LabelServiceInputLabelNotFoundArgs args = new LabelServiceInputLabelNotFoundArgs(printItem.Id);
-                    ErrorService.RaiseInputLabelNotFound();
+                    ErrorService.RaiseInputLabelNotFound(args);
                     return false;
                 }
             }
@@ -170,7 +170,7 @@ namespace Petsi.Services
                 catch (KeyNotFoundException e)
                 {
                     LabelServiceInputLabelNotFoundArgs args = new LabelServiceInputLabelNotFoundArgs(printItem.Id);
-                    ErrorService.RaiseInputLabelNotFound();
+                    ErrorService.RaiseInputLabelNotFound(args);
                     return false;
                 }
                 if (!File.Exists(pieDirectoryPath + "\\" + _standardLabelMap[printItem.Id]))
@@ -178,7 +178,7 @@ namespace Petsi.Services
 
                     ErrorService.RaiseExceptionHandlerError("Label file path invalid: " + pieDirectoryPath + "\\" + _standardLabelMap[printItem.Id], "LabelService, ValidateStandardLabelMap");
                     LabelServiceInputLabelNotFoundArgs args = new LabelServiceInputLabelNotFoundArgs(printItem.Id);
-                    ErrorService.RaiseInputLabelNotFound();
+                    ErrorService.RaiseInputLabelNotFound(args);
                     return false;
                 }
             }

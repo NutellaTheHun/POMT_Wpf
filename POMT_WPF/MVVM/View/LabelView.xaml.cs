@@ -19,6 +19,7 @@ namespace POMT_WPF.MVVM.View
             ErrorService.Instance().LabelPrinterNotFoundEvent += PrinterNotFoundErrorWindow;
             ErrorService.Instance().LabelPrinterNotFoundEvent += PrinterNotFoundErrorWindow;
             ErrorService.Instance().LabelFilePathNotSetEvent += LabelFilePathsNotSetErrorWindow;
+            ErrorService.Instance().InputLabelNotFoundEvent += InputLabelNotFoundErrorWindow;
             ErrorService.RaiseLabelEvents();
         }
         private void ValidateFileServiceErrorWindow(object sender, EventArgs e)
@@ -42,6 +43,7 @@ namespace POMT_WPF.MVVM.View
             errorWindow.Owner = System.Windows.Application.Current.MainWindow;
             errorWindow.Show();
         }
+
         private void InputLabelNotFoundErrorWindow(object sender, EventArgs e)
         {
             LabelServiceInputLabelNotFoundArgs args = (LabelServiceInputLabelNotFoundArgs)e;

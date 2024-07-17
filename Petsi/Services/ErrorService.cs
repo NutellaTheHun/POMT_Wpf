@@ -97,9 +97,9 @@ namespace Petsi.Services
         }
 
         public event EventHandler InputLabelNotFoundEvent;
-        public static void RaiseInputLabelNotFound()
+        public static void RaiseInputLabelNotFound(LabelServiceInputLabelNotFoundArgs args)
         {
-            Instance().InputLabelNotFoundEvent?.Invoke(Instance(), EventArgs.Empty);
+            Instance().InputLabelNotFoundEvent?.Invoke(Instance(), args);
         }
 
         public event EventHandler LabelFilePathNotSetEvent;
