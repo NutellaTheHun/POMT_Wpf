@@ -66,10 +66,12 @@
                                         <Grid>
                                             <ComboBox
                                                 x:Name="ItemNameComboBox"
+                                                HorizontalAlignment="Left"
                                                 Style="{StaticResource ItemNameComboBox}"
                                                 Text="{Binding ElementName=ItemNameTextBox, Path=Text}" />
                                             <TextBox
                                                 x:Name="ItemNameTextBox"
+                                                HorizontalAlignment="Left"
                                                 GotFocus="TextBox_GotFocus"
                                                 IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
                                                 Style="{StaticResource ItemNameTextBox}"
@@ -85,7 +87,7 @@
 
                                     <ListBox
                                         x:Name="AltNameListBox"
-                                        Width="150"
+                                        Width="225"
                                         Height="100"
                                         FontSize="14"
                                         IsHitTestVisible="{Binding IsEdit}"
