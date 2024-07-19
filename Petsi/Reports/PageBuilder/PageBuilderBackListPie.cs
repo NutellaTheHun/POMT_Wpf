@@ -1,4 +1,5 @@
 ﻿using Petsi.Reports.TableBuilder;
+using Petsi.Units;
 
 namespace Petsi.Reports.PageBuilder
 {
@@ -10,6 +11,12 @@ namespace Petsi.Reports.PageBuilder
 
         public override int GetItemLineCount<T>(T item)
         {
+            /*
+            PetsiOrderLineItem lineItem = item as PetsiOrderLineItem;
+            if (lineItem.ItemName.ToLower().Contains("vegan"))
+            {
+                return 0;
+            }*/
             return 1;
         }
 

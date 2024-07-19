@@ -68,7 +68,18 @@ namespace Petsi.Reports.PageBuilder
 
                     if (!IsTableFull(tableMaxOrderLimit, currentOrderCount, itemLineValue, currentTableLineCount, tableMaxLineLimit))
                     {
-                        currentTableLineCount += itemLineValue;
+                        if(item is PetsiOrderLineItem petsiOrderLineItem)
+                        {
+                            if (!petsiOrderLineItem.ItemName.ToLower().Contains("vegan"))
+                            {
+                                currentTableLineCount += itemLineValue;
+                            }
+                        }
+                        else
+                        {
+                            currentTableLineCount += itemLineValue;
+                        }
+                        
                         tableSizeOrders.Add(item);
                         currentOrderCount++;
                     }

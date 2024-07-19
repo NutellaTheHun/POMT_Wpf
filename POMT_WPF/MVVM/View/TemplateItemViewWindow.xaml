@@ -106,7 +106,6 @@
                                                 Text="{Binding ElementName=ItemNameTextBox, Path=Text}" />
                                             <TextBox
                                                 x:Name="ItemNameTextBox"
-                                                Focusable="False"
                                                 Style="{StaticResource TemplateItemTB}"
                                                 TextChanged="ItemNameTextBox_TextChanged">
                                                 <TextBox.Text>
