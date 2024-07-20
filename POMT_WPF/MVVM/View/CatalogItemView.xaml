@@ -47,7 +47,7 @@
 
         </Grid>
         <Grid Grid.Row="1">
-            <Border Width="600" Style="{StaticResource GeneralBorder}">
+            <Border Width="620" Style="{StaticResource GeneralBorder}">
                 <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto" />

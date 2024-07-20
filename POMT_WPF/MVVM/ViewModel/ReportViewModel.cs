@@ -131,7 +131,14 @@ namespace POMT_WPF.MVVM.ViewModel
             {
                 if (_endDate != value)
                 {
-                    _endDate = (DateTime)value;
+                    if(value != null) 
+                    {
+                        _endDate = (DateTime)value;
+                    }
+                    else
+                    {
+                        _endDate = null;
+                    }
                     OnPropertyChanged(nameof(EndDate));
                 }
             }
