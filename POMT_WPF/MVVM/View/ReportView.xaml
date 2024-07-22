@@ -59,6 +59,11 @@
                                     Margin="5"
                                     Content="Special"
                                     IsChecked="{Binding SpecialFilter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                <CheckBox
+                                    x:Name="FarmerCheckbox"
+                                    Margin="5"
+                                    Content="Farmers"
+                                    IsChecked="{Binding FarmerFilter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
 
                             </StackPanel>
                             <!-- " <CheckBox

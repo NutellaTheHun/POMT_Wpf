@@ -111,6 +111,13 @@
                         GroupName="g1"
                         Style="{StaticResource tabButton}" />
                     <RadioButton
+                        x:Name="Farmer_rb"
+                        Click="Farmers_rb_Click"
+                        Command="{Binding FilterFarmer}"
+                        Content="Farmers"
+                        GroupName="g1"
+                        Style="{StaticResource tabButton}" />
+                    <RadioButton
                         x:Name="Frozen_rb"
                         Click="Frozen_rb_Click"
                         Command="{Binding FilterFrozen}"

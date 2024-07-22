@@ -18,20 +18,20 @@ namespace Petsi.Reports
 
         public FrameBehaviorBase GetFrameBehavior() { return frameBehavior; }
 
-        public IXLWorkbook CreateFrontList(DateTime? targetDate, bool isPrint, bool isExport, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater)
+        public IXLWorkbook CreateFrontList(DateTime? targetDate, bool isPrint, bool isExport, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer)
         {
             Report report = new Report("FrontList", isPrint, isExport);
             ReportBuilderFrontList builder = new ReportBuilderFrontList(report);
 
             OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
 
-            builder.BuildReport(orderModel.GetFrontListData(targetDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater), targetDate, null);
+            builder.BuildReport(orderModel.GetFrontListData(targetDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), targetDate, null);
 
             report.FinalizeReport();
 
             return report.Wb;
         }
-        public IXLWorkbook CreateBackList(DateTime? targetDate, DateTime? endDate, bool isPrint, bool isExport, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater)
+        public IXLWorkbook CreateBackList(DateTime? targetDate, DateTime? endDate, bool isPrint, bool isExport, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer)
         {
             Report report = new Report("BackList", isPrint, isExport);
             ReportBuilderBackList builder = new ReportBuilderBackList(report);
@@ -40,13 +40,13 @@ namespace Petsi.Reports
 
             if (endDate == null)//if endDate is null, report is for single day, targetDate is used in report header as targetDate
             {
-                builder.BuildReport(orderModel.GetBackListData(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater), targetDate, endDate);
+                builder.BuildReport(orderModel.GetBackListData(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), targetDate, endDate);
             }
             else //otherwise printing all orders (for testing purposes) or is printing a range, displaying targetDate as a range not implemented yet, make arg param[] dateTime?
             {
                 if(targetDate < endDate)
                 {
-                    builder.BuildReport(orderModel.GetBackListData(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater), null, null);
+                    builder.BuildReport(orderModel.GetBackListData(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), null, null);
                 }
             }
 

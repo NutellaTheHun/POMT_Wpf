@@ -141,6 +141,13 @@ namespace POMT_WPF
             dashboardDataGrid.ItemsSource = viewModel.Orders;
         }
 
+        private void FilterFarmer_Button_Click(object sender, RoutedEventArgs e)
+        {
+            FrozenOrdersSelected = false;
+            viewModel.FilterOrderType(Identifiers.ORDER_TYPE_FARMERS);
+            dashboardDataGrid.ItemsSource = viewModel.Orders;
+        }
+
         private void FilterRetail_Button_Click(object sender, RoutedEventArgs e)
         {
             FrozenOrdersSelected = false;

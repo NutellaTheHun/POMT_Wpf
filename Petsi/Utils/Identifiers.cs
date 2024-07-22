@@ -22,6 +22,7 @@ namespace Petsi.Utils
         public const string ORDER_TYPE_SPECIAL = "Special";
         public const string ORDER_TYPE_RETAIL = "Retail";
         public const string ORDER_TYPE_EZ_CATER = "ezCater";
+        public const string ORDER_TYPE_FARMERS = "FarmersMarket";
 
         public const string ORDER_INPUT_ORIGIN_SQUARE = "squareInput";
         public const string ORDER_INPUT_ORIGIN_USER = "userInput";

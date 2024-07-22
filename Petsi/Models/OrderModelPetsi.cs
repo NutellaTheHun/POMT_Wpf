@@ -92,10 +92,12 @@ namespace Petsi.Models
                 fileBehavior.DataListToFile("OrderTypeSet", filedList);
             }
             HashSet<string> result = new HashSet<string>(filedList);
+            
             foreach (PetsiOrder o in Orders)
             {
                 result.Add(o.OrderType);
             }
+            result.Add(Identifiers.ORDER_TYPE_FARMERS);
             return result;
         }
 
@@ -155,9 +157,9 @@ namespace Petsi.Models
 
         #region Report Pulls
 
-        public List<PetsiOrder> GetFrontListData(DateTime? targetDate, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater)
+        public List<PetsiOrder> GetFrontListData(DateTime? targetDate, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer)
         {
-            List<PetsiOrder> filteredOrders = FilterOrders(Orders, isRetail, isSquare, isWholesale, isSpecial, isEzCater);
+            List<PetsiOrder> filteredOrders = FilterOrders(Orders, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer);
 
             IEnumerable<PetsiOrder> query;
             if (targetDate != null)
@@ -180,9 +182,9 @@ namespace Petsi.Models
             return query.ToList();
         }
 
-        public List<PetsiOrderLineItem> GetBackListData(DateTime? targetDate, DateTime? endDate, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater)
+        public List<PetsiOrderLineItem> GetBackListData(DateTime? targetDate, DateTime? endDate, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer)
         {
-            List<PetsiOrder> filteredOrders = FilterOrders(Orders, isRetail, isSquare, isWholesale, isSpecial, isEzCater);
+            List<PetsiOrder> filteredOrders = FilterOrders(Orders, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer);
 
             IEnumerable<PetsiOrder> query;
             List<PetsiOrder> periodicOrders = new List<PetsiOrder>();
@@ -230,7 +232,7 @@ namespace Petsi.Models
         //Label Service uses it, WS_Day_report still needs day separation tho, and day info
         public List<PetsiOrderLineItem> GetWsDayData(DateTime? targetDate)
         {
-            List<PetsiOrder> filteredOrders = FilterOrders(Orders, false, false, true, false, false);
+            List<PetsiOrder> filteredOrders = FilterOrders(Orders, false, false, true, false, false, false);
             IEnumerable<PetsiOrder> query;
             if (targetDate == null)
             {
@@ -250,7 +252,7 @@ namespace Petsi.Models
 
         public List<PetsiOrder> GetWsDayNameData(DateTime? targetDate)
         {
-            List<PetsiOrder> filteredOrders = FilterOrders(Orders, false, false, true, false, false);
+            List<PetsiOrder> filteredOrders = FilterOrders(Orders, false, false, true, false, false, false);
             IEnumerable<PetsiOrder> query;
             if (targetDate == null)
             {
@@ -317,7 +319,7 @@ namespace Petsi.Models
         /// <param name="isSpecial"></param>
         /// <param name="isEzCater"></param>
         /// <returns></returns>
-        private List<PetsiOrder> FilterOrders(List<PetsiOrder> petsiOrders, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater)
+        private List<PetsiOrder> FilterOrders(List<PetsiOrder> petsiOrders, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer)
         {
             List<PetsiOrder> result = new List<PetsiOrder>();
             foreach (PetsiOrder order in petsiOrders)
@@ -355,6 +357,14 @@ namespace Petsi.Models
                 }
                 if (isEzCater) 
                 { if (order.OrderType == Identifiers.ORDER_TYPE_EZ_CATER)
+                    {
+                        result.Add(order);
+                        continue;
+                    }
+                }
+                if (isFarmer)
+                {
+                    if (order.OrderType == Identifiers.ORDER_TYPE_FARMERS)
                     {
                         result.Add(order);
                         continue;

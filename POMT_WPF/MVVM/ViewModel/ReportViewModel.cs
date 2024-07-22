@@ -80,6 +80,20 @@ namespace POMT_WPF.MVVM.ViewModel
             }
         }
 
+        private bool _farmer;
+        public bool FarmerFilter
+        {
+            get { return _farmer; }
+            set
+            {
+                if (_farmer != value)
+                {
+                    _farmer = value;
+                    OnPropertyChanged(nameof(FarmerFilter));
+                }
+            }
+        }
+
         private string _pieTemplateName;
         public string PieTemplateName 
         {
@@ -188,8 +202,8 @@ namespace POMT_WPF.MVVM.ViewModel
 
             ReportDirector rd = new ReportDirector();
 
-            PrintFrontList = new RelayCommand(o => { if(IsValidDate())    rd.CreateFrontList(StartDate,         IsPrint, IsExport, RetailFilter, SquareFilter, WholesaleFilter, SpecialFilter, EzCaterFilter); });
-            PrintBackList = new RelayCommand(o => { if (IsValidDate())    rd.CreateBackList(StartDate, EndDate, IsPrint, IsExport, RetailFilter, SquareFilter, WholesaleFilter, SpecialFilter, EzCaterFilter); });
+            PrintFrontList = new RelayCommand(o => { if(IsValidDate())    rd.CreateFrontList(StartDate,         IsPrint, IsExport, RetailFilter, SquareFilter, WholesaleFilter, SpecialFilter, EzCaterFilter, FarmerFilter); });
+            PrintBackList = new RelayCommand(o => { if (IsValidDate())    rd.CreateBackList(StartDate, EndDate, IsPrint, IsExport, RetailFilter, SquareFilter, WholesaleFilter, SpecialFilter, EzCaterFilter, FarmerFilter); });
             PrintWsAgg = new RelayCommand(o => { if (IsValidDate())       rd.CreateWsDay(StartDate,             IsPrint, IsExport); });
             PrintWsBreakDown = new RelayCommand(o => { if (IsValidDate()) rd.CreateWsDayName(StartDate,         IsPrint, IsExport); });
             SetPieTemplate = new RelayCommand(o => { StPieTempCmd(); });
@@ -201,6 +215,7 @@ namespace POMT_WPF.MVVM.ViewModel
             WholesaleFilter = true;
             SpecialFilter = true;
             EzCaterFilter = true;
+            FarmerFilter = true;
 
             IsPrint = true;
             IsExport = false;

@@ -50,6 +50,9 @@ namespace POMT_WPF.MVVM.View
                 case "Frozen_rb":
                     Frozen_rb.IsChecked = true;
                     break;
+                case "Farmer_rb":
+                    Farmer_rb.IsChecked = true;
+                    break;
             }
         }
 
@@ -97,6 +100,11 @@ namespace POMT_WPF.MVVM.View
         private void Special_rb_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             MainViewModel.Instance().orderViewFilter = "Special_rb";
+        }
+
+        private void Farmers_rb_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            MainViewModel.Instance().orderViewFilter = "Farmer_rb";
         }
 
         private void Frozen_rb_Click(object sender, System.Windows.RoutedEventArgs e)

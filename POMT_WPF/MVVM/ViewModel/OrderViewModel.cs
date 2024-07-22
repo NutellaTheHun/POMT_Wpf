@@ -18,6 +18,7 @@ namespace POMT_WPF.MVVM.ViewModel
         public RelayCommand FilterRetail { get; set; }
         public RelayCommand FilterSpecial { get; set; }
         public RelayCommand FilterFrozen { get; set; }
+        public RelayCommand FilterFarmer { get; set; }
 
         public ObservableCollection<PetsiOrder> _orders { get; set; }
         public CollectionViewSource DashboardOrders { get; } = new CollectionViewSource();
@@ -78,6 +79,8 @@ namespace POMT_WPF.MVVM.ViewModel
             FilterSpecial = new RelayCommand(o => {  ChangeFilter(SpFilter);});
 
             FilterFrozen = new RelayCommand(o => { ChangeFilter(FrFilter);});
+
+            FilterFarmer = new RelayCommand(o => { ChangeFilter(FmFilter);});
         }
 
         private void ChangeFilter(FilterEventHandler newFilter)
@@ -152,6 +155,19 @@ namespace POMT_WPF.MVVM.ViewModel
             else
             {
                 e.Accepted = OrderContainsSearchQuery(order) && order.OrderType == Identifiers.ORDER_TYPE_SPECIAL;
+            }
+        }
+
+        private void FmFilter(object sender, FilterEventArgs e)
+        {
+            PetsiOrder order = e.Item as PetsiOrder;
+            if (order == null || order.IsFrozen)
+            {
+                e.Accepted = false;
+            }
+            else
+            {
+                e.Accepted = OrderContainsSearchQuery(order) && order.OrderType == Identifiers.ORDER_TYPE_FARMERS;
             }
         }
 
