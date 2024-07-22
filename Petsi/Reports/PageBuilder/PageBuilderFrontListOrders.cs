@@ -15,6 +15,7 @@ namespace Petsi.Reports.PageBuilder
            var order = item as PetsiOrder;
 
            if(order.OrderType == Identifiers.ORDER_TYPE_WHOLESALE) { return 0; }
+           if(order.OrderType == Identifiers.ORDER_TYPE_FARMERS) { return 0; }
            int lineCount = 0;
            foreach (var lineItem in order.LineItems) 
            {
