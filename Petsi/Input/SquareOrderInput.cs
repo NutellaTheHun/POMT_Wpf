@@ -86,14 +86,16 @@ namespace Petsi.Input
                     //To restrictive
                     if (orderItem.Fulfillments[0].Type == Identifiers.FULFILLMENT_PICKUP)
                     {
-                        if (DateTime.Parse(orderItem.Fulfillments[0].PickupDetails.PickupAt) < DateTime.Now)
+                        //Time filter
+                        if (DateTime.Parse(orderItem.Fulfillments[0].PickupDetails.PickupAt).Date < DateTime.Now.Date)
                         {
                             continue;
                         }
                     }
                     else if (orderItem.Fulfillments[0].Type == Identifiers.FULFILLMENT_DELIVERY)
                     {
-                        if (DateTime.Parse(orderItem.Fulfillments[0].DeliveryDetails.DeliverAt) < DateTime.Now)
+                        //Time filter
+                        if (DateTime.Parse(orderItem.Fulfillments[0].DeliveryDetails.DeliverAt).Date < DateTime.Now.Date)
                         {
                             continue;
                         }
