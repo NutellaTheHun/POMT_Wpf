@@ -1,9 +1,9 @@
 ﻿using Petsi.CommandLine;
-using System.ComponentModel;
+using System.Text.Json.Serialization;
 
 namespace Petsi.Units
 {
-    public class PetsiOrder : ModelUnitBase, IEquatable<PetsiOrder>
+    public class PetsiOrder : ModelUnitBase/*, IEquatable<PetsiOrder>*/
     {
         PetsiOrderFrameBehavior frameBehavior;
         public string InputOriginType { get; set; }
@@ -18,8 +18,47 @@ namespace Petsi.Units
         public bool IsPeriodic { get; set; }
         public bool IsOneShot { get; set; }
         public bool IsUserEntered { get; set; }
+        public bool IsFrozen { get; set; }
+        public string OrderType { get; set; }
+        public string OrderFrequency { get; set; }
+
+        public string DisplayOrderDueDate
+        {
+            get 
+            {
+                if(IsPeriodic)
+                {
+                    return DateTime.Parse(OrderDueDate).DayOfWeek.ToString();
+                }
+                return DateTime.Parse(OrderDueDate).ToString("d"); 
+            }
+            set {  }
+        }
         public List<PetsiOrderLineItem> LineItems{ get; set; }
-        
+
+        public PetsiOrder(PetsiOrder? source)
+        { 
+            if(source != null)
+            {
+                frameBehavior = source.frameBehavior;
+                InputOriginType = source.InputOriginType;
+                Recipient = source.Recipient;
+                OrderId = source.OrderId;
+                OrderDueDate = source.OrderDueDate;
+                FulfillmentType = source.FulfillmentType;
+                Note = source.Note;
+                DeliveryAddress = source.DeliveryAddress;
+                PhoneNumber = source.PhoneNumber;
+                Email = source.Email;
+                IsPeriodic = source.IsPeriodic;
+                IsOneShot = source.IsOneShot;
+                IsUserEntered = source.IsUserEntered;
+                IsFrozen = source.IsFrozen;
+                OrderType = source.OrderType;
+                LineItems = source.LineItems;
+            }
+        }
+
         public PetsiOrder()
         {
             LineItems = new List<PetsiOrderLineItem>();
@@ -63,47 +102,13 @@ namespace Petsi.Units
             LineItems = lineItems;
             frameBehavior = new PetsiOrderFrameBehavior(this);
         }
-        public override FrameBehaviorBase GetFrameBehavior()
-        {
-            return frameBehavior;
-        }
+        public override FrameBehaviorBase GetFrameBehavior(){return frameBehavior;}
 
-        public List<PetsiOrderLineItem> GetLineItems()
-        {
-            return LineItems;
-        }
+        public List<PetsiOrderLineItem> GetLineItems(){ return LineItems;}
 
-        public bool Equals(PetsiOrder? other)
+        public static string GenerateOrderId()
         {
-            if (InputOriginType != other.InputOriginType)
-            {
-                return false;
-            }
-            if (Recipient.ToLower() != other.Recipient.ToLower())
-            {
-                return false;
-            }
-            if(OrderId != other.OrderId)
-            {
-                return false;
-            }
-            if(OrderDueDate != other.OrderDueDate)
-            {
-                return false;
-            }
-            if(FulfillmentType != other.FulfillmentType)
-            {
-                return false;
-            }
-            if (Note != other.Note)
-            {
-                return false;
-            }
-            foreach(PetsiOrderLineItem lineItem in other.LineItems)
-            {
-                if (!LineItems.Contains(lineItem)){ return false; }
-            }
-            return true;
+            return Guid.NewGuid().ToString();
         }
     }
 }

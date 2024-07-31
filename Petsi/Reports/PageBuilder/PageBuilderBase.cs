@@ -42,11 +42,12 @@ namespace Petsi.Reports.PageBuilder
             {
                 throw new Exception("Table input empty");
             }
+            /*
             //if a mono-table page
             else if (_tables.Count == 1)
             {
                 _tables[0].BuildTable(page, pageSizeOrders, _report.GetReportTargetDate(), HandleTableTitle(pageSizeOrders[0]));
-            }
+            }*/
             else //a multi table page
             {
                 List<T> tableSizeOrders = new List<T>();
@@ -67,7 +68,18 @@ namespace Petsi.Reports.PageBuilder
 
                     if (!IsTableFull(tableMaxOrderLimit, currentOrderCount, itemLineValue, currentTableLineCount, tableMaxLineLimit))
                     {
-                        currentTableLineCount += itemLineValue;
+                        if(item is PetsiOrderLineItem petsiOrderLineItem)
+                        {
+                            if (!petsiOrderLineItem.ItemName.ToLower().Contains("vegan"))
+                            {
+                                currentTableLineCount += itemLineValue;
+                            }
+                        }
+                        else
+                        {
+                            currentTableLineCount += itemLineValue;
+                        }
+                        
                         tableSizeOrders.Add(item);
                         currentOrderCount++;
                     }

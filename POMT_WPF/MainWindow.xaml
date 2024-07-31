@@ -23,8 +23,7 @@
     <Border
         Background="{StaticResource ColumbiaBlue}"
         CornerRadius="20"
-        MouseDown="Border_MouseDown"
-        MouseLeftButtonDown="Border_MouseLeftButtonDown">
+        MouseDown="Border_MouseDown">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200" />
@@ -75,14 +74,14 @@
                                 </StackPanel>
                             </Button>
 
-                            <Button Click="ReportWindow_ButtonClick" Style="{StaticResource menuButton}">
+                            <Button  Style="{StaticResource menuButton}">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="FileTableOutline" Style="{StaticResource menuButtonIcon}" />
                                     <TextBlock Text="Reports" />
                                 </StackPanel>
                             </Button>
 
-                            <Button Click="LabelWindow_ButtonClick" Style="{StaticResource menuButton}">
+                            <Button  Style="{StaticResource menuButton}">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Label" Style="{StaticResource menuButtonIcon}" />
                                     <TextBlock Text="Labels" />
@@ -97,7 +96,6 @@
                             HorizontalAlignment="Left"
                             VerticalAlignment="Bottom"
                             Background="#dcdcdc"
-                            Click="SettingsWindow_ButtonClick"
                             DockPanel.Dock="Left"
                             Style="{StaticResource topButton}">
                             <Icon:PackIconMaterial Kind="Cog" />
@@ -114,17 +112,17 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
+                    <RowDefinition Height="54" />
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="10" />
                 </Grid.RowDefinitions>
 
                 <!--  Top Buttons  -->
                 <Button
-                    Margin="15,0,15,20"
+                    Margin="0,0,15,20"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
                     Click="CloseMainWindow"
-                    DockPanel.Dock="Bottom"
                     Style="{StaticResource menuButton}">
                     <StackPanel Orientation="Horizontal">
                         <Icon:PackIconMaterial Kind="Close" Style="{StaticResource menuButtonIcon}" />
@@ -132,17 +130,35 @@
                 </Button>
 
                 <!--  Page Title  -->
-                <TextBlock
+                <StackPanel
                     Grid.Row="1"
-                    Margin="0,20,0,0"
-                    HorizontalAlignment="Left"
-                    FontSize="32"
-                    FontWeight="SemiBold"
-                    Foreground="#40474C"
-                    Text="X Orders" />
-
-                <!--  Add Button  -->
-                <Button Click="AddOrder_ButtonClick" Style="{StaticResource addButton}">
+                    Grid.RowSpan="2"
+                    Height="40"
+                    Margin="0,0,0,55"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal">
+                    <TextBlock
+                        Margin="0,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        FontSize="32"
+                        FontWeight="SemiBold"
+                        Foreground="#40474C"
+                        Text="{Binding TotalOrderCount, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock
+                        Margin="0,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        FontSize="32"
+                        FontWeight="SemiBold"
+                        Foreground="#40474C"
+                        Text=" Orders" />
+                </StackPanel>
+                <Button
+                    Grid.Row="1"
+                    Margin="0,0,0,4"
+                    VerticalAlignment="Center"
+                    Style="{StaticResource addButton}">
                     <StackPanel Orientation="Horizontal">
                         <Icon:PackIconMaterial
                             Width="11"
@@ -156,104 +172,113 @@
 
                 <!--  Separator  -->
                 <Separator
-                    Grid.Row="3"
+                    Grid.Row="2"
+                    Grid.RowSpan="2"
                     Height="1"
-                    Margin="0,-1,0,10"
+                    Margin="0,54,0,10"
                     Background="White" />
 
                 <!--  Tab Buttons chaned to radio buttons?  -->
                 <StackPanel
                     Grid.Row="2"
-                    Margin="0,10,0,0"
+                    Grid.RowSpan="2"
+                    Margin="0,10,0,10"
                     Orientation="Horizontal">
-                    <Button
-                        BorderBrush="#E37B34"
+                    <RadioButton
+                        Click="FilterAll_Button_Click"
                         Content="All "
+                        GroupName="g1"
+                        IsChecked="True"
                         Style="{StaticResource tabButton}" />
-                    <Button Content="Wholesale" Style="{StaticResource tabButton}" />
-                    <Button Content="Square" Style="{StaticResource tabButton}" />
-                    <Button Content="Other" Style="{StaticResource tabButton}" />
+                    <RadioButton
+                        Click="FilterWholesale_Button_Click"
+                        Content="Wholesale"
+                        GroupName="g1"
+                        Style="{StaticResource tabButton}" />
+                    <RadioButton
+                        Click="FilterSquare_Button_Click"
+                        Content="Square"
+                        GroupName="g1"
+                        Style="{StaticResource tabButton}" />
+                    <RadioButton
+                        Click="FilterRetail_Button_Click"
+                        Content="Retail"
+                        GroupName="g1"
+                        Style="{StaticResource tabButton}" />
+                    <RadioButton
+                        Click="FilterSpecial_Button_Click"
+                        Content="Special"
+                        GroupName="g1"
+                        Style="{StaticResource tabButton}" />
+                    <RadioButton
+                        Click="FilterFrozen_Button_Click"
+                        Content="Frozen"
+                        GroupName="g1"
+                        Style="{StaticResource tabButton}" />
+
                 </StackPanel>
+
                 <!--  Filter TextBox  -->
                 <Grid
                     Grid.Row="2"
+                    Grid.RowSpan="2"
                     Width="200"
-                    HorizontalAlignment="Right">
+                    Margin="630,0,0,10"
+                    HorizontalAlignment="Left">
                     <TextBlock
                         Margin="15,0"
                         VerticalAlignment="Center"
                         Panel.ZIndex="1"
-                        Foreground="#40474C"
+                        Foreground="{StaticResource TextFont}"
                         IsHitTestVisible="False"
                         Text="Search orders ..."
                         Visibility="{Binding ElementName=txtFilter, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}" />
-
-                    <TextBox
-                        x:Name="txtFilter"
-                        Height="40"
-                        Style="{StaticResource textBoxSearch}" />
-
+                    <Border
+                        Background="#ffffff"
+                        BorderBrush="#e0e6ed"
+                        BorderThickness="1"
+                        CornerRadius="20">
+                        <TextBox
+                            x:Name="txtFilter"
+                            Width="175"
+                            Height="40"
+                            Margin="10,0,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalContentAlignment="Center"
+                            BorderThickness="0"
+                            Foreground="{StaticResource TextFont}"
+                            TextChanged="txtFilter_TextChanged" />
+                    </Border>
                 </Grid>
 
                 <!--  DataGrid  -->
                 <DataGrid
                     x:Name="dashboardDataGrid"
                     Grid.Row="5"
+                    Grid.RowSpan="2"
+                    Margin="0,11,0,1"
                     CellStyle="{DynamicResource dashboardDataGridCellStyle}"
                     ColumnHeaderStyle="{DynamicResource dashboardDataGridColumnHeaderStyle}"
                     RowStyle="{DynamicResource dashboardDataGridRowStyle}"
                     Style="{DynamicResource dashboardDataGridStyle}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding InputOriginType, UpdateSourceTrigger=PropertyChanged}" Header="Type" />
-                        <DataGridTextColumn Binding="{Binding Recipient, UpdateSourceTrigger=PropertyChanged}" Header="Name" />
-                        <DataGridTextColumn Binding="{Binding OrderDueDate, UpdateSourceTrigger=PropertyChanged}" Header="Due Date" />
-                        <DataGridTextColumn Binding="{Binding FulfillmentType, UpdateSourceTrigger=PropertyChanged}" Header="Fulfillment" />
+                        <DataGridTextColumn
+                            Binding="{Binding OrderType, UpdateSourceTrigger=PropertyChanged}"
+                            Header="Type"
+                            IsReadOnly="True" />
+                        <DataGridTextColumn
+                            Binding="{Binding Recipient, UpdateSourceTrigger=PropertyChanged}"
+                            Header="Name"
+                            IsReadOnly="True" />
+                        <DataGridTextColumn
+                            Binding="{Binding DisplayOrderDueDate, UpdateSourceTrigger=PropertyChanged}"
+                            Header="Due Date"
+                            IsReadOnly="True" />
+                        <DataGridTextColumn
+                            Binding="{Binding FulfillmentType, UpdateSourceTrigger=PropertyChanged}"
+                            Header="Fulfillment"
+                            IsReadOnly="True" />
                     </DataGrid.Columns>
-                    <!--<DataGrid.Columns>
-                        <DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
-                            <DataGridCheckBoxColumn.HeaderTemplate>
-                                <DataTemplate>
-                                    <CheckBox Style="{StaticResource CheckBoxStyle1}"/>
-                                </DataTemplate>
-                            </DataGridCheckBoxColumn.HeaderTemplate>
-                        </DataGridCheckBoxColumn>
-
-                        <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Number}"/>
-
-                        <DataGridTemplateColumn Header="Member" IsReadOnly="True" Width="*">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="{Binding BgColor}">
-                                            <TextBlock Text="{Binding Character}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
-                                        </Border>
-
-                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-
-                        <DataGridTextColumn Header="Position" IsReadOnly="True" Width="*" Binding="{Binding Position}"/>
-                        <DataGridTextColumn Header="Email Address" IsReadOnly="True" Width="*" Binding="{Binding Email}"/>
-                        <DataGridTextColumn Header="Phone Number" IsReadOnly="True" Width="*" Binding="{Binding Phone}"/>
-
-                        <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button Style="{StaticResource gridEditButton}">
-                                            <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
-                                        </Button>
-                                        <Button Style="{StaticResource gridRemoveButton}" Margin="5 0 0 0 ">
-                                            <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
-                                        </Button>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-
-                    </DataGrid.Columns>-->
                 </DataGrid>
             </Grid>
         </Grid>

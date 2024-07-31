@@ -1,4 +1,5 @@
-﻿using Petsi.CommandLine;
+﻿using Newtonsoft.Json;
+using Petsi.CommandLine;
 using Petsi.Filing;
 using Petsi.Interfaces;
 using Petsi.Labels;
@@ -6,7 +7,7 @@ using Petsi.Managers;
 using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
-using System.Collections;
+using System.Collections.ObjectModel;
 
 namespace Petsi.Models
 {
@@ -14,7 +15,7 @@ namespace Petsi.Models
     ///  <para>Data model of products from squares catalog API. products are represented as CatalogItemPetsi data types. </para> 
     ///  <para>INTERFACES: ICatalogService</para> 
     /// </summary>
-    public class CatalogModelPetsi : ModelBase, IModelInput, IModelPublishable
+    public class CatalogModelPetsi : ModelBase, IModelInput, IModelPublishable, IStartupSubscriber
     {
         List<ServiceBase> ServiceListeners;
         /// <summary>
@@ -38,10 +39,18 @@ namespace Petsi.Models
             fileBehavior = new FileBehavior("CatalogModel");
             ServiceListeners = new List<ServiceBase>();
 
+            StartupService.Instance.Register(this);
+
             SetModelName(Identifiers.MODEL_CATALOG);
             ModelManagerSingleton.GetInstance().Register(this);
             CommandFrame.GetInstance().RegisterFrame("cmp", frameBehavior);
             EnvironCaptureRegistrySingleton.GetInstance().Register(this);
+        }
+        public void UpdateModel(ObservableCollection<CatalogItemPetsi> catalogItems)
+        {
+            items = catalogItems.ToList();
+            SaveMainModel();
+            NotifyModelServices();
         }
 
         public override void AddData(ModelUnitBase item)
@@ -50,6 +59,19 @@ namespace Petsi.Models
             if(!items.Contains(cip)) //Sqaure ListCatalog API call contains duplicates.
             {
                 items.Add(cip);
+            }
+        }
+
+        public void AddNewItem(CatalogItemPetsi newItem)
+        {
+            if (!items.Contains(newItem)) //Sqaure ListCatalog API call contains duplicates.
+            {
+                items.Add(newItem);
+                NotifyModelServices();
+            }
+            else
+            {
+                SystemLogger.Log("ERROR Duplicate newItem entered to catalog while handling new item from soi");
             }
         }
         public override FrameBehaviorBase GetFrameBehavior(){ return frameBehavior; }
@@ -63,11 +85,32 @@ namespace Petsi.Models
         public FileBehavior GetFileBehavior(){ return fileBehavior; }
         public override void ClearModel() { items.Clear(); }
 
-        public override void AddOrder(ModelUnitBase item)
+        public override void AddItem(ModelUnitBase item)
         {
+            int count = items.Count;
             items.Add((CatalogItemPetsi)item);
-            SaveMainModel();
-            NotifyModelServices();
+            if(count+1 != items.Count)
+            {
+                SystemLogger.Log("cmp AddOrder failure: ");
+            }
+            else
+            {
+                SaveMainModel();
+                NotifyModelServices();
+            }
+        }
+        public void RemoveItem(CatalogItemPetsi order)
+        {
+            int count = items.Count;
+            items.Remove(order);
+            if (count - 1 == items.Count)
+            {
+                UpdateModel();
+            }
+            else
+            {
+                SystemLogger.Log("CatalogModel remove item failed, original count:  " + count + " after operation: " + items.Count);
+            }
         }
 
         public void SetCategoryList(List<(string, string)> categories){ Categories = categories; }
@@ -89,15 +132,40 @@ namespace Petsi.Models
             SaveMainModel();
             NotifyModelServices();
         }
+
+        public void UpdateModel()
+        {
+            SaveMainModel();
+            NotifyModelServices();
+        }
         private void SaveMainModel()
         {
-            GetFileBehavior().DataListToFile(Identifiers.MAIN_MODEL_CATALOG_FILE, GetItems());
+            fileBehavior.DataListToFile(Identifiers.MAIN_MODEL_CATALOG_FILE, GetItems());
+            SaveBackup();
         }
+
+        private void SaveBackup()
+        {
+            string backupFp = null;
+            backupFp = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_BACKUP_PATH);
+            if (backupFp != null && backupFp != "") 
+            {
+                try
+                {
+                    File.WriteAllText(backupFp + "\\" + Identifiers.MAIN_MODEL_CATALOG_FILE, JsonConvert.SerializeObject(items));
+                }
+                catch (Exception ex) { ErrorService.RaiseExceptionHandlerError(ex.Message, "CatalogModel, SaveBackup"); }
+            }
+        }
+
         private void FinalizeMainModel()
         {
             List<CatalogItemPetsi> mainList = fileBehavior.BuildDataListFile<CatalogItemPetsi>(Identifiers.MAIN_MODEL_CATALOG_FILE);
             List<CatalogItemPetsi> squareList = new List<CatalogItemPetsi>(GetItems());
-            List<CatalogItemPetsi> newList = new List<CatalogItemPetsi>(mainList);
+            List<CatalogItemPetsi> newList;
+            if (mainList != null) {newList = new List<CatalogItemPetsi>(mainList); }
+            else { newList = new List<CatalogItemPetsi>();}
+ 
 
             foreach(CatalogItemPetsi squareItem in squareList)
             {
@@ -126,6 +194,26 @@ namespace Petsi.Models
                 {
                     dict[item.ItemName] = item;
                 }
+
+                /* //Removed variation tuples that were errantly created.
+                   //Items from square do not need UserbasedIds which were uninentionally created and need to be removed
+                   //Items that have userbasedIds got them because the item didnt exist in square's catalog, these shouldn't be pruned
+                foreach(var variation in item.VariationList.ToList())
+                {
+                    if (!variation.variationId.Contains("userbased")) //if an item has square catalog Ids, they dont need userGenerated Ids and needs to be pruned
+                    {
+                        List<(string variationId, string variationName)> copy = new List<(string variationId, string variationName)>(item.VariationList);
+                        foreach (var var in copy)
+                        {
+                            if(var.variationId.Contains("userbased")) //removes all userbased IDs
+                            {
+                                item.VariationList.Remove(var);
+                            }
+                        }
+                        break;
+                    }
+                }
+                */
             }
             return dict.Values.ToList();
         }
@@ -162,10 +250,12 @@ namespace Petsi.Models
 
         public override void CaptureEnvironment(FileBehavior reportFb)
         {
-            reportFb.DataListToFile(Identifiers.ENV_CMP, items);
+            //reportFb.DataListToFile(Identifiers.ENV_CMP, items);
+            reportFb.DataListToPureFilePath(Identifiers.ENV_CMP, items);
             //Categories?
         }
 
+        //FrameBehavior function
         public void InitialLabelMapBoot()
         {
             List<(string id, string path)> cuties = LoadLabels.GetCutieInitialMap();
@@ -191,9 +281,28 @@ namespace Petsi.Models
             SaveMainModel();
         }
 
-        public void RemoveItem(CatalogItemPetsi order)
+        public void LoadStartupFiles(List<(string fileName, string filePath)> FileList)
         {
-            items.Remove(order);
+            if(FileList == null || FileList.Count == 0) { return; }
+            foreach (var fileListing in FileList)
+            {
+                if(fileListing.fileName == Identifiers.MAIN_MODEL_CATALOG_FILE)
+                {
+                    StartupLoadCatalog(fileListing.filePath);
+                    fileBehavior.DataListToFile(Identifiers.MAIN_MODEL_CATALOG_FILE, GetItems());
+                    StartupService.Instance.Deregister(this);
+                }
+            }
+        }
+
+        private void StartupLoadCatalog(string filePath)
+        {
+            string input;
+            if (File.Exists(filePath))
+            {
+                input = File.ReadAllText(filePath);
+                items = JsonConvert.DeserializeObject<List<CatalogItemPetsi>>(input);
+            }        
         }
     }
 }

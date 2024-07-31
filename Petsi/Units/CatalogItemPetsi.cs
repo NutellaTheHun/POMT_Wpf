@@ -1,4 +1,7 @@
 ﻿using Petsi.CommandLine;
+using Petsi.Managers;
+using Petsi.Services;
+using Petsi.Utils;
 using System.Collections.Specialized;
 
 namespace Petsi.Units
@@ -26,9 +29,48 @@ namespace Petsi.Units
         /// </summary>
         public ListDictionary Variations { get; set; }
         public List<(string variationId, string variationName)> VariationList { get; set; }
-
+        public List<(string variationId, string variationName)> DisabledVariationList { get; set; }
+        public CatalogItemPetsi VeganPieAssociation { get; set; }
         public string StandardLabelFilePath { get; set; }
         public string CutieLabelFilePath { get; set; }
+        public bool IsPOTM {  get; set; }
+        public bool IsParbake {  get; set; }
+
+        public CatalogItemPetsi(CatalogItemPetsi? copyItem)
+        {
+            if(copyItem != null)
+            {
+                frameBehavior = copyItem.frameBehavior;
+                CategoryId = copyItem.CategoryId;
+                CatalogObjectId = copyItem.CatalogObjectId;
+                ItemName = copyItem.ItemName;
+                NaturalNames = new List<string>(copyItem.NaturalNames);
+                Alt_CatalogObjId = new List<string>(copyItem.Alt_CatalogObjId);
+                Variations = copyItem.Variations;
+                VariationList = new List<(string variationId, string variationName)>(copyItem.VariationList);
+                DisabledVariationList = new List<(string variationId, string variationName)>(copyItem.DisabledVariationList);
+
+                if (copyItem.VeganPieAssociation != null)
+                {
+                    VeganPieAssociation = new CatalogItemPetsi(copyItem.VeganPieAssociation);
+                }
+
+                StandardLabelFilePath = copyItem.StandardLabelFilePath;
+                CutieLabelFilePath = copyItem.CutieLabelFilePath;
+                IsPOTM = copyItem.IsPOTM;
+                IsParbake = copyItem.IsParbake;
+            }
+            else
+            {
+                Variations = new ListDictionary();
+                frameBehavior = new CatalogItemFrameBehavior(this);
+                NaturalNames = new List<string>();
+                VariationList = new List<(string variationName, string variationId)>();
+                DisabledVariationList = new List<(string variationId, string variationName)>();
+                Alt_CatalogObjId = new List<string>();
+            }
+        }
+
         public CatalogItemPetsi(string categoryId, string catalogObjectId, string itemName)
         {
             this.CategoryId = categoryId;
@@ -38,6 +80,7 @@ namespace Petsi.Units
             frameBehavior = new CatalogItemFrameBehavior(this);
             NaturalNames = new List<string>();
             VariationList = new List<(string variationName, string variationId)>();
+            DisabledVariationList = new List<(string variationId, string variationName)>();
             Alt_CatalogObjId = new List<string>();
         }
         public CatalogItemPetsi(string categoryId, string catalogObjectId, string itemName, ListDictionary variations, List<string> naturalNames)
@@ -49,6 +92,7 @@ namespace Petsi.Units
             frameBehavior = new CatalogItemFrameBehavior(this);
             this.NaturalNames = naturalNames;
             VariationList = new List<(string variationName, string variationId)>();
+            DisabledVariationList = new List<(string variationId, string variationName)>();
             Alt_CatalogObjId = new List<string>();
         }
         public CatalogItemPetsi()
@@ -57,6 +101,7 @@ namespace Petsi.Units
             frameBehavior = new CatalogItemFrameBehavior(this);
             NaturalNames = new List<string>();
             VariationList = new List<(string variationName, string variationId)>();
+            DisabledVariationList = new List<(string variationId, string variationName)>();
             Alt_CatalogObjId = new List<string>();
         }
         public override FrameBehaviorBase GetFrameBehavior()
@@ -93,19 +138,19 @@ namespace Petsi.Units
         }
         public bool NaturalNameContains(string searchTerm)
         {
-            
-            if(NaturalNames.Count > 0) 
+
+            if (NaturalNames.Count > 0)
             {
-                NaturalNames.Any(name => name.ToLower().Contains(searchTerm.ToLower()));
-            } 
-            return false; 
+                return NaturalNames.Any(name => name.ToLower().Contains(searchTerm.ToLower()));
+            }
+            return false;
         }
         public bool NaturalNameEquals(string searchTerm)
         {
 
             if (NaturalNames.Count > 0)
             {
-                NaturalNames.Any(name => name.ToLower().Equals(searchTerm.ToLower()));
+                return NaturalNames.Any(name => name.ToLower().Equals(searchTerm.ToLower()));
             }
             return false;
         }
@@ -113,6 +158,84 @@ namespace Petsi.Units
         public void AddNaturalName(string errorName)
         {
             NaturalNames.Add(errorName);
+        }
+
+        public void RemoveNaturalName(string selectedItem)
+        {
+            NaturalNames.Remove(selectedItem);
+        }
+
+        /// <summary>
+        /// There can be duplicate size/variations due to duplicate square category items,
+        /// so the forloops must iterate through entire list and not return on first match.
+        /// </summary>
+        /// <param name="sizeVariation"></param>
+        /// <param name="isChecked"></param>
+        public void UpdateSizeVariation(string sizeVariation, bool isChecked)
+        {
+            if (isChecked)
+            {
+                //if sizeVariation is found in VariationList, do nothing
+                List<(string variationId, string variationName)> copy = new List<(string variationId, string variationName)>(VariationList);
+                foreach(var item in copy)
+                {
+                    if(item.variationName.Contains(sizeVariation))
+                    {
+                        return;
+                    }
+                }
+
+                //if not found
+                //if variation found in disabledVariationList, move variation to Variation list
+                List<(string variationId, string variationName)> disCopy = new List<(string variationId, string variationName)>(DisabledVariationList);
+                foreach (var item in disCopy)
+                {
+                    if (item.variationName.Contains(sizeVariation))
+                    {
+                        VariationList.Add(item);
+                        DisabledVariationList.Remove(item);
+                        return;
+                    }
+                }
+
+                //if not in disabledList
+                //Create new variation
+                CatalogService cs = GetCatalogService();
+                VariationList.Add((cs.GenerateCatalogId(), sizeVariation));
+            }
+            else
+            {
+                //if not checked
+                //if variation is found in variation list, move to disabledList
+                List<(string variationId, string variationName)> copy = new List<(string variationId, string variationName)>(VariationList);
+                foreach (var item in copy)
+                {
+                    if (item.variationName.Contains(sizeVariation))
+                    {
+                        DisabledVariationList.Add(item);
+                        VariationList.Remove(item);
+                        return;
+                    }
+                }
+            }
+        }
+        private CatalogService GetCatalogService() { return (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG); }
+
+        public bool VariationExists(string variationName) 
+        {
+            foreach((string variationId, string variationName) entry in VariationList)
+            {
+                if(entry.variationName.ToLower().Contains(variationName.ToLower()))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static string GenerateCatalogId()
+        {
+            return Identifiers.USER_BASED_ID_TAG + Guid.NewGuid().ToString();
         }
     }
 }

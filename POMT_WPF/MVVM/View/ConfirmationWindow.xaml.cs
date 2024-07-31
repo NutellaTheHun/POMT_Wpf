@@ -1,17 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-
+﻿using System.Windows;
 namespace POMT_WPF.MVVM.View
 {
     /// <summary>
@@ -19,19 +6,32 @@ namespace POMT_WPF.MVVM.View
     /// </summary>
     public partial class ConfirmationWindow : Window
     {
-        public ConfirmationWindow()
+        public bool ControlBool;
+        public string Message { get; set; }
+        public ConfirmationWindow(string? message)
         {
             InitializeComponent();
+            DataContext = this;
+            if (message == null) 
+            {
+                Message = "Are you sure?";
+            }
+            else
+            {
+                Message = message;
+            }
+            
         }
 
         private void Accept_ButtonClick(object sender, RoutedEventArgs e)
         {
-            //Do Something
+            ControlBool = true;
             Close();
         }
 
         private void Reject_ButtonClick(Object sender, RoutedEventArgs e)
         {
+            ControlBool = false;
             Close();
         }
 

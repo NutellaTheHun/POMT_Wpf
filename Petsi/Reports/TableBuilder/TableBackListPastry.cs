@@ -1,4 +1,6 @@
 ﻿using ClosedXML.Excel;
+using Petsi.Events.ReportEvents;
+using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
 
@@ -15,7 +17,13 @@ namespace Petsi.Reports.TableBuilder
         {
             List<PetsiOrderLineItem> items = tableOrders as List<PetsiOrderLineItem>;
             List<PetsiOrderLineItem> itemTracker = new List<PetsiOrderLineItem>(items);
-            List <BackListItem> listFormat = BacklistTemplateFormatSelector.GetInstance().GetPastryFormat();
+            //List <BackListItem> listFormat = BacklistTemplateFormatSelector.GetInstance().GetPastryFormat();
+            List<BackListItem> listFormat = ReportTemplateService.Instance().GetActiveBacklistPastryTemplate();
+            if(listFormat == null)
+            {
+                SystemLogger.Log("TableBackListPastry GetActiveBackListPastryTemplate returned an empty list");
+                return;
+            }
             string amountReg;
 
             foreach (BackListItem item in listFormat)
@@ -34,10 +42,19 @@ namespace Petsi.Reports.TableBuilder
             }
             if (itemTracker.Count > 0)
             {
-                SystemLogger.Log("Items for backlist pie not added to BackListPage: ");
+                List<PetsiOrderLineItem> remainders = new List<PetsiOrderLineItem>();
+                
                 foreach (PetsiOrderLineItem item in itemTracker)
                 {
-                    SystemLogger.Log("   " + item.ItemName);
+                    if (item.IsCategory(Identifiers.CATEGORY_PASTRY))
+                    {
+                        remainders.Add(item);
+                    }
+                }
+                if (remainders.Count > 0)
+                {
+                    ErrorService.Instance().RaiseTBOverflowEvent(remainders);
+                    BackListOverflowEvent.OnPastryOverflow(remainders);
                 }
             }
             FormatTable(page);
@@ -49,7 +66,7 @@ namespace Petsi.Reports.TableBuilder
 
             TableFormat.RangeAllBorders(page, tableRange);
             TableFormat.RangeAlignment(page, "center", tableRange);
-            TableFormat.RangeFontSize(page, 16, tableRange);
+            TableFormat.RangeFontSize(page, 18, tableRange);
             TableFormat.ColWidthFitSizeOfText(page, "B");
             TableFormat.ColumnSetPixelLength(page, 8.57, "C");
         }

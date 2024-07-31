@@ -1,0 +1,165 @@
+﻿<Window
+    x:Class="POMT_WPF.MVVM.View.TemplateItemViewWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:POMT_WPF.MVVM.View.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:v="clr-namespace:POMT_WPF.Validation"
+    Title="TemplateItemViewWindow"
+    Width="600"
+    Height="720"
+    AllowsTransparency="True"
+    Background="Transparent"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Border
+        Background="{StaticResource ColumbiaBlueDark}"
+        BorderBrush="{StaticResource Licorice}"
+        BorderThickness="2">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Button
+                    Margin="10"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Command="{Binding Close}"
+                    Style="{StaticResource GeneralCloseButton}" />
+            </Grid>
+            <Grid Grid.Row="1" Margin="10">
+                <local:TextFillTextBox
+                    Width="150"
+                    Height="30"
+                    Style="{StaticResource TemplateViewTextFillTextBox}"
+                    Text="{Binding TemplateName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    TextFill="Template Name..." />
+            </Grid>
+            <Grid Grid.Row="2">
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    <StackPanel Margin="0,25,0,0" Orientation="Vertical">
+                        <Button
+                            Width="30"
+                            Height="30"
+                            Margin="5,0,5,5"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Command="{Binding MoveItemUp}"
+                            CommandParameter="{Binding ElementName=TemplateItemDataGrid, Path=SelectedItem}"
+                            Style="{StaticResource secondaryButton}">
+                            <Icon:PackIconMaterial Kind="ChevronUp" />
+                        </Button>
+                        <Button
+                            Width="30"
+                            Height="30"
+                            Margin="5,0,5,5"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Command="{Binding MoveItemDown}"
+                            CommandParameter="{Binding ElementName=TemplateItemDataGrid, Path=SelectedItem}"
+                            Style="{StaticResource secondaryButton}">
+                            <Icon:PackIconMaterial Kind="ChevronDown" />
+                        </Button>
+                    </StackPanel>
+                    <DataGrid
+                        x:Name="TemplateItemDataGrid"
+                        Width="460"
+                        Height="500"
+                        AutoGenerateColumns="False"
+                        BorderBrush="Transparent"
+                        CanUserAddRows="False"
+                        CanUserDeleteRows="False"
+                        CanUserReorderColumns="False"
+                        CanUserResizeColumns="False"
+                        CanUserResizeRows="False"
+                        GridLinesVisibility="None"
+                        ItemsSource="{Binding TemplateItems}"
+                        ScrollViewer.CanContentScroll="False">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Width="125" Header="Display Name">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid Focusable="False">
+                                            <TextBox
+                                                FontWeight="Bold"
+                                                Style="{StaticResource TemplateItemTB}"
+                                                Text="{Binding PageDisplayName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="auto" Header="Item Name">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid Focusable="False">
+                                            <ComboBox
+                                                x:Name="ItemNameComboBox"
+                                                Style="{StaticResource TemplateItemCB}"
+                                                Text="{Binding ElementName=ItemNameTextBox, Path=Text}" />
+                                            <TextBox
+                                                x:Name="ItemNameTextBox"
+                                                Style="{StaticResource TemplateItemTB}"
+                                                TextChanged="ItemNameTextBox_TextChanged">
+                                                <TextBox.Text>
+                                                    <Binding
+                                                        Mode="TwoWay"
+                                                        Path="ItemName"
+                                                        UpdateSourceTrigger="PropertyChanged">
+                                                        <Binding.ValidationRules>
+                                                            <v:ItemNameValidation />
+                                                        </Binding.ValidationRules>
+                                                    </Binding>
+                                                </TextBox.Text>
+                                            </TextBox>
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Margin="0,25,0,0" Orientation="Vertical">
+                        <Button
+                            Width="30"
+                            Height="30"
+                            Margin="5,0,5,5"
+                            Command="{Binding AddItem}"
+                            Style="{StaticResource secondaryButton}">
+                            <Icon:PackIconMaterial Kind="Plus" />
+                        </Button>
+                        <Button
+                            Width="30"
+                            Height="30"
+                            Margin="5,0,5,5"
+                            Background="{StaticResource ChiliRed}"
+                            Command="{Binding RemoveItem}"
+                            CommandParameter="{Binding ElementName=TemplateItemDataGrid, Path=SelectedItem}"
+                            Style="{StaticResource secondaryButton}">
+                            <Icon:PackIconMaterial Kind="Minus" />
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="3">
+                <Button
+                    Width="80"
+                    HorizontalAlignment="Center"
+                    Command="{Binding Save}"
+                    Content="Save"
+                    Style="{StaticResource secondaryButton}" />
+                <Icon:PackIconBoxIcons
+                    x:Name="SaveCheckMark"
+                    Margin="345,50,0,0"
+                    Style="{StaticResource CheckMark}" />
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

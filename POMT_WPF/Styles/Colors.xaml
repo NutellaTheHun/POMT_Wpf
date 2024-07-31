@@ -1,0 +1,37 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="ColumbiaBlue" Color="#CCD7E1" />
+    <SolidColorBrush x:Key="ColumbiaBlueDark" Color="#BFC3C6" />
+    <SolidColorBrush x:Key="LapisLazuli" Color="#2D6587" />
+    <SolidColorBrush x:Key="TextFont" Color="#40474C" />
+    <SolidColorBrush x:Key="Orange" Color="#E37B34" />
+    <SolidColorBrush x:Key="Charcoal" Color="#2F4858" />
+    <SolidColorBrush x:Key="purple" Color="#7A578B" />
+    <SolidColorBrush x:Key="RaisinBlack" Color="#353340" />
+    <SolidColorBrush x:Key="LightBlu" Color="#A8D0DB" />
+    <SolidColorBrush x:Key="AtomicTangerine" Color="#E49273" />
+    <SolidColorBrush x:Key="DarkSpringGreen" Color="#157145" />
+    <SolidColorBrush x:Key="maybeDark" Color="#1E152A" />
+    <SolidColorBrush x:Key="maybeYello" Color="#F5A65B" />
+    <SolidColorBrush x:Key="NaplesYello" Color="#FFDF64" />
+    <SolidColorBrush x:Key="BattleshipGray" Color="#877B66" />
+    <SolidColorBrush x:Key="CoralPink" Color="#D78A76" />
+    <SolidColorBrush x:Key="ChiliRed" Color="#D64933" />
+    <SolidColorBrush x:Key="MoonStone" Color="#58A4B0" />
+    <SolidColorBrush x:Key="MintCream" Color="#F7FFF7" />
+    <SolidColorBrush x:Key="AirSuperiorityBlue" Color="#6CA6C1" />
+    <SolidColorBrush x:Key="CambridgeBlue" Color="#7C9885" />
+    <SolidColorBrush x:Key="Sage" Color="#B5B682" />
+    <SolidColorBrush x:Key="PeachYellow" Color="#FEDC97" />
+    <SolidColorBrush x:Key="MountbattenPink" Color="#93748A" />
+    <SolidColorBrush x:Key="SeaGreen" Color="#0A8754" />
+    <SolidColorBrush x:Key="Salmon" Color="#FF8E72" />
+    <SolidColorBrush x:Key="BitterSweet" Color="#ED6A5E" />
+    <SolidColorBrush x:Key="Puce" Color="#C6878F" />
+    <SolidColorBrush x:Key="BurntSienna" Color="#EC774C" />
+    <SolidColorBrush x:Key="YlnMnBLue" Color="#465379" />
+    <SolidColorBrush x:Key="CosmicLatte" Color="#F8F4E3" />
+    <SolidColorBrush x:Key="Coral" Color="#FF8966" />
+    <SolidColorBrush x:Key="Cerise" Color="#E5446D" />
+    <SolidColorBrush x:Key="Licorice" Color="#22181C" />
+    <SolidColorBrush x:Key="LicoriceDark" Color="#0D0106" />
+</ResourceDictionary>

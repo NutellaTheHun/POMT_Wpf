@@ -7,7 +7,70 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="MVVM\View\PetsiOrderFormErrorWindow.xaml.cs">
+    <Compile Update="MVVM\View\AddNaturalNameWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\CatalogItemView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\CatalogView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\ConfigureLabelsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\ExceptionHandlerShowWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\GeneralErrorWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\LabelItemWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\LabelView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\NewItemEventWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\NotifyMultiItemMatchWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\NotifyNewCatalogItemWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\NotifyTableBuilderOverFlowWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\OrderItemView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\OrderView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\ReportView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\SetSettingsVariableWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\SettingsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\SquareKeyMissingWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\TemplateItemViewWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\TemplateListView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\testNEWmainVIEW.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\VeganMapWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -15,7 +78,259 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MVVM\View\PetsiOrderFormErrorWindow.xaml">
+    <Page Update="MVVM\View\AddNaturalNameWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\CatalogItemView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\CatalogView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\ConfigureLabelsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\ExceptionHandlerShowWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\GeneralErrorWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\LabelItemWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\LabelView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\NewItemEventWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\NotifyMultiItemMatchWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\NotifyNewCatalogItemWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\NotifyTableBuilderOverFlowWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\OrderItemView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\OrderView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\ReportView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\SetSettingsVariableWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\SettingsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\SquareKeyMissingWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\TemplateItemViewWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\TemplateListView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\testNEWmainVIEW.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\VeganMapWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Borders\GeneralBorder.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Borders\GeneralWindowBorder.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Borders\OrderFormErrorBorder.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Borders\OrderLineItemBorder.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Brushes.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Button\AddButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Button\dashboardDataGridSelectAllButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Button\DataGridSelectAllButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Button\GeneralSetButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\ComboBox\ItemNameComboBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\ComboBox\OrderItemComboBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\ComboBox\TemplateItemCB.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\DataGrid\CatalogViewColHeaderGripperStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\DataGrid\CatalogViewColHeaderStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\DataGrid\CatalogViewDgCellStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\DataGrid\CatalogViewDgRowStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\DataGrid\CatalogViewDgStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Icons\CheckMark.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Templates\GeneralBackButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Button\gridEditBUtton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Button\gridRemoveButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Button\menuButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Button\pagingButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Button\secondaryButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Button\settingsButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Button\templateViewButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Button\topButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\CheckBox\CheckBoxStyle1.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Colors.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Custom\TextFillTextBox\orderFormItemnameTextFillTextBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Custom\TextFillTextBox\orderFormTextFillTextBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Custom\TextFillTextBox\TemplateViewTextFillTextBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Custom\TextFillTextBox\textFillTextBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\DataGrid\dashboardColumnHeaderGripperStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\DataGrid\dashboardDataGridCellStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\DataGrid\dashboardDataGridColumnHeaderStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\DataGrid\dashboardDataGridRowStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\DataGrid\dashboardDataGridStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\DataGrid\orderFormColumnHeaderGripperStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\DataGrid\orderFormDataGridCellStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\DataGrid\orderFormDataGridColumnHeaderStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\DataGrid\orderFormDataGridRowStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\DataGrid\orderFormGridStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Icons\gridButtonIcon.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Icons\menuButtonIcon.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Icons\pagingButtonIcon.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\RadioButton\radioButtonTheme.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\RadioButton\reportLabelsRadioButtonTheme.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Templates\GeneralCloseButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Templates\GeneralField.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\TextBlock\orderTextBlock.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\TextBox\CatalogListItemTextBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\TextBox\GeneralTextBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\TextBox\ItemNameTextBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\TextBox\newOrderTextBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\TextBox\OrderLineItemTextBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\TextBox\orderTextBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\TextBox\TemplateItemTB.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\TextBox\textBoxFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\TextBox\textBoxSearch.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\ToggleButton\orderFormEditButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\ToggleButton\orderFormFreezeButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\ToggleButton\tabButton.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

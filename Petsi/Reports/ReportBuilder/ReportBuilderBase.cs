@@ -1,7 +1,7 @@
 ﻿using ClosedXML.Excel;
-using DocumentFormat.OpenXml.Drawing;
 using Petsi.Interfaces;
 using Petsi.Reports.PageBuilder;
+using Petsi.Services;
 using Petsi.Utils;
 
 
@@ -31,9 +31,14 @@ namespace Petsi.Reports.ReportBuilder
             ConfigureBuilders();
         }
         
-        public virtual XLWorkbook BuildReport<T>(List<T> inputList, DateTime? targetDate)
+        public virtual XLWorkbook BuildReport<T>(List<T> inputList, DateTime? targetDate, DateTime? targetRangeEndDate)
         {
-            if(inputList.Count == 0) { SystemLogger.Log("Given list to report is empty"); return _report.Wb; ; }
+            if(inputList.Count == 0) 
+            { 
+                SystemLogger.Log("Given list to report is empty"); 
+                ErrorService.RaiseReportEmptyInput(); 
+                return _report.Wb; 
+            }
             int pageCount = 1;
             _report.SetReportTargetDate(targetDate);
             foreach (PageBuilderBase pageBuilder in pageBuilders)//will only build once, for orders, need to iterate all list for each builder, like table

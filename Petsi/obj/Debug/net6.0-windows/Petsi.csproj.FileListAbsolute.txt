@@ -103,6 +103,7 @@ C:\Users\nbril\source\repos\POMT_WPF\Petsi\obj\Debug\net6.0-windows\Petsi.pdb
 C:\Users\nbril\source\repos\POMT_WPF\Petsi\obj\Debug\net6.0-windows\Petsi.genruntimeconfig.cache
 C:\Users\nbril\source\repos\POMT_WPF\Petsi\obj\Debug\net6.0-windows\ref\Petsi.dll
 D:\Git-Repos\POMT_WPF\Petsi\bin\Debug\net6.0-windows\Petsi.exe
+D:\Git-Repos\POMT_WPF\Petsi\bin\Debug\net6.0-windows\Petsi.dll.config
 D:\Git-Repos\POMT_WPF\Petsi\bin\Debug\net6.0-windows\Petsi.deps.json
 D:\Git-Repos\POMT_WPF\Petsi\bin\Debug\net6.0-windows\Petsi.runtimeconfig.json
 D:\Git-Repos\POMT_WPF\Petsi\bin\Debug\net6.0-windows\Petsi.dll
@@ -122,9 +123,13 @@ D:\Git-Repos\POMT_WPF\Petsi\bin\Debug\net6.0-windows\Square.dll
 D:\Git-Repos\POMT_WPF\Petsi\bin\Debug\net6.0-windows\System.Collections.Immutable.dll
 D:\Git-Repos\POMT_WPF\Petsi\bin\Debug\net6.0-windows\System.Linq.Async.dll
 D:\Git-Repos\POMT_WPF\Petsi\bin\Debug\net6.0-windows\XLParser.dll
+D:\Git-Repos\POMT_WPF\Petsi\bin\Debug\net6.0-windows\office.dll
 D:\Git-Repos\POMT_WPF\Petsi\bin\Debug\net6.0-windows\Square.Service.dll
+D:\Git-Repos\POMT_WPF\Petsi\bin\Debug\net6.0-windows\stdole.dll
 D:\Git-Repos\POMT_WPF\Petsi\bin\Debug\net6.0-windows\Square.Service.pdb
 D:\Git-Repos\POMT_WPF\Petsi\obj\Debug\net6.0-windows\Petsi.csproj.AssemblyReference.cache
+D:\Git-Repos\POMT_WPF\Petsi\obj\Debug\net6.0-windows\Interop.Microsoft.Office.Interop.Excel.dll
+D:\Git-Repos\POMT_WPF\Petsi\obj\Debug\net6.0-windows\Petsi.csproj.ResolveComReference.cache
 D:\Git-Repos\POMT_WPF\Petsi\obj\Debug\net6.0-windows\Petsi.Form1.resources
 D:\Git-Repos\POMT_WPF\Petsi\obj\Debug\net6.0-windows\Petsi.Properties.Resources.resources
 D:\Git-Repos\POMT_WPF\Petsi\obj\Debug\net6.0-windows\Petsi.csproj.GenerateResource.cache

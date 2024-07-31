@@ -1,10 +1,13 @@
-﻿using Petsi.Filing;
+﻿using Newtonsoft.Json;
+using Petsi.Filing;
+using Petsi.Interfaces;
+using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
 using bli = Petsi.Units.BackListItem;
 namespace Petsi.Reports
 {
-    public class BacklistTemplateFormatSelector
+    public class BacklistTemplateFormatSelector : IStartupSubscriber
     {
         private static BacklistTemplateFormatSelector _instance;
         private List<(string name, List<bli> template)> templates;
@@ -70,7 +73,7 @@ namespace Petsi.Reports
             }
         }
 
-        private (string name,List<BackListItem> template) BootSummerFormat()
+        public (string name,List<BackListItem> template) BootSummerFormat()
         {
 
             return("Summer Pies", new List<BackListItem>
@@ -85,18 +88,17 @@ namespace Petsi.Reports
                 bli.PEACH(),
                 bli.PEACH_BLACK(),
                 bli.BLUE(),
-                bli.LEMON(),
+                bli.LEMON_CHESS_LAV(),
                 bli.KEY_LIME(), 
                 bli.BACON(),
                 bli.MOZZ(),
                 bli.JALAPENO(),
-                bli.VEGAN(),
                 bli.POTM()
             });
             
         }
 
-        private (string name, List<BackListItem> template) BootPieFormat()
+        public (string name, List<BackListItem> template) BootPieFormat()
         {
             return ("Standard Pies", new List<BackListItem>
             {
@@ -110,8 +112,7 @@ namespace Petsi.Reports
                 bli.BLUE(),
                 bli.STRAWBARB(),
                 bli.STRAWOAT(),
-                bli.VEGAN(),
-                bli.LEMON(),
+                bli.LEMON_CHESS_LAV(),
                 bli.KEY_LIME(),
                 bli.POTM(),
                 bli.BACON(),
@@ -126,12 +127,12 @@ namespace Petsi.Reports
 
         }
 
-        private (string name, List<BackListItem> template) BootPastryFormat()
+        public (string name, List<BackListItem> template) BootPastryFormat()
         {
             return ("Standard Pastry", new List<BackListItem>
             {
                 bli.CURRANT(),
-                bli.LEMON(),
+                bli.LEMON_SCONE(),
                 bli.TRIPLE(),
                 bli.BISCUIT(),
                 bli.MUFFINS(),
@@ -145,6 +146,29 @@ namespace Petsi.Reports
                 bli.OAT(),
                 bli.MOCHA()
             });
+        }
+
+        public void LoadStartupFiles(List<(string fileName, string filePath)> FileList)
+        {
+            if (FileList == null || FileList.Count == 0) { return; }
+            foreach (var fileListing in FileList)
+            {
+                if (fileListing.fileName == "templates")
+                {
+                    StartupLoadTemplates(fileListing.filePath);
+                    fileBehavior.DataListToFile("templates", templates);
+                    StartupService.Instance.Deregister(this);
+                }
+            }
+        }
+        private void StartupLoadTemplates(string filePath)
+        {
+            string input;
+            if (File.Exists(filePath))
+            {
+                input = File.ReadAllText(filePath);
+                templates = JsonConvert.DeserializeObject<List<(string name, List<bli> template)>>(input);
+            }
         }
     }
 }

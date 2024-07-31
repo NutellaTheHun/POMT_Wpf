@@ -46,19 +46,19 @@ namespace Petsi.CommandLine
                 switch (args[1])
                 {
                     case "0":
-                        director.CreateFrontList(null);
+                        //director.CreateFrontList(null);
                         break;
 
                     case "1":
-                        director.CreateBackList(null,null);
+                        //director.CreateBackList(null,null);
                         break;
 
                     case "2":
-                        director.CreateWsDay(null);
+                        //director.CreateWsDay(null);
                         break;
 
                     case "3":
-                        director.CreateWsDayName(null);
+                        //director.CreateWsDayName(null);
                         break;
 
                     default:
@@ -78,7 +78,7 @@ namespace Petsi.CommandLine
                         break;
 
                     case "1":
-                        director.CreateBackList(firstDt, lastDt);
+                        //director.CreateBackList(firstDt, lastDt);
                         break;
 
                     case "2":
@@ -102,19 +102,19 @@ namespace Petsi.CommandLine
                 switch (args[0])
                 {
                     case "0":
-                        director.CreateFrontList(firstDt);
+                       // director.CreateFrontList(firstDt);
                         break;
 
                     case "1":
-                        director.CreateBackList(firstDt, null);
+                        //director.CreateBackList(firstDt, null);
                         break;
 
                     case "2":
-                        director.CreateWsDay(firstDt);
+                        //director.CreateWsDay(firstDt);
                         break;
 
                     case "3":
-                        director.CreateWsDayName(firstDt);     
+                       // director.CreateWsDayName(firstDt);     
                         break;
 
                     default:

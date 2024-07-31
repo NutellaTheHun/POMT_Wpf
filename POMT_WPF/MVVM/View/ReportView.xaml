@@ -1,0 +1,274 @@
+﻿<UserControl
+    x:Class="POMT_WPF.MVVM.View.ReportView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:POMT_WPF.MVVM.View.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="660"
+    d:DesignWidth="860"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource ColumbiaBlue}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!--  Main Body  -->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--  Printing  -->
+            <Grid Grid.Row="0" Margin="0,130,0,0">
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+
+                    <!--  CheckBox Filters  -->
+                    <Grid>
+                        <Label Height="200" Content="Filter" />
+                        <Border
+                            Height="150"
+                            Margin="5"
+                            BorderBrush="{StaticResource TextFont}"
+                            BorderThickness="1"
+                            CornerRadius="5">
+                            <StackPanel
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                Orientation="Vertical">
+                                <CheckBox
+                                    x:Name="RetailCheckbox"
+                                    Margin="5"
+                                    Content="Retail"
+                                    IsChecked="{Binding RetailFilter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                <CheckBox
+                                    x:Name="SquareCheckBox"
+                                    Margin="5"
+                                    Content="Square"
+                                    IsChecked="{Binding SquareFilter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                <CheckBox
+                                    x:Name="WholesaleCheckbox"
+                                    Margin="5"
+                                    Content="Wholesale"
+                                    IsChecked="{Binding WholesaleFilter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                <CheckBox
+                                    x:Name="SpecialCheckbox"
+                                    Margin="5"
+                                    Content="Special"
+                                    IsChecked="{Binding SpecialFilter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                <CheckBox
+                                    x:Name="FarmerCheckbox"
+                                    Margin="5"
+                                    Content="Farmers"
+                                    IsChecked="{Binding FarmerFilter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+
+                            </StackPanel>
+                            <!-- " <CheckBox
+                                    x:Name="EzCaterCheckbox"
+                                    Margin="5"
+                                    Content="Ez-Cater"
+                                    IsChecked="{Binding EzCaterFilter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />-->
+                        </Border>
+                    </Grid>
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Printing" />
+                        <Border
+                            Width="400"
+                            Height="150"
+                            BorderBrush="{StaticResource TextFont}"
+                            BorderThickness="1"
+                            CornerRadius="5">
+                            <Grid>
+                                <StackPanel
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Orientation="Vertical">
+                                    <StackPanel
+                                        Grid.Row="2"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal">
+                                        <StackPanel Orientation="Vertical">
+                                            <Label Content="Start" />
+                                            <DatePicker
+                                                Width="150"
+                                                Height="40"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                SelectedDate="{Binding StartDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Vertical">
+                                            <Label Content="End" />
+                                            <DatePicker
+                                                x:Name="datePickerEnd"
+                                                Width="150"
+                                                Height="40"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                SelectedDate="{Binding EndDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <StackPanel
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal">
+                                        <Button
+                                            Width="150"
+                                            Margin="5"
+                                            Command="{Binding PrintFrontList}"
+                                            Content="Print Customer Orders"
+                                            Foreground="#efefef"
+                                            Style="{StaticResource secondaryButton}" />
+                                        <Button
+                                            Width="100"
+                                            Margin="5"
+                                            Command="{Binding PrintPieBackList}"
+                                            Content="Print Pie List"
+                                            Foreground="#efefef"
+                                            Style="{StaticResource secondaryButton}" />
+                                        <Button
+                                            Width="100"
+                                            Margin="5"
+                                            Command="{Binding PrintPastryBackList}"
+                                            Content="Print Pastry List"
+                                            Foreground="#efefef"
+                                            Style="{StaticResource secondaryButton}" />
+                                    </StackPanel>
+                                    <!--                                         <Button
+                                            Width="150"
+                                            Margin="5"
+                                            Command="{Binding PrintBackList}"
+                                            Content="Print Baker's List"
+                                            Foreground="#efefef"
+                                            Style="{StaticResource secondaryButton}" />-->
+                                    <StackPanel
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal">
+                                        <Button
+                                            Width="150"
+                                            Margin="5"
+                                            Command="{Binding PrintWsAgg}"
+                                            Content="Print Wholesale Aggregate"
+                                            Foreground="#efefef"
+                                            Style="{StaticResource secondaryButton}" />
+                                        <Button
+                                            Width="150"
+                                            Margin="5"
+                                            Command="{Binding PrintWsBreakDown}"
+                                            Content="Print Wholesale Breakdown"
+                                            Foreground="#efefef"
+                                            Style="{StaticResource secondaryButton}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+                    <Grid>
+                        <Label Height="200" Content="Output Options" />
+                        <Border
+                            Height="150"
+                            Margin="5"
+                            BorderBrush="{StaticResource TextFont}"
+                            BorderThickness="1"
+                            CornerRadius="5">
+                            <StackPanel
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                Orientation="Vertical">
+                                <CheckBox
+                                    x:Name="IsPrintCheckBox"
+                                    Margin="5"
+                                    Content="Print"
+                                    IsChecked="{Binding IsPrint, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                <CheckBox
+                                    x:Name="IsExportCheckBox"
+                                    Margin="5"
+                                    Content="Export"
+                                    IsChecked="{Binding IsExport, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </StackPanel>
+
+
+
+            </Grid>
+
+            <!--  Configure  -->
+            <Grid Grid.Row="1">
+                <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                    <Label Content="Configure" />
+                    <Border
+                        Width="425"
+                        Height="200"
+                        BorderBrush="{StaticResource TextFont}"
+                        BorderThickness="1"
+                        CornerRadius="5">
+                        <Grid>
+                            <StackPanel
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Orientation="Vertical">
+                                <StackPanel
+                                    Margin="5"
+                                    HorizontalAlignment="Right"
+                                    Orientation="Horizontal">
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            FontSize="14"
+                                            FontWeight="SemiBold"
+                                            Foreground="{StaticResource maybeDark}"
+                                            Text="Active Pie Template" />
+                                        <TextBox
+                                            IsReadOnly="true"
+                                            Style="{StaticResource GeneralField}"
+                                            Text="{Binding PieTemplateName, UpdateSourceTrigger=PropertyChanged}" />
+                                    </StackPanel>
+                                    <Button
+                                        Width="50"
+                                        Margin="5,20,0,0"
+                                        Command="{Binding SetPieTemplate}"
+                                        Content="Set"
+                                        Style="{StaticResource secondaryButton}" />
+                                </StackPanel>
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <StackPanel Margin="5" Orientation="Vertical">
+                                        <TextBlock
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            FontSize="14"
+                                            FontWeight="SemiBold"
+                                            Foreground="{StaticResource maybeDark}"
+                                            Text="Active Pastry Template" />
+                                        <TextBox
+                                            IsReadOnly="true"
+                                            Style="{StaticResource GeneralField}"
+                                            Text="{Binding PastryTemplateName, UpdateSourceTrigger=PropertyChanged}" />
+                                    </StackPanel>
+                                    <Button
+                                        Width="50"
+                                        Margin="5,20,0,0"
+                                        Command="{Binding SetPastryTemplate}"
+                                        Content="Set"
+                                        Style="{StaticResource secondaryButton}" />
+                                </StackPanel>
+                                <Button
+                                    Width="140"
+                                    Margin="10"
+                                    Command="{Binding OpenTemplateListView}"
+                                    Content="Manage Templates"
+                                    Style="{StaticResource secondaryButton}" />
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

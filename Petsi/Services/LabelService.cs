@@ -1,9 +1,10 @@
 ﻿using Petsi.CommandLine;
+using Petsi.Events;
 using Petsi.Managers;
 using Petsi.Models;
 using Petsi.Units;
 using Petsi.Utils;
-using System.Diagnostics;
+using System.Drawing.Printing;
 
 namespace Petsi.Services
 {
@@ -11,6 +12,7 @@ namespace Petsi.Services
     {
         string cutieDirectoryPath;
         string pieDirectoryPath;
+
         /// <summary>
         /// Key: CatalogObjectId, Value:pdfFilepath
         /// </summary>
@@ -27,19 +29,27 @@ namespace Petsi.Services
             frameBehavior = new LabelServiceFrameBehavior(this);
             _standardLabelMap = new Dictionary<string, string>();
             _cutieLabelMap = new Dictionary<string, string>();
-            cutieDirectoryPath = PetsiConfig.GetInstance().GetFilepath("cutieDirectory");
-            pieDirectoryPath = PetsiConfig.GetInstance().GetFilepath("standardDirectory");
+            cutieDirectoryPath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_CUTIE_LBL_PATH);
+            pieDirectoryPath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_PIE_LBL_PATH);
             SetServiceName(Identifiers.SERVICE_LABEL);
             ServiceManagerSingleton.GetInstance().Register(this);
             CommandFrame.GetInstance().RegisterFrame("lbl", frameBehavior);
             CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
             cmp.AddModelService(this);
+            LoadLabelMap(cmp.GetItems());
         }
         public FrameBehaviorBase GetFrameBehavior() { return frameBehavior; }
+        
+        /// <summary>
+        /// Recieves the Catalaog and maps any item that contains a standard or cutie label file
+        /// </summary>
+        /// <param name="inputList"></param>
         public void LoadLabelMap(List<CatalogItemPetsi> inputList)
         {
             //CLEAR OR TRYADD
-            foreach(CatalogItemPetsi item in inputList)
+            _standardLabelMap["round"] = "Round-Allergen-Label-01.png";
+            _standardLabelMap["care"] = "pie-care-directory-label-v2-03.jpg";
+            foreach (CatalogItemPetsi item in inputList)
             {
                 if(item.StandardLabelFilePath != null)
                 {
@@ -73,84 +83,254 @@ namespace Petsi.Services
             List<LabelPrintData> printList = LoadPrintList(omp.GetWsDayData(targetDate));
             PrintRound(printList);
         }
+
         private void PrintStandard(List<LabelPrintData> inputList)
         {
-            /*
-            foreach(LabelPrintData printItem in inputList)
-            {
-                ExecuteRolloPrint(pieDirectoryPath + _standardLabelMap[printItem.Id], printItem.GetStandardAmount() );
-            }*/
-            ExecuteRolloPrint("D:/Git-Repos/Petsi/Petsi/Labels/Files/Pie/Apple-Crumb_pie_ingredient_labels.jpg", 1);
-        }
-        private void PrintCutie(List<LabelPrintData> inputList)
-        {
+            if(!ValidateStandardLabelMap(inputList)){ return; }
+
+            PrintDocument pd;
             foreach (LabelPrintData printItem in inputList)
             {
-                ExecuteRolloPrint(cutieDirectoryPath + _cutieLabelMap[printItem.Id], printItem.GetCutieAmount() );
+                pd = new PrintDocument();
+                pd.PrinterSettings.PrinterName = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_LABEL_PRINTER);
+                pd.DefaultPageSettings.PaperSize = new PaperSize("Custom", 400, 200); //hundreths of an inch
+                pd.PrinterSettings.Copies = (short)printItem.GetStandardAmount();
+                if (pd.PrinterSettings.Copies == 0) { continue; }
+                pd.PrintPage += (sender, args) =>
+                {
+                    Image img = Image.FromFile(pieDirectoryPath + "\\" + _standardLabelMap[printItem.Id]);
+                    Point loc = new Point(0, 0);
+                    args.Graphics.DrawImage(img, loc);
+                };
+                int a = 1;
+                try { pd.Print(); }
+                catch (InvalidPrinterException e)
+                {
+                    ErrorService.RaisePrinterNotFoundEvent();
+                    return;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Before print cutie labels, verify every item in inputlist has a label mapping, and that all filepaths are valid.
+        /// </summary>
+        /// <param name="inputList"></param>
+        /// <param name="labelMap"></param>
+        /// <returns></returns>
+        private bool ValidateCutieLabelMap(List<LabelPrintData> inputList)
+        { 
+            string labelsFilepath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_CUTIE_LBL_PATH);
+            if (labelsFilepath == null || labelsFilepath == "") { return false; }
+
+
+            string test;
+            foreach (LabelPrintData printItem in inputList)
+            {
+
+                if(printItem.GetCutieAmount() == 0) { continue;}
+
+                try { test = _cutieLabelMap[printItem.Id]; }
+                catch (KeyNotFoundException e)
+                {
+                    LabelServiceInputLabelNotFoundArgs args = new LabelServiceInputLabelNotFoundArgs(printItem.Id);
+                    ErrorService.RaiseInputLabelNotFound(args);
+                    return false;
+                }
+                if(!File.Exists(cutieDirectoryPath + "\\" + _cutieLabelMap[printItem.Id]))
+                {
+
+                    ErrorService.RaiseExceptionHandlerError("Label file path invalid: " + cutieDirectoryPath + "\\" + _cutieLabelMap[printItem.Id], "LabelService, ValidateCutieMap");
+                    LabelServiceInputLabelNotFoundArgs args = new LabelServiceInputLabelNotFoundArgs(printItem.Id);
+                    ErrorService.RaiseInputLabelNotFound(args);
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Before print standard labels, verify every item in inputlist has a label mapping, and that all filepaths are valid.
+        /// </summary>
+        /// <param name="inputList"></param>
+        /// <param name="labelMap"></param>
+        /// <returns></returns>
+        private bool ValidateStandardLabelMap(List<LabelPrintData> inputList)
+        {
+            string labelsFilepath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_PIE_LBL_PATH);
+            if (labelsFilepath == null || labelsFilepath == "") { return false; }
+
+            string test;
+            foreach (LabelPrintData printItem in inputList)
+            {
+
+                if(printItem.GetStandardAmount() == 0) { continue; }
+
+                try { test = _standardLabelMap[printItem.Id]; }
+                catch (KeyNotFoundException e)
+                {
+                    LabelServiceInputLabelNotFoundArgs args = new LabelServiceInputLabelNotFoundArgs(printItem.Id);
+                    ErrorService.RaiseInputLabelNotFound(args);
+                    return false;
+                }
+                if (!File.Exists(pieDirectoryPath + "\\" + _standardLabelMap[printItem.Id]))
+                {
+
+                    ErrorService.RaiseExceptionHandlerError("Label file path invalid: " + pieDirectoryPath + "\\" + _standardLabelMap[printItem.Id], "LabelService, ValidateStandardLabelMap");
+                    LabelServiceInputLabelNotFoundArgs args = new LabelServiceInputLabelNotFoundArgs(printItem.Id);
+                    ErrorService.RaiseInputLabelNotFound(args);
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private void PrintCutie(List<LabelPrintData> inputList)
+        {
+            //Validate label filepaths
+            if (!ValidateCutieLabelMap(inputList)) { return; }
+
+            PrintDocument pd;
+            foreach (LabelPrintData printItem in inputList)
+            {
+                pd = new PrintDocument();
+                pd.PrinterSettings.PrinterName = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_LABEL_PRINTER);
+                pd.DefaultPageSettings.PaperSize = new PaperSize("Custom", 200, 100); //hundreths of an inch
+                pd.PrinterSettings.Copies = (short)printItem.GetCutieAmount();
+                if (pd.PrinterSettings.Copies == 0) { continue; }
+                pd.PrintPage += (sender, args) =>
+                {
+                    Image img = Image.FromFile(cutieDirectoryPath + "\\" + _cutieLabelMap[printItem.Id]);
+                    Point loc = new Point(0, 0);
+                    args.Graphics.DrawImage(img, loc);
+                };
+
+                try { pd.Print(); }
+                catch (InvalidPrinterException e) 
+                {
+                    ErrorService.RaisePrinterNotFoundEvent();
+                    return;
+                }
             }
         }
         private void PrintCare(List<LabelPrintData> inputList)
         {
+            //Validate Filepath
+            if (!File.Exists(pieDirectoryPath + "\\" + _standardLabelMap["care"]))
+            {
+                ErrorService.RaiseExceptionHandlerError("Label file path invalid: " + pieDirectoryPath + "\\" + _standardLabelMap["care"], "LabelService, PrintCare");
+                return;
+            }
+
             int count = 0;
             foreach (LabelPrintData printItem in inputList)
             {
                 count += printItem.GetStandardAmount();
-               
             }
-            ExecuteRolloPrint(pieDirectoryPath + _standardLabelMap["care"] , count );
+
+            if(count == 0) { return; }
+
+            PrintDocument pd = new PrintDocument();
+            pd.PrinterSettings.PrinterName = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_LABEL_PRINTER);
+            pd.DefaultPageSettings.PaperSize = new PaperSize("Custom", 200, 100); //hundreths of an inch
+            pd.PrinterSettings.Copies = (short)count;
+            //pd.PrinterSettings.Copies = 1;
+            pd.PrintPage += (sender, args) =>
+            {
+                Image img = Image.FromFile(pieDirectoryPath + "\\" + _standardLabelMap["care"]);
+                Point loc = new Point(0, 0);
+                args.Graphics.DrawImage(img, loc);
+            };
+            try { pd.Print(); }
+            catch (InvalidPrinterException e)
+            {
+                ErrorService.RaisePrinterNotFoundEvent();
+                return;
+            }
         }
         private void PrintRound(List<LabelPrintData> inputList)
         {
+            //Validate Filepath
+            if (!File.Exists(pieDirectoryPath + "\\" + _standardLabelMap["round"]))
+            {
+                ErrorService.RaiseExceptionHandlerError("Label file path invalid: " + pieDirectoryPath + "\\" + _standardLabelMap["round"], "LabelService, PrintRound");
+                return;
+            }
+
             int count = 0;
             foreach (LabelPrintData printItem in inputList)
             {
                 count += printItem.GetCutieAmount();
-
             }
-            ExecuteRolloPrint(pieDirectoryPath + _standardLabelMap["round"] , count );
+            PrintDocument pd = new PrintDocument();
+            pd.PrinterSettings.PrinterName = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_LABEL_PRINTER);
+            pd.DefaultPageSettings.PaperSize = new PaperSize("Custom", 200, 200); //hundreths of an inch
+            pd.PrinterSettings.Copies = (short)count;
+            //pd.PrinterSettings.Copies = 1;
+            pd.PrintPage += (sender, args) =>
+            {
+                Image img = Image.FromFile(pieDirectoryPath + "\\" + _standardLabelMap["round"]);
+                Point loc = new Point(0, 0);
+                args.Graphics.DrawImage(img, loc);
+            };
+
+            try { pd.Print(); }
+            catch (InvalidPrinterException e)
+            {
+                ErrorService.RaisePrinterNotFoundEvent();
+                return;
+            }
         }
+
+        //--------------
+        public void ValidateFilePaths()
+        {
+            if (cutieDirectoryPath == null || cutieDirectoryPath == "") { ErrorService.RaiseLabelFilePathNotSet(); return; }
+            if (pieDirectoryPath == null || pieDirectoryPath == "") { ErrorService.RaiseLabelFilePathNotSet(); return; }
+
+            CatalogService cmp = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
+
+            if (!File.Exists(pieDirectoryPath + "\\" + "Round-Allergen-Label-01.png"))
+            {
+                ErrorService.Instance().RaiseLabelServiceValidateFilePathEvent("round label", "Round-Allergen-Label-01.png", "Pie");
+            }
+            if(!File.Exists(pieDirectoryPath + "\\" + "pie-care-directory-label-v2-03.jpg"))
+            {
+                ErrorService.Instance().RaiseLabelServiceValidateFilePathEvent("care sticker", "pie-care-directory-label-v2-03.jpg", "Pie");
+            }
+
+            //key: catalog id, val: fileName
+            foreach (KeyValuePair<string, string> entry in _standardLabelMap)
+            {
+                if(entry.Key == "round") { continue; }
+                if(entry.Key == "care") { continue; }
+                if (!File.Exists(pieDirectoryPath + "\\" + entry.Value)) 
+                {
+                    CatalogItemPetsi item = cmp.GetCatalogItemById(entry.Key);
+                    ErrorService.Instance().RaiseLabelServiceValidateFilePathEvent(item.ItemName, entry.Value, "Pie");
+                }
+            }
+            foreach (KeyValuePair<string, string> entry in _cutieLabelMap)
+            {
+                if (!File.Exists(cutieDirectoryPath + "\\" + entry.Value))
+                {
+                    CatalogItemPetsi item = cmp.GetCatalogItemById(entry.Key);
+                    ErrorService.Instance().RaiseLabelServiceValidateFilePathEvent(item.ItemName, entry.Value, "Cutie");
+                }
+            }
+        }
+
         private List<LabelPrintData> LoadPrintList(List<PetsiOrderLineItem> inputList)
         {
             List<LabelPrintData> printList = new List<LabelPrintData>();
 
             foreach (PetsiOrderLineItem item in inputList)
             {
-                printList.Add(new LabelPrintData(item.CatalogObjectId, item.Amount3, item.Amount5, item.Amount8));
+                printList.Add(new LabelPrintData(item.CatalogObjectId, item.Amount3, item.Amount5, item.Amount8));               
             }
             return printList;
         }
-        private void ExecuteRolloPrint(string PdfFp, int copies)
-        {
-            string nodePath = @"C:\Program Files\nodejs\node.exe";
 
-            string scriptPath = @"D:\Git-Repos\Petsi\Petsi\Services\RolloPrinter.js";
-
-            ProcessStartInfo startInfo = new ProcessStartInfo
-            {
-                FileName = nodePath,
-                Arguments = $"{scriptPath} \"{PdfFp}\" {copies}",
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                UseShellExecute = false,
-                CreateNoWindow = true
-            };
-
-            using (Process process = new Process { StartInfo = startInfo })
-            {
-                process.Start();
-
-                string output = process.StandardOutput.ReadToEnd();
-                string error = process.StandardError.ReadToEnd();
-
-                process.WaitForExit();
-
-                Console.WriteLine("Output: " + output);
-                if (!string.IsNullOrEmpty(error))
-                {
-                    Console.WriteLine("Error: " + error);
-                }
-            }
-        }   
         public override void Update(ModelBase model)
         {
             var catalog = (CatalogModelPetsi)model;
@@ -177,6 +357,6 @@ namespace Petsi.Services
             Amount8 = amount8;
         }
         public int GetStandardAmount() { return Amount5 + Amount8; }
-        public int GetCutieAmount() {  return Amount3; }
+        public int GetCutieAmount() {  return Amount3; }   
     }
 }

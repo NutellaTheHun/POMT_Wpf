@@ -19,7 +19,7 @@ namespace Petsi.Input
         public WholesaleInput()
         {
             items = new List<WholesaleItem>();
-            csvh = new CSVHandler(PetsiConfig.GetInstance().GetFilepath("onOrderPath"));
+           // csvh = new CSVHandler(PetsiConfig.GetInstance().GetFilepath("onOrderPath"));
             frameBehavior = new WholesaleInputFrameBehavior(this);
             fileBehavior = new FileBehavior("WholesaleInput");
             isFileExecute = false;
@@ -28,11 +28,11 @@ namespace Petsi.Input
             SetModel(ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS));
             SetInputName(Identifiers.WHOLESALE_INPUT);
             InputManagerSingleton.GetInstance().Register(this);
-            EnvironCaptureRegistrySingleton.GetInstance().Register(this);
+            //EnvironCaptureRegistrySingleton.GetInstance().Register(this);
             CommandFrame.GetInstance().RegisterFrame("wsi", frameBehavior);
         }
         public override async Task Execute()
-        {
+        {/*
             if(!isFileExecute)
             {
                 items = csvh.LoadWholesaleData();
@@ -42,7 +42,7 @@ namespace Petsi.Input
             {
                 Model.AddData(item);
             }
-            hasExecuted = true;
+            hasExecuted = true;*/
         }
         public List<PetsiOrder> WholesaleItemsToPetsiOrders()
         {
@@ -72,6 +72,6 @@ namespace Petsi.Input
         public void SetIsFileExecute(bool v){ isFileExecute = v;}
         public bool GetHasExecuted() { return hasExecuted; }
         public void SetHasExecuted(bool v) { hasExecuted = v; }
-        public override void CaptureEnvironment(FileBehavior reportFb){reportFb.DataListToFile(Identifiers.ENV_WSI, items); }
+        public override void CaptureEnvironment(FileBehavior reportFb){/*reportFb.DataListToFile(Identifiers.ENV_WSI, items);*//*reportFb.DataListToPureFilePath(items);*/ }
     }
 }

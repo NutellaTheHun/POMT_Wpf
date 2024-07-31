@@ -34,14 +34,16 @@ namespace Petsi.Units
         public PetsiOrder ToPetsiOrder()
         {
             PetsiOrder o = new PetsiOrder();
-            o.InputOriginType = Identifiers.SQUARE_ORDER_INPUT;
+            o.InputOriginType = Identifiers.ORDER_INPUT_ORIGIN_SQUARE;
             o.Recipient = RecipientName;
             o.OrderId = Id;
             o.OrderDueDate = Pickup_time;
             o.FulfillmentType = FulfillmentType;
             o.Note = Note;
             o.LineItems = ToPetsiOrderLineItemList();
-            o.IsPeriodic = false; 
+            o.IsPeriodic = false;
+            o.IsOneShot = true;
+            o.OrderType = Identifiers.ORDER_TYPE_SQUARE;
             return o;
         }
         private List<PetsiOrderLineItem> ToPetsiOrderLineItemList()
@@ -58,19 +60,19 @@ namespace Petsi.Units
                     //A order from square shouldnt have duplicate lines of item and size, so an assignment should suffice, (just "=" rather than "+=")
                     if (ChannelLineItem.VariationName.Contains(Identifiers.SIZE_SMALL))
                     {
-                        variationSizeDict[ChannelLineItem.CatalogObjectId].Amount5 = int.Parse(ChannelLineItem.Quantity);
+                        variationSizeDict[ChannelLineItem.CatalogObjectId].Amount5 += int.Parse(ChannelLineItem.Quantity);
                     }
                     else if (ChannelLineItem.VariationName.Contains(Identifiers.SIZE_MEDIUM))
                     {
-                        variationSizeDict[ChannelLineItem.CatalogObjectId].Amount8 = int.Parse(ChannelLineItem.Quantity);
+                        variationSizeDict[ChannelLineItem.CatalogObjectId].Amount8 += int.Parse(ChannelLineItem.Quantity);
                     }
                     else if (ChannelLineItem.VariationName.Contains(Identifiers.SIZE_LARGE))
                     {
-                        variationSizeDict[ChannelLineItem.CatalogObjectId].Amount10 = int.Parse(ChannelLineItem.Quantity);
+                        variationSizeDict[ChannelLineItem.CatalogObjectId].Amount10 += int.Parse(ChannelLineItem.Quantity);
                     }
                     else if (ChannelLineItem.VariationName.Contains(Identifiers.SIZE_REGULAR)) //Regular is used for items that aren't Pies, such as pastries and merch.
                     {
-                        variationSizeDict[ChannelLineItem.CatalogObjectId].AmountRegular = int.Parse(ChannelLineItem.Quantity);
+                        variationSizeDict[ChannelLineItem.CatalogObjectId].AmountRegular += int.Parse(ChannelLineItem.Quantity);
                     }
                 }
                 else //create a new item, parse the size and quantity, add to dictionary

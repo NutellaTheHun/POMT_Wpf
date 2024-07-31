@@ -1,6 +1,5 @@
 ﻿using ClosedXML.Excel;
 using Petsi.Units;
-using Petsi.Utils;
 
 namespace Petsi.Reports.TableBuilder
 {
@@ -19,32 +18,36 @@ namespace Petsi.Reports.TableBuilder
 
             //Header
             AddLine(page, ref _rowIndex, _rootPosition.col,
-                "Name", "Time", "Type", "Size", "Item", "Quantity");
+                "Name", "Time", "Type", "Size", "Item", "Qty");
             foreach(PetsiOrder order in orderList)
             {
                 //name, time, type, size, item, quantity
                 AddLine(page, ref _rowIndex, _rootPosition.col, order.Recipient, DateTime.Parse(order.OrderDueDate).ToShortTimeString(), order.FulfillmentType, CHECKNOTES(order));
                 foreach(PetsiOrderLineItem lineItem in order.LineItems)
                 {
-                    if (lineItem.Amount5 != 0)
+                    if(lineItem.Amount5 != 0)
                     { 
                         lineItemAmount = lineItem.Amount5.ToString();
                         size = "5\"";
+                        AddLine(page, ref _rowIndex, _rootPosition.col, "", "", "", size, TableFormat.MaxLineLength(lineItem.ItemName, 35), lineItemAmount);
                     }
-                    else if (lineItem.Amount8 != 0)
+                    if(lineItem.Amount8 != 0)
                     { 
                         lineItemAmount = lineItem.Amount8.ToString();
                         size = "8\"";
+                        AddLine(page, ref _rowIndex, _rootPosition.col, "", "", "", size, TableFormat.MaxLineLength(lineItem.ItemName, 35), lineItemAmount);
                     }
-                    else if (lineItem.Amount10 != 0)
+                    if(lineItem.Amount10 != 0)
                     { 
                         lineItemAmount = lineItem.Amount10.ToString();
                         size = "10\"";
+                        AddLine(page, ref _rowIndex, _rootPosition.col, "", "", "", size, TableFormat.MaxLineLength(lineItem.ItemName, 35), lineItemAmount);
                     }
-                    else if(lineItem.AmountRegular != 0)
+                    if(lineItem.AmountRegular != 0)
                     {
                         lineItemAmount = lineItem.AmountRegular.ToString();
-                         size = "";
+                        size = "";
+                        AddLine(page, ref _rowIndex, _rootPosition.col, "", "", "", size, TableFormat.MaxLineLength(lineItem.ItemName, 25), lineItemAmount);
                     }
                     else
                     {
@@ -53,7 +56,7 @@ namespace Petsi.Reports.TableBuilder
                         Console.WriteLine("Item: " + lineItem.ItemName);
                     }
                     //name, time, type, size, item, quantity
-                    AddLine(page, ref _rowIndex, _rootPosition.col, "", "", "", size, TableFormat.MaxLineLength(lineItem.ItemName, 25), lineItemAmount);//shorten 25
+                    //AddLine(page, ref _rowIndex, _rootPosition.col, "", "", "", size, TableFormat.MaxLineLength(lineItem.ItemName, 25), lineItemAmount);
                 }
             }
             FormatTable(page);
@@ -70,7 +73,24 @@ namespace Petsi.Reports.TableBuilder
             TableFormat.ColWidthFitSizeOfText(page, "A:F");
 
             TableFormat.RangeBold(page, headerRange);
+            int lastRow = page.LastRowUsed().RowNumber();
+            for(int i = 1; i <= lastRow; i++)
+            {
+                string test;
+                int amount = 0;
+                try
+                {
+                    amount = page.Cell(i, 6).GetValue<int>();
+                }
+                catch (Exception ex) 
+                {
 
+                }
+                if(amount > 1)
+                {
+                    page.Cell(i,6).Style.Font.SetBold(true);
+                }
+            }
         }
         private string CHECKNOTES(PetsiOrder order)
         {

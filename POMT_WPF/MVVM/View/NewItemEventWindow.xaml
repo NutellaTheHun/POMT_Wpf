@@ -1,0 +1,143 @@
+﻿<Window
+    x:Class="POMT_WPF.MVVM.View.NewItemEventWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:convert="clr-namespace:POMT_WPF.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:POMT_WPF.MVVM.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:v="clr-namespace:POMT_WPF.Validation"
+    Width="860"
+    Height="750"
+    AllowsTransparency="True"
+    Background="Transparent"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </Window.Resources>
+
+    <Border Style="{StaticResource GeneralWindowBorder}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="18"
+                    Text="{Binding ItemName, StringFormat='Item name: {0}'}" />
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid
+                    Grid.Row="0"
+                    Width="200"
+                    HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="87*" />
+                        <ColumnDefinition Width="113*" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock
+                        Grid.ColumnSpan="2"
+                        Margin="15,0,15,0"
+                        VerticalAlignment="Center"
+                        Panel.ZIndex="1"
+                        Foreground="{StaticResource TextFont}"
+                        IsHitTestVisible="False"
+                        Text="Search catalog ..."
+                        Visibility="{Binding ElementName=SearchTextBox, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}" />
+                    <Border
+                        Grid.ColumnSpan="2"
+                        Background="#ffffff"
+                        BorderBrush="#e0e6ed"
+                        BorderThickness="1"
+                        CornerRadius="20">
+                        <TextBox
+                            x:Name="SearchTextBox"
+                            Width="175"
+                            Height="40"
+                            Margin="10,0,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalContentAlignment="Center"
+                            BorderThickness="0"
+                            Foreground="{StaticResource TextFont}"
+                            TextChanged="SearchTextBox_TextChanged" />
+                    </Border>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="2" Height="575">
+                <Border
+                    Width="520"
+                    Height="550"
+                    BorderBrush="{StaticResource TextFont}"
+                    BorderThickness="1"
+                    CornerRadius="5">
+                    <DataGrid
+                        x:Name="catalogListDataGrid"
+                        Width="500"
+                        Height="500"
+                        AutoGenerateColumns="False"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        CanUserAddRows="False"
+                        CellStyle="{StaticResource CatalogViewDgCellStyle}"
+                        ColumnHeaderStyle="{StaticResource CatalogViewColHeaderStyle}"
+                        ItemsSource="{Binding Items}"
+                        RowStyle="{StaticResource CatalogViewDgRowStyle}"
+                        SelectionUnit="FullRow"
+                        Style="{StaticResource CatalogViewDgStyle}">
+                        <DataGrid.InputBindings>
+                            <MouseBinding
+                                Command="{Binding SelectCatalogItem}"
+                                CommandParameter="{Binding ElementName=catalogListDataGrid, Path=SelectedItem}"
+                                MouseAction="LeftDoubleClick" />
+                        </DataGrid.InputBindings>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Binding="{Binding ItemName, UpdateSourceTrigger=PropertyChanged}"
+                                Header="Item Name"
+                                IsReadOnly="True" />
+                            <DataGridTextColumn
+                                Binding="{Binding CatalogObjectId, UpdateSourceTrigger=PropertyChanged}"
+                                Header="Catalog ID"
+                                IsReadOnly="True" />
+                            <!--  Sizes  -->
+                            <!--  hasLabels  -->
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Border>
+            </Grid>
+            <Grid
+                Grid.Row="3"
+                Height="50"
+                VerticalAlignment="Bottom">
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    <Button
+                        Width="100"
+                        Height="40"
+                        Margin="0,0,20,0"
+                        Command="{Binding SelectCatalogItem}"
+                        CommandParameter="{Binding ElementName=catalogListDataGrid, Path=SelectedItem}"
+                        Content="Select Item"
+                        Style="{StaticResource secondaryButton}" />
+                    <Button
+                        Width="100"
+                        Height="40"
+                        Margin="0,0,20,0"
+                        Command="{Binding CreateCatalogItem}"
+                        Content="Create New Item"
+                        Style="{StaticResource secondaryButton}" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

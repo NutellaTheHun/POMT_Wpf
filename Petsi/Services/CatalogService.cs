@@ -1,5 +1,4 @@
-﻿using DocumentFormat.OpenXml.Bibliography;
-using Petsi.CommandLine;
+﻿using Petsi.CommandLine;
 using Petsi.CommandLine.ErrorHandlers;
 using Petsi.Interfaces;
 using Petsi.Managers;
@@ -36,30 +35,19 @@ namespace Petsi.Services
         /// <returns></returns>
         public string GetCatalogObjectId(string input)
         {
-            CatalogItemPetsi source;
+            CatalogItemPetsi source = null;
             string result = "";
-            catalogIdDict.TryGetValue(input, out source);
+            try { catalogIdDict.TryGetValue(input, out source); }
+            catch(ArgumentNullException e)
+            {
+                SystemLogger.Log("GetCatalogObjectID TryGetValue input is null");
+            }
+            
             if (source != null)
             {
                 result = source.CatalogObjectId;
             }
             return result;
-            //if (catalogIdDict.TryGetValue(input, out source))
-            //{
-            //    if(source == null)
-            //    {
-            //        return "";
-            //    }
-            //    else
-            //    {
-            //        return source.CatalogObjectId;
-            //    }
-            //    //return result;
-            //}
-            //else
-            //{
-            //    throw new Exception("GetCatalogObjId key/value doesn't exist, key used: " + input);
-            //}
         }
         public bool IsModifyItem(string catalogObjectId)
         {
@@ -75,6 +63,7 @@ namespace Petsi.Services
             }
             return false;
         }
+
         //For ItemName form validating
         public bool TryValidateItemName(string name, out string catalogId)
         {
@@ -95,45 +84,89 @@ namespace Petsi.Services
             catalogId = "";
             return false;
         }
-        public string ValidateModifyItemName(string name)
+        //For ItemName form validating
+        public bool ValidateItemName(string name)
         {
-            List<string> results = new List<string>();
+            /*
+            List<CatalogItemPetsi> results = new List<CatalogItemPetsi>();
 
             foreach (CatalogItemPetsi item in catalog)
             {
-                if (item.ItemName.ToLower().Contains(name.ToLower()) || item.NaturalNameContains(name.ToLower()))
+                if (item.ItemName.ToLower().Equals(name.ToLower()) || item.NaturalNameEquals(name.ToLower()))
                 {
-                    results.Add(item.ItemName);
+                    results.Add(item);
                 }
             }
+            if (results.Count == 1)
+            {
+                return true;
+            }
+            return false;
+            */
+            CatalogItemPetsi item = GetCatalogItem(name);
+
+            if (item == null) { return false; }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Will match the given modifer name to item name in catalog, 
+        /// returns catalog item's name if 1 match is found
+        /// creates a new item in catalog if 0 matches are found
+        /// returns "" if multiple matches are found
+        /// </summary>
+        /// <param name="name">item name from modifiers section of squareOrderLineItem</param>
+        /// <returns></returns>
+        public string ValidateModifyItemName(string name)
+        {
+            //test multiMatch notification windows
+            /*
+            if (name == "Lemon Glaze")
+            {
+                return ValidateModifyItemName("Lemon");
+            }
+            */
+            List<CatalogItemPetsi> results = new List<CatalogItemPetsi>();
+            results = GetItemNameValidationResults(name);
+            
+            //HANDLE ADDING NEW ITEM TO CATALOG -> NOTIFY USER
             if (results.Count == 0)
             {
-                //throw new Exception("No matching catalog name found from given modified name: " + name);
-                //string correction = await HandleNewModifier(name);
-                //results.Add(correction);
-
                 //Handle an unknown modifer name, either create a new catalog item, or add to natural name
                 //CommandFrame.GetInstance().InjectErrorHandlingFrame(new CatalogServiceErrorFrameBehavior(name));
-                HandleNewModifier(name);
+                //HandleNewModifier(name);
+
+                CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
+                CatalogItemPetsi newItem = new CatalogItemPetsi();
+                newItem.ItemName = name;
+                newItem.CatalogObjectId = GenerateCatalogId();
+                cmp.AddNewItem(newItem);
+
+                ErrorService.Instance().RaiseSoiNewItemEvent(newItem);
+
                 return ValidateModifyItemName(name);
             }
             else if (results.Count > 1)
-            {
+            {/*
                 if (name == "Lemon")//temporary until square updates "Lemon" to "Lemon Glaze"
                 {
-                    return ValidateModifyItemName("Lemon Glaze")/*.Result*/;
+                    return ValidateModifyItemName("Lemon Glaze");
                 }
                 else
                 {
-                    Console.WriteLine("multiple matching catalog names found from given modified name: " + name);
+                    SystemLogger.Log("multiple matching catalog names found from given modified name: " + name);
                     for (int i = 0; i < results.Count; i++)
                     {
-                        Console.WriteLine("   " + results[i]);
+                        SystemLogger.Log("   " + results[i]);
                     }
-                }
-                return "";
+                }*/
+
+                ErrorService.Instance().RaiseSoiMultiItemEvent(name, results);
+
+                return name;
             }
-            return results[0];
+            return results[0].ItemName;
         }
 
         private void HandleNewModifier(string name)
@@ -151,20 +184,22 @@ namespace Petsi.Services
             foreach (CatalogItemPetsi item in catalog)
             {
                 catalogIdDict.TryAdd(item.ItemName, item);
-                //foreach (DictionaryEntry entry in item.Variations)
-                //{
-                //    catalogIdDict.TryAdd((string)entry.Key, item.CatalogObjectId);
-                //}
+
                 foreach ((string variationId, string variationName) in item.VariationList)
                 {
                     catalogIdDict.TryAdd(variationId, item);
+                }
+                foreach (string nName in item.NaturalNames)
+                {
+                    catalogIdDict.TryAdd(nName, item);
                 }
             }
         }
 
         public bool NameExists(string input)
         {
-            return catalog.Any(item => item.ItemName.ToLower().Contains(input.ToLower()));  
+            if(input == null || input == "") { return false; }
+            return catalog.Any(item => item.ItemName.ToLower().Equals(input.ToLower())); 
         }
 
         public string GenerateCatalogId()
@@ -208,6 +243,12 @@ namespace Petsi.Services
             return result;
         }
 
+        /// <summary>
+        /// matches the given name for an item name in the catalog. Searches in a priority of itemName to natural name,
+        /// and if name equals the source to the name contains the source. used in fuzzy search and validating modifier names.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public List<CatalogItemPetsi> GetItemNameValidationResults(string name)
         {
             List<CatalogItemPetsi> results = new List<CatalogItemPetsi>();
@@ -254,6 +295,77 @@ namespace Petsi.Services
                 }
             }
             return results;
+        }
+
+        /// <summary>
+        /// Given a item name, returns the corresponding CatalogItemPetsi object, returns null if fails.
+        /// </summary>
+        /// <param name="itemName"></param>
+        /// <returns></returns>
+        public CatalogItemPetsi GetCatalogItem(string itemName)
+        {
+            CatalogItemPetsi result = null;
+            catalogIdDict.TryGetValue(itemName, out result);
+            return result;
+        }
+
+        public CatalogItemPetsi GetCatalogItemById(string targetid)
+        {
+            CatalogItemPetsi result = null;
+            foreach (CatalogItemPetsi item in catalog)
+            {
+                if(item.CatalogObjectId == targetid)
+                {
+                    return item;
+                }
+            }
+            return result;
+        }
+
+        public bool IsPOTM(string catalogObjectId)
+        {
+            foreach (CatalogItemPetsi item in catalog)
+            {
+                if(item.CatalogObjectId ==  catalogObjectId)
+                {
+                    return item.IsPOTM;
+                }
+            }
+            return false;
+        }
+        public bool IsParbake(string catalogObjectId)
+        {
+            foreach (CatalogItemPetsi item in catalog)
+            {
+                if (item.CatalogObjectId == catalogObjectId)
+                {
+                    return item.IsParbake;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// If catalog item returned from backListItemId's VeganPieAssoication's catalogObjectId matches the target Id, returns true
+        /// </summary>
+        /// <param name="backListItemId">catalog item that could have a vegan counterpart</param>
+        /// <param name="targetId">the line item that is checked to be associated as vegan version of backlistItem</param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public bool IsVeganAssociate(string backListItemId, string targetId)
+        {
+            foreach (CatalogItemPetsi item in catalog)
+            {
+                if (item.CatalogObjectId == backListItemId)
+                {
+                    if(item.VeganPieAssociation != null)
+                    {
+                        return (item.VeganPieAssociation.CatalogObjectId == targetId);
+                    }
+                    break;
+                }
+            }
+            return false;
         }
     }
 }

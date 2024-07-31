@@ -78,16 +78,5 @@ namespace Petsi.Reports.TableBuilder
             if(input.Length <= maxLength) { return input; }
             return input.Substring(0, maxLength);
         }
-        /*
-        public static string Capitalize(string input)
-        {
-            string[] args = input.ToLower().Split(' ');
-            string result = "";
-            for(int i = 0; i < args.Length; i++)
-            {
-                result = result + char.ToUpper(args[i][0]+args[i].Substring(1));
-            }
-        }
-        */
     }
 }

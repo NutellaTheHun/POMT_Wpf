@@ -32,7 +32,7 @@ namespace Petsi.Input
 
             this.squareClient = squareClient;
             frameBehavior = new SquareOrderInputFrameBehavior(this);
-            fileBehavior = new FileBehavior("SquareOrderInput");
+            fileBehavior = new FileBehavior(Identifiers.SQUARE_ORDER_INPUT);
             isFileExecute = false;
             hasExecuted = true;
             SetInputName(Identifiers.SQUARE_ORDER_INPUT);
@@ -86,14 +86,16 @@ namespace Petsi.Input
                     //To restrictive
                     if (orderItem.Fulfillments[0].Type == Identifiers.FULFILLMENT_PICKUP)
                     {
-                        if (DateTime.Parse(orderItem.Fulfillments[0].PickupDetails.PickupAt) < DateTime.Now)
+                        //Time filter
+                        if (DateTime.Parse(orderItem.Fulfillments[0].PickupDetails.PickupAt).Date < DateTime.Now.Date)
                         {
                             continue;
                         }
                     }
                     else if (orderItem.Fulfillments[0].Type == Identifiers.FULFILLMENT_DELIVERY)
                     {
-                        if (DateTime.Parse(orderItem.Fulfillments[0].DeliveryDetails.DeliverAt) < DateTime.Now)
+                        //Time filter
+                        if (DateTime.Parse(orderItem.Fulfillments[0].DeliveryDetails.DeliverAt).Date < DateTime.Now.Date)
                         {
                             continue;
                         }
@@ -129,6 +131,7 @@ namespace Petsi.Input
                         item.Pickup_time = orderItem.Fulfillments[0].DeliveryDetails.DeliverAt;
                         item.Note = orderItem.Fulfillments[0].DeliveryDetails.Note;
                         item.RecipientName = orderItem.Fulfillments[0].DeliveryDetails.Recipient.DisplayName;
+                        //del address
                     }
 
                     foreach (var lineItem in orderItem.LineItems)
@@ -154,20 +157,29 @@ namespace Petsi.Input
                 string catalogObjId, varId;
                 foreach (var modifier in squareOrderlineItem.Modifiers)
                 {
-                    if(modifier.Name == "Add your note in \"notes\" section in checkout") { continue; }
+                    if(modifier.Name == Identifiers.MODIFY_NAME_NOTE_CARD) { continue; }
+
                     LineItem boxedli = new LineItem();
-                    boxedli.ItemName = catalogLookup.ValidateModifyItemName(modifier.Name);
-                    
+                    boxedli.ItemName = catalogLookup.ValidateModifyItemName(modifier.Name); //Will create a new item in catalog if no match is found.
+
                     //item not matched to catalog item, error and must back out
-                    if(boxedli.ItemName == "") { return new List<LineItem>(); }
+                    //if (boxedli.ItemName == "") { return new List<LineItem>(); }
 
                     boxedli.CatalogObjectId = catalogLookup.GetCatalogObjectId(boxedli.ItemName);
+                    if(boxedli.CatalogObjectId == "")//will return "" if ValidateModifyItemName finds multiple results.
+                    {
+                        //Temporary ID for an item when a multiItem match event occurs, is resolved after user intervention window. (NotifyCatalogValidateMultiItemView.cs)
+                        boxedli.CatalogObjectId = Identifiers.SOI_MULTI_ITEM_MATCH_EVENT_ID_SIG;
+                    }
+
                     boxedli.VariationId = "modifierItem"+ boxedli.ItemName;
                     boxedli.VariationName = Identifiers.SIZE_REGULAR;
-                    boxedli.ItemName = modifier.Name;
 
-                    //the "Box of..." has a quantity, and the modifiers have a quantity as well. If 2 boxes, with 2 scones of flavor A, total is 4 flavor A scones.
+                    //boxedli.ItemName = modifier.Name; //??? second assignment?
+
+                    //boxedli.Quantity = modifier.Quantity;
                     boxedli.Quantity = (int.Parse(modifier.Quantity) * int.Parse(squareOrderlineItem.Quantity)).ToString();
+
                     lineItems.Add(boxedli);
                 }
             }
@@ -177,13 +189,25 @@ namespace Petsi.Input
                 foreach (var modifier in squareOrderlineItem.Modifiers)
                 {
                     LineItem sconeLi = new LineItem();
-                    sconeLi.ItemName = modifier.Name + " scone";
-                    sconeLi.VariationId = squareOrderlineItem.CatalogObjectId;
-                    sconeLi.CatalogObjectId = sconeLi.ItemName;//Scone flavors dont exist in catalog, item name to supplement
-                    sconeLi.VariationName = Identifiers.SIZE_REGULAR;
+                    //sconeLi.ItemName = modifier.Name + " scone";
+                    //sconeLi.ItemName = modifier.Name;
+                    sconeLi.ItemName = catalogLookup.ValidateModifyItemName(modifier.Name); //Will create a new item in catalog if no match is found.
 
-                    //the "Box of..." has a quantity, and the modifiers have a quantity as well. If 2 boxes, with 2 scones of flavor A, total is 4 flavor A scones.
-                    sconeLi.Quantity = (int.Parse(modifier.Quantity) * int.Parse(squareOrderlineItem.Quantity)).ToString();
+                    sconeLi.VariationId = squareOrderlineItem.CatalogObjectId;
+
+                    //sconeLi.CatalogObjectId = sconeLi.ItemName;//Scone flavors dont exist in catalog, item name to supplement
+
+                    sconeLi.CatalogObjectId = catalogLookup.GetCatalogObjectId(sconeLi.ItemName); //This function call currently will break when a new item comes in
+                    if (sconeLi.CatalogObjectId == "") //will return "" if ValidateModifyItemName finds multiple results.
+                    {
+                        //Temporary ID for an item when a multiItem match event occurs, is resolved after user intervention window. (NotifyCatalogValidateMultiItemView.cs)
+                        sconeLi.CatalogObjectId = Identifiers.SOI_MULTI_ITEM_MATCH_EVENT_ID_SIG;
+                    }
+
+                    sconeLi.VariationName = Identifiers.SIZE_REGULAR;
+                   
+                    //sconeLi.Quantity = (int.Parse(modifier.Quantity) * int.Parse(squareOrderlineItem.Quantity)).ToString();
+                    sconeLi.Quantity = modifier.Quantity;
                     lineItems.Add(sconeLi);
                 }
             }
@@ -195,7 +219,7 @@ namespace Petsi.Input
                 sconeLi.CatalogObjectId = sconeLi.ItemName;//Scone flavors dont exist in catalog, item name to supplement
                 sconeLi.VariationName = Identifiers.SIZE_REGULAR;
 
-                //the "Box of..." has a quantity, and the modifiers have a quantity as well. If 2 boxes, with 2 scones of flavor A, total is 4 flavor A scones.
+                
                 sconeLi.Quantity = (6 * int.Parse(squareOrderlineItem.Quantity)).ToString();
                 lineItems.Add(sconeLi);
             }
@@ -207,8 +231,19 @@ namespace Petsi.Input
                 bisc.VariationId = "VWA4YKGMLWXG5P5B3CE2NFBE";
                 bisc.VariationName = Identifiers.SIZE_REGULAR;
                 bisc.Quantity = (6*int.Parse(squareOrderlineItem.Quantity)).ToString();
-                //the "Box of..." has a quantity, and the modifiers have a quantity as well. If 2 boxes, with 2 scones of flavor A, total is 4 flavor A scones.
+                
                 lineItems.Add(bisc);
+            }
+            else if (squareOrderlineItem.CatalogObjectId == Identifiers.BOX_OF_6_BLUEBERRY_MUFFINS)
+            {
+                LineItem muff = new LineItem();
+                muff.ItemName = "Blueberry Muffin";
+                muff.CatalogObjectId = catalogLookup.GetCatalogObjectId(muff.ItemName);
+                muff.VariationId = "63N53J6WJ42OE4QAVHDVIZW4";
+                muff.VariationName = Identifiers.SIZE_REGULAR;
+                muff.Quantity = (6 * int.Parse(squareOrderlineItem.Quantity)).ToString();
+                
+                lineItems.Add(muff);
             }
             //all other "standard" items
             else
@@ -216,6 +251,8 @@ namespace Petsi.Input
                 LineItem stdli = new LineItem();
                 stdli.VariationId = squareOrderlineItem.CatalogObjectId;
                 stdli.CatalogObjectId = catalogLookup.GetCatalogObjectId(stdli.VariationId);
+                //check if returns "" and handle?
+
                 stdli.VariationName = squareOrderlineItem.VariationName;
                 stdli.ItemName = squareOrderlineItem.Name;
                 stdli.Quantity = squareOrderlineItem.Quantity;
@@ -295,17 +332,7 @@ namespace Petsi.Input
         {
             var stateFilter = new SearchOrdersStateFilter.Builder(states: states)
               .Build();
-            /*
-            var createdAt = new TimeRange.Builder()
-               .StartAt("2024-04-01T00:00:00.00Z")
-               .EndAt("2024-05-17T00:00:00.00Z")
-               .Build();
-            */
-            /*
-            var dateTimeFilter = new SearchOrdersDateTimeFilter.Builder()
-              .CreatedAt(createdAt)
-              .Build();
-            */
+
             var fulfillmentFilter = new SearchOrdersFulfillmentFilter.Builder()
                 .FulfillmentTypes(fulfillmentTypes)
                 .Build();
@@ -363,8 +390,8 @@ namespace Petsi.Input
         public void SetSquareResponses(List<BatchRetrieveOrdersResponse> newResponse) { squareResponses = newResponse; }
         public void SetIsFileExecute(bool v) { isFileExecute = v; }
         public bool GetHasExecuted() { return hasExecuted ; }
-        public void SetHasExecuted(bool v) {  hasExecuted = v; }
-        public override void CaptureEnvironment(FileBehavior reportFb){reportFb.DataListToFile(Identifiers.ENV_SOI, squareResponses);}
+        //public void SetHasExecuted(bool v) {  hasExecuted = v; }
+        public override void CaptureEnvironment(FileBehavior reportFb) {/*reportFb.DataListToFile(Identifiers.ENV_SOI, squareResponses);*/ reportFb.DataListToPureFilePath(Identifiers.ENV_SOI, squareResponses); }
     }
 }
 

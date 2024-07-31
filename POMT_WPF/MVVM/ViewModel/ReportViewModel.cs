@@ -1,65 +1,256 @@
-﻿
-using Petsi.Reports;
+﻿using Petsi.Reports;
+using Petsi.Services;
+using Petsi.Utils;
+using POMT_WPF.Core;
+using POMT_WPF.MVVM.View;
 
 namespace POMT_WPF.MVVM.ViewModel
 {
-    public class ReportWindowViewModel : ViewModelBase
+    public class ReportViewModel : ViewModelBase
     {
-        bool frontlist;
-        bool backList;
-        bool wsAgg;
-        bool ws;
+        #region Props
+        private bool _retail;
+        public bool RetailFilter
+        {
+            get { return _retail; }
+            set 
+            {
+                if (_retail != value)
+                {
+                    _retail = value;
+                    OnPropertyChanged(nameof(RetailFilter));
+                }
+            }
+        }
 
-        public ReportWindowViewModel()
+        private bool _square;
+        public bool SquareFilter
         {
+            get { return _square; }
+            set 
+            {
+                if (_square != value)
+                {
+                    _square = value;
+                    OnPropertyChanged(nameof(SquareFilter));
+                }
+            }
+        }
 
-        }
-        public void SetFrontList()
+        private bool _wholesale;
+        public bool WholesaleFilter
         {
-            AllFalse();
-            frontlist = true;
+            get { return _wholesale; }
+            set 
+            { 
+                if (_wholesale != value)
+                {
+                    _wholesale = value;
+                    OnPropertyChanged(nameof(WholesaleFilter));
+                }
+                
+            }
         }
-        public void SetBackList()
+
+        private bool _special;
+        public bool SpecialFilter
         {
-            AllFalse();
-            backList = true;
+            get { return _special; }
+            set 
+            {
+                if (_special != value)
+                {
+                    _special = value;
+                    OnPropertyChanged(nameof(SpecialFilter));
+                }
+            }
         }
-        public void SetWsAggList()
+
+        private bool _ezCater;
+        public bool EzCaterFilter
         {
-            AllFalse();
-            wsAgg = true;
+            get { return _ezCater; }
+            set 
+            { 
+                if (_ezCater != value)
+                {
+                    _ezCater = value;
+                    OnPropertyChanged(nameof(EzCaterFilter));
+                }             
+            }
         }
-        public void SetWsList()
+
+        private bool _farmer;
+        public bool FarmerFilter
         {
-            AllFalse();
-            ws = true;
+            get { return _farmer; }
+            set
+            {
+                if (_farmer != value)
+                {
+                    _farmer = value;
+                    OnPropertyChanged(nameof(FarmerFilter));
+                }
+            }
         }
-        private void AllFalse()
+
+        private string _pieTemplateName;
+        public string PieTemplateName 
         {
-            frontlist = false;
-            backList = false;
-            wsAgg = false;
-            ws = false;
+            get { return _pieTemplateName; }
+            set
+            {
+                if( _pieTemplateName != value)
+                {
+                    _pieTemplateName = value;
+                    config.SetVariable(Identifiers.SETTING_PIE_TEMPLATE, PieTemplateName);
+                    OnPropertyChanged(nameof(PieTemplateName));
+                }
+            } 
         }
-        public void ProduceReport(DateTime dt1)
+
+        private string _pastryTemplateName;
+        public string PastryTemplateName
         {
+            get { return _pastryTemplateName; }
+            set
+            {
+                if (_pastryTemplateName != value)
+                {
+                    _pastryTemplateName = value;
+                    config.SetVariable(Identifiers.SETTING_PASTRY_TEMPLATE, PastryTemplateName);
+                    OnPropertyChanged(nameof(PastryTemplateName));
+                }
+            }
+        }
+
+        private DateTime? _startDate;
+        public DateTime? StartDate
+        {
+            get { return _startDate; }
+            set
+            {
+                if (_startDate != value)
+                {
+                    _startDate = value;
+                    OnPropertyChanged(nameof(StartDate));
+                }
+            }
+        }
+        private DateTime? _endDate;
+        public DateTime? EndDate
+        {
+            get { return _endDate; }
+            set
+            {
+                if (_endDate != value)
+                {
+                    if(value != null) 
+                    {
+                        _endDate = (DateTime)value;
+                    }
+                    else
+                    {
+                        _endDate = null;
+                    }
+                    OnPropertyChanged(nameof(EndDate));
+                }
+            }
+        }
+        private bool _isPrint;
+        public bool IsPrint
+        {
+            get { return _isPrint; }
+            set
+            {
+                if (_isPrint != value)
+                {
+                    _isPrint = value;
+                    OnPropertyChanged(nameof(IsPrint));
+                }
+            }
+        }
+        private bool _isExport;
+        public bool IsExport
+        {
+            get { return _isExport; }
+            set
+            {
+                if (_isExport != value)
+                {
+                    _isExport = value;
+                    OnPropertyChanged(nameof(IsExport));
+                }
+            }
+        }
+        #endregion
+        public RelayCommand PrintFrontList {  get; set; }
+        public RelayCommand PrintBackList { get; set; } //not used, evolved to use PrintPieBackList() and PrintPastryBackList()
+        public RelayCommand PrintPieBackList { get; set; }
+        public RelayCommand PrintPastryBackList { get; set; }
+        public RelayCommand PrintWsAgg { get; set; }
+        public RelayCommand PrintWsBreakDown { get; set; }
+        public RelayCommand SetPieTemplate { get; set; }
+        public RelayCommand SetPastryTemplate { get; set; }
+        public RelayCommand OpenTemplateListView { get; set; }
+
+        private PetsiConfig config = PetsiConfig.GetInstance();
+
+        public ReportViewModel()
+        {
+            //PetsiConfig config 
+            PieTemplateName = config.GetVariable(Identifiers.SETTING_PIE_TEMPLATE);
+            PastryTemplateName = config.GetVariable(Identifiers.SETTING_PASTRY_TEMPLATE);
+
             ReportDirector rd = new ReportDirector();
-            if (frontlist)
+
+            PrintFrontList = new RelayCommand(o => { if(IsValidDate())    rd.CreateFrontList(StartDate,         IsPrint, IsExport, RetailFilter, SquareFilter, WholesaleFilter, SpecialFilter, EzCaterFilter, FarmerFilter); });
+            PrintPieBackList = new RelayCommand(o => { if (IsValidDate())    rd.CreatePieBackList(StartDate, EndDate, IsPrint, IsExport, RetailFilter, SquareFilter, WholesaleFilter, SpecialFilter, EzCaterFilter, FarmerFilter); });
+            PrintPastryBackList = new RelayCommand(o => { if (IsValidDate())    rd.CreatePastryBackList(StartDate, EndDate, IsPrint, IsExport, RetailFilter, SquareFilter, WholesaleFilter, SpecialFilter, EzCaterFilter, FarmerFilter); });
+            PrintBackList = new RelayCommand(o => { if (IsValidDate())    rd.CreateBackList(StartDate, EndDate, IsPrint, IsExport, RetailFilter, SquareFilter, WholesaleFilter, SpecialFilter, EzCaterFilter, FarmerFilter); });
+            PrintWsAgg = new RelayCommand(o => { if (IsValidDate())       rd.CreateWsDay(StartDate,             IsPrint, IsExport); });
+            PrintWsBreakDown = new RelayCommand(o => { if (IsValidDate()) rd.CreateWsDayName(StartDate,         IsPrint, IsExport); });
+            SetPieTemplate = new RelayCommand(o => { StPieTempCmd(); });
+            SetPastryTemplate = new RelayCommand(o => { StPastTempCmd(); });
+            OpenTemplateListView = new RelayCommand(o => { MainViewModel.Instance().OpenTemplateListView(false); });
+
+            RetailFilter = true;
+            SquareFilter = true;
+            WholesaleFilter = true;
+            SpecialFilter = true;
+            EzCaterFilter = true;
+            FarmerFilter = true;
+
+            IsPrint = true;
+            IsExport = false;
+
+            StartDate = null;
+            EndDate = null;
+        }
+
+        private void StPieTempCmd()
+        {
+            SetSettingsVariableWindow win = new SetSettingsVariableWindow("Select Pie Template", ReportTemplateService.Instance().GetTemplateNames());
+            win.ShowDialog();
+            if (win.selectionMade)
             {
-                rd.CreateFrontList(dt1);
+                PieTemplateName = win.VariableSelection;
             }
-            else if (backList)
+        }
+        private void StPastTempCmd()
+        {
+            SetSettingsVariableWindow win = new SetSettingsVariableWindow("Select Pastry Template", ReportTemplateService.Instance().GetTemplateNames());
+            win.ShowDialog();
+            if (win.selectionMade)
             {
-                rd.CreateBackList(dt1, null);
+                PastryTemplateName = win.VariableSelection;
             }
-            else if (wsAgg)
-            {
-                rd.CreateWsDay(dt1);
-            }
-            else if (ws)
-            {
-                rd.CreateWsDayName(dt1);
-            }
+        }
+
+        private bool IsValidDate()
+        {
+            if (StartDate == default) { return false; }
+            return true;
         }
     }
 }

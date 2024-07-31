@@ -1,0 +1,307 @@
+﻿<UserControl
+    x:Class="POMT_WPF.MVVM.View.CatalogItemView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:convert="clr-namespace:POMT_WPF.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:POMT_WPF.MVVM.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:v="clr-namespace:POMT_WPF.Validation"
+    d:DesignHeight="660"
+    d:DesignWidth="860"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <convert:InvertBoolConverter x:Key="InvertBool" />
+    </UserControl.Resources>
+
+    <Grid Background="{StaticResource ColumbiaBlue}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Button
+                Margin="10"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Command="{Binding BackCatalogItem}"
+                Style="{StaticResource GeneralBackButton}">
+                <Icon:PackIconMaterial Kind="ChevronLeft" />
+            </Button>
+            <Border
+                Width="60"
+                Height="20"
+                Margin="0,0,200,10"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Style="{StaticResource GeneralBorder}">
+                <ToggleButton
+                    Content="Edit"
+                    IsChecked="{Binding IsEdit, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    Style="{StaticResource orderFormEditButton}" />
+            </Border>
+
+        </Grid>
+        <Grid Grid.Row="1">
+            <Border Width="620" Style="{StaticResource GeneralBorder}">
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" Margin="30">
+                        <StackPanel
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Orientation="Vertical">
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="Item Name" />
+                                <Border x:Name="ItemNameErrBdr" Style="{StaticResource OrderFormErrorBorder}">
+                                    <Grid Margin="2">
+                                        <Grid>
+                                            <ComboBox
+                                                x:Name="ItemNameComboBox"
+                                                HorizontalAlignment="Left"
+                                                Style="{StaticResource ItemNameComboBox}"
+                                                Text="{Binding ElementName=ItemNameTextBox, Path=Text}" />
+                                            <TextBox
+                                                x:Name="ItemNameTextBox"
+                                                HorizontalAlignment="Left"
+                                                GotFocus="TextBox_GotFocus"
+                                                IsReadOnly="{Binding IsEdit, Converter={StaticResource InvertBool}}"
+                                                Style="{StaticResource ItemNameTextBox}"
+                                                Text="{Binding ItemName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                        </Grid>
+                                    </Grid>
+                                </Border>
+
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="Alternative Names" />
+                                <StackPanel Orientation="Horizontal">
+
+                                    <ListBox
+                                        x:Name="AltNameListBox"
+                                        Width="225"
+                                        Height="100"
+                                        FontSize="14"
+                                        IsHitTestVisible="{Binding IsEdit}"
+                                        ItemsSource="{Binding NaturalNames, UpdateSourceTrigger=PropertyChanged}" />
+
+                                    <StackPanel Orientation="Vertical">
+                                        <Button
+                                            Width="30"
+                                            Height="30"
+                                            Margin="5,0,5,5"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Top"
+                                            Command="{Binding AddAltName}"
+                                            IsHitTestVisible="{Binding IsEdit}"
+                                            Style="{StaticResource secondaryButton}">
+                                            <Icon:PackIconMaterial Kind="Plus" />
+                                        </Button>
+                                        <Button
+                                            Width="30"
+                                            Height="30"
+                                            Margin="5,0,5,5"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Top"
+                                            Background="{StaticResource ChiliRed}"
+                                            Command="{Binding RemoveAltName}"
+                                            CommandParameter="{Binding ElementName=AltNameListBox, Path=SelectedItem}"
+                                            IsHitTestVisible="{Binding IsEdit}"
+                                            Style="{StaticResource secondaryButton}">
+                                            <Icon:PackIconMaterial Kind="Minus" />
+                                        </Button>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="Attributes" />
+                                <Border x:Name="ItemSizesErrBdr" Style="{StaticResource OrderFormErrorBorder}">
+                                    <Grid Margin="2">
+                                        <Border Style="{StaticResource GeneralBorder}">
+                                            <Grid Margin="0,3,0,3">
+                                                <StackPanel
+                                                    GotFocus="StackPanel_GotFocus"
+                                                    IsHitTestVisible="{Binding IsEdit}"
+                                                    Orientation="Horizontal">
+                                                    <StackPanel Margin="20,0,20,0" Orientation="Vertical">
+                                                        <CheckBox
+                                                            Content="Small"
+                                                            FontSize="16"
+                                                            Foreground="{StaticResource maybeDark}"
+                                                            IsChecked="{Binding IsSmall, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                                        <CheckBox
+                                                            Margin="0,10,0,10"
+                                                            Content="Medium"
+                                                            FontSize="16"
+                                                            Foreground="{StaticResource maybeDark}"
+                                                            IsChecked="{Binding IsMedium, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                                        <CheckBox
+                                                            Content="Large"
+                                                            FontSize="16"
+                                                            Foreground="{StaticResource maybeDark}"
+                                                            IsChecked="{Binding IsLarge, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                                    </StackPanel>
+                                                    <StackPanel Orientation="Vertical">
+                                                        <CheckBox
+                                                            Content="Regular"
+                                                            FontSize="16"
+                                                            Foreground="{StaticResource maybeDark}"
+                                                            IsChecked="{Binding IsRegular, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                                        <CheckBox
+                                                            Margin="0,10,0,5"
+                                                            Content="Cutie"
+                                                            FontSize="16"
+                                                            Foreground="{StaticResource maybeDark}"
+                                                            IsChecked="{Binding IsCutie, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                                        <CheckBox
+                                                            Margin="0,5,0,10"
+                                                            Content="POTM"
+                                                            FontSize="16"
+                                                            Foreground="{StaticResource maybeDark}"
+                                                            IsChecked="{Binding IsPOTM, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                                        <CheckBox
+                                                            Content="Parbake"
+                                                            FontSize="16"
+                                                            Foreground="{StaticResource maybeDark}"
+                                                            IsChecked="{Binding IsParbake, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </Grid>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <StackPanel
+                            Margin="0,30,0,0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            Orientation="Vertical">
+
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Vertical">
+                                    <Label Content="Category" />
+                                    <Border x:Name="CategoryNameErrBdr" Style="{StaticResource OrderFormErrorBorder}">
+                                        <Grid Margin="2">
+                                            <ComboBox
+                                                Width="150"
+                                                Height="30"
+                                                HorizontalAlignment="Left"
+                                                HorizontalContentAlignment="Left"
+                                                VerticalContentAlignment="Center"
+                                                Foreground="{StaticResource TextFont}"
+                                                GotFocus="ComboBox_GotFocus"
+                                                IsHitTestVisible="{Binding IsEdit}"
+                                                ItemsSource="{Binding CategoryNames}"
+                                                SelectedItem="{Binding Path=CategoryName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                        </Grid>
+                                    </Border>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical">
+                                    <Label Content="Vegan Pie" />
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <TextBox
+                                            HorizontalContentAlignment="Left"
+                                            IsReadOnly="True"
+                                            Style="{StaticResource GeneralTextBox}"
+                                            Text="{Binding VeganMappedItemName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+
+                                        <Button
+                                            Width="30"
+                                            Height="30"
+                                            Margin="5,0,5,5"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            Command="{Binding SetVeganPie}"
+                                            IsHitTestVisible="{Binding IsEdit}"
+                                            Style="{StaticResource secondaryButton}">
+                                            <Icon:PackIconMaterial Kind="ChartPie" />
+                                        </Button>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical">
+                                    <Label Content="Standard Label File" />
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBox
+                                            Width="250"
+                                            HorizontalContentAlignment="Left"
+                                            FontSize="11"
+                                            IsReadOnly="True"
+                                            Style="{StaticResource GeneralTextBox}"
+                                            Text="{Binding StandardLabelFilePath, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                        <Button
+                                            Width="30"
+                                            Height="30"
+                                            Margin="5,0,5,5"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            Command="{Binding SetStandardLblFile}"
+                                            IsHitTestVisible="{Binding IsEdit}"
+                                            Style="{StaticResource secondaryButton}">
+                                            <Icon:PackIconMaterial Kind="File" />
+                                        </Button>
+                                    </StackPanel>
+
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical">
+                                    <Label Content="Cutie Label File" />
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBox
+                                            Width="250"
+                                            HorizontalContentAlignment="Left"
+                                            FontSize="11"
+                                            IsReadOnly="True"
+                                            Style="{StaticResource GeneralTextBox}"
+                                            Text="{Binding CutieLabelFilePath, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                        <Button
+                                            Width="30"
+                                            Height="30"
+                                            Margin="5,0,5,5"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            Command="{Binding SetCutieLblFile}"
+                                            IsHitTestVisible="{Binding IsEdit}"
+                                            Style="{StaticResource secondaryButton}">
+                                            <Icon:PackIconMaterial Kind="File" />
+                                        </Button>
+                                    </StackPanel>
+
+                                </StackPanel>
+
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Button
+                Name="SaveOrderButton"
+                Margin="10"
+                HorizontalAlignment="Center"
+                Command="{Binding SaveItem}"
+                Content="Save"
+                Style="{StaticResource secondaryButton}" />
+            <Icon:PackIconBoxIcons x:Name="SaveCheckMark" Style="{StaticResource CheckMark}" />
+            <Button
+                Margin="0,0,200,0"
+                HorizontalAlignment="Right"
+                Background="{StaticResource ChiliRed}"
+                Command="{Binding DeleteItem}"
+                Content="Delete"
+                Style="{StaticResource secondaryButton}"
+                Visibility="{Binding CanDelete, Converter={StaticResource BoolToVis}}" />
+        </Grid>
+    </Grid>
+</UserControl>

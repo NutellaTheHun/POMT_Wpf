@@ -3,6 +3,9 @@ using Petsi.Interfaces;
 
 namespace Petsi.Managers
 {
+    /// <summary>
+    /// When a report is made, the environment is captured and associated with the report Id for debriefing/debugging when needed.
+    /// </summary>
     public class EnvironCaptureRegistrySingleton : IEnvironRegistry, IEnvironCapturable
     {
         private static EnvironCaptureRegistrySingleton _instance;

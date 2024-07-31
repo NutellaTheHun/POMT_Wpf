@@ -3,6 +3,9 @@ using Petsi.Interfaces;
 
 namespace Petsi.Managers
 {
+    /// <summary>
+    /// Orignally implemented for CommandFrame functionality, managers became main way of refrencing services and models.
+    /// </summary>
     public class InputManagerSingleton : IInputManagerRegistry
     {
         private static InputManagerSingleton _instance;

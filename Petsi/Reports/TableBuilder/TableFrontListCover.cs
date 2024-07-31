@@ -1,6 +1,5 @@
 ﻿using ClosedXML.Excel;
 using Petsi.Units;
-using Petsi.Utils;
 
 namespace Petsi.Reports.TableBuilder
 {

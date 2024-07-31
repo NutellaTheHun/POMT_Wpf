@@ -1,22 +1,70 @@
-﻿namespace Petsi.Units
+﻿using Petsi.Utils;
+using System.ComponentModel;
+
+namespace Petsi.Units
 {
-    public class BackListItem
+    public class BackListItem : INotifyPropertyChanged
     {
         /// <summary>
         /// The name that is displayed on a backlist page.
         /// </summary>
-        public string PageDisplayName;
+        private string _pageDisplayName;
+        public string PageDisplayName
+        {
+            get {
+                return _pageDisplayName;
+            }
+            set 
+            {
+                if (_pageDisplayName != value)
+                { 
+                    _pageDisplayName = value;
+                    OnPropertyChanged(nameof(PageDisplayName));
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         /// <summary>
         /// The corresponding id of the item it represents from the square catalog.
         /// </summary>
-        public string CatalogObjId;
+        public string CatalogObjId { get; set; }
 
+        private string _itemName;
+        public string ItemName
+        {
+            get
+            {
+                return _itemName;
+            }
+            set
+            {
+                if (_itemName != value)
+                {
+                    _itemName = value;
+                    OnPropertyChanged(nameof(ItemName));
+                }
+            }
+        }
+
+        public BackListItem() {}
         public BackListItem(string pageDisplayName, string catalogObjId)
         {
             PageDisplayName = pageDisplayName;
             CatalogObjId = catalogObjId;
         }
+        public BackListItem(string pageDisplayName, string catalogObjId, string itemName)
+        {
+            PageDisplayName = pageDisplayName;
+            CatalogObjId = catalogObjId;
+            ItemName = itemName;
+        }
+
         #region PIE
         public static BackListItem MUD()
         {
@@ -52,7 +100,7 @@
         }
         public static BackListItem PEACH_BLACK()
         {
-            return new BackListItem("PEACH BLACK", "WAPE6OUWHKXKLYVAIHZN2SSO");
+            return new BackListItem("PEACH BLACK", "RRFJV23GCJZCWEPOTTFGRP22");
         }
         public static BackListItem STRAWBARB()
         {
@@ -70,7 +118,7 @@
         {
             return new BackListItem("SALTY", "HFGEU3EQQ266MTQ4S7IR4B2S");
         }
-        public static BackListItem LEMON()
+        public static BackListItem LEMON_CHESS_LAV()
         {
             return new BackListItem("LEMON", "LPM5UVEKCHV5RERZJYUJMVQE");
         }
@@ -124,11 +172,11 @@
         }
         public static BackListItem POTM()//define potms?
         {
-            return new BackListItem("POTM", "not implemented");
+            return new BackListItem("POTM", Identifiers.CATEGORY_POTM);
         }
-        public static BackListItem PARBAKES()//define potms?
+        public static BackListItem PARBAKES()//define parbakes?
         {
-            return new BackListItem("PARBAKES", "not implemented");
+            return new BackListItem("PARBAKES", Identifiers.CATEGORY_POTM);
         }
         public static BackListItem V_APPLE()
         {
@@ -148,7 +196,7 @@
         }
         public static BackListItem V_STRAWBARB()
         {
-            return new BackListItem("VEGAN Mix", "ZVLI2WL7CMEHAQL6I74FQ4QT");
+            return new BackListItem("VEGAN Straw", "ZVLI2WL7CMEHAQL6I74FQ4QT");
         }
         #endregion PIE
         #region PASTRY
@@ -166,15 +214,15 @@
         }
         public static BackListItem CURRANT()//Scone flavors dont exist in catalog, catalog id is built in SquareOrderInput.ParseOrderLineItem()
         {
-            return new BackListItem("CURRANT", "Buttermilk Currant scone");
+            return new BackListItem("CURRANT", "fd3eba39-067b-422f-8ccc-01036fabaa13");
         }
         public static BackListItem LEMON_SCONE()
         {
-            return new BackListItem("LEMON", "Lemon scone");
+            return new BackListItem("LEMON", "12e6b7e0-c2fb-4ad4-be3b-1d960bd63cfd");
         }
         public static BackListItem TRIPLE()
         {
-            return new BackListItem("TRIPLE", "Triple Berry scone");
+            return new BackListItem("TRIPLE", "87b878ad-a45a-44f3-a1b3-8acdc03a8062");
         }
         public static BackListItem BISCUIT()
         {
@@ -198,7 +246,7 @@
         }
         public static BackListItem SNICK()
         {
-            return new BackListItem("Almond Brioche", "CXNP6DDA2TSYGJQPULZEPPK5");
+            return new BackListItem("SNICK", "CXNP6DDA2TSYGJQPULZEPPK5");
         }
         public static BackListItem PB()
         {

@@ -14,9 +14,10 @@ namespace Petsi.Reports.PageBuilder
         public override int GetItemLineCount<T>(T item)
         {
             PetsiOrder order = item as PetsiOrder;
-            if(order.FulfillmentType == Identifiers.FULFILLMENT_DELIVERY
+            if (order.OrderType == Identifiers.ORDER_TYPE_FARMERS) { return 0; }
+            if (order.FulfillmentType == Identifiers.FULFILLMENT_DELIVERY
                 ||
-               order.InputOriginType == Identifiers.WHOLESALE_INPUT)
+               order.OrderType == Identifiers.ORDER_TYPE_WHOLESALE)
             {
                 return 1;
             }

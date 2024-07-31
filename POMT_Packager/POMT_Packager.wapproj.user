@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Source>D:\Git-Repos\POMT_WPF\POMT_WPF\Images\POMT_Icon.png</Source>
+    <SmallTileSource>D:\Git-Repos\POMT_WPF\POMT_WPF\Images\POMT_Icon.png</SmallTileSource>
+    <MediumTileSource>D:\Git-Repos\POMT_WPF\POMT_WPF\Images\POMT_Icon.png</MediumTileSource>
+    <WideTileSource>D:\Git-Repos\POMT_WPF\POMT_WPF\Images\POMT_Icon.png</WideTileSource>
+    <LargeTileSource>D:\Git-Repos\POMT_WPF\POMT_WPF\Images\POMT_Icon.png</LargeTileSource>
+    <AppIconSource>D:\Git-Repos\POMT_WPF\POMT_WPF\Images\POMT_Icon.png</AppIconSource>
+    <SplashScreenSource>D:\Git-Repos\POMT_WPF\POMT_WPF\Images\POMT_Icon.png</SplashScreenSource>
+    <BadgeLogoSource>D:\Git-Repos\POMT_WPF\POMT_WPF\Images\POMT_Icon.png</BadgeLogoSource>
+    <PackageLogoSource>D:\Git-Repos\POMT_WPF\POMT_WPF\Images\POMT_Icon.png</PackageLogoSource>
+    <UapAppxPackageBuildMode>SideloadOnly</UapAppxPackageBuildMode>
+    <AppxShowAllApps>False</AppxShowAllApps>
+    <AppxBuildConfigurationSelection>x64</AppxBuildConfigurationSelection>
+    <PackageOptionalProjectsInIdeBuilds>False</PackageOptionalProjectsInIdeBuilds>
+  </PropertyGroup>
+</Project>

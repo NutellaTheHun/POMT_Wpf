@@ -1,0 +1,208 @@
+﻿<UserControl
+    x:Class="POMT_WPF.MVVM.View.OrderView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:POMT_WPF.MVVM.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="660"
+    d:DesignWidth="860"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </UserControl.Resources>
+
+    <Grid Background="{StaticResource ColumbiaBlue}">
+        <!--  Main Section  -->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="34" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <StackPanel
+                    Height="50"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal">
+                    <TextBlock
+                        Margin="10"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        FontSize="32"
+                        FontWeight="SemiBold"
+                        Foreground="#40474C"
+                        Text="{Binding TotalOrderCount, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock
+                        Margin="10"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        FontSize="32"
+                        FontWeight="SemiBold"
+                        Foreground="#40474C"
+                        Text=" Orders" />
+                </StackPanel>
+                <Button
+                    Margin="10"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Command="{Binding OpenNewOrderItemView}"
+                    Style="{StaticResource addButton}">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial
+                            Width="11"
+                            Height="11"
+                            Margin="0,1,8,0"
+                            VerticalAlignment="Center"
+                            Kind="plus" />
+                        <TextBlock Text="Add New Order" />
+                    </StackPanel>
+                </Button>
+            </Grid>
+            <Grid Grid.Row="1">
+                <!--  Tab Buttons chaned to radio buttons?  -->
+                <StackPanel
+                    Grid.Row="2"
+                    Grid.RowSpan="2"
+                    Margin="0,10,0,10"
+                    Orientation="Horizontal">
+                    <RadioButton
+                        x:Name="All_rb"
+                        Click="All_rb_Click"
+                        Command="{Binding FilterNone}"
+                        Content="All "
+                        GroupName="g1"
+                        IsChecked="True"
+                        Style="{StaticResource tabButton}" />
+                    <RadioButton
+                        x:Name="Wholesale_rb"
+                        Click="Wholesale_rb_Click"
+                        Command="{Binding FilterWholesale}"
+                        Content="Wholesale"
+                        GroupName="g1"
+                        Style="{StaticResource tabButton}" />
+                    <RadioButton
+                        x:Name="Square_rb"
+                        Click="Square_rb_Click"
+                        Command="{Binding FilterSquare}"
+                        Content="Square"
+                        GroupName="g1"
+                        Style="{StaticResource tabButton}" />
+                    <RadioButton
+                        x:Name="Retail_rb"
+                        Click="Retail_rb_Click"
+                        Command="{Binding FilterRetail}"
+                        Content="Retail"
+                        GroupName="g1"
+                        Style="{StaticResource tabButton}" />
+                    <RadioButton
+                        x:Name="Special_rb"
+                        Click="Special_rb_Click"
+                        Command="{Binding FilterSpecial}"
+                        Content="Special"
+                        GroupName="g1"
+                        Style="{StaticResource tabButton}" />
+                    <RadioButton
+                        x:Name="Farmer_rb"
+                        Click="Farmers_rb_Click"
+                        Command="{Binding FilterFarmer}"
+                        Content="Farmers"
+                        GroupName="g1"
+                        Style="{StaticResource tabButton}" />
+                    <RadioButton
+                        x:Name="Frozen_rb"
+                        Click="Frozen_rb_Click"
+                        Command="{Binding FilterFrozen}"
+                        Content="Frozen"
+                        GroupName="g1"
+                        Style="{StaticResource tabButton}" />
+                </StackPanel>
+
+                <!--  Filter TextBox  -->
+                <Grid
+                    Width="200"
+                    Margin="10"
+                    HorizontalAlignment="right">
+                    <TextBlock
+                        Margin="20,0,0,0"
+                        VerticalAlignment="Center"
+                        Panel.ZIndex="1"
+                        Foreground="{StaticResource TextFont}"
+                        IsHitTestVisible="False"
+                        Text="Search orders ..."
+                        Visibility="{Binding ElementName=txtFilter, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}" />
+                    <Border
+                        Background="#ffffff"
+                        BorderBrush="#e0e6ed"
+                        BorderThickness="1"
+                        CornerRadius="20">
+                        <TextBox
+                            x:Name="txtFilter"
+                            Width="175"
+                            Height="40"
+                            Margin="10,0,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalContentAlignment="Center"
+                            BorderThickness="0"
+                            Foreground="{StaticResource TextFont}"
+                            Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                    </Border>
+                </Grid>
+            </Grid>
+
+            <!--  Separator  -->
+            <Separator
+                Grid.Row="2"
+                Height="1"
+                Margin="5"
+                Background="White" />
+
+            <!--  DataGrid  -->
+            <Grid Grid.Row="3">
+                <DataGrid
+                    x:Name="dashboardDataGrid"
+                    Height="515"
+                    Margin="10,0,10,0"
+                    CellStyle="{DynamicResource dashboardDataGridCellStyle}"
+                    ColumnHeaderStyle="{DynamicResource dashboardDataGridColumnHeaderStyle}"
+                    IsSynchronizedWithCurrentItem="True"
+                    ItemsSource="{Binding DashBoardOrdersView}"
+                    RowStyle="{DynamicResource dashboardDataGridRowStyle}"
+                    Style="{DynamicResource dashboardDataGridStyle}">
+                    <DataGrid.InputBindings>
+                        <MouseBinding
+                            Command="{Binding OpenOrderItemView}"
+                            CommandParameter="{Binding ElementName=dashboardDataGrid, Path=SelectedItem}"
+                            MouseAction="LeftDoubleClick" />
+                    </DataGrid.InputBindings>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn
+                            Binding="{Binding OrderType, UpdateSourceTrigger=PropertyChanged}"
+                            Header="Type"
+                            IsReadOnly="True" />
+                        <DataGridTextColumn
+                            Binding="{Binding Recipient, UpdateSourceTrigger=PropertyChanged}"
+                            Header="Name"
+                            IsReadOnly="True" />
+                        <DataGridTextColumn
+                            Binding="{Binding DisplayOrderDueDate, UpdateSourceTrigger=PropertyChanged}"
+                            Header="Due Date"
+                            IsReadOnly="True" />
+                        <DataGridTextColumn
+                            Binding="{Binding FulfillmentType, UpdateSourceTrigger=PropertyChanged}"
+                            Header="Fulfillment"
+                            IsReadOnly="True" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

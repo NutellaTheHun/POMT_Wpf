@@ -1,6 +1,5 @@
 ﻿using Petsi.CommandLine;
 using Petsi.Filing;
-using Petsi.Managers;
 using Petsi.Units;
 using Petsi.Utils;
 
@@ -19,7 +18,8 @@ namespace Petsi.Input
         }
         public override void CaptureEnvironment(FileBehavior reportFb)
         {
-            fileBehavior.DataListToFile(Identifiers.ENV_OSI, Items);
+            //fileBehavior.DataListToFile(Identifiers.ENV_OSI, Items);
+           // reportFb.DataListToPureFilePath(Items);
         }
 
         public override async Task Execute()

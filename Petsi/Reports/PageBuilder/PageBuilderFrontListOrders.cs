@@ -14,14 +14,23 @@ namespace Petsi.Reports.PageBuilder
         {
            var order = item as PetsiOrder;
 
-           if(order.InputOriginType == Identifiers.WHOLESALE_INPUT) { return 0; }
-
-           return order.LineItems.Count + 1;
+           if(order.OrderType == Identifiers.ORDER_TYPE_WHOLESALE) { return 0; }
+           if(order.OrderType == Identifiers.ORDER_TYPE_FARMERS) { return 0; }
+           int lineCount = 0;
+           foreach (var lineItem in order.LineItems) 
+           {
+                if (lineItem.AmountRegular > 0) { lineCount++; }
+                if (lineItem.Amount3 > 0) { lineCount++; }
+                if (lineItem.Amount5 > 0) { lineCount++; }
+                if (lineItem.Amount8 > 0) { lineCount++; }
+                if (lineItem.Amount10 > 0) { lineCount++; }
+           }
+           return lineCount + 1;
         }
 
         protected override void ConfigureMaxRows()
         {
-            maxPageRowCount = 40;
+            maxPageRowCount = 44;
         }
 
         protected override void ConfigureTables()

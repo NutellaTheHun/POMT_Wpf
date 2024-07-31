@@ -32,7 +32,7 @@ namespace Petsi.Input
             Categories = new List<(string name, string id)>();
             SetModel(ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG));
             this.squareClient = squareClient;
-            fileBehavior = new FileBehavior("SquareCatalogInput");
+            fileBehavior = new FileBehavior(Identifiers.SQUARE_CATALOG_INPUT);
             isFileExecute = false;
             hasExecuted = false;
             SetInputName(Identifiers.SQUARE_CATALOG_INPUT);
@@ -124,7 +124,7 @@ namespace Petsi.Input
         public void SetCatalogItems(List<CatalogItemPetsi> itemList){ catalogItems = itemList; }
         public override FrameBehaviorBase GetFrameBehavior(){ return frameBehavior; }
         public bool GetHasExecuted() { return hasExecuted; }
-        public void SetHasExecuted(bool v) { hasExecuted = v; }
-        public override void CaptureEnvironment(FileBehavior reportFb){reportFb.DataListToFile(Identifiers.ENV_SCI, squareResponses); }
+        //public void SetHasExecuted(bool v) { hasExecuted = v; }
+        public override void CaptureEnvironment(FileBehavior reportFb){/*reportFb.DataListToFile(Identifiers.ENV_SCI, squareResponses);*/ reportFb.DataListToPureFilePath(Identifiers.ENV_SCI, squareResponses); }
     }
 }

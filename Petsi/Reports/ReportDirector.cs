@@ -9,7 +9,6 @@ namespace Petsi.Reports
 {
     public class ReportDirector
     {
-        OrderModelPetsi orderModel;
         ReportDirectorFrameBehavior frameBehavior;
         public ReportDirector() 
         {
@@ -19,61 +18,113 @@ namespace Petsi.Reports
 
         public FrameBehaviorBase GetFrameBehavior() { return frameBehavior; }
 
-        public IXLWorkbook CreateFrontList(DateTime? targetDate)
+        public IXLWorkbook CreateFrontList(DateTime? targetDate, bool isPrint, bool isExport, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer)
         {
-            Report report = new Report("FrontList");
+            Report report = new Report("FrontList", isPrint, isExport);
             ReportBuilderFrontList builder = new ReportBuilderFrontList(report);
 
-            orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+            OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
 
-            builder.BuildReport(orderModel.GetFrontListData(targetDate), targetDate);
+            builder.BuildReport(orderModel.GetFrontListData(targetDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), targetDate, null);
 
             report.FinalizeReport();
 
             return report.Wb;
         }
-        public IXLWorkbook CreateBackList(DateTime? targetDate, DateTime? endDate)
+        public IXLWorkbook CreateBackList(DateTime? targetDate, DateTime? endDate, bool isPrint, bool isExport, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer)
         {
-            Report report = new Report("BackList");
+            Report report = new Report("BackList", isPrint, isExport);
             ReportBuilderBackList builder = new ReportBuilderBackList(report);
 
-            orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+            OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
 
-            if(endDate == null)//if endDate is null, report is for single day, targetDate is used in report header as targetDate
+            if (endDate == null)//if endDate is null, report is for single day, targetDate is used in report header as targetDate
             {
-                builder.BuildReport(orderModel.GetBackListData(targetDate, endDate), targetDate);
+                builder.BuildReport(orderModel.GetBackListData(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), targetDate, endDate);
             }
             else //otherwise printing all orders (for testing purposes) or is printing a range, displaying targetDate as a range not implemented yet, make arg param[] dateTime?
             {
-                builder.BuildReport(orderModel.GetBackListData(targetDate, endDate), null);
+                if(targetDate < endDate)
+                {
+                    builder.BuildReport(orderModel.GetBackListData(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), null, null);
+                }
             }
 
             report.FinalizeReport();
 
             return report.Wb;
         }
-        public IXLWorkbook CreateWsDay(DateTime? targetDate)
+
+        public IXLWorkbook CreatePieBackList(DateTime? targetDate, DateTime? endDate, bool isPrint, bool isExport, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer)
         {
-            Report report = new Report("WholesaleByDay");
-            ReportBuilderWsDay builder = new ReportBuilderWsDay(report);
+            Report report = new Report("BackListPie", isPrint, isExport);
+            ReportBuilderBackListPie builder = new ReportBuilderBackListPie(report);
 
-            orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+            OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
 
-            builder.BuildReport(orderModel.GetWsDayData(targetDate), targetDate);
+            if (endDate == null)//if endDate is null, report is for single day, targetDate is used in report header as targetDate
+            {
+                builder.BuildReport(orderModel.GetBackListData(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), targetDate, endDate);
+            }
+            else //otherwise printing all orders (for testing purposes) or is printing a range, displaying targetDate as a range not implemented yet, make arg param[] dateTime?
+            {
+                if (targetDate < endDate)
+                {
+                    builder.BuildReport(orderModel.GetBackListData(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), null, null);
+                }
+            }
 
             report.FinalizeReport();
 
             return report.Wb;
         }
-        public IXLWorkbook CreateWsDayName(DateTime? targetDate)
+
+        public IXLWorkbook CreatePastryBackList(DateTime? targetDate, DateTime? endDate, bool isPrint, bool isExport, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer)
         {
-            Report report = new Report("WholesaleByDaybyName");
+            Report report = new Report("BackListPie", isPrint, isExport);
+            ReportBuilderBackListPastry builder = new ReportBuilderBackListPastry(report);
+
+            OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+
+            if (endDate == null)//if endDate is null, report is for single day, targetDate is used in report header as targetDate
+            {
+                builder.BuildReport(orderModel.GetBackListData(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), targetDate, endDate);
+            }
+            else //otherwise printing all orders (for testing purposes) or is printing a range, displaying targetDate as a range not implemented yet, make arg param[] dateTime?
+            {
+                if (targetDate < endDate)
+                {
+                    builder.BuildReport(orderModel.GetBackListData(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), null, null);
+                }
+            }
+
+            report.FinalizeReport();
+
+            return report.Wb;
+        }
+        public IXLWorkbook CreateWsDay(DateTime? targetDate, bool isPrint, bool isExport)
+        {
+            Report report = new Report("WholesaleByDay", isPrint, isExport);
+            ReportBuilderWsDay builder = new ReportBuilderWsDay(report);
+
+            OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+
+            builder.BuildReport(orderModel.GetWsDayData(targetDate), targetDate, null);
+
+            report.FinalizeReport();
+
+            return report.Wb;
+        }
+
+        public IXLWorkbook CreateWsDayName(DateTime? targetDate, bool isPrint, bool isExport)
+        {
+            Report report = new Report("WholesaleByDaybyName", isPrint, isExport);
             ReportBuilderWsDayName builder = new ReportBuilderWsDayName(report);
 
-            orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+            OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
 
-            builder.BuildReport(orderModel.GetWsDayNameData(targetDate), targetDate);
-
+            builder.BuildReport(orderModel.GetWsDayNameData(targetDate), targetDate, null);
+            report.isLandscape = true;
             report.FinalizeReport();
 
             return report.Wb;

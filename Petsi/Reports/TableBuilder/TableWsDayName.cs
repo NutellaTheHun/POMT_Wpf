@@ -20,14 +20,22 @@ namespace Petsi.Reports.TableBuilder
             //Header
             AddLine(page, ref _rowIndex, _rootPosition.col, recipient);
             AddLine(page, ref _rowIndex, _rootPosition.col, " ", "3\"", "5\"", "8\"", "10\"");
-            foreach(PetsiOrder order in items)
+
+            //Body
+            string amount3 = "", amount5 = "", amount8 = "", amount10 = "";
+            foreach (PetsiOrder order in items)
             {
-                //Alphabetical Sort lineitems?
                 foreach (PetsiOrderLineItem lineItem in order.LineItems)
                 {
+                    //Remove text from cell if 0 to reduce clutter on report.
+                    amount3 = ""; amount5 = ""; amount8 = ""; amount10 = "";
+                    if (lineItem.Amount3 != 0) { amount3 = lineItem.Amount3.ToString(); }
+                    if (lineItem.Amount5 != 0) { amount5 = lineItem.Amount5.ToString(); }
+                    if (lineItem.Amount8 != 0) { amount8 = lineItem.Amount8.ToString(); }
+                    if (lineItem.Amount10 != 0) { amount10 = lineItem.Amount10.ToString(); }
+
                     AddLine(page, ref _rowIndex, _rootPosition.col, 
-                        lineItem.ItemName,lineItem.Amount3.ToString(), lineItem.Amount5.ToString(), 
-                                           lineItem.Amount8.ToString(), lineItem.Amount10.ToString());
+                        lineItem.ItemName, amount3, amount5, amount8, amount10);
                 }
             }
             FormatTable(page);

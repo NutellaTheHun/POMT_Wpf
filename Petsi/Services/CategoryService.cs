@@ -3,7 +3,6 @@ using Petsi.Managers;
 using Petsi.Models;
 using Petsi.Units;
 using Petsi.Utils;
-using System.Collections;
 
 namespace Petsi.Services
 {
@@ -14,12 +13,13 @@ namespace Petsi.Services
         /// </summary>
         Dictionary<string, string> categoryMap;
 
-        List<(string name, string id)> categoryList;
+
+        List<(string categoryName, string id)> categoryList;
 
         public CategoryService()
         {
             categoryMap = new Dictionary<string, string>();
-            categoryList = new List<(string name, string id)>();
+            categoryList = new List<(string categoryName, string id)>();
             SetServiceName(Identifiers.SERVICE_CATEGORY);
             ServiceManagerSingleton.GetInstance().Register(this);
             CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
@@ -29,19 +29,25 @@ namespace Petsi.Services
         public List<string> GetCategoryNames()
         {
             List<string> result = new List<string>();
-            result.AddRange(categoryList.Select(item => item.name));
-            /*
-            foreach(var item in categoryList)
-            {
-                result.Add(item.name);
-            }
-            */
+            result.AddRange(categoryList.Select(item => item.categoryName));
             return result;
         }
 
-        public string GetCategoryId(int categoryIndex)
+        public string GetCategoryIdByIndex(int categoryIndex)
         {
             return categoryList[categoryIndex].id;
+        }
+        public string GetCategoryIdByCategoryName(string categoryName)
+        {
+            string result = "";
+            foreach ((string categoryName, string id) item in categoryList)
+            {
+                if(item.categoryName == categoryName)
+                {
+                    result = item.id;
+                }
+            }
+            return result;
         }
 
         /// <summary>
@@ -63,6 +69,19 @@ namespace Petsi.Services
             }
         }
 
+        public string GetCategoryName(string categoryId)
+        {
+            string result = "";
+            foreach ((string categoryName, string id) item in categoryList)
+            {
+                if (item.id == categoryId)
+                {
+                    result = item.categoryName;
+                }
+            }
+            return result;
+        }
+
         public override void Update(ModelBase model)
         {
             categoryMap.Clear();
@@ -73,13 +92,32 @@ namespace Petsi.Services
 
             foreach (CatalogItemPetsi item in cmp.GetItems())
             {
-                categoryMap.TryAdd(item.ItemName, item.CategoryId);
-                categoryMap.TryAdd(item.CatalogObjectId, item.CategoryId);
-                foreach (DictionaryEntry entry in item.Variations)
+                if(item.CategoryId != null)
                 {
-                    categoryMap.TryAdd((string)entry.Key, item.CategoryId);
+                    categoryMap.TryAdd(item.ItemName, item.CategoryId);
+                    categoryMap.TryAdd(item.CatalogObjectId, item.CategoryId);
+                    if(item.VariationList != null)
+                    {
+                        foreach(var entry in item.VariationList)
+                        {
+                            categoryMap.TryAdd(entry.variationId, item.CategoryId);
+                        }
+                    }   
+                }
+                
+            }
+        }
+
+        public bool ValidateCategory(string categoryIdentifier, string categoryId)
+        {
+            foreach(var item in categoryList)
+            {
+                if (item.categoryName == categoryIdentifier)
+                {
+                    return item.id == categoryId;
                 }
             }
+            return false;
         }
     }
 }

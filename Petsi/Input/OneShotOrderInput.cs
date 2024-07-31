@@ -22,13 +22,14 @@ namespace Petsi.Input
             SetModel(ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS));
             SetInputName(Identifiers.ONE_SHOT_INPUT);
             InputManagerSingleton.GetInstance().Register(this);
-            EnvironCaptureRegistrySingleton.GetInstance().Register(this);
+            //EnvironCaptureRegistrySingleton.GetInstance().Register(this);
             //CommandFrame.GetInstance().RegisterFrame("osi", frameBehavior);
         }
 
         public override void CaptureEnvironment(FileBehavior reportFb)
         {
-            fileBehavior.DataListToFile(Identifiers.ENV_OSI, Items);
+            //fileBehavior.DataListToFile(Identifiers.ENV_OSI, Items);
+            //reportFb.DataListToPureFilePath(Items);
         }
 
         public override async Task Execute()

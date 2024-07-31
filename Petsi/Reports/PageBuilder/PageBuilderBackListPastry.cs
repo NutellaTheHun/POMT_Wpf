@@ -1,4 +1,5 @@
 ﻿using Petsi.Reports.TableBuilder;
+using Petsi.Units;
 
 namespace Petsi.Reports.PageBuilder
 {

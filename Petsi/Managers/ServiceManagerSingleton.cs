@@ -3,6 +3,9 @@ using Petsi.Services;
 
 namespace Petsi.Managers
 {
+    /// <summary>
+    /// Orignally implemented for CommandFrame functionality, managers became main way of refrencing services and models.
+    /// </summary>
     public class ServiceManagerSingleton : IPetsiServiceProvider, IServiceManagerRegistry
     {
         private static ServiceManagerSingleton instance;
