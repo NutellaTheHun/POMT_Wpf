@@ -48,6 +48,66 @@ namespace POMT_WPF.MVVM.ViewModel
             }
         }
 
+        public CatalogItemPetsi? TakeBakeMapping
+        {
+            get { return cItem.TakeNBakePieAssociation; }
+            set
+            {
+                if (cItem.TakeNBakePieAssociation != value)
+                {
+                    cItem.TakeNBakePieAssociation = value;
+                    OnPropertyChanged(nameof(TakeBakeMapping));
+                }
+            }
+        }
+
+        private string _takeBakeMappedItemName;
+        public string TakeBakeMappedItemName
+        {
+            get
+            {
+                return _takeBakeMappedItemName;
+            }
+            set
+            {
+                if (_takeBakeMappedItemName != value)
+                {
+                    _takeBakeMappedItemName = value;
+                    OnPropertyChanged(nameof(TakeBakeMappedItemName));
+                }
+            }
+        }
+
+        public CatalogItemPetsi? VeganTakeBakeMapping
+        {
+            get { return cItem.VeganTakeNBakePieAssociation; }
+            set
+            {
+                if (cItem.VeganTakeNBakePieAssociation != value)
+                {
+                    cItem.VeganTakeNBakePieAssociation = value;
+                    OnPropertyChanged(nameof(VeganTakeBakeMapping));
+                }
+            }
+        }
+
+        private string _veganTakeBakeMappedItemName;
+        public string VeganTakeBakeMappedItemName
+        {
+            get
+            {
+                return _veganTakeBakeMappedItemName;
+            }
+            set
+            {
+                if (_veganTakeBakeMappedItemName != value)
+                {
+                    _veganTakeBakeMappedItemName = value;
+                    OnPropertyChanged(nameof(VeganTakeBakeMappedItemName));
+                }
+            }
+        }
+
         public string StandardLabelFilePath { 
             get { return cItem.StandardLabelFilePath; }
             set
@@ -265,6 +325,8 @@ namespace POMT_WPF.MVVM.ViewModel
         public RelayCommand SetStandardLblFile { get; set; }
         public RelayCommand SetCutieLblFile { get; set; }
         public RelayCommand SetVeganPie { get; set; }
+        public RelayCommand SetTakeBakePie { get; set; }
+        public RelayCommand SetVeganTakeBakePie { get; set; }
         public RelayCommand DeleteItem { get; set; }
         public RelayCommand SaveItem { get; set; }
         public RelayCommand BackCatalogItem { get; set; }
@@ -335,6 +397,14 @@ namespace POMT_WPF.MVVM.ViewModel
                 {
                     VeganMappedItemName = inputItem.VeganPieAssociation.ItemName;
                 }
+                if (inputItem.TakeNBakePieAssociation != null)
+                {
+                    TakeBakeMappedItemName = inputItem.TakeNBakePieAssociation.ItemName;
+                }
+                if (inputItem.VeganTakeNBakePieAssociation != null)
+                {
+                    VeganTakeBakeMappedItemName = inputItem.VeganTakeNBakePieAssociation.ItemName;
+                }
             }
 
             AddAltName = new RelayCommand(o => { AddAltNameCmd(); });
@@ -342,6 +412,8 @@ namespace POMT_WPF.MVVM.ViewModel
             SetStandardLblFile = new RelayCommand(o => { SetStdLblFileCmd(); });
             SetCutieLblFile = new RelayCommand(o => { SetCutieLblFileCmd(); });
             SetVeganPie = new RelayCommand(o => { SetVeganPieCmd(); });
+            SetTakeBakePie = new RelayCommand(o => { SetTakeBakePieCmd(); });
+            SetVeganTakeBakePie = new RelayCommand(o => { SetVeganTakeBakePieCmd(); });
             DeleteItem = new RelayCommand(o => { DeleteItemCmd(); });
             SaveItem = new RelayCommand(o => { SaveItemCmd(); });
             BackCatalogItem = new RelayCommand(o => { MainViewModel.Instance().BackCatalogView(); });
@@ -405,6 +477,28 @@ namespace POMT_WPF.MVVM.ViewModel
             {
                 VeganMapping = window.Selection;
                 VeganMappedItemName = VeganMapping.ItemName;
+            }
+        }
+
+        private void SetTakeBakePieCmd()
+        {
+            TakeBakeMapWindow window = new TakeBakeMapWindow();
+            window.ShowDialog();
+            if (window.ControlBool)
+            {
+                TakeBakeMapping = window.Selection;
+                TakeBakeMappedItemName = TakeBakeMapping.ItemName;
+            }
+        }
+
+        private void SetVeganTakeBakePieCmd()
+        {
+            TakeBakeMapWindow window = new TakeBakeMapWindow();
+            window.ShowDialog();
+            if (window.ControlBool)
+            {
+                VeganTakeBakeMapping = window.Selection;
+                VeganTakeBakeMappedItemName = VeganTakeBakeMapping.ItemName;
             }
         }
         private void DeleteItemCmd()

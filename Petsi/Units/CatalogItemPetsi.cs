@@ -31,6 +31,8 @@ namespace Petsi.Units
         public List<(string variationId, string variationName)> VariationList { get; set; }
         public List<(string variationId, string variationName)> DisabledVariationList { get; set; }
         public CatalogItemPetsi VeganPieAssociation { get; set; }
+        public CatalogItemPetsi TakeNBakePieAssociation { get; set; }
+        public CatalogItemPetsi VeganTakeNBakePieAssociation { get; set; }
         public string StandardLabelFilePath { get; set; }
         public string CutieLabelFilePath { get; set; }
         public bool IsPOTM {  get; set; }
@@ -53,6 +55,16 @@ namespace Petsi.Units
                 if (copyItem.VeganPieAssociation != null)
                 {
                     VeganPieAssociation = new CatalogItemPetsi(copyItem.VeganPieAssociation);
+                }
+
+                if (copyItem.TakeNBakePieAssociation != null)
+                {
+                    TakeNBakePieAssociation = new CatalogItemPetsi(copyItem.TakeNBakePieAssociation);
+                }
+
+                if (copyItem.VeganTakeNBakePieAssociation != null)
+                {
+                    VeganTakeNBakePieAssociation = new CatalogItemPetsi(copyItem.VeganTakeNBakePieAssociation);
                 }
 
                 StandardLabelFilePath = copyItem.StandardLabelFilePath;

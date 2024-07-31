@@ -231,6 +231,52 @@
                                     </StackPanel>
                                 </StackPanel>
                                 <StackPanel Orientation="Vertical">
+                                    <Label Content="Take N Bake" />
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <TextBox
+                                            HorizontalContentAlignment="Left"
+                                            IsReadOnly="True"
+                                            Style="{StaticResource GeneralTextBox}"
+                                            Text="{Binding TakeBakeMappedItemName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+
+                                        <Button
+                                            Width="30"
+                                            Height="30"
+                                            Margin="5,0,5,5"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            Command="{Binding SetTakeBakePie}"
+                                            IsHitTestVisible="{Binding IsEdit}"
+                                            Style="{StaticResource secondaryButton}">
+                                            <Icon:PackIconMaterial Kind="ChartPie" />
+                                        </Button>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical">
+                                    <Label Content="Vegan Take N Bake" />
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <TextBox
+                                            HorizontalContentAlignment="Left"
+                                            IsReadOnly="True"
+                                            Style="{StaticResource GeneralTextBox}"
+                                            Text="{Binding VeganTakeBakeMappedItemName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+
+                                        <Button
+                                            Width="30"
+                                            Height="30"
+                                            Margin="5,0,5,5"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            Command="{Binding SetVeganTakeBakePie}"
+                                            IsHitTestVisible="{Binding IsEdit}"
+                                            Style="{StaticResource secondaryButton}">
+                                            <Icon:PackIconMaterial Kind="ChartPie" />
+                                        </Button>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical">
                                     <Label Content="Standard Label File" />
                                     <StackPanel Orientation="Horizontal">
                                         <TextBox
@@ -254,7 +300,7 @@
                                     </StackPanel>
 
                                 </StackPanel>
-                                <StackPanel Orientation="Vertical">
+                                <StackPanel Margin="0,0,0,5" Orientation="Vertical">
                                     <Label Content="Cutie Label File" />
                                     <StackPanel Orientation="Horizontal">
                                         <TextBox
