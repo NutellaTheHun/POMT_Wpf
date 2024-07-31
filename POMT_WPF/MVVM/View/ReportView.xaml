@@ -123,13 +123,27 @@
                                             Foreground="#efefef"
                                             Style="{StaticResource secondaryButton}" />
                                         <Button
+                                            Width="100"
+                                            Margin="5"
+                                            Command="{Binding PrintPieBackList}"
+                                            Content="Print Pie List"
+                                            Foreground="#efefef"
+                                            Style="{StaticResource secondaryButton}" />
+                                        <Button
+                                            Width="100"
+                                            Margin="5"
+                                            Command="{Binding PrintPastryBackList}"
+                                            Content="Print Pastry List"
+                                            Foreground="#efefef"
+                                            Style="{StaticResource secondaryButton}" />
+                                    </StackPanel>
+                                    <!--                                         <Button
                                             Width="150"
                                             Margin="5"
                                             Command="{Binding PrintBackList}"
                                             Content="Print Baker's List"
                                             Foreground="#efefef"
-                                            Style="{StaticResource secondaryButton}" />
-                                    </StackPanel>
+                                            Style="{StaticResource secondaryButton}" />-->
                                     <StackPanel
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
