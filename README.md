@@ -97,5 +97,3 @@ The Petsi Order Management Tool provides the following features on release:
 * Determine required directory locations
 * Determine active templates
 * Specify report and label printers
-
-## Contributing
