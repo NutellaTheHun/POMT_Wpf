@@ -1,11 +1,7 @@
-#POMT
+# POMT
 
-##Desc
+## Desc
 
-##Why
+## Why
 
-##Quick Start
-
-##Usage
-
-##Contributing
+## Usage
