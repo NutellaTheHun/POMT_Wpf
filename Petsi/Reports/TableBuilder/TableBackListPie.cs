@@ -21,6 +21,10 @@ namespace Petsi.Reports.TableBuilder
             List<PetsiOrderLineItem> itemTracker = new List<PetsiOrderLineItem>(items);
             List<BackListItem> listFormat = ReportTemplateService.Instance().GetActiveBacklistPieTemplate();
 
+            bool veganPresent5 = false; bool unbakedPresent5 = false; bool veganUnbaked5 = false;
+            bool veganPresent8 = false; bool unbakedPresent8 = false; bool veganUnbaked8 = false;
+            bool veganPresent10 = false; bool unbakedPresent10 = false; bool veganUnbaked10 = false;
+
             if (listFormat == null)
             {
                 SystemLogger.Log("TableBackListPie GetActiveBacklistPieTemplate returned an empty list");
@@ -49,9 +53,9 @@ namespace Petsi.Reports.TableBuilder
                             if (isVegan)
                             {
                                 if (lineItem.Amount3 != 0)  { amount3 = HandleVeganLineAmount(lineItem.Amount3.ToString(), amount3); }
-                                if (lineItem.Amount5 != 0)  { amount5 = HandleVeganLineAmount(lineItem.Amount5.ToString(), amount5); }
-                                if (lineItem.Amount8 != 0)  { amount8 = HandleVeganLineAmount(lineItem.Amount8.ToString(), amount8); }
-                                if (lineItem.Amount10 != 0) { amount10 = HandleVeganLineAmount(lineItem.Amount10.ToString(), amount10); }
+                                if (lineItem.Amount5 != 0)  { amount5 = HandleVeganLineAmount(lineItem.Amount5.ToString(), amount5); veganPresent5 = true; }
+                                if (lineItem.Amount8 != 0)  { amount8 = HandleVeganLineAmount(lineItem.Amount8.ToString(), amount8); veganPresent8 = true; }
+                                if (lineItem.Amount10 != 0) { amount10 = HandleVeganLineAmount(lineItem.Amount10.ToString(), amount10); veganPresent10 = true; }
 
                                 itemTracker.Remove(lineItem);
                                 continue;
@@ -59,9 +63,9 @@ namespace Petsi.Reports.TableBuilder
                             if(isTakeNBake)
                             {
                                 if (lineItem.Amount3 != 0)  { amount3 = HandleTakeNBakeLineAmount(lineItem.Amount3.ToString(), amount3); }
-                                if (lineItem.Amount5 != 0)  { amount5 = HandleTakeNBakeLineAmount(lineItem.Amount5.ToString(), amount5); }
-                                if (lineItem.Amount8 != 0)  { amount8 = HandleTakeNBakeLineAmount(lineItem.Amount8.ToString(), amount8); }
-                                if (lineItem.Amount10 != 0) { amount10 = HandleTakeNBakeLineAmount(lineItem.Amount10.ToString(), amount10); }
+                                if (lineItem.Amount5 != 0)  { amount5 = HandleTakeNBakeLineAmount(lineItem.Amount5.ToString(), amount5); unbakedPresent5 = true; }
+                                if (lineItem.Amount8 != 0)  { amount8 = HandleTakeNBakeLineAmount(lineItem.Amount8.ToString(), amount8); unbakedPresent8 = true; }
+                                if (lineItem.Amount10 != 0) { amount10 = HandleTakeNBakeLineAmount(lineItem.Amount10.ToString(), amount10); unbakedPresent10 = true; }
 
                                 itemTracker.Remove(lineItem);
                                 continue;
@@ -69,9 +73,9 @@ namespace Petsi.Reports.TableBuilder
                             if (isVeganTakeNBake)
                             {
                                 if (lineItem.Amount3 != 0)  { amount3 = HandleVeganTakeNBakeLineAmount(lineItem.Amount3.ToString(), amount3); }
-                                if (lineItem.Amount5 != 0)  { amount5 = HandleVeganTakeNBakeLineAmount(lineItem.Amount5.ToString(), amount5); }
-                                if (lineItem.Amount8 != 0)  { amount8 = HandleVeganTakeNBakeLineAmount(lineItem.Amount8.ToString(), amount8); }
-                                if (lineItem.Amount10 != 0) { amount10 = HandleVeganTakeNBakeLineAmount(lineItem.Amount10.ToString(), amount10); }
+                                if (lineItem.Amount5 != 0)  { amount5 = HandleVeganTakeNBakeLineAmount(lineItem.Amount5.ToString(), amount5); veganUnbaked5 = true; }
+                                if (lineItem.Amount8 != 0)  { amount8 = HandleVeganTakeNBakeLineAmount(lineItem.Amount8.ToString(), amount8); veganUnbaked8 = true; }
+                                if (lineItem.Amount10 != 0) { amount10 = HandleVeganTakeNBakeLineAmount(lineItem.Amount10.ToString(), amount10); veganUnbaked10 = true; }
 
                                 itemTracker.Remove(lineItem);
                                 continue;
@@ -165,25 +169,25 @@ namespace Petsi.Reports.TableBuilder
             if (source == "") { return inputAmount+"V"; }
             else
             {
-                return source + "," + inputAmount + "V";
+                return source + ", " + inputAmount + "V";
             }
         }
 
         private string HandleTakeNBakeLineAmount(string inputAmount, string source)
         {
-            if (source == "") { return inputAmount + "T"; }
+            if (source == "") { return inputAmount + "U"; }
             else
             {
-                return source + "," + inputAmount + "T";
+                return source + ", " + inputAmount + "U";
             }
         }
 
         private string HandleVeganTakeNBakeLineAmount(string inputAmount, string source)
         {
-            if (source == "") { return inputAmount + "TV"; }
+            if (source == "") { return inputAmount + "UV"; }
             else
             {
-                return source + "," + inputAmount + "TV";
+                return source + ", " + inputAmount + "UV";
             }
         }
 
@@ -237,8 +241,9 @@ namespace Petsi.Reports.TableBuilder
             TableFormat.RangeAllBorders(page, tableRange);
             TableFormat.RangeAlignment(page, "center", tableRange);
             TableFormat.RangeFontSize(page, 18, tableRange);
-            TableFormat.ColWidthFitSizeOfText(page, "B");
-            TableFormat.ColumnSetPixelLength(page, 12, "C:F");
+            TableFormat.ColWidthFitSizeOfText_MinWidth(page, "B:F", 8.57);
+            //TableFormat.ColWidthFitSizeOfText(page, "B:F");
+            //TableFormat.ColumnSetPixelLength(page, 20, "C:F");
             TableFormat.RangeBold(page, headerRange);
         }
     }

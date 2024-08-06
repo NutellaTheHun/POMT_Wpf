@@ -60,6 +60,18 @@ namespace Petsi.Reports.TableBuilder
         {
              ws.Columns(colRange).AdjustToContents();
         }
+
+        public static void ColWidthFitSizeOfText_MinWidth(IXLWorksheet ws, string colRange, double minWidth)
+        {
+            ws.Columns(colRange).AdjustToContents();
+            foreach (var col in ws.Columns())
+            {
+                if (col.Width < minWidth)
+                {
+                    col.Width = minWidth;
+                }
+            }
+        }
         public static void WrapText(IXLWorksheet ws, /*int targetRow, params string[] cols*/string range)
         {
             ws.Range(range).Cells().Style.Alignment.WrapText = true;
