@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Petsi.Tests.PetsiUnitTests
+﻿namespace Petsi.Tests.PetsiUnitTests
 {
-    internal class SquareOrderItemTest
+    public class SquareOrderItemTest
     {
     }
 }
