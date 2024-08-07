@@ -188,6 +188,18 @@ namespace Petsi.Units
             return cs.IsVeganAssociate(backListItemId, CatalogObjectId);
         }
 
+        public bool IsTakeNBakeTo(string backListItemId)
+        {
+            CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
+            return cs.IsTakeNBakeAssociate(backListItemId, CatalogObjectId);
+        }
+
+        public bool IsVeganTakeNBakeTo(string backListItemId)
+        {
+            CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
+            return cs.IsVeganTakeNBakeAssociate(backListItemId, CatalogObjectId);
+        }
+
         public bool IsCategory(string categoryId)
         {
             CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);

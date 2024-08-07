@@ -367,5 +367,37 @@ namespace Petsi.Services
             }
             return false;
         }
+
+        public bool IsTakeNBakeAssociate(string backListItemId, string targetId)
+        {
+            foreach (CatalogItemPetsi item in catalog)
+            {
+                if (item.CatalogObjectId == backListItemId)
+                {
+                    if (item.TakeNBakePieAssociation != null)
+                    {
+                        return (item.TakeNBakePieAssociation.CatalogObjectId == targetId);
+                    }
+                    break;
+                }
+            }
+            return false;
+        }
+
+        public bool IsVeganTakeNBakeAssociate(string backListItemId, string targetId)
+        {
+            foreach (CatalogItemPetsi item in catalog)
+            {
+                if (item.CatalogObjectId == backListItemId)
+                {
+                    if (item.VeganTakeNBakePieAssociation != null)
+                    {
+                        return (item.VeganTakeNBakePieAssociation.CatalogObjectId == targetId);
+                    }
+                    break;
+                }
+            }
+            return false;
+        }
     }
 }
