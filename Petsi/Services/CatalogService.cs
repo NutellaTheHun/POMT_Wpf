@@ -85,22 +85,6 @@ namespace Petsi.Services
         //For ItemName form validating
         public bool ValidateItemName(string name)
         {
-            /*
-            List<CatalogItemPetsi> results = new List<CatalogItemPetsi>();
-
-            foreach (CatalogItemPetsi item in catalog)
-            {
-                if (item.ItemName.ToLower().Equals(name.ToLower()) || item.NaturalNameEquals(name.ToLower()))
-                {
-                    results.Add(item);
-                }
-            }
-            if (results.Count == 1)
-            {
-                return true;
-            }
-            return false;
-            */
             CatalogItemPetsi item = GetCatalogItem(name);
 
             if (item == null) { return false; }

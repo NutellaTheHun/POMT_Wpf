@@ -370,43 +370,10 @@ namespace Petsi.Models
         }
         #endregion
 
-        /// <summary>
-        /// Returns all orders where input is contained within the recipient variable
-        /// </summary>
-        /// <param name="searchTerm"></param>
-        /// <returns></returns>
-        public List<PetsiOrder> SearchByRecipient(string searchTerm)
-        {
-            List<PetsiOrder> result = new List<PetsiOrder>();
-
-            result.AddRange(Orders.Where(order => order.Recipient.ToLower().Contains(searchTerm)));
-            return result;
-        }
-
         public override void CaptureEnvironment(FileBehavior reportFb)
         {
             //reportFb.DataListToFile(Identifiers.ENV_OMP, Orders);
             reportFb.DataListToPureFilePath(Identifiers.ENV_OMP, Orders);
-        }
-
-        private void SavePeriodicModel() 
-        { 
-            List<PetsiOrder> PeriodicOrders = new List<PetsiOrder>();
-            foreach (var order in Orders)
-            {
-                if(order.IsPeriodic) PeriodicOrders.Add(order);
-            }
-            fileBehavior.DataListToFile(Identifiers.PERIODIC_ORDERS, PeriodicOrders); 
-        }
-
-        private void SaveOneShotModel() 
-        {
-            List<PetsiOrder> OneShotOrders = new List<PetsiOrder>();
-            foreach (var order in Orders)
-            {
-                if (order.IsOneShot) OneShotOrders.Add(order);
-            }
-            fileBehavior.DataListToFile(Identifiers.ONE_SHOT_ORDERS, OneShotOrders);
         }
 
         private void SaveDeletedOrder(PetsiOrder order)

@@ -4,5 +4,6 @@
     {
         public void GetCatalogItemById_Test() { }
         public void GetCatalogItem_test() { }
+        public void ValidateModifyItemName_Test() { }
     }
 }
