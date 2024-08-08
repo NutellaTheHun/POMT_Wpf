@@ -1,5 +1,4 @@
-﻿using Petsi.CommandLine;
-using Petsi.Managers;
+﻿using Petsi.Managers;
 using Petsi.Services;
 using Petsi.Utils;
 using System.Collections.Specialized;
@@ -8,7 +7,6 @@ namespace Petsi.Units
 {
     public class CatalogItemPetsi : ModelUnitBase, IEquatable<CatalogItemPetsi>
     {
-        CatalogItemFrameBehavior frameBehavior;
         public string CategoryId { get; set; }
         public string CatalogObjectId { get; set; }
         public string ItemName { get; set; }
@@ -43,7 +41,6 @@ namespace Petsi.Units
         {
             if(copyItem != null)
             {
-                frameBehavior = copyItem.frameBehavior;
                 CategoryId = copyItem.CategoryId;
                 CatalogObjectId = copyItem.CatalogObjectId;
                 ItemName = copyItem.ItemName;
@@ -76,7 +73,6 @@ namespace Petsi.Units
             else
             {
                 Variations = new ListDictionary();
-                frameBehavior = new CatalogItemFrameBehavior(this);
                 NaturalNames = new List<string>();
                 VariationList = new List<(string variationName, string variationId)>();
                 DisabledVariationList = new List<(string variationId, string variationName)>();
@@ -90,7 +86,6 @@ namespace Petsi.Units
             CatalogObjectId = catalogObjectId;
             ItemName = itemName;
             Variations = new ListDictionary();
-            frameBehavior = new CatalogItemFrameBehavior(this);
             NaturalNames = new List<string>();
             VariationList = new List<(string variationName, string variationId)>();
             DisabledVariationList = new List<(string variationId, string variationName)>();
@@ -102,7 +97,6 @@ namespace Petsi.Units
             CatalogObjectId = catalogObjectId;
             ItemName = itemName;
             Variations = variations;
-            frameBehavior = new CatalogItemFrameBehavior(this);
             NaturalNames = naturalNames;
             VariationList = new List<(string variationName, string variationId)>();
             DisabledVariationList = new List<(string variationId, string variationName)>();
@@ -111,15 +105,10 @@ namespace Petsi.Units
         public CatalogItemPetsi()
         {
             Variations = new ListDictionary();
-            frameBehavior = new CatalogItemFrameBehavior(this);
             NaturalNames = new List<string>();
             VariationList = new List<(string variationName, string variationId)>();
             DisabledVariationList = new List<(string variationId, string variationName)>();
             Alt_CatalogObjId = new List<string>();
-        }
-        public override FrameBehaviorBase GetFrameBehavior()
-        {
-            return frameBehavior;
         }
 
         public bool Equals(CatalogItemPetsi? other)

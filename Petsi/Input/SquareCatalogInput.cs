@@ -1,5 +1,4 @@
-﻿using Petsi.CommandLine;
-using Petsi.Filing;
+﻿using Petsi.Filing;
 using Petsi.Managers;
 using Petsi.Models;
 using Petsi.Units;
@@ -19,7 +18,6 @@ namespace Petsi.Input
         FileBehavior fileBehavior;
         //FileBehavior environFileBehavior;
         bool isFileExecute;
-        CatalogInputFrameBehavior frameBehavior;
 
         protected CatalogModelPetsi Model;
 
@@ -27,7 +25,6 @@ namespace Petsi.Input
 
         public SquareCatalogInput(SquareClientFactory squareClient)
         {
-            frameBehavior = new CatalogInputFrameBehavior(this);
             catalogItems = new List<CatalogItemPetsi>();
             Categories = new List<(string name, string id)>();
             SetModel(ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG));
@@ -38,7 +35,6 @@ namespace Petsi.Input
             SetInputName(Identifiers.SQUARE_CATALOG_INPUT);
             EnvironCaptureRegistrySingleton.GetInstance().Register(this);
             InputManagerSingleton.GetInstance().Register(this);
-            CommandFrame.GetInstance().RegisterFrame("sci", frameBehavior);
         }
         protected override void SetModel(ModelBase targetModel)
         {
@@ -122,7 +118,6 @@ namespace Petsi.Input
         public void SetSquareResponse(List<ListCatalogResponse> responseList){ squareResponses = responseList; }
         public FileBehavior GetFileBehavior(){ return fileBehavior;}
         public void SetCatalogItems(List<CatalogItemPetsi> itemList){ catalogItems = itemList; }
-        public override FrameBehaviorBase GetFrameBehavior(){ return frameBehavior; }
         public bool GetHasExecuted() { return hasExecuted; }
         //public void SetHasExecuted(bool v) { hasExecuted = v; }
         public override void CaptureEnvironment(FileBehavior reportFb){/*reportFb.DataListToFile(Identifiers.ENV_SCI, squareResponses);*/ reportFb.DataListToPureFilePath(Identifiers.ENV_SCI, squareResponses); }

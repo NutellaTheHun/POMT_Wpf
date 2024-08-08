@@ -1,5 +1,4 @@
-﻿using Petsi.CommandLine;
-using Petsi.Events;
+﻿using Petsi.Events;
 using Petsi.Managers;
 using Petsi.Models;
 using Petsi.Units;
@@ -22,23 +21,18 @@ namespace Petsi.Services
         /// </summary>
         Dictionary<string, string> _cutieLabelMap;
 
-        //FileBehavior _fileBehavior;
-        LabelServiceFrameBehavior frameBehavior;
         public LabelService()
         {
-            frameBehavior = new LabelServiceFrameBehavior(this);
             _standardLabelMap = new Dictionary<string, string>();
             _cutieLabelMap = new Dictionary<string, string>();
             cutieDirectoryPath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_CUTIE_LBL_PATH);
             pieDirectoryPath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_PIE_LBL_PATH);
             SetServiceName(Identifiers.SERVICE_LABEL);
             ServiceManagerSingleton.GetInstance().Register(this);
-            CommandFrame.GetInstance().RegisterFrame("lbl", frameBehavior);
             CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
             cmp.AddModelService(this);
             LoadLabelMap(cmp.GetItems());
         }
-        public FrameBehaviorBase GetFrameBehavior() { return frameBehavior; }
         
         /// <summary>
         /// Recieves the Catalaog and maps any item that contains a standard or cutie label file

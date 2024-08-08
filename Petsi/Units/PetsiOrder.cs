@@ -1,10 +1,8 @@
-﻿using Petsi.CommandLine;
-
+﻿
 namespace Petsi.Units
 {
     public class PetsiOrder : ModelUnitBase/*, IEquatable<PetsiOrder>*/
     {
-        PetsiOrderFrameBehavior frameBehavior;
         public string InputOriginType { get; set; }
         public string Recipient { get; set; }
         public string OrderId { get; set; }
@@ -39,7 +37,6 @@ namespace Petsi.Units
         { 
             if(source != null)
             {
-                frameBehavior = source.frameBehavior;
                 InputOriginType = source.InputOriginType;
                 Recipient = source.Recipient;
                 OrderId = source.OrderId;
@@ -61,7 +58,6 @@ namespace Petsi.Units
         public PetsiOrder()
         {
             LineItems = new List<PetsiOrderLineItem>();
-            frameBehavior = new PetsiOrderFrameBehavior(this);
         }
         /// <summary>
         /// For initializing a new OnOrderItem, LineItems list is initialized and empty.
@@ -84,7 +80,6 @@ namespace Petsi.Units
             FulfillmentType = fulfillmentType;
             Note = note;
             LineItems = new List<PetsiOrderLineItem>();
-            frameBehavior = new PetsiOrderFrameBehavior(this);
         }
         public PetsiOrder(
           string inputOrigin, string recipient, string orderId,
@@ -99,9 +94,7 @@ namespace Petsi.Units
             FulfillmentType = fulfillmentType;
             Note = note;
             LineItems = lineItems;
-            frameBehavior = new PetsiOrderFrameBehavior(this);
         }
-        public override FrameBehaviorBase GetFrameBehavior(){return frameBehavior;}
 
         public List<PetsiOrderLineItem> GetLineItems(){ return LineItems;}
 

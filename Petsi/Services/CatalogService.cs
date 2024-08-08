@@ -1,6 +1,4 @@
-﻿using Petsi.CommandLine;
-using Petsi.CommandLine.ErrorHandlers;
-using Petsi.Interfaces;
+﻿using Petsi.Interfaces;
 using Petsi.Managers;
 using Petsi.Models;
 using Petsi.Units;
@@ -167,11 +165,6 @@ namespace Petsi.Services
                 return name;
             }
             return results[0].ItemName;
-        }
-
-        private void HandleNewModifier(string name)
-        {
-            CommandFrame.GetInstance().InjectErrorHandlingFrame(new CatalogServiceErrorFrameBehavior(name));
         }
 
         public override void Update(ModelBase model) //Is this truly updating/neccessay?
