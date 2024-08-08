@@ -37,6 +37,7 @@ namespace Petsi.Services
         {
             return categoryList[categoryIndex].id;
         }
+
         public string GetCategoryIdByCategoryName(string categoryName)
         {
             string result = "";

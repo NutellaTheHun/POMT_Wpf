@@ -3,56 +3,68 @@
   "WorkspaceRootPath": "D:\\Git-Repos\\POMT_WPF\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\units\\petsiorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\units\\petsiorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\units\\modelunitbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\units\\modelunitbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\units\\catalogitempetsi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\units\\catalogitempetsi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\services\\labelservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\services\\labelservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\services\\catalogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\services\\catalogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\reports\\reportdirector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\reports\\reportdirector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\models\\ordermodelpetsi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\models\\ordermodelpetsi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\models\\modelbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\models\\modelbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5FCF45C8-7D7F-43DF-9D22-77039F64E32D}|Petsi.Tests\\Petsi.Tests.csproj|d:\\git-repos\\pomt_wpf\\petsi.tests\\envmocks\\catalogmodelmock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FCF45C8-7D7F-43DF-9D22-77039F64E32D}|Petsi.Tests\\Petsi.Tests.csproj|solutionrelative:petsi.tests\\envmocks\\catalogmodelmock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\models\\catalogmodelpetsi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\models\\catalogmodelpetsi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\input\\squarecataloginput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\input\\squarecataloginput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\services\\reporttemplateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\services\\reporttemplateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\input\\modelinputbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\input\\modelinputbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\services\\startupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\services\\startupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\input\\squareorderinput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\input\\squareorderinput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\services\\categoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\services\\categoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\services\\catalogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\services\\catalogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\reports\\reportbuilder\\reportbuilderbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\reports\\reportbuilder\\reportbuilderbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\reports\\reportbuilder\\reportbuilderbacklistpie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\reports\\reportbuilder\\reportbuilderbacklistpie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\reports\\tablebuilder\\tablebase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\reports\\tablebuilder\\tablebase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\reports\\reportbuilder\\reportbuilderfrontlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\reports\\reportbuilder\\reportbuilderfrontlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\reports\\pagebuilder\\pagebuilderbacklistpie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\reports\\pagebuilder\\pagebuilderbacklistpie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\interfaces\\icategoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\interfaces\\icategoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\interfaces\\icatalogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\interfaces\\icatalogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\managers\\inputmanagersingleton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\managers\\inputmanagersingleton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\managers\\environcaptureregistrysingleton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\managers\\environcaptureregistrysingleton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\labels\\loadlabels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\labels\\loadlabels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -62,175 +74,235 @@
       "DocumentGroups": [
         {
           "DockedWidth": 347,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "PetsiOrder.cs",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Units\\PetsiOrder.cs",
-              "RelativeDocumentMoniker": "Petsi\\Units\\PetsiOrder.cs",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Units\\PetsiOrder.cs",
-              "RelativeToolTip": "Petsi\\Units\\PetsiOrder.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAGEAAAAAAAAA",
+              "Title": "CatalogModelMock.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\EnvMocks\\CatalogModelMock.cs",
+              "RelativeDocumentMoniker": "Petsi.Tests\\EnvMocks\\CatalogModelMock.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\EnvMocks\\CatalogModelMock.cs",
+              "RelativeToolTip": "Petsi.Tests\\EnvMocks\\CatalogModelMock.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T19:12:48.805Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ModelUnitBase.cs",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Units\\ModelUnitBase.cs",
-              "RelativeDocumentMoniker": "Petsi\\Units\\ModelUnitBase.cs",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Units\\ModelUnitBase.cs",
-              "RelativeToolTip": "Petsi\\Units\\ModelUnitBase.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T19:12:39.22Z",
+              "WhenOpened": "2024-08-08T19:55:35.706Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "CatalogItemPetsi.cs",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Units\\CatalogItemPetsi.cs",
-              "RelativeDocumentMoniker": "Petsi\\Units\\CatalogItemPetsi.cs",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Units\\CatalogItemPetsi.cs",
-              "RelativeToolTip": "Petsi\\Units\\CatalogItemPetsi.cs",
-              "ViewState": "AQIAAGAAAAAAAAAAAAAYwG8AAAAJAAAA",
+              "Title": "ReportTemplateService.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Services\\ReportTemplateService.cs",
+              "RelativeDocumentMoniker": "Petsi\\Services\\ReportTemplateService.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Services\\ReportTemplateService.cs",
+              "RelativeToolTip": "Petsi\\Services\\ReportTemplateService.cs",
+              "ViewState": "AQIAADUAAAAAAAAAAAAIwBAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T19:12:14.644Z",
+              "WhenOpened": "2024-08-08T19:39:42.826Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "LabelService.cs",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Services\\LabelService.cs",
-              "RelativeDocumentMoniker": "Petsi\\Services\\LabelService.cs",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Services\\LabelService.cs",
-              "RelativeToolTip": "Petsi\\Services\\LabelService.cs",
-              "ViewState": "AQIAABQAAAAAAAAAAAAYwCMAAAAAAAAA",
+              "Title": "StartupService.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Services\\StartupService.cs",
+              "RelativeDocumentMoniker": "Petsi\\Services\\StartupService.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Services\\StartupService.cs",
+              "RelativeToolTip": "Petsi\\Services\\StartupService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T19:11:53.35Z",
+              "WhenOpened": "2024-08-08T19:39:37.808Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "CatalogService.cs",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Services\\CatalogService.cs",
-              "RelativeDocumentMoniker": "Petsi\\Services\\CatalogService.cs",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Services\\CatalogService.cs",
-              "RelativeToolTip": "Petsi\\Services\\CatalogService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "CategoryService.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Services\\CategoryService.cs",
+              "RelativeDocumentMoniker": "Petsi\\Services\\CategoryService.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Services\\CategoryService.cs",
+              "RelativeToolTip": "Petsi\\Services\\CategoryService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T19:11:37.376Z",
+              "WhenOpened": "2024-08-08T19:37:43.438Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "ReportDirector.cs",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Reports\\ReportDirector.cs",
-              "RelativeDocumentMoniker": "Petsi\\Reports\\ReportDirector.cs",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Reports\\ReportDirector.cs",
-              "RelativeToolTip": "Petsi\\Reports\\ReportDirector.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAwA4AAAAAAAAA",
+              "Title": "CatalogService.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Services\\CatalogService.cs",
+              "RelativeDocumentMoniker": "Petsi\\Services\\CatalogService.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Services\\CatalogService.cs",
+              "RelativeToolTip": "Petsi\\Services\\CatalogService.cs",
+              "ViewState": "AQIAAGUBAAAAAAAAAAAgwFMAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T19:11:14.581Z",
+              "WhenOpened": "2024-08-08T19:36:46.453Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Program.cs",
-              "RelativeDocumentMoniker": "Petsi\\Program.cs",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Program.cs",
-              "RelativeToolTip": "Petsi\\Program.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAAgwAAAAAAAAAAA",
+              "Title": "ReportBuilderBase.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Reports\\ReportBuilder\\ReportBuilderBase.cs",
+              "RelativeDocumentMoniker": "Petsi\\Reports\\ReportBuilder\\ReportBuilderBase.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Reports\\ReportBuilder\\ReportBuilderBase.cs",
+              "RelativeToolTip": "Petsi\\Reports\\ReportBuilder\\ReportBuilderBase.cs",
+              "ViewState": "AQIAABQAAAAAAAAAAAAQwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T19:11:10.526Z",
+              "WhenOpened": "2024-08-08T19:35:45.437Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "OrderModelPetsi.cs",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Models\\OrderModelPetsi.cs",
-              "RelativeDocumentMoniker": "Petsi\\Models\\OrderModelPetsi.cs",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Models\\OrderModelPetsi.cs",
-              "RelativeToolTip": "Petsi\\Models\\OrderModelPetsi.cs",
-              "ViewState": "AQIAAHUAAAAAAAAAAAAkwIUAAAAAAAAA",
+              "Title": "ReportBuilderBackListPie.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Reports\\ReportBuilder\\ReportBuilderBackListPie.cs",
+              "RelativeDocumentMoniker": "Petsi\\Reports\\ReportBuilder\\ReportBuilderBackListPie.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Reports\\ReportBuilder\\ReportBuilderBackListPie.cs",
+              "RelativeToolTip": "Petsi\\Reports\\ReportBuilder\\ReportBuilderBackListPie.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T19:11:06.593Z",
+              "WhenOpened": "2024-08-08T19:35:43.381Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "ModelBase.cs",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Models\\ModelBase.cs",
-              "RelativeDocumentMoniker": "Petsi\\Models\\ModelBase.cs",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Models\\ModelBase.cs",
-              "RelativeToolTip": "Petsi\\Models\\ModelBase.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAwAAAAAAAAA",
+              "Title": "TableBase.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Reports\\TableBuilder\\TableBase.cs",
+              "RelativeDocumentMoniker": "Petsi\\Reports\\TableBuilder\\TableBase.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Reports\\TableBuilder\\TableBase.cs",
+              "RelativeToolTip": "Petsi\\Reports\\TableBuilder\\TableBase.cs",
+              "ViewState": "AQIAACUAAAAAAAAAAAAcwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T19:10:59.083Z",
+              "WhenOpened": "2024-08-08T19:35:28.962Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
-              "Title": "CatalogModelPetsi.cs",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Models\\CatalogModelPetsi.cs",
-              "RelativeDocumentMoniker": "Petsi\\Models\\CatalogModelPetsi.cs",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Models\\CatalogModelPetsi.cs",
-              "RelativeToolTip": "Petsi\\Models\\CatalogModelPetsi.cs",
-              "ViewState": "AQIAAK0AAAAAAAAAAAAiwBYAAAAlAAAA",
+              "Title": "ReportBuilderFrontList.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Reports\\ReportBuilder\\ReportBuilderFrontList.cs",
+              "RelativeDocumentMoniker": "Petsi\\Reports\\ReportBuilder\\ReportBuilderFrontList.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Reports\\ReportBuilder\\ReportBuilderFrontList.cs",
+              "RelativeToolTip": "Petsi\\Reports\\ReportBuilder\\ReportBuilderFrontList.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T19:10:40.356Z",
+              "WhenOpened": "2024-08-08T19:35:25.566Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "SquareCatalogInput.cs",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Input\\SquareCatalogInput.cs",
-              "RelativeDocumentMoniker": "Petsi\\Input\\SquareCatalogInput.cs",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Input\\SquareCatalogInput.cs",
-              "RelativeToolTip": "Petsi\\Input\\SquareCatalogInput.cs",
-              "ViewState": "AQIAAGkAAAAAAAAAAAAAAHgAAAAAAAAA",
+              "Title": "PageBuilderBackListPie.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Reports\\PageBuilder\\PageBuilderBackListPie.cs",
+              "RelativeDocumentMoniker": "Petsi\\Reports\\PageBuilder\\PageBuilderBackListPie.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Reports\\PageBuilder\\PageBuilderBackListPie.cs",
+              "RelativeToolTip": "Petsi\\Reports\\PageBuilder\\PageBuilderBackListPie.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T19:09:46.397Z",
+              "WhenOpened": "2024-08-08T19:35:22.976Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 11,
-              "Title": "ModelInputBase.cs",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Input\\ModelInputBase.cs",
-              "RelativeDocumentMoniker": "Petsi\\Input\\ModelInputBase.cs",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Input\\ModelInputBase.cs",
-              "RelativeToolTip": "Petsi\\Input\\ModelInputBase.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAABAAAA",
+              "Title": "ICategoryService.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Interfaces\\ICategoryService.cs",
+              "RelativeDocumentMoniker": "Petsi\\Interfaces\\ICategoryService.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Interfaces\\ICategoryService.cs",
+              "RelativeToolTip": "Petsi\\Interfaces\\ICategoryService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T19:09:26.609Z",
+              "WhenOpened": "2024-08-08T19:35:06.719Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 12,
-              "Title": "SquareOrderInput.cs",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Input\\SquareOrderInput.cs",
-              "RelativeDocumentMoniker": "Petsi\\Input\\SquareOrderInput.cs",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Input\\SquareOrderInput.cs",
-              "RelativeToolTip": "Petsi\\Input\\SquareOrderInput.cs",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAAwBMAAAAAAAAA",
+              "Title": "ICatalogService.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Interfaces\\ICatalogService.cs",
+              "RelativeDocumentMoniker": "Petsi\\Interfaces\\ICatalogService.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Interfaces\\ICatalogService.cs",
+              "RelativeToolTip": "Petsi\\Interfaces\\ICatalogService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T19:09:00.212Z",
+              "WhenOpened": "2024-08-08T19:35:00.012Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "InputManagerSingleton.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Managers\\InputManagerSingleton.cs",
+              "RelativeDocumentMoniker": "Petsi\\Managers\\InputManagerSingleton.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Managers\\InputManagerSingleton.cs",
+              "RelativeToolTip": "Petsi\\Managers\\InputManagerSingleton.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T19:34:41.764Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "EnvironCaptureRegistrySingleton.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Managers\\EnvironCaptureRegistrySingleton.cs",
+              "RelativeDocumentMoniker": "Petsi\\Managers\\EnvironCaptureRegistrySingleton.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Managers\\EnvironCaptureRegistrySingleton.cs",
+              "RelativeToolTip": "Petsi\\Managers\\EnvironCaptureRegistrySingleton.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T19:34:37.973Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "LoadLabels.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Labels\\LoadLabels.cs",
+              "RelativeDocumentMoniker": "Petsi\\Labels\\LoadLabels.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Labels\\LoadLabels.cs",
+              "RelativeToolTip": "Petsi\\Labels\\LoadLabels.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T19:34:31.01Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "186d7f4f-2c37-484a-9026-dca14e77c8f7",
+        "Display": 2,
+        "X": 428,
+        "Y": 203,
+        "Width": 1534,
+        "Height": 694,
+        "WindowState": 2
+      },
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CatalogModelPetsi.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Models\\CatalogModelPetsi.cs",
+              "RelativeDocumentMoniker": "Petsi\\Models\\CatalogModelPetsi.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Models\\CatalogModelPetsi.cs",
+              "RelativeToolTip": "Petsi\\Models\\CatalogModelPetsi.cs",
+              "ViewState": "AQIAAHEAAAAAAAAAAADwvwAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T20:03:32.87Z",
               "EditorCaption": ""
             }
           ]
