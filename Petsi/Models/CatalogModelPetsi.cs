@@ -83,7 +83,7 @@ namespace Petsi.Models
             NotifyModelServices();
         }
         public FileBehavior GetFileBehavior(){ return fileBehavior; }
-        public override void ClearModel() { items.Clear(); }
+        public override void ClearModel() {/* items.Clear();*/ }
 
         public override void AddItem(ModelUnitBase item)
         {

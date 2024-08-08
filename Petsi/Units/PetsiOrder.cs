@@ -1,5 +1,4 @@
 ﻿using Petsi.CommandLine;
-using System.Text.Json.Serialization;
 
 namespace Petsi.Units
 {

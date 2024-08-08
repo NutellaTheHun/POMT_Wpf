@@ -59,14 +59,14 @@ namespace Petsi.CommandLine
         }
         public void PrintNaturalNames()
         {
-            foreach(string name in item.GetNaturalNames())
+            foreach(string name in item.NaturalNames)
             {
                 Console.WriteLine("   " + name);
             }
         }
         public void PrintVariations()
         {
-            foreach (DictionaryEntry de in item.GetVariations())
+            foreach (DictionaryEntry de in item.Variations)
             {
                 Console.WriteLine("    key,value: " + de.Key + ", " + de.Value);
             }
