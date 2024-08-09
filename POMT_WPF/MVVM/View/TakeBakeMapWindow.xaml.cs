@@ -37,7 +37,7 @@ namespace POMT_WPF.MVVM.View
             InitializeComponent();
             TakeBakeListBox.MouseDoubleClick += DoneButton_Click;
             DataContext = this;
-            List<CatalogItemPetsi> items = ObsCatalogModelSingleton.Instance.CatalogItems.Where(x => x.ItemName.ToLower().Contains("take 'n bake")).ToList();
+            List<CatalogItemPetsi> items = ObsCatalogModelSingleton.Instance.CatalogItems.Where(x => x.ItemName.ToLower().Contains("take 'n")).ToList();
             TakeBakeList = new ObservableCollection<CatalogItemPetsi>(items);
         }
 
