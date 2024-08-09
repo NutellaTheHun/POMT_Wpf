@@ -34,12 +34,22 @@ namespace Petsi.Units
         public PetsiOrder ToPetsiOrder()
         {
             PetsiOrder o = new PetsiOrder();
+
+            //if a chill order
+            if(LocationId == "LMM3H2WYN5K4W")
+            {
+                o.FulfillmentType = "DELIVERY";
+                o.Note = "Chill Order " + Note;
+            } 
+            else 
+            {             
+                o.FulfillmentType = FulfillmentType;
+                o.Note = Note;
+            }
             o.InputOriginType = Identifiers.ORDER_INPUT_ORIGIN_SQUARE;
             o.Recipient = RecipientName;
             o.OrderId = Id;
-            o.OrderDueDate = Pickup_time;
-            o.FulfillmentType = FulfillmentType;
-            o.Note = Note;
+            o.OrderDueDate = Pickup_time;         
             o.LineItems = ToPetsiOrderLineItemList();
             o.IsPeriodic = false;
             o.IsOneShot = true;
