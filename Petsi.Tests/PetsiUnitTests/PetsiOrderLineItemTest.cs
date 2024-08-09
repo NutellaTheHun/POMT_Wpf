@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Petsi.Tests.PetsiUnitTests
+﻿namespace Petsi.Tests.PetsiUnitTests
 {
-    internal class PetsiOrderLineItemTest
+    public class PetsiOrderLineItemTest
     {
+        public void Merge_Test() { }
+
+        public void IsPOTM_Test() { }
+        public void IsParbake_Test() { }
+
+        public void IsVeganTo_Test() { }
+
+        public void IsTakeNBakeTo_Test() { }
+        public void IsVeganTakeNBakeTo_Test() { }
+
     }
 }

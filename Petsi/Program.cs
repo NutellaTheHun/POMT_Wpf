@@ -1,4 +1,3 @@
-using Petsi.CommandLine;
 using Petsi.Input;
 using Petsi.Models;
 using Petsi.Reports;
@@ -34,19 +33,6 @@ namespace Petsi
 
             SquareCatalogInput sci = new SquareCatalogInput(scf);
             SquareOrderInput soi = new SquareOrderInput(scf);
-            WholesaleInput wsi = new WholesaleInput();
-
-            CommandFrame cli = CommandFrame.GetInstance();
-            string cmdLine = null;
-
-            while (cmdLine != "exit")
-            {
-                Console.WriteLine("\nContext: " + cli.GetCurrentContextName());
-                Console.Write("\n      > ");
-                cmdLine = Console.ReadLine();
-                Console.Clear();
-                cli.RunCommand(cmdLine); 
-            }
 
         }
     }

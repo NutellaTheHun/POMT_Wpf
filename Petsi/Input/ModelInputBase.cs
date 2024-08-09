@@ -1,4 +1,4 @@
-﻿using Petsi.CommandLine;
+﻿
 using Petsi.Filing;
 using Petsi.Interfaces;
 using Petsi.Models;
@@ -16,7 +16,6 @@ namespace Petsi.Input
         public virtual string GetInputName() { return InputName; }
         protected virtual void SetModel(ModelBase targetModel){Model = targetModel; }
         public abstract Task Execute();
-        public abstract FrameBehaviorBase GetFrameBehavior();
         public abstract void CaptureEnvironment(FileBehavior reportFb);
     }
 }

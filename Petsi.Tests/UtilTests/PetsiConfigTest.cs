@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Petsi.Tests.UtilTests
+﻿namespace Petsi.Tests.UtilTests
 {
-    internal class PetsiConfigTest
+    public class PetsiConfigTest
     {
     }
 }

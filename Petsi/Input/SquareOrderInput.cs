@@ -4,7 +4,6 @@ using Square.Service;
 using Petsi.Units;
 using Petsi.Interfaces;
 using Petsi.Utils;
-using Petsi.CommandLine;
 using Petsi.Filing;
 using Petsi.Managers;
 
@@ -18,7 +17,6 @@ namespace Petsi.Input
         List<BatchRetrieveOrdersResponse> squareResponses;
         SquareClientFactory squareClient;
         ICatalogService catalogLookup;
-        SquareOrderInputFrameBehavior frameBehavior;
         FileBehavior fileBehavior;
         bool isFileExecute;
         bool hasExecuted;
@@ -31,14 +29,12 @@ namespace Petsi.Input
             catalogLookup = (ICatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
 
             this.squareClient = squareClient;
-            frameBehavior = new SquareOrderInputFrameBehavior(this);
             fileBehavior = new FileBehavior(Identifiers.SQUARE_ORDER_INPUT);
             isFileExecute = false;
             hasExecuted = true;
             SetInputName(Identifiers.SQUARE_ORDER_INPUT);
             EnvironCaptureRegistrySingleton.GetInstance().Register(this);
             InputManagerSingleton.GetInstance().Register(this);
-            CommandFrame.GetInstance().RegisterFrame("soi", frameBehavior);
         }
         public override async Task Execute()
         {
@@ -382,7 +378,6 @@ namespace Petsi.Input
             while (tempCursor != null);
             LoggerOrderIdCount = Orders.Count;
         }
-        public override FrameBehaviorBase GetFrameBehavior(){ return frameBehavior; }
         public FileBehavior GetFileBehavior(){  return fileBehavior; }
         public List<SquareOrderItem> GetOrders() { return Orders; }
         public void SetOrders(List<SquareOrderItem> newOrders) { Orders = newOrders; }

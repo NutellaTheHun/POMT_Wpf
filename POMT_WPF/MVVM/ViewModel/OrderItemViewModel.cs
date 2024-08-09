@@ -409,9 +409,13 @@ namespace POMT_WPF.MVVM.ViewModel
 
                 IsEdit = false;
 
+
+
                 LineItems = new ObservableCollection<PetsiOrderLineItem>(orderContext.LineItems);
                 
             }
+
+            InitToggleEditing(!IsEdit);
 
             UpdateColumnTotals(this, EventArgs.Empty);
 
@@ -449,6 +453,15 @@ namespace POMT_WPF.MVVM.ViewModel
                 item.IsReadOnly = !IsEdit;
             }
         }
+
+        private void InitToggleEditing(bool b)
+        {
+            foreach (var item in LineItems)
+            {
+                item.IsReadOnly = b;
+            }
+        }
+
         private void AddLine()
         {
             LineItems.Add(new PetsiOrderLineItem());

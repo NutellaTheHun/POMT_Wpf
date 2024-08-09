@@ -1,6 +1,4 @@
-﻿using Petsi.CommandLine;
-using Petsi.CommandLine.ErrorHandlers;
-using Petsi.Interfaces;
+﻿using Petsi.Interfaces;
 using Petsi.Managers;
 using Petsi.Models;
 using Petsi.Units;
@@ -87,22 +85,6 @@ namespace Petsi.Services
         //For ItemName form validating
         public bool ValidateItemName(string name)
         {
-            /*
-            List<CatalogItemPetsi> results = new List<CatalogItemPetsi>();
-
-            foreach (CatalogItemPetsi item in catalog)
-            {
-                if (item.ItemName.ToLower().Equals(name.ToLower()) || item.NaturalNameEquals(name.ToLower()))
-                {
-                    results.Add(item);
-                }
-            }
-            if (results.Count == 1)
-            {
-                return true;
-            }
-            return false;
-            */
             CatalogItemPetsi item = GetCatalogItem(name);
 
             if (item == null) { return false; }
@@ -167,11 +149,6 @@ namespace Petsi.Services
                 return name;
             }
             return results[0].ItemName;
-        }
-
-        private void HandleNewModifier(string name)
-        {
-            CommandFrame.GetInstance().InjectErrorHandlingFrame(new CatalogServiceErrorFrameBehavior(name));
         }
 
         public override void Update(ModelBase model) //Is this truly updating/neccessay?

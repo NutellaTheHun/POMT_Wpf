@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Petsi.Tests.ReportTests
+﻿namespace Petsi.Tests.ReportTests
 {
-    internal class WholesaleBreakDownTest
+    public class WholesaleBreakDownTest
     {
     }
 }

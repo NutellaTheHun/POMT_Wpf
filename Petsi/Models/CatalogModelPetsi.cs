@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Petsi.CommandLine;
 using Petsi.Filing;
 using Petsi.Interfaces;
 using Petsi.Labels;
@@ -28,14 +27,12 @@ namespace Petsi.Models
         /// </summary>
         List<(string name, string id)> Categories;
        
-        CatalogModelFrameBehavior frameBehavior;
         FileBehavior fileBehavior;
 
         public CatalogModelPetsi()
         {
             items = new List<CatalogItemPetsi>();
             Categories = new List<(string name, string id)>();
-            frameBehavior = new CatalogModelFrameBehavior(this);
             fileBehavior = new FileBehavior("CatalogModel");
             ServiceListeners = new List<ServiceBase>();
 
@@ -43,7 +40,6 @@ namespace Petsi.Models
 
             SetModelName(Identifiers.MODEL_CATALOG);
             ModelManagerSingleton.GetInstance().Register(this);
-            CommandFrame.GetInstance().RegisterFrame("cmp", frameBehavior);
             EnvironCaptureRegistrySingleton.GetInstance().Register(this);
         }
         public void UpdateModel(ObservableCollection<CatalogItemPetsi> catalogItems)
@@ -74,7 +70,6 @@ namespace Petsi.Models
                 SystemLogger.Log("ERROR Duplicate newItem entered to catalog while handling new item from soi");
             }
         }
-        public override FrameBehaviorBase GetFrameBehavior(){ return frameBehavior; }
         public List<CatalogItemPetsi> GetItems(){ return items; }
         public void SetItemList(List<CatalogItemPetsi> newItems)
         {
@@ -83,7 +78,7 @@ namespace Petsi.Models
             NotifyModelServices();
         }
         public FileBehavior GetFileBehavior(){ return fileBehavior; }
-        public override void ClearModel() { items.Clear(); }
+        public override void ClearModel() {/* items.Clear();*/ }
 
         public override void AddItem(ModelUnitBase item)
         {
@@ -228,26 +223,6 @@ namespace Petsi.Models
             ModelName = modelName;
         }
 
-        /// <summary>
-        /// Returns all items where input is contained within the itemName variable
-        /// </summary>
-        /// <param name="searchTerm"></param>
-        /// <returns></returns>
-        public List<CatalogItemPetsi> SearchByItemName(string searchTerm)
-        {
-            List<CatalogItemPetsi> result = new List<CatalogItemPetsi>();
-            string itemName;
-            foreach (CatalogItemPetsi item in items)
-            {
-                itemName = item.ItemName;
-                if (itemName.Contains(searchTerm.ToLower()) || item.NaturalNameContains(searchTerm.ToLower()))
-                {
-                    result.Add(item);
-                }
-            }
-            return result;
-        }
-
         public override void CaptureEnvironment(FileBehavior reportFb)
         {
             //reportFb.DataListToFile(Identifiers.ENV_CMP, items);
@@ -255,7 +230,6 @@ namespace Petsi.Models
             //Categories?
         }
 
-        //FrameBehavior function
         public void InitialLabelMapBoot()
         {
             List<(string id, string path)> cuties = LoadLabels.GetCutieInitialMap();

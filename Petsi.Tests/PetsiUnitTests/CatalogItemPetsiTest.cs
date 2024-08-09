@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Petsi.Tests.PetsiUnitTests
+﻿namespace Petsi.Tests.PetsiUnitTests
 {
-    internal class CatalogItemPetsiTests
+    public class CatalogItemPetsiTest
     {
+        public void UpdateSizeVariation_Test() { }
+
+        public void VariationExists_Test() { }
     }
 }

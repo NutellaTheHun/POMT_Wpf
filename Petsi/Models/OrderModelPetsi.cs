@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Petsi.CommandLine;
 using Petsi.Filing;
 using Petsi.Interfaces;
 using Petsi.Managers;
@@ -16,7 +15,6 @@ namespace Petsi.Models
 
         List<IOrderModelSubscriber> subscribers;
         HashSet<string> OrderTypesSet;
-        OrderModelFrameBehavior frameBehavior;
         FileBehavior fileBehavior;
 
         private bool oneShotStartupRecieved;
@@ -25,11 +23,9 @@ namespace Petsi.Models
         public OrderModelPetsi()
         {
             subscribers = new List<IOrderModelSubscriber>();
-            frameBehavior = new OrderModelFrameBehavior(this);
             fileBehavior = new FileBehavior("OrderModel");
             SetModelName(Identifiers.MODEL_ORDERS);
             ModelManagerSingleton.GetInstance().Register(this);
-            CommandFrame.GetInstance().RegisterFrame("omp", frameBehavior);
             EnvironCaptureRegistrySingleton.GetInstance().Register(this);
             Orders = new List<PetsiOrder>();
             InitSerializedOrders();
@@ -135,7 +131,6 @@ namespace Petsi.Models
             Orders.Add((PetsiOrder)unit);
             OrderTypesSet.Add(((PetsiOrder)unit).OrderType);
         }
-        public override FrameBehaviorBase GetFrameBehavior() { return frameBehavior; }
         public List<PetsiOrder> GetOrders() { return Orders; }
         public void SetOrders(List<PetsiOrder> newOrders) { Orders = newOrders; }
         public FileBehavior GetFileBehavior() { return fileBehavior; }
@@ -375,50 +370,10 @@ namespace Petsi.Models
         }
         #endregion
 
-        public static List<PetsiOrder> MergeOrders(List<PetsiOrder> mainOrders, List<PetsiOrder> otherOrders)
-        {
-            List<PetsiOrder> result = new List<PetsiOrder>(mainOrders);
-            result.AddRange(otherOrders.Where(order => !result.Contains(order)));
-            return result;
-        }
-
-        /// <summary>
-        /// Returns all orders where input is contained within the recipient variable
-        /// </summary>
-        /// <param name="searchTerm"></param>
-        /// <returns></returns>
-        public List<PetsiOrder> SearchByRecipient(string searchTerm)
-        {
-            List<PetsiOrder> result = new List<PetsiOrder>();
-
-            result.AddRange(Orders.Where(order => order.Recipient.ToLower().Contains(searchTerm)));
-            return result;
-        }
-
         public override void CaptureEnvironment(FileBehavior reportFb)
         {
             //reportFb.DataListToFile(Identifiers.ENV_OMP, Orders);
             reportFb.DataListToPureFilePath(Identifiers.ENV_OMP, Orders);
-        }
-
-        private void SavePeriodicModel() 
-        { 
-            List<PetsiOrder> PeriodicOrders = new List<PetsiOrder>();
-            foreach (var order in Orders)
-            {
-                if(order.IsPeriodic) PeriodicOrders.Add(order);
-            }
-            fileBehavior.DataListToFile(Identifiers.PERIODIC_ORDERS, PeriodicOrders); 
-        }
-
-        private void SaveOneShotModel() 
-        {
-            List<PetsiOrder> OneShotOrders = new List<PetsiOrder>();
-            foreach (var order in Orders)
-            {
-                if (order.IsOneShot) OneShotOrders.Add(order);
-            }
-            fileBehavior.DataListToFile(Identifiers.ONE_SHOT_ORDERS, OneShotOrders);
         }
 
         private void SaveDeletedOrder(PetsiOrder order)

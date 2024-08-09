@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Petsi.Tests.ServiceTests
+﻿namespace Petsi.Tests.ServiceTests
 {
-    internal class CatalogServiceTest
+    public class CatalogServiceTest
     {
+        public void GetCatalogItemById_Test() { }
+        public void GetCatalogItem_test() { }
+        public void ValidateModifyItemName_Test() { }
     }
 }

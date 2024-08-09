@@ -1,5 +1,4 @@
 ﻿using ClosedXML.Excel;
-using Petsi.CommandLine;
 using Petsi.Managers;
 using Petsi.Models;
 using Petsi.Reports.ReportBuilder;
@@ -9,14 +8,10 @@ namespace Petsi.Reports
 {
     public class ReportDirector
     {
-        ReportDirectorFrameBehavior frameBehavior;
         public ReportDirector() 
         {
-            frameBehavior = new ReportDirectorFrameBehavior(this);
-            CommandFrame.GetInstance().RegisterFrame("dir", frameBehavior);
         }
 
-        public FrameBehaviorBase GetFrameBehavior() { return frameBehavior; }
 
         public IXLWorkbook CreateFrontList(DateTime? targetDate, bool isPrint, bool isExport, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer)
         {

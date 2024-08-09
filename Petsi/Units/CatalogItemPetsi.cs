@@ -1,5 +1,4 @@
-﻿using Petsi.CommandLine;
-using Petsi.Managers;
+﻿using Petsi.Managers;
 using Petsi.Services;
 using Petsi.Utils;
 using System.Collections.Specialized;
@@ -8,10 +7,10 @@ namespace Petsi.Units
 {
     public class CatalogItemPetsi : ModelUnitBase, IEquatable<CatalogItemPetsi>
     {
-        CatalogItemFrameBehavior frameBehavior;
         public string CategoryId { get; set; }
         public string CatalogObjectId { get; set; }
         public string ItemName { get; set; }
+
         /// <summary>
         /// A list of associated names or terms with the item, such as abbreviations, accroynms or alternative naming.
         /// Such as Corn w Rasp Jam in modifiers representing a Corn Muffin with Raspberry Jam,
@@ -42,7 +41,6 @@ namespace Petsi.Units
         {
             if(copyItem != null)
             {
-                frameBehavior = copyItem.frameBehavior;
                 CategoryId = copyItem.CategoryId;
                 CatalogObjectId = copyItem.CatalogObjectId;
                 ItemName = copyItem.ItemName;
@@ -75,7 +73,6 @@ namespace Petsi.Units
             else
             {
                 Variations = new ListDictionary();
-                frameBehavior = new CatalogItemFrameBehavior(this);
                 NaturalNames = new List<string>();
                 VariationList = new List<(string variationName, string variationId)>();
                 DisabledVariationList = new List<(string variationId, string variationName)>();
@@ -85,11 +82,10 @@ namespace Petsi.Units
 
         public CatalogItemPetsi(string categoryId, string catalogObjectId, string itemName)
         {
-            this.CategoryId = categoryId;
-            this.CatalogObjectId = catalogObjectId;
-            this.ItemName = itemName;
+            CategoryId = categoryId;
+            CatalogObjectId = catalogObjectId;
+            ItemName = itemName;
             Variations = new ListDictionary();
-            frameBehavior = new CatalogItemFrameBehavior(this);
             NaturalNames = new List<string>();
             VariationList = new List<(string variationName, string variationId)>();
             DisabledVariationList = new List<(string variationId, string variationName)>();
@@ -97,12 +93,11 @@ namespace Petsi.Units
         }
         public CatalogItemPetsi(string categoryId, string catalogObjectId, string itemName, ListDictionary variations, List<string> naturalNames)
         {
-            this.CategoryId = categoryId;
-            this.CatalogObjectId = catalogObjectId;
-            this.ItemName = itemName;
-            this.Variations = variations;
-            frameBehavior = new CatalogItemFrameBehavior(this);
-            this.NaturalNames = naturalNames;
+            CategoryId = categoryId;
+            CatalogObjectId = catalogObjectId;
+            ItemName = itemName;
+            Variations = variations;
+            NaturalNames = naturalNames;
             VariationList = new List<(string variationName, string variationId)>();
             DisabledVariationList = new List<(string variationId, string variationName)>();
             Alt_CatalogObjId = new List<string>();
@@ -110,25 +105,10 @@ namespace Petsi.Units
         public CatalogItemPetsi()
         {
             Variations = new ListDictionary();
-            frameBehavior = new CatalogItemFrameBehavior(this);
             NaturalNames = new List<string>();
             VariationList = new List<(string variationName, string variationId)>();
             DisabledVariationList = new List<(string variationId, string variationName)>();
             Alt_CatalogObjId = new List<string>();
-        }
-        public override FrameBehaviorBase GetFrameBehavior()
-        {
-            return frameBehavior;
-        }
-
-        public List<string> GetNaturalNames()
-        {
-            return NaturalNames;
-        }
-
-        public ListDictionary GetVariations()
-        {
-            return Variations;
         }
 
         public bool Equals(CatalogItemPetsi? other)
@@ -148,6 +128,7 @@ namespace Petsi.Units
             }
             return true;
         }
+
         public bool NaturalNameContains(string searchTerm)
         {
 
@@ -159,7 +140,6 @@ namespace Petsi.Units
         }
         public bool NaturalNameEquals(string searchTerm)
         {
-
             if (NaturalNames.Count > 0)
             {
                 return NaturalNames.Any(name => name.ToLower().Equals(searchTerm.ToLower()));
@@ -178,6 +158,12 @@ namespace Petsi.Units
         }
 
         /// <summary>
+        /// Enables or disables a legal size for an item in the catalog. 
+        /// Change is made in the CatalogItemView by clicking a check box.
+        /// Square has variation id's per size, if a new item or new size is enabled, a new variation id is made.
+        /// If a size variation is disabled, the variation id is placed in a list of unused sizes, 
+        /// if the size is enabled/renabled, the list of unused sizes is checked first for reinsatement
+        /// 
         /// There can be duplicate size/variations due to duplicate square category items,
         /// so the forloops must iterate through entire list and not return on first match.
         /// </summary>
