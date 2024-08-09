@@ -56,7 +56,8 @@ namespace Petsi.Input
             List<string> orderIds = new List<string>();
             BatchRetrieveOrdersResponse bror;
             SearchOrdersResponse sor;
-            string tempCursor = null;
+            /*
+              string tempCursor = null;
             do
             {
                 sor = await AsyncSquareSearchOrders(squareClient, tempCursor);
@@ -65,6 +66,37 @@ namespace Petsi.Input
                 orderIds.AddRange(sor.OrderEntries.Select(entry => entry.OrderId));
 
                 bror = await AsyncSquareBatchRetrieveOrders(squareClient, orderIds);
+                result.Add(bror);
+
+                orderIds.Clear();
+            }
+            while (tempCursor != null);
+             */
+            //Village
+            string tempCursor = null;
+            do
+            {
+                sor = await AsyncSquareSearchOrders_LocId(squareClient, tempCursor, "L33TZWGMCAGX5");
+                tempCursor = sor.Cursor;
+
+                orderIds.AddRange(sor.OrderEntries.Select(entry => entry.OrderId));
+
+                bror = await AsyncSquareBatchRetrieveOrders_LocId(squareClient, orderIds, "L33TZWGMCAGX5");
+                result.Add(bror);
+
+                orderIds.Clear();
+            }
+            while (tempCursor != null);
+
+            //Chill
+            do
+            {
+                sor = await AsyncSquareSearchOrders_LocId(squareClient, tempCursor, "LMM3H2WYN5K4W");
+                tempCursor = sor.Cursor;
+
+                orderIds.AddRange(sor.OrderEntries.Select(entry => entry.OrderId));
+
+                bror = await AsyncSquareBatchRetrieveOrders_LocId(squareClient, orderIds, "LMM3H2WYN5K4W");
                 result.Add(bror);
 
                 orderIds.Clear();
@@ -297,6 +329,31 @@ namespace Petsi.Input
             }
             return result;
         }
+
+        private async Task<SearchOrdersResponse> AsyncSquareSearchOrders_LocId(SquareClientFactory squareClient, string? cursor, string locationId)
+        {
+            SearchOrdersResponse? result = null;
+
+            SearchOrdersRequest body = BuildSearchOrdersRequestBody(
+                cursor,
+                new List<string> { locationId },
+                //new List<string> { "L33TZWGMCAGX5", "LMM3H2WYN5K4W" },
+                new List<string> { "OPEN"/*, "COMPLETED"*/ },
+                new List<string> { "PICKUP", "DELIVERY" }
+                );
+
+            try
+            {
+                result = await squareClient.SqClient.OrdersApi.SearchOrdersAsync(body: body);
+            }
+            catch (ApiException e)
+            {
+                Console.WriteLine("Failed to make the request");
+                Console.WriteLine($"Response Code: {e.ResponseCode}");
+                Console.WriteLine($"Exception: {e.Message}");
+            }
+            return result;
+        }
         /// <summary>
         /// Returned object contains all the order information from the given list of order IDs, max amount of IDs per call is 100.
         /// Limit is controlled in BuildSearchOrdersRequestBody function which is called in AsyncSquareSearchOrders function.
@@ -306,7 +363,7 @@ namespace Petsi.Input
         /// <returns></returns>
         public async Task<BatchRetrieveOrdersResponse> AsyncSquareBatchRetrieveOrders(SquareClientFactory squareClient, List<string> sourceOrderIds)
         {
-            BatchRetrieveOrdersResponse? villageResult = null;
+            BatchRetrieveOrdersResponse? result = null;
 
             var body = new BatchRetrieveOrdersRequest.Builder(orderIds: sourceOrderIds)
               .LocationId("L33TZWGMCAGX5")
@@ -314,7 +371,7 @@ namespace Petsi.Input
 
             try
             {
-                villageResult = await squareClient.SqClient.OrdersApi.BatchRetrieveOrdersAsync(body: body);
+                result = await squareClient.SqClient.OrdersApi.BatchRetrieveOrdersAsync(body: body);
             }
             catch (ApiException e)
             {
@@ -322,7 +379,47 @@ namespace Petsi.Input
                 Console.WriteLine($"Response Code: {e.ResponseCode}");
                 Console.WriteLine($"Exception: {e.Message}");
             }
-            return villageResult;
+            /*
+            BatchRetrieveOrdersResponse? chillResult = null;
+
+            var chillBody = new BatchRetrieveOrdersRequest.Builder(orderIds: sourceOrderIds)
+              .LocationId("LMM3H2WYN5K4W")
+              .Build();
+
+            try
+            {
+                chillResult = await squareClient.SqClient.OrdersApi.BatchRetrieveOrdersAsync(body: chillBody);
+            }
+            catch (ApiException e)
+            {
+                Console.WriteLine("Failed to make the request");
+                Console.WriteLine($"Response Code: {e.ResponseCode}");
+                Console.WriteLine($"Exception: {e.Message}");
+            }
+
+            villageResult.Orders.Add(chillResult.Orders as Order);*/
+            return result;
+        }
+
+        public async Task<BatchRetrieveOrdersResponse> AsyncSquareBatchRetrieveOrders_LocId(SquareClientFactory squareClient, List<string> sourceOrderIds, string locationId)
+        {
+            BatchRetrieveOrdersResponse? result = null;
+
+            var body = new BatchRetrieveOrdersRequest.Builder(orderIds: sourceOrderIds)
+              .LocationId(locationId)
+              .Build();
+
+            try
+            {
+                result = await squareClient.SqClient.OrdersApi.BatchRetrieveOrdersAsync(body: body);
+            }
+            catch (ApiException e)
+            {
+                Console.WriteLine("Failed to make the request");
+                Console.WriteLine($"Response Code: {e.ResponseCode}");
+                Console.WriteLine($"Exception: {e.Message}");
+            }
+            return result;
         }
         private SearchOrdersRequest BuildSearchOrdersRequestBody(string? cursor, List<string> locationIds, List<string> states, List<string> fulfillmentTypes)
         {
