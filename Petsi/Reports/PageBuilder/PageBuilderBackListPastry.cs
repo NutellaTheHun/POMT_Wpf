@@ -12,7 +12,23 @@ namespace Petsi.Reports.PageBuilder
 
         public override int GetItemLineCount<T>(T item)
         {
-            return 1;
+            PetsiOrderLineItem lineItem = item as PetsiOrderLineItem;
+            if (lineItem.IsCategory(Utils.Identifiers.CATEGORY_PASTRY))
+            {
+                return 1;
+                
+            }
+            return 0;
+        }
+
+        public override bool IsRelevantItemToList<T>(T item, int lineItemCount)
+        {
+            PetsiOrderLineItem lineItem = item as PetsiOrderLineItem;
+            if (lineItem.IsCategory(Utils.Identifiers.CATEGORY_PASTRY))
+            {
+                return true;
+            }
+            return false;
         }
 
         protected override void ConfigureMaxRows()

@@ -24,6 +24,7 @@ namespace Petsi.Reports.PageBuilder
         protected abstract void ConfigureMaxRows();
         protected abstract void ConfigureTables();
         public abstract int GetItemLineCount<T>(T item);
+        public abstract bool IsRelevantItemToList<T>(T item, int lineItemCount);
         public virtual int GetPageContentMaxLineCount()
         {
             int result = 0;

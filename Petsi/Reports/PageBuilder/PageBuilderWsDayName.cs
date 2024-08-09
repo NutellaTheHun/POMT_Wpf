@@ -15,6 +15,11 @@ namespace Petsi.Reports.PageBuilder
             var order = item as PetsiOrder;
             return order.LineItems.Count;
         }
+
+        public override bool IsRelevantItemToList<T>(T item, int lineItemCount)
+        {
+            return lineItemCount != 0;
+        }
         protected override void ConfigureMaxRows()
         {
             maxPageRowCount = ReportUtil.MAX_LIST_CONTENT_LN_COUNT;

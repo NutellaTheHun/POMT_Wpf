@@ -21,11 +21,17 @@ namespace Petsi.Reports.ReportBuilder
         {
             int pageCount = 1;
             _report.SetReportTargetDate(targetDate);
-            List<PetsiOrder> notSorted = orderData as List<PetsiOrder>;
-            List<List<PetsiOrder>> orders = SortByDayOfWeek(notSorted);
-            foreach(List<PetsiOrder> inputList in orders)
-            {
-                foreach (PageBuilderBase pageBuilder in pageBuilders)//will only build once, for orders, need to iterate all list for each builder, like table
+            List<PetsiOrder> orders = orderData as List<PetsiOrder>;
+
+            /*
+             Iterated over a list of lists representing each day of the week when supporting printing by date range,
+            no longer doing date range so removed the list of list iterations
+             */
+
+            //List<List<PetsiOrder>> orders = SortByDayOfWeek(notSorted);
+            // foreach(List<PetsiOrder> inputList in orders)
+            //{
+            foreach (PageBuilderBase pageBuilder in pageBuilders)//will only build once, for orders, need to iterate all list for each builder, like table
                 {
                     List<PetsiOrder> pageSizeOrders = new List<PetsiOrder>();
                     int builderMaxLineLimit = pageBuilder.GetPageContentMaxLineCount();
@@ -34,7 +40,7 @@ namespace Petsi.Reports.ReportBuilder
                     int builderMaxOrderLimit = pageBuilder.GetMaxOrders();
                     int currentOrderCount = 0;
                     int itemLineValue;
-                    foreach (PetsiOrder item in inputList)
+                    foreach (PetsiOrder item in orders)
                     {
                         //orderLineValue must be checked on each item, value depends on state of item which varies
                         itemLineValue = pageBuilder.GetItemLineCount(item);
@@ -75,7 +81,7 @@ namespace Petsi.Reports.ReportBuilder
                         pageBuilder.BuildPage(_report.Wb, pageSizeOrders, pageCount.ToString());
                         pageCount++;
                     }
-                }
+               // }
             }
             
             //---

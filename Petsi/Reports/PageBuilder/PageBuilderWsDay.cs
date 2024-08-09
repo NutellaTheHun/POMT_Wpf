@@ -14,6 +14,11 @@ namespace Petsi.Reports.PageBuilder
             return 1;
         }
 
+        public override bool IsRelevantItemToList<T>(T item, int lineItemCount)
+        {
+            return lineItemCount != 0;
+        }
+
         protected override void ConfigureMaxRows()
         {
             maxPageRowCount = 40;

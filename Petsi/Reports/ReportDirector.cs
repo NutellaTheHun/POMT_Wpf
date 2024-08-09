@@ -76,7 +76,7 @@ namespace Petsi.Reports
 
         public IXLWorkbook CreatePastryBackList(DateTime? targetDate, DateTime? endDate, bool isPrint, bool isExport, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer)
         {
-            Report report = new Report("BackListPie", isPrint, isExport);
+            Report report = new Report("BackListPastry", isPrint, isExport);
             ReportBuilderBackListPastry builder = new ReportBuilderBackListPastry(report);
 
             OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);

@@ -56,7 +56,12 @@ namespace Petsi.Reports.ReportBuilder
                     itemLineValue = pageBuilder.GetItemLineCount(item);
                     
                     //Check PageBuilderFrontListCover GetItemLineCount() for understanding
+                    /*
                     if( itemLineValue == 0 )
+                    {
+                        continue;
+                    }*/
+                    if (!pageBuilder.IsRelevantItemToList(item, itemLineValue))
                     {
                         continue;
                     }
