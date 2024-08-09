@@ -306,7 +306,7 @@ namespace Petsi.Input
         /// <returns></returns>
         public async Task<BatchRetrieveOrdersResponse> AsyncSquareBatchRetrieveOrders(SquareClientFactory squareClient, List<string> sourceOrderIds)
         {
-            BatchRetrieveOrdersResponse? result = null;
+            BatchRetrieveOrdersResponse? villageResult = null;
 
             var body = new BatchRetrieveOrdersRequest.Builder(orderIds: sourceOrderIds)
               .LocationId("L33TZWGMCAGX5")
@@ -314,7 +314,7 @@ namespace Petsi.Input
 
             try
             {
-                result = await squareClient.SqClient.OrdersApi.BatchRetrieveOrdersAsync(body: body);
+                villageResult = await squareClient.SqClient.OrdersApi.BatchRetrieveOrdersAsync(body: body);
             }
             catch (ApiException e)
             {
@@ -322,7 +322,7 @@ namespace Petsi.Input
                 Console.WriteLine($"Response Code: {e.ResponseCode}");
                 Console.WriteLine($"Exception: {e.Message}");
             }
-            return result;
+            return villageResult;
         }
         private SearchOrdersRequest BuildSearchOrdersRequestBody(string? cursor, List<string> locationIds, List<string> states, List<string> fulfillmentTypes)
         {
