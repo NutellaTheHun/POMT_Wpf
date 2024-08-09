@@ -16,7 +16,10 @@ namespace Petsi.Reports.TableBuilder
         {
             SetRecipient(recipient);
             List<PetsiOrder> items = tableOrders as List<PetsiOrder>;
-
+            int total3 = 0;
+            int total5 = 0;
+            int total8 = 0;
+            int total10 = 0;
             //Header
             AddLine(page, ref _rowIndex, _rootPosition.col, recipient);
             AddLine(page, ref _rowIndex, _rootPosition.col, " ", "3\"", "5\"", "8\"", "10\"");
@@ -29,26 +32,32 @@ namespace Petsi.Reports.TableBuilder
                 {
                     //Remove text from cell if 0 to reduce clutter on report.
                     amount3 = ""; amount5 = ""; amount8 = ""; amount10 = "";
-                    if (lineItem.Amount3 != 0) { amount3 = lineItem.Amount3.ToString(); }
-                    if (lineItem.Amount5 != 0) { amount5 = lineItem.Amount5.ToString(); }
-                    if (lineItem.Amount8 != 0) { amount8 = lineItem.Amount8.ToString(); }
-                    if (lineItem.Amount10 != 0) { amount10 = lineItem.Amount10.ToString(); }
+                    if (lineItem.Amount3 != 0) { amount3 = lineItem.Amount3.ToString(); total3 += lineItem.Amount3; }
+                    if (lineItem.Amount5 != 0) { amount5 = lineItem.Amount5.ToString(); total5 += lineItem.Amount5; }
+                    if (lineItem.Amount8 != 0) { amount8 = lineItem.Amount8.ToString(); total8 += lineItem.Amount8; }
+                    if (lineItem.Amount10 != 0) { amount10 = lineItem.Amount10.ToString(); total10 += lineItem.Amount10; }
 
                     AddLine(page, ref _rowIndex, _rootPosition.col, 
                         lineItem.ItemName, amount3, amount5, amount8, amount10);
                 }
             }
+            AddLine(page, ref _rowIndex, _rootPosition.col,
+                        "", total3.ToString(), total5.ToString(), total8.ToString(), total10.ToString());
             FormatTable(page);
             _rowIndex = _rootPosition.row;
         }
         protected override void FormatTable(IXLWorksheet page)
         {
             string tableRange = TableFormat.BuildRange(
-                _rootPosition.row, _rowIndex - 1, 
+                _rootPosition.row, _rowIndex - 2, // - 1 is default, is - 2 to not include last row which is footer (column totals)
                 ToColumnLetter(_rootPosition.col), ToColumnLetter(_rootPosition.col+_maxColumns-1));
 
             string headerRange = TableFormat.BuildRange(
                 _rootPosition.row, _rootPosition.row,
+                ToColumnLetter(_rootPosition.col), ToColumnLetter(_rootPosition.col + _maxColumns - 1));
+
+            string footerRange = TableFormat.BuildRange(
+                _rowIndex - 1, _rowIndex - 1,
                 ToColumnLetter(_rootPosition.col), ToColumnLetter(_rootPosition.col + _maxColumns - 1));
 
             string sizingHeaderRange = TableFormat.BuildRange(
@@ -67,6 +76,11 @@ namespace Petsi.Reports.TableBuilder
             TableFormat.RangeBold(page, headerRange);
             TableFormat.RangeBold(page, sizingHeaderRange);
             TableFormat.RangeFontSize(page, 16, headerRange);
+
+            //Footer (column totals)
+            TableFormat.RangeBold(page, footerRange);
+            TableFormat.RangeAlignment(page, "center", footerRange);
+            TableFormat.RangeFontSize(page, 16, footerRange);
 
             TableFormat.ColWidthFitSizeOfText(page, "A:L");
         }
