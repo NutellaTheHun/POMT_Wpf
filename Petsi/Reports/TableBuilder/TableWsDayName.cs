@@ -41,8 +41,11 @@ namespace Petsi.Reports.TableBuilder
                         lineItem.ItemName, amount3, amount5, amount8, amount10);
                 }
             }
+
+            //Totals column
             AddLine(page, ref _rowIndex, _rootPosition.col,
                         "", total3.ToString(), total5.ToString(), total8.ToString(), total10.ToString());
+
             FormatTable(page);
             _rowIndex = _rootPosition.row;
         }
