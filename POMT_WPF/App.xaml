@@ -77,6 +77,7 @@
                 <ResourceDictionary Source="Styles/DataGrid/CatalogViewColHeaderStyle.xaml" />
                 <ResourceDictionary Source="Styles/DataGrid/CatalogViewDgRowStyle.xaml" />
                 <ResourceDictionary Source="Styles/DataGrid/CatalogViewDgCellStyle.xaml" />
+                <ResourceDictionary Source="Styles/DataGrid/NewItemWindowDgRowStyle.xaml" />
 
                 <ResourceDictionary Source="Styles/Borders/GeneralBorder.xaml" />
                 <ResourceDictionary Source="Styles/Borders/GeneralWindowBorder.xaml" />

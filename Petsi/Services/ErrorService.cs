@@ -157,11 +157,11 @@ namespace Petsi.Services
         public static void RaiseOrderViewEvents()
         {
             //notifiy new item test
-            /*
+            
             CatalogItemPetsi test = new CatalogItemPetsi();
             test.ItemName = "test";
             Instance().RaiseSoiNewItemEvent(test);
-            */
+            
             List<EventArgs> argsList = new List<EventArgs>(Instance().mainWindowEvents);
             foreach (var arg in argsList)
             {
