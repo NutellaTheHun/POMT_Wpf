@@ -12,7 +12,6 @@ namespace Petsi.Reports
         {
         }
 
-
         public IXLWorkbook CreateFrontList(DateTime? targetDate, bool isPrint, bool isExport, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer)
         {
             Report report = new Report("FrontList", isPrint, isExport);

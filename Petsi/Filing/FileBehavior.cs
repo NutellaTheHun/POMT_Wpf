@@ -13,22 +13,6 @@ namespace Petsi.Filing
             directoryName = componentName;
         }
         
-        //Frame Behavior Function
-        public void ListFileDirectory()
-        {
-            string[] result = FileService.GetFileDirectoryList(directoryName);
-            if (result.Length == 0)
-            {
-                Console.WriteLine("No files exist.");
-            }
-            else
-            {
-                for (int i = 0; i < result.Length; i++)
-                {
-                    Console.WriteLine("[" + i + "] " + Path.GetFileName(result[i]));
-                }
-            } 
-        }
         public List<T> BuildDataListFile<T>(string fileName)
         {
             //if(directoryName == "ERROR") { return null; }
