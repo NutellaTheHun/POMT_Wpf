@@ -6,6 +6,7 @@ using Petsi.Interfaces;
 using Petsi.Utils;
 using Petsi.Filing;
 using Petsi.Managers;
+using System.Windows.Forms;
 
 namespace Petsi.Input
 {
@@ -138,8 +139,7 @@ namespace Petsi.Input
                                 continue;
                             }
                         }
-                    }
-                   
+                    }        
 
                     SquareOrderItem item = new SquareOrderItem();
                     item.LineItems = new List<LineItem>();
@@ -483,7 +483,218 @@ namespace Petsi.Input
         public void SetIsFileExecute(bool v) { isFileExecute = v; }
         public bool GetHasExecuted() { return hasExecuted ; }
         //public void SetHasExecuted(bool v) {  hasExecuted = v; }
+
+        private string ToRFC3339(string date) => date + "T00:00:00Z";
         public override void CaptureEnvironment(FileBehavior reportFb) {/*reportFb.DataListToFile(Identifiers.ENV_SOI, squareResponses);*/ reportFb.DataListToPureFilePath(Identifiers.ENV_SOI, squareResponses); }
+
+        /// <summary>
+        /// Wrapper for Square API call Search Orders https://developer.squareup.com/reference/square/orders-api/search-orders,
+        /// Paginates per 100 items
+        /// </summary>
+        /// <param name="squareClient"></param>
+        /// <param name="locationIds"></param>
+        /// <param name="states"></param>
+        /// <param name="createStartAt">format YYYY-MM-DD"</param>
+        /// <param name="createEndAt">format YYYY-MM-DD</param>
+        /// <returns></returns>
+        public async Task<SearchOrdersResponse?> NEWAsyncSquareSearchOrders(SquareClientFactory squareClient, string? cursor, List<string> locationIds, List<string> states, string? createStartAt, string? createEndAt)
+        {
+            var stateFilter = new SearchOrdersStateFilter.Builder(states: states)
+              .Build();
+
+            var createdAtBuilder = new TimeRange.Builder();
+            if(createStartAt!= null && createEndAt != null)
+            {
+                createdAtBuilder.StartAt(ToRFC3339(createStartAt));
+                createdAtBuilder.EndAt(ToRFC3339(createEndAt));
+            }
+            var createdAt = createdAtBuilder.Build();
+
+            var dateTimeFilterBuilder = new SearchOrdersDateTimeFilter.Builder();
+            if(createStartAt!= null && createEndAt!= null)
+            {
+                dateTimeFilterBuilder.CreatedAt(createdAt);
+            }
+            var dateTimeFilter = dateTimeFilterBuilder.Build();
+
+            var filter = new SearchOrdersFilter.Builder()
+              .StateFilter(stateFilter)
+              .DateTimeFilter(dateTimeFilter)
+              .Build();
+
+            var query = new SearchOrdersQuery.Builder()
+              .Filter(filter)
+              .Build();
+
+            var bodyBuilder = new SearchOrdersRequest.Builder()
+              .LocationIds(locationIds)
+              .Query(query)
+              .Limit(100)
+              .ReturnEntries(true);
+
+            if (cursor != null) { bodyBuilder.Cursor(cursor); }
+
+            var body = bodyBuilder.Build();
+
+            try
+            {
+                return await squareClient.SqClient.OrdersApi.SearchOrdersAsync(body: body);
+            }
+            catch (ApiException e)
+            {
+                throw new Exception($"Failed to make the request \n Response Code: {e.ResponseCode} \n Exception: {e.Message}");
+            }
+        }
+        /*
+        public async Task TEMPAsyncSquareBatchRetrieveOrders(SquareClientFactory squareClient, string cursor, List<string> locationIds, List<string> states, string? createStartAt, string? createEndAt)
+        {
+            List<string> orderIds = new List<string>();
+            SearchOrdersResponse? sor;
+            string tempCursor;
+            do
+            {
+                sor = await AsyncSquareSearchOrders(squareClient, cursor, locationIds, states, createStartAt, createEndAt);
+                tempCursor = sor.Cursor;
+                if (sor == null)
+                {
+                    SystemLogger.Log("AsyncSquareBatchRetrieveOrders() : AsyncSearchOrdersResponse() returned null");
+                    return;
+                }
+                orderIds.AddRange(sor.OrderEntries.Select(entry => entry.OrderId));
+            } while (tempCursor != null);
+
+        }*/
+
+        public async Task<BatchRetrieveOrdersResponse> NEWAsyncSquareBatchRetrieveOrders(SquareClientFactory squareClient, List<string> orderIds, string locationId)
+        {
+            var body = new BatchRetrieveOrdersRequest.Builder(orderIds: orderIds)
+              .LocationId(locationId)
+              .Build();
+            try
+            {
+                return await squareClient.SqClient.OrdersApi.BatchRetrieveOrdersAsync(body: body);
+            }
+            catch (ApiException e)
+            {
+                throw new Exception($"Failed to make the request \n Response Code: {e.ResponseCode} \n Exception: {e.Message}");
+            }
+        }
+
+        public async Task<List<PetsiOrder>> AsyncGetSquareOrders(SquareClientFactory squareClient, List<string> locationIds, List<string> states, string? createStartAt, string? createEndAt, string? fulfillStartAt, string? fulfillEndAt)
+        {
+            List<PetsiOrder> result = new List<PetsiOrder>();
+            List<string> orderIds = new List<string>();
+            SearchOrdersResponse? sor;
+            BatchRetrieveOrdersResponse bror;
+            string tempCursor = null;
+
+            foreach (string locId in locationIds) 
+            {
+                do
+                {
+                    sor = await NEWAsyncSquareSearchOrders(squareClient, tempCursor, new List<string>{ locId }, states, createStartAt, createEndAt);
+                    tempCursor = sor.Cursor;
+
+                    orderIds.AddRange(sor.OrderEntries.Select(entry => entry.OrderId));
+
+                    bror = await NEWAsyncSquareBatchRetrieveOrders(squareClient, orderIds, locId);
+                    result.AddRange(BuildPetsiOrders(bror, fulfillStartAt, fulfillEndAt));
+
+                    orderIds.Clear();
+
+                } while (tempCursor != null);
+            }
+           
+            return result;
+        }
+
+        private List<PetsiOrder> BuildPetsiOrders(BatchRetrieveOrdersResponse bror, string? fulfillStartAt, string? fulfillEndAt) 
+        {
+            List<PetsiOrder> result = new List<PetsiOrder>();
+            foreach (var orderItem in bror.Orders)
+            {   
+                //To restrictive
+                if(fulfillStartAt != null && fulfillEndAt != null)
+                {
+                    if (orderItem.Fulfillments[0].Type == Identifiers.FULFILLMENT_PICKUP)
+                    {
+                        //Time filter
+                        /*
+                        if (DateTime.Parse(orderItem.Fulfillments[0].PickupDetails.PickupAt).Date < DateTime.Now.Date)
+                        {
+                            continue;
+                        }*/
+                        if (DateTime.Parse(orderItem.Fulfillments[0].PickupDetails.PickupAt).Date < DateTime.Parse(fulfillStartAt).Date)
+                        {
+                            continue;
+                        }
+                        if (DateTime.Parse(orderItem.Fulfillments[0].PickupDetails.PickupAt).Date > DateTime.Parse(fulfillEndAt).Date)
+                        {
+                            continue;
+                        }
+                    }
+                    else if (orderItem.Fulfillments[0].Type == Identifiers.FULFILLMENT_DELIVERY)
+                    {
+                        //Time filter
+                        /*
+                        if (DateTime.Parse(orderItem.Fulfillments[0].DeliveryDetails.DeliverAt).Date < DateTime.Now.Date)
+                        {
+                            continue;
+                        }*/
+                        if (DateTime.Parse(orderItem.Fulfillments[0].DeliveryDetails.DeliverAt).Date < DateTime.Parse(fulfillStartAt).Date)
+                        {
+                            continue;
+                        }
+                        if (DateTime.Parse(orderItem.Fulfillments[0].DeliveryDetails.DeliverAt).Date > DateTime.Parse(fulfillEndAt).Date)
+                        {
+                            continue;
+                        }
+                    }
+                }
+
+                if (orderItem.Tenders != null)
+                {
+                    if (orderItem.Tenders[0].Type == "CARD")
+                    {
+                        if (orderItem.Tenders[0].CardDetails.Status != "CAPTURED")
+                        {
+                            continue;
+                        }
+                    }
+                }
+
+                SquareOrderItem item = new SquareOrderItem();
+                item.LineItems = new List<LineItem>();
+
+                item.Id = orderItem.Id;
+                item.LocationId = orderItem.LocationId;
+                item.Uid = orderItem.Fulfillments[0].Uid;
+                item.FulfillmentType = orderItem.Fulfillments[0].Type;
+                if (item.FulfillmentType == Identifiers.FULFILLMENT_PICKUP)
+                {
+                    item.Pickup_time = orderItem.Fulfillments[0].PickupDetails.PickupAt;
+                    item.Note = orderItem.Fulfillments[0].PickupDetails.Note;
+                    item.RecipientName = orderItem.Fulfillments[0].PickupDetails.Recipient.DisplayName;
+                }
+                else if (item.FulfillmentType == Identifiers.FULFILLMENT_DELIVERY)
+                {
+                    item.Pickup_time = orderItem.Fulfillments[0].DeliveryDetails.DeliverAt;
+                    item.Note = orderItem.Fulfillments[0].DeliveryDetails.Note;
+                    item.RecipientName = orderItem.Fulfillments[0].DeliveryDetails.Recipient.DisplayName;
+                    //del address
+                }
+
+                foreach (var lineItem in orderItem.LineItems)
+                {
+                    item.LineItems.AddRange(ParseOrderLineItem(lineItem));
+                }
+
+                result.Add(item.ToPetsiOrder());
+            }
+
+            return result;
+        }
+
     }
 }
 

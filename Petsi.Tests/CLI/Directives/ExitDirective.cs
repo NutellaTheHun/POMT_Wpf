@@ -8,7 +8,7 @@
             argSize = 1;
             description = "Terminates the program.";
         }
-        public override void Execute(Executor executor)
+        public override void Execute(string[] args, Executor executor)
         {
             return;
         }

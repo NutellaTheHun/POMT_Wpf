@@ -10,6 +10,7 @@ namespace Petsi.Tests.CLI
             directives = new Dictionary<string, Directive>();
             directives.Add("exit", new ExitDirective());
             directives.Add("help", new HelpDirective());
+            directives.Add("pso", new PullSquareOrdersDirective());
         }
         public void Parse(string[] args)
         {
@@ -20,7 +21,7 @@ namespace Petsi.Tests.CLI
             {
                 if (args.Length >= dir.argSize)
                 {
-                    dir.Execute(this);
+                    dir.Execute(args, this);
                 }
                 else
                 {

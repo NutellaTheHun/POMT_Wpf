@@ -8,7 +8,7 @@
             argSize = 1;
             description = "Displays the description of each command.";
         }
-        public override void Execute(Executor executor)
+        public override void Execute(string[] args, Executor executor)
         {
             List<Directive> directives = executor.directives.Values.ToList();
             foreach (var directive in directives)
