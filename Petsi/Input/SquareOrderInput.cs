@@ -6,7 +6,6 @@ using Petsi.Interfaces;
 using Petsi.Utils;
 using Petsi.Filing;
 using Petsi.Managers;
-using System.Windows.Forms;
 
 namespace Petsi.Input
 {
@@ -484,7 +483,7 @@ namespace Petsi.Input
         public bool GetHasExecuted() { return hasExecuted ; }
         //public void SetHasExecuted(bool v) {  hasExecuted = v; }
 
-        private string ToRFC3339(string date) => date + "T00:00:00Z";
+        private string ToRFC3339(string date) => date + "T00:00:00";
         public override void CaptureEnvironment(FileBehavior reportFb) {/*reportFb.DataListToFile(Identifiers.ENV_SOI, squareResponses);*/ reportFb.DataListToPureFilePath(Identifiers.ENV_SOI, squareResponses); }
 
         /// <summary>
@@ -503,15 +502,14 @@ namespace Petsi.Input
               .Build();
 
             var createdAtBuilder = new TimeRange.Builder();
-            if(createStartAt!= null && createEndAt != null)
-            {
-                createdAtBuilder.StartAt(ToRFC3339(createStartAt));
-                createdAtBuilder.EndAt(ToRFC3339(createEndAt));
-            }
+
+            if(createStartAt != null){ createdAtBuilder.StartAt(ToRFC3339(createStartAt)); }
+            if (createEndAt != null){ createdAtBuilder.EndAt(ToRFC3339(createEndAt)); }
+
             var createdAt = createdAtBuilder.Build();
 
             var dateTimeFilterBuilder = new SearchOrdersDateTimeFilter.Builder();
-            if(createStartAt!= null && createEndAt!= null)
+            if(createStartAt != null || createEndAt!= null)
             {
                 dateTimeFilterBuilder.CreatedAt(createdAt);
             }
@@ -592,14 +590,17 @@ namespace Petsi.Input
             {
                 do
                 {
+                    Console.WriteLine($"SearchOrders : cursor: {tempCursor}");
                     sor = await NEWAsyncSquareSearchOrders(squareClient, tempCursor, new List<string>{ locId }, states, createStartAt, createEndAt);
                     tempCursor = sor.Cursor;
 
                     orderIds.AddRange(sor.OrderEntries.Select(entry => entry.OrderId));
 
+                    Console.WriteLine($"RetrieveOrders start");
                     bror = await NEWAsyncSquareBatchRetrieveOrders(squareClient, orderIds, locId);
+                    Console.WriteLine($"BuildOrders start");
                     result.AddRange(BuildPetsiOrders(bror, fulfillStartAt, fulfillEndAt));
-
+                    
                     orderIds.Clear();
 
                 } while (tempCursor != null);
@@ -616,6 +617,8 @@ namespace Petsi.Input
                 //To restrictive
                 if(fulfillStartAt != null && fulfillEndAt != null)
                 {
+                    if(orderItem.Fulfillments == null) { continue; }
+
                     if (orderItem.Fulfillments[0].Type == Identifiers.FULFILLMENT_PICKUP)
                     {
                         //Time filter
