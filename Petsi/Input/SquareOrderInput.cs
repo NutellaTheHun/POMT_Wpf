@@ -6,6 +6,7 @@ using Petsi.Interfaces;
 using Petsi.Utils;
 using Petsi.Filing;
 using Petsi.Managers;
+using Petsi.Services;
 
 namespace Petsi.Input
 {
@@ -563,6 +564,14 @@ namespace Petsi.Input
 
         }*/
 
+        /// <summary>
+        /// Wrapper for Square Order API call BatchRetrieve Orders https://developer.squareup.com/reference/square/orders-api/batch-retrieve-orders
+        /// </summary>
+        /// <param name="squareClient"></param>
+        /// <param name="orderIds"></param>
+        /// <param name="locationId"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public async Task<BatchRetrieveOrdersResponse> NEWAsyncSquareBatchRetrieveOrders(SquareClientFactory squareClient, List<string> orderIds, string locationId)
         {
             var body = new BatchRetrieveOrdersRequest.Builder(orderIds: orderIds)

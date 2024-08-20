@@ -1,4 +1,8 @@
-﻿namespace Petsi.Units
+﻿using Petsi.Managers;
+using Petsi.Services;
+using Petsi.Utils;
+
+namespace Petsi.Units
 {
     public class LineItem
     {
@@ -47,6 +51,13 @@
                 "   catalog obj id: " + CatalogObjectId + ", variation Id: " + VariationId + "\n" +
                 "   " + ItemName + " " + VariationName + " " + Quantity
                 );
+        }
+
+        public bool IsTakeNBake(CategoryService category, CatalogService catalog)
+        {
+            CatalogItemPetsi item = catalog.GetCatalogItemById(CatalogObjectId);
+            string x = category.GetCategoryIdByCategoryName("Take and Bake");
+            return item.CategoryId == x;
         }
     }
 }

@@ -39,7 +39,8 @@ namespace Petsi.Tests.CLI.Directives
             {
                 Console.WriteLine($"{order.OrderId} : {order.Recipient} : {order.LineItems.Count} unique items");
             }*/
-
+            
+            //Send to file now
         }
     }
 }
