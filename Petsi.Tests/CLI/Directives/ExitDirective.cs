@@ -5,7 +5,7 @@
         public ExitDirective()
         {
             name = "exit";
-            argSize = 1;
+            argSize = 0;
         }
 
         public override string Description()

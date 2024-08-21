@@ -10,15 +10,15 @@ namespace Petsi.Tests.CLI.Directives
     {
         public PullSquareInputDirective()
         {
-            name = "pso";
-            argSize = 4;
+            name = "psi";
+            argSize = 3;
         }
 
         public override string Description()
         {
             return "Creates a serialized file of order data from square order API\n" +
-                "\t Given a date range (mm/dd/yyyy) and file name.\n" +
-                "\t pso <startDate> <endDate> <fileName>";
+                "\t\t Given a date range (mm/dd/yyyy) and file name.\n" +
+                "\t\t pso <startDate> <endDate> <fileName>";
         }
         public override void Execute(string[] args, Executor executor)
         {

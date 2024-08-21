@@ -5,7 +5,7 @@
         public HelpDirective()
         {
             name = "help";
-            argSize = 1;
+            argSize = 0;
         }
         public override string Description()
         {

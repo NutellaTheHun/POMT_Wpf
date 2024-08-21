@@ -37,5 +37,10 @@ namespace Petsi.Filing
         }
 
         public string GetDirectoryName() { return directoryName; }
+
+        public string[] GetDirectoryFileNames()
+        {
+            return FileService.GetFileDirectoryList(directoryName);
+        }
     }
 }

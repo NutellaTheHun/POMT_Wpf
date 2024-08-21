@@ -1,21 +1,21 @@
 ﻿
 namespace Petsi.Tests.CLI.Directives
 {
-    public class RunTestDirective : Directive
+    public class ListOutputDirective : Directive
     {
-        public RunTestDirective() 
+        public ListOutputDirective() 
         {
-            name = "runtest";
+            name = "lso";
             argSize = 0;
         }
         public override string Description()
         {
-            return "Not implemented.";
+            return "List all output test files.";
         }
 
         public override void Execute(string[] args, Executor executor)
         {
-            Console.WriteLine("RunTest executed.");
+            Console.WriteLine("ListOutput executed.");
         }
     }
 }

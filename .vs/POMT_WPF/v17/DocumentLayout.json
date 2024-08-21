@@ -3,24 +3,56 @@
   "WorkspaceRootPath": "D:\\Git-Repos\\POMT_WPF\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5FCF45C8-7D7F-43DF-9D22-77039F64E32D}|Petsi.Tests\\Petsi.Tests.csproj|d:\\git-repos\\pomt_wpf\\petsi.tests\\cli\\directives\\pullsquareordersdirective.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5FCF45C8-7D7F-43DF-9D22-77039F64E32D}|Petsi.Tests\\Petsi.Tests.csproj|solutionrelative:petsi.tests\\cli\\directives\\pullsquareordersdirective.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5FCF45C8-7D7F-43DF-9D22-77039F64E32D}|Petsi.Tests\\Petsi.Tests.csproj|d:\\git-repos\\pomt_wpf\\petsi.tests\\cli\\directives\\pullsquareinputdirective.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FCF45C8-7D7F-43DF-9D22-77039F64E32D}|Petsi.Tests\\Petsi.Tests.csproj|solutionrelative:petsi.tests\\cli\\directives\\pullsquareinputdirective.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FCF45C8-7D7F-43DF-9D22-77039F64E32D}|Petsi.Tests\\Petsi.Tests.csproj|d:\\git-repos\\pomt_wpf\\petsi.tests\\cli\\directives\\listinputdirective.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FCF45C8-7D7F-43DF-9D22-77039F64E32D}|Petsi.Tests\\Petsi.Tests.csproj|solutionrelative:petsi.tests\\cli\\directives\\listinputdirective.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FCF45C8-7D7F-43DF-9D22-77039F64E32D}|Petsi.Tests\\Petsi.Tests.csproj|d:\\git-repos\\pomt_wpf\\petsi.tests\\cli\\directives\\listoutputdirective.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FCF45C8-7D7F-43DF-9D22-77039F64E32D}|Petsi.Tests\\Petsi.Tests.csproj|solutionrelative:petsi.tests\\cli\\directives\\listoutputdirective.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FCF45C8-7D7F-43DF-9D22-77039F64E32D}|Petsi.Tests\\Petsi.Tests.csproj|d:\\git-repos\\pomt_wpf\\petsi.tests\\cli\\directives\\pulluserinputdirective.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FCF45C8-7D7F-43DF-9D22-77039F64E32D}|Petsi.Tests\\Petsi.Tests.csproj|solutionrelative:petsi.tests\\cli\\directives\\pulluserinputdirective.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\filing\\filebehavior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\filing\\filebehavior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5FCF45C8-7D7F-43DF-9D22-77039F64E32D}|Petsi.Tests\\Petsi.Tests.csproj|d:\\git-repos\\pomt_wpf\\petsi.tests\\cli\\executor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5FCF45C8-7D7F-43DF-9D22-77039F64E32D}|Petsi.Tests\\Petsi.Tests.csproj|solutionrelative:petsi.tests\\cli\\executor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\filing\\fileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\filing\\fileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FCF45C8-7D7F-43DF-9D22-77039F64E32D}|Petsi.Tests\\Petsi.Tests.csproj|d:\\git-repos\\pomt_wpf\\petsi.tests\\cli\\directives\\exitdirective.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FCF45C8-7D7F-43DF-9D22-77039F64E32D}|Petsi.Tests\\Petsi.Tests.csproj|solutionrelative:petsi.tests\\cli\\directives\\exitdirective.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5FCF45C8-7D7F-43DF-9D22-77039F64E32D}|Petsi.Tests\\Petsi.Tests.csproj|d:\\git-repos\\pomt_wpf\\petsi.tests\\cli\\directives\\helpdirective.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5FCF45C8-7D7F-43DF-9D22-77039F64E32D}|Petsi.Tests\\Petsi.Tests.csproj|solutionrelative:petsi.tests\\cli\\directives\\helpdirective.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5FCF45C8-7D7F-43DF-9D22-77039F64E32D}|Petsi.Tests\\Petsi.Tests.csproj|d:\\git-repos\\pomt_wpf\\petsi.tests\\cli\\runner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5FCF45C8-7D7F-43DF-9D22-77039F64E32D}|Petsi.Tests\\Petsi.Tests.csproj|solutionrelative:petsi.tests\\cli\\runner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5FCF45C8-7D7F-43DF-9D22-77039F64E32D}|Petsi.Tests\\Petsi.Tests.csproj|d:\\git-repos\\pomt_wpf\\petsi.tests\\cli\\executor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FCF45C8-7D7F-43DF-9D22-77039F64E32D}|Petsi.Tests\\Petsi.Tests.csproj|solutionrelative:petsi.tests\\cli\\executor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FCF45C8-7D7F-43DF-9D22-77039F64E32D}|Petsi.Tests\\Petsi.Tests.csproj|d:\\git-repos\\pomt_wpf\\petsi.tests\\cli\\directives\\comparetestsdirective.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FCF45C8-7D7F-43DF-9D22-77039F64E32D}|Petsi.Tests\\Petsi.Tests.csproj|solutionrelative:petsi.tests\\cli\\directives\\comparetestsdirective.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FCF45C8-7D7F-43DF-9D22-77039F64E32D}|Petsi.Tests\\Petsi.Tests.csproj|d:\\git-repos\\pomt_wpf\\petsi.tests\\cli\\directives\\mergeinputdirective.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FCF45C8-7D7F-43DF-9D22-77039F64E32D}|Petsi.Tests\\Petsi.Tests.csproj|solutionrelative:petsi.tests\\cli\\directives\\mergeinputdirective.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FCF45C8-7D7F-43DF-9D22-77039F64E32D}|Petsi.Tests\\Petsi.Tests.csproj|d:\\git-repos\\pomt_wpf\\petsi.tests\\cli\\directives\\runtestdirective.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FCF45C8-7D7F-43DF-9D22-77039F64E32D}|Petsi.Tests\\Petsi.Tests.csproj|solutionrelative:petsi.tests\\cli\\directives\\runtestdirective.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\models\\ordermodelpetsi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\models\\ordermodelpetsi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,71 +62,196 @@
       "DocumentGroups": [
         {
           "DockedWidth": 347,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ListOutputDirective.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\CLI\\Directives\\ListOutputDirective.cs",
+              "RelativeDocumentMoniker": "Petsi.Tests\\CLI\\Directives\\ListOutputDirective.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\CLI\\Directives\\ListOutputDirective.cs",
+              "RelativeToolTip": "Petsi.Tests\\CLI\\Directives\\ListOutputDirective.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-21T20:27:17.777Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "ListInputDirective.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\CLI\\Directives\\ListInputDirective.cs",
+              "RelativeDocumentMoniker": "Petsi.Tests\\CLI\\Directives\\ListInputDirective.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\CLI\\Directives\\ListInputDirective.cs",
+              "RelativeToolTip": "Petsi.Tests\\CLI\\Directives\\ListInputDirective.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAABIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-21T20:27:04.774Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Executor.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\CLI\\Executor.cs",
+              "RelativeDocumentMoniker": "Petsi.Tests\\CLI\\Executor.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\CLI\\Executor.cs",
+              "RelativeToolTip": "Petsi.Tests\\CLI\\Executor.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAA9AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-21T20:20:28.889Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "HelpDirective.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\CLI\\Directives\\HelpDirective.cs",
+              "RelativeDocumentMoniker": "Petsi.Tests\\CLI\\Directives\\HelpDirective.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\CLI\\Directives\\HelpDirective.cs",
+              "RelativeToolTip": "Petsi.Tests\\CLI\\Directives\\HelpDirective.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-21T20:14:56.196Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ExitDirective.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\CLI\\Directives\\ExitDirective.cs",
+              "RelativeDocumentMoniker": "Petsi.Tests\\CLI\\Directives\\ExitDirective.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\CLI\\Directives\\ExitDirective.cs",
+              "RelativeToolTip": "Petsi.Tests\\CLI\\Directives\\ExitDirective.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-21T20:14:55.477Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PullSquareInputDirective.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\CLI\\Directives\\PullSquareInputDirective.cs",
+              "RelativeDocumentMoniker": "Petsi.Tests\\CLI\\Directives\\PullSquareInputDirective.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\CLI\\Directives\\PullSquareInputDirective.cs",
+              "RelativeToolTip": "Petsi.Tests\\CLI\\Directives\\PullSquareInputDirective.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAawCcAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-21T19:43:50.315Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CompareTestsDirective.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\CLI\\Directives\\CompareTestsDirective.cs",
+              "RelativeDocumentMoniker": "Petsi.Tests\\CLI\\Directives\\CompareTestsDirective.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\CLI\\Directives\\CompareTestsDirective.cs",
+              "RelativeToolTip": "Petsi.Tests\\CLI\\Directives\\CompareTestsDirective.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-21T19:13:28.83Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "MergeInputDirective.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\CLI\\Directives\\MergeInputDirective.cs",
+              "RelativeDocumentMoniker": "Petsi.Tests\\CLI\\Directives\\MergeInputDirective.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\CLI\\Directives\\MergeInputDirective.cs",
+              "RelativeToolTip": "Petsi.Tests\\CLI\\Directives\\MergeInputDirective.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-21T19:13:04.013Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "RunTestDirective.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\CLI\\Directives\\RunTestDirective.cs",
+              "RelativeDocumentMoniker": "Petsi.Tests\\CLI\\Directives\\RunTestDirective.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\CLI\\Directives\\RunTestDirective.cs",
+              "RelativeToolTip": "Petsi.Tests\\CLI\\Directives\\RunTestDirective.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-21T19:11:20.115Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PullUserInputDirective.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\CLI\\Directives\\PullUserInputDirective.cs",
+              "RelativeDocumentMoniker": "Petsi.Tests\\CLI\\Directives\\PullUserInputDirective.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\CLI\\Directives\\PullUserInputDirective.cs",
+              "RelativeToolTip": "Petsi.Tests\\CLI\\Directives\\PullUserInputDirective.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-21T19:11:02.209Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "720b4ab1-5169-4d2f-b666-55f36704ec5e",
+        "Display": 1,
+        "X": -203,
+        "Y": 517,
+        "Width": 1616,
+        "Height": 775,
+        "WindowState": 2
+      },
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "OrderModelPetsi.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Models\\OrderModelPetsi.cs",
+              "RelativeDocumentMoniker": "Petsi\\Models\\OrderModelPetsi.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Models\\OrderModelPetsi.cs",
+              "RelativeToolTip": "Petsi\\Models\\OrderModelPetsi.cs",
+              "ViewState": "AQIAACAAAAAAAAAAAAAewIwAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-21T20:11:38.935Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "FileBehavior.cs",
               "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Filing\\FileBehavior.cs",
               "RelativeDocumentMoniker": "Petsi\\Filing\\FileBehavior.cs",
               "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Filing\\FileBehavior.cs",
               "RelativeToolTip": "Petsi\\Filing\\FileBehavior.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAaAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACoAAABDAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-21T18:46:28.803Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "HelpDirective.cs",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\CLI\\Directives\\HelpDirective.cs",
-              "RelativeDocumentMoniker": "Petsi.Tests\\CLI\\Directives\\HelpDirective.cs",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\CLI\\Directives\\HelpDirective.cs",
-              "RelativeToolTip": "Petsi.Tests\\CLI\\Directives\\HelpDirective.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAyAAAA",
+              "DocumentIndex": 5,
+              "Title": "FileService.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Filing\\FileService.cs",
+              "RelativeDocumentMoniker": "Petsi\\Filing\\FileService.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Filing\\FileService.cs",
+              "RelativeToolTip": "Petsi\\Filing\\FileService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-21T18:44:15.444Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Executor.cs",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\CLI\\Executor.cs",
-              "RelativeDocumentMoniker": "Petsi.Tests\\CLI\\Executor.cs",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\CLI\\Executor.cs",
-              "RelativeToolTip": "Petsi.Tests\\CLI\\Executor.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAcAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-21T18:41:06.866Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PullSquareOrdersDirective.cs",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\CLI\\Directives\\PullSquareOrdersDirective.cs",
-              "RelativeDocumentMoniker": "Petsi.Tests\\CLI\\Directives\\PullSquareOrdersDirective.cs",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\CLI\\Directives\\PullSquareOrdersDirective.cs",
-              "RelativeToolTip": "Petsi.Tests\\CLI\\Directives\\PullSquareOrdersDirective.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAAgwC0AAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-21T18:40:21.516Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Runner.cs",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\CLI\\Runner.cs",
-              "RelativeDocumentMoniker": "Petsi.Tests\\CLI\\Runner.cs",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\CLI\\Runner.cs",
-              "RelativeToolTip": "Petsi.Tests\\CLI\\Runner.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAlAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-21T18:33:01.273Z",
+              "WhenOpened": "2024-08-21T20:32:56.44Z",
               "EditorCaption": ""
             }
           ]
