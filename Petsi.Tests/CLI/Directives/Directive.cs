@@ -5,8 +5,9 @@ namespace Petsi.Tests.CLI.Directives
     {
         public string name;
         public int argSize;
-        public string description;
 
         public abstract void Execute(string[] args, Executor executor);
+
+        public abstract string Description();
     }
 }

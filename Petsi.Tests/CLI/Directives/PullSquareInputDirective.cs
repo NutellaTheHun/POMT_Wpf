@@ -6,18 +6,23 @@ using Petsi.Services;
 
 namespace Petsi.Tests.CLI.Directives
 {
-    public class PullSquareOrdersDirective : Directive
+    public class PullSquareInputDirective : Directive
     {
-        public PullSquareOrdersDirective()
+        public PullSquareInputDirective()
         {
             name = "pso";
             argSize = 4;
-            description = "Creates a serialized file of order data from square order API\n" +
-                "\t Given a date range and file name.\n" +
-                "\t <pso> <startDate> <endDate> <fileName>";
+        }
+
+        public override string Description()
+        {
+            return "Creates a serialized file of order data from square order API\n" +
+                "\t Given a date range (mm/dd/yyyy) and file name.\n" +
+                "\t pso <startDate> <endDate> <fileName>";
         }
         public override void Execute(string[] args, Executor executor)
         {
+            
             CatalogModelPetsi cmp = new CatalogModelPetsi();
 
             CategoryService categoryService = new CategoryService();
@@ -39,8 +44,10 @@ namespace Petsi.Tests.CLI.Directives
             {
                 Console.WriteLine($"{order.OrderId} : {order.Recipient} : {order.LineItems.Count} unique items");
             }*/
-            
+
             //Send to file now
+            string fileName = args[3];
+            executor.fb.DataListToFile("i%"+fileName, orders);
         }
     }
 }

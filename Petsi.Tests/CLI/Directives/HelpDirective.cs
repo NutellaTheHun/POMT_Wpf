@@ -6,16 +6,20 @@
         {
             name = "help";
             argSize = 1;
-            description = "Displays the description of each command.";
+        }
+        public override string Description()
+        {
+            return "Displays the description of each command.";
         }
         public override void Execute(string[] args, Executor executor)
         {
             List<Directive> directives = executor.directives.Values.ToList();
             foreach (var directive in directives)
             {
-                Console.WriteLine($"\t{directive.name} : {directive.description}");
+                Console.WriteLine($"\t{directive.name} : {directive.Description()}");
             }
         }
-      
+
+
     }
 }

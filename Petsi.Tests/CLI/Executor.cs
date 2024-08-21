@@ -1,16 +1,25 @@
-﻿using Petsi.Tests.CLI.Directives;
+﻿using Petsi.Filing;
+using Petsi.Tests.CLI.Directives;
 
 namespace Petsi.Tests.CLI
 {
     public class Executor
     {
         public Dictionary<string, Directive> directives;
+        public FileBehavior fb;
+        
         public Executor()
         {
             directives = new Dictionary<string, Directive>();
             directives.Add("exit", new ExitDirective());
             directives.Add("help", new HelpDirective());
-            directives.Add("pso", new PullSquareOrdersDirective());
+            directives.Add("pso", new PullSquareInputDirective());
+            directives.Add("puo", new PullUserInputDirective());
+            directives.Add("merge", new MergeInputDirective());
+            directives.Add("compare", new CompareTestsDirective());
+            directives.Add("run", new RunTestDirective());
+
+            fb = new FileBehavior("ExecutorTestingEnv");
         }
         public void Parse(string[] args)
         {

@@ -6,7 +6,11 @@
         {
             name = "exit";
             argSize = 1;
-            description = "Terminates the program.";
+        }
+
+        public override string Description()
+        {
+            return "Terminates the program.";
         }
         public override void Execute(string[] args, Executor executor)
         {
