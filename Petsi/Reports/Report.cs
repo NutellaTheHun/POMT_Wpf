@@ -49,12 +49,20 @@ namespace Petsi.Reports
                 item.Cell("B5").Value = totalPages;
             }
         }
+        private void FormatReportHeader()
+        {
+            foreach (var item in Wb.Worksheets)
+            {
+                TableFormat.RangeAlignment(item, "left", "B1:B5");
+            }
+        }
         public void FinalizeReport()
         { 
-            FinalizeTotalPageCount();
-            FormatReportHeader();
             if(Wb.Worksheets.Count > 0)
             {
+                FinalizeTotalPageCount();
+                FormatReportHeader();
+                ReportUtil.IncrementReportId(ReportId);
                 CaptureEnvironment();
 
                 ReportUtil.Save(Wb, PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_REPORT_EXPORT_PATH) + "\\" + ReportName + ReportId);
@@ -120,13 +128,7 @@ namespace Petsi.Reports
             Marshal.FinalReleaseComObject(app);
         }
 
-        private void FormatReportHeader()
-        {
-            foreach (var item in Wb.Worksheets)
-            {
-                TableFormat.RangeAlignment(item, "left", "B1:B5");
-            }
-        }
+
         public DateTime GetReportTargetDate() { return  _targetDate; }
         public void SetReportTargetDate(DateTime? date)
         {

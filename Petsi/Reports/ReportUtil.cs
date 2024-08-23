@@ -37,10 +37,10 @@ namespace Petsi.Reports
                 SystemLogger.LogError(ex.Message, "ReportUtil, CreateReportID");
             }
 
-            IncrementReportId(number);
+            //IncrementReportId(number);
             return number;
         }
-        private static void IncrementReportId(int number)
+        public static void IncrementReportId(int number)
         {
             int num = number + 1;
             try

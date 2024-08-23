@@ -11,6 +11,7 @@ namespace Petsi.Utils
     {
         private static PetsiConfig _instance;
         //private static readonly object padlock = new object();
+        private static string appRuntimeId;
 
         List<(string Name,string Value)> variables;
 
@@ -24,6 +25,7 @@ namespace Petsi.Utils
         static readonly string configFilePath = rootDir + "\\" +  configFile;
         private PetsiConfig()
         {
+            appRuntimeId = Guid.NewGuid().ToString();
             variables = new List<(string,string)>();
             InitConfig();
         }
