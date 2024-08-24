@@ -35,7 +35,6 @@ namespace Petsi.Reports.ReportBuilder
         {
             if(inputList.Count == 0) 
             { 
-                SystemLogger.Log("Given list to report is empty"); 
                 ErrorService.RaiseReportEmptyInput(); 
                 return _report.Wb; 
             }

@@ -41,8 +41,9 @@ namespace POMT_WPF
             }
             else
             {
-                SystemLogger.Log("Square Service Build Failed, square API's not called.");
+                SystemLogger.LogWarning("Square Service Build Failed, square API's not called.");
             }
+            SystemLogger.LogStatus($"Application start");
         }
 
         //https://stackoverflow.com/questions/53500915/how-to-select-all-text-in-textbox-wpf-when-focused
@@ -51,7 +52,12 @@ namespace POMT_WPF
             TextBox tb = (TextBox)sender;
             tb.Dispatcher.BeginInvoke(new Action(() => tb.SelectAll()));
         }
-        
+
+        private void Application_Exit(object sender, ExitEventArgs e)
+        {
+            SystemLogger.LogStatus($"Application Close");
+        }
+
     }
 
 }

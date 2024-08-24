@@ -67,7 +67,7 @@ namespace Petsi.Models
             }
             else
             {
-                SystemLogger.Log("ERROR Duplicate newItem entered to catalog while handling new item from soi");
+                SystemLogger.LogError($"Duplicate newItem {newItem.ItemName} entered to catalog while handling new item from soi", "CMP AddNewItem()");
             }
         }
         public List<CatalogItemPetsi> GetItems(){ return items; }
@@ -82,11 +82,12 @@ namespace Petsi.Models
 
         public override void AddItem(ModelUnitBase item)
         {
+            SystemLogger.LogStatus($"Cmp Additem {((CatalogItemPetsi)item).ItemName} initiated");
             int count = items.Count;
             items.Add((CatalogItemPetsi)item);
             if(count+1 != items.Count)
             {
-                SystemLogger.Log("cmp AddOrder failure: ");
+                SystemLogger.LogError($"AddOrder failed to add {((CatalogItemPetsi)item).ItemName}, count not incremented ", "Cmp AddItem()");
             }
             else
             {
@@ -94,17 +95,18 @@ namespace Petsi.Models
                 NotifyModelServices();
             }
         }
-        public void RemoveItem(CatalogItemPetsi order)
+        public void RemoveItem(CatalogItemPetsi item)
         {
+            SystemLogger.LogStatus($"Cmp RemoveItem {item.ItemName} initiated");
             int count = items.Count;
-            items.Remove(order);
+            items.Remove(item);
             if (count - 1 == items.Count)
             {
                 UpdateModel();
             }
             else
             {
-                SystemLogger.Log("CatalogModel remove item failed, original count:  " + count + " after operation: " + items.Count);
+                SystemLogger.LogError($"remove {item.ItemName} from catalog failed, original count: {count} after operation: {items.Count}", "Cmp RemoveItem()");
             }
         }
 
@@ -167,6 +169,7 @@ namespace Petsi.Models
                 if(!newList.Contains(squareItem))
                 {
                     newList.Add(squareItem);
+                    SystemLogger.LogStatus($"Cmp FinalizeMainModel(), New item added to catalog {squareItem.ItemName}");
                 }
             }
             SetItemList(RemoveDuplicates(newList));
@@ -232,6 +235,7 @@ namespace Petsi.Models
 
         public void InitialLabelMapBoot()
         {
+            SystemLogger.LogStatus("Cmp InitLabelMapBoot executed");
             List<(string id, string path)> cuties = LoadLabels.GetCutieInitialMap();
             List<(string id, string path)> pie = LoadLabels.GetStandardInitialMap();
             foreach(CatalogItemPetsi item in items)

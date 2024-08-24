@@ -487,7 +487,7 @@ namespace POMT_WPF.MVVM.ViewModel
                     LineItems.Remove(lineItem);
                     if (LineItems.Count != count - 1)
                     {
-                        SystemLogger.Log("Delete Line Command failed to remove");
+                        SystemLogger.LogError($"Delete Line Command failed to remove {lineItem.ItemName}", "OrderItemViewModel DeleteLine()");
                     }
                 }
                 
@@ -628,7 +628,7 @@ namespace POMT_WPF.MVVM.ViewModel
 
             if (!Enum.TryParse(fulfillmentDayOfWeek, true, out DayOfWeek targetDayOfWeek))
             {
-                SystemLogger.Log("OrderItemView FulfillmentDate update Invalid day of the week.");
+                SystemLogger.LogWarning($"OrderItemViewModel UpdateFulfillmentDate() TryParse day of week failed: {fulfillmentDayOfWeek}");
             }
 
             int currentDayOfWeek = (int)fulfillmentDate.Value.DayOfWeek;

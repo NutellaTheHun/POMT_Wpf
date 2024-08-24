@@ -17,11 +17,10 @@ namespace Petsi.Reports.TableBuilder
         {
             List<PetsiOrderLineItem> items = tableOrders as List<PetsiOrderLineItem>;
             List<PetsiOrderLineItem> itemTracker = new List<PetsiOrderLineItem>(items);
-            //List <BackListItem> listFormat = BacklistTemplateFormatSelector.GetInstance().GetPastryFormat();
             List<BackListItem> listFormat = ReportTemplateService.Instance().GetActiveBacklistPastryTemplate();
             if(listFormat == null)
             {
-                SystemLogger.Log("TableBackListPastry GetActiveBackListPastryTemplate returned an empty list");
+                SystemLogger.LogStatus("TableBackListPastry GetActiveBackListPastryTemplate returned an empty list");
                 return;
             }
             string amountReg;

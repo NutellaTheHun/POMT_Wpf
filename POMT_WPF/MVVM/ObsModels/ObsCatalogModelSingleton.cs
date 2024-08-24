@@ -59,9 +59,10 @@ namespace POMT_WPF.MVVM.ObsModels
         /// <param name="catalogItem"></param>
         public void AddItem(CatalogItemPetsi catalogItem)
         {
-            if(catalogItem == null)
+            SystemLogger.LogStatus($"ObsCmp Add item init {catalogItem.ItemName}");
+            if (catalogItem == null)
             {
-                SystemLogger.Log("CATALOG ITEM ADD IS NULL");
+                SystemLogger.LogWarning("ObsCatalogModel AddItem() argument is null");
                 return;
             }
 
@@ -72,6 +73,7 @@ namespace POMT_WPF.MVVM.ObsModels
             {
                 if (item.CatalogObjectId == catalogItem.CatalogObjectId)
                 {
+                    SystemLogger.LogStatus($"ObsCmp Add item result MODIFIED {catalogItem.ItemName}");
                     int index = CatalogItems.IndexOf(item);
                     CatalogItems[index] = catalogItem;
                     isFound = true;
@@ -79,7 +81,11 @@ namespace POMT_WPF.MVVM.ObsModels
                 }
             }
             //If not modify, add new item
-            if(!isFound) CatalogItems.Add(catalogItem);
+            if (!isFound)
+            {
+                CatalogItems.Add(catalogItem);
+                SystemLogger.LogStatus($"ObsCmp Add item result ADDED {catalogItem.ItemName}");
+            }
             ObsOrderModelSingleton.Instance.CheckCatalogItemErrorHandleEvent();
         }
 
@@ -96,7 +102,7 @@ namespace POMT_WPF.MVVM.ObsModels
             }
             if (count - 1 != CatalogItems.Count)
             {
-                SystemLogger.Log("ObsCatalog RemoveItem failure: " + catalogItem.ItemName);
+                SystemLogger.LogError($"ObsCatalog RemoveItem failure: {catalogItem.ItemName}, count mismatch", "ObsCmp RemoveItem()");
             }
         }
     }

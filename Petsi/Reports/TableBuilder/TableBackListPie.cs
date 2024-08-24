@@ -27,7 +27,7 @@ namespace Petsi.Reports.TableBuilder
 
             if (listFormat == null)
             {
-                SystemLogger.Log("TableBackListPie GetActiveBacklistPieTemplate returned an empty list");
+                SystemLogger.LogStatus("TableBackListPie GetActiveBacklistPieTemplate returned an empty list");
                 return;
             }
 

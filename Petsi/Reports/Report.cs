@@ -78,6 +78,11 @@ namespace Petsi.Reports
                     //ReportUtil.Save(Wb, PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_REPORT_EXPORT_PATH) + "\\" + ReportName + ReportId);
                     File.Delete(PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_REPORT_EXPORT_PATH) + "\\" + ReportName + ReportId + ".xlsx");
                 }
+                SystemLogger.LogStatus($"FinalizeReport Success");
+            }
+            else
+            {
+                SystemLogger.LogWarning($"FinalizeReport Failed, report was 0 worksheets");
             }
         }
 

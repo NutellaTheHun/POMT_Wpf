@@ -38,7 +38,7 @@ namespace Petsi.Services
             try { catalogIdDict.TryGetValue(input, out source); }
             catch(ArgumentNullException e)
             {
-                SystemLogger.Log("GetCatalogObjectID TryGetValue input is null");
+                SystemLogger.LogError("GetCatalogObjectID TryGetValue input is null", "CatalogService GetCatalogObjId()");
             }
             
             if (source != null)
@@ -142,8 +142,7 @@ namespace Petsi.Services
                     {
                         SystemLogger.Log("   " + results[i]);
                     }
-                }*/
-
+                }*/                
                 ErrorService.Instance().RaiseSoiMultiItemEvent(name, results);
 
                 return name;
@@ -209,7 +208,7 @@ namespace Petsi.Services
 
             searchItem = catalog.FirstOrDefault(item => item.ItemName.ToLower() == searchItemName.ToLower());
 
-            if(searchItem == null) { SystemLogger.Log("CatalogSerivce GetItem() did not find item: " + searchItemName); }
+            if(searchItem == null) { SystemLogger.LogWarning("CatalogSerivce GetItem() did not find item: " + searchItemName); }
 
             result.ItemName = searchItem.ItemName;
             result.CatalogObjectId = searchItem.CatalogObjectId;

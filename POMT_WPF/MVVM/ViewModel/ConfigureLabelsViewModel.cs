@@ -92,7 +92,7 @@ namespace POMT_WPF.MVVM.ViewModel
                     }
                     else
                     {
-                        SystemLogger.Log("Label Configuration cannot find catalog item in model: " + ((CatalogItemPetsi)o).ItemName);
+                        SystemLogger.LogError($"Label Configuration cannot find catalog item in model:{((CatalogItemPetsi)o).ItemName}", "ConfigureLabelsViewModel, RemoveLabMapCommand()");
                     }
                 }
             }

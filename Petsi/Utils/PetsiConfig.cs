@@ -11,21 +11,19 @@ namespace Petsi.Utils
     {
         private static PetsiConfig _instance;
         //private static readonly object padlock = new object();
-        private static string appRuntimeId;
+        
 
         List<(string Name,string Value)> variables;
 
         //static readonly string rootDir = System.AppDomain.CurrentDomain.BaseDirectory + "/petsiDir/";s
 
-        /// <summary>
-        /// WARNING This filepath is hardcoded For and SquareKeyMissingWindow.xaml.cs and The SquareClientFactory.cs for square key
-        /// </summary>
+        public static string appRuntimeId;
         static readonly string rootDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\petsiDir";
         static readonly string configFile = "petsiConfig.txt";
         static readonly string configFilePath = rootDir + "\\" +  configFile;
         private PetsiConfig()
         {
-            appRuntimeId = Guid.NewGuid().ToString();
+            appRuntimeId = Guid.NewGuid().ToString().Substring(0,8);
             variables = new List<(string,string)>();
             InitConfig();
         }
@@ -47,12 +45,12 @@ namespace Petsi.Utils
             if(!Directory.Exists(rootDir)) 
             { 
                 Directory.CreateDirectory(rootDir); 
-                SystemLogger.Log("PetsiConfig created root path at: " + rootDir);
+                SystemLogger.LogStatus("PetsiConfig created root path at: " + rootDir);
             }
             //Creates new config file, signals to start startup process
             if (!File.Exists(configFilePath))
             { 
-                SystemLogger.Log("PetsiConfig file created at: " + configFilePath);
+                SystemLogger.LogStatus("PetsiConfig file created at: " + configFilePath);
                 InitializeConfiguration();             
             }
             else

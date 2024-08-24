@@ -8,6 +8,7 @@
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
     xmlns:vm="clr-namespace:POMT_WPF.MVVM.ViewModel"
     xmlns:vw="clr-namespace:POMT_WPF.MVVM.View"
+    Exit="Application_Exit"
     StartupUri="MVVM/View/testNEWmainVIEW.xaml">
     <Application.Resources>
 

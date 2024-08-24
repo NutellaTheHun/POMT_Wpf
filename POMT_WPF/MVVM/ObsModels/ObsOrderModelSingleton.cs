@@ -60,6 +60,7 @@ namespace POMT_WPF.MVVM.ObsModels
         /// <param name="orderItem"></param>
         public void UpdateOrder(PetsiOrder orderItem)
         {
+            SystemLogger.LogStatus($"ObsOmp Modify Order init {orderItem.Recipient}");
             bool isFound = false;
 
             //Try to modify
@@ -67,6 +68,7 @@ namespace POMT_WPF.MVVM.ObsModels
             {
                 if (order.OrderId == orderItem.OrderId)
                 {
+                    SystemLogger.LogStatus($"ObsOmp Order modified {orderItem.Recipient}");
                     isFound = true;
                     int index = Orders.IndexOf(order);
                     Orders[index] = orderItem;
@@ -75,22 +77,28 @@ namespace POMT_WPF.MVVM.ObsModels
             }
 
             //If not modify, add new item
-            if (!isFound) { Orders.Add(orderItem); }
+            if (!isFound) 
+            {
+                SystemLogger.LogStatus($"ObsOmp Modify Order added {orderItem.Recipient}");
+                Orders.Add(orderItem);
+            }
         }
         public void RemoveOrder(PetsiOrder orderItem)
         {
+            SystemLogger.LogStatus($"ObsOmp Remove Order init {orderItem.Recipient}");
             int count = Orders.Count;
             foreach (var item in Orders)
             {
                 if (item.OrderId == orderItem.OrderId)
                 {
+                    SystemLogger.LogStatus($"ObsOmp order removed {orderItem.Recipient}");
                     Orders.Remove(item);
                     break;
                 }
             }
             if (count - 1 != Orders.Count)
             {
-                SystemLogger.Log("ObsOrders RemoveItem failure: " + orderItem.Recipient);
+                SystemLogger.LogError($"ObsOrders RemoveItem failure, count mismatch: {orderItem.Recipient}", "ObsOmp RemoveOrder()");
             }
         }
 
@@ -135,7 +143,7 @@ namespace POMT_WPF.MVVM.ObsModels
                         line.CatalogObjectId = cs.GetCatalogObjectId(line.ItemName);
                         if (line.CatalogObjectId == "")
                         {
-                            SystemLogger.Log("Update MultiLineMatch Event FAILED: recipient " + order.Recipient + " item: " + line.ItemName);
+                            SystemLogger.LogError($"Update MultiLineMatch Event failed: recipient {order.Recipient}, item: {line.ItemName}\n","ObsOmp CheckCatalogItemError()");
                         }
                         else
                         {
