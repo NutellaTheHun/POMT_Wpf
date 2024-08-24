@@ -19,7 +19,7 @@ namespace Petsi
 
             //ApplicationConfiguration.Initialize();
             //Application.Run(new Form1());      
-
+            /*
             SquareClientFactory scf = new SquareClientFactory();
 
             OrderModelPetsi omp = new OrderModelPetsi();
@@ -33,7 +33,7 @@ namespace Petsi
 
             SquareCatalogInput sci = new SquareCatalogInput(scf);
             SquareOrderInput soi = new SquareOrderInput(scf);
-
+            */
         }
     }
 }

@@ -169,7 +169,6 @@ namespace Petsi.Models
                 if(!newList.Contains(squareItem))
                 {
                     newList.Add(squareItem);
-                    SystemLogger.LogStatus($"Cmp FinalizeMainModel(), New item added to catalog {squareItem.ItemName}");
                 }
             }
             SetItemList(RemoveDuplicates(newList));

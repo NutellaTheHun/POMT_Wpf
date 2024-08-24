@@ -16,7 +16,7 @@ namespace Petsi.Reports
         public IXLWorkbook CreateFrontList(DateTime? targetDate, bool isPrint, bool isExport, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer)
         {
             SystemLogger.LogStatus($"CreateFrontlist start targetDate: {targetDate}" +
-                $"-bool {isPrint}, -isExport {isExport}, -isRetail {isRetail}, -isSquare {isSquare}, -isWholesale {isWholesale}, -isSpecial {isSpecial}, -isEzCater {isEzCater}, -isFarmer {isFarmer}");
+                $"-isPrint {isPrint}, -isExport {isExport}, -isRetail {isRetail}, -isSquare {isSquare}, -isWholesale {isWholesale}, -isSpecial {isSpecial}, -isEzCater {isEzCater}, -isFarmer {isFarmer}");
 
             Report report = new Report("FrontList", isPrint, isExport);
             ReportBuilderFrontList builder = new ReportBuilderFrontList(report);
@@ -32,7 +32,7 @@ namespace Petsi.Reports
         public IXLWorkbook CreateBackList(DateTime? targetDate, DateTime? endDate, bool isPrint, bool isExport, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer)
         {
             SystemLogger.LogStatus($"CreateBackList start startDate: {targetDate}, end date: {endDate}" +
-                $"-bool {isPrint}, -isExport {isExport}, -isRetail {isRetail}, -isSquare {isSquare}, -isWholesale {isWholesale}, -isSpecial {isSpecial}, -isEzCater {isEzCater}, -isFarmer {isFarmer}");
+                $"-isPrint {isPrint}, -isExport {isExport}, -isRetail {isRetail}, -isSquare {isSquare}, -isWholesale {isWholesale}, -isSpecial {isSpecial}, -isEzCater {isEzCater}, -isFarmer {isFarmer}");
 
             Report report = new Report("BackList", isPrint, isExport);
             ReportBuilderBackList builder = new ReportBuilderBackList(report);
@@ -59,7 +59,7 @@ namespace Petsi.Reports
         public IXLWorkbook CreatePieBackList(DateTime? targetDate, DateTime? endDate, bool isPrint, bool isExport, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer)
         {
             SystemLogger.LogStatus($"CreatePieBackList start startDate: {targetDate}, end date: {endDate}" +
-                $"-bool {isPrint}, -isExport {isExport}, -isRetail {isRetail}, -isSquare {isSquare}, -isWholesale {isWholesale}, -isSpecial {isSpecial}, -isEzCater {isEzCater}, -isFarmer {isFarmer}" );
+                $"-isPrint {isPrint}, -isExport {isExport}, -isRetail {isRetail}, -isSquare {isSquare}, -isWholesale {isWholesale}, -isSpecial {isSpecial}, -isEzCater {isEzCater}, -isFarmer {isFarmer}" );
 
             Report report = new Report("BackListPie", isPrint, isExport);
             ReportBuilderBackListPie builder = new ReportBuilderBackListPie(report);

@@ -78,11 +78,15 @@ namespace Petsi.Reports
                     //ReportUtil.Save(Wb, PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_REPORT_EXPORT_PATH) + "\\" + ReportName + ReportId);
                     File.Delete(PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_REPORT_EXPORT_PATH) + "\\" + ReportName + ReportId + ".xlsx");
                 }
-                SystemLogger.LogStatus($"FinalizeReport Success");
+                else
+                {
+                    SystemLogger.LogStatus($"FinalizeReport {ReportId} Export Success");
+                }
+                SystemLogger.LogStatus($"FinalizeReport {ReportId} Success");
             }
             else
             {
-                SystemLogger.LogWarning($"FinalizeReport Failed, report was 0 worksheets");
+                SystemLogger.LogWarning($"FinalizeReport {ReportId} Failed, report was 0 worksheets");
             }
         }
 
@@ -91,15 +95,13 @@ namespace Petsi.Reports
             PrinterSettings settings = new PrinterSettings();
             settings.PrinterName = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_STD_PRINTER);
 
-            
-
-
             if (settings.IsValid) { return true; }
             return false;
         }
 
         private void PrintReport(string filepathFileName)
         {
+            SystemLogger.LogStatus($"Printing report start");
             Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();
             Workbook wb = app.Workbooks.Open(filepathFileName+".xlsx",
                 Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
@@ -131,6 +133,7 @@ namespace Petsi.Reports
 
             app.Quit();
             Marshal.FinalReleaseComObject(app);
+            SystemLogger.LogStatus($"Printing report success");
         }
 
 
