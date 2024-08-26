@@ -32,14 +32,14 @@ namespace Petsi.Input
             this.squareClient = squareClient;
             fileBehavior = new FileBehavior(Identifiers.SQUARE_ORDER_INPUT);
             isFileExecute = false;
-            hasExecuted = true;
+            //hasExecuted = true;
             SetInputName(Identifiers.SQUARE_ORDER_INPUT);
             EnvironCaptureRegistrySingleton.GetInstance().Register(this);
             InputManagerSingleton.GetInstance().Register(this);
         }
         public override async Task Execute()
         {
-            if (!isFileExecute)
+            if (hasExecuted)//if (!isFileExecute)
             {
                 squareResponses = await AsyncGetBatchOrderResponses();
                 Orders = BatchOrdersToOrderItems();

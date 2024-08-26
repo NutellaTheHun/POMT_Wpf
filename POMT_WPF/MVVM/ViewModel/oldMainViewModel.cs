@@ -1,5 +1,6 @@
 ﻿using Petsi.Units;
 using POMT_WPF.Core;
+using POMT_WPF.MVVM.ObsModels;
 
 namespace POMT_WPF.MVVM.ViewModel
 {

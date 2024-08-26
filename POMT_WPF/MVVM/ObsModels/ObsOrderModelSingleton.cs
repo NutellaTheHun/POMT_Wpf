@@ -6,6 +6,7 @@ using Petsi.Units;
 using Petsi.Utils;
 using POMT_WPF.Interfaces;
 using System.Collections.ObjectModel;
+using System.Windows.Data;
 
 namespace POMT_WPF.MVVM.ObsModels
 {
@@ -35,7 +36,7 @@ namespace POMT_WPF.MVVM.ObsModels
             _omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
             _omp.Subscribe(this);
             Orders = new ObservableCollection<PetsiOrder>(_omp.GetOrders());
-            Orders.CollectionChanged += (s, e) => { UpdateBackEndOrderModel(); };
+            //Orders.CollectionChanged += (s, e) => { UpdateBackEndOrderModel(); };
         }
 
         public void RefreshObsModel()
@@ -89,6 +90,7 @@ namespace POMT_WPF.MVVM.ObsModels
                 SystemLogger.LogStatus($"ObsOmp Modify Order added {orderItem.Recipient}");
                 Orders.Add(orderItem);
             }
+            UpdateBackEndOrderModel();
         }
         public void RemoveOrder(PetsiOrder orderItem)
         {
@@ -107,20 +109,22 @@ namespace POMT_WPF.MVVM.ObsModels
             {
                 SystemLogger.LogError($"ObsOrders RemoveItem failure, count mismatch: {orderItem.Recipient}", "ObsOmp RemoveOrder()");
             }
+            UpdateBackEndOrderModel();
         }
 
         public void UpdateSubscriber()
         {
-            /*
-            Orders.Clear();
+            
             List<PetsiOrder> newOrders = _omp.GetOrders();
+            Orders.Clear();    
             foreach (PetsiOrder order in newOrders)
             {
                 Orders.Add(order);
-            }*/
-
+            }
+            //Orders.CollectionChanged += (s, e) => { UpdateBackEndOrderModel(); };
             //Re initialize list to not trigger the OnCollectionChanged event, which is only for the ObsModel to update the backend order model
-            Orders = new ObservableCollection<PetsiOrder>(_omp.GetOrders());
+            //Orders = new ObservableCollection<PetsiOrder>(_omp.GetOrders());
+            //CollectionViewSource.GetDefaultView(Orders).Refresh();
             Notify();
         }
 
