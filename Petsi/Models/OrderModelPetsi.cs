@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Petsi.Filing;
+using Petsi.Input;
 using Petsi.Interfaces;
 using Petsi.Managers;
 using Petsi.Services;
@@ -40,6 +41,14 @@ namespace Petsi.Models
                 subscriber.UpdateSubscriber();
             }
         }
+        public async Task RefreshOrderModelAsync()
+        {
+            Orders.Clear();
+            InitSerializedOrders();
+            SquareOrderInput soi = (SquareOrderInput)InputManagerSingleton.GetInstance().GetInputComponent(Identifiers.SQUARE_ORDER_INPUT);
+            await soi.Execute();
+            Notify();
+        }
         public void Subscribe(IOrderModelSubscriber subscription)
         {
             subscribers.Add(subscription);
@@ -50,6 +59,7 @@ namespace Petsi.Models
             SaveAll();
             Notify();
         }
+
         private void SaveAll()
         {
             List<PetsiOrder> PeriodicOrders = new List<PetsiOrder>();
@@ -152,8 +162,9 @@ namespace Petsi.Models
 
         #region Report Pulls
 
-        public List<PetsiOrder> GetFrontListData(DateTime? targetDate, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer)
+        public async Task<List<PetsiOrder>> GetFrontListDataAsync(DateTime? targetDate, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer)
         {
+            await RefreshOrderModelAsync();
             List<PetsiOrder> filteredOrders = FilterOrders(Orders, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer);
 
             IEnumerable<PetsiOrder> query;

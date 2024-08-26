@@ -33,8 +33,15 @@ namespace POMT_WPF.MVVM.ObsModels
         {
             _subscriptions = new List<IObsOrderModelSubscriber>();
             _omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+            _omp.Subscribe(this);
             Orders = new ObservableCollection<PetsiOrder>(_omp.GetOrders());
             Orders.CollectionChanged += (s, e) => { UpdateBackEndOrderModel(); };
+        }
+
+        public void RefreshObsModel()
+        {
+            Orders = new ObservableCollection<PetsiOrder>(_omp.GetOrders());
+            //Orders.CollectionChanged += (s, e) => { UpdateBackEndOrderModel(); };
         }
 
         private void UpdateBackEndOrderModel()
@@ -104,12 +111,16 @@ namespace POMT_WPF.MVVM.ObsModels
 
         public void UpdateSubscriber()
         {
+            /*
             Orders.Clear();
             List<PetsiOrder> newOrders = _omp.GetOrders();
             foreach (PetsiOrder order in newOrders)
             {
                 Orders.Add(order);
-            }
+            }*/
+
+            //Re initialize list to not trigger the OnCollectionChanged event, which is only for the ObsModel to update the backend order model
+            Orders = new ObservableCollection<PetsiOrder>(_omp.GetOrders());
             Notify();
         }
 

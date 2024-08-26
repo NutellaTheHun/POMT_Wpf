@@ -57,7 +57,6 @@ namespace POMT_WPF
         {
             SystemLogger.LogStatus($"Application Close");
         }
-
     }
 
 }

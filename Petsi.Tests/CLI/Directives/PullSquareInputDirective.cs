@@ -37,7 +37,7 @@ namespace Petsi.Tests.CLI.Directives
 
             List<string> locIds = new List<string>() { SquareVars.Chill, SquareVars.Vill };
             List<string> states = new List<string>() { SquareVars.OPEN, SquareVars.COMPL };
-            List<PetsiOrder> orders = sor.AsyncGetSquareOrders(scf, locIds, states, "2024-07-01", null, args[1], args[2]).Result;
+            List<PetsiOrder> orders = sor.AsyncGetSquareOrders(scf, locIds, states, "2024-08-20", null, args[1], args[2]).Result;
 
             /*//test 
             foreach (PetsiOrder order in orders)

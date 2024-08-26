@@ -49,6 +49,10 @@ namespace Petsi.Input
                 Model.AddData(element.ToPetsiOrder());
             }
             hasExecuted = true;
+
+            squareResponses = null;
+            Orders = null;
+
             Model.Complete();
         }
         private async Task<List<BatchRetrieveOrdersResponse>> AsyncGetBatchOrderResponses()
@@ -334,7 +338,6 @@ namespace Petsi.Input
         private async Task<SearchOrdersResponse> AsyncSquareSearchOrders_LocId(SquareClientFactory squareClient, string? cursor, string locationId)
         {
             SearchOrdersResponse? result = null;
-
             SearchOrdersRequest body = BuildSearchOrdersRequestBody(
                 cursor,
                 new List<string> { locationId },
@@ -349,9 +352,9 @@ namespace Petsi.Input
             }
             catch (ApiException e)
             {
-                Console.WriteLine("Failed to make the request");
-                Console.WriteLine($"Response Code: {e.ResponseCode}");
-                Console.WriteLine($"Exception: {e.Message}");
+                SystemLogger.LogError("Failed to make the request", "AsyncSquareSearchOrders");
+                SystemLogger.LogError($"Response Code: {e.ResponseCode}", "AsyncSquareSearchOrders");
+                SystemLogger.LogError($"Exception: {e.Message}", "AsyncSquareSearchOrders");
             }
             return result;
         }
