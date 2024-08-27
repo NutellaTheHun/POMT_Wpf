@@ -15,7 +15,22 @@ namespace Petsi.Tests.CLI.Directives
 
         public override void Execute(string[] args, Executor executor)
         {
-            Console.WriteLine("ListOutput executed.");
+            string[] fnames = executor.fb.GetDirectoryFileNames();
+            List<string> inputFileNames = new List<string>();
+            foreach (string fname in fnames)
+            {
+                if (fname.Contains("o%"))
+                {
+                    inputFileNames.Add(Path.GetFileName(fname).Substring(2));
+                }
+            }
+            int i = 0;
+            Console.WriteLine("Input Files:");
+            foreach (string name in inputFileNames)
+            {
+                Console.WriteLine($"\t[{i}] {name}");
+                i++;
+            }
         }
     }
 }

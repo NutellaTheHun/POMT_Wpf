@@ -39,12 +39,6 @@ namespace POMT_WPF.MVVM.ObsModels
             //Orders.CollectionChanged += (s, e) => { UpdateBackEndOrderModel(); };
         }
 
-        public void RefreshObsModel()
-        {
-            Orders = new ObservableCollection<PetsiOrder>(_omp.GetOrders());
-            //Orders.CollectionChanged += (s, e) => { UpdateBackEndOrderModel(); };
-        }
-
         private void UpdateBackEndOrderModel()
         {
             OrderModelPetsi model = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);

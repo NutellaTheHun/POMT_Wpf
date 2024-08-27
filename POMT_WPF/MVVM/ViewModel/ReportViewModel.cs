@@ -204,12 +204,12 @@ namespace POMT_WPF.MVVM.ViewModel
 
             ReportDirector rd = new ReportDirector();
 
-            PrintFrontList = new RelayCommand(o => { if(IsValidDate())    rd.CreateFrontList(StartDate,         IsPrint, IsExport, RetailFilter, SquareFilter, WholesaleFilter, SpecialFilter, EzCaterFilter, FarmerFilter); });
+            PrintFrontList = new RelayCommand(o => { if (IsValidDate())      rd.CreateFrontList(StartDate, IsPrint, IsExport, RetailFilter, SquareFilter, WholesaleFilter, SpecialFilter, EzCaterFilter, FarmerFilter); });
             PrintPieBackList = new RelayCommand(o => { if (IsValidDate())    rd.CreatePieBackList(StartDate, EndDate, IsPrint, IsExport, RetailFilter, SquareFilter, WholesaleFilter, SpecialFilter, EzCaterFilter, FarmerFilter); });
-            PrintPastryBackList = new RelayCommand(o => { if (IsValidDate())    rd.CreatePastryBackList(StartDate, EndDate, IsPrint, IsExport, RetailFilter, SquareFilter, WholesaleFilter, SpecialFilter, EzCaterFilter, FarmerFilter); });
-            PrintBackList = new RelayCommand(o => { if (IsValidDate())    rd.CreateBackList(StartDate, EndDate, IsPrint, IsExport, RetailFilter, SquareFilter, WholesaleFilter, SpecialFilter, EzCaterFilter, FarmerFilter); });
-            PrintWsAgg = new RelayCommand(o => { if (IsValidDate())       rd.CreateWsDay(StartDate,             IsPrint, IsExport); });
-            PrintWsBreakDown = new RelayCommand(o => { if (IsValidDate()) rd.CreateWsDayName(StartDate,         IsPrint, IsExport); });
+            PrintPastryBackList = new RelayCommand(o => { if (IsValidDate()) rd.CreatePastryBackList(StartDate, EndDate, IsPrint, IsExport, RetailFilter, SquareFilter, WholesaleFilter, SpecialFilter, EzCaterFilter, FarmerFilter); });
+            PrintBackList = new RelayCommand(o => { if (IsValidDate())       rd.CreateBackList(StartDate, EndDate, IsPrint, IsExport, RetailFilter, SquareFilter, WholesaleFilter, SpecialFilter, EzCaterFilter, FarmerFilter); });
+            PrintWsAgg = new RelayCommand(o => { if (IsValidDate())          rd.CreateWsDay(StartDate,             IsPrint, IsExport); });
+            PrintWsBreakDown = new RelayCommand(o => { if (IsValidDate())    rd.CreateWsDayName(StartDate,         IsPrint, IsExport); });
             SetPieTemplate = new RelayCommand(o => { StPieTempCmd(); });
             SetPastryTemplate = new RelayCommand(o => { StPastTempCmd(); });
             OpenTemplateListView = new RelayCommand(o => { MainViewModel.Instance().OpenTemplateListView(false); });

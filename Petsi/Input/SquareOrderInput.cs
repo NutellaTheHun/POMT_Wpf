@@ -6,7 +6,6 @@ using Petsi.Interfaces;
 using Petsi.Utils;
 using Petsi.Filing;
 using Petsi.Managers;
-using Petsi.Services;
 
 namespace Petsi.Input
 {
@@ -32,14 +31,14 @@ namespace Petsi.Input
             this.squareClient = squareClient;
             fileBehavior = new FileBehavior(Identifiers.SQUARE_ORDER_INPUT);
             isFileExecute = false;
-            //hasExecuted = true;
+            hasExecuted = true;
             SetInputName(Identifiers.SQUARE_ORDER_INPUT);
             EnvironCaptureRegistrySingleton.GetInstance().Register(this);
             InputManagerSingleton.GetInstance().Register(this);
         }
         public override async Task Execute()
         {
-            if (hasExecuted)//if (!isFileExecute)
+            if (!isFileExecute)//if (hasExecuted)
             {
                 squareResponses = await AsyncGetBatchOrderResponses();
                 Orders = BatchOrdersToOrderItems();

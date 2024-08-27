@@ -42,7 +42,7 @@ namespace Petsi.Models
             }
         }
         public async Task RefreshOrderModelAsync()
-        {
+        {   
             Orders.Clear();
             InitSerializedOrders();
             SquareOrderInput soi = (SquareOrderInput)InputManagerSingleton.GetInstance().GetInputComponent(Identifiers.SQUARE_ORDER_INPUT);
