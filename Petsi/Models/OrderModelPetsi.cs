@@ -217,17 +217,26 @@ namespace Petsi.Models
                 query =
                 from order in filteredOrders
                 where
-                    order.IsOneShot == true
-                    && DateTime.Parse(order.OrderDueDate) >= targetDate.Value
-                    && DateTime.Parse(order.OrderDueDate) <= endDate.Value
+                    (order.IsOneShot == true
+                    && DateTime.Parse(order.OrderDueDate).Date >= targetDate.Value.Date
+                    && DateTime.Parse(order.OrderDueDate).Date <= endDate.Value.Date)
+                    ||
+                    (order.IsPeriodic 
+                        && 
+                        (DateTime.Parse(order.OrderDueDate).DayOfWeek >= targetDate.Value.DayOfWeek
+                        &&
+                        DateTime.Parse(order.OrderDueDate).DayOfWeek <= endDate.Value.DayOfWeek
+                        )
+                    )
                 select order;
 
                 //Gather periodic orders, fulfilment date of periodic(weekly) orders is only used to get the corresponding day of the week.
                 //To get periodic orders, for each day of the date range, get the orders of that day and add to list
+                /*
                 for (DateTime date = targetDate.Value; date <= endDate; date = date.AddDays(1))
                 {
                     AccumulatePeriodicOrders(periodicOrders, date);
-                }
+                }*/
 
                 //combine periodic orders with oneshot orders and return
                 periodicOrders.AddRange(query.ToList());

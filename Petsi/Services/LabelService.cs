@@ -40,7 +40,6 @@ namespace Petsi.Services
         /// <param name="inputList"></param>
         public void LoadLabelMap(List<CatalogItemPetsi> inputList)
         {
-            SystemLogger.LogStatus("Label Service LoadLabelMap() executed");
             //CLEAR OR TRYADD
             _standardLabelMap["round"] = "Round-Allergen-Label-01.png";
             _standardLabelMap["care"] = "pie-care-directory-label-v2-03.jpg";
