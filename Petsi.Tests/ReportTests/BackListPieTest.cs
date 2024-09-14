@@ -48,4 +48,5 @@ namespace Petsi.Tests.ReportTests
                 false, true, true, true, true, true, true, true).Result;
             Assert.NotNull(result);
         }
+    }
 }

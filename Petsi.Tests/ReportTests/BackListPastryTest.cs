@@ -12,7 +12,7 @@ namespace Petsi.Tests.ReportTests
     public class BackListPastryTest
     {
         [Fact]
-        public void BackListPieTest_SingleDay()
+        public void BackListPastryTest_SingleDay()
         {
             TestEnvHelper teh = new TestEnvHelper();
 
@@ -44,7 +44,7 @@ namespace Petsi.Tests.ReportTests
 
             DateTime start = DateTime.Parse("9/14/2024");
 
-            IXLWorkbook result = director.CreatePieBackList(start, null,
+            IXLWorkbook result = director.CreatePastryBackList(start, null,
                 false, true, true, true, true, true, true, true).Result;
             Assert.NotNull(result);
         }
