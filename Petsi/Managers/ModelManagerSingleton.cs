@@ -25,6 +25,13 @@ namespace Petsi.Managers
         {
             return _models.Find(x => x.GetModelName() == targetModelName);
         }
+
+        /// <summary>
+        /// Returns the production order model by it's set model name at runtime. If the production
+        /// model isn't found it returns the test model (assuming if the program execution isn't production
+        /// its for testing.
+        /// </summary>
+        /// <returns>An OrderModelPetsi object, either the "normal"/production instantiation, or the testing instantiatio</returns>
         public ModelBase GetOrderModel()
         {
             var model = _models.Find(x => x.GetModelName() == Identifiers.MODEL_ORDERS);
@@ -35,6 +42,12 @@ namespace Petsi.Managers
             return model;
         }
 
+        /// <summary>
+        /// Returns the production catalog model by it's set model name at runtime. If the production
+        /// model isn't found it returns the test model (assuming if the program execution isn't production
+        /// its for testing.
+        /// </summary>
+        /// <returns>An CatalogModelPetsi object, either the "normal"/production instantiation, or the testing instantiatio</returns>
         public ModelBase GetCatalogModel()
         {
             var model = _models.Find(x => x.GetModelName() == Identifiers.MODEL_CATALOG);

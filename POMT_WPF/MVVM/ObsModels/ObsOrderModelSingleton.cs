@@ -33,7 +33,8 @@ namespace POMT_WPF.MVVM.ObsModels
         private ObsOrderModelSingleton()
         {
             _subscriptions = new List<IObsOrderModelSubscriber>();
-            _omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+            //_omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+            _omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetOrderModel();
             _omp.Subscribe(this);
             Orders = new ObservableCollection<PetsiOrder>(_omp.GetOrders());
             //Orders.CollectionChanged += (s, e) => { UpdateBackEndOrderModel(); };
@@ -41,7 +42,8 @@ namespace POMT_WPF.MVVM.ObsModels
 
         private void UpdateBackEndOrderModel()
         {
-            OrderModelPetsi model = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+            //OrderModelPetsi model = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+            OrderModelPetsi model = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetOrderModel();
             model.UpdateModel(Orders);
         }
 

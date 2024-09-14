@@ -12,7 +12,7 @@ namespace Petsi.Tests.ReportTests
     public class BackListPastryTest
     {
         [Fact]
-        public void BackListTest()
+        public void BackListPieTest_SingleDay()
         {
             TestEnvHelper teh = new TestEnvHelper();
 
@@ -32,7 +32,9 @@ namespace Petsi.Tests.ReportTests
             SquareClientFactory scf = new SquareClientFactory();
 
             CategoryService categoryService = new CategoryService();
+            categoryService.Update(cmp);
             CatalogService catalogIdService = new CatalogService();
+            catalogIdService.Update(cmp);
             LabelService labelService = new LabelService();
 
             ReportDirector director = new ReportDirector();

@@ -22,7 +22,8 @@ namespace Petsi.Services
             categoryList = new List<(string categoryName, string id)>();
             SetServiceName(Identifiers.SERVICE_CATEGORY);
             ServiceManagerSingleton.GetInstance().Register(this);
-            CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
+            //CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetCatalogModel();
+            CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetCatalogModel();
             cmp.AddModelService(this);
         }
 

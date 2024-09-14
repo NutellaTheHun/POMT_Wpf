@@ -22,7 +22,8 @@ namespace Petsi.Services
             catalog = new List<CatalogItemPetsi>();
             SetServiceName(Identifiers.SERVICE_CATALOG);
             ServiceManagerSingleton.GetInstance().Register(this);
-            CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
+            //CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
+            CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetCatalogModel();
             cmp.AddModelService(this);
         }
 
@@ -119,7 +120,8 @@ namespace Petsi.Services
                 //CommandFrame.GetInstance().InjectErrorHandlingFrame(new CatalogServiceErrorFrameBehavior(name));
                 //HandleNewModifier(name);
 
-                CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
+                //CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
+                CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetCatalogModel();
                 CatalogItemPetsi newItem = new CatalogItemPetsi();
                 newItem.ItemName = name;
                 newItem.CatalogObjectId = GenerateCatalogId();

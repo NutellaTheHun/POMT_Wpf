@@ -58,7 +58,7 @@ namespace Petsi.Models
 
             StartupService.Instance.Register(this);
 
-            SetModelName(Identifiers.MODEL_CATALOG);
+            SetModelName(Identifiers.TEST_MODEL_CATALOG);
             ModelManagerSingleton.GetInstance().Register(this);
             EnvironCaptureRegistrySingleton.GetInstance().Register(this);
         }

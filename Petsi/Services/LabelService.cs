@@ -29,7 +29,8 @@ namespace Petsi.Services
             pieDirectoryPath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_PIE_LBL_PATH);
             SetServiceName(Identifiers.SERVICE_LABEL);
             ServiceManagerSingleton.GetInstance().Register(this);
-            CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
+            //CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
+            CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetCatalogModel();
             cmp.AddModelService(this);
             LoadLabelMap(cmp.GetItems());
         }
@@ -340,7 +341,8 @@ namespace Petsi.Services
 
         private OrderModelPetsi GetOrderModel()
         {
-            return (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+            //return (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+            return (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetOrderModel();
         }
     }
     public class LabelPrintData

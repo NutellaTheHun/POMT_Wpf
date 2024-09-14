@@ -23,7 +23,8 @@ namespace Petsi.Input
         public SquareOrderInput(SquareClientFactory squareClient)
         {
             LoggerOrderIdCount = 0;
-            SetModel(ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS));
+            //SetModel(ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS));
+            SetModel(ModelManagerSingleton.GetInstance().GetOrderModel());
             Orders = new List<SquareOrderItem>();
 
             catalogLookup = (ICatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);

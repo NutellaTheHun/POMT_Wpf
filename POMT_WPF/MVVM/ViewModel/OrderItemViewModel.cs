@@ -419,7 +419,8 @@ namespace POMT_WPF.MVVM.ViewModel
 
             UpdateColumnTotals(this, EventArgs.Empty);
 
-            OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+            //OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+            OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetOrderModel();
 
             OrderTypes = new ObservableCollection<string>(orderModel.GetOrderTypes());
             OrderFrequencies = new ObservableCollection<string>() { Identifiers.ORDER_FREQUENCY_WEEKLY, Identifiers.ORDER_FREQUENCY_ONE_TIME };

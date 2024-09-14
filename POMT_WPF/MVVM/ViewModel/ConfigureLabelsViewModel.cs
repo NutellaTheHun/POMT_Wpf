@@ -50,7 +50,8 @@ namespace POMT_WPF.MVVM.ViewModel
         public ConfigureLabelsViewModel(/*bool isFromSettingsVM*/)
         {
             //_isFromSettingsVM = isFromSettingsVM;
-            cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
+            //cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
+            cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetCatalogModel();
             ObsCatalogModelSingleton.Instance.Subscribe(this);
             Items = new ObservableCollection<CatalogItemPetsi>( 
                 SelectLabeledItems(
