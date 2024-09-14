@@ -25,4 +25,6 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties input_x0020_files_4oneshotorder__JsonSchema="https://alec016.github.io/Custom-Machinery/Json%20Schema/src/main/resources/schemas/custom_machinery_machine.json" /></VisualStudio></ProjectExtensions>
+
 </Project>

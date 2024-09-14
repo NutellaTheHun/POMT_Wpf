@@ -10,6 +10,8 @@ namespace Petsi.Utils
         public const string USER_ENTERED_INPUT = "UserEntered";
         public const string PERIODIC_ORDERS = "periodicOrder";
         public const string ONE_SHOT_ORDERS = "oneShotOrder";
+        public const string TEST_ONESHOT_ORDERS = "test_oneShotOrder";
+        public const string TEST_PERIODIC_ORDERS = "test_periodicOrder";
         public const string FROZEN_ORDERS = "frozenOrders";
 
         public const string ORDER_FREQUENCY_WEEKLY = "Weekly";
@@ -28,10 +30,17 @@ namespace Petsi.Utils
         public const string ORDER_INPUT_ORIGIN_USER = "userInput";
         public const string ORDER_INPUT_ORIGIN_EZCATER = "EzInput";
 
+        //The name of the actual instantiated object
         public const string MODEL_ORDERS = "ORDERMODEL";
+        public const string TEST_MODEL_ORDERS = "TEST_ORDERMODEL";
 
+        //The name of the actual instantiated object
         public const string MODEL_CATALOG = "CATALOGMODEL";
+        public const string TEST_MODEL_CATALOG = "TEST_CATALOGMODEL";
+
+        //The name of the serialized file
         public const string MAIN_MODEL_CATALOG_FILE = "main_catalogmodel";
+        public const string MAIN_MODEL_CATALOG_CATEGORIES_FILE = "main_catalog_categories";
 
         public const string FULFILLMENT_PICKUP = "PICKUP";
         public const string FULFILLMENT_DELIVERY = "DELIVERY";

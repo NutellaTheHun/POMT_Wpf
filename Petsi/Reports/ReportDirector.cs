@@ -64,7 +64,8 @@ namespace Petsi.Reports
             Report report = new Report("BackListPie", isPrint, isExport);
             ReportBuilderBackListPie builder = new ReportBuilderBackListPie(report);
 
-            OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+            //OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+            OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetOrderModel();
 
             if (endDate == null)//if endDate is null, report is for single day, targetDate is used in report header as targetDate
             {

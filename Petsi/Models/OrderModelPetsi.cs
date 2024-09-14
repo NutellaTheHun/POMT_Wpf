@@ -34,6 +34,25 @@ namespace Petsi.Models
 
             StartupService.Instance.Register(this);
         }
+
+        /// <summary>
+        /// For Testing environments only
+        /// </summary>
+        /// <param name="serializedSquareOrders"></param>
+        public OrderModelPetsi(List<PetsiOrder> testOneshotOrders, List<PetsiOrder> testPeriodicOrders)
+        {
+            subscribers = new List<IOrderModelSubscriber>();
+            fileBehavior = new FileBehavior("TEST_OrderModel");
+            SetModelName(Identifiers.TEST_MODEL_ORDERS);
+            ModelManagerSingleton.GetInstance().Register(this);
+            EnvironCaptureRegistrySingleton.GetInstance().Register(this);
+
+            Orders = new List<PetsiOrder>(testOneshotOrders);
+            Orders.AddRange(testPeriodicOrders);
+
+            OrderTypesSet = InitOrderTypes();
+            StartupService.Instance.Register(this);
+        }
         public void Notify()
         {
             foreach (IOrderModelSubscriber subscriber in subscribers)
@@ -74,7 +93,28 @@ namespace Petsi.Models
             }
             fileBehavior.DataListToFile(Identifiers.PERIODIC_ORDERS, PeriodicOrders);
             fileBehavior.DataListToFile(Identifiers.ONE_SHOT_ORDERS, OneShotOrders);
+
             SaveBackup(PeriodicOrders, OneShotOrders);
+            SaveTestFileAllOrders();
+        }
+
+        private void SaveTestFileAllOrders()
+        {
+            List<PetsiOrder> PeriodicOrders = new List<PetsiOrder>();
+            List<PetsiOrder> OneShotOrders = new List<PetsiOrder>();
+            foreach (var order in Orders)
+            {
+                if (order.IsPeriodic) 
+                {
+                    PeriodicOrders.Add(order);
+                } 
+                else 
+                { 
+                    OneShotOrders.Add(order);
+                }
+            }
+            fileBehavior.DataListToFile(Identifiers.TEST_ONESHOT_ORDERS, PeriodicOrders);
+            fileBehavior.DataListToFile(Identifiers.TEST_PERIODIC_ORDERS, OneShotOrders);
         }
 
         private void SaveBackup(List<PetsiOrder> PeriodicOrders, List<PetsiOrder> OneShotOrders)
@@ -190,7 +230,11 @@ namespace Petsi.Models
 
         public async Task<List<PetsiOrderLineItem>> GetBackListData(DateTime? targetDate, DateTime? endDate, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer)
         {
-            await RefreshOrderModelAsync();
+            if(ModelName == Identifiers.MODEL_ORDERS)
+            {
+                await RefreshOrderModelAsync();
+            }
+            
             List<PetsiOrder> filteredOrders = FilterOrders(Orders, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer);
 
             IEnumerable<PetsiOrder> query;
@@ -218,8 +262,8 @@ namespace Petsi.Models
                 from order in filteredOrders
                 where
                     (order.IsOneShot == true
-                    && DateTime.Parse(order.OrderDueDate).Date >= targetDate.Value.Date
-                    && DateTime.Parse(order.OrderDueDate).Date <= endDate.Value.Date)
+                        && DateTime.Parse(order.OrderDueDate).Date >= targetDate.Value.Date
+                        && DateTime.Parse(order.OrderDueDate).Date <= endDate.Value.Date)
                     ||
                     (order.IsPeriodic 
                         && 

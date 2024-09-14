@@ -42,6 +42,26 @@ namespace Petsi.Models
             ModelManagerSingleton.GetInstance().Register(this);
             EnvironCaptureRegistrySingleton.GetInstance().Register(this);
         }
+
+        /// <summary>
+        /// For testing environments only
+        /// </summary>
+        /// <param name="serializedCatalogItems"></param>
+        public CatalogModelPetsi(List<CatalogItemPetsi> serializedCatalogItems, List<(string name, string id)> categories)
+        {
+            //Testing Injection
+            items = new List<CatalogItemPetsi>(serializedCatalogItems);
+            Categories = new List<(string name, string id)>(categories);
+            fileBehavior = new FileBehavior("TEST_CatalogModel");
+
+            ServiceListeners = new List<ServiceBase>();
+
+            StartupService.Instance.Register(this);
+
+            SetModelName(Identifiers.MODEL_CATALOG);
+            ModelManagerSingleton.GetInstance().Register(this);
+            EnvironCaptureRegistrySingleton.GetInstance().Register(this);
+        }
         public void UpdateModel(ObservableCollection<CatalogItemPetsi> catalogItems)
         {
             items = catalogItems.ToList();
@@ -138,6 +158,7 @@ namespace Petsi.Models
         private void SaveMainModel()
         {
             fileBehavior.DataListToFile(Identifiers.MAIN_MODEL_CATALOG_FILE, GetItems());
+            fileBehavior.DataListToFile(Identifiers.MAIN_MODEL_CATALOG_CATEGORIES_FILE, Categories);
             SaveBackup();
         }
 

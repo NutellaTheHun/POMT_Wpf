@@ -10,12 +10,8 @@ namespace Petsi.Utils
     public class PetsiConfig : IStartupSubscriber
     {
         private static PetsiConfig _instance;
-        //private static readonly object padlock = new object();
         
-
         List<(string Name,string Value)> variables;
-
-        //static readonly string rootDir = System.AppDomain.CurrentDomain.BaseDirectory + "/petsiDir/";s
 
         public static string appRuntimeId;
         static readonly string rootDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\petsiDir";
@@ -30,14 +26,11 @@ namespace Petsi.Utils
 
         public static PetsiConfig GetInstance() 
         { 
-           // lock(padlock)
-           // {
                 if (_instance == null)
                 {
                     _instance = new PetsiConfig();
                 };
                 return _instance;
-         //   }
         }
 
         private void InitConfig()

@@ -1,5 +1,6 @@
 ﻿using Petsi.Interfaces;
 using Petsi.Models;
+using Petsi.Utils;
 
 namespace Petsi.Managers
 {
@@ -23,6 +24,25 @@ namespace Petsi.Managers
         public ModelBase GetModel(string targetModelName)
         {
             return _models.Find(x => x.GetModelName() == targetModelName);
+        }
+        public ModelBase GetOrderModel()
+        {
+            var model = _models.Find(x => x.GetModelName() == Identifiers.MODEL_ORDERS);
+            if(model == null)
+            {
+                model = _models.Find(x => x.GetModelName() == Identifiers.TEST_MODEL_ORDERS);
+            }
+            return model;
+        }
+
+        public ModelBase GetCatalogModel()
+        {
+            var model = _models.Find(x => x.GetModelName() == Identifiers.MODEL_CATALOG);
+            if (model == null)
+            {
+                model = _models.Find(x => x.GetModelName() == Identifiers.TEST_MODEL_CATALOG);
+            }
+            return model;
         }
         public void AddModel(ModelBase model) { _models.Add(model); }
 
