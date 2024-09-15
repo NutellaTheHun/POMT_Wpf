@@ -24,7 +24,6 @@ namespace Petsi.Tests.ReportTests
 
             PetsiConfig config = PetsiConfig.GetInstance();
 
-            //These three items utilize StartupService, they're initialized before services to ensure the registration is smooth
             OrderModelPetsi omp = new OrderModelPetsi(testOneShotOrders, testPeriodicOrders);
             CatalogModelPetsi cmp = new CatalogModelPetsi(catalogItems, categories);
             ReportTemplateService rts = ReportTemplateService.Instance();
