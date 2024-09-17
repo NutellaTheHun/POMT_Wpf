@@ -29,7 +29,7 @@ namespace Petsi.Tests.ReportTests
                     {
                         if(expectedSheet.Cell(row,col).Value.ToString() != resultSheet.Cell(row,col).Value.ToString())
                         {
-                            //ignore the report id given, and the date printed
+                            //ignore the report id(1,2) and the date printed (2,2) positions
                             if ( (row != 1 && col != 2) || (row != 2 && col != 2) )
                             {
                                 isEqual = false;

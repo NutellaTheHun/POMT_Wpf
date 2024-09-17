@@ -32,7 +32,6 @@ namespace Petsi.Tests.ReportTests
 
             PetsiConfig config = PetsiConfig.GetInstance();
 
-            //These three items utilize StartupService, they're initialized before services to ensure the registration is smooth
             OrderModelPetsi omp = new OrderModelPetsi(testOneShotOrders, testPeriodicOrders);
             CatalogModelPetsi cmp = new CatalogModelPetsi(catalogItems, categories);
             ReportTemplateService rts = ReportTemplateService.Instance();
@@ -50,10 +49,12 @@ namespace Petsi.Tests.ReportTests
             SquareCatalogInput sci = new SquareCatalogInput(scf);
             SquareOrderInput soi = new SquareOrderInput(scf);
 
-            DateTime start = DateTime.Parse("9/14/2024");
+            //  - - - - - 
 
+            DateTime start = DateTime.Parse("9/14/2024");
             IXLWorkbook result = director.CreatePieBackList(start, null,
                 false, true, true, true, true, true, true, true).Result;
+
 
             XLWorkbook expected = new XLWorkbook("D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\ExpectedCases\\BackListPieSingleDayResult.xlsx");
             List<string> mismatches = new List<string>();
