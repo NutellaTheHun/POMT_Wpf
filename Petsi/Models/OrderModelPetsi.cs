@@ -53,6 +53,25 @@ namespace Petsi.Models
             OrderTypesSet = InitOrderTypes();
             StartupService.Instance.Register(this);
         }
+
+        /// <summary>
+        /// For Testing environments only, for use with InputGenerator objects
+        /// </summary>
+        /// <param name="serializedSquareOrders"></param>
+        public OrderModelPetsi(List<PetsiOrder> generatedOrders)
+        {
+            subscribers = new List<IOrderModelSubscriber>();
+            fileBehavior = new FileBehavior("TEST_OrderModel");
+            SetModelName(Identifiers.TEST_MODEL_ORDERS);
+            ModelManagerSingleton.GetInstance().Register(this);
+            EnvironCaptureRegistrySingleton.GetInstance().Register(this);
+
+            Orders = new List<PetsiOrder>(generatedOrders);
+
+            OrderTypesSet = InitOrderTypes();
+            StartupService.Instance.Register(this);
+        }
+
         public void Notify()
         {
             foreach (IOrderModelSubscriber subscriber in subscribers)

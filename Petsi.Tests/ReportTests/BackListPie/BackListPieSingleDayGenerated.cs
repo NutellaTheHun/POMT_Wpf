@@ -1,5 +1,4 @@
 ﻿using ClosedXML.Excel;
-using DocumentFormat.OpenXml.Wordprocessing;
 using Petsi.Input;
 using Petsi.Models;
 using Petsi.Reports;
@@ -7,41 +6,48 @@ using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
 using Square.Service;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Xunit.Abstractions;
 
-namespace Petsi.Tests.ReportTests
+namespace Petsi.Tests.ReportTests.BackListPie
 {
-    public class BackListPieTest
+    [Collection("Sequential")]
+    public class BackListPieSingleDayGenerated
     {
         private readonly ITestOutputHelper helper;
-        public BackListPieTest(ITestOutputHelper helper)
+        public BackListPieSingleDayGenerated(ITestOutputHelper helper)
         {
             this.helper = helper;
         }
 
         [Fact]
-        public void BackListPieTest_SingleDay()
+        public void BackListPieTest_GeneratedOrder()
         {
             TestEnvHelper teh = new TestEnvHelper();
-
-            List<PetsiOrder> testOneShotOrders = teh.fb.BuildDataListFile<PetsiOrder>(Identifiers.TEST_ONESHOT_ORDERS);
-            List<PetsiOrder> testPeriodicOrders = teh.fb.BuildDataListFile<PetsiOrder>(Identifiers.TEST_PERIODIC_ORDERS);
 
             List<CatalogItemPetsi> catalogItems = teh.fb.BuildDataListFile<CatalogItemPetsi>(Identifiers.MAIN_MODEL_CATALOG_FILE);
             List<(string name, string id)> categories = teh.fb.BuildDataListFile<(string name, string id)>(Identifiers.MAIN_MODEL_CATALOG_CATEGORIES_FILE);
 
-            PetsiConfig config = PetsiConfig.GetInstance();
-
-            OrderModelPetsi omp = new OrderModelPetsi(testOneShotOrders, testPeriodicOrders);
             CatalogModelPetsi cmp = new CatalogModelPetsi(catalogItems, categories);
-            ReportTemplateService rts = ReportTemplateService.Instance();
-
-            SquareClientFactory scf = new SquareClientFactory();
 
             CategoryService categoryService = new CategoryService();
             categoryService.Update(cmp);
             CatalogService catalogIdService = new CatalogService();
             catalogIdService.Update(cmp);
+
+            PetsiConfig config = PetsiConfig.GetInstance();
+
+            List<PetsiOrder> generatedOrders = InputGenerator.GetTestOrders(InputGenerator.GetSummerPieIds(), InputGenerator.GetStandardOrderTypes(), 1, DateTime.Today.Date);
+            OrderModelPetsi omp = new OrderModelPetsi(generatedOrders);
+
+            ReportTemplateService rts = ReportTemplateService.Instance();
+
+            SquareClientFactory scf = new SquareClientFactory();
+
             LabelService labelService = new LabelService();
 
             ReportDirector director = new ReportDirector();
@@ -51,20 +57,22 @@ namespace Petsi.Tests.ReportTests
 
             //  - - - - - 
 
-            DateTime start = DateTime.Parse("9/14/2024");
+            DateTime start = DateTime.Today.Date;
             IXLWorkbook result = director.CreatePieBackList(start, null,
                 false, true, true, true, true, true, true, true).Result;
 
-
-            XLWorkbook expected = new XLWorkbook("D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\ExpectedCases\\BackListPieSingleDayResult.xlsx");
+            omp.ClearModel();
+            cmp.ClearModel();
+            XLWorkbook expected = new XLWorkbook("D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\ExpectedCases\\BackListPieTest_GeneratedOrder_Expected.xlsx");
             List<string> mismatches = new List<string>();
             bool eval = ReportComparator.Compare(expected, result, mismatches);
-            if(!eval)
+            if (!eval)
             {
-                foreach (string ln in mismatches) {
+                foreach (string ln in mismatches)
+                {
                     helper.WriteLine(ln);
                 }
-                
+
             }
             Assert.True(eval);
         }

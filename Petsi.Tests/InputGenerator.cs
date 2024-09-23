@@ -28,14 +28,15 @@ namespace Petsi.Tests
 
                     order.Recipient = $"{orderType}_{orderCount}";
                     orderCount++;
-                    
-                    order.OrderDueDate = $"{year}-{month}-{day}T{hour}:{minute}:00.000Z";
-                    hour++;
-                    if(hour == 16) { hour = 8; }
-                    if(minute == 10){ minute = 30;}
-                    else{minute = 10;}
 
-                    if(order.OrderType == "Square")
+                    //order.OrderDueDate = $"{year}-{month}-{day}T{hour}:{minute}:00.000Z";
+                    order.OrderDueDate = $"{month}/{day}/{year} {hour}:{minute}";
+                    hour++;
+                    if (hour == 16) { hour = 8; }
+                    if (minute == 10) { minute = 30; }
+                    else { minute = 10; }
+
+                    if (order.OrderType == "Square")
                     {
                         order.IsOneShot = true;
                         order.IsUserEntered = false;
@@ -86,7 +87,7 @@ namespace Petsi.Tests
                 else
                 {
                     result.Add(new PetsiOrderLineItem(item.ItemName, itemId, 1, 1, 1, 1, 0));
-                }               
+                }
             }
             return result;
         }
@@ -161,6 +162,17 @@ namespace Petsi.Tests
                 "FURQUXJFPZPPPFBIIFZQZELM",
                 //BRIOCHE(everything but the bagel)
                 "EQXEL4IBTZUNDNZVLGVDWR3K",
+            };
+        }
+
+        public static List<string> GetStandardOrderTypes()
+        {
+            return new List<string>
+            {
+                "Square",
+                "Wholesale",
+                "Special",
+                "FarmersMarket"
             };
         }
     }
