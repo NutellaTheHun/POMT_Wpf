@@ -3,7 +3,6 @@ using Petsi.Managers;
 using Petsi.Models;
 using Petsi.Reports.ReportBuilder;
 using Petsi.Utils;
-using Square.Models;
 
 namespace Petsi.Reports
 {

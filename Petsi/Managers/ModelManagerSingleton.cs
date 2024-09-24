@@ -68,5 +68,10 @@ namespace Petsi.Managers
         {
             _models.Remove(model);
         }
+
+        public static void Reset()
+        {
+            instance._models.Clear();
+        }
     }
 }

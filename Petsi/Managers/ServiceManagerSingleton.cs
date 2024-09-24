@@ -40,5 +40,10 @@ namespace Petsi.Managers
         {
             throw new NotImplementedException();
         }
+
+        public static void Reset()
+        {
+            instance.services.Clear();
+        }
     }
 }
