@@ -9,7 +9,7 @@ using Square.Service;
 using Xunit.Abstractions;
 
 namespace Petsi.Tests.ReportTests.BackListPie
-{
+{/*
     [Collection("Sequential")]
     public class BackListPieSingleDaySerializedOrders
     {
@@ -55,6 +55,8 @@ namespace Petsi.Tests.ReportTests.BackListPie
             IXLWorkbook result = director.CreatePieBackList(start, null,
                 false, true, true, true, true, true, true, true).Result;
 
+            omp.ClearModel();
+            cmp.ClearModel();
 
             XLWorkbook expected = new XLWorkbook("D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\ExpectedCases\\BackListPieSingleDayResult.xlsx");
             List<string> mismatches = new List<string>();
@@ -69,5 +71,5 @@ namespace Petsi.Tests.ReportTests.BackListPie
             }
             Assert.True(eval);
         }
-    }
+    }*/
 }

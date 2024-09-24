@@ -9,6 +9,7 @@ using Square.Service;
 
 namespace Petsi.Tests.ReportTests
 {
+    [Collection("Sequential")]
     public class BackListPastryTest
     {
         [Fact]
@@ -45,6 +46,8 @@ namespace Petsi.Tests.ReportTests
 
             IXLWorkbook result = director.CreatePastryBackList(start, null,
                 false, true, true, true, true, true, true, true).Result;
+            omp.ClearModel();
+            cmp.ClearModel();
             Assert.NotNull(result);
         }
     }

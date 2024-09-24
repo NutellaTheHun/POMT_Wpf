@@ -6,11 +6,6 @@ using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
 using Square.Service;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit.Abstractions;
 
 namespace Petsi.Tests.ReportTests.BackListPie
