@@ -32,7 +32,7 @@
             </Grid>
             <Grid Grid.Row="1">
                 <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
-                    <Grid>
+                    <Grid Focusable="False">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Vertical">
                                 <Label Content="Item Name" />
@@ -53,11 +53,7 @@
                                                         <Binding
                                                             Mode="TwoWay"
                                                             Path="ItemName"
-                                                            UpdateSourceTrigger="PropertyChanged">
-                                                            <Binding.ValidationRules>
-                                                                <v:ItemNameValidation />
-                                                            </Binding.ValidationRules>
-                                                        </Binding>
+                                                            UpdateSourceTrigger="PropertyChanged" />
                                                     </TextBox.Text>
                                                 </TextBox>
                                             </Grid>

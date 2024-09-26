@@ -56,8 +56,29 @@ namespace Petsi.Units
         public bool IsTakeNBake(CategoryService category, CatalogService catalog)
         {
             CatalogItemPetsi item = catalog.GetCatalogItemById(CatalogObjectId);
+            if(item == null) //Merchandise items from square are transformed in SquareOrderInput, and the items aren't reflected or captured in the catalog
+            {
+                return false;
+            }
             string x = category.GetCategoryIdByCategoryName("Take and Bake");
             return item.CategoryId == x;
+        }
+
+        public CatalogItemPetsi ToCatalogItemPetsi()
+        {
+            CatalogItemPetsi result = new CatalogItemPetsi();
+            //CatalogItemPetsi(string categoryId, string catalogObjectId, string itemName)
+                //ListDictionary Variations
+                //List(string varId, varName) VariationList
+                //~~~REGULAR?
+            //CategoryId
+            //CatalogObjId
+            //ItemName
+            //ListDictionary Variations
+            //List(string varId, varName) VariationList
+
+
+            return result;
         }
     }
 }

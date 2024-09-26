@@ -79,14 +79,10 @@ namespace Petsi.Tests.ReportTests.BackListPie
         [Fact]
         public void BackListPieTest_SingleDay()
         {
-            //  - - - - - 
 
             DateTime start = DateTime.Parse("9/14/2024");
             IXLWorkbook result = director.CreatePieBackList(start, null,
                 false, true, true, true, true, true, true, true).Result;
-
-            //omp.ClearModel();
-            //cmp.ClearModel();
 
             XLWorkbook expected = new XLWorkbook("D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\ExpectedCases\\BackListPieSingleDayResult.xlsx");
             List<string> mismatches = new List<string>();

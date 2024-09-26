@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using Newtonsoft.Json;
 using Petsi.Input;
 using Petsi.Managers;
 using Petsi.Models;
@@ -6,13 +7,14 @@ using Petsi.Reports;
 using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
+using Square.Models;
 using Square.Service;
 using Xunit.Abstractions;
 
-namespace Petsi.Tests.ReportTests.BackListPie
+namespace Petsi.Tests.ReportTests.FrontList
 {
     [Collection("Sequential")]
-    public class BackListPieSingleDayGenerated : IDisposable
+    public class MerchandiseTestGenerated : IDisposable
     {
         private readonly ITestOutputHelper helper;
         TestEnvHelper teh;
@@ -28,7 +30,7 @@ namespace Petsi.Tests.ReportTests.BackListPie
         SquareCatalogInput sci;
         SquareOrderInput soi;
 
-        public BackListPieSingleDayGenerated(ITestOutputHelper helper)
+        public MerchandiseTestGenerated(ITestOutputHelper helper)
         {
             this.helper = helper;
 
@@ -45,8 +47,8 @@ namespace Petsi.Tests.ReportTests.BackListPie
 
             config = PetsiConfig.GetInstance();
 
-            List<PetsiOrder> generatedOrders = InputGenerator.GetTestOrders(InputGenerator.GetSummerPieIds(), InputGenerator.GetStandardOrderTypes(), 1, DateTime.Today.Date);
-            omp = new OrderModelPetsi(generatedOrders);
+            
+            omp = new OrderModelPetsi(null, null);
 
             rts = ReportTemplateService.Instance();
 
@@ -58,8 +60,10 @@ namespace Petsi.Tests.ReportTests.BackListPie
 
             sci = new SquareCatalogInput(scf);
             soi = new SquareOrderInput(scf);
+            BatchRetrieveOrdersResponse response = JsonConvert.DeserializeObject<BatchRetrieveOrdersResponse>(File.ReadAllText("D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\Input files\\MERCH_ORDER_BATCH.txt"));
+            soi.TestExecute(response);
         }
-        
+
         public void Dispose()
         {
             teh = null;
@@ -79,14 +83,13 @@ namespace Petsi.Tests.ReportTests.BackListPie
         }
 
         [Fact]
-        public void BackListPieTest_GeneratedOrder()
+        public void FrontlistMerchandiseGenerated()
         {
-
-            DateTime start = DateTime.Today.Date;
-            IXLWorkbook result = director.CreatePieBackList(start, null,
+            DateTime start = DateTime.Parse("09/27/2024");
+            IXLWorkbook result = director.CreateFrontList(start,
                 false, true, true, true, true, true, true, true).Result;
 
-            XLWorkbook expected = new XLWorkbook("D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\ExpectedCases\\BackListPieGeneratedResult.xlsx");
+            XLWorkbook expected = new XLWorkbook("D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\ExpectedCases\\FrontlistMerchandiseGeneratedResult.xlsx");
             List<string> mismatches = new List<string>();
             bool eval = ReportComparator.Compare(expected, result, mismatches);
             if (!eval)

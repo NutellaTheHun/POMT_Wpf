@@ -65,7 +65,7 @@ namespace Petsi.Utils
         public const string CATEGORY_PASTRY = "RJHRRYGCM4CMJQ4L57KP4JK5";
         public const string CATEGORY_DRINKS = "TPSEG2FP3QTC24PUTRQAUAEE";
         public const string CATEGORY_BOXED_TEA_PLATTERS = "PCM22LM7KMUAUOPP7MKQNRBL";
-        public const string CATEGORY_MERCH_ICECREAM = "HDB76BYHJ2NCXIZUMTI3WJIB";
+        public const string CATEGORY_MERCH = "HDB76BYHJ2NCXIZUMTI3WJIB";
         public const string CATEGORY_POTM = "POTM_ID";
         public const string CATEGORY_PARBAKE = "PARBAKE_ID";
         public const string CATEGORY_TAKENBAKE = "CUAIOOBN27MNTBZNQZHLRUT5";

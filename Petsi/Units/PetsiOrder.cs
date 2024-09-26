@@ -59,6 +59,7 @@ namespace Petsi.Units
         {
             LineItems = new List<PetsiOrderLineItem>();
         }
+
         /// <summary>
         /// For initializing a new OnOrderItem, LineItems list is initialized and empty.
         /// </summary>
@@ -81,6 +82,7 @@ namespace Petsi.Units
             Note = note;
             LineItems = new List<PetsiOrderLineItem>();
         }
+
         public PetsiOrder(
           string inputOrigin, string recipient, string orderId,
           string orderDueDate, string fulfillmentType, string note,

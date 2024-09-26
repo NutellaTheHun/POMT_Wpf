@@ -1,4 +1,4 @@
-﻿namespace Petsi.Tests.ReportTests
+﻿namespace Petsi.Tests.ReportTests.WholesaleAgg
 {
     public class WholesaleAggTest
     {

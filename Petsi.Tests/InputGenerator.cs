@@ -1,4 +1,5 @@
-﻿using Petsi.Managers;
+﻿using Petsi.Interfaces;
+using Petsi.Managers;
 using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
@@ -163,6 +164,12 @@ namespace Petsi.Tests
                 //BRIOCHE(everything but the bagel)
                 "EQXEL4IBTZUNDNZVLGVDWR3K",
             };
+        }
+
+        public static List<string> GetMerchandiseItemIds()
+        {
+            ICatalogService catalogService = (ICatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
+            return catalogService.GetItemIdsByCategory(Identifiers.CATEGORY_MERCH);
         }
 
         public static List<string> GetStandardOrderTypes()

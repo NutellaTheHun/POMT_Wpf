@@ -4,7 +4,7 @@ using Petsi.Services;
 namespace Petsi.Managers
 {
     /// <summary>
-    /// Orignally implemented for CommandFrame functionality, managers became main way of refrencing services and models.
+    /// Singleton collection of services. Classes that inherit from ServiceBase can register itself on instantiaion to this class to be referenced throughout the application.
     /// </summary>
     public class ServiceManagerSingleton : IPetsiServiceProvider, IServiceManagerRegistry
     {
@@ -41,6 +41,9 @@ namespace Petsi.Managers
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Used for testing purposes only. (Required for properly reseting contexts accross xunit tests.
+        /// </summary>
         public static void Reset()
         {
             instance.services.Clear();

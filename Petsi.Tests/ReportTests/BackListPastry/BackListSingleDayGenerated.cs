@@ -9,10 +9,10 @@ using Petsi.Utils;
 using Square.Service;
 using Xunit.Abstractions;
 
-namespace Petsi.Tests.ReportTests.BackListPie
+namespace Petsi.Tests.ReportTests.BackListPastry
 {
     [Collection("Sequential")]
-    public class BackListPieSingleDayGenerated : IDisposable
+    public class BackListSingleDayGenerated : IDisposable
     {
         private readonly ITestOutputHelper helper;
         TestEnvHelper teh;
@@ -28,7 +28,7 @@ namespace Petsi.Tests.ReportTests.BackListPie
         SquareCatalogInput sci;
         SquareOrderInput soi;
 
-        public BackListPieSingleDayGenerated(ITestOutputHelper helper)
+        public BackListSingleDayGenerated(ITestOutputHelper helper)
         {
             this.helper = helper;
 
@@ -45,7 +45,7 @@ namespace Petsi.Tests.ReportTests.BackListPie
 
             config = PetsiConfig.GetInstance();
 
-            List<PetsiOrder> generatedOrders = InputGenerator.GetTestOrders(InputGenerator.GetSummerPieIds(), InputGenerator.GetStandardOrderTypes(), 1, DateTime.Today.Date);
+            List<PetsiOrder> generatedOrders = InputGenerator.GetTestOrders(InputGenerator.GetSummerPastryIds(), InputGenerator.GetStandardOrderTypes(), 1, DateTime.Today.Date);
             omp = new OrderModelPetsi(generatedOrders);
 
             rts = ReportTemplateService.Instance();
@@ -59,7 +59,7 @@ namespace Petsi.Tests.ReportTests.BackListPie
             sci = new SquareCatalogInput(scf);
             soi = new SquareOrderInput(scf);
         }
-        
+
         public void Dispose()
         {
             teh = null;
@@ -83,10 +83,10 @@ namespace Petsi.Tests.ReportTests.BackListPie
         {
 
             DateTime start = DateTime.Today.Date;
-            IXLWorkbook result = director.CreatePieBackList(start, null,
+            IXLWorkbook result = director.CreatePastryBackList(start, null,
                 false, true, true, true, true, true, true, true).Result;
 
-            XLWorkbook expected = new XLWorkbook("D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\ExpectedCases\\BackListPieGeneratedResult.xlsx");
+            XLWorkbook expected = new XLWorkbook("D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\ExpectedCases\\BackListPastrySingleDayGeneratedResult.xlsx");
             List<string> mismatches = new List<string>();
             bool eval = ReportComparator.Compare(expected, result, mismatches);
             if (!eval)

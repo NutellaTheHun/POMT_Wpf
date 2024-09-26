@@ -121,5 +121,20 @@ namespace Petsi.Services
             }
             return false;
         }
+
+        /// <summary>
+        /// Given an item name, variation id, or catalog id, returns the catalog id
+        /// </summary>
+        /// <param name="itemIdentifier">an item name, variation id, or catalog id</param>
+        /// <returns> returns the catalog id </returns>
+        public string GetCatalogId(string itemIdentifier)
+        {
+            string result = categoryMap[itemIdentifier];
+            if (result == null)
+            {
+                result = string.Empty;
+            }
+            return categoryMap[itemIdentifier];
+        }
     }
 }

@@ -16,12 +16,12 @@ namespace POMT_WPF.MVVM.View
     {
         private LabelItemViewModel vm;
         private CatalogService cs;
-        private List<CatalogItemPetsi> ExistingItems;
-        public LabelItemWindow(CatalogItemPetsi? item, List<CatalogItemPetsi> existingItems)
+        private List<CatalogItemPetsi> labeledItems;
+        public LabelItemWindow(CatalogItemPetsi? item, List<CatalogItemPetsi> itemsWithLabels)
         {
-            vm = new LabelItemViewModel(item, this, existingItems);
+            vm = new LabelItemViewModel(item, this, itemsWithLabels);
             cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
-            ExistingItems = existingItems;
+            labeledItems = itemsWithLabels;
             DataContext = vm;
             InitializeComponent();
 
@@ -50,9 +50,10 @@ namespace POMT_WPF.MVVM.View
                     List<CatalogItemPetsi> copy = new List<CatalogItemPetsi>(results);
                     foreach (CatalogItemPetsi item in copy)
                     {
-                        foreach (CatalogItemPetsi existingItem in ExistingItems)
+                        //We dont want items with a label path to show in drop box, no duplicates
+                        foreach (CatalogItemPetsi labeledItem in labeledItems)
                         {
-                            if (existingItem.CatalogObjectId == item.CatalogObjectId) { results.Remove(item); break; }
+                            if (labeledItem.CatalogObjectId == item.CatalogObjectId) { results.Remove(item); break; }
                         }
                     }
                 }

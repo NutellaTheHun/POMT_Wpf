@@ -39,7 +39,7 @@ namespace Petsi.Models
         /// For Testing environments only
         /// </summary>
         /// <param name="serializedSquareOrders"></param>
-        public OrderModelPetsi(List<PetsiOrder> testOneshotOrders, List<PetsiOrder> testPeriodicOrders)
+        public OrderModelPetsi(List<PetsiOrder>? testOneshotOrders, List<PetsiOrder>? testPeriodicOrders)
         {
             subscribers = new List<IOrderModelSubscriber>();
             fileBehavior = new FileBehavior("TEST_OrderModel");
@@ -47,8 +47,15 @@ namespace Petsi.Models
             ModelManagerSingleton.GetInstance().Register(this);
             EnvironCaptureRegistrySingleton.GetInstance().Register(this);
 
-            Orders = new List<PetsiOrder>(testOneshotOrders);
-            Orders.AddRange(testPeriodicOrders);
+            if (testOneshotOrders != null && testPeriodicOrders != null)
+            {
+                Orders = new List<PetsiOrder>(testOneshotOrders);
+                Orders.AddRange(testPeriodicOrders);
+            }
+            else
+            {
+                Orders = new List<PetsiOrder>();
+            }
 
             OrderTypesSet = InitOrderTypes();
             StartupService.Instance.Register(this);
@@ -223,7 +230,11 @@ namespace Petsi.Models
 
         public async Task<List<PetsiOrder>> GetFrontListDataAsync(DateTime? targetDate, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer)
         {
-            await RefreshOrderModelAsync();
+            //If testing, the model name will not match the production model name
+            if (ModelName == Identifiers.MODEL_ORDERS)
+            {
+                await RefreshOrderModelAsync();
+            }
             List<PetsiOrder> filteredOrders = FilterOrders(Orders, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer);
 
             IEnumerable<PetsiOrder> query;
@@ -249,7 +260,8 @@ namespace Petsi.Models
 
         public async Task<List<PetsiOrderLineItem>> GetBackListData(DateTime? targetDate, DateTime? endDate, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer)
         {
-            if(ModelName == Identifiers.MODEL_ORDERS)
+            //If testing, the model name will not match the production model name
+            if (ModelName == Identifiers.MODEL_ORDERS)
             {
                 await RefreshOrderModelAsync();
             }

@@ -17,6 +17,7 @@ namespace Petsi.Input
         List<BatchRetrieveOrdersResponse> squareResponses;
         SquareClientFactory squareClient;
         ICatalogService catalogLookup;
+        ICategoryService categoryLookup;
         FileBehavior fileBehavior;
         bool isFileExecute;
         bool hasExecuted;
@@ -28,6 +29,7 @@ namespace Petsi.Input
             Orders = new List<SquareOrderItem>();
 
             catalogLookup = (ICatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
+            categoryLookup = (ICategoryService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATEGORY);
 
             this.squareClient = squareClient;
             fileBehavior = new FileBehavior(Identifiers.SQUARE_ORDER_INPUT);
@@ -42,6 +44,32 @@ namespace Petsi.Input
             if (!isFileExecute)//if (hasExecuted)
             {
                 squareResponses = await AsyncGetBatchOrderResponses();
+                Orders = BatchOrdersToOrderItems();
+            }
+            foreach (var element in Orders)
+            {
+                Model.AddData(element.ToPetsiOrder());
+            }
+            hasExecuted = true;
+
+            squareResponses = null;
+            Orders = null;
+
+            Model.Complete();
+        }
+
+        /// <summary>
+        /// For Testing Only
+        /// </summary>
+        /// <param name="testFile"></param>
+        /// <returns></returns>
+        public void TestExecute(BatchRetrieveOrdersResponse testFile)
+        {
+            if (!isFileExecute)//if (hasExecuted)
+            {
+                //squareResponses = await AsyncGetBatchOrderResponses();
+                squareResponses = new List<BatchRetrieveOrdersResponse>();
+                squareResponses.Add(testFile);
                 Orders = BatchOrdersToOrderItems();
             }
             foreach (var element in Orders)
@@ -278,6 +306,89 @@ namespace Petsi.Input
                 
                 lineItems.Add(muff);
             }
+            else if(categoryLookup.GetCatalogId(squareOrderlineItem.CatalogObjectId) == Identifiers.CATEGORY_MERCH)
+            {
+                LineItem merch = new LineItem();
+                if(squareOrderlineItem.VariationName != "Regular")
+                {
+                    
+                     //Creme De Liqueur Ice Cream: 
+                     //   --Vanilla Horchata, Pistachio Amaretto, ...
+                    
+                    if (squareOrderlineItem.Name == "Creme De Liqueur Ice Cream")
+                    {
+                        merch.ItemName = squareOrderlineItem.VariationName;
+                        merch.CatalogObjectId = squareOrderlineItem.CatalogObjectId;
+                        merch.VariationId = squareOrderlineItem.CatalogObjectId;
+                        merch.VariationName = "Regular";
+                        merch.Quantity = squareOrderlineItem.Quantity;
+                    }
+                    
+                    //Petsi Pies Hats: 
+                    //   --Orange (Eat More Pie)
+                    //   --Blue (Pies Is Love)
+                    
+                    else if (squareOrderlineItem.Name == "Petsi Pies Hats")
+                    {
+                        merch.ItemName = $"Petsi Pie Hat {squareOrderlineItem.VariationName.Split(" ")[0]}";
+                        merch.CatalogObjectId = squareOrderlineItem.CatalogObjectId;
+                        merch.VariationId = squareOrderlineItem.CatalogObjectId;
+                        merch.VariationName = "Regular";
+                        merch.Quantity = squareOrderlineItem.Quantity;
+                    }
+                    
+                    //Tees: 
+                     // --Small Crew Tee - "Delicious"
+                     // --Small Crew Neck Tee - "Pie Is Love"
+                     // --Med V-Neck Tee "Pie Is Love"
+                     // --Med Crew Neck Tee - "Delicious"
+                     // --Large V-Neck Tee - "Pie is Love"
+                     // --Large Crew Neck Tee - "Deliciouso"
+                    //  --XL V-Neck Tee - "Pie is Love"
+                     // --XL Crew Neck Tee - "Delicious"
+                     // --2XL Crew Tee - "Delicious"
+                    
+                    else if(squareOrderlineItem.Name == "Tees")
+                    {
+                        merch.ItemName = squareOrderlineItem.VariationName;
+                        merch.CatalogObjectId = squareOrderlineItem.CatalogObjectId;
+                        merch.VariationId = squareOrderlineItem.CatalogObjectId;
+                        merch.VariationName = "Regular";
+                        merch.Quantity = squareOrderlineItem.Quantity;
+                    }
+                    
+                    //Petsi T-Shirt: 
+                    //  --XS, SMALL, MEDIUM, LARGE, XL, 2XL, 3XL
+                    
+                    else if(squareOrderlineItem.Name == "Petsi T-Shirt")
+                    {
+                        merch.ItemName = $"{squareOrderlineItem.Name} {squareOrderlineItem.VariationName}";
+                        merch.CatalogObjectId = squareOrderlineItem.CatalogObjectId;
+                        merch.VariationId = squareOrderlineItem.CatalogObjectId;
+                        merch.VariationName = "Regular";
+                        merch.Quantity = squareOrderlineItem.Quantity;
+                    }
+                    else
+                    {
+                        SystemLogger.LogError("Merch name not matched", "SquareOrderInput ParseOrderLineItem()");
+                    }
+                }
+                else
+                {
+                    //Note Card by Sarah Dudek (no variation =  regular?)
+                    //Oven Mitt ````
+                    //Petsi Pie Server
+                    //Tote Bag
+                    //Travel Mug
+                    merch.ItemName = squareOrderlineItem.Name;
+                    merch.VariationId = squareOrderlineItem.CatalogObjectId;
+                    merch.CatalogObjectId = catalogLookup.GetCatalogObjectId(merch.VariationId);
+                    merch.VariationName = squareOrderlineItem.VariationName;
+                    merch.Quantity = squareOrderlineItem.Quantity;
+                }
+                lineItems.Add(merch);
+            }
+
             //all other "standard" items
             else
             {

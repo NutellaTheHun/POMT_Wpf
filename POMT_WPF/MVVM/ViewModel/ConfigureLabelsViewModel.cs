@@ -111,6 +111,7 @@ namespace POMT_WPF.MVVM.ViewModel
         private void CreateLabelMapCommand()
         {
             LabelItemWindow view = new LabelItemWindow(null, Items.ToList());
+            //LabelItemWindow view = new LabelItemWindow(null, cmp.GetItems());
             view.Show();
         }
 
