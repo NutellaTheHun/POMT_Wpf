@@ -287,8 +287,8 @@ namespace Petsi.Models
             }
             else //range
             {
-                //Gather Non-periodic Orders
 
+                /*
                 query =
                 from order in filteredOrders
                 where
@@ -304,14 +304,22 @@ namespace Petsi.Models
                         )
                     )
                 select order;
-
+                */
+                //Gather Non-periodic Orders
+                query =
+                from order in filteredOrders
+                where
+                    (order.IsOneShot == true
+                        && DateTime.Parse(order.OrderDueDate).Date >= targetDate.Value.Date
+                        && DateTime.Parse(order.OrderDueDate).Date <= endDate.Value.Date)
+                select order;
                 //Gather periodic orders, fulfilment date of periodic(weekly) orders is only used to get the corresponding day of the week.
                 //To get periodic orders, for each day of the date range, get the orders of that day and add to list
-                /*
+
                 for (DateTime date = targetDate.Value; date <= endDate; date = date.AddDays(1))
                 {
-                    AccumulatePeriodicOrders(periodicOrders, date);
-                }*/
+                    AccumulatePeriodicOrders(periodicOrders, filteredOrders, date);
+                }
 
                 //combine periodic orders with oneshot orders and return
                 periodicOrders.AddRange(query.ToList());
@@ -390,11 +398,11 @@ namespace Petsi.Models
             return aggregate.Values.ToList();
         }
 
-        private void AccumulatePeriodicOrders(List<PetsiOrder> periodicOrders, DateTime targetDate)
+        private void AccumulatePeriodicOrders(List<PetsiOrder> periodicOrders, List<PetsiOrder> FilteredList, DateTime targetDate)
         {
             IEnumerable<PetsiOrder> query;
             query =
-              from order in Orders
+              from order in FilteredList
               where (order.IsPeriodic == true && DateTime.Parse(order.OrderDueDate).DayOfWeek == targetDate.DayOfWeek)
               select order;
             periodicOrders.AddRange(query.ToList());

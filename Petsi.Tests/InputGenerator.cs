@@ -8,6 +8,16 @@ namespace Petsi.Tests
 {
     public class InputGenerator
     {
+        public static List<PetsiOrder> GetTestOrdersMultiDay(List<string> itemIds, List<string> orderTypes, int orderAmountPerType, DateTime start, DateTime end)
+        {
+            List<PetsiOrder> result = new List<PetsiOrder>();
+            for (DateTime date = start; date <= end; date = date.AddDays(1))
+            {
+                result.AddRange(GetTestOrders(itemIds, orderTypes, orderAmountPerType, date));
+            }
+            return result;
+        }
+
         public static List<PetsiOrder> GetTestOrders(List<string> itemIds, List<string> orderTypes, int orderAmountPerType, DateTime date)
         {
             List<PetsiOrder> result = new List<PetsiOrder>();
