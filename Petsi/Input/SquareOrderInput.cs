@@ -68,8 +68,10 @@ namespace Petsi.Input
             if (!isFileExecute)//if (hasExecuted)
             {
                 //squareResponses = await AsyncGetBatchOrderResponses();
-                squareResponses = new List<BatchRetrieveOrdersResponse>();
-                squareResponses.Add(testFile);
+                squareResponses = new List<BatchRetrieveOrdersResponse>
+                {
+                    testFile
+                };
                 Orders = BatchOrdersToOrderItems();
             }
             foreach (var element in Orders)
@@ -306,7 +308,7 @@ namespace Petsi.Input
                 
                 lineItems.Add(muff);
             }
-            else if(categoryLookup.GetCatalogId(squareOrderlineItem.CatalogObjectId) == Identifiers.CATEGORY_MERCH)
+            else if(categoryLookup.GetCategoryId(squareOrderlineItem.CatalogObjectId) == Identifiers.CATEGORY_MERCH)
             {
                 LineItem merch = new LineItem();
                 if(squareOrderlineItem.VariationName != "Regular")
@@ -387,6 +389,7 @@ namespace Petsi.Input
                     merch.Quantity = squareOrderlineItem.Quantity;
                 }
                 lineItems.Add(merch);
+                ModelManagerSingleton.GetInstance().GetCatalogModel().TryUpdateSquareMerchItem(merch);
             }
 
             //all other "standard" items

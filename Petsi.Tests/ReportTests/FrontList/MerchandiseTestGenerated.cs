@@ -85,7 +85,7 @@ namespace Petsi.Tests.ReportTests.FrontList
         [Fact]
         public void FrontlistMerchandiseGenerated()
         {
-            DateTime start = DateTime.Parse("09/27/2024");
+            DateTime start = DateTime.Parse("10/25/2024"); //if date is before current date, square order input will skip the order and nothing will be processed.
             IXLWorkbook result = director.CreateFrontList(start,
                 false, true, true, true, true, true, true, true).Result;
 

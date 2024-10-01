@@ -961,7 +961,7 @@
         "type": "PICKUP",
         "state": "PROPOSED",
         "pickup_details": {
-          "pickup_at": "2024-09-27T17:13:00.000Z",
+          "pickup_at": "2024-10-25T17:13:00.000Z",
           "placed_at": "2024-09-25T16:44:25.483Z",
           "recipient": {
             "display_name": "TEST MERCH ORDER"

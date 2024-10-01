@@ -32,14 +32,14 @@ namespace Petsi.Managers
         /// its for testing.
         /// </summary>
         /// <returns>An OrderModelPetsi object, either the "normal"/production instantiation, or the testing instantiatio</returns>
-        public ModelBase GetOrderModel()
+        public OrderModelPetsi GetOrderModel()
         {
             var model = _models.Find(x => x.GetModelName() == Identifiers.MODEL_ORDERS);
             if(model == null)
             {
                 model = _models.Find(x => x.GetModelName() == Identifiers.TEST_MODEL_ORDERS);
             }
-            return model;
+            return (OrderModelPetsi)model;
         }
 
         /// <summary>
@@ -48,14 +48,14 @@ namespace Petsi.Managers
         /// its for testing.
         /// </summary>
         /// <returns>An CatalogModelPetsi object, either the "normal"/production instantiation, or the testing instantiatio</returns>
-        public ModelBase GetCatalogModel()
+        public CatalogModelPetsi GetCatalogModel()
         {
             var model = _models.Find(x => x.GetModelName() == Identifiers.MODEL_CATALOG);
             if (model == null)
             {
                 model = _models.Find(x => x.GetModelName() == Identifiers.TEST_MODEL_CATALOG);
             }
-            return model;
+            return (CatalogModelPetsi)model;
         }
         public void AddModel(ModelBase model) { _models.Add(model); }
 

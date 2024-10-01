@@ -6,6 +6,6 @@
         public string GetItemCategoryId(string categoryName);
         public string GetCategoryIdByIndex(int categoryIndex);
 
-        public string GetCatalogId(string itemIdentifier);
+        public string GetCategoryId(string itemIdentifier);
     }
 }

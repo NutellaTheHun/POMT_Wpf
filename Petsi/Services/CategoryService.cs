@@ -22,8 +22,7 @@ namespace Petsi.Services
             categoryList = new List<(string categoryName, string id)>();
             SetServiceName(Identifiers.SERVICE_CATEGORY);
             ServiceManagerSingleton.GetInstance().Register(this);
-            //CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetCatalogModel();
-            CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetCatalogModel();
+            CatalogModelPetsi cmp = ModelManagerSingleton.GetInstance().GetCatalogModel();
             cmp.AddModelService(this);
         }
 
@@ -123,11 +122,11 @@ namespace Petsi.Services
         }
 
         /// <summary>
-        /// Given an item name, variation id, or catalog id, returns the catalog id
+        /// Given an item name, variation id, or catalog id, returns the category id
         /// </summary>
         /// <param name="itemIdentifier">an item name, variation id, or catalog id</param>
         /// <returns> returns the catalog id </returns>
-        public string GetCatalogId(string itemIdentifier)
+        public string GetCategoryId(string itemIdentifier)
         {
             string result = categoryMap[itemIdentifier];
             if (result == null)

@@ -21,7 +21,7 @@ namespace Petsi.Reports
             ReportBuilderFrontList builder = new ReportBuilderFrontList(report);
 
             //OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
-            OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetOrderModel();
+            OrderModelPetsi orderModel = ModelManagerSingleton.GetInstance().GetOrderModel();
 
             builder.BuildReport(await orderModel.GetFrontListDataAsync(targetDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), targetDate, null);
 
@@ -38,7 +38,7 @@ namespace Petsi.Reports
             ReportBuilderBackList builder = new ReportBuilderBackList(report);
 
             //OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
-            OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetOrderModel();
+            OrderModelPetsi orderModel = ModelManagerSingleton.GetInstance().GetOrderModel();
 
             if (endDate == null)//if endDate is null, report is for single day, targetDate is used in report header as targetDate
             {
@@ -69,7 +69,7 @@ namespace Petsi.Reports
             ReportBuilderBackListPie builder = new ReportBuilderBackListPie(report);
 
             //OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
-            OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetOrderModel();
+            OrderModelPetsi orderModel = ModelManagerSingleton.GetInstance().GetOrderModel();
 
             if (endDate == null)//if endDate is null, report is for single day, targetDate is used in report header as targetDate
             {
@@ -96,7 +96,7 @@ namespace Petsi.Reports
             ReportBuilderBackListPastry builder = new ReportBuilderBackListPastry(report);
 
             //OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
-            OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetOrderModel();
+            OrderModelPetsi orderModel = ModelManagerSingleton.GetInstance().GetOrderModel();
 
             if (endDate == null)//if endDate is null, report is for single day, targetDate is used in report header as targetDate
             {
@@ -123,7 +123,7 @@ namespace Petsi.Reports
             ReportBuilderWsDay builder = new ReportBuilderWsDay(report);
 
             //OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
-            OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetOrderModel();
+            OrderModelPetsi orderModel = ModelManagerSingleton.GetInstance().GetOrderModel();
 
             builder.BuildReport(orderModel.GetWsDayData(targetDate), targetDate, null);
 
@@ -140,7 +140,7 @@ namespace Petsi.Reports
             ReportBuilderWsDayName builder = new ReportBuilderWsDayName(report);
 
             //OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
-            OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetOrderModel();
+            OrderModelPetsi orderModel = ModelManagerSingleton.GetInstance().GetOrderModel();
 
             builder.BuildReport(orderModel.GetWsDayNameData(targetDate), targetDate, null);
             report.isLandscape = true;

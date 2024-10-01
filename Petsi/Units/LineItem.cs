@@ -1,6 +1,7 @@
 ﻿using Petsi.Managers;
 using Petsi.Services;
 using Petsi.Utils;
+using Square.Models;
 
 namespace Petsi.Units
 {
@@ -64,19 +65,10 @@ namespace Petsi.Units
             return item.CategoryId == x;
         }
 
-        public CatalogItemPetsi ToCatalogItemPetsi()
+        public CatalogItemPetsi ToCatalogItemPetsi(string categoryId)
         {
-            CatalogItemPetsi result = new CatalogItemPetsi();
-            //CatalogItemPetsi(string categoryId, string catalogObjectId, string itemName)
-                //ListDictionary Variations
-                //List(string varId, varName) VariationList
-                //~~~REGULAR?
-            //CategoryId
-            //CatalogObjId
-            //ItemName
-            //ListDictionary Variations
-            //List(string varId, varName) VariationList
-
+            CatalogItemPetsi result = new CatalogItemPetsi(categoryId, CatalogObjectId, ItemName);
+            result.VariationList.Add((VariationId, VariationName));
 
             return result;
         }

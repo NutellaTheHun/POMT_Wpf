@@ -27,7 +27,6 @@ namespace Petsi.Input
         {
             catalogItems = new List<CatalogItemPetsi>();
             Categories = new List<(string name, string id)>();
-            //SetModel(ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG));
             SetModel(ModelManagerSingleton.GetInstance().GetCatalogModel());
             this.squareClient = squareClient;
             fileBehavior = new FileBehavior(Identifiers.SQUARE_CATALOG_INPUT);

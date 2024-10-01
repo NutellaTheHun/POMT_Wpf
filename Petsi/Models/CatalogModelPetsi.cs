@@ -286,6 +286,7 @@ namespace Petsi.Models
             {
                 if(fileListing.fileName == Identifiers.MAIN_MODEL_CATALOG_FILE)
                 {
+                    SystemLogger.LogStatus("CMP LoadStartupFiles() executed");
                     StartupLoadCatalog(fileListing.filePath);
                     fileBehavior.DataListToFile(Identifiers.MAIN_MODEL_CATALOG_FILE, GetItems());
                     StartupService.Instance.Deregister(this);
@@ -298,9 +299,26 @@ namespace Petsi.Models
             string input;
             if (File.Exists(filePath))
             {
+                SystemLogger.LogStatus("CMP StartupLoadCatalog() executed");
                 input = File.ReadAllText(filePath);
                 items = JsonConvert.DeserializeObject<List<CatalogItemPetsi>>(input);
             }        
+        }
+
+        /// <summary>
+        /// Adds a new merch item to the catalog, otherwise no action is taken.
+        /// Merch Items from Square are transformed while parsing orders and need to be added to the catalog like a user generated item.
+        /// </summary>
+        /// <param name="merch"></param>
+        public void TryUpdateSquareMerchItem(LineItem merch)
+        {
+            foreach (CatalogItemPetsi item in items)
+            {
+                //item exists, nothing needs to be done.
+                if(item.CatalogObjectId == merch.CatalogObjectId) { return; }
+            }
+            items.Add(merch.ToCatalogItemPetsi(Identifiers.CATEGORY_MERCH));
+            UpdateModel();
         }
     }
 }
