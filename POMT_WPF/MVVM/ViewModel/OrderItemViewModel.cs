@@ -472,7 +472,7 @@ namespace POMT_WPF.MVVM.ViewModel
         {
             if (o is PetsiOrderLineItem lineItem)
             {
-                ConfirmationWindow confirmationWindow = new ConfirmationWindow(null);
+                ConfirmationWindow confirmationWindow = new ConfirmationWindow($"Delete {lineItem.ItemName}?");
                 confirmationWindow.ShowDialog();
                 if (confirmationWindow.ControlBool)
                 {
