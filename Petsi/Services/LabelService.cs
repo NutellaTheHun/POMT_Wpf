@@ -226,7 +226,7 @@ namespace Petsi.Services
             int count = 0;
             foreach (LabelPrintData printItem in inputList)
             {
-                count += printItem.GetStandardAmount();
+                count += printItem.Amount5;
             }
 
             if(count == 0) { return; }
