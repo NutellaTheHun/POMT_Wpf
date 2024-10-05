@@ -146,7 +146,7 @@ namespace Petsi.Input
             foreach (BatchRetrieveOrdersResponse bror in squareResponses)
             {
                 foreach (var orderItem in bror.Orders)
-                {
+                {/*
                     //To restrictive
                     if (orderItem.Fulfillments[0].Type == Identifiers.FULFILLMENT_PICKUP)
                     {
@@ -164,7 +164,7 @@ namespace Petsi.Input
                             continue;
                         }
                     }
-                    
+                    */
                     if (orderItem.Tenders != null)
                     {
                         if (orderItem.Tenders[0].Type == "CARD")
@@ -270,7 +270,7 @@ namespace Petsi.Input
                     sconeLi.VariationName = Identifiers.SIZE_REGULAR;
                    
                     //sconeLi.Quantity = (int.Parse(modifier.Quantity) * int.Parse(squareOrderlineItem.Quantity)).ToString();
-                    sconeLi.Quantity = modifier.Quantity;
+                    sconeLi.Quantity = squareOrderlineItem.Quantity;
                     lineItems.Add(sconeLi);
                 }
             }
