@@ -163,13 +163,14 @@ namespace Petsi.Models
                     Identifiers.ORDER_TYPE_SPECIAL, Identifiers.ORDER_TYPE_SQUARE, Identifiers.ORDER_TYPE_WHOLESALE };
                 fileBehavior.DataListToFile("OrderTypeSet", filedList);
             }
-            HashSet<string> result = new HashSet<string>(filedList);
             
+            HashSet<string> result = new HashSet<string>(filedList);
+            /*
             foreach (PetsiOrder o in Orders)
             {
                 result.Add(o.OrderType);
             }
-            result.Add(Identifiers.ORDER_TYPE_FARMERS);
+            result.Add(Identifiers.ORDER_TYPE_FARMERS);*/
             return result;
         }
 
@@ -341,9 +342,16 @@ namespace Petsi.Models
             }
             else
             {
+                /*
+                 where (order.IsPeriodic == true && DateTime.Parse(order.OrderDueDate).DayOfWeek == targetDate.Value.DayOfWeek)  //wholesale/periodic is weekly, so by day of week
+                       ||
+                      (order.IsPeriodic == false && DateTime.Parse(order.OrderDueDate).Date == targetDate.Value.Date)
+                 */
                 query = from order in filteredOrders
                         where order.OrderType == Identifiers.ORDER_TYPE_WHOLESALE
-                        where DateTime.Parse(order.OrderDueDate).DayOfWeek == targetDate.Value.DayOfWeek
+                        where (order.IsPeriodic == true && DateTime.Parse(order.OrderDueDate).DayOfWeek == targetDate.Value.DayOfWeek)  //wholesale/periodic is weekly, so by day of week
+                               ||
+                              (order.IsOneShot == true && DateTime.Parse(order.OrderDueDate).Date == targetDate.Value.Date)
                         select order;
             }
             return AggregatePetsiOrders(query.ToList()).OrderBy(item => item.ItemName).ToList();
@@ -363,7 +371,9 @@ namespace Petsi.Models
             {
                 query = from order in filteredOrders
                         where order.OrderType == Identifiers.ORDER_TYPE_WHOLESALE
-                        where DateTime.Parse(order.OrderDueDate).DayOfWeek == targetDate.Value.DayOfWeek
+                        where (order.IsPeriodic == true && DateTime.Parse(order.OrderDueDate).DayOfWeek == targetDate.Value.DayOfWeek)  //wholesale/periodic is weekly, so by day of week
+                              ||
+                              (order.IsOneShot == true && DateTime.Parse(order.OrderDueDate).Date == targetDate.Value.Date)
                         select order;
             }
 

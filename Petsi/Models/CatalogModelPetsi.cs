@@ -178,11 +178,16 @@ namespace Petsi.Models
 
         private void FinalizeMainModel()
         {
+            
             List<CatalogItemPetsi> mainList = fileBehavior.BuildDataListFile<CatalogItemPetsi>(Identifiers.MAIN_MODEL_CATALOG_FILE);
             List<CatalogItemPetsi> squareList = new List<CatalogItemPetsi>(GetItems());
             List<CatalogItemPetsi> newList;
             if (mainList != null) {newList = new List<CatalogItemPetsi>(mainList); }
-            else { newList = new List<CatalogItemPetsi>();}
+            else 
+            {
+                SystemLogger.LogStatus("CMP FinalizeMainModel(), MAIN_MODEL_CATALOG_FILE is null, catalog most likely reset.");
+                newList = new List<CatalogItemPetsi>();
+            }
  
 
             foreach(CatalogItemPetsi squareItem in squareList)

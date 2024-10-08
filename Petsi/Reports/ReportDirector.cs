@@ -12,7 +12,7 @@ namespace Petsi.Reports
         {
         }
 
-        public async Task<IXLWorkbook> CreateFrontList(DateTime? targetDate, bool isPrint, bool isExport, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer)
+        public async Task<IXLWorkbook> CreateFrontList(DateTime? targetDate, bool isPrint, bool isExport, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer, string? reportName)
         {
             SystemLogger.LogStatus($"CreateFrontlist start targetDate: {targetDate}" +
                 $"-isPrint {isPrint}, -isExport {isExport}, -isRetail {isRetail}, -isSquare {isSquare}, -isWholesale {isWholesale}, -isSpecial {isSpecial}, -isEzCater {isEzCater}, -isFarmer {isFarmer}");
@@ -25,11 +25,11 @@ namespace Petsi.Reports
 
             builder.BuildReport(await orderModel.GetFrontListDataAsync(targetDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), targetDate, null);
 
-            report.FinalizeReport();
+            report.FinalizeReport(reportName);
 
             return report.Wb;
         }
-        public async Task<IXLWorkbook> CreateBackList(DateTime? targetDate, DateTime? endDate, bool isPrint, bool isExport, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer)
+        public async Task<IXLWorkbook> CreateBackList(DateTime? targetDate, DateTime? endDate, bool isPrint, bool isExport, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer, string? reportName)
         {
             SystemLogger.LogStatus($"CreateBackList start startDate: {targetDate}, end date: {endDate}" +
                 $"-isPrint {isPrint}, -isExport {isExport}, -isRetail {isRetail}, -isSquare {isSquare}, -isWholesale {isWholesale}, -isSpecial {isSpecial}, -isEzCater {isEzCater}, -isFarmer {isFarmer}");
@@ -55,12 +55,12 @@ namespace Petsi.Reports
                 }
             }
 
-            report.FinalizeReport();
+            report.FinalizeReport(reportName);
 
             return report.Wb;
         }
 
-        public async Task<IXLWorkbook> CreatePieBackList(DateTime? targetDate, DateTime? endDate, bool isPrint, bool isExport, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer)
+        public async Task<IXLWorkbook> CreatePieBackList(DateTime? targetDate, DateTime? endDate, bool isPrint, bool isExport, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer, string? reportName)
         {
             SystemLogger.LogStatus($"CreatePieBackList start startDate: {targetDate}, end date: {endDate}" +
                 $"-isPrint {isPrint}, -isExport {isExport}, -isRetail {isRetail}, -isSquare {isSquare}, -isWholesale {isWholesale}, -isSpecial {isSpecial}, -isEzCater {isEzCater}, -isFarmer {isFarmer}" );
@@ -83,12 +83,12 @@ namespace Petsi.Reports
                 }
             }
 
-            report.FinalizeReport();
+            report.FinalizeReport(reportName);
 
             return report.Wb;
         }
 
-        public async Task<IXLWorkbook> CreatePastryBackList(DateTime? targetDate, DateTime? endDate, bool isPrint, bool isExport, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer)
+        public async Task<IXLWorkbook> CreatePastryBackList(DateTime? targetDate, DateTime? endDate, bool isPrint, bool isExport, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer, string? reportName)
         {
             SystemLogger.LogStatus($"CreatePastryBackList start startDate: {targetDate}, end date: {endDate}");
 
@@ -110,11 +110,11 @@ namespace Petsi.Reports
                 }
             }
 
-            report.FinalizeReport();
+            report.FinalizeReport(reportName);
 
             return report.Wb;
         }
-        public IXLWorkbook CreateWsDay(DateTime? targetDate, bool isPrint, bool isExport)
+        public IXLWorkbook CreateWsDay(DateTime? targetDate, bool isPrint, bool isExport, string? reportName)
         {
 
             SystemLogger.LogStatus($"CreateWsDay start startDate: {targetDate}, isPrint-{isPrint} isExport-{isExport}");
@@ -127,12 +127,12 @@ namespace Petsi.Reports
 
             builder.BuildReport(orderModel.GetWsDayData(targetDate), targetDate, null);
 
-            report.FinalizeReport();
+            report.FinalizeReport(reportName);
 
             return report.Wb;
         }
 
-        public IXLWorkbook CreateWsDayName(DateTime? targetDate, bool isPrint, bool isExport)
+        public IXLWorkbook CreateWsDayName(DateTime? targetDate, bool isPrint, bool isExport, string? reportName)
         {
             SystemLogger.LogStatus($"CreateWsDayName start startDate: {targetDate}, isPrint-{isPrint} isExport-{isExport}");
 
@@ -144,7 +144,7 @@ namespace Petsi.Reports
 
             builder.BuildReport(orderModel.GetWsDayNameData(targetDate), targetDate, null);
             report.isLandscape = true;
-            report.FinalizeReport();
+            report.FinalizeReport(reportName);
 
             return report.Wb;
         }

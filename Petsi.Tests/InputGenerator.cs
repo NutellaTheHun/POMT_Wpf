@@ -102,44 +102,139 @@ namespace Petsi.Tests
             }
             return result;
         }
-
+        public static List<string> GetSpringPieIds()
+        {
+            return new List<string> {
+            //MUD*
+            "5EQVRWOQZOVWRXYVMXEEEK42",
+            //CBP*
+            "UBPPQ6W6QJE2EUNXMXE6CYGY",
+            //PECAN*
+            "Y4RKXZ2QML43POAYWKHB53FE",
+            //MIX*
+            "LRJGUOIJUGOQULSFVYMS7QNA",
+            //CHERRY*
+            "AI3FD2KHMNOM4RXQ323OSVLK",
+            //APP CRUMB*
+            "5FN34FCDEUPFGWZVO5J62MM4",
+            //APPLE*
+            "XI3XCRCDMPOPILIMWSMPHXGZ",
+            //BLUE*
+            "U2JEQPZ4NIIPI4KTSHHTDDSR",
+            //STRAWBARB*
+            "JZYB6XOSI7JF44IESBHYVBKH",
+            //KEYLIME*
+            "X2BK7GH32XDCSZHYB6C5S7O6",
+            //BACON*
+            "HDDJLWVTEFMHOMFYLQELEPCN",
+            //Potato Leek
+            "PP3CF56MKXHKOK2PNRB3MHU6",
+            //POTM (mango lassi)
+            "HXJX3VRXPQCAMCLSRDJDLEUB",
+            //vegan apple*
+            "QBZPGPJRNZOG4TKKXLJ3YCCR",
+            //vegan blue*
+            "BDPD6EWKRQSQKCHN7QISIQZ4",
+            "BDPD6EWKRQSQKCHN7QISIQZ4",
+            //vegan cherry*
+            "S5M27M27YV35H5TRKWHMIFOB",
+            //vegan mix*
+            "VUMTY3Q7442HWKJG22ZTLXL4",
+            };
+        }
         public static List<string> GetSummerPieIds()
         {
             return new List<string> {
-            //MUD
+            //MUD*
             "5EQVRWOQZOVWRXYVMXEEEK42",
-            //CBP
+            //CBP*
             "UBPPQ6W6QJE2EUNXMXE6CYGY",
-            //PECAN
+            //PECAN*
             "Y4RKXZ2QML43POAYWKHB53FE",
-            //MIX
+            //MIX*
             "LRJGUOIJUGOQULSFVYMS7QNA",
-            //CHERRY
+            //CHERRY*
             "AI3FD2KHMNOM4RXQ323OSVLK",
-            //APP CRUMB
+            //APP CRUMB*
             "5FN34FCDEUPFGWZVO5J62MM4",
-            //APPLE
+            //APPLE*
             "XI3XCRCDMPOPILIMWSMPHXGZ",
-            //PEACH
+            //PEACH*
             "WAPE6OUWHKXKLYVAIHZN2SSO",
-            //PEACH BLACK
+            //PEACH BLACK*
             "RRFJV23GCJZCWEPOTTFGRP22",
-            //BLUE
+            //BLUE*
             "U2JEQPZ4NIIPI4KTSHHTDDSR",
             //LEMON
             "LPM5UVEKCHV5RERZJYUJMVQE",
-            //STRAWBARB
+            //STRAWBARB*
             "JZYB6XOSI7JF44IESBHYVBKH",
-            //KEYLIME
+            //KEYLIME*
             "X2BK7GH32XDCSZHYB6C5S7O6",
-            //BACON
+            //BACON*
             "HDDJLWVTEFMHOMFYLQELEPCN",
-            //MOZZ
+            //MOZZ*
             "PCFQ4OLXXSFNJZ5VP7O6SBMP",
             //JALAPENO
             "WB7XAPY5CIR4OBVGQU3HZ5IW",
             //POTM (mango lassi)
-            "HXJX3VRXPQCAMCLSRDJDLEUB"
+            "HXJX3VRXPQCAMCLSRDJDLEUB",
+            //vegan apple
+            "QBZPGPJRNZOG4TKKXLJ3YCCR",
+            //vegan blue
+            "BDPD6EWKRQSQKCHN7QISIQZ4",
+            //vegan cherry
+            "S5M27M27YV35H5TRKWHMIFOB",
+            //vegan mix
+            "VUMTY3Q7442HWKJG22ZTLXL4",
+            };
+        }
+
+        public static List<string> GetFallPieIds()
+        {
+            return new List<string> {
+            //MUD*
+            "5EQVRWOQZOVWRXYVMXEEEK42",
+            //CBP*
+            "UBPPQ6W6QJE2EUNXMXE6CYGY",
+            //PECAN*
+            "Y4RKXZ2QML43POAYWKHB53FE",
+            //MIX*
+            "LRJGUOIJUGOQULSFVYMS7QNA",
+            //PUMPKIN
+            "ZPUCJUQEX6BBR2TKB746ETMD",
+            //SALTY
+            "HFGEU3EQQ266MTQ4S7IR4B2S",
+            //SWEEP
+            "4VOFPSRMWXKGYYIAB5BKC45X",
+            //SPP
+            "JMQJZLPVKI5VZ2MICZC7DGES",
+            //CHERRY*
+            "AI3FD2KHMNOM4RXQ323OSVLK",
+            //APP CRUMB*
+            "5FN34FCDEUPFGWZVO5J62MM4",
+            //APC
+            "5VU754PEJGTICGNKS26TO476",
+            //APPLE*
+            "XI3XCRCDMPOPILIMWSMPHXGZ",
+            //BLUE*
+            "U2JEQPZ4NIIPI4KTSHHTDDSR",
+            //BACON*
+            "HDDJLWVTEFMHOMFYLQELEPCN",
+            //Ham
+            "LTLXE3ZSP6DACWGUSMQ5KDJE",
+            //VEG
+            "REAN6G52MNMAXGRNLDWFVLBT",
+            //POTM (mango lassi)
+            "HXJX3VRXPQCAMCLSRDJDLEUB",
+            //vegan apple*
+            "QBZPGPJRNZOG4TKKXLJ3YCCR",
+            //vegan blue*
+            "BDPD6EWKRQSQKCHN7QISIQZ4",
+            //vegan cherry*
+            "S5M27M27YV35H5TRKWHMIFOB",
+            //vegan mix*
+            "VUMTY3Q7442HWKJG22ZTLXL4",
             };
         }
 
@@ -148,11 +243,11 @@ namespace Petsi.Tests
             return new List<string>
             {
                 //TRIPLE
-                "87b878ad-a45a-44f3-a1b3-8acdc03a8062",
+                "userbased-18b89386-745e-44d0-90cd-fd68f9895bf2",
                 //CURRANT
-                "fd3eba39-067b-422f-8ccc-01036fabaa13",
+                "userbased-fe4ca24e-7236-433d-8d15-308ebe601f00",
                 //LEMON
-                "12e6b7e0-c2fb-4ad4-be3b-1d960bd63cfd",
+                "userbased-ab7383e1-38f0-46f2-9abc-403a8ddaf538",
                 //BISC
                 "HPZP3O276SY467XNTYSTWGKM",
                 //BLUE
@@ -173,6 +268,10 @@ namespace Petsi.Tests
                 "FURQUXJFPZPPPFBIIFZQZELM",
                 //BRIOCHE(everything but the bagel)
                 "EQXEL4IBTZUNDNZVLGVDWR3K",
+                //CORN
+                "2XFLPIDBCKFVMO4MRAQHELJW",
+                //SAVORY CORN
+                "NLKDEWMDHTC2CZRRHIT3KQBP",
             };
         }
 

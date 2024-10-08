@@ -79,7 +79,7 @@ namespace Petsi.Tests.ReportTests.BackListPastry
         }
 
         [Fact]
-        public void BackListPieTest_GeneratedOrder()
+        public void BackListPastryTest_GeneratedOrder()
         {
 
             DateTime start = DateTime.Today.Date;

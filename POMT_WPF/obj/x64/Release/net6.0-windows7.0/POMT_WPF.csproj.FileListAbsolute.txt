@@ -189,3 +189,6 @@ D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\MVVM\View\Squar
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\MVVM\View\SquareKeyMissingWindow.baml
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\MVVM\View\ExceptionHandlerShowWindow.g.cs
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\MVVM\View\ExceptionHandlerShowWindow.baml
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\Styles\DataGrid\NewItemWindowDgRowStyle.baml
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\MVVM\View\TakeBakeMapWindow.g.cs
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\MVVM\View\TakeBakeMapWindow.baml

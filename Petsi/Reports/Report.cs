@@ -56,16 +56,24 @@ namespace Petsi.Reports
                 TableFormat.RangeAlignment(item, "left", "B1:B5");
             }
         }
-        public void FinalizeReport()
-        { 
-            if(Wb.Worksheets.Count > 0)
+        public void FinalizeReport(string? reportName)
+        {
+            if (Wb.Worksheets.Count > 0)
             {
                 FinalizeTotalPageCount();
                 FormatReportHeader();
                 ReportUtil.IncrementReportId(ReportId);
                 CaptureEnvironment();
 
-                ReportUtil.Save(Wb, PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_REPORT_EXPORT_PATH) + "\\" + ReportName + ReportId);
+                if (reportName == null)
+                {
+                    ReportUtil.Save(Wb, PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_REPORT_EXPORT_PATH) + "\\" + ReportName + ReportId);
+                }
+                else
+                {
+                    ReportUtil.Save(Wb, PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_REPORT_EXPORT_PATH) + "\\" + reportName);
+                }
+                
                
                 if(isPrint)
                 {

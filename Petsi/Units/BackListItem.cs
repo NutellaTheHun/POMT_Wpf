@@ -176,7 +176,7 @@ namespace Petsi.Units
         }
         public static BackListItem PARBAKES()//define parbakes?
         {
-            return new BackListItem("PARBAKES", Identifiers.CATEGORY_POTM);
+            return new BackListItem("PARBAKES", Identifiers.CATEGORY_PARBAKE);
         }
         public static BackListItem V_APPLE()
         {
@@ -214,15 +214,15 @@ namespace Petsi.Units
         }
         public static BackListItem CURRANT()//Scone flavors dont exist in catalog, catalog id is built in SquareOrderInput.ParseOrderLineItem()
         {
-            return new BackListItem("CURRANT", "fd3eba39-067b-422f-8ccc-01036fabaa13");
+            return new BackListItem("CURRANT", "userbased-fe4ca24e-7236-433d-8d15-308ebe601f00");
         }
         public static BackListItem LEMON_SCONE()
         {
-            return new BackListItem("LEMON", "12e6b7e0-c2fb-4ad4-be3b-1d960bd63cfd");
+            return new BackListItem("LEMON", "userbased-ab7383e1-38f0-46f2-9abc-403a8ddaf538");
         }
         public static BackListItem TRIPLE()
         {
-            return new BackListItem("TRIPLE", "87b878ad-a45a-44f3-a1b3-8acdc03a8062");
+            return new BackListItem("TRIPLE", "userbased-18b89386-745e-44d0-90cd-fd68f9895bf2");
         }
         public static BackListItem BISCUIT()
         {
@@ -275,6 +275,10 @@ namespace Petsi.Units
         public static BackListItem CORN()
         {
             return new BackListItem("CORN", "2XFLPIDBCKFVMO4MRAQHELJW");
+        }
+        public static BackListItem SAVORY_CORN()
+        {
+            return new BackListItem("SAVORY CORN", "NLKDEWMDHTC2CZRRHIT3KQBP");
         }
         public static BackListItem BLUE_MUFFIN()
         {
