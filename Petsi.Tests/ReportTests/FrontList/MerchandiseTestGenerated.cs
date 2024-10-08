@@ -87,7 +87,7 @@ namespace Petsi.Tests.ReportTests.FrontList
         {
             DateTime start = DateTime.Parse("10/25/2024"); //if date is before current date, square order input will skip the order and nothing will be processed.
             IXLWorkbook result = director.CreateFrontList(start,
-                false, true, true, true, true, true, true, true).Result;
+                false, true, true, true, true, true, true, true, "FlMerchGenerated").Result;
 
             XLWorkbook expected = new XLWorkbook("D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\ExpectedCases\\FrontlistMerchandiseGeneratedResult.xlsx");
             List<string> mismatches = new List<string>();

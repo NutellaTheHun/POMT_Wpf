@@ -84,7 +84,7 @@ namespace Petsi.Tests.ReportTests.BackListPastry
 
             DateTime start = DateTime.Today.Date;
             IXLWorkbook result = director.CreatePastryBackList(start, null,
-                false, true, true, true, true, true, true, true).Result;
+                false, true, true, true, true, true, true, true, "BlPastrySingleGenerated").Result;
 
             XLWorkbook expected = new XLWorkbook("D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\ExpectedCases\\BackListPastrySingleDayGeneratedResult.xlsx");
             List<string> mismatches = new List<string>();

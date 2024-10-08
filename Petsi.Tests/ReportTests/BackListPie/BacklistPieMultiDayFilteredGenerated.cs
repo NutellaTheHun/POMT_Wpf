@@ -93,8 +93,8 @@ namespace Petsi.Tests.ReportTests.BackListPie
                 true, //isWholesale
                 true, //isSpecial
                 true, //isEzCater
-                true //isFarmer
-                ).Result;
+                true, //isFarmer
+                "BlPieMultiFILTER_Sq").Result;
 
             XLWorkbook expected = new XLWorkbook("D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\ExpectedCases\\BacklistPieMultiDayGenerated_FilterSquare_Result.xlsx");
             List<string> mismatches = new List<string>();
@@ -124,8 +124,8 @@ namespace Petsi.Tests.ReportTests.BackListPie
                 false, //isWholesale
                 true, //isSpecial
                 true, //isEzCater
-                true //isFarmer
-                ).Result;
+                true, //isFarmer
+                 "BlPieMultiFILTER_ws").Result;
 
             XLWorkbook expected = new XLWorkbook("D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\ExpectedCases\\BacklistPieMultiDayGenerated_Whole_Result.xlsx");
             List<string> mismatches = new List<string>();
@@ -155,8 +155,8 @@ namespace Petsi.Tests.ReportTests.BackListPie
                 true, //isWholesale
                 false, //isSpecial
                 true, //isEzCater
-                true //isFarmer
-                ).Result;
+                true, //isFarmer
+                 "BlPieMultiFILTER_Spec").Result;
 
             XLWorkbook expected = new XLWorkbook("D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\ExpectedCases\\BacklistPieMultiDayGenerated_FilterSpecial_Result.xlsx");
             List<string> mismatches = new List<string>();

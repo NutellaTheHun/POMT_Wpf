@@ -87,7 +87,7 @@ namespace Petsi.Tests.ReportTests.BackListPie
             DateTime start = DateTime.Parse("10/1/2024");
             DateTime end = DateTime.Parse("10/8/2024");
             IXLWorkbook result = director.CreatePieBackList(start, end,
-                false, true, true, true, true, true, true, true).Result;
+                false, true, true, true, true, true, true, true, "BlPieMultidayGenerated").Result;
 
             XLWorkbook expected = new XLWorkbook("D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\ExpectedCases\\BackListPieMultiDayGeneratedResult.xlsx");
             List<string> mismatches = new List<string>();
