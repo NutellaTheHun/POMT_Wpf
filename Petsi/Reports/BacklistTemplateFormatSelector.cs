@@ -20,7 +20,7 @@ namespace Petsi.Reports
         }
         public static BacklistTemplateFormatSelector GetInstance()
         {
-            if(_instance == null)
+            if (_instance == null)
             {
                 _instance = new BacklistTemplateFormatSelector();
             }
@@ -61,7 +61,7 @@ namespace Petsi.Reports
         private void InitTemplates()
         {
             templates = fileBehavior.BuildDataListFile<(string, List<bli>)>("templates");
-            if(templates == null)
+            if (templates == null)
             {
                 templates = new List<(string name, List<bli> template)>
                 {
@@ -73,10 +73,10 @@ namespace Petsi.Reports
             }
         }
 
-        public (string name,List<BackListItem> template) BootSummerFormat()
+        public (string name, List<BackListItem> template) BootSummerFormat()
         {
 
-            return("Summer Pies", new List<BackListItem>
+            return ("Summer Pies", new List<BackListItem>
             {
                 bli.MUD(),
                 bli.CBP(),
@@ -89,13 +89,13 @@ namespace Petsi.Reports
                 bli.PEACH_BLACK(),
                 bli.BLUE(),
                 bli.LEMON_CHESS_LAV(),
-                bli.KEY_LIME(), 
+                bli.KEY_LIME(),
                 bli.BACON(),
                 bli.MOZZ(),
                 bli.JALAPENO(),
                 bli.POTM()
             });
-            
+
         }
 
         public (string name, List<BackListItem> template) BootPieFormat()
@@ -170,10 +170,10 @@ namespace Petsi.Reports
                 templates = JsonConvert.DeserializeObject<List<(string name, List<bli> template)>>(input);
             }
         }
-    }
-}
-/*
-     public static List<BackListItem> GetSummerFormat()
+
+
+
+        public static List<BackListItem> GetTestSummerPieTemplate()
         {
             return new List<BackListItem>
             {
@@ -188,17 +188,18 @@ namespace Petsi.Reports
                 bli.PEACH_BLACK(),
                 bli.BLUE(),
                 bli.LEMON(),
-                bli.KEY_LIME(), 
+                bli.KEY_LIME(),
+                bli.STRAWBARB(),
+                bli.STRAWOAT(),
                 bli.BACON(),
                 bli.MOZZ(),
                 bli.JALAPENO(),
-                bli.VEGAN(),
                 bli.POTM()
             };
-            
+
         }
 
-        public static List<BackListItem> GetStandardFormat()
+        public static List<BackListItem> GetTestSpringPieTemplate()
         {
             return new List<BackListItem>
             {
@@ -212,40 +213,62 @@ namespace Petsi.Reports
                 bli.BLUE(),
                 bli.STRAWBARB(),
                 bli.STRAWOAT(),
-                bli.VEGAN(),
-                bli.LEMON(),
                 bli.KEY_LIME(),
                 bli.POTM(),
                 bli.BACON(),
                 bli.POTATO(),
-                bli.ARTICHOKE(),
-                bli.HAM(),
-                bli.PARBAKES(),
-                bli.STUFF_BRIOCHE(),
-                bli.GARLIC_BRIOCHE(),
-                bli.ALMOND_BRIOCHE()
+                bli.PARBAKES()
             };
 
         }
 
-        public static List<BackListItem> GetPastryFormat()
+        public static List<BackListItem> GetTestFallPieTemplate()
         {
             return new List<BackListItem>
             {
-                bli.CURRANT(),
-                bli.LEMON(),
-                bli.TRIPLE(),
-                bli.BISCUIT(),
-                bli.MUFFINS(),
-                bli.BRIOCHE(),
-                bli.BUNS(),
-                bli.CCHIP(),
-                bli.SNICK(),
-                bli.PB(),
-                bli.GINGER(),
-                bli.BSA(),
-                bli.OAT(),
-                bli.MOCHA()
+                bli.MUD(),//
+                bli.CBP(),//
+                bli.PECAN(),//
+                bli.MIX(),//
+                bli.PUMP(),
+                bli.SALTY(),
+                bli.SWEEP(),
+                bli.SPP(),
+                bli.CHERRY(),//
+                bli.APP_CRUMB(),//
+                bli.APC(),
+                bli.APPLE(),//
+                bli.BLUE(),//
+                bli.POTM(),
+                bli.BACON(),//
+                bli.HAM(),
+                bli.VEG(),
+                bli.PARBAKES()
+            };
+
+        }
+
+        public static List<BackListItem> GetTestPastryTemplate()
+        {
+            return new List<BackListItem>
+            {
+                bli.CURRANT(),//
+                bli.LEMON(),//
+                bli.TRIPLE(),//
+                bli.BISCUIT(),//
+                bli.FRESH_BLUE(),//
+                bli.BUNS(),//-----
+                bli.CCHIP(),//
+                bli.SNICK(),//
+                bli.PB(),//
+                bli.GINGER(),//
+                bli.DSA(),//
+                bli.OAT(),//
+                bli.MOCHA(),//
+                bli.CORN(),
+                bli.SAVORY_CORN(),
+                //bli.BRIOCHE(),
             };
         }
- */
+    }
+ }

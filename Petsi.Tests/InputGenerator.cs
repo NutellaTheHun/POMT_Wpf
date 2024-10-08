@@ -123,6 +123,8 @@ namespace Petsi.Tests
             "U2JEQPZ4NIIPI4KTSHHTDDSR",
             //STRAWBARB*
             "JZYB6XOSI7JF44IESBHYVBKH",
+            //STRAWOAT
+            "FX4SNQX4JGQ4VQFMROVGUTRO",
             //KEYLIME*
             "X2BK7GH32XDCSZHYB6C5S7O6",
             //BACON*
@@ -134,7 +136,6 @@ namespace Petsi.Tests
             //vegan apple*
             "QBZPGPJRNZOG4TKKXLJ3YCCR",
             //vegan blue*
-            "BDPD6EWKRQSQKCHN7QISIQZ4",
             "BDPD6EWKRQSQKCHN7QISIQZ4",
             //vegan cherry*
             "S5M27M27YV35H5TRKWHMIFOB",
@@ -169,6 +170,8 @@ namespace Petsi.Tests
             "LPM5UVEKCHV5RERZJYUJMVQE",
             //STRAWBARB*
             "JZYB6XOSI7JF44IESBHYVBKH",
+            //STRAWOAT
+            "FX4SNQX4JGQ4VQFMROVGUTRO",
             //KEYLIME*
             "X2BK7GH32XDCSZHYB6C5S7O6",
             //BACON*

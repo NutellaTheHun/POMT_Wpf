@@ -166,10 +166,12 @@ namespace Petsi.Units
         {
             return new BackListItem("ARTICHOKE", "HVNK43IHDPX3QN6WSBJHSCAZ");
         }
+        /*
         public static BackListItem VEGAN()//vegan on list?
         {
             return new BackListItem("VEGAN", "not implemented");
         }
+        */
         public static BackListItem POTM()//define potms?
         {
             return new BackListItem("POTM", Identifiers.CATEGORY_POTM);
@@ -198,19 +200,23 @@ namespace Petsi.Units
         {
             return new BackListItem("VEGAN Straw", "ZVLI2WL7CMEHAQL6I74FQ4QT");
         }
+        public static BackListItem LEMON()
+        {
+            return new BackListItem("LEMON", "LPM5UVEKCHV5RERZJYUJMVQE");
+        }
+        public static BackListItem APC()
+        {
+            return new BackListItem("APC", "5VU754PEJGTICGNKS26TO476");
+        }
+        public static BackListItem VEG()
+        {
+            return new BackListItem("VEG", "REAN6G52MNMAXGRNLDWFVLBT");
+        }
         #endregion PIE
         #region PASTRY
-        public static BackListItem STUFF_BRIOCHE()
-        {
-            return new BackListItem("Stuffed Brioche", "not implemented");
-        }
-        public static BackListItem GARLIC_BRIOCHE()
-        {
-            return new BackListItem("Garlic Brioche", "not implemented");
-        }
-        public static BackListItem ALMOND_BRIOCHE()
-        {
-            return new BackListItem("Almond Brioche", "not implemented");
+        public static BackListItem BRIOCHE()
+        { //Everything Brioche
+            return new BackListItem("BRIOCHE", "EQXEL4IBTZUNDNZVLGVDWR3K");
         }
         public static BackListItem CURRANT()//Scone flavors dont exist in catalog, catalog id is built in SquareOrderInput.ParseOrderLineItem()
         {
@@ -228,13 +234,9 @@ namespace Petsi.Units
         {
             return new BackListItem("BISCUIT", "HPZP3O276SY467XNTYSTWGKM");
         }
-        public static BackListItem MUFFINS()
+        public static BackListItem FRESH_BLUE()
         {
-            return new BackListItem("MUFFINS", "not implemented");
-        }
-        public static BackListItem BRIOCHE()
-        {
-            return new BackListItem("BRIOCHE", "not implemented");
+            return new BackListItem("BLUE", "N6XRIRRLZB5Q6LKOGC4ZNZ3W");
         }
         public static BackListItem BUNS()//is this a general term or specifically Sweep Bun?
         {
