@@ -120,9 +120,6 @@ namespace Petsi.Reports
                 bli.ARTICHOKE(),
                 bli.HAM(),
                 bli.PARBAKES(),
-                bli.STUFF_BRIOCHE(),
-                bli.GARLIC_BRIOCHE(),
-                bli.ALMOND_BRIOCHE()
             });
 
         }
@@ -135,7 +132,6 @@ namespace Petsi.Reports
                 bli.LEMON_SCONE(),
                 bli.TRIPLE(),
                 bli.BISCUIT(),
-                bli.MUFFINS(),
                 bli.BRIOCHE(),
                 bli.BUNS(),
                 bli.CCHIP(),
@@ -170,8 +166,6 @@ namespace Petsi.Reports
                 templates = JsonConvert.DeserializeObject<List<(string name, List<bli> template)>>(input);
             }
         }
-
-
 
         public static List<BackListItem> GetTestSummerPieTemplate()
         {
@@ -226,21 +220,21 @@ namespace Petsi.Reports
         {
             return new List<BackListItem>
             {
-                bli.MUD(),//
-                bli.CBP(),//
-                bli.PECAN(),//
-                bli.MIX(),//
+                bli.MUD(),
+                bli.CBP(),
+                bli.PECAN(),
+                bli.MIX(),
                 bli.PUMP(),
                 bli.SALTY(),
                 bli.SWEEP(),
                 bli.SPP(),
-                bli.CHERRY(),//
-                bli.APP_CRUMB(),//
+                bli.CHERRY(),
+                bli.APP_CRUMB(),
                 bli.APC(),
-                bli.APPLE(),//
-                bli.BLUE(),//
+                bli.APPLE(),
+                bli.BLUE(),
                 bli.POTM(),
-                bli.BACON(),//
+                bli.BACON(),
                 bli.HAM(),
                 bli.VEG(),
                 bli.PARBAKES()
@@ -252,22 +246,21 @@ namespace Petsi.Reports
         {
             return new List<BackListItem>
             {
-                bli.CURRANT(),//
-                bli.LEMON(),//
-                bli.TRIPLE(),//
-                bli.BISCUIT(),//
-                bli.FRESH_BLUE(),//
-                bli.BUNS(),//-----
-                bli.CCHIP(),//
-                bli.SNICK(),//
-                bli.PB(),//
-                bli.GINGER(),//
-                bli.DSA(),//
-                bli.OAT(),//
-                bli.MOCHA(),//
+                bli.CURRANT(),
+                bli.LEMON(),
+                bli.TRIPLE(),
+                bli.BISCUIT(),
+                bli.FRESH_BLUE(),
+                bli.CCHIP(),
+                bli.SNICK(),
+                bli.PB(),
+                bli.GINGER(),
+                bli.DSA(),
+                bli.OAT(),
+                bli.MOCHA(),
                 bli.CORN(),
                 bli.SAVORY_CORN(),
-                //bli.BRIOCHE(),
+                bli.BRIOCHE(),
             };
         }
     }

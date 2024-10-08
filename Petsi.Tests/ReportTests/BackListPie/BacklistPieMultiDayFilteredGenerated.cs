@@ -118,7 +118,6 @@ namespace Petsi.Tests.ReportTests.BackListPie
             DateTime end = DateTime.Parse("10/8/2024");
             IXLWorkbook result = director.CreatePieBackList(start, end,
                 false, true,
-
                 true, //isRetail
                 true, //isSquare
                 false, //isWholesale

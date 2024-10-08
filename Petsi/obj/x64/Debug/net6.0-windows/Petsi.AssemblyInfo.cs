@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Petsi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+90c8791fff163630aef5235ea454de24f1ae0bee")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+07aa25217a96139fd8ddd8b5eab2741c1fd9ac73")]
 [assembly: System.Reflection.AssemblyProductAttribute("Petsi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Petsi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
