@@ -70,7 +70,6 @@ namespace Petsi.Services
             OrderModelPetsi omp = GetOrderModel();
 
             List<LabelPrintData> printList = LoadPrintList(omp.GetWsDayData(targetDate));
-            PrintCare(printList);
             PrintCutie(printList);
             SystemLogger.LogStatus("Label Service Print2x1 complete");
         }
