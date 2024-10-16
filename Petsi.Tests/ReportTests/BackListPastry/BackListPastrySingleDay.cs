@@ -83,7 +83,7 @@ namespace Petsi.Tests.ReportTests.BackListPastry
             DateTime start = DateTime.Parse("9/14/2024");
 
             IXLWorkbook result = director.CreatePastryBackList(start, null,
-                false, true, true, true, true, true, true, true, "BlPastrySingleDay").Result;
+                false, true, true, true, true, true, true, true, "BlPastrySingleDay", BacklistTemplateFormatSelector.GetTestPastryTemplate()).Result;
 
             Assert.NotNull(result);
         }

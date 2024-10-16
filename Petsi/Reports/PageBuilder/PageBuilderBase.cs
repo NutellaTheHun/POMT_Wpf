@@ -17,7 +17,7 @@ namespace Petsi.Reports.PageBuilder
         {
             _tables = new List<TableBase>();
             _report = report;
-            ConfigureTables();
+            //ConfigureTables();
             ConfigureMaxRows();
             maxContentLineCount = GetPageContentMaxLineCount();
         }

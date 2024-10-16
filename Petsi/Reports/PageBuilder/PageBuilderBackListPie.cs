@@ -5,8 +5,11 @@ namespace Petsi.Reports.PageBuilder
 {
     public class PageBuilderBackListPie : PageBuilderBase
     {
-        public PageBuilderBackListPie(Report report) : base(report)
+        List<BackListItem>? Template;
+        public PageBuilderBackListPie(Report report, List<BackListItem>? template) : base(report)
         {
+            Template = template;
+            ConfigureTables();
         }
 
         /// <summary>
@@ -57,7 +60,7 @@ namespace Petsi.Reports.PageBuilder
 
         protected override void ConfigureTables()
         {
-            _tables.Add(new TableBackListPie((7,2), 5, 32));
+            _tables.Add(new TableBackListPie((7,2), 5, 32, Template));
         }
     }
 }

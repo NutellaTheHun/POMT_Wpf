@@ -8,6 +8,7 @@ namespace Petsi.Reports.ReportBuilder
         /// <inheritdoc/>
         public ReportBuilderFrontList(Report report) : base(report)
         {
+            ConfigureBuilders();
         }
 
         protected override void ConfigureBuilders()

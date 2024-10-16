@@ -9,17 +9,21 @@ namespace Petsi.Reports.TableBuilder
     /// <inheritdoc/>
     public class TableBackListPie : TableBase
     {
+        List<BackListItem> listFormat;
         /// <inheritdoc/>
-        public TableBackListPie((int row, int col) rootPosition, int maxColumns, int maxRows) : base(rootPosition, maxColumns, maxRows)
+        public TableBackListPie((int row, int col) rootPosition, int maxColumns, int maxRows, List<BackListItem>? template) : base(rootPosition, maxColumns, maxRows)
         {
-
+            listFormat = template;
         }
 
         public override void BuildTable<T>(IXLWorksheet page, List<T> tableOrders, DateTime reportDate, string? recipient)
         {
             List<PetsiOrderLineItem> items = tableOrders as List<PetsiOrderLineItem>;
             List<PetsiOrderLineItem> itemTracker = new List<PetsiOrderLineItem>(items);
-            List<BackListItem> listFormat = ReportTemplateService.Instance().GetActiveBacklistPieTemplate();
+            if (listFormat == null){
+                listFormat = ReportTemplateService.Instance().GetActiveBacklistPieTemplate();
+            }
+            
 
             bool veganPresent5 = false; bool unbakedPresent5 = false; bool veganUnbaked5 = false;
             bool veganPresent8 = false; bool unbakedPresent8 = false; bool veganUnbaked8 = false;

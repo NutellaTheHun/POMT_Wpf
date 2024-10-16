@@ -10,7 +10,7 @@ namespace Petsi.Reports.ReportBuilder
         /// <inheritdoc/>
         public ReportBuilderWsDayName(Report report) : base(report)
         {
-
+            ConfigureBuilders();
         }
 
         protected override void ConfigureBuilders()

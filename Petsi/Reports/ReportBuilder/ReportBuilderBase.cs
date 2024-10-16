@@ -28,7 +28,7 @@ namespace Petsi.Reports.ReportBuilder
         {
             _report = report;
             pageBuilders = new List<PageBuilderBase>();
-            ConfigureBuilders();
+            //ConfigureBuilders();
         }
         
         public virtual XLWorkbook BuildReport<T>(List<T> inputList, DateTime? targetDate, DateTime? targetRangeEndDate)

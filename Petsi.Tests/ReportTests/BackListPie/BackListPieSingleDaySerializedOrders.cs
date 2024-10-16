@@ -82,7 +82,9 @@ namespace Petsi.Tests.ReportTests.BackListPie
 
             DateTime start = DateTime.Parse("9/14/2024");
             IXLWorkbook result = director.CreatePieBackList(start, null,
-                false, true, true, true, true, true, true, true, "BlPieSingleSerialized").Result;
+                false, true, true, true, true, true, true, true, 
+                "BlPieSingleSerialized",
+                BacklistTemplateFormatSelector.GetTestSummerPieTemplate()).Result;
 
             XLWorkbook expected = new XLWorkbook("D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\ExpectedCases\\BackListPieSingleDayResult.xlsx");
             List<string> mismatches = new List<string>();

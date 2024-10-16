@@ -7,6 +7,7 @@ namespace Petsi.Reports.PageBuilder
         private string _day;
         public PageBuilderWsDay(Report report) : base(report)
         {
+            ConfigureTables();
         }
 
         public override int GetItemLineCount<T>(T item)

@@ -8,6 +8,7 @@ namespace Petsi.Reports.PageBuilder
     {
         public PageBuilderFrontListNotes(Report report) : base(report)
         {
+            ConfigureTables();
         }
 
         public override int GetItemLineCount<T>(T item)

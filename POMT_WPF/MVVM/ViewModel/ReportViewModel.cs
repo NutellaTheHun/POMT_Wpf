@@ -205,8 +205,8 @@ namespace POMT_WPF.MVVM.ViewModel
             ReportDirector rd = new ReportDirector();
 
             PrintFrontList = new RelayCommand(o => { if (IsValidDate())      rd.CreateFrontList(StartDate, IsPrint, IsExport, RetailFilter, SquareFilter, WholesaleFilter, SpecialFilter, EzCaterFilter, FarmerFilter, null); });
-            PrintPieBackList = new RelayCommand(o => { if (IsValidDate())    rd.CreatePieBackList(StartDate, EndDate, IsPrint, IsExport, RetailFilter, SquareFilter, WholesaleFilter, SpecialFilter, EzCaterFilter, FarmerFilter, null); });
-            PrintPastryBackList = new RelayCommand(o => { if (IsValidDate()) rd.CreatePastryBackList(StartDate, EndDate, IsPrint, IsExport, RetailFilter, SquareFilter, WholesaleFilter, SpecialFilter, EzCaterFilter, FarmerFilter, null); });
+            PrintPieBackList = new RelayCommand(o => { if (IsValidDate())    rd.CreatePieBackList(StartDate, EndDate, IsPrint, IsExport, RetailFilter, SquareFilter, WholesaleFilter, SpecialFilter, EzCaterFilter, FarmerFilter, null, null); });
+            PrintPastryBackList = new RelayCommand(o => { if (IsValidDate()) rd.CreatePastryBackList(StartDate, EndDate, IsPrint, IsExport, RetailFilter, SquareFilter, WholesaleFilter, SpecialFilter, EzCaterFilter, FarmerFilter, null, null); });
             PrintBackList = new RelayCommand(o => { if (IsValidDate())       rd.CreateBackList(StartDate, EndDate, IsPrint, IsExport, RetailFilter, SquareFilter, WholesaleFilter, SpecialFilter, EzCaterFilter, FarmerFilter, null); });
             PrintWsAgg = new RelayCommand(o => { if (IsValidDate())          rd.CreateWsDay(StartDate,             IsPrint, IsExport, null); });
             PrintWsBreakDown = new RelayCommand(o => { if (IsValidDate())    rd.CreateWsDayName(StartDate,         IsPrint, IsExport, null); });

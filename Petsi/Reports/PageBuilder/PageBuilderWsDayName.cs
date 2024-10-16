@@ -9,6 +9,7 @@ namespace Petsi.Reports.PageBuilder
         public PageBuilderWsDayName(Report report) : base(report)
         {
             SetMaxOrders(2);
+            ConfigureTables();
         }
         public override int GetItemLineCount<T>(T item)
         {

@@ -7,7 +7,7 @@ namespace Petsi.Reports.PageBuilder
     {
         public PageBuilderPieOverflow(Report report) : base(report)
         {
-
+            ConfigureTables();
         }
 
         public override int GetItemLineCount<T>(T item)
@@ -27,7 +27,7 @@ namespace Petsi.Reports.PageBuilder
 
         protected override void ConfigureTables()
         {
-            _tables.Add(new TableBackListPastry((7, 2), 2, 32));
+            _tables.Add(new TableBackListPie((7, 2), 2, 32, null));
         }
     }
 }

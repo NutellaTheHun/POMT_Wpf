@@ -11,12 +11,13 @@ namespace Petsi.Reports.ReportBuilder
         {
             BackListOverflowEvent.Instance.BacklistPieOverflow += AddPieOverflowPageBuilder;
             BackListOverflowEvent.Instance.BacklistPastryOverflow += AddPastryOverflowPageBuilder;
+            ConfigureBuilders();
         }
 
         protected override void ConfigureBuilders()
         {
-            pageBuilders.Add(new PageBuilderBackListPie(_report));
-            pageBuilders.Add(new PageBuilderBackListPastry(_report));
+            pageBuilders.Add(new PageBuilderBackListPie(_report, null));
+            pageBuilders.Add(new PageBuilderBackListPastry(_report, null));
         }
 
         private void AddPieOverflowPageBuilder(object sender, EventArgs e)

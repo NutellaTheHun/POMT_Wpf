@@ -5,9 +5,11 @@ namespace Petsi.Reports.PageBuilder
 {
     public class PageBuilderBackListPastry : PageBuilderBase
     {
-        public PageBuilderBackListPastry(Report report) : base(report)
+        List<BackListItem>? Template;
+        public PageBuilderBackListPastry(Report report, List<BackListItem>? template) : base(report)
         {
-
+            Template = template;
+            ConfigureTables();
         }
 
         public override int GetItemLineCount<T>(T item)
@@ -38,7 +40,7 @@ namespace Petsi.Reports.PageBuilder
 
         protected override void ConfigureTables()
         {
-            _tables.Add(new TableBackListPastry((7,2), 2, 32));
+            _tables.Add(new TableBackListPastry((7,2), 2, 32, Template));
         }
     }
 }
