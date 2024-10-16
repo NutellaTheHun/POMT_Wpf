@@ -247,7 +247,7 @@ namespace Petsi.Reports
             return new List<BackListItem>
             {
                 bli.CURRANT(),
-                bli.LEMON(),
+                bli.LEMON_SCONE(),
                 bli.TRIPLE(),
                 bli.BISCUIT(),
                 bli.FRESH_BLUE(),
