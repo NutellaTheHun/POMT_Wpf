@@ -124,6 +124,13 @@
                         Content="Frozen"
                         GroupName="g1"
                         Style="{StaticResource tabButton}" />
+                    <RadioButton
+                        x:Name="History_rb"
+                        Click="History_rb_Click"
+                        Command="{Binding FilterHistory}"
+                        Content="History"
+                        GroupName="g1"
+                        Style="{StaticResource tabButton}" />
                 </StackPanel>
 
                 <!--  Filter TextBox  -->

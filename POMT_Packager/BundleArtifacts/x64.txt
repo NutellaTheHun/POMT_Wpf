@@ -1,6 +1,6 @@
-MainPackage=D:\Git-Repos\POMT_WPF\POMT_Packager\bin\x64\Release\POMT_Packager_1.0.38.0_x64.appx
-SymbolPackage=D:\Git-Repos\POMT_WPF\POMT_Packager\obj\x64\Release\Symbols\POMT_Packager_1.0.38.0_x64.appxsym
-ResourcePack=D:\Git-Repos\POMT_WPF\POMT_Packager\bin\x64\Release\POMT_Packager_1.0.38.0_scale-100.appx
-ResourcePack=D:\Git-Repos\POMT_WPF\POMT_Packager\bin\x64\Release\POMT_Packager_1.0.38.0_scale-125.appx
-ResourcePack=D:\Git-Repos\POMT_WPF\POMT_Packager\bin\x64\Release\POMT_Packager_1.0.38.0_scale-150.appx
-ResourcePack=D:\Git-Repos\POMT_WPF\POMT_Packager\bin\x64\Release\POMT_Packager_1.0.38.0_scale-400.appx
+MainPackage=D:\Git-Repos\POMT_WPF\POMT_Packager\bin\x64\Release\POMT_Packager_1.0.39.0_x64.appx
+SymbolPackage=D:\Git-Repos\POMT_WPF\POMT_Packager\obj\x64\Release\Symbols\POMT_Packager_1.0.39.0_x64.appxsym
+ResourcePack=D:\Git-Repos\POMT_WPF\POMT_Packager\bin\x64\Release\POMT_Packager_1.0.39.0_scale-100.appx
+ResourcePack=D:\Git-Repos\POMT_WPF\POMT_Packager\bin\x64\Release\POMT_Packager_1.0.39.0_scale-125.appx
+ResourcePack=D:\Git-Repos\POMT_WPF\POMT_Packager\bin\x64\Release\POMT_Packager_1.0.39.0_scale-150.appx
+ResourcePack=D:\Git-Repos\POMT_WPF\POMT_Packager\bin\x64\Release\POMT_Packager_1.0.39.0_scale-400.appx

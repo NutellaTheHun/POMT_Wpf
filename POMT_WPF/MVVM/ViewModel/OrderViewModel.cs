@@ -19,6 +19,7 @@ namespace POMT_WPF.MVVM.ViewModel
         public RelayCommand FilterSpecial { get; set; }
         public RelayCommand FilterFrozen { get; set; }
         public RelayCommand FilterFarmer { get; set; }
+        public RelayCommand FilterHistory { get; set; }
 
         public ObservableCollection<PetsiOrder> _orders { get; set; }
         public CollectionViewSource DashboardOrders { get; } = new CollectionViewSource();
@@ -60,9 +61,10 @@ namespace POMT_WPF.MVVM.ViewModel
             DashboardOrders.Source = _orders;
             DashBoardOrdersView.MoveCurrentTo(null);
             currentFilter = NoFilter;
-            DashboardOrders.Filter += currentFilter;  
+            DashboardOrders.Filter += currentFilter;
 
-            TotalOrderCount = _orders.Count();
+            //TotalOrderCount = _orders.Count();
+            TotalOrderCount = DashboardOrders.View.Cast<object>().Count();
 
             OpenOrderItemView = new RelayCommand(o => { MainViewModel.Instance().OpenOrderItemView(o);  });
 
@@ -81,6 +83,8 @@ namespace POMT_WPF.MVVM.ViewModel
             FilterFrozen = new RelayCommand(o => { ChangeFilter(FrFilter);});
 
             FilterFarmer = new RelayCommand(o => { ChangeFilter(FmFilter);});
+
+            FilterHistory = new RelayCommand(o => { ChangeFilter(HistoryFilter);});
         }
 
         private void ChangeFilter(FilterEventHandler newFilter)
@@ -92,10 +96,31 @@ namespace POMT_WPF.MVVM.ViewModel
             DashBoardOrdersView.Refresh();
             TotalOrderCount = DashboardOrders.View.Cast<object>().Count();
         }
+        private void HistoryFilter(object sender, FilterEventArgs e)
+        {
+            PetsiOrder order = e.Item as PetsiOrder;
+            if (order == null || order.IsFrozen || IsActiveDueDate(order))
+            {
+                e.Accepted = false;
+            }
+            else
+            {
+                e.Accepted = OrderContainsSearchQuery(order);
+            }
+        }
+        private bool IsActiveDueDate(PetsiOrder order)
+        {
+            if (order.IsPeriodic)
+            {
+                return true;
+            }
+
+            return DateTime.Parse(order.OrderDueDate) >= DateTime.Today;
+        }
         private void NoFilter(object sender, FilterEventArgs e)
         {
             PetsiOrder order = e.Item as PetsiOrder;
-            if (order == null || order.IsFrozen)
+            if (order == null || order.IsFrozen || !IsActiveDueDate(order))
             {
                 e.Accepted = false;
             }
@@ -108,7 +133,7 @@ namespace POMT_WPF.MVVM.ViewModel
         private void WsFilter(object sender, FilterEventArgs e)
         {
             PetsiOrder order = e.Item as PetsiOrder;
-            if(order == null || order.IsFrozen)
+            if(order == null || order.IsFrozen || !IsActiveDueDate(order))
             {
                 e.Accepted = false;
             }
@@ -122,7 +147,7 @@ namespace POMT_WPF.MVVM.ViewModel
         private void SqFilter(object sender, FilterEventArgs e)
         {
             PetsiOrder order = e.Item as PetsiOrder;
-            if (order == null || order.IsFrozen)
+            if (order == null || order.IsFrozen || !IsActiveDueDate(order))
             {
                 e.Accepted = false;
             }
@@ -135,7 +160,7 @@ namespace POMT_WPF.MVVM.ViewModel
         private void RtFilter(object sender, FilterEventArgs e)
         {
             PetsiOrder order = e.Item as PetsiOrder;
-            if (order == null || order.IsFrozen)
+            if (order == null || order.IsFrozen || !IsActiveDueDate(order))
             {
                 e.Accepted = false;
             }
@@ -148,7 +173,7 @@ namespace POMT_WPF.MVVM.ViewModel
         private void SpFilter(object sender, FilterEventArgs e)
         {
             PetsiOrder order = e.Item as PetsiOrder;
-            if (order == null || order.IsFrozen)
+            if (order == null || order.IsFrozen || !IsActiveDueDate(order))
             {
                 e.Accepted = false;
             }
@@ -161,7 +186,7 @@ namespace POMT_WPF.MVVM.ViewModel
         private void FmFilter(object sender, FilterEventArgs e)
         {
             PetsiOrder order = e.Item as PetsiOrder;
-            if (order == null || order.IsFrozen)
+            if (order == null || order.IsFrozen || !IsActiveDueDate(order))
             {
                 e.Accepted = false;
             }

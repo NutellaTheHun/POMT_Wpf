@@ -251,182 +251,1676 @@
     <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_Packager\bin\x64\Release\resources.pri">
       <PackagePath>resources.pri</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\apimatic.core\0.3.6\lib\netstandard2.0\APIMatic.Core.dll">
-      <PackagePath>POMT_WPF\APIMatic.Core.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\closedxml\0.102.2\lib\netstandard2.1\ClosedXML.dll">
-      <PackagePath>POMT_WPF\ClosedXML.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\csvhelper\30.1.0\lib\net6.0\CsvHelper.dll">
-      <PackagePath>POMT_WPF\CsvHelper.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\documentformat.openxml\2.16.0\lib\netstandard2.0\DocumentFormat.OpenXml.dll">
-      <PackagePath>POMT_WPF\DocumentFormat.OpenXml.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\excelnumberformat\1.1.0\lib\netstandard2.0\ExcelNumberFormat.dll">
-      <PackagePath>POMT_WPF\ExcelNumberFormat.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\irony.netcore\1.0.11\lib\netstandard1.6\Irony.dll">
-      <PackagePath>POMT_WPF\Irony.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.BootstrapIcons.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.BootstrapIcons.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.BoxIcons.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.BoxIcons.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Codicons.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Codicons.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Coolicons.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Coolicons.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Core.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Core.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Entypo.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Entypo.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.EvaIcons.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.EvaIcons.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.FeatherIcons.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.FeatherIcons.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.FileIcons.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.FileIcons.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.FontAwesome.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.FontAwesome.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Fontaudio.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Fontaudio.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Fontisto.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Fontisto.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.ForkAwesome.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.ForkAwesome.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Ionicons.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Ionicons.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.JamIcons.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.JamIcons.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Material.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Material.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.MaterialDesign.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.MaterialDesign.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.MaterialLight.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.MaterialLight.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Microns.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Microns.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Modern.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Modern.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Octicons.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Octicons.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.PicolIcons.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.PicolIcons.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.PixelartIcons.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.PixelartIcons.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.RPGAwesome.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.RPGAwesome.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.RadixIcons.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.RadixIcons.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.RemixIcon.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.RemixIcon.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.SimpleIcons.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.SimpleIcons.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Typicons.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Typicons.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Unicons.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Unicons.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.VaadinIcons.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.VaadinIcons.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.WeatherIcons.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.WeatherIcons.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Zondicons.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Zondicons.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\mahapps.metro.iconpacks\4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.dll">
-      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\microsoft.bcl.hashcode\1.1.1\lib\netcoreapp2.1\Microsoft.Bcl.HashCode.dll">
-      <PackagePath>POMT_WPF\Microsoft.Bcl.HashCode.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\microsoft.json.pointer\2.3.0\lib\netstandard2.0\Microsoft.Json.Pointer.dll">
-      <PackagePath>POMT_WPF\Microsoft.Json.Pointer.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\newtonsoft.json\13.0.2\lib\net6.0\Newtonsoft.Json.dll">
-      <PackagePath>POMT_WPF\Newtonsoft.Json.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\polly\7.2.3\lib\netstandard2.0\Polly.dll">
-      <PackagePath>POMT_WPF\Polly.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\sixlabors.fonts\1.0.0\lib\netcoreapp3.1\SixLabors.Fonts.dll">
-      <PackagePath>POMT_WPF\SixLabors.Fonts.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\square\34.0.1\lib\netstandard2.0\Square.dll">
-      <PackagePath>POMT_WPF\Square.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\system.collections.immutable\7.0.0\lib\net6.0\System.Collections.Immutable.dll">
-      <PackagePath>POMT_WPF\System.Collections.Immutable.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\system.linq.async\4.0.0\lib\netcoreapp3.0\System.Linq.Async.dll">
-      <PackagePath>POMT_WPF\System.Linq.Async.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\nbril\.nuget\packages\xlparser\1.5.2\lib\netstandard1.6\XLParser.dll">
-      <PackagePath>POMT_WPF\XLParser.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\Petsi\bin\x64\Release\net6.0-windows\Petsi.dll">
-      <PackagePath>POMT_WPF\Petsi.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\Square.Service\bin\x64\Release\net6.0-windows\Square.Service.dll">
-      <PackagePath>POMT_WPF\Square.Service.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\Petsi\bin\x64\Release\net6.0-windows\Petsi.dll.config">
-      <PackagePath>POMT_WPF\Petsi.dll.config</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\POMT_WPF.deps.json">
-      <PackagePath>POMT_WPF\POMT_WPF.deps.json</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\Images\POMT_Icon.png">
-      <PackagePath>POMT_WPF\Images\POMT_Icon.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\Petsi\bin\x64\Release\net6.0-windows\Petsi.deps.json">
-      <PackagePath>POMT_WPF\Petsi.deps.json</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\Petsi\bin\x64\Release\net6.0-windows\Petsi.runtimeconfig.json">
-      <PackagePath>POMT_WPF\Petsi.runtimeconfig.json</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\Petsi\obj\x64\Release\net6.0-windows\apphost.exe">
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\Petsi.exe">
       <PackagePath>POMT_WPF\Petsi.exe</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\obj\x64\Release\net6.0-windows7.0\apphost.exe">
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\Images\POMT_Icon.png">
+      <PackagePath>POMT_WPF\Images\POMT_Icon.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\POMT_WPF.exe">
       <PackagePath>POMT_WPF\POMT_WPF.exe</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\POMT_WPF.runtimeconfig.json">
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\Petsi.deps.json">
+      <PackagePath>POMT_WPF\Petsi.deps.json</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\Petsi.runtimeconfig.json">
+      <PackagePath>POMT_WPF\Petsi.runtimeconfig.json</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\POMT_WPF.dll">
+      <PackagePath>POMT_WPF\POMT_WPF.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\POMT_WPF.deps.json">
+      <PackagePath>POMT_WPF\POMT_WPF.deps.json</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\POMT_WPF.runtimeconfig.json">
       <PackagePath>POMT_WPF\POMT_WPF.runtimeconfig.json</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\POMT_WPF.dll">
-      <PackagePath>POMT_WPF\POMT_WPF.dll</PackagePath>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\Microsoft.CSharp.dll">
+      <PackagePath>POMT_WPF\Microsoft.CSharp.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\Microsoft.VisualBasic.Core.dll">
+      <PackagePath>POMT_WPF\Microsoft.VisualBasic.Core.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\Microsoft.Win32.Primitives.dll">
+      <PackagePath>POMT_WPF\Microsoft.Win32.Primitives.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\Microsoft.Win32.Registry.dll">
+      <PackagePath>POMT_WPF\Microsoft.Win32.Registry.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.AppContext.dll">
+      <PackagePath>POMT_WPF\System.AppContext.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Buffers.dll">
+      <PackagePath>POMT_WPF\System.Buffers.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Collections.Concurrent.dll">
+      <PackagePath>POMT_WPF\System.Collections.Concurrent.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Collections.NonGeneric.dll">
+      <PackagePath>POMT_WPF\System.Collections.NonGeneric.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Collections.Specialized.dll">
+      <PackagePath>POMT_WPF\System.Collections.Specialized.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Collections.dll">
+      <PackagePath>POMT_WPF\System.Collections.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.ComponentModel.Annotations.dll">
+      <PackagePath>POMT_WPF\System.ComponentModel.Annotations.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.ComponentModel.DataAnnotations.dll">
+      <PackagePath>POMT_WPF\System.ComponentModel.DataAnnotations.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.ComponentModel.EventBasedAsync.dll">
+      <PackagePath>POMT_WPF\System.ComponentModel.EventBasedAsync.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.ComponentModel.Primitives.dll">
+      <PackagePath>POMT_WPF\System.ComponentModel.Primitives.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.ComponentModel.TypeConverter.dll">
+      <PackagePath>POMT_WPF\System.ComponentModel.TypeConverter.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.ComponentModel.dll">
+      <PackagePath>POMT_WPF\System.ComponentModel.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Configuration.dll">
+      <PackagePath>POMT_WPF\System.Configuration.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Console.dll">
+      <PackagePath>POMT_WPF\System.Console.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Core.dll">
+      <PackagePath>POMT_WPF\System.Core.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Data.Common.dll">
+      <PackagePath>POMT_WPF\System.Data.Common.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Data.DataSetExtensions.dll">
+      <PackagePath>POMT_WPF\System.Data.DataSetExtensions.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Data.dll">
+      <PackagePath>POMT_WPF\System.Data.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Diagnostics.Contracts.dll">
+      <PackagePath>POMT_WPF\System.Diagnostics.Contracts.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Diagnostics.Debug.dll">
+      <PackagePath>POMT_WPF\System.Diagnostics.Debug.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Diagnostics.DiagnosticSource.dll">
+      <PackagePath>POMT_WPF\System.Diagnostics.DiagnosticSource.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Diagnostics.FileVersionInfo.dll">
+      <PackagePath>POMT_WPF\System.Diagnostics.FileVersionInfo.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Diagnostics.Process.dll">
+      <PackagePath>POMT_WPF\System.Diagnostics.Process.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Diagnostics.StackTrace.dll">
+      <PackagePath>POMT_WPF\System.Diagnostics.StackTrace.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Diagnostics.TextWriterTraceListener.dll">
+      <PackagePath>POMT_WPF\System.Diagnostics.TextWriterTraceListener.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Diagnostics.Tools.dll">
+      <PackagePath>POMT_WPF\System.Diagnostics.Tools.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Diagnostics.TraceSource.dll">
+      <PackagePath>POMT_WPF\System.Diagnostics.TraceSource.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Diagnostics.Tracing.dll">
+      <PackagePath>POMT_WPF\System.Diagnostics.Tracing.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Drawing.Primitives.dll">
+      <PackagePath>POMT_WPF\System.Drawing.Primitives.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Dynamic.Runtime.dll">
+      <PackagePath>POMT_WPF\System.Dynamic.Runtime.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Formats.Asn1.dll">
+      <PackagePath>POMT_WPF\System.Formats.Asn1.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Globalization.Calendars.dll">
+      <PackagePath>POMT_WPF\System.Globalization.Calendars.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Globalization.Extensions.dll">
+      <PackagePath>POMT_WPF\System.Globalization.Extensions.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Globalization.dll">
+      <PackagePath>POMT_WPF\System.Globalization.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.IO.Compression.Brotli.dll">
+      <PackagePath>POMT_WPF\System.IO.Compression.Brotli.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.IO.Compression.FileSystem.dll">
+      <PackagePath>POMT_WPF\System.IO.Compression.FileSystem.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.IO.Compression.ZipFile.dll">
+      <PackagePath>POMT_WPF\System.IO.Compression.ZipFile.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.IO.Compression.dll">
+      <PackagePath>POMT_WPF\System.IO.Compression.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.IO.FileSystem.AccessControl.dll">
+      <PackagePath>POMT_WPF\System.IO.FileSystem.AccessControl.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.IO.FileSystem.DriveInfo.dll">
+      <PackagePath>POMT_WPF\System.IO.FileSystem.DriveInfo.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.IO.FileSystem.Primitives.dll">
+      <PackagePath>POMT_WPF\System.IO.FileSystem.Primitives.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.IO.FileSystem.Watcher.dll">
+      <PackagePath>POMT_WPF\System.IO.FileSystem.Watcher.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.IO.FileSystem.dll">
+      <PackagePath>POMT_WPF\System.IO.FileSystem.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.IO.IsolatedStorage.dll">
+      <PackagePath>POMT_WPF\System.IO.IsolatedStorage.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.IO.MemoryMappedFiles.dll">
+      <PackagePath>POMT_WPF\System.IO.MemoryMappedFiles.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.IO.Pipes.AccessControl.dll">
+      <PackagePath>POMT_WPF\System.IO.Pipes.AccessControl.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.IO.Pipes.dll">
+      <PackagePath>POMT_WPF\System.IO.Pipes.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.IO.UnmanagedMemoryStream.dll">
+      <PackagePath>POMT_WPF\System.IO.UnmanagedMemoryStream.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.IO.dll">
+      <PackagePath>POMT_WPF\System.IO.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Linq.Expressions.dll">
+      <PackagePath>POMT_WPF\System.Linq.Expressions.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Linq.Parallel.dll">
+      <PackagePath>POMT_WPF\System.Linq.Parallel.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Linq.Queryable.dll">
+      <PackagePath>POMT_WPF\System.Linq.Queryable.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Linq.dll">
+      <PackagePath>POMT_WPF\System.Linq.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Memory.dll">
+      <PackagePath>POMT_WPF\System.Memory.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Net.Http.Json.dll">
+      <PackagePath>POMT_WPF\System.Net.Http.Json.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Net.Http.dll">
+      <PackagePath>POMT_WPF\System.Net.Http.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Net.HttpListener.dll">
+      <PackagePath>POMT_WPF\System.Net.HttpListener.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Net.Mail.dll">
+      <PackagePath>POMT_WPF\System.Net.Mail.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Net.NameResolution.dll">
+      <PackagePath>POMT_WPF\System.Net.NameResolution.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Net.NetworkInformation.dll">
+      <PackagePath>POMT_WPF\System.Net.NetworkInformation.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Net.Ping.dll">
+      <PackagePath>POMT_WPF\System.Net.Ping.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Net.Primitives.dll">
+      <PackagePath>POMT_WPF\System.Net.Primitives.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Net.Quic.dll">
+      <PackagePath>POMT_WPF\System.Net.Quic.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Net.Requests.dll">
+      <PackagePath>POMT_WPF\System.Net.Requests.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Net.Security.dll">
+      <PackagePath>POMT_WPF\System.Net.Security.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Net.ServicePoint.dll">
+      <PackagePath>POMT_WPF\System.Net.ServicePoint.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Net.Sockets.dll">
+      <PackagePath>POMT_WPF\System.Net.Sockets.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Net.WebClient.dll">
+      <PackagePath>POMT_WPF\System.Net.WebClient.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Net.WebHeaderCollection.dll">
+      <PackagePath>POMT_WPF\System.Net.WebHeaderCollection.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Net.WebProxy.dll">
+      <PackagePath>POMT_WPF\System.Net.WebProxy.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Net.WebSockets.Client.dll">
+      <PackagePath>POMT_WPF\System.Net.WebSockets.Client.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Net.WebSockets.dll">
+      <PackagePath>POMT_WPF\System.Net.WebSockets.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Net.dll">
+      <PackagePath>POMT_WPF\System.Net.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Numerics.Vectors.dll">
+      <PackagePath>POMT_WPF\System.Numerics.Vectors.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Numerics.dll">
+      <PackagePath>POMT_WPF\System.Numerics.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.ObjectModel.dll">
+      <PackagePath>POMT_WPF\System.ObjectModel.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Private.CoreLib.dll">
+      <PackagePath>POMT_WPF\System.Private.CoreLib.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Private.DataContractSerialization.dll">
+      <PackagePath>POMT_WPF\System.Private.DataContractSerialization.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Private.Uri.dll">
+      <PackagePath>POMT_WPF\System.Private.Uri.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Private.Xml.Linq.dll">
+      <PackagePath>POMT_WPF\System.Private.Xml.Linq.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Private.Xml.dll">
+      <PackagePath>POMT_WPF\System.Private.Xml.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Reflection.DispatchProxy.dll">
+      <PackagePath>POMT_WPF\System.Reflection.DispatchProxy.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Reflection.Emit.ILGeneration.dll">
+      <PackagePath>POMT_WPF\System.Reflection.Emit.ILGeneration.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Reflection.Emit.Lightweight.dll">
+      <PackagePath>POMT_WPF\System.Reflection.Emit.Lightweight.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Reflection.Emit.dll">
+      <PackagePath>POMT_WPF\System.Reflection.Emit.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Reflection.Extensions.dll">
+      <PackagePath>POMT_WPF\System.Reflection.Extensions.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Reflection.Metadata.dll">
+      <PackagePath>POMT_WPF\System.Reflection.Metadata.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Reflection.Primitives.dll">
+      <PackagePath>POMT_WPF\System.Reflection.Primitives.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Reflection.TypeExtensions.dll">
+      <PackagePath>POMT_WPF\System.Reflection.TypeExtensions.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Reflection.dll">
+      <PackagePath>POMT_WPF\System.Reflection.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Resources.Reader.dll">
+      <PackagePath>POMT_WPF\System.Resources.Reader.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Resources.ResourceManager.dll">
+      <PackagePath>POMT_WPF\System.Resources.ResourceManager.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Resources.Writer.dll">
+      <PackagePath>POMT_WPF\System.Resources.Writer.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Runtime.CompilerServices.Unsafe.dll">
+      <PackagePath>POMT_WPF\System.Runtime.CompilerServices.Unsafe.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Runtime.CompilerServices.VisualC.dll">
+      <PackagePath>POMT_WPF\System.Runtime.CompilerServices.VisualC.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Runtime.Extensions.dll">
+      <PackagePath>POMT_WPF\System.Runtime.Extensions.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Runtime.Handles.dll">
+      <PackagePath>POMT_WPF\System.Runtime.Handles.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Runtime.InteropServices.RuntimeInformation.dll">
+      <PackagePath>POMT_WPF\System.Runtime.InteropServices.RuntimeInformation.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Runtime.InteropServices.dll">
+      <PackagePath>POMT_WPF\System.Runtime.InteropServices.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Runtime.Intrinsics.dll">
+      <PackagePath>POMT_WPF\System.Runtime.Intrinsics.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Runtime.Loader.dll">
+      <PackagePath>POMT_WPF\System.Runtime.Loader.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Runtime.Numerics.dll">
+      <PackagePath>POMT_WPF\System.Runtime.Numerics.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Runtime.Serialization.Formatters.dll">
+      <PackagePath>POMT_WPF\System.Runtime.Serialization.Formatters.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Runtime.Serialization.Json.dll">
+      <PackagePath>POMT_WPF\System.Runtime.Serialization.Json.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Runtime.Serialization.Primitives.dll">
+      <PackagePath>POMT_WPF\System.Runtime.Serialization.Primitives.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Runtime.Serialization.Xml.dll">
+      <PackagePath>POMT_WPF\System.Runtime.Serialization.Xml.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Runtime.Serialization.dll">
+      <PackagePath>POMT_WPF\System.Runtime.Serialization.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Runtime.dll">
+      <PackagePath>POMT_WPF\System.Runtime.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Security.AccessControl.dll">
+      <PackagePath>POMT_WPF\System.Security.AccessControl.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Security.Claims.dll">
+      <PackagePath>POMT_WPF\System.Security.Claims.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Security.Cryptography.Algorithms.dll">
+      <PackagePath>POMT_WPF\System.Security.Cryptography.Algorithms.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Security.Cryptography.Cng.dll">
+      <PackagePath>POMT_WPF\System.Security.Cryptography.Cng.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Security.Cryptography.Csp.dll">
+      <PackagePath>POMT_WPF\System.Security.Cryptography.Csp.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Security.Cryptography.Encoding.dll">
+      <PackagePath>POMT_WPF\System.Security.Cryptography.Encoding.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Security.Cryptography.OpenSsl.dll">
+      <PackagePath>POMT_WPF\System.Security.Cryptography.OpenSsl.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Security.Cryptography.Primitives.dll">
+      <PackagePath>POMT_WPF\System.Security.Cryptography.Primitives.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Security.Cryptography.X509Certificates.dll">
+      <PackagePath>POMT_WPF\System.Security.Cryptography.X509Certificates.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Security.Principal.Windows.dll">
+      <PackagePath>POMT_WPF\System.Security.Principal.Windows.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Security.Principal.dll">
+      <PackagePath>POMT_WPF\System.Security.Principal.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Security.SecureString.dll">
+      <PackagePath>POMT_WPF\System.Security.SecureString.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Security.dll">
+      <PackagePath>POMT_WPF\System.Security.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.ServiceModel.Web.dll">
+      <PackagePath>POMT_WPF\System.ServiceModel.Web.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.ServiceProcess.dll">
+      <PackagePath>POMT_WPF\System.ServiceProcess.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Text.Encoding.CodePages.dll">
+      <PackagePath>POMT_WPF\System.Text.Encoding.CodePages.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Text.Encoding.Extensions.dll">
+      <PackagePath>POMT_WPF\System.Text.Encoding.Extensions.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Text.Encoding.dll">
+      <PackagePath>POMT_WPF\System.Text.Encoding.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Text.Encodings.Web.dll">
+      <PackagePath>POMT_WPF\System.Text.Encodings.Web.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Text.Json.dll">
+      <PackagePath>POMT_WPF\System.Text.Json.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Text.RegularExpressions.dll">
+      <PackagePath>POMT_WPF\System.Text.RegularExpressions.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Threading.Channels.dll">
+      <PackagePath>POMT_WPF\System.Threading.Channels.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Threading.Overlapped.dll">
+      <PackagePath>POMT_WPF\System.Threading.Overlapped.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Threading.Tasks.Dataflow.dll">
+      <PackagePath>POMT_WPF\System.Threading.Tasks.Dataflow.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Threading.Tasks.Extensions.dll">
+      <PackagePath>POMT_WPF\System.Threading.Tasks.Extensions.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Threading.Tasks.Parallel.dll">
+      <PackagePath>POMT_WPF\System.Threading.Tasks.Parallel.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Threading.Tasks.dll">
+      <PackagePath>POMT_WPF\System.Threading.Tasks.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Threading.Thread.dll">
+      <PackagePath>POMT_WPF\System.Threading.Thread.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Threading.ThreadPool.dll">
+      <PackagePath>POMT_WPF\System.Threading.ThreadPool.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Threading.Timer.dll">
+      <PackagePath>POMT_WPF\System.Threading.Timer.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Threading.dll">
+      <PackagePath>POMT_WPF\System.Threading.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Transactions.Local.dll">
+      <PackagePath>POMT_WPF\System.Transactions.Local.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Transactions.dll">
+      <PackagePath>POMT_WPF\System.Transactions.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.ValueTuple.dll">
+      <PackagePath>POMT_WPF\System.ValueTuple.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Web.HttpUtility.dll">
+      <PackagePath>POMT_WPF\System.Web.HttpUtility.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Web.dll">
+      <PackagePath>POMT_WPF\System.Web.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Windows.dll">
+      <PackagePath>POMT_WPF\System.Windows.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Xml.Linq.dll">
+      <PackagePath>POMT_WPF\System.Xml.Linq.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Xml.ReaderWriter.dll">
+      <PackagePath>POMT_WPF\System.Xml.ReaderWriter.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Xml.Serialization.dll">
+      <PackagePath>POMT_WPF\System.Xml.Serialization.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Xml.XDocument.dll">
+      <PackagePath>POMT_WPF\System.Xml.XDocument.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Xml.XPath.XDocument.dll">
+      <PackagePath>POMT_WPF\System.Xml.XPath.XDocument.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Xml.XPath.dll">
+      <PackagePath>POMT_WPF\System.Xml.XPath.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Xml.XmlDocument.dll">
+      <PackagePath>POMT_WPF\System.Xml.XmlDocument.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Xml.XmlSerializer.dll">
+      <PackagePath>POMT_WPF\System.Xml.XmlSerializer.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Xml.dll">
+      <PackagePath>POMT_WPF\System.Xml.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.dll">
+      <PackagePath>POMT_WPF\System.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\mscorlib.dll">
+      <PackagePath>POMT_WPF\mscorlib.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\netstandard.dll">
+      <PackagePath>POMT_WPF\netstandard.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\Accessibility.dll">
+      <PackagePath>POMT_WPF\Accessibility.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\DirectWriteForwarder.dll">
+      <PackagePath>POMT_WPF\DirectWriteForwarder.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\Microsoft.VisualBasic.Forms.dll">
+      <PackagePath>POMT_WPF\Microsoft.VisualBasic.Forms.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\Microsoft.VisualBasic.dll">
+      <PackagePath>POMT_WPF\Microsoft.VisualBasic.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\Microsoft.Win32.Registry.AccessControl.dll">
+      <PackagePath>POMT_WPF\Microsoft.Win32.Registry.AccessControl.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\Microsoft.Win32.SystemEvents.dll">
+      <PackagePath>POMT_WPF\Microsoft.Win32.SystemEvents.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\PresentationCore.dll">
+      <PackagePath>POMT_WPF\PresentationCore.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\PresentationFramework-SystemCore.dll">
+      <PackagePath>POMT_WPF\PresentationFramework-SystemCore.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\PresentationFramework-SystemData.dll">
+      <PackagePath>POMT_WPF\PresentationFramework-SystemData.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\PresentationFramework-SystemDrawing.dll">
+      <PackagePath>POMT_WPF\PresentationFramework-SystemDrawing.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\PresentationFramework-SystemXml.dll">
+      <PackagePath>POMT_WPF\PresentationFramework-SystemXml.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\PresentationFramework-SystemXmlLinq.dll">
+      <PackagePath>POMT_WPF\PresentationFramework-SystemXmlLinq.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\PresentationFramework.Aero.dll">
+      <PackagePath>POMT_WPF\PresentationFramework.Aero.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\PresentationFramework.Aero2.dll">
+      <PackagePath>POMT_WPF\PresentationFramework.Aero2.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\PresentationFramework.AeroLite.dll">
+      <PackagePath>POMT_WPF\PresentationFramework.AeroLite.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\PresentationFramework.Classic.dll">
+      <PackagePath>POMT_WPF\PresentationFramework.Classic.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\PresentationFramework.Luna.dll">
+      <PackagePath>POMT_WPF\PresentationFramework.Luna.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\PresentationFramework.Royale.dll">
+      <PackagePath>POMT_WPF\PresentationFramework.Royale.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\PresentationFramework.dll">
+      <PackagePath>POMT_WPF\PresentationFramework.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\PresentationUI.dll">
+      <PackagePath>POMT_WPF\PresentationUI.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ReachFramework.dll">
+      <PackagePath>POMT_WPF\ReachFramework.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.CodeDom.dll">
+      <PackagePath>POMT_WPF\System.CodeDom.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Configuration.ConfigurationManager.dll">
+      <PackagePath>POMT_WPF\System.Configuration.ConfigurationManager.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Design.dll">
+      <PackagePath>POMT_WPF\System.Design.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Diagnostics.EventLog.Messages.dll">
+      <PackagePath>POMT_WPF\System.Diagnostics.EventLog.Messages.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Diagnostics.EventLog.dll">
+      <PackagePath>POMT_WPF\System.Diagnostics.EventLog.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Diagnostics.PerformanceCounter.dll">
+      <PackagePath>POMT_WPF\System.Diagnostics.PerformanceCounter.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.DirectoryServices.dll">
+      <PackagePath>POMT_WPF\System.DirectoryServices.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Drawing.Common.dll">
+      <PackagePath>POMT_WPF\System.Drawing.Common.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Drawing.Design.dll">
+      <PackagePath>POMT_WPF\System.Drawing.Design.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Drawing.dll">
+      <PackagePath>POMT_WPF\System.Drawing.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.IO.Packaging.dll">
+      <PackagePath>POMT_WPF\System.IO.Packaging.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Printing.dll">
+      <PackagePath>POMT_WPF\System.Printing.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Resources.Extensions.dll">
+      <PackagePath>POMT_WPF\System.Resources.Extensions.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Security.Cryptography.Pkcs.dll">
+      <PackagePath>POMT_WPF\System.Security.Cryptography.Pkcs.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Security.Cryptography.ProtectedData.dll">
+      <PackagePath>POMT_WPF\System.Security.Cryptography.ProtectedData.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Security.Cryptography.Xml.dll">
+      <PackagePath>POMT_WPF\System.Security.Cryptography.Xml.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Security.Permissions.dll">
+      <PackagePath>POMT_WPF\System.Security.Permissions.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Threading.AccessControl.dll">
+      <PackagePath>POMT_WPF\System.Threading.AccessControl.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Windows.Controls.Ribbon.dll">
+      <PackagePath>POMT_WPF\System.Windows.Controls.Ribbon.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Windows.Extensions.dll">
+      <PackagePath>POMT_WPF\System.Windows.Extensions.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Windows.Forms.Design.Editors.dll">
+      <PackagePath>POMT_WPF\System.Windows.Forms.Design.Editors.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Windows.Forms.Design.dll">
+      <PackagePath>POMT_WPF\System.Windows.Forms.Design.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Windows.Forms.Primitives.dll">
+      <PackagePath>POMT_WPF\System.Windows.Forms.Primitives.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Windows.Forms.dll">
+      <PackagePath>POMT_WPF\System.Windows.Forms.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Windows.Input.Manipulations.dll">
+      <PackagePath>POMT_WPF\System.Windows.Input.Manipulations.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Windows.Presentation.dll">
+      <PackagePath>POMT_WPF\System.Windows.Presentation.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Xaml.dll">
+      <PackagePath>POMT_WPF\System.Xaml.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\UIAutomationClient.dll">
+      <PackagePath>POMT_WPF\UIAutomationClient.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\UIAutomationClientSideProviders.dll">
+      <PackagePath>POMT_WPF\UIAutomationClientSideProviders.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\UIAutomationProvider.dll">
+      <PackagePath>POMT_WPF\UIAutomationProvider.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\UIAutomationTypes.dll">
+      <PackagePath>POMT_WPF\UIAutomationTypes.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\WindowsBase.dll">
+      <PackagePath>POMT_WPF\WindowsBase.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\WindowsFormsIntegration.dll">
+      <PackagePath>POMT_WPF\WindowsFormsIntegration.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\Microsoft.DiaSymReader.Native.amd64.dll">
+      <PackagePath>POMT_WPF\Microsoft.DiaSymReader.Native.amd64.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.IO.Compression.Native.dll">
+      <PackagePath>POMT_WPF\System.IO.Compression.Native.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-core-console-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-core-console-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-core-console-l1-2-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-core-console-l1-2-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-core-datetime-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-core-datetime-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-core-debug-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-core-debug-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-core-errorhandling-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-core-errorhandling-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-core-fibers-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-core-fibers-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-core-file-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-core-file-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-core-file-l1-2-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-core-file-l1-2-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-core-file-l2-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-core-file-l2-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-core-handle-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-core-handle-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-core-heap-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-core-heap-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-core-interlocked-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-core-interlocked-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-core-libraryloader-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-core-libraryloader-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-core-localization-l1-2-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-core-localization-l1-2-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-core-memory-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-core-memory-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-core-namedpipe-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-core-namedpipe-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-core-processenvironment-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-core-processenvironment-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-core-processthreads-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-core-processthreads-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-core-processthreads-l1-1-1.dll">
+      <PackagePath>POMT_WPF\api-ms-win-core-processthreads-l1-1-1.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-core-profile-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-core-profile-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-core-rtlsupport-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-core-rtlsupport-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-core-string-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-core-string-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-core-synch-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-core-synch-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-core-synch-l1-2-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-core-synch-l1-2-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-core-sysinfo-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-core-sysinfo-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-core-timezone-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-core-timezone-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-core-util-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-core-util-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-crt-conio-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-crt-conio-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-crt-convert-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-crt-convert-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-crt-environment-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-crt-environment-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-crt-filesystem-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-crt-filesystem-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-crt-heap-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-crt-heap-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-crt-locale-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-crt-locale-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-crt-math-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-crt-math-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-crt-multibyte-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-crt-multibyte-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-crt-private-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-crt-private-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-crt-process-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-crt-process-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-crt-runtime-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-crt-runtime-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-crt-stdio-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-crt-stdio-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-crt-string-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-crt-string-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-crt-time-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-crt-time-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\api-ms-win-crt-utility-l1-1-0.dll">
+      <PackagePath>POMT_WPF\api-ms-win-crt-utility-l1-1-0.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\clretwrc.dll">
+      <PackagePath>POMT_WPF\clretwrc.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\clrjit.dll">
+      <PackagePath>POMT_WPF\clrjit.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\coreclr.dll">
+      <PackagePath>POMT_WPF\coreclr.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\createdump.exe">
+      <PackagePath>POMT_WPF\createdump.exe</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\dbgshim.dll">
+      <PackagePath>POMT_WPF\dbgshim.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\hostfxr.dll">
+      <PackagePath>POMT_WPF\hostfxr.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\hostpolicy.dll">
+      <PackagePath>POMT_WPF\hostpolicy.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\mscordaccore.dll">
+      <PackagePath>POMT_WPF\mscordaccore.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\mscordaccore_amd64_amd64_6.0.3024.21525.dll">
+      <PackagePath>POMT_WPF\mscordaccore_amd64_amd64_6.0.3024.21525.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\mscordbi.dll">
+      <PackagePath>POMT_WPF\mscordbi.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\mscorrc.dll">
+      <PackagePath>POMT_WPF\mscorrc.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\msquic.dll">
+      <PackagePath>POMT_WPF\msquic.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ucrtbase.dll">
+      <PackagePath>POMT_WPF\ucrtbase.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\D3DCompiler_47_cor3.dll">
+      <PackagePath>POMT_WPF\D3DCompiler_47_cor3.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\PenImc_cor3.dll">
+      <PackagePath>POMT_WPF\PenImc_cor3.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\PresentationNative_cor3.dll">
+      <PackagePath>POMT_WPF\PresentationNative_cor3.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\vcruntime140_cor3.dll">
+      <PackagePath>POMT_WPF\vcruntime140_cor3.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\wpfgfx_cor3.dll">
+      <PackagePath>POMT_WPF\wpfgfx_cor3.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\cs\Microsoft.VisualBasic.Forms.resources.dll">
+      <PackagePath>POMT_WPF\cs\Microsoft.VisualBasic.Forms.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\cs\PresentationCore.resources.dll">
+      <PackagePath>POMT_WPF\cs\PresentationCore.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\cs\PresentationFramework.resources.dll">
+      <PackagePath>POMT_WPF\cs\PresentationFramework.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\cs\PresentationUI.resources.dll">
+      <PackagePath>POMT_WPF\cs\PresentationUI.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\cs\ReachFramework.resources.dll">
+      <PackagePath>POMT_WPF\cs\ReachFramework.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\cs\System.Windows.Controls.Ribbon.resources.dll">
+      <PackagePath>POMT_WPF\cs\System.Windows.Controls.Ribbon.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\cs\System.Windows.Forms.Design.resources.dll">
+      <PackagePath>POMT_WPF\cs\System.Windows.Forms.Design.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\cs\System.Windows.Forms.Primitives.resources.dll">
+      <PackagePath>POMT_WPF\cs\System.Windows.Forms.Primitives.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\cs\System.Windows.Forms.resources.dll">
+      <PackagePath>POMT_WPF\cs\System.Windows.Forms.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\cs\System.Windows.Input.Manipulations.resources.dll">
+      <PackagePath>POMT_WPF\cs\System.Windows.Input.Manipulations.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\cs\System.Xaml.resources.dll">
+      <PackagePath>POMT_WPF\cs\System.Xaml.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\cs\UIAutomationClient.resources.dll">
+      <PackagePath>POMT_WPF\cs\UIAutomationClient.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\cs\UIAutomationClientSideProviders.resources.dll">
+      <PackagePath>POMT_WPF\cs\UIAutomationClientSideProviders.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\cs\UIAutomationProvider.resources.dll">
+      <PackagePath>POMT_WPF\cs\UIAutomationProvider.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\cs\UIAutomationTypes.resources.dll">
+      <PackagePath>POMT_WPF\cs\UIAutomationTypes.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\cs\WindowsBase.resources.dll">
+      <PackagePath>POMT_WPF\cs\WindowsBase.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\cs\WindowsFormsIntegration.resources.dll">
+      <PackagePath>POMT_WPF\cs\WindowsFormsIntegration.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\de\Microsoft.VisualBasic.Forms.resources.dll">
+      <PackagePath>POMT_WPF\de\Microsoft.VisualBasic.Forms.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\de\PresentationCore.resources.dll">
+      <PackagePath>POMT_WPF\de\PresentationCore.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\de\PresentationFramework.resources.dll">
+      <PackagePath>POMT_WPF\de\PresentationFramework.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\de\PresentationUI.resources.dll">
+      <PackagePath>POMT_WPF\de\PresentationUI.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\de\ReachFramework.resources.dll">
+      <PackagePath>POMT_WPF\de\ReachFramework.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\de\System.Windows.Controls.Ribbon.resources.dll">
+      <PackagePath>POMT_WPF\de\System.Windows.Controls.Ribbon.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\de\System.Windows.Forms.Design.resources.dll">
+      <PackagePath>POMT_WPF\de\System.Windows.Forms.Design.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\de\System.Windows.Forms.Primitives.resources.dll">
+      <PackagePath>POMT_WPF\de\System.Windows.Forms.Primitives.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\de\System.Windows.Forms.resources.dll">
+      <PackagePath>POMT_WPF\de\System.Windows.Forms.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\de\System.Windows.Input.Manipulations.resources.dll">
+      <PackagePath>POMT_WPF\de\System.Windows.Input.Manipulations.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\de\System.Xaml.resources.dll">
+      <PackagePath>POMT_WPF\de\System.Xaml.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\de\UIAutomationClient.resources.dll">
+      <PackagePath>POMT_WPF\de\UIAutomationClient.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\de\UIAutomationClientSideProviders.resources.dll">
+      <PackagePath>POMT_WPF\de\UIAutomationClientSideProviders.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\de\UIAutomationProvider.resources.dll">
+      <PackagePath>POMT_WPF\de\UIAutomationProvider.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\de\UIAutomationTypes.resources.dll">
+      <PackagePath>POMT_WPF\de\UIAutomationTypes.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\de\WindowsBase.resources.dll">
+      <PackagePath>POMT_WPF\de\WindowsBase.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\de\WindowsFormsIntegration.resources.dll">
+      <PackagePath>POMT_WPF\de\WindowsFormsIntegration.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\es\Microsoft.VisualBasic.Forms.resources.dll">
+      <PackagePath>POMT_WPF\es\Microsoft.VisualBasic.Forms.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\es\PresentationCore.resources.dll">
+      <PackagePath>POMT_WPF\es\PresentationCore.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\es\PresentationFramework.resources.dll">
+      <PackagePath>POMT_WPF\es\PresentationFramework.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\es\PresentationUI.resources.dll">
+      <PackagePath>POMT_WPF\es\PresentationUI.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\es\ReachFramework.resources.dll">
+      <PackagePath>POMT_WPF\es\ReachFramework.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\es\System.Windows.Controls.Ribbon.resources.dll">
+      <PackagePath>POMT_WPF\es\System.Windows.Controls.Ribbon.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\es\System.Windows.Forms.Design.resources.dll">
+      <PackagePath>POMT_WPF\es\System.Windows.Forms.Design.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\es\System.Windows.Forms.Primitives.resources.dll">
+      <PackagePath>POMT_WPF\es\System.Windows.Forms.Primitives.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\es\System.Windows.Forms.resources.dll">
+      <PackagePath>POMT_WPF\es\System.Windows.Forms.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\es\System.Windows.Input.Manipulations.resources.dll">
+      <PackagePath>POMT_WPF\es\System.Windows.Input.Manipulations.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\es\System.Xaml.resources.dll">
+      <PackagePath>POMT_WPF\es\System.Xaml.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\es\UIAutomationClient.resources.dll">
+      <PackagePath>POMT_WPF\es\UIAutomationClient.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\es\UIAutomationClientSideProviders.resources.dll">
+      <PackagePath>POMT_WPF\es\UIAutomationClientSideProviders.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\es\UIAutomationProvider.resources.dll">
+      <PackagePath>POMT_WPF\es\UIAutomationProvider.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\es\UIAutomationTypes.resources.dll">
+      <PackagePath>POMT_WPF\es\UIAutomationTypes.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\es\WindowsBase.resources.dll">
+      <PackagePath>POMT_WPF\es\WindowsBase.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\es\WindowsFormsIntegration.resources.dll">
+      <PackagePath>POMT_WPF\es\WindowsFormsIntegration.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\fr\Microsoft.VisualBasic.Forms.resources.dll">
+      <PackagePath>POMT_WPF\fr\Microsoft.VisualBasic.Forms.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\fr\PresentationCore.resources.dll">
+      <PackagePath>POMT_WPF\fr\PresentationCore.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\fr\PresentationFramework.resources.dll">
+      <PackagePath>POMT_WPF\fr\PresentationFramework.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\fr\PresentationUI.resources.dll">
+      <PackagePath>POMT_WPF\fr\PresentationUI.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\fr\ReachFramework.resources.dll">
+      <PackagePath>POMT_WPF\fr\ReachFramework.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\fr\System.Windows.Controls.Ribbon.resources.dll">
+      <PackagePath>POMT_WPF\fr\System.Windows.Controls.Ribbon.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\fr\System.Windows.Forms.Design.resources.dll">
+      <PackagePath>POMT_WPF\fr\System.Windows.Forms.Design.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\fr\System.Windows.Forms.Primitives.resources.dll">
+      <PackagePath>POMT_WPF\fr\System.Windows.Forms.Primitives.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\fr\System.Windows.Forms.resources.dll">
+      <PackagePath>POMT_WPF\fr\System.Windows.Forms.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\fr\System.Windows.Input.Manipulations.resources.dll">
+      <PackagePath>POMT_WPF\fr\System.Windows.Input.Manipulations.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\fr\System.Xaml.resources.dll">
+      <PackagePath>POMT_WPF\fr\System.Xaml.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\fr\UIAutomationClient.resources.dll">
+      <PackagePath>POMT_WPF\fr\UIAutomationClient.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\fr\UIAutomationClientSideProviders.resources.dll">
+      <PackagePath>POMT_WPF\fr\UIAutomationClientSideProviders.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\fr\UIAutomationProvider.resources.dll">
+      <PackagePath>POMT_WPF\fr\UIAutomationProvider.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\fr\UIAutomationTypes.resources.dll">
+      <PackagePath>POMT_WPF\fr\UIAutomationTypes.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\fr\WindowsBase.resources.dll">
+      <PackagePath>POMT_WPF\fr\WindowsBase.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\fr\WindowsFormsIntegration.resources.dll">
+      <PackagePath>POMT_WPF\fr\WindowsFormsIntegration.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\it\Microsoft.VisualBasic.Forms.resources.dll">
+      <PackagePath>POMT_WPF\it\Microsoft.VisualBasic.Forms.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\it\PresentationCore.resources.dll">
+      <PackagePath>POMT_WPF\it\PresentationCore.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\it\PresentationFramework.resources.dll">
+      <PackagePath>POMT_WPF\it\PresentationFramework.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\it\PresentationUI.resources.dll">
+      <PackagePath>POMT_WPF\it\PresentationUI.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\it\ReachFramework.resources.dll">
+      <PackagePath>POMT_WPF\it\ReachFramework.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\it\System.Windows.Controls.Ribbon.resources.dll">
+      <PackagePath>POMT_WPF\it\System.Windows.Controls.Ribbon.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\it\System.Windows.Forms.Design.resources.dll">
+      <PackagePath>POMT_WPF\it\System.Windows.Forms.Design.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\it\System.Windows.Forms.Primitives.resources.dll">
+      <PackagePath>POMT_WPF\it\System.Windows.Forms.Primitives.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\it\System.Windows.Forms.resources.dll">
+      <PackagePath>POMT_WPF\it\System.Windows.Forms.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\it\System.Windows.Input.Manipulations.resources.dll">
+      <PackagePath>POMT_WPF\it\System.Windows.Input.Manipulations.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\it\System.Xaml.resources.dll">
+      <PackagePath>POMT_WPF\it\System.Xaml.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\it\UIAutomationClient.resources.dll">
+      <PackagePath>POMT_WPF\it\UIAutomationClient.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\it\UIAutomationClientSideProviders.resources.dll">
+      <PackagePath>POMT_WPF\it\UIAutomationClientSideProviders.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\it\UIAutomationProvider.resources.dll">
+      <PackagePath>POMT_WPF\it\UIAutomationProvider.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\it\UIAutomationTypes.resources.dll">
+      <PackagePath>POMT_WPF\it\UIAutomationTypes.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\it\WindowsBase.resources.dll">
+      <PackagePath>POMT_WPF\it\WindowsBase.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\it\WindowsFormsIntegration.resources.dll">
+      <PackagePath>POMT_WPF\it\WindowsFormsIntegration.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ja\Microsoft.VisualBasic.Forms.resources.dll">
+      <PackagePath>POMT_WPF\ja\Microsoft.VisualBasic.Forms.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ja\PresentationCore.resources.dll">
+      <PackagePath>POMT_WPF\ja\PresentationCore.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ja\PresentationFramework.resources.dll">
+      <PackagePath>POMT_WPF\ja\PresentationFramework.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ja\PresentationUI.resources.dll">
+      <PackagePath>POMT_WPF\ja\PresentationUI.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ja\ReachFramework.resources.dll">
+      <PackagePath>POMT_WPF\ja\ReachFramework.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ja\System.Windows.Controls.Ribbon.resources.dll">
+      <PackagePath>POMT_WPF\ja\System.Windows.Controls.Ribbon.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ja\System.Windows.Forms.Design.resources.dll">
+      <PackagePath>POMT_WPF\ja\System.Windows.Forms.Design.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ja\System.Windows.Forms.Primitives.resources.dll">
+      <PackagePath>POMT_WPF\ja\System.Windows.Forms.Primitives.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ja\System.Windows.Forms.resources.dll">
+      <PackagePath>POMT_WPF\ja\System.Windows.Forms.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ja\System.Windows.Input.Manipulations.resources.dll">
+      <PackagePath>POMT_WPF\ja\System.Windows.Input.Manipulations.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ja\System.Xaml.resources.dll">
+      <PackagePath>POMT_WPF\ja\System.Xaml.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ja\UIAutomationClient.resources.dll">
+      <PackagePath>POMT_WPF\ja\UIAutomationClient.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ja\UIAutomationClientSideProviders.resources.dll">
+      <PackagePath>POMT_WPF\ja\UIAutomationClientSideProviders.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ja\UIAutomationProvider.resources.dll">
+      <PackagePath>POMT_WPF\ja\UIAutomationProvider.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ja\UIAutomationTypes.resources.dll">
+      <PackagePath>POMT_WPF\ja\UIAutomationTypes.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ja\WindowsBase.resources.dll">
+      <PackagePath>POMT_WPF\ja\WindowsBase.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ja\WindowsFormsIntegration.resources.dll">
+      <PackagePath>POMT_WPF\ja\WindowsFormsIntegration.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ko\Microsoft.VisualBasic.Forms.resources.dll">
+      <PackagePath>POMT_WPF\ko\Microsoft.VisualBasic.Forms.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ko\PresentationCore.resources.dll">
+      <PackagePath>POMT_WPF\ko\PresentationCore.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ko\PresentationFramework.resources.dll">
+      <PackagePath>POMT_WPF\ko\PresentationFramework.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ko\PresentationUI.resources.dll">
+      <PackagePath>POMT_WPF\ko\PresentationUI.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ko\ReachFramework.resources.dll">
+      <PackagePath>POMT_WPF\ko\ReachFramework.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ko\System.Windows.Controls.Ribbon.resources.dll">
+      <PackagePath>POMT_WPF\ko\System.Windows.Controls.Ribbon.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ko\System.Windows.Forms.Design.resources.dll">
+      <PackagePath>POMT_WPF\ko\System.Windows.Forms.Design.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ko\System.Windows.Forms.Primitives.resources.dll">
+      <PackagePath>POMT_WPF\ko\System.Windows.Forms.Primitives.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ko\System.Windows.Forms.resources.dll">
+      <PackagePath>POMT_WPF\ko\System.Windows.Forms.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ko\System.Windows.Input.Manipulations.resources.dll">
+      <PackagePath>POMT_WPF\ko\System.Windows.Input.Manipulations.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ko\System.Xaml.resources.dll">
+      <PackagePath>POMT_WPF\ko\System.Xaml.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ko\UIAutomationClient.resources.dll">
+      <PackagePath>POMT_WPF\ko\UIAutomationClient.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ko\UIAutomationClientSideProviders.resources.dll">
+      <PackagePath>POMT_WPF\ko\UIAutomationClientSideProviders.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ko\UIAutomationProvider.resources.dll">
+      <PackagePath>POMT_WPF\ko\UIAutomationProvider.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ko\UIAutomationTypes.resources.dll">
+      <PackagePath>POMT_WPF\ko\UIAutomationTypes.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ko\WindowsBase.resources.dll">
+      <PackagePath>POMT_WPF\ko\WindowsBase.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ko\WindowsFormsIntegration.resources.dll">
+      <PackagePath>POMT_WPF\ko\WindowsFormsIntegration.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pl\Microsoft.VisualBasic.Forms.resources.dll">
+      <PackagePath>POMT_WPF\pl\Microsoft.VisualBasic.Forms.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pl\PresentationCore.resources.dll">
+      <PackagePath>POMT_WPF\pl\PresentationCore.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pl\PresentationFramework.resources.dll">
+      <PackagePath>POMT_WPF\pl\PresentationFramework.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pl\PresentationUI.resources.dll">
+      <PackagePath>POMT_WPF\pl\PresentationUI.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pl\ReachFramework.resources.dll">
+      <PackagePath>POMT_WPF\pl\ReachFramework.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pl\System.Windows.Controls.Ribbon.resources.dll">
+      <PackagePath>POMT_WPF\pl\System.Windows.Controls.Ribbon.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pl\System.Windows.Forms.Design.resources.dll">
+      <PackagePath>POMT_WPF\pl\System.Windows.Forms.Design.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pl\System.Windows.Forms.Primitives.resources.dll">
+      <PackagePath>POMT_WPF\pl\System.Windows.Forms.Primitives.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pl\System.Windows.Forms.resources.dll">
+      <PackagePath>POMT_WPF\pl\System.Windows.Forms.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pl\System.Windows.Input.Manipulations.resources.dll">
+      <PackagePath>POMT_WPF\pl\System.Windows.Input.Manipulations.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pl\System.Xaml.resources.dll">
+      <PackagePath>POMT_WPF\pl\System.Xaml.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pl\UIAutomationClient.resources.dll">
+      <PackagePath>POMT_WPF\pl\UIAutomationClient.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pl\UIAutomationClientSideProviders.resources.dll">
+      <PackagePath>POMT_WPF\pl\UIAutomationClientSideProviders.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pl\UIAutomationProvider.resources.dll">
+      <PackagePath>POMT_WPF\pl\UIAutomationProvider.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pl\UIAutomationTypes.resources.dll">
+      <PackagePath>POMT_WPF\pl\UIAutomationTypes.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pl\WindowsBase.resources.dll">
+      <PackagePath>POMT_WPF\pl\WindowsBase.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pl\WindowsFormsIntegration.resources.dll">
+      <PackagePath>POMT_WPF\pl\WindowsFormsIntegration.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pt-BR\Microsoft.VisualBasic.Forms.resources.dll">
+      <PackagePath>POMT_WPF\pt-BR\Microsoft.VisualBasic.Forms.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pt-BR\PresentationCore.resources.dll">
+      <PackagePath>POMT_WPF\pt-BR\PresentationCore.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pt-BR\PresentationFramework.resources.dll">
+      <PackagePath>POMT_WPF\pt-BR\PresentationFramework.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pt-BR\PresentationUI.resources.dll">
+      <PackagePath>POMT_WPF\pt-BR\PresentationUI.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pt-BR\ReachFramework.resources.dll">
+      <PackagePath>POMT_WPF\pt-BR\ReachFramework.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pt-BR\System.Windows.Controls.Ribbon.resources.dll">
+      <PackagePath>POMT_WPF\pt-BR\System.Windows.Controls.Ribbon.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pt-BR\System.Windows.Forms.Design.resources.dll">
+      <PackagePath>POMT_WPF\pt-BR\System.Windows.Forms.Design.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pt-BR\System.Windows.Forms.Primitives.resources.dll">
+      <PackagePath>POMT_WPF\pt-BR\System.Windows.Forms.Primitives.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pt-BR\System.Windows.Forms.resources.dll">
+      <PackagePath>POMT_WPF\pt-BR\System.Windows.Forms.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pt-BR\System.Windows.Input.Manipulations.resources.dll">
+      <PackagePath>POMT_WPF\pt-BR\System.Windows.Input.Manipulations.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pt-BR\System.Xaml.resources.dll">
+      <PackagePath>POMT_WPF\pt-BR\System.Xaml.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pt-BR\UIAutomationClient.resources.dll">
+      <PackagePath>POMT_WPF\pt-BR\UIAutomationClient.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pt-BR\UIAutomationClientSideProviders.resources.dll">
+      <PackagePath>POMT_WPF\pt-BR\UIAutomationClientSideProviders.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pt-BR\UIAutomationProvider.resources.dll">
+      <PackagePath>POMT_WPF\pt-BR\UIAutomationProvider.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pt-BR\UIAutomationTypes.resources.dll">
+      <PackagePath>POMT_WPF\pt-BR\UIAutomationTypes.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pt-BR\WindowsBase.resources.dll">
+      <PackagePath>POMT_WPF\pt-BR\WindowsBase.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\pt-BR\WindowsFormsIntegration.resources.dll">
+      <PackagePath>POMT_WPF\pt-BR\WindowsFormsIntegration.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ru\Microsoft.VisualBasic.Forms.resources.dll">
+      <PackagePath>POMT_WPF\ru\Microsoft.VisualBasic.Forms.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ru\PresentationCore.resources.dll">
+      <PackagePath>POMT_WPF\ru\PresentationCore.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ru\PresentationFramework.resources.dll">
+      <PackagePath>POMT_WPF\ru\PresentationFramework.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ru\PresentationUI.resources.dll">
+      <PackagePath>POMT_WPF\ru\PresentationUI.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ru\ReachFramework.resources.dll">
+      <PackagePath>POMT_WPF\ru\ReachFramework.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ru\System.Windows.Controls.Ribbon.resources.dll">
+      <PackagePath>POMT_WPF\ru\System.Windows.Controls.Ribbon.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ru\System.Windows.Forms.Design.resources.dll">
+      <PackagePath>POMT_WPF\ru\System.Windows.Forms.Design.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ru\System.Windows.Forms.Primitives.resources.dll">
+      <PackagePath>POMT_WPF\ru\System.Windows.Forms.Primitives.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ru\System.Windows.Forms.resources.dll">
+      <PackagePath>POMT_WPF\ru\System.Windows.Forms.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ru\System.Windows.Input.Manipulations.resources.dll">
+      <PackagePath>POMT_WPF\ru\System.Windows.Input.Manipulations.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ru\System.Xaml.resources.dll">
+      <PackagePath>POMT_WPF\ru\System.Xaml.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ru\UIAutomationClient.resources.dll">
+      <PackagePath>POMT_WPF\ru\UIAutomationClient.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ru\UIAutomationClientSideProviders.resources.dll">
+      <PackagePath>POMT_WPF\ru\UIAutomationClientSideProviders.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ru\UIAutomationProvider.resources.dll">
+      <PackagePath>POMT_WPF\ru\UIAutomationProvider.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ru\UIAutomationTypes.resources.dll">
+      <PackagePath>POMT_WPF\ru\UIAutomationTypes.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ru\WindowsBase.resources.dll">
+      <PackagePath>POMT_WPF\ru\WindowsBase.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ru\WindowsFormsIntegration.resources.dll">
+      <PackagePath>POMT_WPF\ru\WindowsFormsIntegration.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\tr\Microsoft.VisualBasic.Forms.resources.dll">
+      <PackagePath>POMT_WPF\tr\Microsoft.VisualBasic.Forms.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\tr\PresentationCore.resources.dll">
+      <PackagePath>POMT_WPF\tr\PresentationCore.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\tr\PresentationFramework.resources.dll">
+      <PackagePath>POMT_WPF\tr\PresentationFramework.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\tr\PresentationUI.resources.dll">
+      <PackagePath>POMT_WPF\tr\PresentationUI.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\tr\ReachFramework.resources.dll">
+      <PackagePath>POMT_WPF\tr\ReachFramework.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\tr\System.Windows.Controls.Ribbon.resources.dll">
+      <PackagePath>POMT_WPF\tr\System.Windows.Controls.Ribbon.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\tr\System.Windows.Forms.Design.resources.dll">
+      <PackagePath>POMT_WPF\tr\System.Windows.Forms.Design.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\tr\System.Windows.Forms.Primitives.resources.dll">
+      <PackagePath>POMT_WPF\tr\System.Windows.Forms.Primitives.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\tr\System.Windows.Forms.resources.dll">
+      <PackagePath>POMT_WPF\tr\System.Windows.Forms.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\tr\System.Windows.Input.Manipulations.resources.dll">
+      <PackagePath>POMT_WPF\tr\System.Windows.Input.Manipulations.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\tr\System.Xaml.resources.dll">
+      <PackagePath>POMT_WPF\tr\System.Xaml.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\tr\UIAutomationClient.resources.dll">
+      <PackagePath>POMT_WPF\tr\UIAutomationClient.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\tr\UIAutomationClientSideProviders.resources.dll">
+      <PackagePath>POMT_WPF\tr\UIAutomationClientSideProviders.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\tr\UIAutomationProvider.resources.dll">
+      <PackagePath>POMT_WPF\tr\UIAutomationProvider.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\tr\UIAutomationTypes.resources.dll">
+      <PackagePath>POMT_WPF\tr\UIAutomationTypes.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\tr\WindowsBase.resources.dll">
+      <PackagePath>POMT_WPF\tr\WindowsBase.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\tr\WindowsFormsIntegration.resources.dll">
+      <PackagePath>POMT_WPF\tr\WindowsFormsIntegration.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hans\Microsoft.VisualBasic.Forms.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hans\Microsoft.VisualBasic.Forms.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hans\PresentationCore.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hans\PresentationCore.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hans\PresentationFramework.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hans\PresentationFramework.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hans\PresentationUI.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hans\PresentationUI.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hans\ReachFramework.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hans\ReachFramework.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hans\System.Windows.Controls.Ribbon.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hans\System.Windows.Controls.Ribbon.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hans\System.Windows.Forms.Design.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hans\System.Windows.Forms.Design.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hans\System.Windows.Forms.Primitives.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hans\System.Windows.Forms.Primitives.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hans\System.Windows.Forms.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hans\System.Windows.Forms.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hans\System.Windows.Input.Manipulations.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hans\System.Windows.Input.Manipulations.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hans\System.Xaml.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hans\System.Xaml.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hans\UIAutomationClient.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hans\UIAutomationClient.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hans\UIAutomationClientSideProviders.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hans\UIAutomationClientSideProviders.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hans\UIAutomationProvider.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hans\UIAutomationProvider.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hans\UIAutomationTypes.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hans\UIAutomationTypes.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hans\WindowsBase.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hans\WindowsBase.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hans\WindowsFormsIntegration.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hans\WindowsFormsIntegration.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hant\Microsoft.VisualBasic.Forms.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hant\Microsoft.VisualBasic.Forms.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hant\PresentationCore.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hant\PresentationCore.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hant\PresentationFramework.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hant\PresentationFramework.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hant\PresentationUI.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hant\PresentationUI.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hant\ReachFramework.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hant\ReachFramework.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hant\System.Windows.Controls.Ribbon.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hant\System.Windows.Controls.Ribbon.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hant\System.Windows.Forms.Design.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hant\System.Windows.Forms.Design.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hant\System.Windows.Forms.Primitives.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hant\System.Windows.Forms.Primitives.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hant\System.Windows.Forms.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hant\System.Windows.Forms.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hant\System.Windows.Input.Manipulations.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hant\System.Windows.Input.Manipulations.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hant\System.Xaml.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hant\System.Xaml.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hant\UIAutomationClient.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hant\UIAutomationClient.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hant\UIAutomationClientSideProviders.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hant\UIAutomationClientSideProviders.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hant\UIAutomationProvider.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hant\UIAutomationProvider.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hant\UIAutomationTypes.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hant\UIAutomationTypes.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hant\WindowsBase.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hant\WindowsBase.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\zh-Hant\WindowsFormsIntegration.resources.dll">
+      <PackagePath>POMT_WPF\zh-Hant\WindowsFormsIntegration.resources.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\APIMatic.Core.dll">
+      <PackagePath>POMT_WPF\APIMatic.Core.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ClosedXML.dll">
+      <PackagePath>POMT_WPF\ClosedXML.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\CsvHelper.dll">
+      <PackagePath>POMT_WPF\CsvHelper.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\DocumentFormat.OpenXml.dll">
+      <PackagePath>POMT_WPF\DocumentFormat.OpenXml.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\ExcelNumberFormat.dll">
+      <PackagePath>POMT_WPF\ExcelNumberFormat.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\Irony.dll">
+      <PackagePath>POMT_WPF\Irony.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.BootstrapIcons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.BootstrapIcons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.BoxIcons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.BoxIcons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.Codicons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Codicons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.Coolicons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Coolicons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.Core.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Core.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.Entypo.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Entypo.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.EvaIcons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.EvaIcons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.FeatherIcons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.FeatherIcons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.FileIcons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.FileIcons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.FontAwesome.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.FontAwesome.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.Fontaudio.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Fontaudio.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.Fontisto.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Fontisto.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.ForkAwesome.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.ForkAwesome.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.Ionicons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Ionicons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.JamIcons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.JamIcons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.Material.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Material.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.MaterialDesign.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.MaterialDesign.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.MaterialLight.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.MaterialLight.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.Microns.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Microns.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.Modern.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Modern.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.Octicons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Octicons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.PicolIcons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.PicolIcons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.PixelartIcons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.PixelartIcons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.RPGAwesome.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.RPGAwesome.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.RadixIcons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.RadixIcons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.RemixIcon.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.RemixIcon.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.SimpleIcons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.SimpleIcons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.Typicons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Typicons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.Unicons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Unicons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.VaadinIcons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.VaadinIcons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.WeatherIcons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.WeatherIcons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.Zondicons.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.Zondicons.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\MahApps.Metro.IconPacks.dll">
+      <PackagePath>POMT_WPF\MahApps.Metro.IconPacks.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\Microsoft.Bcl.HashCode.dll">
+      <PackagePath>POMT_WPF\Microsoft.Bcl.HashCode.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\Microsoft.Json.Pointer.dll">
+      <PackagePath>POMT_WPF\Microsoft.Json.Pointer.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\Newtonsoft.Json.dll">
+      <PackagePath>POMT_WPF\Newtonsoft.Json.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\Polly.dll">
+      <PackagePath>POMT_WPF\Polly.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\SixLabors.Fonts.dll">
+      <PackagePath>POMT_WPF\SixLabors.Fonts.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\Square.dll">
+      <PackagePath>POMT_WPF\Square.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Collections.Immutable.dll">
+      <PackagePath>POMT_WPF\System.Collections.Immutable.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\System.Linq.Async.dll">
+      <PackagePath>POMT_WPF\System.Linq.Async.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\XLParser.dll">
+      <PackagePath>POMT_WPF\XLParser.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\Petsi.dll">
+      <PackagePath>POMT_WPF\Petsi.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\Square.Service.dll">
+      <PackagePath>POMT_WPF\Square.Service.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Git-Repos\POMT_WPF\POMT_WPF\bin\x64\Release\net6.0-windows7.0\win-x64\msixpublish\Petsi.dll.config">
+      <PackagePath>POMT_WPF\Petsi.dll.config</PackagePath>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
