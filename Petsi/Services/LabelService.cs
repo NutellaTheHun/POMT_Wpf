@@ -29,7 +29,7 @@ namespace Petsi.Services
             pieDirectoryPath = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_PIE_LBL_PATH);
             SetServiceName(Identifiers.SERVICE_LABEL);
             ServiceManagerSingleton.GetInstance().Register(this);
-            CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
+            CatalogModelPetsi cmp = ModelManagerSingleton.GetInstance().GetCatalogModel();
             cmp.AddModelService(this);
             LoadLabelMap(cmp.GetItems());
         }
@@ -57,25 +57,31 @@ namespace Petsi.Services
         }
         public void Print_4x2(DateTime targetDate)
         {
+            SystemLogger.LogStatus("Label Service Print4x2 start");
             OrderModelPetsi omp = GetOrderModel();
 
             List<LabelPrintData> printList = LoadPrintList(omp.GetWsDayData(targetDate));
             PrintStandard(printList);
+            SystemLogger.LogStatus("Label Service Print4x2 complete");
         }
         public void Print_2x1(DateTime targetDate)
         {
+            SystemLogger.LogStatus("Label Service Print2x1 start");
             OrderModelPetsi omp = GetOrderModel();
 
             List<LabelPrintData> printList = LoadPrintList(omp.GetWsDayData(targetDate));
-            PrintCare(printList);
             PrintCutie(printList);
+            SystemLogger.LogStatus("Label Service Print2x1 complete");
         }
+        
         public void Print_Round(DateTime targetDate)
         {
+            SystemLogger.LogStatus("Label Service PrintRound start");
             OrderModelPetsi omp = GetOrderModel();
 
             List<LabelPrintData> printList = LoadPrintList(omp.GetWsDayData(targetDate));
             PrintRound(printList);
+            SystemLogger.LogStatus("Label Service PrintRound complete");
         }
 
         private void PrintStandard(List<LabelPrintData> inputList)
@@ -219,7 +225,7 @@ namespace Petsi.Services
             int count = 0;
             foreach (LabelPrintData printItem in inputList)
             {
-                count += printItem.GetStandardAmount();
+                count += printItem.Amount5;
             }
 
             if(count == 0) { return; }
@@ -333,7 +339,8 @@ namespace Petsi.Services
 
         private OrderModelPetsi GetOrderModel()
         {
-            return (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+            //return (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+            return (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetOrderModel();
         }
     }
     public class LabelPrintData

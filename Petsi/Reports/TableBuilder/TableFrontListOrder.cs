@@ -25,7 +25,13 @@ namespace Petsi.Reports.TableBuilder
                 AddLine(page, ref _rowIndex, _rootPosition.col, order.Recipient, DateTime.Parse(order.OrderDueDate).ToShortTimeString(), order.FulfillmentType, CHECKNOTES(order));
                 foreach(PetsiOrderLineItem lineItem in order.LineItems)
                 {
-                    if(lineItem.Amount5 != 0)
+                    if (lineItem.Amount3 != 0)
+                    {
+                        lineItemAmount = lineItem.Amount3.ToString();
+                        size = "3\"";
+                        AddLine(page, ref _rowIndex, _rootPosition.col, "", "", "", size, TableFormat.MaxLineLength(lineItem.ItemName, 35), lineItemAmount);
+                    }
+                    if (lineItem.Amount5 != 0)
                     { 
                         lineItemAmount = lineItem.Amount5.ToString();
                         size = "5\"";

@@ -1,0 +1,449 @@
+{
+  "orders": [
+    {
+      "id": "kyvgSmPk1ATzmxyzJ890YJbR15bZY",
+      "location_id": "L33TZWGMCAGX5",
+      "line_items": [
+        {
+          "uid": "rclUKYKhFKXjYsxaOLpcP",
+          "catalog_object_id": "U3Z2R6CVKAMREYZC6CX666NA",
+          "catalog_version": 1727792573819,
+          "quantity": "1",
+          "name": "Salted Caramel Apple Pie",
+          "variation_name": "Large 10\" serves 8-10",
+          "base_price_money": {
+            "amount": 3800,
+            "currency": "USD"
+          },
+          "gross_sales_money": {
+            "amount": 3800,
+            "currency": "USD"
+          },
+          "total_tax_money": {
+            "amount": 0,
+            "currency": "USD"
+          },
+          "total_discount_money": {
+            "amount": 0,
+            "currency": "USD"
+          },
+          "total_money": {
+            "amount": 3800,
+            "currency": "USD"
+          },
+          "variation_total_price_money": {
+            "amount": 3800,
+            "currency": "USD"
+          },
+          "item_type": "ITEM",
+          "total_service_charge_money": {
+            "amount": 0,
+            "currency": "USD"
+          }
+        }
+      ],
+      "fulfillments": [
+        {
+          "uid": "vR5QjpmwfHNoOm7HKFjrhD",
+          "type": "DELIVERY",
+          "state": "PROPOSED",
+          "line_item_application": "ALL",
+          "delivery_details": {
+            "recipient": {
+              "display_name": "James Gomes",
+              "email_address": "jgomes@epssac.com",
+              "phone_number": "+19164121160",
+              "address": {
+                "address_line_1": "118 Holland Street",
+                "address_line_2": "1R",
+                "locality": "Somerville",
+                "administrative_district_level_1": "MA",
+                "postal_code": "02144",
+                "country": "US",
+                "first_name": "James",
+                "last_name": "Gomes"
+              }
+            },
+            "schedule_type": "SCHEDULED",
+            "placed_at": "2024-10-01T14:35:26.769Z",
+            "deliver_at": "2024-10-03T14:00:00.000Z",
+            "prep_time_duration": "PT0S",
+            "delivery_window_duration": "PT3H",
+            "note": "DELIVER TO:118 Holland Street 1R Somerville, MA 02144\n+19164121160\n",
+            "courier_pickup_at": "2024-10-03T14:00:00.000Z",
+            "is_no_contact_delivery": false,
+            "dropoff_notes": "",
+            "courier_provider_name": "",
+            "courier_support_phone_number": "",
+            "square_delivery_id": "",
+            "external_delivery_id": "",
+            "managed_delivery": false
+          }
+        }
+      ],
+      "created_at": "2024-10-01T14:35:24.965Z",
+      "updated_at": "2024-10-03T01:41:17.495Z",
+      "state": "OPEN",
+      "version": 5,
+      "reference_id": "11ef8001c4cf1d8086f2ac1f6bbba82c",
+      "total_tax_money": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "total_discount_money": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "total_tip_money": {
+        "amount": 570,
+        "currency": "USD"
+      },
+      "total_money": {
+        "amount": 6370,
+        "currency": "USD"
+      },
+      "tenders": [
+        {
+          "id": "5e1SChh6oeITVLpErOUWpaSr68QZY",
+          "location_id": "L33TZWGMCAGX5",
+          "transaction_id": "kyvgSmPk1ATzmxyzJ890YJbR15bZY",
+          "created_at": "2024-10-01T14:35:25Z",
+          "amount_money": {
+            "amount": 6370,
+            "currency": "USD"
+          },
+          "type": "CARD",
+          "card_details": {
+            "status": "CAPTURED",
+            "card": {
+              "card_brand": "MASTERCARD",
+              "last_4": "1574",
+              "exp_month": 10,
+              "exp_year": 2026,
+              "fingerprint": "sq-1-XgKW3uhPf3lbEymxRrj-O3IbVS4Ta7SOkTaKh03HCRka2nyOF4Oo4jrVgxD2htnKVA",
+              "card_type": "CREDIT",
+              "prepaid_type": "NOT_PREPAID",
+              "bin": "525363"
+            },
+            "entry_method": "KEYED"
+          },
+          "tip_money": {
+            "amount": 570,
+            "currency": "USD"
+          },
+          "payment_id": "5e1SChh6oeITVLpErOUWpaSr68QZY"
+        }
+      ],
+      "service_charges": [
+        {
+          "uid": "xRiuKE6BO0srQhIuMTBS2",
+          "name": "Delivery",
+          "amount_money": {
+            "amount": 2000,
+            "currency": "USD"
+          },
+          "applied_money": {
+            "amount": 2000,
+            "currency": "USD"
+          },
+          "calculation_phase": "SUBTOTAL_PHASE",
+          "taxable": false,
+          "total_money": {
+            "amount": 2000,
+            "currency": "USD"
+          },
+          "total_tax_money": {
+            "amount": 0,
+            "currency": "USD"
+          },
+          "type": "CUSTOM",
+          "treatment_type": "LINE_ITEM_TREATMENT"
+        }
+      ],
+      "total_service_charge_money": {
+        "amount": 2000,
+        "currency": "USD"
+      },
+      "net_amounts": {
+        "total_money": {
+          "amount": 6370,
+          "currency": "USD"
+        },
+        "tax_money": {
+          "amount": 0,
+          "currency": "USD"
+        },
+        "discount_money": {
+          "amount": 0,
+          "currency": "USD"
+        },
+        "tip_money": {
+          "amount": 570,
+          "currency": "USD"
+        },
+        "service_charge_money": {
+          "amount": 2000,
+          "currency": "USD"
+        }
+      },
+      "source": {
+        "name": "Square Online"
+      },
+      "net_amount_due_money": {
+        "amount": 0,
+        "currency": "USD"
+      }
+    },
+    {
+      "id": "4KmyEHI28mwJlZqlR1lX6hJ3PCaZY",
+      "location_id": "L33TZWGMCAGX5",
+      "line_items": [
+        {
+          "uid": "A3288EfClWnO9QfFuzv5QD",
+          "catalog_object_id": "23GSOOWF4URDGZ672TSI5X2U",
+          "catalog_version": 1727796372371,
+          "quantity": "2",
+          "name": "Earl Grey Iced Tea",
+          "variation_name": "Regular",
+          "base_price_money": {
+            "amount": 2000,
+            "currency": "USD"
+          },
+          "gross_sales_money": {
+            "amount": 4000,
+            "currency": "USD"
+          },
+          "total_tax_money": {
+            "amount": 0,
+            "currency": "USD"
+          },
+          "total_discount_money": {
+            "amount": 0,
+            "currency": "USD"
+          },
+          "total_money": {
+            "amount": 4000,
+            "currency": "USD"
+          },
+          "variation_total_price_money": {
+            "amount": 4000,
+            "currency": "USD"
+          },
+          "item_type": "ITEM",
+          "total_service_charge_money": {
+            "amount": 0,
+            "currency": "USD"
+          }
+        },
+        {
+          "uid": "agt5l3VCu604wBSP5HaARC",
+          "catalog_object_id": "UFVOR7Y5GMDEATE32T4M2IAI",
+          "catalog_version": 1727796372371,
+          "quantity": "2",
+          "name": "Scone",
+          "variation_name": "Regular",
+          "base_price_money": {
+            "amount": 350,
+            "currency": "USD"
+          },
+          "modifiers": [
+            {
+              "uid": "zICN54pPL1uy6jvOC8ycO",
+              "base_price_money": {
+                "amount": 0,
+                "currency": "USD"
+              },
+              "total_price_money": {
+                "amount": 0,
+                "currency": "USD"
+              },
+              "name": "Buttermilk Currant",
+              "catalog_object_id": "IGJY4SC72MFVOEXB24NIFDGU",
+              "catalog_version": 1727796372371,
+              "quantity": "1"
+            }
+          ],
+          "gross_sales_money": {
+            "amount": 654,
+            "currency": "USD"
+          },
+          "total_tax_money": {
+            "amount": 46,
+            "currency": "USD"
+          },
+          "total_discount_money": {
+            "amount": 0,
+            "currency": "USD"
+          },
+          "total_money": {
+            "amount": 700,
+            "currency": "USD"
+          },
+          "variation_total_price_money": {
+            "amount": 700,
+            "currency": "USD"
+          },
+          "applied_taxes": [
+            {
+              "uid": "uRpgMaet5ShBQQ3Iri7DXB",
+              "tax_uid": "KORBWZLOWPDM2X7BF5VZQ2DV",
+              "applied_money": {
+                "amount": 5,
+                "currency": "USD"
+              }
+            },
+            {
+              "uid": "h9borkhTy47VjedMqpcO4C",
+              "tax_uid": "2OKYSHNY2UE3JCA7KU247DDW",
+              "applied_money": {
+                "amount": 41,
+                "currency": "USD"
+              }
+            }
+          ],
+          "item_type": "ITEM",
+          "total_service_charge_money": {
+            "amount": 0,
+            "currency": "USD"
+          }
+        }
+      ],
+      "taxes": [
+        {
+          "uid": "2OKYSHNY2UE3JCA7KU247DDW",
+          "name": "State Tax",
+          "percentage": "6.2500",
+          "type": "INCLUSIVE",
+          "applied_money": {
+            "amount": 41,
+            "currency": "USD"
+          },
+          "scope": "LINE_ITEM"
+        },
+        {
+          "uid": "KORBWZLOWPDM2X7BF5VZQ2DV",
+          "name": "Local Tax",
+          "percentage": "0.7500",
+          "type": "INCLUSIVE",
+          "applied_money": {
+            "amount": 5,
+            "currency": "USD"
+          },
+          "scope": "LINE_ITEM"
+        }
+      ],
+      "fulfillments": [
+        {
+          "uid": "BNqVuDhmg2KnMno5pLZ4iD",
+          "type": "PICKUP",
+          "state": "PROPOSED",
+          "pickup_details": {
+            "pickup_at": "2024-10-02T14:00:00.000Z",
+            "note": "",
+            "placed_at": "2024-10-01T15:54:21.512Z",
+            "schedule_type": "SCHEDULED",
+            "recipient": {
+              "display_name": "Jennifer Allard",
+              "email_address": "jallard@pitt.edu",
+              "phone_number": "+18579980813",
+              "address": {
+                "address_line_1": "285 Beacon St",
+                "locality": "Somerville",
+                "administrative_district_level_1": "MA",
+                "postal_code": "02143",
+                "country": "US",
+                "first_name": "Jennifer",
+                "last_name": "Allard",
+                "organization": "Petsi Pies"
+              }
+            },
+            "prep_time_duration": "PT0S"
+          },
+          "line_item_application": "ALL"
+        }
+      ],
+      "created_at": "2024-10-01T15:54:19.756Z",
+      "updated_at": "2024-10-01T20:34:52.230Z",
+      "state": "OPEN",
+      "version": 5,
+      "reference_id": "11ef800d2a90638986f2ac1f6bbba82c",
+      "total_tax_money": {
+        "amount": 46,
+        "currency": "USD"
+      },
+      "total_discount_money": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "total_tip_money": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "total_money": {
+        "amount": 4700,
+        "currency": "USD"
+      },
+      "tenders": [
+        {
+          "id": "Bm5hzGq21nlVjLCg6SZU2S2eZaTZY",
+          "location_id": "L33TZWGMCAGX5",
+          "transaction_id": "4KmyEHI28mwJlZqlR1lX6hJ3PCaZY",
+          "created_at": "2024-10-01T15:54:20Z",
+          "amount_money": {
+            "amount": 4700,
+            "currency": "USD"
+          },
+          "type": "CARD",
+          "card_details": {
+            "status": "CAPTURED",
+            "card": {
+              "card_brand": "VISA",
+              "last_4": "2286",
+              "exp_month": 10,
+              "exp_year": 2027,
+              "fingerprint": "sq-1-gPo8IzwVBGytlv7ax1vcqeRIf2VS1yfZRoTVC-awLgmScs8w1m8DIRksu-WlzfnTxQ",
+              "card_type": "CREDIT",
+              "prepaid_type": "NOT_PREPAID",
+              "bin": "438857"
+            },
+            "entry_method": "ON_FILE"
+          },
+          "payment_id": "Bm5hzGq21nlVjLCg6SZU2S2eZaTZY"
+        }
+      ],
+      "total_service_charge_money": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "net_amounts": {
+        "total_money": {
+          "amount": 4700,
+          "currency": "USD"
+        },
+        "tax_money": {
+          "amount": 46,
+          "currency": "USD"
+        },
+        "discount_money": {
+          "amount": 0,
+          "currency": "USD"
+        },
+        "tip_money": {
+          "amount": 0,
+          "currency": "USD"
+        },
+        "service_charge_money": {
+          "amount": 0,
+          "currency": "USD"
+        }
+      },
+      "source": {
+        "name": "Square Online"
+      },
+      "net_amount_due_money": {
+        "amount": 0,
+        "currency": "USD"
+      }
+    }
+  ]
+}

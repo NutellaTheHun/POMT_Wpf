@@ -419,7 +419,8 @@ namespace POMT_WPF.MVVM.ViewModel
 
             UpdateColumnTotals(this, EventArgs.Empty);
 
-            OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+            //OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+            OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetOrderModel();
 
             OrderTypes = new ObservableCollection<string>(orderModel.GetOrderTypes());
             OrderFrequencies = new ObservableCollection<string>() { Identifiers.ORDER_FREQUENCY_WEEKLY, Identifiers.ORDER_FREQUENCY_ONE_TIME };
@@ -471,7 +472,7 @@ namespace POMT_WPF.MVVM.ViewModel
         {
             if (o is PetsiOrderLineItem lineItem)
             {
-                ConfirmationWindow confirmationWindow = new ConfirmationWindow(null);
+                ConfirmationWindow confirmationWindow = new ConfirmationWindow($"Delete {lineItem.ItemName}?");
                 confirmationWindow.ShowDialog();
                 if (confirmationWindow.ControlBool)
                 {
@@ -487,7 +488,7 @@ namespace POMT_WPF.MVVM.ViewModel
                     LineItems.Remove(lineItem);
                     if (LineItems.Count != count - 1)
                     {
-                        SystemLogger.Log("Delete Line Command failed to remove");
+                        SystemLogger.LogError($"Delete Line Command failed to remove {lineItem.ItemName}", "OrderItemViewModel DeleteLine()");
                     }
                 }
                 
@@ -628,7 +629,7 @@ namespace POMT_WPF.MVVM.ViewModel
 
             if (!Enum.TryParse(fulfillmentDayOfWeek, true, out DayOfWeek targetDayOfWeek))
             {
-                SystemLogger.Log("OrderItemView FulfillmentDate update Invalid day of the week.");
+                SystemLogger.LogWarning($"OrderItemViewModel UpdateFulfillmentDate() TryParse day of week failed: {fulfillmentDayOfWeek}");
             }
 
             int currentDayOfWeek = (int)fulfillmentDate.Value.DayOfWeek;

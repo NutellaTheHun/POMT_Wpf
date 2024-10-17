@@ -161,7 +161,7 @@ namespace POMT_WPF.MVVM.ViewModel
             }
             if (item == null) 
             {
-                SystemLogger.Log("LABEL ITEM VALIDATION FAILED: " + ItemName);
+                SystemLogger.LogError($"label item validation argument not found:{ItemName}", "LabelItemViewModel ValidateItem()");
                 return false;
             }
 

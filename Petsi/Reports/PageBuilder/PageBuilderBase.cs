@@ -17,13 +17,14 @@ namespace Petsi.Reports.PageBuilder
         {
             _tables = new List<TableBase>();
             _report = report;
-            ConfigureTables();
+            //ConfigureTables();
             ConfigureMaxRows();
             maxContentLineCount = GetPageContentMaxLineCount();
         }
         protected abstract void ConfigureMaxRows();
         protected abstract void ConfigureTables();
         public abstract int GetItemLineCount<T>(T item);
+        public abstract bool IsRelevantItemToList<T>(T item, int lineItemCount);
         public virtual int GetPageContentMaxLineCount()
         {
             int result = 0;

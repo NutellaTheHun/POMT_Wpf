@@ -6,6 +6,7 @@ using Petsi.Units;
 using Petsi.Utils;
 using POMT_WPF.Interfaces;
 using System.Collections.ObjectModel;
+using System.Windows.Data;
 
 namespace POMT_WPF.MVVM.ObsModels
 {
@@ -32,14 +33,17 @@ namespace POMT_WPF.MVVM.ObsModels
         private ObsOrderModelSingleton()
         {
             _subscriptions = new List<IObsOrderModelSubscriber>();
-            _omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+            //_omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+            _omp = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetOrderModel();
+            _omp.Subscribe(this);
             Orders = new ObservableCollection<PetsiOrder>(_omp.GetOrders());
-            Orders.CollectionChanged += (s, e) => { UpdateBackEndOrderModel(); };
+            //Orders.CollectionChanged += (s, e) => { UpdateBackEndOrderModel(); };
         }
 
         private void UpdateBackEndOrderModel()
         {
-            OrderModelPetsi model = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+            //OrderModelPetsi model = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
+            OrderModelPetsi model = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetOrderModel();
             model.UpdateModel(Orders);
         }
 
@@ -60,6 +64,7 @@ namespace POMT_WPF.MVVM.ObsModels
         /// <param name="orderItem"></param>
         public void UpdateOrder(PetsiOrder orderItem)
         {
+            SystemLogger.LogStatus($"ObsOmp Modify Order init {orderItem.Recipient}");
             bool isFound = false;
 
             //Try to modify
@@ -67,6 +72,7 @@ namespace POMT_WPF.MVVM.ObsModels
             {
                 if (order.OrderId == orderItem.OrderId)
                 {
+                    SystemLogger.LogStatus($"ObsOmp Order modified {orderItem.Recipient}");
                     isFound = true;
                     int index = Orders.IndexOf(order);
                     Orders[index] = orderItem;
@@ -75,33 +81,46 @@ namespace POMT_WPF.MVVM.ObsModels
             }
 
             //If not modify, add new item
-            if (!isFound) { Orders.Add(orderItem); }
+            if (!isFound) 
+            {
+                SystemLogger.LogStatus($"ObsOmp Modify Order added {orderItem.Recipient}");
+                Orders.Add(orderItem);
+            }
+            UpdateBackEndOrderModel();
         }
         public void RemoveOrder(PetsiOrder orderItem)
         {
+            SystemLogger.LogStatus($"ObsOmp Remove Order init {orderItem.Recipient}");
             int count = Orders.Count;
             foreach (var item in Orders)
             {
                 if (item.OrderId == orderItem.OrderId)
                 {
+                    SystemLogger.LogStatus($"ObsOmp order removed {orderItem.Recipient}");
                     Orders.Remove(item);
                     break;
                 }
             }
             if (count - 1 != Orders.Count)
             {
-                SystemLogger.Log("ObsOrders RemoveItem failure: " + orderItem.Recipient);
+                SystemLogger.LogError($"ObsOrders RemoveItem failure, count mismatch: {orderItem.Recipient}", "ObsOmp RemoveOrder()");
             }
+            UpdateBackEndOrderModel();
         }
 
         public void UpdateSubscriber()
         {
-            Orders.Clear();
+            
             List<PetsiOrder> newOrders = _omp.GetOrders();
+            Orders.Clear();    
             foreach (PetsiOrder order in newOrders)
             {
                 Orders.Add(order);
             }
+            //Orders.CollectionChanged += (s, e) => { UpdateBackEndOrderModel(); };
+            //Re initialize list to not trigger the OnCollectionChanged event, which is only for the ObsModel to update the backend order model
+            //Orders = new ObservableCollection<PetsiOrder>(_omp.GetOrders());
+            //CollectionViewSource.GetDefaultView(Orders).Refresh();
             Notify();
         }
 
@@ -135,7 +154,7 @@ namespace POMT_WPF.MVVM.ObsModels
                         line.CatalogObjectId = cs.GetCatalogObjectId(line.ItemName);
                         if (line.CatalogObjectId == "")
                         {
-                            SystemLogger.Log("Update MultiLineMatch Event FAILED: recipient " + order.Recipient + " item: " + line.ItemName);
+                            SystemLogger.LogError($"Update MultiLineMatch Event failed: recipient {order.Recipient}, item: {line.ItemName}\n","ObsOmp CheckCatalogItemError()");
                         }
                         else
                         {

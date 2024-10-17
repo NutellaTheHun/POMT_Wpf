@@ -1,5 +1,6 @@
 ﻿using Petsi.Events;
 using Petsi.Services;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace POMT_WPF.MVVM.View
@@ -35,6 +36,23 @@ namespace POMT_WPF.MVVM.View
             GeneralErrorWindow window = new GeneralErrorWindow("No orders found for report.");
             window.Owner = System.Windows.Application.Current.MainWindow;
             window.Show();
+        }
+
+        public async void TempDisableButton(object sender, RoutedEventArgs e)
+        {
+            Button btn = (Button)sender;
+            EnableReportButtons(false);
+            await Task.Delay(6000);
+            EnableReportButtons(true);
+        }
+
+        private void EnableReportButtons(bool v)
+        {
+            CustomerOrdersBtn.IsEnabled = v;
+            PastryListBtn.IsEnabled = v;
+            PieListBtn.IsEnabled = v;
+            WsAggBtn.IsEnabled = v;
+            WsBdBtn.IsEnabled = v;
         }
     }
 }

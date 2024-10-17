@@ -1,4 +1,9 @@
-﻿namespace Petsi.Units
+﻿using Petsi.Managers;
+using Petsi.Services;
+using Petsi.Utils;
+using Square.Models;
+
+namespace Petsi.Units
 {
     public class LineItem
     {
@@ -47,6 +52,25 @@
                 "   catalog obj id: " + CatalogObjectId + ", variation Id: " + VariationId + "\n" +
                 "   " + ItemName + " " + VariationName + " " + Quantity
                 );
+        }
+
+        public bool IsTakeNBake(CategoryService category, CatalogService catalog)
+        {
+            CatalogItemPetsi item = catalog.GetCatalogItemById(CatalogObjectId);
+            if(item == null) //Merchandise items from square are transformed in SquareOrderInput, and the items aren't reflected or captured in the catalog
+            {
+                return false;
+            }
+            string x = category.GetCategoryIdByCategoryName("Take and Bake");
+            return item.CategoryId == x;
+        }
+
+        public CatalogItemPetsi ToCatalogItemPetsi(string categoryId)
+        {
+            CatalogItemPetsi result = new CatalogItemPetsi(categoryId, CatalogObjectId, ItemName);
+            result.VariationList.Add((VariationId, VariationName));
+
+            return result;
         }
     }
 }

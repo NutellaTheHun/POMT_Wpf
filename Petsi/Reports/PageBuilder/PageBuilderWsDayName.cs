@@ -9,11 +9,17 @@ namespace Petsi.Reports.PageBuilder
         public PageBuilderWsDayName(Report report) : base(report)
         {
             SetMaxOrders(2);
+            ConfigureTables();
         }
         public override int GetItemLineCount<T>(T item)
         {
             var order = item as PetsiOrder;
             return order.LineItems.Count;
+        }
+
+        public override bool IsRelevantItemToList<T>(T item, int lineItemCount)
+        {
+            return lineItemCount != 0;
         }
         protected override void ConfigureMaxRows()
         {

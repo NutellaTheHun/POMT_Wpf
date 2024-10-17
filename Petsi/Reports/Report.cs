@@ -49,15 +49,31 @@ namespace Petsi.Reports
                 item.Cell("B5").Value = totalPages;
             }
         }
-        public void FinalizeReport()
-        { 
-            FinalizeTotalPageCount();
-            FormatReportHeader();
-            if(Wb.Worksheets.Count > 0)
+        private void FormatReportHeader()
+        {
+            foreach (var item in Wb.Worksheets)
             {
+                TableFormat.RangeAlignment(item, "left", "B1:B5");
+            }
+        }
+        public void FinalizeReport(string? reportName)
+        {
+            if (Wb.Worksheets.Count > 0)
+            {
+                FinalizeTotalPageCount();
+                FormatReportHeader();
+                ReportUtil.IncrementReportId(ReportId);
                 CaptureEnvironment();
 
-                ReportUtil.Save(Wb, PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_REPORT_EXPORT_PATH) + "\\" + ReportName + ReportId);
+                if (reportName == null)
+                {
+                    ReportUtil.Save(Wb, PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_REPORT_EXPORT_PATH) + "\\" + ReportName + ReportId);
+                }
+                else
+                {
+                    ReportUtil.Save(Wb, PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_REPORT_EXPORT_PATH) + "\\" + reportName);
+                }
+                
                
                 if(isPrint)
                 {
@@ -70,6 +86,15 @@ namespace Petsi.Reports
                     //ReportUtil.Save(Wb, PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_REPORT_EXPORT_PATH) + "\\" + ReportName + ReportId);
                     File.Delete(PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_REPORT_EXPORT_PATH) + "\\" + ReportName + ReportId + ".xlsx");
                 }
+                else
+                {
+                    SystemLogger.LogStatus($"FinalizeReport {ReportId} Export Success");
+                }
+                SystemLogger.LogStatus($"FinalizeReport {ReportId} Success");
+            }
+            else
+            {
+                SystemLogger.LogWarning($"FinalizeReport {ReportId} Failed, report was 0 worksheets");
             }
         }
 
@@ -78,15 +103,13 @@ namespace Petsi.Reports
             PrinterSettings settings = new PrinterSettings();
             settings.PrinterName = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_STD_PRINTER);
 
-            
-
-
             if (settings.IsValid) { return true; }
             return false;
         }
 
         private void PrintReport(string filepathFileName)
         {
+            SystemLogger.LogStatus($"Printing report start");
             Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();
             Workbook wb = app.Workbooks.Open(filepathFileName+".xlsx",
                 Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
@@ -118,15 +141,10 @@ namespace Petsi.Reports
 
             app.Quit();
             Marshal.FinalReleaseComObject(app);
+            SystemLogger.LogStatus($"Printing report success");
         }
 
-        private void FormatReportHeader()
-        {
-            foreach (var item in Wb.Worksheets)
-            {
-                TableFormat.RangeAlignment(item, "left", "B1:B5");
-            }
-        }
+
         public DateTime GetReportTargetDate() { return  _targetDate; }
         public void SetReportTargetDate(DateTime? date)
         {

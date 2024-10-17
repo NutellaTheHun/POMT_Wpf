@@ -16,13 +16,13 @@ namespace Petsi.Services
 
         List<CatalogItemPetsi> catalog;
 
-        public CatalogService() 
+        public CatalogService()
         {
             catalogIdDict = new Dictionary<string, CatalogItemPetsi>();
             catalog = new List<CatalogItemPetsi>();
             SetServiceName(Identifiers.SERVICE_CATALOG);
             ServiceManagerSingleton.GetInstance().Register(this);
-            CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
+            CatalogModelPetsi cmp = ModelManagerSingleton.GetInstance().GetCatalogModel();
             cmp.AddModelService(this);
         }
 
@@ -36,11 +36,11 @@ namespace Petsi.Services
             CatalogItemPetsi source = null;
             string result = "";
             try { catalogIdDict.TryGetValue(input, out source); }
-            catch(ArgumentNullException e)
+            catch (ArgumentNullException e)
             {
-                SystemLogger.Log("GetCatalogObjectID TryGetValue input is null");
+                SystemLogger.LogError("GetCatalogObjectID TryGetValue input is null", "CatalogService GetCatalogObjId()");
             }
-            
+
             if (source != null)
             {
                 result = source.CatalogObjectId;
@@ -74,7 +74,7 @@ namespace Petsi.Services
                     results.Add(item);
                 }
             }
-            if(results.Count == 1)
+            if (results.Count == 1)
             {
                 catalogId = results[0].CatalogObjectId;
                 return true;
@@ -111,7 +111,7 @@ namespace Petsi.Services
             */
             List<CatalogItemPetsi> results = new List<CatalogItemPetsi>();
             results = GetItemNameValidationResults(name);
-            
+
             //HANDLE ADDING NEW ITEM TO CATALOG -> NOTIFY USER
             if (results.Count == 0)
             {
@@ -119,7 +119,7 @@ namespace Petsi.Services
                 //CommandFrame.GetInstance().InjectErrorHandlingFrame(new CatalogServiceErrorFrameBehavior(name));
                 //HandleNewModifier(name);
 
-                CatalogModelPetsi cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
+                CatalogModelPetsi cmp = ModelManagerSingleton.GetInstance().GetCatalogModel();
                 CatalogItemPetsi newItem = new CatalogItemPetsi();
                 newItem.ItemName = name;
                 newItem.CatalogObjectId = GenerateCatalogId();
@@ -143,7 +143,6 @@ namespace Petsi.Services
                         SystemLogger.Log("   " + results[i]);
                     }
                 }*/
-
                 ErrorService.Instance().RaiseSoiMultiItemEvent(name, results);
 
                 return name;
@@ -175,8 +174,8 @@ namespace Petsi.Services
 
         public bool NameExists(string input)
         {
-            if(input == null || input == "") { return false; }
-            return catalog.Any(item => item.ItemName.ToLower().Equals(input.ToLower())); 
+            if (input == null || input == "") { return false; }
+            return catalog.Any(item => item.ItemName.ToLower().Equals(input.ToLower()));
         }
 
         public string GenerateCatalogId()
@@ -209,7 +208,7 @@ namespace Petsi.Services
 
             searchItem = catalog.FirstOrDefault(item => item.ItemName.ToLower() == searchItemName.ToLower());
 
-            if(searchItem == null) { SystemLogger.Log("CatalogSerivce GetItem() did not find item: " + searchItemName); }
+            if (searchItem == null) { SystemLogger.LogWarning("CatalogSerivce GetItem() did not find item: " + searchItemName); }
 
             result.ItemName = searchItem.ItemName;
             result.CatalogObjectId = searchItem.CatalogObjectId;
@@ -291,7 +290,7 @@ namespace Petsi.Services
             CatalogItemPetsi result = null;
             foreach (CatalogItemPetsi item in catalog)
             {
-                if(item.CatalogObjectId == targetid)
+                if (item.CatalogObjectId == targetid)
                 {
                     return item;
                 }
@@ -303,7 +302,7 @@ namespace Petsi.Services
         {
             foreach (CatalogItemPetsi item in catalog)
             {
-                if(item.CatalogObjectId ==  catalogObjectId)
+                if (item.CatalogObjectId == catalogObjectId)
                 {
                     return item.IsPOTM;
                 }
@@ -335,7 +334,7 @@ namespace Petsi.Services
             {
                 if (item.CatalogObjectId == backListItemId)
                 {
-                    if(item.VeganPieAssociation != null)
+                    if (item.VeganPieAssociation != null)
                     {
                         return (item.VeganPieAssociation.CatalogObjectId == targetId);
                     }
@@ -375,6 +374,19 @@ namespace Petsi.Services
                 }
             }
             return false;
+        }
+
+        public List<string> GetItemIdsByCategory(string targetCategoryId)
+        {
+            List<string> result = new List<string>();
+            foreach (CatalogItemPetsi item in catalog)
+            {
+                if (item.CategoryId == targetCategoryId)
+                {
+                    result.Add(item.CategoryId);
+                }
+            }
+            return result;
         }
     }
 }

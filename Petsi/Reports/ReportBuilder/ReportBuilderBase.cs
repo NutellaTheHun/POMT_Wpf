@@ -28,14 +28,13 @@ namespace Petsi.Reports.ReportBuilder
         {
             _report = report;
             pageBuilders = new List<PageBuilderBase>();
-            ConfigureBuilders();
+            //ConfigureBuilders();
         }
         
         public virtual XLWorkbook BuildReport<T>(List<T> inputList, DateTime? targetDate, DateTime? targetRangeEndDate)
         {
             if(inputList.Count == 0) 
             { 
-                SystemLogger.Log("Given list to report is empty"); 
                 ErrorService.RaiseReportEmptyInput(); 
                 return _report.Wb; 
             }
@@ -56,7 +55,12 @@ namespace Petsi.Reports.ReportBuilder
                     itemLineValue = pageBuilder.GetItemLineCount(item);
                     
                     //Check PageBuilderFrontListCover GetItemLineCount() for understanding
+                    /*
                     if( itemLineValue == 0 )
+                    {
+                        continue;
+                    }*/
+                    if (!pageBuilder.IsRelevantItemToList(item, itemLineValue))
                     {
                         continue;
                     }

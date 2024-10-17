@@ -8,6 +8,7 @@
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
     xmlns:vm="clr-namespace:POMT_WPF.MVVM.ViewModel"
     xmlns:vw="clr-namespace:POMT_WPF.MVVM.View"
+    Exit="Application_Exit"
     StartupUri="MVVM/View/testNEWmainVIEW.xaml">
     <Application.Resources>
 
@@ -77,6 +78,7 @@
                 <ResourceDictionary Source="Styles/DataGrid/CatalogViewColHeaderStyle.xaml" />
                 <ResourceDictionary Source="Styles/DataGrid/CatalogViewDgRowStyle.xaml" />
                 <ResourceDictionary Source="Styles/DataGrid/CatalogViewDgCellStyle.xaml" />
+                <ResourceDictionary Source="Styles/DataGrid/NewItemWindowDgRowStyle.xaml" />
 
                 <ResourceDictionary Source="Styles/Borders/GeneralBorder.xaml" />
                 <ResourceDictionary Source="Styles/Borders/GeneralWindowBorder.xaml" />

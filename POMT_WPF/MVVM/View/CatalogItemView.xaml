@@ -216,18 +216,29 @@
                                             IsReadOnly="True"
                                             Style="{StaticResource GeneralTextBox}"
                                             Text="{Binding VeganMappedItemName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-
-                                        <Button
-                                            Width="30"
-                                            Height="30"
-                                            Margin="5,0,5,5"
-                                            HorizontalAlignment="Right"
-                                            VerticalAlignment="Center"
-                                            Command="{Binding SetVeganPie}"
-                                            IsHitTestVisible="{Binding IsEdit}"
-                                            Style="{StaticResource secondaryButton}">
-                                            <Icon:PackIconMaterial Kind="ChartPie" />
-                                        </Button>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button
+                                                Width="30"
+                                                Height="30"
+                                                Margin="5,0,5,5"
+                                                HorizontalAlignment="Right"
+                                                VerticalAlignment="Center"
+                                                Command="{Binding SetVeganPie}"
+                                                IsHitTestVisible="{Binding IsEdit}"
+                                                Style="{StaticResource secondaryButton}">
+                                                <Icon:PackIconMaterial Kind="ChartPie" />
+                                            </Button>
+                                            <Button
+                                                x:Name="deleteVeganMapping"
+                                                Width="40"
+                                                Margin="5,0,5,5"
+                                                Background="{StaticResource ChiliRed}"
+                                                Command="{Binding ClearVeganPie}"
+                                                IsHitTestVisible="{Binding IsEdit}"
+                                                Style="{StaticResource secondaryButton}">
+                                                <Icon:PackIconMaterial Kind="Delete" />
+                                            </Button>
+                                        </StackPanel>
                                     </StackPanel>
                                 </StackPanel>
                                 <StackPanel Orientation="Vertical">
@@ -239,18 +250,29 @@
                                             IsReadOnly="True"
                                             Style="{StaticResource GeneralTextBox}"
                                             Text="{Binding TakeBakeMappedItemName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-
-                                        <Button
-                                            Width="30"
-                                            Height="30"
-                                            Margin="5,0,5,5"
-                                            HorizontalAlignment="Right"
-                                            VerticalAlignment="Center"
-                                            Command="{Binding SetTakeBakePie}"
-                                            IsHitTestVisible="{Binding IsEdit}"
-                                            Style="{StaticResource secondaryButton}">
-                                            <Icon:PackIconMaterial Kind="ChartPie" />
-                                        </Button>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button
+                                                Width="30"
+                                                Height="30"
+                                                Margin="5,0,5,5"
+                                                HorizontalAlignment="Right"
+                                                VerticalAlignment="Center"
+                                                Command="{Binding SetTakeBakePie}"
+                                                IsHitTestVisible="{Binding IsEdit}"
+                                                Style="{StaticResource secondaryButton}">
+                                                <Icon:PackIconMaterial Kind="ChartPie" />
+                                            </Button>
+                                            <Button
+                                                x:Name="deleteTakeNBakeMapping"
+                                                Width="40"
+                                                Margin="5,0,5,5"
+                                                Background="{StaticResource ChiliRed}"
+                                                Command="{Binding ClearTakeBakePie}"
+                                                IsHitTestVisible="{Binding IsEdit}"
+                                                Style="{StaticResource secondaryButton}">
+                                                <Icon:PackIconMaterial Kind="Delete" />
+                                            </Button>
+                                        </StackPanel>
                                     </StackPanel>
                                 </StackPanel>
                                 <StackPanel Orientation="Vertical">
@@ -262,18 +284,30 @@
                                             IsReadOnly="True"
                                             Style="{StaticResource GeneralTextBox}"
                                             Text="{Binding VeganTakeBakeMappedItemName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button
+                                                Width="30"
+                                                Height="30"
+                                                Margin="5,0,5,5"
+                                                HorizontalAlignment="Right"
+                                                VerticalAlignment="Center"
+                                                Command="{Binding SetVeganTakeBakePie}"
+                                                IsHitTestVisible="{Binding IsEdit}"
+                                                Style="{StaticResource secondaryButton}">
+                                                <Icon:PackIconMaterial Kind="ChartPie" />
+                                            </Button>
+                                            <Button
+                                                x:Name="deleteVeganTakeNBakeMapping"
+                                                Width="40"
+                                                Margin="5,0,5,5"
+                                                Background="{StaticResource ChiliRed}"
+                                                Command="{Binding ClearVeganTakeBakePie}"
+                                                IsHitTestVisible="{Binding IsEdit}"
+                                                Style="{StaticResource secondaryButton}">
+                                                <Icon:PackIconMaterial Kind="Delete" />
+                                            </Button>
+                                        </StackPanel>
 
-                                        <Button
-                                            Width="30"
-                                            Height="30"
-                                            Margin="5,0,5,5"
-                                            HorizontalAlignment="Right"
-                                            VerticalAlignment="Center"
-                                            Command="{Binding SetVeganTakeBakePie}"
-                                            IsHitTestVisible="{Binding IsEdit}"
-                                            Style="{StaticResource secondaryButton}">
-                                            <Icon:PackIconMaterial Kind="ChartPie" />
-                                        </Button>
                                     </StackPanel>
                                 </StackPanel>
                                 <StackPanel Orientation="Vertical">

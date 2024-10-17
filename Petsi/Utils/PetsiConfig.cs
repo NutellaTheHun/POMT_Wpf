@@ -10,34 +10,27 @@ namespace Petsi.Utils
     public class PetsiConfig : IStartupSubscriber
     {
         private static PetsiConfig _instance;
-        //private static readonly object padlock = new object();
-
+        
         List<(string Name,string Value)> variables;
 
-        //static readonly string rootDir = System.AppDomain.CurrentDomain.BaseDirectory + "/petsiDir/";s
-
-        /// <summary>
-        /// WARNING This filepath is hardcoded For and SquareKeyMissingWindow.xaml.cs and The SquareClientFactory.cs for square key
-        /// </summary>
+        public static string appRuntimeId;
         static readonly string rootDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\petsiDir";
         static readonly string configFile = "petsiConfig.txt";
         static readonly string configFilePath = rootDir + "\\" +  configFile;
         private PetsiConfig()
         {
+            appRuntimeId = Guid.NewGuid().ToString().Substring(0,8);
             variables = new List<(string,string)>();
             InitConfig();
         }
 
         public static PetsiConfig GetInstance() 
         { 
-           // lock(padlock)
-           // {
                 if (_instance == null)
                 {
                     _instance = new PetsiConfig();
                 };
                 return _instance;
-         //   }
         }
 
         private void InitConfig()
@@ -45,12 +38,12 @@ namespace Petsi.Utils
             if(!Directory.Exists(rootDir)) 
             { 
                 Directory.CreateDirectory(rootDir); 
-                SystemLogger.Log("PetsiConfig created root path at: " + rootDir);
+                SystemLogger.LogStatus("PetsiConfig Init(): root directory not found, created root path at: " + rootDir);
             }
             //Creates new config file, signals to start startup process
             if (!File.Exists(configFilePath))
             { 
-                SystemLogger.Log("PetsiConfig file created at: " + configFilePath);
+                SystemLogger.LogStatus("PetsiConfig Init(): config filepath not found file created at: " + configFilePath);
                 InitializeConfiguration();             
             }
             else
@@ -63,6 +56,7 @@ namespace Petsi.Utils
             //Once users sets square key and startup location, status is set to pending.
             if (GetVariable(Identifiers.SETTING_STARTUP_STATUS) == Identifiers.SETTING_STARTUP_STATUS_PENDING)
             {
+                SystemLogger.LogStatus("PetsiConfig: startup status pending, startup services executed (catalog gets reset)");
                 StartupService.Instance.Start(GetVariable(Identifiers.SETTING_STARTUP));
                 SetVariable(Identifiers.SETTING_STARTUP_STATUS, Identifiers.SETTING_STARTUP_STATUS_NEUTRAL);
             }

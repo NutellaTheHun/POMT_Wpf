@@ -92,7 +92,7 @@
                         CellStyle="{StaticResource CatalogViewDgCellStyle}"
                         ColumnHeaderStyle="{StaticResource CatalogViewColHeaderStyle}"
                         ItemsSource="{Binding Items}"
-                        RowStyle="{StaticResource CatalogViewDgRowStyle}"
+                        RowStyle="{StaticResource NewItemWindowDgRowStyle}"
                         SelectionUnit="FullRow"
                         Style="{StaticResource CatalogViewDgStyle}">
                         <DataGrid.InputBindings>

@@ -50,7 +50,7 @@ namespace POMT_WPF.MVVM.ViewModel
         public ConfigureLabelsViewModel(/*bool isFromSettingsVM*/)
         {
             //_isFromSettingsVM = isFromSettingsVM;
-            cmp = (CatalogModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_CATALOG);
+            cmp = ModelManagerSingleton.GetInstance().GetCatalogModel();
             ObsCatalogModelSingleton.Instance.Subscribe(this);
             Items = new ObservableCollection<CatalogItemPetsi>( 
                 SelectLabeledItems(
@@ -92,7 +92,7 @@ namespace POMT_WPF.MVVM.ViewModel
                     }
                     else
                     {
-                        SystemLogger.Log("Label Configuration cannot find catalog item in model: " + ((CatalogItemPetsi)o).ItemName);
+                        SystemLogger.LogError($"Label Configuration cannot find catalog item in model:{((CatalogItemPetsi)o).ItemName}", "ConfigureLabelsViewModel, RemoveLabMapCommand()");
                     }
                 }
             }
@@ -110,6 +110,7 @@ namespace POMT_WPF.MVVM.ViewModel
         private void CreateLabelMapCommand()
         {
             LabelItemWindow view = new LabelItemWindow(null, Items.ToList());
+            //LabelItemWindow view = new LabelItemWindow(null, cmp.GetItems());
             view.Show();
         }
 

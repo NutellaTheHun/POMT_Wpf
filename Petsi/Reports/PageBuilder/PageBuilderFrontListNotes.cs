@@ -8,6 +8,7 @@ namespace Petsi.Reports.PageBuilder
     {
         public PageBuilderFrontListNotes(Report report) : base(report)
         {
+            ConfigureTables();
         }
 
         public override int GetItemLineCount<T>(T item)
@@ -19,6 +20,11 @@ namespace Petsi.Reports.PageBuilder
                 return 0;
             }
             return 1;
+        }
+
+        public override bool IsRelevantItemToList<T>(T item, int lineItemCount)
+        {
+            return lineItemCount != 0;
         }
 
         protected override void ConfigureMaxRows()

@@ -1,4 +1,6 @@
-﻿using Petsi.Utils;
+﻿using Petsi.Managers;
+using Petsi.Services;
+using Petsi.Utils;
 
 namespace Petsi.Units
 {
@@ -34,12 +36,22 @@ namespace Petsi.Units
         public PetsiOrder ToPetsiOrder()
         {
             PetsiOrder o = new PetsiOrder();
+
+            //if a chill order
+            if(LocationId == "LMM3H2WYN5K4W")
+            {
+                o.FulfillmentType = "DELIVERY";
+                o.Note = "Chill Order " + Note;
+            } 
+            else 
+            {             
+                o.FulfillmentType = FulfillmentType;
+                o.Note = Note;
+            }
             o.InputOriginType = Identifiers.ORDER_INPUT_ORIGIN_SQUARE;
             o.Recipient = RecipientName;
             o.OrderId = Id;
-            o.OrderDueDate = Pickup_time;
-            o.FulfillmentType = FulfillmentType;
-            o.Note = Note;
+            o.OrderDueDate = Pickup_time;         
             o.LineItems = ToPetsiOrderLineItemList();
             o.IsPeriodic = false;
             o.IsOneShot = true;
@@ -48,6 +60,8 @@ namespace Petsi.Units
         }
         private List<PetsiOrderLineItem> ToPetsiOrderLineItemList()
         {
+            CategoryService categories = (CategoryService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATEGORY);
+            CatalogService catalog = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
             //Key: CatalogObjId
             Dictionary<string, PetsiOrderLineItem> variationSizeDict = new Dictionary<string, PetsiOrderLineItem>();
             PetsiOrderLineItem PetsiLineItem;
@@ -72,7 +86,15 @@ namespace Petsi.Units
                     }
                     else if (ChannelLineItem.VariationName.Contains(Identifiers.SIZE_REGULAR)) //Regular is used for items that aren't Pies, such as pastries and merch.
                     {
-                        variationSizeDict[ChannelLineItem.CatalogObjectId].AmountRegular += int.Parse(ChannelLineItem.Quantity);
+                        if (ChannelLineItem.IsTakeNBake(categories, catalog))
+                        {
+                            variationSizeDict[ChannelLineItem.CatalogObjectId].Amount10 += int.Parse(ChannelLineItem.Quantity);
+                        }
+                        else
+                        {
+                            variationSizeDict[ChannelLineItem.CatalogObjectId].AmountRegular += int.Parse(ChannelLineItem.Quantity);
+                        }
+                        
                     }
                 }
                 else //create a new item, parse the size and quantity, add to dictionary
@@ -97,7 +119,15 @@ namespace Petsi.Units
                     }
                     else if (ChannelLineItem.VariationName.Contains("Regular"))
                     {
-                        PetsiLineItem.AmountRegular = int.Parse(ChannelLineItem.Quantity);
+                        if (ChannelLineItem.IsTakeNBake(categories, catalog))
+                        {
+                            PetsiLineItem.Amount10 = int.Parse(ChannelLineItem.Quantity);
+                        }
+                        else
+                        {
+                            PetsiLineItem.AmountRegular = int.Parse(ChannelLineItem.Quantity);
+                        }
+                          
                     }
                     variationSizeDict.Add(ChannelLineItem.CatalogObjectId, PetsiLineItem);
                 }

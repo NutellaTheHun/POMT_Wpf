@@ -8,6 +8,7 @@ namespace Petsi.Reports.PageBuilder
     {
         public PageBuilderFrontListOrders(Report report) : base(report)
         {
+            ConfigureTables();
         }
 
         public override int GetItemLineCount<T>(T item)
@@ -15,7 +16,7 @@ namespace Petsi.Reports.PageBuilder
            var order = item as PetsiOrder;
 
            if(order.OrderType == Identifiers.ORDER_TYPE_WHOLESALE) { return 0; }
-           if(order.OrderType == Identifiers.ORDER_TYPE_FARMERS) { return 0; }
+           //if(order.OrderType == Identifiers.ORDER_TYPE_FARMERS) { return 0; }
            int lineCount = 0;
            foreach (var lineItem in order.LineItems) 
            {
@@ -26,6 +27,11 @@ namespace Petsi.Reports.PageBuilder
                 if (lineItem.Amount10 > 0) { lineCount++; }
            }
            return lineCount + 1;
+        }
+
+        public override bool IsRelevantItemToList<T>(T item, int lineItemCount)
+        {
+            return lineItemCount != 0;
         }
 
         protected override void ConfigureMaxRows()

@@ -9,19 +9,24 @@ namespace Petsi.Reports.TableBuilder
     /// <inheritdoc/>
     public class TableBackListPastry : TableBase
     {
+        List<BackListItem> listFormat;
         /// <inheritdoc/>
-        public TableBackListPastry((int row, int col) rootPosition, int maxColumns, int maxRows) : base(rootPosition, maxColumns, maxRows)
+        public TableBackListPastry((int row, int col) rootPosition, int maxColumns, int maxRows, List<BackListItem>? template) : base(rootPosition, maxColumns, maxRows)
         {
+            listFormat = template;
         }
         public override void BuildTable<T>(IXLWorksheet page, List<T> tableOrders, DateTime reportDate, string? recipient)
         {
             List<PetsiOrderLineItem> items = tableOrders as List<PetsiOrderLineItem>;
             List<PetsiOrderLineItem> itemTracker = new List<PetsiOrderLineItem>(items);
-            //List <BackListItem> listFormat = BacklistTemplateFormatSelector.GetInstance().GetPastryFormat();
-            List<BackListItem> listFormat = ReportTemplateService.Instance().GetActiveBacklistPastryTemplate();
             if(listFormat == null)
             {
-                SystemLogger.Log("TableBackListPastry GetActiveBackListPastryTemplate returned an empty list");
+                listFormat = ReportTemplateService.Instance().GetActiveBacklistPastryTemplate();
+            }
+            
+            if(listFormat == null)
+            {
+                SystemLogger.LogStatus("TableBackListPastry GetActiveBackListPastryTemplate returned an empty list");
                 return;
             }
             string amountReg;

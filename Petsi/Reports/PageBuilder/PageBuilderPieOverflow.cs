@@ -7,12 +7,17 @@ namespace Petsi.Reports.PageBuilder
     {
         public PageBuilderPieOverflow(Report report) : base(report)
         {
-
+            ConfigureTables();
         }
 
         public override int GetItemLineCount<T>(T item)
         {
             return 1;
+        }
+
+        public override bool IsRelevantItemToList<T>(T item, int lineItemCount)
+        {
+            return lineItemCount != 0;
         }
 
         protected override void ConfigureMaxRows()
@@ -22,7 +27,7 @@ namespace Petsi.Reports.PageBuilder
 
         protected override void ConfigureTables()
         {
-            _tables.Add(new TableBackListPastry((7, 2), 2, 32));
+            _tables.Add(new TableBackListPie((7, 2), 2, 32, null));
         }
     }
 }

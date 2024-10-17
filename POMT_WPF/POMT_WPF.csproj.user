@@ -201,6 +201,9 @@
     <Page Update="Styles\DataGrid\CatalogViewDgStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Styles\DataGrid\NewItemWindowDgRowStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Styles\Icons\CheckMark.xaml">
       <SubType>Designer</SubType>
     </Page>

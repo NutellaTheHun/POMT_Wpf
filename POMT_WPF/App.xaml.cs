@@ -4,6 +4,7 @@ using Petsi.Reports;
 using Petsi.Services;
 using Petsi.Utils;
 using Square.Service;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -41,8 +42,9 @@ namespace POMT_WPF
             }
             else
             {
-                SystemLogger.Log("Square Service Build Failed, square API's not called.");
+                SystemLogger.LogWarning("Square Service Build Failed, square API's not called.");
             }
+            SystemLogger.LogStatus($"Application start");
         }
 
         //https://stackoverflow.com/questions/53500915/how-to-select-all-text-in-textbox-wpf-when-focused
@@ -51,7 +53,27 @@ namespace POMT_WPF
             TextBox tb = (TextBox)sender;
             tb.Dispatcher.BeginInvoke(new Action(() => tb.SelectAll()));
         }
-        
+
+        private void Application_Exit(object sender, ExitEventArgs e)
+        {
+            SystemLogger.LogStatus($"Application Close");
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            // Get Reference to the current Process
+            Process thisProc = Process.GetCurrentProcess();
+            // Check how many total processes have the same name as the current one
+            if (Process.GetProcessesByName(thisProc.ProcessName).Length > 1)
+            {
+                // If ther is more than one, than it is already running.
+                MessageBox.Show("Application is already running.");
+                Application.Current.Shutdown();
+                return;
+            }
+
+            base.OnStartup(e);
+        }
     }
 
 }

@@ -1,5 +1,6 @@
 ﻿using Petsi.Interfaces;
 using Petsi.Models;
+using Petsi.Utils;
 
 namespace Petsi.Managers
 {
@@ -24,6 +25,38 @@ namespace Petsi.Managers
         {
             return _models.Find(x => x.GetModelName() == targetModelName);
         }
+
+        /// <summary>
+        /// Returns the production order model by it's set model name at runtime. If the production
+        /// model isn't found it returns the test model (assuming if the program execution isn't production
+        /// its for testing.
+        /// </summary>
+        /// <returns>An OrderModelPetsi object, either the "normal"/production instantiation, or the testing instantiatio</returns>
+        public OrderModelPetsi GetOrderModel()
+        {
+            var model = _models.Find(x => x.GetModelName() == Identifiers.MODEL_ORDERS);
+            if(model == null)
+            {
+                model = _models.Find(x => x.GetModelName() == Identifiers.TEST_MODEL_ORDERS);
+            }
+            return (OrderModelPetsi)model;
+        }
+
+        /// <summary>
+        /// Returns the production catalog model by it's set model name at runtime. If the production
+        /// model isn't found it returns the test model (assuming if the program execution isn't production
+        /// its for testing.
+        /// </summary>
+        /// <returns>An CatalogModelPetsi object, either the "normal"/production instantiation, or the testing instantiatio</returns>
+        public CatalogModelPetsi GetCatalogModel()
+        {
+            var model = _models.Find(x => x.GetModelName() == Identifiers.MODEL_CATALOG);
+            if (model == null)
+            {
+                model = _models.Find(x => x.GetModelName() == Identifiers.TEST_MODEL_CATALOG);
+            }
+            return (CatalogModelPetsi)model;
+        }
         public void AddModel(ModelBase model) { _models.Add(model); }
 
         public void Register(ModelBase model)
@@ -34,6 +67,11 @@ namespace Petsi.Managers
         public void Deregister(ModelBase model)
         {
             _models.Remove(model);
+        }
+
+        public static void Reset()
+        {
+            instance._models.Clear();
         }
     }
 }

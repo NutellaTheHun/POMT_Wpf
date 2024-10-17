@@ -42,6 +42,26 @@ namespace Petsi.Models
             ModelManagerSingleton.GetInstance().Register(this);
             EnvironCaptureRegistrySingleton.GetInstance().Register(this);
         }
+
+        /// <summary>
+        /// For testing environments only
+        /// </summary>
+        /// <param name="serializedCatalogItems"></param>
+        public CatalogModelPetsi(List<CatalogItemPetsi> serializedCatalogItems, List<(string name, string id)> categories)
+        {
+            //Testing Injection
+            items = new List<CatalogItemPetsi>(serializedCatalogItems);
+            Categories = new List<(string name, string id)>(categories);
+            fileBehavior = new FileBehavior("TEST_CatalogModel");
+
+            ServiceListeners = new List<ServiceBase>();
+
+            StartupService.Instance.Register(this);
+
+            SetModelName(Identifiers.TEST_MODEL_CATALOG);
+            ModelManagerSingleton.GetInstance().Register(this);
+            EnvironCaptureRegistrySingleton.GetInstance().Register(this);
+        }
         public void UpdateModel(ObservableCollection<CatalogItemPetsi> catalogItems)
         {
             items = catalogItems.ToList();
@@ -67,7 +87,7 @@ namespace Petsi.Models
             }
             else
             {
-                SystemLogger.Log("ERROR Duplicate newItem entered to catalog while handling new item from soi");
+                SystemLogger.LogError($"Duplicate newItem {newItem.ItemName} entered to catalog while handling new item from soi", "CMP AddNewItem()");
             }
         }
         public List<CatalogItemPetsi> GetItems(){ return items; }
@@ -78,15 +98,16 @@ namespace Petsi.Models
             NotifyModelServices();
         }
         public FileBehavior GetFileBehavior(){ return fileBehavior; }
-        public override void ClearModel() {/* items.Clear();*/ }
+        public override void ClearModel() { items.Clear(); }
 
         public override void AddItem(ModelUnitBase item)
         {
+            SystemLogger.LogStatus($"Cmp Additem {((CatalogItemPetsi)item).ItemName} initiated");
             int count = items.Count;
             items.Add((CatalogItemPetsi)item);
             if(count+1 != items.Count)
             {
-                SystemLogger.Log("cmp AddOrder failure: ");
+                SystemLogger.LogError($"AddOrder failed to add {((CatalogItemPetsi)item).ItemName}, count not incremented ", "Cmp AddItem()");
             }
             else
             {
@@ -94,17 +115,18 @@ namespace Petsi.Models
                 NotifyModelServices();
             }
         }
-        public void RemoveItem(CatalogItemPetsi order)
+        public void RemoveItem(CatalogItemPetsi item)
         {
+            SystemLogger.LogStatus($"Cmp RemoveItem {item.ItemName} initiated");
             int count = items.Count;
-            items.Remove(order);
+            items.Remove(item);
             if (count - 1 == items.Count)
             {
                 UpdateModel();
             }
             else
             {
-                SystemLogger.Log("CatalogModel remove item failed, original count:  " + count + " after operation: " + items.Count);
+                SystemLogger.LogError($"remove {item.ItemName} from catalog failed, original count: {count} after operation: {items.Count}", "Cmp RemoveItem()");
             }
         }
 
@@ -136,6 +158,7 @@ namespace Petsi.Models
         private void SaveMainModel()
         {
             fileBehavior.DataListToFile(Identifiers.MAIN_MODEL_CATALOG_FILE, GetItems());
+            fileBehavior.DataListToFile(Identifiers.MAIN_MODEL_CATALOG_CATEGORIES_FILE, Categories);
             SaveBackup();
         }
 
@@ -155,11 +178,16 @@ namespace Petsi.Models
 
         private void FinalizeMainModel()
         {
+            
             List<CatalogItemPetsi> mainList = fileBehavior.BuildDataListFile<CatalogItemPetsi>(Identifiers.MAIN_MODEL_CATALOG_FILE);
             List<CatalogItemPetsi> squareList = new List<CatalogItemPetsi>(GetItems());
             List<CatalogItemPetsi> newList;
             if (mainList != null) {newList = new List<CatalogItemPetsi>(mainList); }
-            else { newList = new List<CatalogItemPetsi>();}
+            else 
+            {
+                SystemLogger.LogStatus("CMP FinalizeMainModel(), MAIN_MODEL_CATALOG_FILE is null, catalog most likely reset.");
+                newList = new List<CatalogItemPetsi>();
+            }
  
 
             foreach(CatalogItemPetsi squareItem in squareList)
@@ -232,6 +260,7 @@ namespace Petsi.Models
 
         public void InitialLabelMapBoot()
         {
+            SystemLogger.LogStatus("Cmp InitLabelMapBoot executed");
             List<(string id, string path)> cuties = LoadLabels.GetCutieInitialMap();
             List<(string id, string path)> pie = LoadLabels.GetStandardInitialMap();
             foreach(CatalogItemPetsi item in items)
@@ -262,6 +291,7 @@ namespace Petsi.Models
             {
                 if(fileListing.fileName == Identifiers.MAIN_MODEL_CATALOG_FILE)
                 {
+                    SystemLogger.LogStatus("CMP LoadStartupFiles() executed");
                     StartupLoadCatalog(fileListing.filePath);
                     fileBehavior.DataListToFile(Identifiers.MAIN_MODEL_CATALOG_FILE, GetItems());
                     StartupService.Instance.Deregister(this);
@@ -274,9 +304,26 @@ namespace Petsi.Models
             string input;
             if (File.Exists(filePath))
             {
+                SystemLogger.LogStatus("CMP StartupLoadCatalog() executed");
                 input = File.ReadAllText(filePath);
                 items = JsonConvert.DeserializeObject<List<CatalogItemPetsi>>(input);
             }        
+        }
+
+        /// <summary>
+        /// Adds a new merch item to the catalog, otherwise no action is taken.
+        /// Merch Items from Square are transformed while parsing orders and need to be added to the catalog like a user generated item.
+        /// </summary>
+        /// <param name="merch"></param>
+        public void TryUpdateSquareMerchItem(LineItem merch)
+        {
+            foreach (CatalogItemPetsi item in items)
+            {
+                //item exists, nothing needs to be done.
+                if(item.CatalogObjectId == merch.CatalogObjectId) { return; }
+            }
+            items.Add(merch.ToCatalogItemPetsi(Identifiers.CATEGORY_MERCH));
+            UpdateModel();
         }
     }
 }

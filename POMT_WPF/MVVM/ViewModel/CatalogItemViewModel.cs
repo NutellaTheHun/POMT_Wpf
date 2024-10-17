@@ -325,8 +325,11 @@ namespace POMT_WPF.MVVM.ViewModel
         public RelayCommand SetStandardLblFile { get; set; }
         public RelayCommand SetCutieLblFile { get; set; }
         public RelayCommand SetVeganPie { get; set; }
+        public RelayCommand ClearVeganPie { get; set; }
         public RelayCommand SetTakeBakePie { get; set; }
+        public RelayCommand ClearTakeBakePie { get; set; }
         public RelayCommand SetVeganTakeBakePie { get; set; }
+        public RelayCommand ClearVeganTakeBakePie { get; set; }
         public RelayCommand DeleteItem { get; set; }
         public RelayCommand SaveItem { get; set; }
         public RelayCommand BackCatalogItem { get; set; }
@@ -412,8 +415,11 @@ namespace POMT_WPF.MVVM.ViewModel
             SetStandardLblFile = new RelayCommand(o => { SetStdLblFileCmd(); });
             SetCutieLblFile = new RelayCommand(o => { SetCutieLblFileCmd(); });
             SetVeganPie = new RelayCommand(o => { SetVeganPieCmd(); });
+            ClearVeganPie = new RelayCommand(o => { ClearVeganPieCmd(); });
             SetTakeBakePie = new RelayCommand(o => { SetTakeBakePieCmd(); });
+            ClearTakeBakePie = new RelayCommand(o => { ClearTakeBakePieCmd(); });
             SetVeganTakeBakePie = new RelayCommand(o => { SetVeganTakeBakePieCmd(); });
+            ClearVeganTakeBakePie = new RelayCommand(o => { ClearVeganTakeBakePieCmd(); });
             DeleteItem = new RelayCommand(o => { DeleteItemCmd(); });
             SaveItem = new RelayCommand(o => { SaveItemCmd(); });
             BackCatalogItem = new RelayCommand(o => { MainViewModel.Instance().BackCatalogView(); });
@@ -479,6 +485,11 @@ namespace POMT_WPF.MVVM.ViewModel
                 VeganMappedItemName = VeganMapping.ItemName;
             }
         }
+        private void ClearVeganPieCmd()
+        {
+            VeganMapping = null;
+            VeganMappedItemName = null;
+        }
 
         private void SetTakeBakePieCmd()
         {
@@ -490,6 +501,11 @@ namespace POMT_WPF.MVVM.ViewModel
                 TakeBakeMappedItemName = TakeBakeMapping.ItemName;
             }
         }
+        private void ClearTakeBakePieCmd()
+        {
+            TakeBakeMapping = null;
+            TakeBakeMappedItemName = null;
+        }
 
         private void SetVeganTakeBakePieCmd()
         {
@@ -500,6 +516,11 @@ namespace POMT_WPF.MVVM.ViewModel
                 VeganTakeBakeMapping = window.Selection;
                 VeganTakeBakeMappedItemName = VeganTakeBakeMapping.ItemName;
             }
+        }
+        private void ClearVeganTakeBakePieCmd()
+        {
+            VeganTakeBakeMapping = null;
+            VeganTakeBakeMappedItemName = null;
         }
         private void DeleteItemCmd()
         {

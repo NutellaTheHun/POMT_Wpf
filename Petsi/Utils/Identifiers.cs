@@ -10,6 +10,8 @@ namespace Petsi.Utils
         public const string USER_ENTERED_INPUT = "UserEntered";
         public const string PERIODIC_ORDERS = "periodicOrder";
         public const string ONE_SHOT_ORDERS = "oneShotOrder";
+        public const string TEST_ONESHOT_ORDERS = "test_oneShotOrder";
+        public const string TEST_PERIODIC_ORDERS = "test_periodicOrder";
         public const string FROZEN_ORDERS = "frozenOrders";
 
         public const string ORDER_FREQUENCY_WEEKLY = "Weekly";
@@ -28,10 +30,17 @@ namespace Petsi.Utils
         public const string ORDER_INPUT_ORIGIN_USER = "userInput";
         public const string ORDER_INPUT_ORIGIN_EZCATER = "EzInput";
 
+        //The name of the actual instantiated object
         public const string MODEL_ORDERS = "ORDERMODEL";
+        public const string TEST_MODEL_ORDERS = "TEST_ORDERMODEL";
 
+        //The name of the actual instantiated object
         public const string MODEL_CATALOG = "CATALOGMODEL";
+        public const string TEST_MODEL_CATALOG = "TEST_CATALOGMODEL";
+
+        //The name of the serialized file
         public const string MAIN_MODEL_CATALOG_FILE = "main_catalogmodel";
+        public const string MAIN_MODEL_CATALOG_CATEGORIES_FILE = "main_catalog_categories";
 
         public const string FULFILLMENT_PICKUP = "PICKUP";
         public const string FULFILLMENT_DELIVERY = "DELIVERY";
@@ -56,9 +65,10 @@ namespace Petsi.Utils
         public const string CATEGORY_PASTRY = "RJHRRYGCM4CMJQ4L57KP4JK5";
         public const string CATEGORY_DRINKS = "TPSEG2FP3QTC24PUTRQAUAEE";
         public const string CATEGORY_BOXED_TEA_PLATTERS = "PCM22LM7KMUAUOPP7MKQNRBL";
-        public const string CATEGORY_MERCH_ICECREAM = "HDB76BYHJ2NCXIZUMTI3WJIB";
+        public const string CATEGORY_MERCH = "HDB76BYHJ2NCXIZUMTI3WJIB";
         public const string CATEGORY_POTM = "POTM_ID";
         public const string CATEGORY_PARBAKE = "PARBAKE_ID";
+        public const string CATEGORY_TAKENBAKE = "CUAIOOBN27MNTBZNQZHLRUT5";
 
         public const string MODIFY_NAME_NOTE_CARD = "Add your note in \"notes\" section in checkout";
         public const string BOX_OF_6 = "Box of 6";

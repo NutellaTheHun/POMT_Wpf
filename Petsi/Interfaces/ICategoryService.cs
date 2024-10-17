@@ -5,5 +5,7 @@
         public List<string> GetCategoryNames();
         public string GetItemCategoryId(string categoryName);
         public string GetCategoryIdByIndex(int categoryIndex);
+
+        public string GetCategoryId(string itemIdentifier);
     }
 }

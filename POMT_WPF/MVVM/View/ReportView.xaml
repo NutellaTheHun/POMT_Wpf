@@ -116,48 +116,51 @@
                                         VerticalAlignment="Center"
                                         Orientation="Horizontal">
                                         <Button
+                                            Name="CustomerOrdersBtn"
                                             Width="150"
                                             Margin="5"
+                                            Click="TempDisableButton"
                                             Command="{Binding PrintFrontList}"
                                             Content="Print Customer Orders"
                                             Foreground="#efefef"
                                             Style="{StaticResource secondaryButton}" />
                                         <Button
+                                            Name="PieListBtn"
                                             Width="100"
                                             Margin="5"
+                                            Click="TempDisableButton"
                                             Command="{Binding PrintPieBackList}"
                                             Content="Print Pie List"
                                             Foreground="#efefef"
                                             Style="{StaticResource secondaryButton}" />
                                         <Button
+                                            Name="PastryListBtn"
                                             Width="100"
                                             Margin="5"
+                                            Click="TempDisableButton"
                                             Command="{Binding PrintPastryBackList}"
                                             Content="Print Pastry List"
                                             Foreground="#efefef"
                                             Style="{StaticResource secondaryButton}" />
                                     </StackPanel>
-                                    <!--                                         <Button
-                                            Width="150"
-                                            Margin="5"
-                                            Command="{Binding PrintBackList}"
-                                            Content="Print Baker's List"
-                                            Foreground="#efefef"
-                                            Style="{StaticResource secondaryButton}" />-->
                                     <StackPanel
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         Orientation="Horizontal">
                                         <Button
+                                            Name="WsAggBtn"
                                             Width="150"
                                             Margin="5"
+                                            Click="TempDisableButton"
                                             Command="{Binding PrintWsAgg}"
                                             Content="Print Wholesale Aggregate"
                                             Foreground="#efefef"
                                             Style="{StaticResource secondaryButton}" />
                                         <Button
+                                            Name="WsBdBtn"
                                             Width="150"
                                             Margin="5"
+                                            Click="TempDisableButton"
                                             Command="{Binding PrintWsBreakDown}"
                                             Content="Print Wholesale Breakdown"
                                             Foreground="#efefef"

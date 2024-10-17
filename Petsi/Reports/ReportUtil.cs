@@ -37,20 +37,13 @@ namespace Petsi.Reports
                 SystemLogger.LogError(ex.Message, "ReportUtil, CreateReportID");
             }
 
-            IncrementReportId(number);
+            //IncrementReportId(number);
             return number;
         }
-        private static void IncrementReportId(int number)
+        public static void IncrementReportId(int number)
         {
             int num = number + 1;
-            try
-            {
-                PetsiConfig.GetInstance().SetVariable(Identifiers.SETTING_REPORT_CNT_PATH, num.ToString());
-            }
-            catch (Exception ex)
-            {
-                SystemLogger.LogError(ex.Message, "ReportUtil, IncrementReportId");
-            }
+            PetsiConfig.GetInstance().SetVariable(Identifiers.SETTING_REPORT_CNT_PATH, num.ToString());
         }
         public static void InitPageReportHeader(IXLWorksheet page, Report report)
         {
