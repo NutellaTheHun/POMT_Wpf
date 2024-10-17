@@ -53,6 +53,9 @@ namespace POMT_WPF.MVVM.View
                 case "Farmer_rb":
                     Farmer_rb.IsChecked = true;
                     break;
+                case "History_rb":
+                    History_rb.IsChecked = true;
+                    break;
             }
         }
 
@@ -110,6 +113,11 @@ namespace POMT_WPF.MVVM.View
         private void Frozen_rb_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             MainViewModel.Instance().orderViewFilter = "Frozen_rb";
+        }
+
+        private void History_rb_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            MainViewModel.Instance().orderViewFilter = "History_rb";
         }
     }
 }
