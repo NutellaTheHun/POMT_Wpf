@@ -259,7 +259,7 @@ namespace Petsi.Models
             return query.ToList();
         }
 
-        public async Task<List<PetsiOrderLineItem>> GetBackListData(DateTime? targetDate, DateTime? endDate, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer)
+        public async Task<List<PetsiOrderLineItem>> GetBackListDataAsync(DateTime? targetDate, DateTime? endDate, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer)
         {
             //If testing, the model name will not match the production model name
             if (ModelName == Identifiers.MODEL_ORDERS)

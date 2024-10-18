@@ -11,6 +11,7 @@ namespace Petsi.Reports
     {
         public ReportDirector() 
         {
+
         }
 
         public async Task<IXLWorkbook> CreateFrontList(DateTime? targetDate, bool isPrint, bool isExport, bool isRetail, 
@@ -46,7 +47,7 @@ namespace Petsi.Reports
             if (endDate == null)//if endDate is null, report is for single day, targetDate is used in report header as targetDate
             {
                 builder.BuildReport(
-                    await orderModel.GetBackListData(targetDate, endDate, 
+                    await orderModel.GetBackListDataAsync(targetDate, endDate, 
                     isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer),
                                                                          targetDate, endDate);
             }
@@ -54,7 +55,7 @@ namespace Petsi.Reports
             {
                 if(targetDate < endDate)
                 {
-                    builder.BuildReport(await orderModel.GetBackListData(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), null, null);
+                    builder.BuildReport(await orderModel.GetBackListDataAsync(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), null, null);
                 }
             }
 
@@ -77,13 +78,13 @@ namespace Petsi.Reports
 
             if (endDate == null)//if endDate is null, report is for single day, targetDate is used in report header as targetDate
             {
-                builder.BuildReport(await orderModel.GetBackListData(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), targetDate, endDate);
+                builder.BuildReport(await orderModel.GetBackListDataAsync(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), targetDate, endDate);
             }
             else //otherwise printing all orders (for testing purposes) or is printing a range, displaying targetDate as a range not implemented yet, make arg param[] dateTime?
             {
                 if (targetDate < endDate)
                 {
-                    builder.BuildReport(await orderModel.GetBackListData(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), null, null);
+                    builder.BuildReport(await orderModel.GetBackListDataAsync(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), null, null);
                 }
             }
 
@@ -105,13 +106,13 @@ namespace Petsi.Reports
 
             if (endDate == null)//if endDate is null, report is for single day, targetDate is used in report header as targetDate
             {
-                builder.BuildReport(await orderModel.GetBackListData(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), targetDate, endDate);
+                builder.BuildReport(await orderModel.GetBackListDataAsync(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), targetDate, endDate);
             }
             else //otherwise printing all orders (for testing purposes) or is printing a range, displaying targetDate as a range not implemented yet, make arg param[] dateTime?
             {
                 if (targetDate < endDate)
                 {
-                    builder.BuildReport(await orderModel.GetBackListData(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), null, null);
+                    builder.BuildReport(await orderModel.GetBackListDataAsync(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), null, null);
                 }
             }
 
