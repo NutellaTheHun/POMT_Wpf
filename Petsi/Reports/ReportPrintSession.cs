@@ -1,16 +1,17 @@
-﻿using Petsi.Managers;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using Petsi.Managers;
 
 namespace Petsi.Reports
 {
     public class ReportPrintSession
     {
-        private Queue<(Func<Task>, ReportMetaData metaData)> _printQueue;
+        private Queue<(Func<Task> reportRequest, ReportMetaData metaData)> _printQueue;
         private HashSet<ReportMetaData> _reportMetaData;
         private bool _active;
 
         public ReportPrintSession()
         {
-            _printQueue = new Queue<(Func<Task>,ReportMetaData metaData)>();
+            _printQueue = new Queue<(Func<Task> reportRequest, ReportMetaData metaData)>();
             _reportMetaData = new HashSet<ReportMetaData>();
             _active = false;
         }
@@ -24,29 +25,34 @@ namespace Petsi.Reports
                 return;
             }
 
+            _reportMetaData.Add(metaData);
+
             if (_printQueue.Count == 0 && !_active)
             {
+                _active = true;
                 var omp = ModelManagerSingleton.GetInstance().GetOrderModel();
                 await omp.RefreshOrderModelAsync();
+                _printQueue.Enqueue((reportRequest, metaData));
+                await ExecutePrintRequest();
+                return;
             }
 
             _printQueue.Enqueue((reportRequest, metaData));
-            _reportMetaData.Add(metaData);
-
+            
             if (!_active)
             {
                 await ExecutePrintRequest();
             }
         }
 
-        public async Task ExecutePrintRequest()
+        private async Task ExecutePrintRequest()
         {
             _active = true;
             while (_printQueue.Count > 0)
             {
                 var reportRequest = _printQueue.Dequeue();
                 _reportMetaData.Remove(reportRequest.metaData);
-                await reportRequest.Item1();
+                await reportRequest.reportRequest();
             }
             _active = false;
         }

@@ -47,7 +47,7 @@ namespace Petsi.Tests.ReportTests.FrontList
 
             config = PetsiConfig.GetInstance();
 
-            
+
             omp = new OrderModelPetsi(null, null);
 
             rts = ReportTemplateService.Instance();

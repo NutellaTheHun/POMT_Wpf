@@ -185,7 +185,7 @@ namespace POMT_WPF.MVVM.ViewModel
         }
         #endregion
         public RelayCommand PrintFrontList {  get; set; }
-        public RelayCommand PrintBackList { get; set; } //not used, evolved to use PrintPieBackList() and PrintPastryBackList()
+        //public RelayCommand PrintBackList { get; set; } //not used, evolved to use PrintPieBackList() and PrintPastryBackList()
         public RelayCommand PrintPieBackList { get; set; }
         public RelayCommand PrintPastryBackList { get; set; }
         public RelayCommand PrintWsAgg { get; set; }
@@ -204,12 +204,12 @@ namespace POMT_WPF.MVVM.ViewModel
 
             ReportDirector rd = new ReportDirector();
 
-            PrintFrontList = new RelayCommand(o => { if (IsValidDate())      rd.CreateFrontList(StartDate, IsPrint, IsExport, RetailFilter, SquareFilter, WholesaleFilter, SpecialFilter, EzCaterFilter, FarmerFilter, null); });
-            PrintPieBackList = new RelayCommand(o => { if (IsValidDate())    rd.CreatePieBackList(StartDate, EndDate, IsPrint, IsExport, RetailFilter, SquareFilter, WholesaleFilter, SpecialFilter, EzCaterFilter, FarmerFilter, null, null); });
-            PrintPastryBackList = new RelayCommand(o => { if (IsValidDate()) rd.CreatePastryBackList(StartDate, EndDate, IsPrint, IsExport, RetailFilter, SquareFilter, WholesaleFilter, SpecialFilter, EzCaterFilter, FarmerFilter, null, null); });
-            PrintBackList = new RelayCommand(o => { if (IsValidDate())       rd.CreateBackList(StartDate, EndDate, IsPrint, IsExport, RetailFilter, SquareFilter, WholesaleFilter, SpecialFilter, EzCaterFilter, FarmerFilter, null); });
-            PrintWsAgg = new RelayCommand(o => { if (IsValidDate())          rd.CreateWsDay(StartDate,             IsPrint, IsExport, null); });
-            PrintWsBreakDown = new RelayCommand(o => { if (IsValidDate())    rd.CreateWsDayName(StartDate,         IsPrint, IsExport, null); });
+            PrintFrontList = new RelayCommand(o => { if (IsValidDate())      rd.RequestFrontList(GetReportConfig()); });
+            PrintPieBackList = new RelayCommand(o => { if (IsValidDate())    rd.RequestPieBackList(GetReportConfig()); });
+            PrintPastryBackList = new RelayCommand(o => { if (IsValidDate()) rd.RequestPastryBackList(GetReportConfig()); });
+            //PrintBackList = new RelayCommand(o => { if (IsValidDate())       rd.CreateBackList(GetReportConfig()); });
+            PrintWsAgg = new RelayCommand(o => { if (IsValidDate())          rd.RequestWsDay(GetReportConfig()); });
+            PrintWsBreakDown = new RelayCommand(o => { if (IsValidDate())    rd.RequestWsDayName(GetReportConfig()); });
             SetPieTemplate = new RelayCommand(o => { StPieTempCmd(); });
             SetPastryTemplate = new RelayCommand(o => { StPastTempCmd(); });
             OpenTemplateListView = new RelayCommand(o => { MainViewModel.Instance().OpenTemplateListView(false); });
@@ -227,6 +227,17 @@ namespace POMT_WPF.MVVM.ViewModel
 
             StartDate = null;
             EndDate = null;
+        }
+
+        private ReportConfig GetReportConfig()
+        {
+            return new ReportConfig(StartDate, EndDate,
+                IsPrint, IsExport,
+                RetailFilter, SquareFilter,
+                WholesaleFilter, SpecialFilter,
+                EzCaterFilter, FarmerFilter,
+                null,
+                null);
         }
 
         private void StPieTempCmd()

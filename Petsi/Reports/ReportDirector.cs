@@ -9,9 +9,45 @@ namespace Petsi.Reports
 {
     public class ReportDirector
     {
+        private ReportPrintSession _printSession;
         public ReportDirector() 
         {
-
+            _printSession = new ReportPrintSession();
+        }
+        public async void RequestFrontList(ReportConfig rc)
+        {
+            _printSession.Enqueue(
+                () => CreateFrontList(rc.StartDate, rc.IsPrint, rc.IsExport, rc.RetailFilter, rc.SquareFilter, rc.WholesaleFilter, rc.SpecialFilter, rc.EzCaterFilter, rc.FarmerFilter, rc.ReportName),
+                nameof(CreateFrontList),
+                rc.StartDate, rc.IsPrint, rc.IsExport, rc.RetailFilter, rc.SquareFilter, rc.WholesaleFilter, rc.SpecialFilter, rc.EzCaterFilter, rc.FarmerFilter, rc.ReportName);
+        }
+        public async void RequestPieBackList(ReportConfig rc)
+        {
+            _printSession.Enqueue(
+                () => CreatePieBackList(rc.StartDate, rc.EndDate, rc.IsPrint, rc.IsExport, rc.RetailFilter, rc.SquareFilter, rc.WholesaleFilter, rc.SpecialFilter, rc.EzCaterFilter, rc.FarmerFilter, rc.ReportName, rc.Template),
+                nameof(CreatePieBackList),
+                rc.StartDate, rc.EndDate, rc.IsPrint, rc.IsExport, rc.RetailFilter, rc.SquareFilter, rc.WholesaleFilter, rc.SpecialFilter, rc.EzCaterFilter, rc.FarmerFilter, rc.ReportName, rc.Template);
+        }
+        public async void RequestPastryBackList(ReportConfig rc)
+        {
+            _printSession.Enqueue(
+                () => CreatePastryBackList(rc.StartDate, rc.EndDate, rc.IsPrint, rc.IsExport, rc.RetailFilter, rc.SquareFilter, rc.WholesaleFilter, rc.SpecialFilter, rc.EzCaterFilter, rc.FarmerFilter, rc.ReportName, rc.Template),
+                nameof(CreatePastryBackList),
+                rc.StartDate, rc.EndDate, rc.IsPrint, rc.IsExport, rc.RetailFilter, rc.SquareFilter, rc.WholesaleFilter, rc.SpecialFilter, rc.EzCaterFilter, rc.FarmerFilter, rc.ReportName, rc.Template);
+        }
+        public async void RequestWsDay(ReportConfig rc)
+        {
+            _printSession.Enqueue(
+                () => Task.Run(() => CreateWsDay(rc.StartDate, rc.IsPrint, rc.IsExport,rc.ReportName)),
+                nameof(CreateWsDay),
+                rc.StartDate, rc.IsPrint, rc.IsExport, rc.ReportName);
+        }
+        public async void RequestWsDayName(ReportConfig rc)
+        {
+            _printSession.Enqueue(
+                () => Task.Run(() => CreateWsDayName(rc.StartDate, rc.IsPrint, rc.IsExport, rc.ReportName)),
+                nameof(CreateWsDayName),
+                rc.StartDate, rc.IsPrint, rc.IsExport, rc.ReportName);
         }
 
         public async Task<IXLWorkbook> CreateFrontList(DateTime? targetDate, bool isPrint, bool isExport, bool isRetail, 
