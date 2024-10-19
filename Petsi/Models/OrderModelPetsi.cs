@@ -165,12 +165,7 @@ namespace Petsi.Models
             }
             
             HashSet<string> result = new HashSet<string>(filedList);
-            /*
-            foreach (PetsiOrder o in Orders)
-            {
-                result.Add(o.OrderType);
-            }
-            result.Add(Identifiers.ORDER_TYPE_FARMERS);*/
+
             return result;
         }
 
@@ -232,10 +227,11 @@ namespace Petsi.Models
         public async Task<List<PetsiOrder>> GetFrontListDataAsync(DateTime? targetDate, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer)
         {
             //If testing, the model name will not match the production model name
+            /*
             if (ModelName == Identifiers.MODEL_ORDERS)
             {
                 await RefreshOrderModelAsync();
-            }
+            }*/
             List<PetsiOrder> filteredOrders = FilterOrders(Orders, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer);
 
             IEnumerable<PetsiOrder> query;
@@ -262,10 +258,11 @@ namespace Petsi.Models
         public async Task<List<PetsiOrderLineItem>> GetBackListDataAsync(DateTime? targetDate, DateTime? endDate, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer)
         {
             //If testing, the model name will not match the production model name
+            /*
             if (ModelName == Identifiers.MODEL_ORDERS)
             {
                 await RefreshOrderModelAsync();
-            }
+            }*/
             
             List<PetsiOrder> filteredOrders = FilterOrders(Orders, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer);
 
@@ -288,24 +285,6 @@ namespace Petsi.Models
             }
             else //range
             {
-
-                /*
-                query =
-                from order in filteredOrders
-                where
-                    (order.IsOneShot == true
-                        && DateTime.Parse(order.OrderDueDate).Date >= targetDate.Value.Date
-                        && DateTime.Parse(order.OrderDueDate).Date <= endDate.Value.Date)
-                    ||
-                    (order.IsPeriodic 
-                        && 
-                        (DateTime.Parse(order.OrderDueDate).DayOfWeek >= targetDate.Value.DayOfWeek
-                        &&
-                        DateTime.Parse(order.OrderDueDate).DayOfWeek <= endDate.Value.DayOfWeek
-                        )
-                    )
-                select order;
-                */
                 //Gather Non-periodic Orders
                 query =
                 from order in filteredOrders
@@ -342,11 +321,6 @@ namespace Petsi.Models
             }
             else
             {
-                /*
-                 where (order.IsPeriodic == true && DateTime.Parse(order.OrderDueDate).DayOfWeek == targetDate.Value.DayOfWeek)  //wholesale/periodic is weekly, so by day of week
-                       ||
-                      (order.IsPeriodic == false && DateTime.Parse(order.OrderDueDate).Date == targetDate.Value.Date)
-                 */
                 query = from order in filteredOrders
                         where order.OrderType == Identifiers.ORDER_TYPE_WHOLESALE
                         where (order.IsPeriodic == true && DateTime.Parse(order.OrderDueDate).DayOfWeek == targetDate.Value.DayOfWeek)  //wholesale/periodic is weekly, so by day of week
@@ -387,7 +361,6 @@ namespace Petsi.Models
         }
         private List<PetsiOrderLineItem> AggregatePetsiOrders(List<PetsiOrder> orders)
         {
-            //List<PetsiOrder> orderCpy = new List<PetsiOrder>(orders);
             Dictionary<string, PetsiOrderLineItem> aggregate = new Dictionary<string, PetsiOrderLineItem>();
 
             foreach (PetsiOrder order in orders)
