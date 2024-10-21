@@ -220,7 +220,6 @@ namespace Petsi.Models
                 {
                     dict[item.ItemName] = item;
                 }
-                item.CleanAltCatalogId();
 
                 /* //Removed variation tuples that were errantly created.
                    //Items from square do not need UserbasedIds which were uninentionally created and need to be removed
@@ -242,6 +241,11 @@ namespace Petsi.Models
                 }
                 */
             }
+            foreach (KeyValuePair<string, CatalogItemPetsi> pair in dict)
+            {
+                pair.Value.CleanAltCatalogId();
+            }
+
             return dict.Values.ToList();
         }
 

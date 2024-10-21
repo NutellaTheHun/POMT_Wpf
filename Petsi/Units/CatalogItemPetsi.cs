@@ -238,6 +238,10 @@ namespace Petsi.Units
 
         public void CleanAltCatalogId()
         {
+            if (Alt_CatalogObjId == null || Alt_CatalogObjId.Count == 0)
+            {
+                return;
+            }
             List<string> result = new List<string>();
             Dictionary<string, string> dict = new Dictionary<string, string>();
             foreach (string altId in Alt_CatalogObjId)
@@ -247,7 +251,7 @@ namespace Petsi.Units
                     dict.Add(altId, altId);
                 }
             }
-            Alt_CatalogObjId = result;
+            Alt_CatalogObjId = dict.Values.ToList();
         }
     }
 }
