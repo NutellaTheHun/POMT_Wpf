@@ -235,5 +235,19 @@ namespace Petsi.Units
         {
             return Identifiers.USER_BASED_ID_TAG + Guid.NewGuid().ToString();
         }
+
+        public void CleanAltCatalogId()
+        {
+            List<string> result = new List<string>();
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+            foreach (string altId in Alt_CatalogObjId)
+            {
+                if (!dict.ContainsKey(altId)) 
+                {
+                    dict.Add(altId, altId);
+                }
+            }
+            Alt_CatalogObjId = result;
+        }
     }
 }

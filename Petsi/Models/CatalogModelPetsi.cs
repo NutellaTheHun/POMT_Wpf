@@ -203,20 +203,24 @@ namespace Petsi.Models
         private List<CatalogItemPetsi> RemoveDuplicates(List<CatalogItemPetsi> newList)
         {
             Dictionary<string, CatalogItemPetsi> dict = new Dictionary<string, CatalogItemPetsi>();
-            foreach(CatalogItemPetsi item in newList)
+            foreach (CatalogItemPetsi item in newList)
             {
-                if(item.ItemName.Contains("(1)"))
+                if (item.ItemName.Contains("(1)"))
                 {
                     continue;
                 }
                 if (dict.ContainsKey(item.ItemName))
                 {
-                    dict[item.ItemName].Alt_CatalogObjId.Add(item.CatalogObjectId);
+                    if (!dict[item.ItemName].Alt_CatalogObjId.Contains(item.CatalogObjectId))
+                    {
+                        dict[item.ItemName].Alt_CatalogObjId.Add(item.CatalogObjectId);
+                    }
                 }
                 else
                 {
                     dict[item.ItemName] = item;
                 }
+                item.CleanAltCatalogId();
 
                 /* //Removed variation tuples that were errantly created.
                    //Items from square do not need UserbasedIds which were uninentionally created and need to be removed
