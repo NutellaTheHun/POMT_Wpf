@@ -59,7 +59,7 @@ namespace Petsi.Tests.ReportTests.BackListPie
             sci = new SquareCatalogInput(scf);
             soi = new SquareOrderInput(scf);
         }
-        
+
         public void Dispose()
         {
             teh = null;
@@ -85,7 +85,7 @@ namespace Petsi.Tests.ReportTests.BackListPie
             DateTime start = DateTime.Today.Date;
             IXLWorkbook result = director.CreatePieBackList(start, null,
                 false, true, true, true, true, true, true, true,
-                "BlPieSingleGenerated", 
+                "BlPieSingleGenerated",
                 BacklistTemplateFormatSelector.GetTestSummerPieTemplate()).Result;
 
             XLWorkbook expected = new XLWorkbook("D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\ExpectedCases\\BackListPieGeneratedResult.xlsx");

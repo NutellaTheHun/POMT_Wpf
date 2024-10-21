@@ -84,8 +84,20 @@ namespace Petsi.Tests.ReportTests.BackListPastry
 
             IXLWorkbook result = director.CreatePastryBackList(start, null,
                 false, true, true, true, true, true, true, true, "BlPastrySingleDay", BacklistTemplateFormatSelector.GetTestPastryTemplate()).Result;
+            
+            XLWorkbook expected = new XLWorkbook("D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\ExpectedCases\\BackListPastrySingleDayGeneratedResult.xlsx");
 
-            Assert.NotNull(result);
+            List<string> mismatches = new List<string>();
+            bool eval = ReportComparator.Compare(expected, result, mismatches);
+            if (!eval)
+            {
+                foreach (string ln in mismatches)
+                {
+                    helper.WriteLine(ln);
+                }
+
+            }
+            Assert.True(eval);
         }
     }
 }

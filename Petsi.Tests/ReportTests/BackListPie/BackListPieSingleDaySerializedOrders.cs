@@ -82,7 +82,7 @@ namespace Petsi.Tests.ReportTests.BackListPie
 
             DateTime start = DateTime.Parse("9/14/2024");
             IXLWorkbook result = director.CreatePieBackList(start, null,
-                false, true, true, true, true, true, true, true, 
+                false, true, true, true, true, true, true, true,
                 "BlPieSingleSerialized",
                 BacklistTemplateFormatSelector.GetTestSummerPieTemplate()).Result;
 

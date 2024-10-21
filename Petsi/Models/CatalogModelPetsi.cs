@@ -203,15 +203,18 @@ namespace Petsi.Models
         private List<CatalogItemPetsi> RemoveDuplicates(List<CatalogItemPetsi> newList)
         {
             Dictionary<string, CatalogItemPetsi> dict = new Dictionary<string, CatalogItemPetsi>();
-            foreach(CatalogItemPetsi item in newList)
+            foreach (CatalogItemPetsi item in newList)
             {
-                if(item.ItemName.Contains("(1)"))
+                if (item.ItemName.Contains("(1)"))
                 {
                     continue;
                 }
                 if (dict.ContainsKey(item.ItemName))
                 {
-                    dict[item.ItemName].Alt_CatalogObjId.Add(item.CatalogObjectId);
+                    if (!dict[item.ItemName].Alt_CatalogObjId.Contains(item.CatalogObjectId))
+                    {
+                        dict[item.ItemName].Alt_CatalogObjId.Add(item.CatalogObjectId);
+                    }
                 }
                 else
                 {
@@ -238,6 +241,11 @@ namespace Petsi.Models
                 }
                 */
             }
+            foreach (KeyValuePair<string, CatalogItemPetsi> pair in dict)
+            {
+                pair.Value.CleanAltCatalogId();
+            }
+
             return dict.Values.ToList();
         }
 

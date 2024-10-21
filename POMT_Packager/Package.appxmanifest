@@ -9,7 +9,7 @@
   <Identity
     Name="8a0d09d0-3b29-4557-8333-306f04f5dd24"
     Publisher="CN=Nathan Brilmayer"
-    Version="1.0.39.0" />
+    Version="1.0.40.0" />
 
   <Properties>
     <DisplayName>POMT_Packager</DisplayName>

@@ -46,7 +46,7 @@ namespace Petsi.Tests.ReportTests.BackListPie
 
             config = PetsiConfig.GetInstance();
 
-            List<PetsiOrder> generatedOrders = InputGenerator.GetTestOrdersMultiDay(InputGenerator.GetSummerPieIds(), InputGenerator.GetStandardOrderTypes(), 1, 
+            List<PetsiOrder> generatedOrders = InputGenerator.GetTestOrdersMultiDay(InputGenerator.GetSummerPieIds(), InputGenerator.GetStandardOrderTypes(), 1,
                                                                                                                     DateTime.Parse("10/1/2024"), DateTime.Parse("10/8/2024"));
             omp = new OrderModelPetsi(generatedOrders);
 
@@ -87,8 +87,8 @@ namespace Petsi.Tests.ReportTests.BackListPie
             DateTime start = DateTime.Parse("10/1/2024");
             DateTime end = DateTime.Parse("10/8/2024");
             IXLWorkbook result = director.CreatePieBackList(start, end,
-                false, true, true, true, true, true, true, true, 
-                "BlPieMultidayGenerated", 
+                false, true, true, true, true, true, true, true,
+                "BlPieMultidayGenerated",
                 BacklistTemplateFormatSelector.GetTestSummerPieTemplate()
                 ).Result;
 

@@ -9,8 +9,45 @@ namespace Petsi.Reports
 {
     public class ReportDirector
     {
+        private ReportPrintSession _printSession;
         public ReportDirector() 
         {
+            _printSession = new ReportPrintSession();
+        }
+        public async void RequestFrontList(ReportConfig rc)
+        {
+            _printSession.Enqueue(
+                () => CreateFrontList(rc.StartDate, rc.IsPrint, rc.IsExport, rc.RetailFilter, rc.SquareFilter, rc.WholesaleFilter, rc.SpecialFilter, rc.EzCaterFilter, rc.FarmerFilter, rc.ReportName),
+                nameof(CreateFrontList),
+                rc.StartDate, rc.IsPrint, rc.IsExport, rc.RetailFilter, rc.SquareFilter, rc.WholesaleFilter, rc.SpecialFilter, rc.EzCaterFilter, rc.FarmerFilter, rc.ReportName);
+        }
+        public async void RequestPieBackList(ReportConfig rc)
+        {
+            _printSession.Enqueue(
+                () => CreatePieBackList(rc.StartDate, rc.EndDate, rc.IsPrint, rc.IsExport, rc.RetailFilter, rc.SquareFilter, rc.WholesaleFilter, rc.SpecialFilter, rc.EzCaterFilter, rc.FarmerFilter, rc.ReportName, rc.Template),
+                nameof(CreatePieBackList),
+                rc.StartDate, rc.EndDate, rc.IsPrint, rc.IsExport, rc.RetailFilter, rc.SquareFilter, rc.WholesaleFilter, rc.SpecialFilter, rc.EzCaterFilter, rc.FarmerFilter, rc.ReportName, rc.Template);
+        }
+        public async void RequestPastryBackList(ReportConfig rc)
+        {
+            _printSession.Enqueue(
+                () => CreatePastryBackList(rc.StartDate, rc.EndDate, rc.IsPrint, rc.IsExport, rc.RetailFilter, rc.SquareFilter, rc.WholesaleFilter, rc.SpecialFilter, rc.EzCaterFilter, rc.FarmerFilter, rc.ReportName, rc.Template),
+                nameof(CreatePastryBackList),
+                rc.StartDate, rc.EndDate, rc.IsPrint, rc.IsExport, rc.RetailFilter, rc.SquareFilter, rc.WholesaleFilter, rc.SpecialFilter, rc.EzCaterFilter, rc.FarmerFilter, rc.ReportName, rc.Template);
+        }
+        public async void RequestWsDay(ReportConfig rc)
+        {
+            _printSession.Enqueue(
+                () => Task.Run(() => CreateWsDay(rc.StartDate, rc.IsPrint, rc.IsExport,rc.ReportName)),
+                nameof(CreateWsDay),
+                rc.StartDate, rc.IsPrint, rc.IsExport, rc.ReportName);
+        }
+        public async void RequestWsDayName(ReportConfig rc)
+        {
+            _printSession.Enqueue(
+                () => Task.Run(() => CreateWsDayName(rc.StartDate, rc.IsPrint, rc.IsExport, rc.ReportName)),
+                nameof(CreateWsDayName),
+                rc.StartDate, rc.IsPrint, rc.IsExport, rc.ReportName);
         }
 
         public async Task<IXLWorkbook> CreateFrontList(DateTime? targetDate, bool isPrint, bool isExport, bool isRetail, 
@@ -46,7 +83,7 @@ namespace Petsi.Reports
             if (endDate == null)//if endDate is null, report is for single day, targetDate is used in report header as targetDate
             {
                 builder.BuildReport(
-                    await orderModel.GetBackListData(targetDate, endDate, 
+                    await orderModel.GetBackListDataAsync(targetDate, endDate, 
                     isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer),
                                                                          targetDate, endDate);
             }
@@ -54,7 +91,7 @@ namespace Petsi.Reports
             {
                 if(targetDate < endDate)
                 {
-                    builder.BuildReport(await orderModel.GetBackListData(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), null, null);
+                    builder.BuildReport(await orderModel.GetBackListDataAsync(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), null, null);
                 }
             }
 
@@ -77,13 +114,13 @@ namespace Petsi.Reports
 
             if (endDate == null)//if endDate is null, report is for single day, targetDate is used in report header as targetDate
             {
-                builder.BuildReport(await orderModel.GetBackListData(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), targetDate, endDate);
+                builder.BuildReport(await orderModel.GetBackListDataAsync(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), targetDate, endDate);
             }
             else //otherwise printing all orders (for testing purposes) or is printing a range, displaying targetDate as a range not implemented yet, make arg param[] dateTime?
             {
                 if (targetDate < endDate)
                 {
-                    builder.BuildReport(await orderModel.GetBackListData(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), null, null);
+                    builder.BuildReport(await orderModel.GetBackListDataAsync(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), null, null);
                 }
             }
 
@@ -105,13 +142,13 @@ namespace Petsi.Reports
 
             if (endDate == null)//if endDate is null, report is for single day, targetDate is used in report header as targetDate
             {
-                builder.BuildReport(await orderModel.GetBackListData(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), targetDate, endDate);
+                builder.BuildReport(await orderModel.GetBackListDataAsync(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), targetDate, endDate);
             }
             else //otherwise printing all orders (for testing purposes) or is printing a range, displaying targetDate as a range not implemented yet, make arg param[] dateTime?
             {
                 if (targetDate < endDate)
                 {
-                    builder.BuildReport(await orderModel.GetBackListData(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), null, null);
+                    builder.BuildReport(await orderModel.GetBackListDataAsync(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), null, null);
                 }
             }
 
