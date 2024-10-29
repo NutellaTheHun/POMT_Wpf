@@ -22,11 +22,6 @@ namespace Petsi.Units
 
         public List<string> Alt_CatalogObjId { get; set; }
 
-        /// <summary>
-        /// key is variation id, value is variation name,
-        /// catalogObjectId in Orders api equates to variation id of catalog object id in catalog api
-        /// </summary>
-        public ListDictionary Variations { get; set; }
         public List<(string variationId, string variationName)> VariationList { get; set; }
         public List<(string variationId, string variationName)> DisabledVariationList { get; set; }
         public CatalogItemPetsi VeganPieAssociation { get; set; }
@@ -46,7 +41,6 @@ namespace Petsi.Units
                 ItemName = copyItem.ItemName;
                 NaturalNames = new List<string>(copyItem.NaturalNames);
                 Alt_CatalogObjId = new List<string>(copyItem.Alt_CatalogObjId);
-                Variations = copyItem.Variations;
                 VariationList = new List<(string variationId, string variationName)>(copyItem.VariationList);
                 DisabledVariationList = new List<(string variationId, string variationName)>(copyItem.DisabledVariationList);
 
@@ -72,7 +66,6 @@ namespace Petsi.Units
             }
             else
             {
-                Variations = new ListDictionary();
                 NaturalNames = new List<string>();
                 VariationList = new List<(string variationName, string variationId)>();
                 DisabledVariationList = new List<(string variationId, string variationName)>();
@@ -85,7 +78,6 @@ namespace Petsi.Units
             CategoryId = categoryId;
             CatalogObjectId = catalogObjectId;
             ItemName = itemName;
-            Variations = new ListDictionary();
             NaturalNames = new List<string>();
             VariationList = new List<(string variationName, string variationId)>();
             DisabledVariationList = new List<(string variationId, string variationName)>();
@@ -96,7 +88,6 @@ namespace Petsi.Units
             CategoryId = categoryId;
             CatalogObjectId = catalogObjectId;
             ItemName = itemName;
-            Variations = variations;
             NaturalNames = naturalNames;
             VariationList = new List<(string variationName, string variationId)>();
             DisabledVariationList = new List<(string variationId, string variationName)>();
@@ -104,7 +95,6 @@ namespace Petsi.Units
         }
         public CatalogItemPetsi()
         {
-            Variations = new ListDictionary();
             NaturalNames = new List<string>();
             VariationList = new List<(string variationName, string variationId)>();
             DisabledVariationList = new List<(string variationId, string variationName)>();

@@ -261,7 +261,6 @@ namespace Petsi.Models
 
         public override void CaptureEnvironment(FileBehavior reportFb)
         {
-            //reportFb.DataListToFile(Identifiers.ENV_CMP, items);
             reportFb.DataListToPureFilePath(Identifiers.ENV_CMP, items);
             //Categories?
         }

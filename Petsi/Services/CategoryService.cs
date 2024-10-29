@@ -105,14 +105,6 @@ namespace Petsi.Services
                             categoryMap.TryAdd(entry.variationId, item.CategoryId);
                         }
                     }
-                    if(item.Variations != null)
-                    {
-                        foreach (DictionaryEntry entry in item.Variations)
-                        {
-                            string variationId = entry.Key as string;
-                            categoryMap.TryAdd(variationId, item.CategoryId);
-                        }
-                    }
                 }
             }
         }

@@ -16,7 +16,6 @@ namespace Petsi.Input
         List<CatalogItemPetsi> catalogItems;
         List<ListCatalogResponse> squareResponses;
         FileBehavior fileBehavior;
-        //FileBehavior environFileBehavior;
         bool isFileExecute;
 
         protected CatalogModelPetsi Model;
@@ -89,7 +88,6 @@ namespace Petsi.Input
                         Categories.Add((sqrCatalogItem.CategoryData.Name, sqrCatalogItem.Id));
                     }
                     if (sqrCatalogItem.Type == "ITEM")
-                    //if (sqrCatalogItem.ItemData != null)
                     {
                         //--
                         string categoryId = "";
@@ -101,9 +99,7 @@ namespace Petsi.Input
                         var newCatalogItem = new CatalogItemPetsi(categoryId, sqrCatalogItem.Id, sqrCatalogItem.ItemData.Name);
                         foreach (var variation in sqrCatalogItem.ItemData.Variations)
                         {
-                            newCatalogItem.Variations.Add(variation.Id, variation.ItemVariationData.Name);
                             newCatalogItem.VariationList.Add((variation.Id, variation.ItemVariationData.Name));
-                            //result.Add(newCatalogItem);
                         }
                         result.Add(newCatalogItem);
                     }
@@ -119,7 +115,6 @@ namespace Petsi.Input
         public FileBehavior GetFileBehavior(){ return fileBehavior;}
         public void SetCatalogItems(List<CatalogItemPetsi> itemList){ catalogItems = itemList; }
         public bool GetHasExecuted() { return hasExecuted; }
-        //public void SetHasExecuted(bool v) { hasExecuted = v; }
-        public override void CaptureEnvironment(FileBehavior reportFb){/*reportFb.DataListToFile(Identifiers.ENV_SCI, squareResponses);*/ reportFb.DataListToPureFilePath(Identifiers.ENV_SCI, squareResponses); }
+        public override void CaptureEnvironment(FileBehavior reportFb){ reportFb.DataListToPureFilePath(Identifiers.ENV_SCI, squareResponses); }
     }
 }
