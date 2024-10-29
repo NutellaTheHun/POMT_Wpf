@@ -5230,7 +5230,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\nbril\\.nuget\\packages\\": {},
+    "C:\\Users\\Nathan\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
@@ -5239,14 +5239,14 @@
       "projectUniqueName": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Petsi.csproj",
       "projectName": "Petsi",
       "projectPath": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Petsi.csproj",
-      "packagesPath": "C:\\Users\\nbril\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\Nathan\\.nuget\\packages\\",
       "outputPath": "D:\\Git-Repos\\POMT_WPF\\Petsi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\nbril\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Nathan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -5310,7 +5310,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }

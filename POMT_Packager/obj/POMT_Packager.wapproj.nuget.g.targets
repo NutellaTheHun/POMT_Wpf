@@ -2,6 +2,6 @@
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="$(NuGetPackageRoot)system.collections.immutable\7.0.0\buildTransitive\netcoreapp2.0\System.Collections.Immutable.targets" Condition="Exists('$(NuGetPackageRoot)system.collections.immutable\7.0.0\buildTransitive\netcoreapp2.0\System.Collections.Immutable.targets')" />
-    <Import Project="C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages\microsoft.windows.sdk.buildtools\10.0.22621.3233\buildTransitive\Microsoft.Windows.SDK.BuildTools.targets" Condition="Exists('C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages\microsoft.windows.sdk.buildtools\10.0.22621.3233\buildTransitive\Microsoft.Windows.SDK.BuildTools.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.windows.sdk.buildtools\10.0.22621.3233\buildTransitive\Microsoft.Windows.SDK.BuildTools.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.windows.sdk.buildtools\10.0.22621.3233\buildTransitive\Microsoft.Windows.SDK.BuildTools.targets')" />
   </ImportGroup>
 </Project>
