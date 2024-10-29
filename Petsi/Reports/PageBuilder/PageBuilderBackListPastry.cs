@@ -18,7 +18,6 @@ namespace Petsi.Reports.PageBuilder
             if (lineItem.IsCategory(Utils.Identifiers.CATEGORY_PASTRY))
             {
                 return 1;
-                
             }
             return 0;
         }

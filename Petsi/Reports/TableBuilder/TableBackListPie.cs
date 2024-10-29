@@ -25,9 +25,9 @@ namespace Petsi.Reports.TableBuilder
             }
             
 
-            bool veganPresent5 = false; bool unbakedPresent5 = false; bool veganUnbaked5 = false;
-            bool veganPresent8 = false; bool unbakedPresent8 = false; bool veganUnbaked8 = false;
-            bool veganPresent10 = false; bool unbakedPresent10 = false; bool veganUnbaked10 = false;
+            bool veganPresent5 = false; //bool unbakedPresent5 = false; bool veganUnbaked5 = false;
+            bool veganPresent8 = false; //bool unbakedPresent8 = false; bool veganUnbaked8 = false;
+            bool veganPresent10 = false; //bool unbakedPresent10 = false; bool veganUnbaked10 = false;
 
             if (listFormat == null)
             {
@@ -63,7 +63,7 @@ namespace Petsi.Reports.TableBuilder
 
                                 itemTracker.Remove(lineItem);
                                 continue;
-                            }
+                            }/*
                             if(isTakeNBake)
                             {
                                 if (lineItem.Amount3 != 0)  { amount3 = HandleTakeNBakeLineAmount(lineItem.Amount3.ToString(), amount3); }
@@ -83,7 +83,7 @@ namespace Petsi.Reports.TableBuilder
 
                                 itemTracker.Remove(lineItem);
                                 continue;
-                            }
+                            }*/
                             else
                             {
                                 if (lineItem.Amount3 != 0)  { amount3 = HandleLineAmount(lineItem.Amount3.ToString(), amount3); }

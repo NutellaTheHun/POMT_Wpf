@@ -3,6 +3,7 @@ using Petsi.Managers;
 using Petsi.Models;
 using Petsi.Units;
 using Petsi.Utils;
+using System.Collections;
 
 namespace Petsi.Services
 {
@@ -103,9 +104,16 @@ namespace Petsi.Services
                         {
                             categoryMap.TryAdd(entry.variationId, item.CategoryId);
                         }
-                    }   
+                    }
+                    if(item.Variations != null)
+                    {
+                        foreach (DictionaryEntry entry in item.Variations)
+                        {
+                            string variationId = entry.Key as string;
+                            categoryMap.TryAdd(variationId, item.CategoryId);
+                        }
+                    }
                 }
-                
             }
         }
 
