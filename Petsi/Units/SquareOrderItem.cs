@@ -119,6 +119,7 @@ namespace Petsi.Units
                     }
                     else if (ChannelLineItem.VariationName.Contains("Regular"))
                     {
+                        /*
                         if (ChannelLineItem.IsTakeNBake(categories, catalog))
                         {
                             PetsiLineItem.Amount10 = int.Parse(ChannelLineItem.Quantity);
@@ -126,8 +127,9 @@ namespace Petsi.Units
                         else
                         {
                             PetsiLineItem.AmountRegular = int.Parse(ChannelLineItem.Quantity);
-                        }
-                          
+                        }*/
+                        PetsiLineItem.AmountRegular = int.Parse(ChannelLineItem.Quantity);
+
                     }
                     variationSizeDict.Add(ChannelLineItem.CatalogObjectId, PetsiLineItem);
                 }
