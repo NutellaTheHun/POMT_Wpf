@@ -151,15 +151,17 @@ namespace Petsi.Input
                     if (orderItem.Fulfillments[0].Type == Identifiers.FULFILLMENT_PICKUP)
                     {
                         //Time filter
-                        if (DateTime.Parse(orderItem.Fulfillments[0].PickupDetails.PickupAt).Date < DateTime.Now.Date)
-                        {
+                        //if (DateTime.Parse(orderItem.Fulfillments[0].PickupDetails.PickupAt).Date < DateTime.Now.Date)
+                        if (DateTime.Parse(orderItem.Fulfillments[0].PickupDetails.PickupAt).Date < PetsiConfig.GetCurrentDate())
+                            {
                             continue;
                         }
                     }
                     else if (orderItem.Fulfillments[0].Type == Identifiers.FULFILLMENT_DELIVERY)
                     {
                         //Time filter
-                        if (DateTime.Parse(orderItem.Fulfillments[0].DeliveryDetails.DeliverAt).Date < DateTime.Now.Date)
+                        //if (DateTime.Parse(orderItem.Fulfillments[0].DeliveryDetails.DeliverAt).Date < DateTime.Now.Date)
+                        if (DateTime.Parse(orderItem.Fulfillments[0].DeliveryDetails.DeliverAt).Date < PetsiConfig.GetCurrentDate())
                         {
                            continue;
                         }

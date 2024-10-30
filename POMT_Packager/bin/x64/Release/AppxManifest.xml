@@ -7,7 +7,7 @@
 
     For more information on package manifest files, see http://go.microsoft.com/fwlink/?LinkID=241727
   -->
-  <Identity Name="8a0d09d0-3b29-4557-8333-306f04f5dd24" Publisher="CN=Nathan Brilmayer" Version="1.0.43.0" ProcessorArchitecture="x64" />
+  <Identity Name="8a0d09d0-3b29-4557-8333-306f04f5dd24" Publisher="CN=Nathan Brilmayer" Version="1.0.44.0" ProcessorArchitecture="x64" />
   <Properties>
     <DisplayName>POMT_Packager</DisplayName>
     <PublisherDisplayName>Nathan Brilmayer</PublisherDisplayName>
@@ -44,7 +44,7 @@
     <build:Item Name="TargetFrameworkMoniker" Value=".NETFramework,Version=v4.5.1" />
     <build:Item Name="VisualStudio" Version="17.0" />
     <build:Item Name="VisualStudioEdition" Value="Microsoft Visual Studio Community 2022" />
-    <build:Item Name="OperatingSystem" Version="10.0.19041.1 (WinBuild.160101.0800)" />
+    <build:Item Name="OperatingSystem" Version="10.0.22621.1 (WinBuild.160101.0800)" />
     <build:Item Name="Microsoft.Build.AppxPackage.dll" Version="17.10.40149.44711" />
     <build:Item Name="ProjectGUID" Value="74a3126b-d761-45cc-8187-b772216816e0" />
     <build:Item Name="makepri.exe" Version="10.0.22621.3233 (WinBuild.160101.0800)" />

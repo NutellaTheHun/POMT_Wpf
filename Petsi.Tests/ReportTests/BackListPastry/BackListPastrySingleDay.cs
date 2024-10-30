@@ -27,9 +27,12 @@ namespace Petsi.Tests.ReportTests.BackListPastry
         ReportDirector director;
         SquareCatalogInput sci;
         SquareOrderInput soi;
+        string dateContext = "9/14/2024";
 
         public BackListPastrySingleDay(ITestOutputHelper helper)
         {
+            
+
             this.helper = helper;
             teh = new TestEnvHelper();
 
@@ -40,6 +43,7 @@ namespace Petsi.Tests.ReportTests.BackListPastry
             List<(string name, string id)> categories = teh.fb.BuildDataListFile<(string name, string id)>(Identifiers.MAIN_MODEL_CATALOG_CATEGORIES_FILE);
 
             config = PetsiConfig.GetInstance();
+            PetsiConfig.TESTINGChangeCurrentDate(dateContext);
 
             omp = new OrderModelPetsi(testOneShotOrders, testPeriodicOrders);
             cmp = new CatalogModelPetsi(catalogItems, categories);
@@ -80,7 +84,7 @@ namespace Petsi.Tests.ReportTests.BackListPastry
         [Fact]
         public void BackListPastryTest_SingleDay()
         {
-            DateTime start = DateTime.Parse("9/14/2024");
+            DateTime start = DateTime.Parse(dateContext);
 
             IXLWorkbook result = director.CreatePastryBackList(start, null,
                 false, true, true, true, true, true, true, true, "BlPastrySingleDay", BacklistTemplateFormatSelector.GetTestPastryTemplate()).Result;
