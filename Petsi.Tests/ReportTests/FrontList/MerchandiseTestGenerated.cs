@@ -30,6 +30,7 @@ namespace Petsi.Tests.ReportTests.FrontList
         SquareCatalogInput sci;
         SquareOrderInput soi;
 
+        string dateContext = "10/25/2024";
         public MerchandiseTestGenerated(ITestOutputHelper helper)
         {
             this.helper = helper;
@@ -46,7 +47,7 @@ namespace Petsi.Tests.ReportTests.FrontList
             catalogIdService.Update(cmp);
 
             config = PetsiConfig.GetInstance();
-
+            PetsiConfig.TESTINGChangeCurrentDate(dateContext);
 
             omp = new OrderModelPetsi(null, null);
 
@@ -85,7 +86,8 @@ namespace Petsi.Tests.ReportTests.FrontList
         [Fact]
         public void FrontlistMerchandiseGenerated()
         {
-            DateTime start = DateTime.Parse("10/25/2024"); //if date is before current date, square order input will skip the order and nothing will be processed.
+            DateTime start = DateTime.Parse(dateContext); //if date is before current date, square order input will skip the order and nothing will be processed.
+
             IXLWorkbook result = director.CreateFrontList(start,
                 false, true, true, true, true, true, true, true, "FlMerchGenerated").Result;
 

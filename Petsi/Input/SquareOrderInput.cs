@@ -39,6 +39,11 @@ namespace Petsi.Input
             EnvironCaptureRegistrySingleton.GetInstance().Register(this);
             InputManagerSingleton.GetInstance().Register(this);
         }
+
+        /// <summary>
+        /// Has Test Execute mirror method (its separate, remember to update)
+        /// </summary>
+        /// <returns></returns>
         public override async Task Execute()
         {
             if (!isFileExecute)//if (hasExecuted)
@@ -147,19 +152,18 @@ namespace Petsi.Input
             {
                 foreach (var orderItem in bror.Orders)
                 {
-                    //To restrictive
                     if (orderItem.Fulfillments[0].Type == Identifiers.FULFILLMENT_PICKUP)
                     {
                         //Time filter
-                        if (DateTime.Parse(orderItem.Fulfillments[0].PickupDetails.PickupAt).Date < DateTime.Now.Date)
-                        {
+                        if (DateTime.Parse(orderItem.Fulfillments[0].PickupDetails.PickupAt).Date < PetsiConfig.GetCurrentDate())
+                            {
                             continue;
                         }
                     }
                     else if (orderItem.Fulfillments[0].Type == Identifiers.FULFILLMENT_DELIVERY)
                     {
                         //Time filter
-                        if (DateTime.Parse(orderItem.Fulfillments[0].DeliveryDetails.DeliverAt).Date < DateTime.Now.Date)
+                        if (DateTime.Parse(orderItem.Fulfillments[0].DeliveryDetails.DeliverAt).Date < PetsiConfig.GetCurrentDate())
                         {
                            continue;
                         }
@@ -225,9 +229,6 @@ namespace Petsi.Input
                     LineItem boxedli = new LineItem();
                     boxedli.ItemName = catalogLookup.ValidateModifyItemName(modifier.Name); //Will create a new item in catalog if no match is found.
 
-                    //item not matched to catalog item, error and must back out
-                    //if (boxedli.ItemName == "") { return new List<LineItem>(); }
-
                     boxedli.CatalogObjectId = catalogLookup.GetCatalogObjectId(boxedli.ItemName);
                     if(boxedli.CatalogObjectId == "")//will return "" if ValidateModifyItemName finds multiple results.
                     {
@@ -238,9 +239,6 @@ namespace Petsi.Input
                     boxedli.VariationId = "modifierItem"+ boxedli.ItemName;
                     boxedli.VariationName = Identifiers.SIZE_REGULAR;
 
-                    //boxedli.ItemName = modifier.Name; //??? second assignment?
-
-                    //boxedli.Quantity = modifier.Quantity;
                     boxedli.Quantity = (int.Parse(modifier.Quantity) * int.Parse(squareOrderlineItem.Quantity)).ToString();
 
                     lineItems.Add(boxedli);
@@ -252,15 +250,11 @@ namespace Petsi.Input
                 foreach (var modifier in squareOrderlineItem.Modifiers)
                 {
                     LineItem sconeLi = new LineItem();
-                    //sconeLi.ItemName = modifier.Name + " scone";
-                    //sconeLi.ItemName = modifier.Name;
                     sconeLi.ItemName = catalogLookup.ValidateModifyItemName(modifier.Name); //Will create a new item in catalog if no match is found.
 
                     sconeLi.VariationId = squareOrderlineItem.CatalogObjectId;
 
-                    //sconeLi.CatalogObjectId = sconeLi.ItemName;//Scone flavors dont exist in catalog, item name to supplement
-
-                    sconeLi.CatalogObjectId = catalogLookup.GetCatalogObjectId(sconeLi.ItemName); //This function call currently will break when a new item comes in
+                    sconeLi.CatalogObjectId = catalogLookup.GetCatalogObjectId(sconeLi.ItemName);
                     if (sconeLi.CatalogObjectId == "") //will return "" if ValidateModifyItemName finds multiple results.
                     {
                         //Temporary ID for an item when a multiItem match event occurs, is resolved after user intervention window. (NotifyCatalogValidateMultiItemView.cs)
@@ -269,7 +263,6 @@ namespace Petsi.Input
 
                     sconeLi.VariationName = Identifiers.SIZE_REGULAR;
                    
-                    //sconeLi.Quantity = (int.Parse(modifier.Quantity) * int.Parse(squareOrderlineItem.Quantity)).ToString();
                     sconeLi.Quantity = squareOrderlineItem.Quantity;
                     lineItems.Add(sconeLi);
                 }
@@ -279,7 +272,7 @@ namespace Petsi.Input
                 LineItem sconeLi = new LineItem();
                 sconeLi.ItemName = "Special! Strawberry Basil Scones";
                 sconeLi.VariationId = squareOrderlineItem.CatalogObjectId;
-                sconeLi.CatalogObjectId = sconeLi.ItemName;//Scone flavors dont exist in catalog, item name to supplement
+                sconeLi.CatalogObjectId = sconeLi.ItemName;
                 sconeLi.VariationName = Identifiers.SIZE_REGULAR;
 
                 
@@ -662,25 +655,6 @@ namespace Petsi.Input
                 throw new Exception($"Failed to make the request \n Response Code: {e.ResponseCode} \n Exception: {e.Message}");
             }
         }
-        /*
-        public async Task TEMPAsyncSquareBatchRetrieveOrders(SquareClientFactory squareClient, string cursor, List<string> locationIds, List<string> states, string? createStartAt, string? createEndAt)
-        {
-            List<string> orderIds = new List<string>();
-            SearchOrdersResponse? sor;
-            string tempCursor;
-            do
-            {
-                sor = await AsyncSquareSearchOrders(squareClient, cursor, locationIds, states, createStartAt, createEndAt);
-                tempCursor = sor.Cursor;
-                if (sor == null)
-                {
-                    SystemLogger.Log("AsyncSquareBatchRetrieveOrders() : AsyncSearchOrdersResponse() returned null");
-                    return;
-                }
-                orderIds.AddRange(sor.OrderEntries.Select(entry => entry.OrderId));
-            } while (tempCursor != null);
-
-        }*/
 
         /// <summary>
         /// Wrapper for Square Order API call BatchRetrieve Orders https://developer.squareup.com/reference/square/orders-api/batch-retrieve-orders

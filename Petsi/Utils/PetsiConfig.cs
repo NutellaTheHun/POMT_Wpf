@@ -33,6 +33,20 @@ namespace Petsi.Utils
                 return _instance;
         }
 
+        public static DateTime GetCurrentDate()
+        {
+            return DateTime.Parse(GetInstance().GetVariable(Identifiers.SETTING_CURRENT_DATE));
+        }
+
+        /// <summary>
+        /// For testing ONLY
+        /// </summary>
+        /// <param name="date">"mm/dd/yyyy</param>
+        public static void TESTINGChangeCurrentDate(string date)
+        {
+            GetInstance().SetVariable(Identifiers.SETTING_CURRENT_DATE, date);
+        }
+
         private void InitConfig()
         {
             if(!Directory.Exists(rootDir)) 
@@ -82,7 +96,8 @@ namespace Petsi.Utils
                 Identifiers.SETTING_STARTUP_STATUS,
                 Identifiers.SETTING_BACKUP_PATH,
                 Identifiers.SETTING_ERROR_LOG_PATH,
-                Identifiers.SETTING_ROOT_DIR
+                Identifiers.SETTING_ROOT_DIR,
+                Identifiers.SETTING_CURRENT_DATE
             };
             
             //Write Config file with defaul variables, some variables are initialized to start, empty variables are user managed
@@ -114,12 +129,18 @@ namespace Petsi.Utils
                     sb.AppendLine($"{variable}=" + rootDir);
                     variables.Add((variable, rootDir));
                 }
+                else if (variable == Identifiers.SETTING_CURRENT_DATE)
+                {
+                    sb.AppendLine($"{variable}=" + DateTime.Now.Date.ToShortDateString());
+                    variables.Add((variable, DateTime.Now.Date.ToShortDateString()));
+                }
                 else
                 {
                     sb.AppendLine($"{variable}=");
                     variables.Add((variable, null));
                 }
             }
+            
             try
             {
                 File.WriteAllText(configFilePath, sb.ToString());
@@ -206,6 +227,7 @@ namespace Petsi.Utils
                     variables.Add((args[0], args[1]));
                 }
             }
+            SetVariable(Identifiers.SETTING_CURRENT_DATE, DateTime.Now.Date.ToShortDateString());
         }
 
         public void LoadStartupFiles(List<(string fileName, string filePath)> FileList)

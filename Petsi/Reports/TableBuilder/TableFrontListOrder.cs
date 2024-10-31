@@ -29,31 +29,31 @@ namespace Petsi.Reports.TableBuilder
                     {
                         lineItemAmount = lineItem.Amount3.ToString();
                         size = "3\"";
-                        AddLine(page, ref _rowIndex, _rootPosition.col, "", "", "", size, TableFormat.MaxLineLength(lineItem.ItemName, 35), lineItemAmount);
+                        AddLine(page, ref _rowIndex, _rootPosition.col, "", "", "", size, TableFormat.MaxLineLength(lineItem.ItemName, 45), lineItemAmount);
                     }
                     if (lineItem.Amount5 != 0)
                     { 
                         lineItemAmount = lineItem.Amount5.ToString();
                         size = "5\"";
-                        AddLine(page, ref _rowIndex, _rootPosition.col, "", "", "", size, TableFormat.MaxLineLength(lineItem.ItemName, 35), lineItemAmount);
+                        AddLine(page, ref _rowIndex, _rootPosition.col, "", "", "", size, TableFormat.MaxLineLength(lineItem.ItemName, 45), lineItemAmount);
                     }
                     if(lineItem.Amount8 != 0)
                     { 
                         lineItemAmount = lineItem.Amount8.ToString();
                         size = "8\"";
-                        AddLine(page, ref _rowIndex, _rootPosition.col, "", "", "", size, TableFormat.MaxLineLength(lineItem.ItemName, 35), lineItemAmount);
+                        AddLine(page, ref _rowIndex, _rootPosition.col, "", "", "", size, TableFormat.MaxLineLength(lineItem.ItemName, 45), lineItemAmount);
                     }
                     if(lineItem.Amount10 != 0)
                     { 
                         lineItemAmount = lineItem.Amount10.ToString();
                         size = "10\"";
-                        AddLine(page, ref _rowIndex, _rootPosition.col, "", "", "", size, TableFormat.MaxLineLength(lineItem.ItemName, 35), lineItemAmount);
+                        AddLine(page, ref _rowIndex, _rootPosition.col, "", "", "", size, TableFormat.MaxLineLength(lineItem.ItemName, 45), lineItemAmount);
                     }
                     if(lineItem.AmountRegular != 0)
                     {
                         lineItemAmount = lineItem.AmountRegular.ToString();
                         size = "";
-                        AddLine(page, ref _rowIndex, _rootPosition.col, "", "", "", size, TableFormat.MaxLineLength(lineItem.ItemName, 25), lineItemAmount);
+                        AddLine(page, ref _rowIndex, _rootPosition.col, "", "", "", size, TableFormat.MaxLineLength(lineItem.ItemName, 45), lineItemAmount);
                     }
                     else
                     {
