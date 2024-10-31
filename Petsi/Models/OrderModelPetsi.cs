@@ -226,12 +226,6 @@ namespace Petsi.Models
 
         public async Task<List<PetsiOrder>> GetFrontListDataAsync(DateTime? targetDate, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer)
         {
-            //If testing, the model name will not match the production model name
-            /*
-            if (ModelName == Identifiers.MODEL_ORDERS)
-            {
-                await RefreshOrderModelAsync();
-            }*/
             List<PetsiOrder> filteredOrders = FilterOrders(Orders, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer);
 
             IEnumerable<PetsiOrder> query;
@@ -257,13 +251,6 @@ namespace Petsi.Models
 
         public async Task<List<PetsiOrderLineItem>> GetBackListDataAsync(DateTime? targetDate, DateTime? endDate, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer)
         {
-            //If testing, the model name will not match the production model name
-            /*
-            if (ModelName == Identifiers.MODEL_ORDERS)
-            {
-                await RefreshOrderModelAsync();
-            }*/
-            
             List<PetsiOrder> filteredOrders = FilterOrders(Orders, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer);
 
             IEnumerable<PetsiOrder> query;
