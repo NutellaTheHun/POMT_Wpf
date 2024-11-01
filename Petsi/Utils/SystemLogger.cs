@@ -40,36 +40,44 @@ namespace Petsi.Utils
         private static void ProccessLogRequest()
         {
             Instance()._processing = true;
-            LogRequest lr = Instance().logQueue.Dequeue();
-            string fp = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_ERROR_LOG_PATH);
-            if (fp == null || fp == "") { return; }
-            lock (_lock)
+            LogRequest lr;
+            while (Instance()._processing)
             {
-                if (lr.sender == null)
+                lock (_lock)
                 {
-                    File.AppendAllText(fp, $"{DateTime.Now.ToString()} : {PetsiConfig.appRuntimeId} : [{lr.logType}] {lr.message}\n");
+                    lr = Instance().logQueue.Dequeue();
                 }
-                else
+                
+                string fp = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_ERROR_LOG_PATH);
+                if (fp == null || fp == "") { return; }
+
+                lock (_lock)
                 {
-                    File.AppendAllText(fp, $"{DateTime.Now.ToString()} : {PetsiConfig.appRuntimeId} : [{lr.logType}] {lr.sender} : {lr.message}\n");
+                    if (lr.sender == null)
+                    {
+                        File.AppendAllText(fp, $"{DateTime.Now.ToString()} : {PetsiConfig.appRuntimeId} : [{lr.logType}] {lr.message}\n");
+                    }
+                    else
+                    {
+                        File.AppendAllText(fp, $"{DateTime.Now.ToString()} : {PetsiConfig.appRuntimeId} : [{lr.logType}] {lr.sender} : {lr.message}\n");
+                    }
                 }
-            }
-            if(Instance().logQueue.Count > 0)
-            {
-                ProccessLogRequest();
-            }
-            else
-            {
-                Instance()._processing = false;
+                if (Instance().logQueue.Count == 0)
+                {
+                    Instance()._processing = false;
+                }
             }
         }
 
         private static void AddLogRequest(string? sender, string message, string logType)
         {
-            Instance().logQueue.Append(new LogRequest(message, logType, sender));
-            if (!Instance()._processing)
+            lock (_lock)
             {
-                ProccessLogRequest();
+                Instance().logQueue.Enqueue(new LogRequest(message, logType, sender));
+                if (!Instance()._processing)
+                {
+                    ProccessLogRequest();
+                }
             }
         }
 
