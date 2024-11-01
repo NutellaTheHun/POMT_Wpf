@@ -7,7 +7,7 @@
 
     For more information on package manifest files, see http://go.microsoft.com/fwlink/?LinkID=241727
   -->
-  <Identity Name="8a0d09d0-3b29-4557-8333-306f04f5dd24" Publisher="CN=Nathan Brilmayer" Version="1.0.44.0" ProcessorArchitecture="x64" />
+  <Identity Name="8a0d09d0-3b29-4557-8333-306f04f5dd24" Publisher="CN=Nathan Brilmayer" Version="1.0.46.0" ProcessorArchitecture="x64" />
   <Properties>
     <DisplayName>POMT_Packager</DisplayName>
     <PublisherDisplayName>Nathan Brilmayer</PublisherDisplayName>

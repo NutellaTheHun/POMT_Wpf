@@ -89,7 +89,7 @@ namespace POMT_WPF.MVVM.ViewModel
                     continue;
                 }
 
-                    string id = cs.GetCatalogObjectId(item.ItemName);
+                string id = cs.GetCatalogObjectId(item.ItemName);
                 if (id == "")
                 {
                     GeneralErrorWindow errWin = new GeneralErrorWindow("item: " + item.ItemName + " could not be validated, template was not saved.");

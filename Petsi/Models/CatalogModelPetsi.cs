@@ -178,27 +178,28 @@ namespace Petsi.Models
 
         private void FinalizeMainModel()
         {
-            
             List<CatalogItemPetsi> mainList = fileBehavior.BuildDataListFile<CatalogItemPetsi>(Identifiers.MAIN_MODEL_CATALOG_FILE);
             List<CatalogItemPetsi> squareList = new List<CatalogItemPetsi>(GetItems());
             List<CatalogItemPetsi> newList;
-            if (mainList != null) {newList = new List<CatalogItemPetsi>(mainList); }
-            else 
+            if (mainList != null) { newList = new List<CatalogItemPetsi>(mainList); }
+            else
             {
                 SystemLogger.LogStatus("CMP FinalizeMainModel(), MAIN_MODEL_CATALOG_FILE is null, catalog most likely reset.");
                 newList = new List<CatalogItemPetsi>();
             }
- 
 
-            foreach(CatalogItemPetsi squareItem in squareList)
+
+            foreach (CatalogItemPetsi squareItem in squareList)
             {
-                if(!newList.Contains(squareItem))
+                if (!newList.Contains(squareItem))
                 {
                     newList.Add(squareItem);
                 }
+
             }
             SetItemList(RemoveDuplicates(newList));
         }
+
 
         private List<CatalogItemPetsi> RemoveDuplicates(List<CatalogItemPetsi> newList)
         {
@@ -214,6 +215,16 @@ namespace Petsi.Models
                     if (!dict[item.ItemName].Alt_CatalogObjId.Contains(item.CatalogObjectId))
                     {
                         dict[item.ItemName].Alt_CatalogObjId.Add(item.CatalogObjectId);
+                    }
+                    if(item.VariationList != null)
+                    {
+                        foreach(var variation in item.VariationList)
+                        {
+                            if (!dict[item.ItemName].Alt_CatalogObjId.Contains(variation.variationId))
+                            {
+                                dict[item.ItemName].Alt_CatalogObjId.Add(variation.variationId);
+                            }
+                        }
                     }
                 }
                 else

@@ -105,6 +105,13 @@ namespace Petsi.Services
                             categoryMap.TryAdd(entry.variationId, item.CategoryId);
                         }
                     }
+                    if(item.Alt_CatalogObjId != null)
+                    {
+                        foreach (var entry in item.Alt_CatalogObjId)
+                        {
+                            categoryMap.TryAdd(entry, item.CategoryId);
+                        }
+                    }
                 }
             }
         }
@@ -128,12 +135,13 @@ namespace Petsi.Services
         /// <returns> returns the catalog id </returns>
         public string GetCategoryId(string itemIdentifier)
         {
-            string result = categoryMap[itemIdentifier];
-            if (result == null)
+            if (categoryMap.TryGetValue(itemIdentifier, out string result))
             {
-                result = string.Empty;
+                return result;
             }
-            return categoryMap[itemIdentifier];
+
+            SystemLogger.LogError($"GetCategoryID could not get CATEGORY from given id: {itemIdentifier}", "CategoryService.GetCategoryID()");
+            return string.Empty;
         }
     }
 }
