@@ -72,7 +72,8 @@ namespace Petsi.Utils
 
         public const string MODIFY_NAME_NOTE_CARD = "Add your note in \"notes\" section in checkout";
         public const string BOX_OF_6 = "Box of 6";
-        public const string MODIFY_BOX_OF_6_COOKIES = "BX3UJ6TYAREM3DTNNDNULHIY";
+        //public const string MODIFY_BOX_OF_6_COOKIES = "BX3UJ6TYAREM3DTNNDNULHIY";
+        public const string MODIFY_BOX_OF_6_COOKIES = "ELSHIDHEI7EHVBSFDQAPRYPD";
         public const string MODIFY_BOX_OF_6_SCONES = "YOSF3YAHQIIWSYC7SRD4NSZI";
         public const string MODIFY_BOX_OF_6_MUFFINS = "3PISTAMARHW6Q5CWUO3GPE5S";
         public const string MODIFY_SCONE = "UFVOR7Y5GMDEATE32T4M2IAI";

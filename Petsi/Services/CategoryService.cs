@@ -105,6 +105,13 @@ namespace Petsi.Services
                             categoryMap.TryAdd(entry.variationId, item.CategoryId);
                         }
                     }
+                    if(item.Alt_CatalogObjId != null)
+                    {
+                        foreach (var entry in item.Alt_CatalogObjId)
+                        {
+                            categoryMap.TryAdd(entry, item.CategoryId);
+                        }
+                    }
                 }
             }
         }
