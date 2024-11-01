@@ -102,13 +102,6 @@ namespace Petsi.Services
         /// <returns></returns>
         public string ValidateModifyItemName(string name)
         {
-            //test multiMatch notification windows
-            /*
-            if (name == "Lemon Glaze")
-            {
-                return ValidateModifyItemName("Lemon");
-            }
-            */
             List<CatalogItemPetsi> results = new List<CatalogItemPetsi>();
             results = GetItemNameValidationResults(name);
 
@@ -130,19 +123,7 @@ namespace Petsi.Services
                 return ValidateModifyItemName(name);
             }
             else if (results.Count > 1)
-            {/*
-                if (name == "Lemon")//temporary until square updates "Lemon" to "Lemon Glaze"
-                {
-                    return ValidateModifyItemName("Lemon Glaze");
-                }
-                else
-                {
-                    SystemLogger.Log("multiple matching catalog names found from given modified name: " + name);
-                    for (int i = 0; i < results.Count; i++)
-                    {
-                        SystemLogger.Log("   " + results[i]);
-                    }
-                }*/
+            {
                 ErrorService.Instance().RaiseSoiMultiItemEvent(name, results);
 
                 return name;
