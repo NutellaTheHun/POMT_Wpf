@@ -76,7 +76,7 @@ namespace Petsi.Utils
         public const string MODIFY_BOX_OF_6_COOKIES = "ELSHIDHEI7EHVBSFDQAPRYPD";
         public const string MODIFY_BOX_OF_6_SCONES = "SAFPTYUFNUHIUOZCUFLQ6ERI";
         public const string MODIFY_BOX_OF_6_MUFFINS = "P5IQRX4LZ6E5JSJPPWAZMQY4";
-        public const string MODIFY_SCONE = "UFVOR7Y5GMDEATE32T4M2IAI";
+        public const string MODIFY_SCONE = "VVJAQO74G3LSXLIFIGKATSZ2";
         public const string BOX_OF_SCONES_VARIATION = "box of scones";
         public const string BOX_OF_6_BACON_BISCUITS = "A5QLMWSYER6MJXANX5FOE7FE"; //seems to be for chill only
         public const string BOX_OF_6_BLUEBERRY_MUFFINS = "DZEF5HUCVC5LFXIYPMUPKSEM"; //seems to be for chill only
