@@ -44,6 +44,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Backup.Service\Backup.Service.csproj" />
     <ProjectReference Include="..\Square.Service\Square.Service.csproj" />
   </ItemGroup>
 
