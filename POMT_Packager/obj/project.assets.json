@@ -107,6 +107,81 @@
           "lib/netstandard1.6/Irony.dll": {}
         }
       },
+      "LibGit2Sharp/0.31.0": {
+        "type": "package",
+        "dependencies": {
+          "LibGit2Sharp.NativeBinaries": "[2.0.323]"
+        },
+        "compile": {
+          "lib/net472/LibGit2Sharp.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net472/LibGit2Sharp.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "LibGit2Sharp.NativeBinaries/2.0.323": {
+        "type": "package",
+        "build": {
+          "build/_._": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/_._": {}
+        },
+        "runtimeTargets": {
+          "runtimes/linux-arm/native/libgit2-3f4182d.so": {
+            "assetType": "native",
+            "rid": "linux-arm"
+          },
+          "runtimes/linux-arm64/native/libgit2-3f4182d.so": {
+            "assetType": "native",
+            "rid": "linux-arm64"
+          },
+          "runtimes/linux-musl-arm/native/libgit2-3f4182d.so": {
+            "assetType": "native",
+            "rid": "linux-musl-arm"
+          },
+          "runtimes/linux-musl-arm64/native/libgit2-3f4182d.so": {
+            "assetType": "native",
+            "rid": "linux-musl-arm64"
+          },
+          "runtimes/linux-musl-x64/native/libgit2-3f4182d.so": {
+            "assetType": "native",
+            "rid": "linux-musl-x64"
+          },
+          "runtimes/linux-ppc64le/native/libgit2-3f4182d.so": {
+            "assetType": "native",
+            "rid": "linux-ppc64le"
+          },
+          "runtimes/linux-x64/native/libgit2-3f4182d.so": {
+            "assetType": "native",
+            "rid": "linux-x64"
+          },
+          "runtimes/osx-arm64/native/libgit2-3f4182d.dylib": {
+            "assetType": "native",
+            "rid": "osx-arm64"
+          },
+          "runtimes/osx-x64/native/libgit2-3f4182d.dylib": {
+            "assetType": "native",
+            "rid": "osx-x64"
+          },
+          "runtimes/win-arm64/native/git2-3f4182d.dll": {
+            "assetType": "native",
+            "rid": "win-arm64"
+          },
+          "runtimes/win-x64/native/git2-3f4182d.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x86/native/git2-3f4182d.dll": {
+            "assetType": "native",
+            "rid": "win-x86"
+          }
+        }
+      },
       "MahApps.Metro.IconPacks/4.11.0": {
         "type": "package",
         "compile": {
@@ -1886,10 +1961,24 @@
           "lib/netstandard1.6/XLParser.dll": {}
         }
       },
+      "Backup.Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "LibGit2Sharp": "0.31.0"
+        },
+        "compile": {
+          "bin/placeholder/Backup.Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Backup.Service.dll": {}
+        }
+      },
       "Petsi/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "Backup.Service": "1.0.0",
           "ClosedXML": "0.102.2",
           "CsvHelper": "30.1.0",
           "Square.Service": "1.0.0"
@@ -2040,6 +2129,31 @@
         },
         "runtime": {
           "lib/netstandard1.6/Irony.dll": {}
+        }
+      },
+      "LibGit2Sharp/0.31.0": {
+        "type": "package",
+        "dependencies": {
+          "LibGit2Sharp.NativeBinaries": "[2.0.323]"
+        },
+        "compile": {
+          "lib/net472/LibGit2Sharp.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net472/LibGit2Sharp.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "LibGit2Sharp.NativeBinaries/2.0.323": {
+        "type": "package",
+        "build": {
+          "build/_._": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/_._": {}
         }
       },
       "MahApps.Metro.IconPacks/4.11.0": {
@@ -4035,10 +4149,24 @@
           "lib/netstandard1.6/XLParser.dll": {}
         }
       },
+      "Backup.Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "LibGit2Sharp": "0.31.0"
+        },
+        "compile": {
+          "bin/placeholder/Backup.Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Backup.Service.dll": {}
+        }
+      },
       "Petsi/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "Backup.Service": "1.0.0",
           "ClosedXML": "0.102.2",
           "CsvHelper": "30.1.0",
           "Square.Service": "1.0.0"
@@ -4189,6 +4317,31 @@
         },
         "runtime": {
           "lib/netstandard1.6/Irony.dll": {}
+        }
+      },
+      "LibGit2Sharp/0.31.0": {
+        "type": "package",
+        "dependencies": {
+          "LibGit2Sharp.NativeBinaries": "[2.0.323]"
+        },
+        "compile": {
+          "lib/net472/LibGit2Sharp.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net472/LibGit2Sharp.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "LibGit2Sharp.NativeBinaries/2.0.323": {
+        "type": "package",
+        "build": {
+          "build/_._": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/_._": {}
         }
       },
       "MahApps.Metro.IconPacks/4.11.0": {
@@ -6229,10 +6382,24 @@
           "lib/netstandard1.6/XLParser.dll": {}
         }
       },
+      "Backup.Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "LibGit2Sharp": "0.31.0"
+        },
+        "compile": {
+          "bin/placeholder/Backup.Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Backup.Service.dll": {}
+        }
+      },
       "Petsi/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "Backup.Service": "1.0.0",
           "ClosedXML": "0.102.2",
           "CsvHelper": "30.1.0",
           "Square.Service": "1.0.0"
@@ -6383,6 +6550,31 @@
         },
         "runtime": {
           "lib/netstandard1.6/Irony.dll": {}
+        }
+      },
+      "LibGit2Sharp/0.31.0": {
+        "type": "package",
+        "dependencies": {
+          "LibGit2Sharp.NativeBinaries": "[2.0.323]"
+        },
+        "compile": {
+          "lib/net472/LibGit2Sharp.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net472/LibGit2Sharp.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "LibGit2Sharp.NativeBinaries/2.0.323": {
+        "type": "package",
+        "build": {
+          "build/_._": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/_._": {}
         }
       },
       "MahApps.Metro.IconPacks/4.11.0": {
@@ -8423,10 +8615,24 @@
           "lib/netstandard1.6/XLParser.dll": {}
         }
       },
+      "Backup.Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "LibGit2Sharp": "0.31.0"
+        },
+        "compile": {
+          "bin/placeholder/Backup.Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Backup.Service.dll": {}
+        }
+      },
       "Petsi/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "Backup.Service": "1.0.0",
           "ClosedXML": "0.102.2",
           "CsvHelper": "30.1.0",
           "Square.Service": "1.0.0"
@@ -8577,6 +8783,34 @@
         },
         "runtime": {
           "lib/netstandard1.6/Irony.dll": {}
+        }
+      },
+      "LibGit2Sharp/0.31.0": {
+        "type": "package",
+        "dependencies": {
+          "LibGit2Sharp.NativeBinaries": "[2.0.323]"
+        },
+        "compile": {
+          "lib/net472/LibGit2Sharp.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net472/LibGit2Sharp.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "LibGit2Sharp.NativeBinaries/2.0.323": {
+        "type": "package",
+        "native": {
+          "runtimes/win-x64/native/git2-3f4182d.dll": {}
+        },
+        "build": {
+          "build/_._": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/_._": {}
         }
       },
       "MahApps.Metro.IconPacks/4.11.0": {
@@ -10572,10 +10806,24 @@
           "lib/netstandard1.6/XLParser.dll": {}
         }
       },
+      "Backup.Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "LibGit2Sharp": "0.31.0"
+        },
+        "compile": {
+          "bin/placeholder/Backup.Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Backup.Service.dll": {}
+        }
+      },
       "Petsi/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "Backup.Service": "1.0.0",
           "ClosedXML": "0.102.2",
           "CsvHelper": "30.1.0",
           "Square.Service": "1.0.0"
@@ -10726,6 +10974,34 @@
         },
         "runtime": {
           "lib/netstandard1.6/Irony.dll": {}
+        }
+      },
+      "LibGit2Sharp/0.31.0": {
+        "type": "package",
+        "dependencies": {
+          "LibGit2Sharp.NativeBinaries": "[2.0.323]"
+        },
+        "compile": {
+          "lib/net472/LibGit2Sharp.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net472/LibGit2Sharp.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "LibGit2Sharp.NativeBinaries/2.0.323": {
+        "type": "package",
+        "native": {
+          "runtimes/win-x64/native/git2-3f4182d.dll": {}
+        },
+        "build": {
+          "build/_._": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/_._": {}
         }
       },
       "MahApps.Metro.IconPacks/4.11.0": {
@@ -12766,10 +13042,24 @@
           "lib/netstandard1.6/XLParser.dll": {}
         }
       },
+      "Backup.Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "LibGit2Sharp": "0.31.0"
+        },
+        "compile": {
+          "bin/placeholder/Backup.Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Backup.Service.dll": {}
+        }
+      },
       "Petsi/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "Backup.Service": "1.0.0",
           "ClosedXML": "0.102.2",
           "CsvHelper": "30.1.0",
           "Square.Service": "1.0.0"
@@ -12920,6 +13210,34 @@
         },
         "runtime": {
           "lib/netstandard1.6/Irony.dll": {}
+        }
+      },
+      "LibGit2Sharp/0.31.0": {
+        "type": "package",
+        "dependencies": {
+          "LibGit2Sharp.NativeBinaries": "[2.0.323]"
+        },
+        "compile": {
+          "lib/net472/LibGit2Sharp.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net472/LibGit2Sharp.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "LibGit2Sharp.NativeBinaries/2.0.323": {
+        "type": "package",
+        "native": {
+          "runtimes/win-x86/native/git2-3f4182d.dll": {}
+        },
+        "build": {
+          "build/_._": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/_._": {}
         }
       },
       "MahApps.Metro.IconPacks/4.11.0": {
@@ -14915,10 +15233,24 @@
           "lib/netstandard1.6/XLParser.dll": {}
         }
       },
+      "Backup.Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "LibGit2Sharp": "0.31.0"
+        },
+        "compile": {
+          "bin/placeholder/Backup.Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Backup.Service.dll": {}
+        }
+      },
       "Petsi/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "Backup.Service": "1.0.0",
           "ClosedXML": "0.102.2",
           "CsvHelper": "30.1.0",
           "Square.Service": "1.0.0"
@@ -15069,6 +15401,34 @@
         },
         "runtime": {
           "lib/netstandard1.6/Irony.dll": {}
+        }
+      },
+      "LibGit2Sharp/0.31.0": {
+        "type": "package",
+        "dependencies": {
+          "LibGit2Sharp.NativeBinaries": "[2.0.323]"
+        },
+        "compile": {
+          "lib/net472/LibGit2Sharp.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net472/LibGit2Sharp.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "LibGit2Sharp.NativeBinaries/2.0.323": {
+        "type": "package",
+        "native": {
+          "runtimes/win-x86/native/git2-3f4182d.dll": {}
+        },
+        "build": {
+          "build/_._": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/_._": {}
         }
       },
       "MahApps.Metro.IconPacks/4.11.0": {
@@ -17109,10 +17469,24 @@
           "lib/netstandard1.6/XLParser.dll": {}
         }
       },
+      "Backup.Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "LibGit2Sharp": "0.31.0"
+        },
+        "compile": {
+          "bin/placeholder/Backup.Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Backup.Service.dll": {}
+        }
+      },
       "Petsi/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "Backup.Service": "1.0.0",
           "ClosedXML": "0.102.2",
           "CsvHelper": "30.1.0",
           "Square.Service": "1.0.0"
@@ -17272,6 +17646,55 @@
         "lib/net452/Irony.dll",
         "lib/net461/Irony.dll",
         "lib/netstandard1.6/Irony.dll"
+      ]
+    },
+    "LibGit2Sharp/0.31.0": {
+      "sha512": "b3+UfV7LjKMjAHWwl7VawejiOv2gJIC6dTCA/S0puLTHACAA/Oeb5JJmWUQMeyH/T/WR/LaIK8bk2RbdFnrZvg==",
+      "type": "package",
+      "path": "libgit2sharp/0.31.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "App_Readme/CHANGES.md",
+        "App_Readme/LICENSE.md",
+        "App_Readme/README.md",
+        "lib/net472/LibGit2Sharp.dll",
+        "lib/net472/LibGit2Sharp.xml",
+        "lib/net8.0/LibGit2Sharp.dll",
+        "lib/net8.0/LibGit2Sharp.xml",
+        "libgit2sharp.0.31.0.nupkg.sha512",
+        "libgit2sharp.nuspec",
+        "square-logo.png"
+      ]
+    },
+    "LibGit2Sharp.NativeBinaries/2.0.323": {
+      "sha512": "Kg+fJGWhGj5qRXG0Ilj4ddhuodGXZg57yhfX6OVUDR0M2DKg/UR42/d74+qv5l1qotc1qJilo/ho7xQnULP6yA==",
+      "type": "package",
+      "path": "libgit2sharp.nativebinaries/2.0.323",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/LibGit2Sharp.NativeBinaries.props",
+        "build/net46/LibGit2Sharp.NativeBinaries.props",
+        "buildMultiTargeting/LibGit2Sharp.NativeBinaries.props",
+        "libgit2/LibGit2Sharp.dll.config",
+        "libgit2/libgit2.license.txt",
+        "libgit2/libgit2.png",
+        "libgit2/libgit2_hash.txt",
+        "libgit2sharp.nativebinaries.2.0.323.nupkg.sha512",
+        "libgit2sharp.nativebinaries.nuspec",
+        "runtimes/linux-arm/native/libgit2-3f4182d.so",
+        "runtimes/linux-arm64/native/libgit2-3f4182d.so",
+        "runtimes/linux-musl-arm/native/libgit2-3f4182d.so",
+        "runtimes/linux-musl-arm64/native/libgit2-3f4182d.so",
+        "runtimes/linux-musl-x64/native/libgit2-3f4182d.so",
+        "runtimes/linux-ppc64le/native/libgit2-3f4182d.so",
+        "runtimes/linux-x64/native/libgit2-3f4182d.so",
+        "runtimes/osx-arm64/native/libgit2-3f4182d.dylib",
+        "runtimes/osx-x64/native/libgit2-3f4182d.dylib",
+        "runtimes/win-arm64/native/git2-3f4182d.dll",
+        "runtimes/win-x64/native/git2-3f4182d.dll",
+        "runtimes/win-x86/native/git2-3f4182d.dll"
       ]
     },
     "MahApps.Metro.IconPacks/4.11.0": {
@@ -23231,6 +23654,11 @@
         "xlparser.nuspec"
       ]
     },
+    "Backup.Service/1.0.0": {
+      "type": "project",
+      "path": "../Backup.Service/Backup.Service.csproj",
+      "msbuildProject": "../Backup.Service/Backup.Service.csproj"
+    },
     "Petsi/1.0.0": {
       "type": "project",
       "path": "../Petsi/Petsi.csproj",
@@ -23389,6 +23817,16 @@
       "warningLevel": 1,
       "message": "Package 'Irony.NetCore 1.0.11' was restored using '.NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1, net8.0-windows10.0.22621' instead of the project target framework 'UAP,Version=v10.0.14393'. This package may not be fully compatible with your project.",
       "libraryId": "Irony.NetCore",
+      "targetGraphs": [
+        "UAP,Version=v10.0.14393"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'LibGit2Sharp 0.31.0' was restored using '.NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1, net8.0-windows10.0.22621' instead of the project target framework 'UAP,Version=v10.0.14393'. This package may not be fully compatible with your project.",
+      "libraryId": "LibGit2Sharp",
       "targetGraphs": [
         "UAP,Version=v10.0.14393"
       ]
