@@ -219,7 +219,7 @@ namespace Petsi.Reports.TableBuilder
             {
                 isVegan = true;
                 return true;
-            }
+            }/*
             else if(lineItem.IsTakeNBakeTo(BackListItemId))
             {
                 isTakeNBake = true;
@@ -229,7 +229,7 @@ namespace Petsi.Reports.TableBuilder
             {
                 isVeganTakeNBake = true;
                 return true;
-            }
+            }*/
             else if(lineItem.CatalogObjectId == BackListItemId)
             {
                 return true;
