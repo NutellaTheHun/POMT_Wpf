@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Backup.Service;
+using Newtonsoft.Json;
 using Petsi.Filing;
 using Petsi.Input;
 using Petsi.Interfaces;
@@ -33,6 +34,8 @@ namespace Petsi.Models
             OrderTypesSet = InitOrderTypes();
 
             StartupService.Instance.Register(this);
+            GithubService ghs = new GithubService();
+            ghs.PushBackup();
         }
 
         /// <summary>

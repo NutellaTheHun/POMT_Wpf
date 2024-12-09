@@ -7,10 +7,6 @@
       "RelativeMoniker": "D:0:0:{51F65F56-2EC8-4285-A431-26348D45222E}|Backup.Service\\Backup.Service.csproj|solutionrelative:backup.service\\githubservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|d:\\git-repos\\pomt_wpf\\petsi\\utils\\petsiconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{924A06E4-ED2B-4393-88D0-A8DA992C384C}|Petsi\\Petsi.csproj|solutionrelative:petsi\\utils\\petsiconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{51F65F56-2EC8-4285-A431-26348D45222E}|Backup.Service\\Backup.Service.csproj|d:\\git-repos\\pomt_wpf\\backup.service\\compressionhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{51F65F56-2EC8-4285-A431-26348D45222E}|Backup.Service\\Backup.Service.csproj|solutionrelative:backup.service\\compressionhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -26,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 347,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,7 +30,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "CompressionHelper.cs",
               "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Backup.Service\\CompressionHelper.cs",
               "RelativeDocumentMoniker": "Backup.Service\\CompressionHelper.cs",
@@ -42,12 +38,11 @@
               "RelativeToolTip": "Backup.Service\\CompressionHelper.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T20:13:51.111Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-06T20:13:51.111Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "EncryptionHelper.cs",
               "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Backup.Service\\EncryptionHelper.cs",
               "RelativeDocumentMoniker": "Backup.Service\\EncryptionHelper.cs",
@@ -55,21 +50,7 @@
               "RelativeToolTip": "Backup.Service\\EncryptionHelper.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T20:10:59.931Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PetsiConfig.cs",
-              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Utils\\PetsiConfig.cs",
-              "RelativeDocumentMoniker": "Petsi\\Utils\\PetsiConfig.cs",
-              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Utils\\PetsiConfig.cs",
-              "RelativeToolTip": "Petsi\\Utils\\PetsiConfig.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T19:25:43.514Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-06T20:10:59.931Z"
             },
             {
               "$type": "Document",
@@ -79,7 +60,7 @@
               "RelativeDocumentMoniker": "Backup.Service\\GithubService.cs",
               "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Backup.Service\\GithubService.cs",
               "RelativeToolTip": "Backup.Service\\GithubService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAApAAAA",
+              "ViewState": "AQIAAEkAAAAAAAAAAAAcwFQAAAA2AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-06T17:59:12.818Z",
               "EditorCaption": ""
