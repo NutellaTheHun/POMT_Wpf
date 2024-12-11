@@ -1,7 +1,16 @@
 *.xlsx
 Square.Service/config.txt
 Petsi/bin/fileService
+POMT_WPF/bin
+POMT_WPF/obj
+Petsi/bin
+Petsi/obj
+Backup.Service/bin
+Backup.Service/obj
+Petsi.Tests/bin
+Petsi.Tests/obj
 .vs
+
 
 # Build results
 [Dd]ebug/
