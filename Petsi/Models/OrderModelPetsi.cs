@@ -34,7 +34,6 @@ namespace Petsi.Models
             OrderTypesSet = InitOrderTypes();
 
             StartupService.Instance.Register(this);
-            GoogleDriveService.UploadBackup();
         }
 
         /// <summary>

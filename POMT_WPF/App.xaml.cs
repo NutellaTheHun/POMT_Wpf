@@ -36,7 +36,10 @@ namespace POMT_WPF
 
             SquareCatalogInput sci = new SquareCatalogInput(scf);
             SquareOrderInput soi = new SquareOrderInput(scf);
-            if(!scf.BuildFailed)
+
+            GoogleDriveService.HandleBackupUpload();
+
+            if (!scf.BuildFailed)
             {
                 sci.Execute().Wait();
                 soi.Execute().Wait();
