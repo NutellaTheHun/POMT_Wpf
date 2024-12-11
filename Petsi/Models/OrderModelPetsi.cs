@@ -34,8 +34,7 @@ namespace Petsi.Models
             OrderTypesSet = InitOrderTypes();
 
             StartupService.Instance.Register(this);
-            GithubService ghs = new GithubService();
-            ghs.PushBackup();
+            GoogleDriveService.UploadBackup();
         }
 
         /// <summary>

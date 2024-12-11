@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("POMT_WPF")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+79525442f02f6a451d6817429003e65220e05b03")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+95ee3c012f7e51dd7fbb692d930bb0efb66da8bf")]
 [assembly: System.Reflection.AssemblyProductAttribute("POMT_WPF")]
 [assembly: System.Reflection.AssemblyTitleAttribute("POMT_WPF")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

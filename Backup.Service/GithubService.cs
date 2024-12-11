@@ -4,12 +4,12 @@ namespace Backup.Service
 {
     public class GithubService
     {
-        private static readonly string configDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "\\petsiDir\\BackupService\\";
-        private static readonly string zipFilePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "\\petsiDir\\BackupService\\fileService.zip";
-        private static readonly string enryptedFilePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "\\petsiDir\\BackupService\\fileService.enc";
-        private static readonly string decryptedFilePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "\\petsiDir\\BackupService\\decryptfileService.zip";
+        private static readonly string configDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "\\petsiDir\\BackupService\\repo";
+        private static readonly string zipFilePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "\\petsiDir\\BackupService\\repo\\fileService.zip";
+        private static readonly string enryptedFilePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "\\petsiDir\\BackupService\\repo\\fileService.enc";
+        private static readonly string decryptedFilePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "\\petsiDir\\BackupService\\repo\\decryptfileService.zip";
         private static readonly string sourceDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "\\petsiDir\\fileService";
-        private static readonly string configFp = configDir + "BackupServiceConfig.txt";
+        private static readonly string configFp = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "\\petsiDir\\BackupService\\BackupServiceConfig.txt";
 
         private const string LocalRepoPath = "LocalRepoPath";
         private const string AuthorName = "AuthorName";
@@ -17,6 +17,7 @@ namespace Backup.Service
         private const string RemotePath = "RemotePath";
         private const string Username = "Username";
         private const string Password = "Password";
+        private const string Token = "Token";
         private const string Key = "Key";
 
         Dictionary<string, string> variables;
@@ -55,6 +56,7 @@ namespace Backup.Service
             CheckVariable(RemotePath, ref variableCheck);
             CheckVariable(Username, ref variableCheck);
             CheckVariable(Password, ref variableCheck);
+            CheckVariable(Token, ref variableCheck);
             CheckVariable(Key, ref variableCheck);
             IsReady = variableCheck;
         }
@@ -70,30 +72,24 @@ namespace Backup.Service
         public bool PushBackup()
         {
             if (!IsReady) { return false; }
-            /*
-            //---
-            //string repoPath = @"path/to/your/local/repo"; // Path to your local Git repository
-            //string jsonFilePath = Path.Combine(repoPath, "data.json"); // Path to your JSON file
 
-            // Step 1: Create or update the JSON file
-            //var data = new { Timestamp = DateTime.UtcNow, Message = "Backup data" };
-            //File.WriteAllText(jsonFilePath, System.Text.Json.JsonSerializer.Serialize(data));
-            */
-
-            //public static void CompressFolder(string directory, string outputZipFilePath)
             CompressionHelper.CompressFolder(sourceDir, zipFilePath);
-            //public static void EncryptFile(string inputFilePath, string key, string outputFilePath)
             EncryptionHelper.EncryptFile(zipFilePath, variables[Key], enryptedFilePath);
+
             // Step 2: Initialize or open the repository
-            if (!Repository.IsValid(variables[LocalRepoPath]))
+            if (!Repository.IsValid(configDir))
             {
                 //Console.WriteLine("Initializing new repository...");
-                Repository.Init(variables[LocalRepoPath]);
+                Repository.Init(configDir);
+                
             }
 
-            using var repo = new Repository(variables[LocalRepoPath]);
+            using var repo = new Repository(configDir);
+            var branch = repo.Branches["main"] ?? repo.CreateBranch("main");
+            Commands.Checkout(repo, branch);
 
-            // Step 3: Stage the JSON file
+
+            // Step 3: Stage the file
             Commands.Stage(repo, enryptedFilePath);
 
             // Step 4: Commit changes
@@ -107,7 +103,11 @@ namespace Backup.Service
             {
                 // Add your GitHub remote URL
                 repo.Network.Remotes.Add("origin", variables[RemotePath]);
+                remote = repo.Network.Remotes["origin"];
             }
+
+            // Link the branch to the remote
+            repo.Branches.Update(branch, b => b.Remote = remote.Name, b => b.UpstreamBranch = branch.CanonicalName);
 
             // Credentials for pushing to GitHub
             var pushOptions = new PushOptions
@@ -115,16 +115,23 @@ namespace Backup.Service
                 CredentialsProvider = (_, _, _) =>
                     new UsernamePasswordCredentials
                     {
-                        Username = variables[Username],
-                        Password = variables[Password] // Use a personal access token instead of your password
+                        Username = "",
+                        Password = variables[Token]
                     }
             };
+            
 
             //Console.WriteLine("Pushing to GitHub...");
-            repo.Network.Push(repo.Branches["main"], pushOptions); // Replace "main" with your branch name
-
+            //repo.Network.Push(repo.Branches["main"], pushOptions); // Replace "main" with your branch name
+            repo.Network.Push(branch, pushOptions);
             //---
-
+            /*
+             new UsernamePasswordCredentials
+                    {
+                        Username = "",
+                        Password = variables[Token]
+                    }
+             */
             return true;
         }
     }
