@@ -93,6 +93,7 @@ D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\Styles\DataGrid\dashb
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\Styles\DataGrid\dashboardDataGridColumnHeaderStyle.baml
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\Styles\DataGrid\dashboardDataGridRowStyle.baml
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\Styles\DataGrid\dashboardDataGridStyle.baml
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\Styles\DataGrid\NewItemWindowDgRowStyle.baml
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\Styles\DataGrid\orderFormColumnHeaderGripperStyle.baml
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\Styles\DataGrid\orderFormDataGridCellStyle.baml
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\Styles\DataGrid\orderFormDataGridColumnHeaderStyle.baml
@@ -126,6 +127,7 @@ D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\CatalogItem
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\CatalogView.g.cs
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\ConfigureLabelsView.g.cs
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\ConfirmationWindow.g.cs
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\ExceptionHandlerShowWindow.g.cs
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\GeneralErrorWindow.g.cs
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\LabelItemWindow.g.cs
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\LabelView.g.cs
@@ -138,6 +140,8 @@ D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\OrderView.g
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\ReportView.g.cs
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\SetSettingsVariableWindow.g.cs
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\SettingsView.g.cs
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\SquareKeyMissingWindow.g.cs
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\TakeBakeMapWindow.g.cs
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\TemplateItemViewWindow.g.cs
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\TemplateListView.g.cs
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\testNEWmainVIEW.g.cs
@@ -153,6 +157,7 @@ D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\CatalogItem
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\CatalogView.baml
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\ConfigureLabelsView.baml
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\ConfirmationWindow.baml
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\ExceptionHandlerShowWindow.baml
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\GeneralErrorWindow.baml
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\LabelItemWindow.baml
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\LabelView.baml
@@ -165,6 +170,8 @@ D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\OrderView.b
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\ReportView.baml
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\SetSettingsVariableWindow.baml
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\SettingsView.baml
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\SquareKeyMissingWindow.baml
+D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\TakeBakeMapWindow.baml
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\TemplateItemViewWindow.baml
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\TemplateListView.baml
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\testNEWmainVIEW.baml
@@ -185,10 +192,3 @@ D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\refint\POMT_WPF.dll
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\POMT_WPF.pdb
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\POMT_WPF.genruntimeconfig.cache
 D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\ref\POMT_WPF.dll
-D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\Styles\DataGrid\NewItemWindowDgRowStyle.baml
-D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\ExceptionHandlerShowWindow.g.cs
-D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\SquareKeyMissingWindow.g.cs
-D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\TakeBakeMapWindow.g.cs
-D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\ExceptionHandlerShowWindow.baml
-D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\SquareKeyMissingWindow.baml
-D:\Git-Repos\POMT_WPF\POMT_WPF\obj\Debug\net6.0-windows7.0\MVVM\View\TakeBakeMapWindow.baml
