@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\Git-Repos\\POMT_WPF\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{5FCF45C8-7D7F-43DF-9D22-77039F64E32D}|Petsi.Tests\\Petsi.Tests.csproj|d:\\git-repos\\pomt_wpf\\petsi.tests\\inputtests\\squarecataloginputtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FCF45C8-7D7F-43DF-9D22-77039F64E32D}|Petsi.Tests\\Petsi.Tests.csproj|solutionrelative:petsi.tests\\inputtests\\squarecataloginputtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{51F65F56-2EC8-4285-A431-26348D45222E}|Backup.Service\\Backup.Service.csproj|d:\\git-repos\\pomt_wpf\\backup.service\\googledriveservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{51F65F56-2EC8-4285-A431-26348D45222E}|Backup.Service\\Backup.Service.csproj|solutionrelative:backup.service\\googledriveservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -22,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 414,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,7 +38,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
+              "Title": "SquareCatalogInputTest.cs",
+              "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\InputTests\\SquareCatalogInputTest.cs",
+              "RelativeDocumentMoniker": "Petsi.Tests\\InputTests\\SquareCatalogInputTest.cs",
+              "ToolTip": "D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\InputTests\\SquareCatalogInputTest.cs",
+              "RelativeToolTip": "Petsi.Tests\\InputTests\\SquareCatalogInputTest.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-11T22:32:33.174Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "OrderModelPetsi.cs",
               "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Petsi\\Models\\OrderModelPetsi.cs",
               "RelativeDocumentMoniker": "Petsi\\Models\\OrderModelPetsi.cs",
@@ -42,12 +59,11 @@
               "RelativeToolTip": "Petsi\\Models\\OrderModelPetsi.cs",
               "ViewState": "AQIAAAkAAAAAAAAAAIBJwCMAAAAzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-11T19:00:54.339Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-11T19:00:54.339Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "App.xaml.cs",
               "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\POMT_WPF\\App.xaml.cs",
               "RelativeDocumentMoniker": "POMT_WPF\\App.xaml.cs",
@@ -55,12 +71,11 @@
               "RelativeToolTip": "POMT_WPF\\App.xaml.cs",
               "ViewState": "AQIAABQAAAAAAAAAAAAQwCYAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-11T19:00:29.761Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-11T19:00:29.761Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "GoogleDriveService.cs",
               "DocumentMoniker": "D:\\Git-Repos\\POMT_WPF\\Backup.Service\\GoogleDriveService.cs",
               "RelativeDocumentMoniker": "Backup.Service\\GoogleDriveService.cs",
