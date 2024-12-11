@@ -159,3 +159,10 @@ D:\Git-Repos\POMT_WPF\Petsi\bin\Debug\net6.0-windows\runtimes\win-x64\native\git
 D:\Git-Repos\POMT_WPF\Petsi\bin\Debug\net6.0-windows\runtimes\win-x86\native\git2-3f4182d.dll
 D:\Git-Repos\POMT_WPF\Petsi\bin\Debug\net6.0-windows\Backup.Service.dll
 D:\Git-Repos\POMT_WPF\Petsi\bin\Debug\net6.0-windows\Backup.Service.pdb
+D:\Git-Repos\POMT_WPF\Petsi\bin\Debug\net6.0-windows\Google.Apis.dll
+D:\Git-Repos\POMT_WPF\Petsi\bin\Debug\net6.0-windows\Google.Apis.Auth.dll
+D:\Git-Repos\POMT_WPF\Petsi\bin\Debug\net6.0-windows\Google.Apis.Core.dll
+D:\Git-Repos\POMT_WPF\Petsi\bin\Debug\net6.0-windows\Google.Apis.Drive.v3.dll
+D:\Git-Repos\POMT_WPF\Petsi\bin\Debug\net6.0-windows\System.CodeDom.dll
+D:\Git-Repos\POMT_WPF\Petsi\bin\Debug\net6.0-windows\System.Management.dll
+D:\Git-Repos\POMT_WPF\Petsi\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Management.dll
