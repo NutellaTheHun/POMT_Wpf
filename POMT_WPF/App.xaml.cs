@@ -1,4 +1,5 @@
-﻿using Petsi.Input;
+﻿using Backup.Service;
+using Petsi.Input;
 using Petsi.Models;
 using Petsi.Reports;
 using Petsi.Services;
@@ -35,7 +36,10 @@ namespace POMT_WPF
 
             SquareCatalogInput sci = new SquareCatalogInput(scf);
             SquareOrderInput soi = new SquareOrderInput(scf);
-            if(!scf.BuildFailed)
+
+            GoogleDriveService.HandleBackupUpload();
+
+            if (!scf.BuildFailed)
             {
                 sci.Execute().Wait();
                 soi.Execute().Wait();
