@@ -1,7 +1,16 @@
 *.xlsx
 Square.Service/config.txt
 Petsi/bin/fileService
+POMT_WPF/bin
+POMT_WPF/obj
+Petsi/bin
+Petsi/obj
+Backup.Service/bin
+Backup.Service/obj
+Petsi.Tests/bin
+Petsi.Tests/obj
 .vs
+
 
 # Build results
 [Dd]ebug/
@@ -87,3 +96,8 @@ UpgradeLog*.XML
 UpgradeLog*.htm
 ServiceFabricBackup/
 *.rptproj.bak
+.vs/ProjectEvaluation/pomt_wpf.strings.v8.bin
+.vs/POMT_WPF/v17/DocumentLayout.json
+.vs/POMT_WPF/v17/.suo
+.vs/POMT_WPF/v17/.futdcache.v2
+.vs/POMT_WPF/DesignTimeBuild/.dtbcache.v2
