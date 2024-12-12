@@ -1,1 +1,0 @@
-D:\Git-Repos\POMT_WPF\POMT_Packager\POMT_Packager.wapproj;x64
