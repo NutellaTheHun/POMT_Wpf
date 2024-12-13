@@ -1,5 +1,4 @@
 ﻿using ClosedXML.Excel;
-using DocumentFormat.OpenXml.Bibliography;
 using Newtonsoft.Json;
 using Petsi.Input;
 using Petsi.Managers;
@@ -10,17 +9,12 @@ using Petsi.Units;
 using Petsi.Utils;
 using Square.Models;
 using Square.Service;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit.Abstractions;
 
 namespace Petsi.Tests.ReportTests.FrontList
 {
     [Collection("Sequential")]
-    public class BoxOf6BiscTest
+    public class BoxOf6BiscTest : IDisposable
     {
         private readonly ITestOutputHelper helper;
         TestEnvHelper teh;
