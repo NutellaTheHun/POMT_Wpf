@@ -29,6 +29,11 @@ namespace Petsi.Reports.TableBuilder
             bool veganPresent8 = false; //bool unbakedPresent8 = false; bool veganUnbaked8 = false;
             bool veganPresent10 = false; //bool unbakedPresent10 = false; bool veganUnbaked10 = false;
 
+            int total3 = 0;
+            int total5 = 0;
+            int total8 = 0;
+            int total10 = 0;
+
             if (listFormat == null)
             {
                 SystemLogger.LogStatus("TableBackListPie GetActiveBacklistPieTemplate returned an empty list");
@@ -56,10 +61,26 @@ namespace Petsi.Reports.TableBuilder
                         {
                             if (isVegan)
                             {
-                                if (lineItem.Amount3 != 0)  { amount3 = HandleVeganLineAmount(lineItem.Amount3.ToString(), amount3); }
-                                if (lineItem.Amount5 != 0)  { amount5 = HandleVeganLineAmount(lineItem.Amount5.ToString(), amount5); veganPresent5 = true; }
-                                if (lineItem.Amount8 != 0)  { amount8 = HandleVeganLineAmount(lineItem.Amount8.ToString(), amount8); veganPresent8 = true; }
-                                if (lineItem.Amount10 != 0) { amount10 = HandleVeganLineAmount(lineItem.Amount10.ToString(), amount10); veganPresent10 = true; }
+                                if (lineItem.Amount3 != 0)  
+                                { 
+                                    amount3 = HandleVeganLineAmount(lineItem.Amount3.ToString(), amount3);
+                                    total3 += lineItem.Amount3;
+                                }
+                                if (lineItem.Amount5 != 0)  
+                                { 
+                                    amount5 = HandleVeganLineAmount(lineItem.Amount5.ToString(), amount5); veganPresent5 = true;
+                                    total5 += lineItem.Amount5;
+                                }
+                                if (lineItem.Amount8 != 0)  
+                                { 
+                                    amount8 = HandleVeganLineAmount(lineItem.Amount8.ToString(), amount8); veganPresent8 = true; 
+                                    total8 += lineItem.Amount8;
+                                }
+                                if (lineItem.Amount10 != 0) 
+                                { 
+                                    amount10 = HandleVeganLineAmount(lineItem.Amount10.ToString(), amount10); veganPresent10 = true;
+                                    total10 += lineItem.Amount10;
+                                }
 
                                 itemTracker.Remove(lineItem);
                                 continue;
@@ -86,10 +107,26 @@ namespace Petsi.Reports.TableBuilder
                             }*/
                             else
                             {
-                                if (lineItem.Amount3 != 0)  { amount3 = HandleLineAmount(lineItem.Amount3.ToString(), amount3); }
-                                if (lineItem.Amount5 != 0)  { amount5 = HandleLineAmount(lineItem.Amount5.ToString(), amount5); }
-                                if (lineItem.Amount8 != 0)  { amount8 = HandleLineAmount(lineItem.Amount8.ToString(), amount8); }
-                                if (lineItem.Amount10 != 0) { amount10 = HandleLineAmount(lineItem.Amount10.ToString(), amount10); }
+                                if (lineItem.Amount3 != 0)  
+                                { 
+                                    amount3 = HandleLineAmount(lineItem.Amount3.ToString(), amount3);
+                                    total3 += lineItem.Amount3;
+                                }
+                                if (lineItem.Amount5 != 0)  
+                                { 
+                                    amount5 = HandleLineAmount(lineItem.Amount5.ToString(), amount5);
+                                    total5 += lineItem.Amount5;
+                                }
+                                if (lineItem.Amount8 != 0)  
+                                { 
+                                    amount8 = HandleLineAmount(lineItem.Amount8.ToString(), amount8);
+                                    total8 += lineItem.Amount8;
+                                }
+                                if (lineItem.Amount10 != 0) 
+                                { 
+                                    amount10 = HandleLineAmount(lineItem.Amount10.ToString(), amount10);
+                                    total10 += lineItem.Amount10;
+                                }
 
                                 itemTracker.Remove(lineItem);
                                 continue;
@@ -117,6 +154,11 @@ namespace Petsi.Reports.TableBuilder
                     BackListOverflowEvent.OnPieOverflow(remainders);
                 }
             }
+
+            //Totals column
+            AddLine(page, ref _rowIndex, _rootPosition.col,
+                        "", total3.ToString(), total5.ToString(), total8.ToString(), total10.ToString());
+
             FormatTable(page);
             _rowIndex = _rootPosition.row;
         }
@@ -239,8 +281,9 @@ namespace Petsi.Reports.TableBuilder
 
         protected override void FormatTable(IXLWorksheet page)//format line?
         {
-            string tableRange = TableFormat.BuildRange(_rootPosition.row, _rowIndex - 1, "B", "F");
+            string tableRange = TableFormat.BuildRange(_rootPosition.row, _rowIndex - 2, "B", "F");
             string headerRange = TableFormat.BuildRange(_rootPosition.row, _rootPosition.row, "B", "F");
+            string footerRange = TableFormat.BuildRange(_rowIndex - 1, _rowIndex - 1, "B", "F");
 
             TableFormat.RangeAllBorders(page, tableRange);
             TableFormat.RangeAlignment(page, "center", tableRange);
@@ -249,6 +292,10 @@ namespace Petsi.Reports.TableBuilder
             //TableFormat.ColWidthFitSizeOfText(page, "B:F");
             //TableFormat.ColumnSetPixelLength(page, 20, "C:F");
             TableFormat.RangeBold(page, headerRange);
+
+            TableFormat.RangeAlignment(page, "center", footerRange);
+            TableFormat.RangeFontSize(page, 16, footerRange);
+            TableFormat.RangeBold(page, footerRange);
         }
     }
 }
