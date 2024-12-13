@@ -1,6 +1,8 @@
-﻿namespace Petsi.Tests.ReportTests.FrontList
+﻿
+namespace Petsi.Tests.ReportTests.FrontList
 {
     public class FrontListTest
     {
+
     }
 }
