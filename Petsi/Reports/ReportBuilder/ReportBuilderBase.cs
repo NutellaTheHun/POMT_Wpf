@@ -54,12 +54,6 @@ namespace Petsi.Reports.ReportBuilder
                     //orderLineValue must be checked on each item, value depends on state of item which varies
                     itemLineValue = pageBuilder.GetItemLineCount(item);
                     
-                    //Check PageBuilderFrontListCover GetItemLineCount() for understanding
-                    /*
-                    if( itemLineValue == 0 )
-                    {
-                        continue;
-                    }*/
                     if (!pageBuilder.IsRelevantItemToList(item, itemLineValue))
                     {
                         continue;

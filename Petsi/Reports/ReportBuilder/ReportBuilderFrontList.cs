@@ -16,6 +16,7 @@ namespace Petsi.Reports.ReportBuilder
             pageBuilders.Add(new PageBuilderFrontListCover(_report));
             pageBuilders.Add(new PageBuilderFrontListOrders(_report));
             pageBuilders.Add(new PageBuilderFrontListNotes(_report));
+            pageBuilders.Add(new PageBuilderFrontListDelivery(_report));
         }
     }
 }
