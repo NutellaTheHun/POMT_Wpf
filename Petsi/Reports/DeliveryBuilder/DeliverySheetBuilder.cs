@@ -6,25 +6,25 @@ namespace Petsi.Reports.DeliveryBuilder
 {
     public class DeliverySheetBuilder
     {
-        public DeliverySheetBuilder()
+        private Report _report;
+        public DeliverySheetBuilder(Report report)
         {
-            
+            _report = report;
         }
 
         public IXLWorkbook BuildDeliveryPages(List<PetsiOrder> orders)
         {
-            IXLWorkbook deliveryPages = new XLWorkbook();
             int orderCount = 0;
             foreach (PetsiOrder order in orders)
             {
                 if (order.FulfillmentType == Identifiers.FULFILLMENT_DELIVERY && order.OrderType != Identifiers.ORDER_TYPE_WHOLESALE)
                 {
                     orderCount++;
-                    BuildDeliveryPage(deliveryPages, order, orderCount);
+                    BuildDeliveryPage(_report.Wb, order, orderCount);
                 }
             }
 
-            return deliveryPages;
+            return _report.Wb;
         }
 
         private void BuildDeliveryPage(IXLWorkbook deliveryPages, PetsiOrder order, int orderCount)

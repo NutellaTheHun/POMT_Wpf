@@ -30,7 +30,7 @@ namespace Petsi.Reports.PageBuilder
 
         protected override void ConfigureTables()
         {
-            _tables.Add(new TableBuilderFrontListDelivery((1, 1), 11, 18));
+            //_tables.Add(new TableBuilderFrontListDelivery((1, 1), 11, 18));
         }
     }
 }

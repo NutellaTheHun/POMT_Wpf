@@ -21,6 +21,10 @@ namespace Petsi.Reports
                 () => CreateFrontList(rc.StartDate, rc.IsPrint, rc.IsExport, rc.RetailFilter, rc.SquareFilter, rc.WholesaleFilter, rc.SpecialFilter, rc.EzCaterFilter, rc.FarmerFilter, rc.ReportName),
                 nameof(CreateFrontList),
                 rc.StartDate, rc.IsPrint, rc.IsExport, rc.RetailFilter, rc.SquareFilter, rc.WholesaleFilter, rc.SpecialFilter, rc.EzCaterFilter, rc.FarmerFilter, rc.ReportName);
+            _printSession.Enqueue(
+                () => CreateDeliverySheets(rc.StartDate, rc.IsPrint, rc.IsExport, rc.RetailFilter, rc.SquareFilter, rc.WholesaleFilter, rc.SpecialFilter, rc.EzCaterFilter, rc.FarmerFilter, rc.ReportName),
+                nameof(CreateDeliverySheets),
+                rc.StartDate, rc.IsPrint, rc.IsExport, rc.RetailFilter, rc.SquareFilter, rc.WholesaleFilter, rc.SpecialFilter, rc.EzCaterFilter, rc.FarmerFilter, rc.ReportName+"Deliveries");
         }
         public async void RequestPieBackList(ReportConfig rc)
         {
@@ -70,13 +74,17 @@ namespace Petsi.Reports
             return report.Wb;
         }
 
-        public IXLWorkbook CreateDeliverySheets(DateTime? targetDate, bool isPrint, bool isExport, bool isRetail,
+        public async Task<IXLWorkbook> CreateDeliverySheets(DateTime? targetDate, bool isPrint, bool isExport, bool isRetail,
                                                                             bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer, string? reportName)
         {
-            DeliverySheetBuilder deliveryBuilder = new DeliverySheetBuilder();
+            Report report = new Report(reportName, isPrint, isExport);
+            DeliverySheetBuilder deliveryBuilder = new DeliverySheetBuilder(report);
             OrderModelPetsi orderModel = ModelManagerSingleton.GetInstance().GetOrderModel();
+            deliveryBuilder.BuildDeliveryPages(await orderModel.GetFrontListDataAsync(targetDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer));
+            
+            report.HandlePrintAndExport();
 
-            return deliveryBuilder.BuildDeliveryPages(await orderModel.GetFrontListDataAsync(targetDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer));
+            return report.Wb;
         }
         public async Task<IXLWorkbook> CreateBackList(DateTime? targetDate, DateTime? endDate, bool isPrint, bool isExport, bool isRetail, 
                                                                             bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer, string? reportName)

@@ -98,6 +98,33 @@ namespace Petsi.Reports
             }
         }
 
+        public void HandlePrintAndExport()
+        {
+            if (Wb.Worksheets.Count > 0)
+            {
+                ReportUtil.Save(Wb, PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_REPORT_EXPORT_PATH) + "\\" + ReportName + ReportId);
+                if (isPrint)
+                {
+                    if (!PrinterReady()) { ErrorService.RaiseSoftExceptionHandlerError("Report Printer is not available."); }
+                    //PrintReport(_filePath + "\\" + ReportName + ReportId);
+                    PrintReport(PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_REPORT_EXPORT_PATH) + "\\" + ReportName + ReportId);
+                }
+                if (!isExport)
+                {
+                    //ReportUtil.Save(Wb, PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_REPORT_EXPORT_PATH) + "\\" + ReportName + ReportId);
+                    File.Delete(PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_REPORT_EXPORT_PATH) + "\\" + ReportName + ReportId + ".xlsx");
+                }
+                else
+                {
+                    SystemLogger.LogStatus($"FinalizeReport {ReportId} Export Success");
+                }
+            }
+            else
+            {
+                SystemLogger.LogWarning($"FinalizeReport {ReportId} Failed, report was 0 worksheets");
+            }
+        }
+
         private bool PrinterReady()
         {
             PrinterSettings settings = new PrinterSettings();
