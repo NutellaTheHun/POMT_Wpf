@@ -13,7 +13,7 @@ namespace Petsi.Reports.PageBuilder
         }
         public override int GetItemLineCount<T>(T item)
         {
-            return 0;
+            return 1;
         }
 
         public override bool IsRelevantItemToList<T>(T item, int lineItemCount)
@@ -25,12 +25,12 @@ namespace Petsi.Reports.PageBuilder
 
         protected override void ConfigureMaxRows()
         {
-            maxPageRowCount = 0;
+            maxPageRowCount = 44; //arbitrary setting, same as FrontListOrder pages, just cant be 0 for edgecase in ReportBuilder.BuildReport()
         }
 
         protected override void ConfigureTables()
         {
-            _tables.Add(new TableBuilderFrontListDelivery((7, 1), 0, 0));
+            _tables.Add(new TableBuilderFrontListDelivery((1, 1), 11, 18));
         }
     }
 }

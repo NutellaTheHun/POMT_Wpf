@@ -1,6 +1,7 @@
 ﻿using ClosedXML.Excel;
 using Petsi.Managers;
 using Petsi.Models;
+using Petsi.Reports.DeliveryBuilder;
 using Petsi.Reports.ReportBuilder;
 using Petsi.Units;
 using Petsi.Utils;
@@ -67,6 +68,15 @@ namespace Petsi.Reports
             report.FinalizeReport(reportName);
 
             return report.Wb;
+        }
+
+        public IXLWorkbook CreateDeliverySheets(DateTime? targetDate, bool isPrint, bool isExport, bool isRetail,
+                                                                            bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer, string? reportName)
+        {
+            DeliverySheetBuilder deliveryBuilder = new DeliverySheetBuilder();
+            OrderModelPetsi orderModel = ModelManagerSingleton.GetInstance().GetOrderModel();
+
+            return deliveryBuilder.BuildDeliveryPages(await orderModel.GetFrontListDataAsync(targetDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer));
         }
         public async Task<IXLWorkbook> CreateBackList(DateTime? targetDate, DateTime? endDate, bool isPrint, bool isExport, bool isRetail, 
                                                                             bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer, string? reportName)
@@ -190,5 +200,6 @@ namespace Petsi.Reports
 
             return report.Wb;
         }
+ 
     }
 }
