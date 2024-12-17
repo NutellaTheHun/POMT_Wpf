@@ -95,8 +95,9 @@ namespace Petsi.Reports.DeliveryBuilder
             //8,5: Font size 14, TextWrap, Merge to (10,7), val=order.DeliveryAddress
             GetLocalCell(10, 5).Value = order.DeliveryAddress;
             GetLocalCell(10, 5).Style.Font.SetFontSize(14);
+            GetLocalCell(10, 5).Style.Alignment.SetVertical(XLAlignmentVerticalValues.Top);
             GetLocalCell(10, 5).Style.Alignment.WrapText = true;
-            page.Range(GetLocalCell(10, 5), GetLocalCell(12, 7)).Merge();
+            page.Range(GetLocalCell(10, 5), GetLocalCell(12, 8)).Merge();
 
 
             //9,1: Font size 14, bold, val="Phone:"
@@ -119,7 +120,8 @@ namespace Petsi.Reports.DeliveryBuilder
             GetLocalCell(14, 1).Value = order.Note;
             GetLocalCell(14, 1).Style.Font.SetFontSize(14);
             GetLocalCell(14, 1).Style.Alignment.WrapText = true;
-            page.Range(GetLocalCell(14, 1), GetLocalCell(16, 7)).Merge();
+            GetLocalCell(14, 1).Style.Alignment.SetVertical(XLAlignmentVerticalValues.Top);
+            page.Range(GetLocalCell(14, 1), GetLocalCell(17, 8)).Merge();
 
             IXLCell GetLocalCell(int row, int col) 
             {
