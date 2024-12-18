@@ -80,7 +80,7 @@ namespace Backup.Service
                 try
                 {
                     deleteRequest.Execute();
-                    Console.WriteLine($"Deleted oldest file: {oldestFile.Name} (ID: {oldestFile.Id})");
+                    //Console.WriteLine($"Deleted oldest file: {oldestFile.Name} (ID: {oldestFile.Id})");
                 }
                 catch (Exception e)
                 {
@@ -121,7 +121,7 @@ namespace Backup.Service
                 {
                     request.Upload();
                     var file = request.ResponseBody;
-                    Console.WriteLine($"Uploaded file: {file.Name} (ID: {file.Id})");
+                    //Console.WriteLine($"Uploaded file: {file.Name} (ID: {file.Id})");
                 }
                 catch (Exception e)
                 {

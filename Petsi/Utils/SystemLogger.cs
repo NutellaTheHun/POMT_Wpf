@@ -85,42 +85,18 @@ namespace Petsi.Utils
         {
             RefreshLogCheck();
             AddLogRequest(null, message, "S");
-            /*
-            string fp = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_ERROR_LOG_PATH);
-            if (fp == null || fp == "") { return; }
-
-            lock (_lock)
-            {
-                File.AppendAllText(fp, $"{DateTime.Now.ToString()} : {PetsiConfig.appRuntimeId} : [S] {message}\n");
-            }*/
         }
 
         public static void LogError(string errorMessage, string sender)
         {
             RefreshLogCheck();
             AddLogRequest(sender, errorMessage, "E");
-            /*
-            string fp = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_ERROR_LOG_PATH);
-            if(fp == null || fp == ""){ return; }
-
-            lock (_lock)
-            {
-                File.AppendAllText(fp, $"{DateTime.Now.ToString()} : {PetsiConfig.appRuntimeId} : [E] {sender} : {errorMessage}\n");
-            }*/
         }
 
         public static void LogWarning(string message)
         {
             RefreshLogCheck();
             AddLogRequest(null, message, "W");
-            /*
-            string fp = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_ERROR_LOG_PATH);
-            if (fp == null || fp == "") { return; }
-
-            lock (_lock)
-            {
-                File.AppendAllText(fp, $"{DateTime.Now.ToString()} : {PetsiConfig.appRuntimeId} : [W] {message}\n");
-            }*/
         }
 
         static int daysUntilRefresh = 7;
