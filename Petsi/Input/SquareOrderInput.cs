@@ -198,7 +198,8 @@ namespace Petsi.Input
                         item.Pickup_time = orderItem.Fulfillments[0].DeliveryDetails.DeliverAt;
                         item.Note = orderItem.Fulfillments[0].DeliveryDetails.Note;
                         item.RecipientName = orderItem.Fulfillments[0].DeliveryDetails.Recipient.DisplayName;
-                        //del address
+                        item.Address = BuildAddressLine(orderItem.Fulfillments[0].DeliveryDetails.Recipient.Address);
+                        item.PhoneNumber = orderItem.Fulfillments[0].DeliveryDetails.Recipient.PhoneNumber;
                     }
 
                     foreach (var lineItem in orderItem.LineItems)
@@ -209,6 +210,15 @@ namespace Petsi.Input
                 }
             }
             return listResult;
+        }
+        private string BuildAddressLine(Address deliveryDetails)
+        {
+            string addr1 = deliveryDetails.AddressLine1;
+            string addr2 = deliveryDetails.AddressLine2;
+            string locality = deliveryDetails.Locality;
+            string state = deliveryDetails.AdministrativeDistrictLevel1;
+            string zip = deliveryDetails.PostalCode;
+            return $"{addr1} {addr2} {locality}, {state} {zip}";
         }
         private List<LineItem> ParseOrderLineItem(OrderLineItem squareOrderlineItem)
         {

@@ -1,6 +1,7 @@
 ﻿using ClosedXML.Excel;
 using Petsi.Managers;
 using Petsi.Models;
+using Petsi.Reports.DeliveryBuilder;
 using Petsi.Reports.ReportBuilder;
 using Petsi.Units;
 using Petsi.Utils;
@@ -20,6 +21,10 @@ namespace Petsi.Reports
                 () => CreateFrontList(rc.StartDate, rc.IsPrint, rc.IsExport, rc.RetailFilter, rc.SquareFilter, rc.WholesaleFilter, rc.SpecialFilter, rc.EzCaterFilter, rc.FarmerFilter, rc.ReportName),
                 nameof(CreateFrontList),
                 rc.StartDate, rc.IsPrint, rc.IsExport, rc.RetailFilter, rc.SquareFilter, rc.WholesaleFilter, rc.SpecialFilter, rc.EzCaterFilter, rc.FarmerFilter, rc.ReportName);
+            _printSession.Enqueue(
+                () => CreateDeliverySheets(rc.StartDate, rc.IsPrint, rc.IsExport, rc.RetailFilter, rc.SquareFilter, rc.WholesaleFilter, rc.SpecialFilter, rc.EzCaterFilter, rc.FarmerFilter, rc.ReportName),
+                nameof(CreateDeliverySheets),
+                rc.StartDate, rc.IsPrint, rc.IsExport, rc.RetailFilter, rc.SquareFilter, rc.WholesaleFilter, rc.SpecialFilter, rc.EzCaterFilter, rc.FarmerFilter, rc.ReportName+"Deliveries");
         }
         public async void RequestPieBackList(ReportConfig rc)
         {
@@ -65,6 +70,19 @@ namespace Petsi.Reports
             builder.BuildReport(await orderModel.GetFrontListDataAsync(targetDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), targetDate, null);
 
             report.FinalizeReport(reportName);
+
+            return report.Wb;
+        }
+
+        public async Task<IXLWorkbook> CreateDeliverySheets(DateTime? targetDate, bool isPrint, bool isExport, bool isRetail,
+                                                                            bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer, string? reportName)
+        {
+            Report report = new Report(reportName, isPrint, isExport);
+            DeliverySheetBuilder deliveryBuilder = new DeliverySheetBuilder(report);
+            OrderModelPetsi orderModel = ModelManagerSingleton.GetInstance().GetOrderModel();
+            deliveryBuilder.BuildDeliveryPages(await orderModel.GetFrontListDataAsync(targetDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer));
+            
+            report.HandlePrintAndExport();
 
             return report.Wb;
         }
@@ -190,5 +208,6 @@ namespace Petsi.Reports
 
             return report.Wb;
         }
+ 
     }
 }

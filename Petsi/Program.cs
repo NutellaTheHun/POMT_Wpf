@@ -37,6 +37,7 @@ namespace Petsi
             SquareCatalogInput sci = new SquareCatalogInput(scf);
             SquareOrderInput soi = new SquareOrderInput(scf);
             */
+            /*
             XLWorkbook a = new XLWorkbook();
             IXLWorksheet b = a.Worksheets.Add();
 
@@ -46,7 +47,7 @@ namespace Petsi
             XLWorkbook c = new XLWorkbook();
             IXLWorksheet d = a.Worksheets.Add();
             b.Cell("a1").Value = 1;
-
+            */
             //int rowRange = b.LastRowUsed().RowNumber();
             //int colRange = b.LastColumnUsed().ColumnNumber();
             //XLWorkbook expected = new XLWorkbook("D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\ExpectedCases\\BackListPieSingleDayResult.xlsx");

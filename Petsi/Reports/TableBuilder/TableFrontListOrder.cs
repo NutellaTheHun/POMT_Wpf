@@ -100,7 +100,7 @@ namespace Petsi.Reports.TableBuilder
         }
         private string CHECKNOTES(PetsiOrder order)
         {
-            if (order.Note != "")
+            if (order.Note != "" && order.Note != null)
             {
                 return "CHECK NOTES";
             }

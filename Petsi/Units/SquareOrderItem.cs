@@ -14,6 +14,7 @@ namespace Petsi.Units
         public string Note { get; set; }
         public string RecipientName { get; set; }
         public string Address { get; set; }
+        public string PhoneNumber { get; set; }
         public List<LineItem> LineItems { get; set; }
         public SquareOrderItem() { }
         public SquareOrderItem(
@@ -21,7 +22,7 @@ namespace Petsi.Units
             string locationId,
             string uid, string pickup_time,
             string note, string recipientName,
-            string address, List<LineItem> lineItems)
+            string address, List<LineItem> lineItems, string phoneNumber)
         {
             Id = id;
             FulfillmentType = fulfillmentType;
@@ -32,6 +33,7 @@ namespace Petsi.Units
             RecipientName = recipientName;
             Address = address;
             LineItems = lineItems;
+            PhoneNumber = phoneNumber;
         }
         public PetsiOrder ToPetsiOrder()
         {
@@ -56,6 +58,8 @@ namespace Petsi.Units
             o.IsPeriodic = false;
             o.IsOneShot = true;
             o.OrderType = Identifiers.ORDER_TYPE_SQUARE;
+            o.DeliveryAddress = Address;
+            o.PhoneNumber = PhoneNumber;
             return o;
         }
         private List<PetsiOrderLineItem> ToPetsiOrderLineItemList()
