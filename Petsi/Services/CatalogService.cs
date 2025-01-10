@@ -3,6 +3,7 @@ using Petsi.Managers;
 using Petsi.Models;
 using Petsi.Units;
 using Petsi.Utils;
+using SystemLogging.Service;
 
 namespace Petsi.Services
 {
@@ -38,7 +39,7 @@ namespace Petsi.Services
             try { catalogIdDict.TryGetValue(input, out source); }
             catch (ArgumentNullException e)
             {
-                SystemLogger.LogError("GetCatalogObjectID TryGetValue input is null", "CatalogService GetCatalogObjId()");
+                Logger.LogError("GetCatalogObjectID TryGetValue input is null", "CatalogService GetCatalogObjId()");
             }
 
             if (source != null)
@@ -189,7 +190,7 @@ namespace Petsi.Services
 
             searchItem = catalog.FirstOrDefault(item => item.ItemName.ToLower() == searchItemName.ToLower());
 
-            if (searchItem == null) { SystemLogger.LogWarning("CatalogSerivce GetItem() did not find item: " + searchItemName); }
+            if (searchItem == null) { Logger.LogWarning("CatalogSerivce GetItem() did not find item: " + searchItemName); }
 
             result.ItemName = searchItem.ItemName;
             result.CatalogObjectId = searchItem.CatalogObjectId;

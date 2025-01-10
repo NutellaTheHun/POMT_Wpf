@@ -1,6 +1,7 @@
 ﻿using Google.Apis.Auth.OAuth2;
 using Google.Apis.Drive.v3;
 using Google.Apis.Services;
+using SystemLogging.Service;
 
 namespace Backup.Service
 {
@@ -33,12 +34,13 @@ namespace Backup.Service
                     HandleBackupSize(driveService);
                     if (UploadBackup(variables, driveService))
                     {
+                        // Update upload date to today
                         File.WriteAllText(uploadDateFp, today);
                     }
                 }
                 catch(Exception e)
                 {
-                    Console.WriteLine($"Error: {e.Message}");
+                    Logger.LogError($"Error: {e.Message}", "BackupService");
                 }
                 
                 Cleanup();
@@ -61,7 +63,7 @@ namespace Backup.Service
             }
             catch (Exception e)
             {
-                Console.WriteLine($"Error uploading file: {e.Message}");
+                Logger.LogError($"Error uploading file: {e.Message}", "BackupService");
                 return false;
             }
 
@@ -80,11 +82,11 @@ namespace Backup.Service
                 try
                 {
                     deleteRequest.Execute();
-                    Console.WriteLine($"Deleted oldest file: {oldestFile.Name} (ID: {oldestFile.Id})");
+                    //Console.WriteLine($"Deleted oldest file: {oldestFile.Name} (ID: {oldestFile.Id})");
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine($"Error deleting file: {e.Message}");
+                    Logger.LogError($"Error deleting file: {e.Message}", "BackupService");
                 }
             }
         }
@@ -121,12 +123,11 @@ namespace Backup.Service
                 {
                     request.Upload();
                     var file = request.ResponseBody;
-                    Console.WriteLine($"Uploaded file: {file.Name} (ID: {file.Id})");
+                    //Console.WriteLine($"Uploaded file: {file.Name} (ID: {file.Id})");
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine($"Error uploading file: {e.Message}");
-                    throw;
+                    Logger.LogError($"Error uploading file: {e.Message}", "BackupService");
                 }
             }
         }

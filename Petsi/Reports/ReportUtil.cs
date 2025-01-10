@@ -1,5 +1,6 @@
 ﻿using ClosedXML.Excel;
 using Petsi.Utils;
+using SystemLogging.Service;
 
 namespace Petsi.Reports
 {
@@ -34,7 +35,7 @@ namespace Petsi.Reports
             }
             catch (Exception ex)
             {
-                SystemLogger.LogError(ex.Message, "ReportUtil, CreateReportID");
+                Logger.LogError(ex.Message, "ReportUtil, CreateReportID");
             }
 
             //IncrementReportId(number);

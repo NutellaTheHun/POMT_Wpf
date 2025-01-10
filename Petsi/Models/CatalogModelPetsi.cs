@@ -7,6 +7,7 @@ using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
 using System.Collections.ObjectModel;
+using SystemLogging.Service;
 
 namespace Petsi.Models
 {
@@ -87,7 +88,7 @@ namespace Petsi.Models
             }
             else
             {
-                SystemLogger.LogError($"Duplicate newItem {newItem.ItemName} entered to catalog while handling new item from soi", "CMP AddNewItem()");
+                Logger.LogError($"Duplicate newItem {newItem.ItemName} entered to catalog while handling new item from soi", "CMP AddNewItem()");
             }
         }
         public List<CatalogItemPetsi> GetItems(){ return items; }
@@ -102,12 +103,13 @@ namespace Petsi.Models
 
         public override void AddItem(ModelUnitBase item)
         {
-            SystemLogger.LogStatus($"Cmp Additem {((CatalogItemPetsi)item).ItemName} initiated");
+            //SystemLogger.LogStatus($"Cmp Additem {((CatalogItemPetsi)item).ItemName} initiated");
+            Logger.LogStatus($"Cmp Additem {((CatalogItemPetsi)item).ItemName} initiated");
             int count = items.Count;
             items.Add((CatalogItemPetsi)item);
             if(count+1 != items.Count)
             {
-                SystemLogger.LogError($"AddOrder failed to add {((CatalogItemPetsi)item).ItemName}, count not incremented ", "Cmp AddItem()");
+                Logger.LogError($"AddOrder failed to add {((CatalogItemPetsi)item).ItemName}, count not incremented ", "Cmp AddItem()");
             }
             else
             {
@@ -117,7 +119,7 @@ namespace Petsi.Models
         }
         public void RemoveItem(CatalogItemPetsi item)
         {
-            SystemLogger.LogStatus($"Cmp RemoveItem {item.ItemName} initiated");
+            Logger.LogStatus($"Cmp RemoveItem {item.ItemName} initiated");
             int count = items.Count;
             items.Remove(item);
             if (count - 1 == items.Count)
@@ -126,7 +128,7 @@ namespace Petsi.Models
             }
             else
             {
-                SystemLogger.LogError($"remove {item.ItemName} from catalog failed, original count: {count} after operation: {items.Count}", "Cmp RemoveItem()");
+                Logger.LogError($"remove {item.ItemName} from catalog failed, original count: {count} after operation: {items.Count}", "Cmp RemoveItem()");
             }
         }
 
@@ -184,7 +186,7 @@ namespace Petsi.Models
             if (mainList != null) { newList = new List<CatalogItemPetsi>(mainList); }
             else
             {
-                SystemLogger.LogStatus("CMP FinalizeMainModel(), MAIN_MODEL_CATALOG_FILE is null, catalog most likely reset.");
+                Logger.LogStatus("CMP FinalizeMainModel(), MAIN_MODEL_CATALOG_FILE is null, catalog most likely reset.");
                 newList = new List<CatalogItemPetsi>();
             }
 
@@ -278,7 +280,7 @@ namespace Petsi.Models
 
         public void InitialLabelMapBoot()
         {
-            SystemLogger.LogStatus("Cmp InitLabelMapBoot executed");
+            Logger.LogStatus("Cmp InitLabelMapBoot executed");
             List<(string id, string path)> cuties = LoadLabels.GetCutieInitialMap();
             List<(string id, string path)> pie = LoadLabels.GetStandardInitialMap();
             foreach(CatalogItemPetsi item in items)
@@ -309,7 +311,7 @@ namespace Petsi.Models
             {
                 if(fileListing.fileName == Identifiers.MAIN_MODEL_CATALOG_FILE)
                 {
-                    SystemLogger.LogStatus("CMP LoadStartupFiles() executed");
+                    Logger.LogStatus("CMP LoadStartupFiles() executed");
                     StartupLoadCatalog(fileListing.filePath);
                     fileBehavior.DataListToFile(Identifiers.MAIN_MODEL_CATALOG_FILE, GetItems());
                     StartupService.Instance.Deregister(this);
@@ -322,7 +324,7 @@ namespace Petsi.Models
             string input;
             if (File.Exists(filePath))
             {
-                SystemLogger.LogStatus("CMP StartupLoadCatalog() executed");
+                Logger.LogStatus("CMP StartupLoadCatalog() executed");
                 input = File.ReadAllText(filePath);
                 items = JsonConvert.DeserializeObject<List<CatalogItemPetsi>>(input);
             }        

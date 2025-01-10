@@ -22,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Petsi\Petsi.csproj" />
     <ProjectReference Include="..\Square.Service\Square.Service.csproj" />
+    <ProjectReference Include="..\SystemLogging.Service\SystemLogging.Service.csproj" />
   </ItemGroup>
 
   <ItemGroup>

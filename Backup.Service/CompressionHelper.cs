@@ -1,28 +1,29 @@
 ﻿using System.IO.Compression;
+using SystemLogging.Service;
 
 namespace Backup.Service
 {
     public class CompressionHelper
     {
-        //string zipFilePath = @"path/to/output/archive.zip";
-        //string outputFolder = @"path/to/output/folder";
-        //string decryptedZipFilePath = @"path/to/output/decrypted_archive.zip";
         public static void CompressFolder(string directory, string outputZipFilePath)
         {
             // Validate input directory
             if (string.IsNullOrWhiteSpace(directory))
             {
+                Logger.LogError("The directory path cannot be null or empty.", "BackupService.Compression");
                 throw new ArgumentException("The directory path cannot be null or empty.", nameof(directory));
             }
 
             if (!Directory.Exists(directory))
             {
+                Logger.LogError($"Directory not found: {directory}", "BackupService.Compression");
                 throw new DirectoryNotFoundException($"Directory not found: {directory}");
             }
 
             // Validate output file path
             if (string.IsNullOrWhiteSpace(outputZipFilePath))
             {
+                Logger.LogError("The output zip file path cannot be null or empty.", "BackupService.Compression");
                 throw new ArgumentException("The output zip file path cannot be null or empty.", nameof(outputZipFilePath));
             }
 
@@ -30,7 +31,7 @@ namespace Backup.Service
             {
                 // Perform compression
                 ZipFile.CreateFromDirectory(directory, outputZipFilePath, CompressionLevel.Optimal, includeBaseDirectory: true);
-                Console.WriteLine($"Successfully compressed folder '{directory}' to '{outputZipFilePath}'.");
+                Logger.LogStatus($"BackupService.Compression: Successfully compressed folder '{directory}' to '{outputZipFilePath}'.");
             }
             catch (Exception ex)
             {
@@ -44,17 +45,20 @@ namespace Backup.Service
             // Validate input zip file path
             if (string.IsNullOrWhiteSpace(zipFilePath))
             {
+                Logger.LogError("The zip file path cannot be null or empty.", "BackupService.Compression");
                 throw new ArgumentException("The zip file path cannot be null or empty.", nameof(zipFilePath));
             }
 
             if (!File.Exists(zipFilePath))
             {
+                Logger.LogError($"The specified zip file does not exist: {zipFilePath}", "BackupService.Compression");
                 throw new FileNotFoundException($"The specified zip file does not exist: {zipFilePath}");
             }
 
             // Validate output folder path
             if (string.IsNullOrWhiteSpace(outputFolderPath))
             {
+                Logger.LogError("The output folder path cannot be null or empty.", "BackupService.Compression");
                 throw new ArgumentException("The output folder path cannot be null or empty.", nameof(outputFolderPath));
             }
 
@@ -62,7 +66,7 @@ namespace Backup.Service
             {
                 // Extract the contents of the zip file
                 ZipFile.ExtractToDirectory(zipFilePath, outputFolderPath, overwriteFiles: true);
-                Console.WriteLine($"Successfully extracted '{zipFilePath}' to '{outputFolderPath}'.");
+                Logger.LogStatus($"Successfully extracted '{zipFilePath}' to '{outputFolderPath}'.");
             }
             catch (Exception ex)
             {

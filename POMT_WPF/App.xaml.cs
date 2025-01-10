@@ -1,4 +1,5 @@
 ﻿using Backup.Service;
+using SystemLogging.Service;
 using Petsi.Input;
 using Petsi.Models;
 using Petsi.Reports;
@@ -20,6 +21,7 @@ namespace POMT_WPF
         public App()
         {
             PetsiConfig config = PetsiConfig.GetInstance();
+            Logger.SetRunTimeId(PetsiConfig.appRuntimeId);
 
             //These three items utilize StartupService, they're initialized first to ensure the registration is smooth
             OrderModelPetsi omp = new OrderModelPetsi();
@@ -46,9 +48,9 @@ namespace POMT_WPF
             }
             else
             {
-                SystemLogger.LogWarning("Square Service Build Failed, square API's not called.");
+                Logger.LogWarning("Square Service Build Failed, square API's not called.");
             }
-            SystemLogger.LogStatus($"Application start");
+            Logger.LogStatus($"Application start");
         }
 
         //https://stackoverflow.com/questions/53500915/how-to-select-all-text-in-textbox-wpf-when-focused
@@ -60,7 +62,7 @@ namespace POMT_WPF
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            SystemLogger.LogStatus($"Application Close");
+            Logger.LogStatus($"Application Close");
         }
 
         protected override void OnStartup(StartupEventArgs e)

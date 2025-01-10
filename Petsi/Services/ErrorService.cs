@@ -1,6 +1,7 @@
 ﻿using Petsi.Events;
 using Petsi.Units;
 using Petsi.Utils;
+using SystemLogging.Service;
 
 namespace Petsi.Services
 {
@@ -31,7 +32,7 @@ namespace Petsi.Services
         public event TableBuilderOverflowEvent TBOverflow;
         public void RaiseTBOverflowEvent(List<PetsiOrderLineItem> overflowList)
         {
-            SystemLogger.LogWarning($"TableBuilder overflow event");
+            Logger.LogWarning($"TableBuilder overflow event");
             TBOverflowEventArgs args = new TBOverflowEventArgs(overflowList);
             TBOverflow?.Invoke(this, args);
         }
@@ -39,7 +40,7 @@ namespace Petsi.Services
         public event EventHandler ReportPrintEmptyInput;
         public static void RaiseReportEmptyInput()
         {
-            SystemLogger.LogStatus($"Given list to report is empty");
+            Logger.LogStatus($"Given list to report is empty");
             Instance().ReportPrintEmptyInput?.Invoke(Instance(), EventArgs.Empty);
         }
 
@@ -56,7 +57,7 @@ namespace Petsi.Services
 
         public void RaiseSoiNewItemEvent(CatalogItemPetsi newItem)
         {
-            SystemLogger.LogStatus($"(from errorService) New catalog item event {newItem.ItemName}");
+            Logger.LogStatus($"(from errorService) New catalog item event {newItem.ItemName}");
             SoiNewItemEventArgs args = new SoiNewItemEventArgs(newItem);
             mainWindowEvents.Add(args);
         }
@@ -73,7 +74,7 @@ namespace Petsi.Services
             //If event hasn't been raised for the given item name
             if(!Instance().multiItemNameEventCalls.Contains(itemContext))
             {
-                SystemLogger.LogStatus($"New multimatch item event {itemContext}");
+                Logger.LogStatus($"New multimatch item event {itemContext}");
                 multiItemNameEventCalls.Add(itemContext);
                 SoiMultiItemEventArgs args = new SoiMultiItemEventArgs(itemContext, multiItemList);
                 mainWindowEvents.Add(args);
@@ -90,7 +91,7 @@ namespace Petsi.Services
         public event LabelServiceValidateFilePathEvent LabelServiceValidateFilePath;
         public void RaiseLabelServiceValidateFilePathEvent(string catalogId, string fileName, string pieType)
         {
-            SystemLogger.LogWarning($"LabelSerivce filepath failed to be validated");
+            Logger.LogWarning($"LabelSerivce filepath failed to be validated");
             LabelServiceValidateFpEventArgs args = new LabelServiceValidateFpEventArgs(catalogId, fileName, pieType);
             labelViewEvents.Add(args);
         }
@@ -98,21 +99,21 @@ namespace Petsi.Services
         public event EventHandler LabelPrinterNotFoundEvent;
         public static void RaisePrinterNotFoundEvent()
         {
-            SystemLogger.LogWarning($"Labelprinter not found.");
+            Logger.LogWarning($"Labelprinter not found.");
             Instance().LabelPrinterNotFoundEvent?.Invoke(Instance(), EventArgs.Empty);
         }
 
         public event EventHandler InputLabelNotFoundEvent;
         public static void RaiseInputLabelNotFound(LabelServiceInputLabelNotFoundArgs args)
         {
-            SystemLogger.LogWarning($"label not found {args.ItemId}");
+            Logger.LogWarning($"label not found {args.ItemId}");
             Instance().InputLabelNotFoundEvent?.Invoke(Instance(), args);
         }
 
         public event EventHandler LabelFilePathNotSetEvent;
         public static void RaiseLabelFilePathNotSet()
         {
-            SystemLogger.LogWarning($"LabelSerivce filepath not set");
+            Logger.LogWarning($"LabelSerivce filepath not set");
             Instance().LabelFilePathNotSetEvent?.Invoke(Instance(), EventArgs.Empty);
         }
 
@@ -136,7 +137,7 @@ namespace Petsi.Services
         public static void RaiseExceptionHandlerError(string errorMessage, string sender)
         {
             Instance().ExceptionHandlerErrorEvent?.Invoke(Instance(), errorMessage);
-            SystemLogger.LogError(errorMessage, sender);
+            Logger.LogError(errorMessage, sender);
         }
 
         public static void RaiseSoftExceptionHandlerError(string errorMessage)

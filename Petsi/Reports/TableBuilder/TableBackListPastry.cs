@@ -3,6 +3,7 @@ using Petsi.Events.ReportEvents;
 using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
+using SystemLogging.Service;
 
 namespace Petsi.Reports.TableBuilder
 {
@@ -26,7 +27,7 @@ namespace Petsi.Reports.TableBuilder
             
             if(listFormat == null)
             {
-                SystemLogger.LogStatus("TableBackListPastry GetActiveBackListPastryTemplate returned an empty list");
+                Logger.LogStatus("TableBackListPastry GetActiveBackListPastryTemplate returned an empty list");
                 return;
             }
             string amountReg;

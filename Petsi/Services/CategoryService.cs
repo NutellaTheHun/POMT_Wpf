@@ -3,6 +3,7 @@ using Petsi.Managers;
 using Petsi.Models;
 using Petsi.Units;
 using Petsi.Utils;
+using SystemLogging.Service;
 
 namespace Petsi.Services
 {
@@ -139,7 +140,7 @@ namespace Petsi.Services
                 return result;
             }
 
-            SystemLogger.LogError($"GetCategoryID could not get CATEGORY from given id: {itemIdentifier}", "CategoryService.GetCategoryID()");
+            Logger.LogError($"GetCategoryID could not get CATEGORY from given id: {itemIdentifier}", "CategoryService.GetCategoryID()");
             return string.Empty;
         }
     }
