@@ -33,6 +33,7 @@ namespace Backup.Service
                     HandleBackupSize(driveService);
                     if (UploadBackup(variables, driveService))
                     {
+                        // Update upload date to today
                         File.WriteAllText(uploadDateFp, today);
                     }
                 }

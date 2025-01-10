@@ -8,6 +8,7 @@ namespace SystemLogging.Service
         private static readonly object _lock = new();
         private Queue<LogRequest> logQueue;
         private bool _processing;
+        private string errorLogFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "petsiDir\\errorLog.txt");
 
         private Logger()
         {
@@ -29,11 +30,13 @@ namespace SystemLogging.Service
             public string message { get; set; }
             public string logType { get; set; }
             public string? sender { get; set; }
-            public LogRequest(string message, string logType, string? sender)
+            public string runtimeId { get; set; }
+            public LogRequest(string message, string logType, string? sender, string runtimeId)
             {
                 this.message = message;
                 this.sender = sender;
                 this.logType = logType;
+                this.runtimeId = runtimeId;
             }
         }
 
@@ -48,18 +51,18 @@ namespace SystemLogging.Service
                     lr = Instance().logQueue.Dequeue();
                 }
 
-                string fp = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_ERROR_LOG_PATH);
-                if (fp == null || fp == "") { return; }
+                // UPDATE TO CORRECT CHECK
+                //if (_instance.errorLogFilePath == null || _instance.errorLogFilePath == "") { return; }
 
                 lock (_lock)
                 {
                     if (lr.sender == null)
                     {
-                        File.AppendAllText(fp, $"{DateTime.Now.ToString()} : {PetsiConfig.appRuntimeId} : [{lr.logType}] {lr.message}\n");
+                        File.AppendAllText(_instance.errorLogFilePath, $"{DateTime.Now.ToString()} : {lr.runtimeId} : [{lr.logType}] {lr.message}\n");
                     }
                     else
                     {
-                        File.AppendAllText(fp, $"{DateTime.Now.ToString()} : {PetsiConfig.appRuntimeId} : [{lr.logType}] {lr.sender} : {lr.message}\n");
+                        File.AppendAllText(_instance.errorLogFilePath, $"{DateTime.Now.ToString()} : {lr.runtimeId} : [{lr.logType}] {lr.sender} : {lr.message}\n");
                     }
                 }
                 if (Instance().logQueue.Count == 0)
@@ -69,11 +72,11 @@ namespace SystemLogging.Service
             }
         }
 
-        private static void AddLogRequest(string? sender, string message, string logType)
+        private static void AddLogRequest(string? sender, string message, string logType, string runtimeId)
         {
             lock (_lock)
             {
-                Instance().logQueue.Enqueue(new LogRequest(message, logType, sender));
+                Instance().logQueue.Enqueue(new LogRequest(message, logType, sender, runtimeId));
                 if (!Instance()._processing)
                 {
                     ProccessLogRequest();
@@ -81,40 +84,41 @@ namespace SystemLogging.Service
             }
         }
 
-        public static void LogStatus(string message)
+        public static void LogStatus(string message, string runtimeId)
         {
             RefreshLogCheck();
-            AddLogRequest(null, message, "S");
+            AddLogRequest(null, message, "S", runtimeId);
         }
 
-        public static void LogError(string errorMessage, string sender)
+        public static void LogError(string errorMessage, string sender, string runtimeId)
         {
             RefreshLogCheck();
-            AddLogRequest(sender, errorMessage, "E");
+            AddLogRequest(sender, errorMessage, "E", runtimeId);
         }
 
-        public static void LogWarning(string message)
+        public static void LogWarning(string message, string runtimeId)
         {
             RefreshLogCheck();
-            AddLogRequest(null, message, "W");
+            AddLogRequest(null, message, "W", runtimeId);
         }
 
         static int daysUntilRefresh = 7;
+
+        //UPDATE TO TRIM LINES, NOT RESET ENTIRE LOG
         private static void RefreshLogCheck()
         {
-            string fp = PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_ERROR_LOG_PATH);
-            DateTime creation = File.GetCreationTime(fp);
+            DateTime creation = File.GetCreationTime(_instance.errorLogFilePath);
             DateTime refreshDate = creation.AddDays(daysUntilRefresh);
             if (DateTime.Today >= refreshDate)
             {
 
                 lock (_lock)
                 {
-                    File.WriteAllText(fp, String.Empty);
-                    File.SetCreationTime(fp, DateTime.Today);
+                    File.WriteAllText(_instance.errorLogFilePath, String.Empty);
+                    File.SetCreationTime(_instance.errorLogFilePath, DateTime.Today);
                 }
             }
         }
     }
 }
-}
+
