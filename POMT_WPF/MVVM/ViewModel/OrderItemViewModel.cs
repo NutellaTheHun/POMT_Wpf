@@ -8,6 +8,7 @@ using POMT_WPF.Core;
 using System.Collections.ObjectModel;
 using POMT_WPF.MVVM.View;
 using POMT_WPF.MVVM.ObsModels;
+using SystemLogging.Service;
 
 namespace POMT_WPF.MVVM.ViewModel
 {
@@ -488,7 +489,7 @@ namespace POMT_WPF.MVVM.ViewModel
                     LineItems.Remove(lineItem);
                     if (LineItems.Count != count - 1)
                     {
-                        SystemLogger.LogError($"Delete Line Command failed to remove {lineItem.ItemName}", "OrderItemViewModel DeleteLine()");
+                        Logger.LogError($"Delete Line Command failed to remove {lineItem.ItemName}", "OrderItemViewModel DeleteLine()");
                     }
                 }
                 
@@ -629,7 +630,7 @@ namespace POMT_WPF.MVVM.ViewModel
 
             if (!Enum.TryParse(fulfillmentDayOfWeek, true, out DayOfWeek targetDayOfWeek))
             {
-                SystemLogger.LogWarning($"OrderItemViewModel UpdateFulfillmentDate() TryParse day of week failed: {fulfillmentDayOfWeek}");
+                Logger.LogWarning($"OrderItemViewModel UpdateFulfillmentDate() TryParse day of week failed: {fulfillmentDayOfWeek}");
             }
 
             int currentDayOfWeek = (int)fulfillmentDate.Value.DayOfWeek;

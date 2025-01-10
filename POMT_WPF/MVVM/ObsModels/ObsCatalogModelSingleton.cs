@@ -4,6 +4,7 @@ using Petsi.Units;
 using Petsi.Utils;
 using POMT_WPF.Interfaces;
 using System.Collections.ObjectModel;
+using SystemLogging.Service;
 
 namespace POMT_WPF.MVVM.ObsModels
 {
@@ -59,10 +60,10 @@ namespace POMT_WPF.MVVM.ObsModels
         /// <param name="catalogItem"></param>
         public void AddItem(CatalogItemPetsi catalogItem)
         {
-            SystemLogger.LogStatus($"ObsCmp Add item init {catalogItem.ItemName}");
+            Logger.LogStatus($"ObsCmp Add item init {catalogItem.ItemName}");
             if (catalogItem == null)
             {
-                SystemLogger.LogWarning("ObsCatalogModel AddItem() argument is null");
+                Logger.LogWarning("ObsCatalogModel AddItem() argument is null");
                 return;
             }
 
@@ -73,7 +74,7 @@ namespace POMT_WPF.MVVM.ObsModels
             {
                 if (item.CatalogObjectId == catalogItem.CatalogObjectId)
                 {
-                    SystemLogger.LogStatus($"ObsCmp Add item result MODIFIED {catalogItem.ItemName}");
+                    Logger.LogStatus($"ObsCmp Add item result MODIFIED {catalogItem.ItemName}");
                     int index = CatalogItems.IndexOf(item);
                     CatalogItems[index] = catalogItem;
                     isFound = true;
@@ -84,7 +85,7 @@ namespace POMT_WPF.MVVM.ObsModels
             if (!isFound)
             {
                 CatalogItems.Add(catalogItem);
-                SystemLogger.LogStatus($"ObsCmp Add item result ADDED {catalogItem.ItemName}");
+                Logger.LogStatus($"ObsCmp Add item result ADDED {catalogItem.ItemName}");
             }
             ObsOrderModelSingleton.Instance.CheckCatalogItemErrorHandleEvent();
         }
@@ -102,7 +103,7 @@ namespace POMT_WPF.MVVM.ObsModels
             }
             if (count - 1 != CatalogItems.Count)
             {
-                SystemLogger.LogError($"ObsCatalog RemoveItem failure: {catalogItem.ItemName}, count mismatch", "ObsCmp RemoveItem()");
+                Logger.LogError($"ObsCatalog RemoveItem failure: {catalogItem.ItemName}, count mismatch", "ObsCmp RemoveItem()");
             }
         }
     }

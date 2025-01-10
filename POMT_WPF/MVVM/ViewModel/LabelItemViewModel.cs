@@ -7,6 +7,7 @@ using POMT_WPF.Core;
 using POMT_WPF.MVVM.ObsModels;
 using POMT_WPF.MVVM.View;
 using System.Windows.Forms;
+using SystemLogging.Service;
 
 namespace POMT_WPF.MVVM.ViewModel
 {
@@ -161,7 +162,7 @@ namespace POMT_WPF.MVVM.ViewModel
             }
             if (item == null) 
             {
-                SystemLogger.LogError($"label item validation argument not found:{ItemName}", "LabelItemViewModel ValidateItem()");
+                Logger.LogError($"label item validation argument not found:{ItemName}", "LabelItemViewModel ValidateItem()");
                 return false;
             }
 

@@ -4,6 +4,7 @@ using Petsi.Models;
 using Petsi.Units;
 using Petsi.Utils;
 using System.Drawing.Printing;
+using SystemLogging.Service;
 
 namespace Petsi.Services
 {
@@ -57,31 +58,31 @@ namespace Petsi.Services
         }
         public void Print_4x2(DateTime targetDate)
         {
-            SystemLogger.LogStatus("Label Service Print4x2 start");
+            Logger.LogStatus("Label Service Print4x2 start");
             OrderModelPetsi omp = GetOrderModel();
 
             List<LabelPrintData> printList = LoadPrintList(omp.GetWsDayData(targetDate));
             PrintStandard(printList);
-            SystemLogger.LogStatus("Label Service Print4x2 complete");
+            Logger.LogStatus("Label Service Print4x2 complete");
         }
         public void Print_2x1(DateTime targetDate)
         {
-            SystemLogger.LogStatus("Label Service Print2x1 start");
+            Logger.LogStatus("Label Service Print2x1 start");
             OrderModelPetsi omp = GetOrderModel();
 
             List<LabelPrintData> printList = LoadPrintList(omp.GetWsDayData(targetDate));
             PrintCutie(printList);
-            SystemLogger.LogStatus("Label Service Print2x1 complete");
+            Logger.LogStatus("Label Service Print2x1 complete");
         }
         
         public void Print_Round(DateTime targetDate)
         {
-            SystemLogger.LogStatus("Label Service PrintRound start");
+            Logger.LogStatus("Label Service PrintRound start");
             OrderModelPetsi omp = GetOrderModel();
 
             List<LabelPrintData> printList = LoadPrintList(omp.GetWsDayData(targetDate));
             PrintRound(printList);
-            SystemLogger.LogStatus("Label Service PrintRound complete");
+            Logger.LogStatus("Label Service PrintRound complete");
         }
 
         private void PrintStandard(List<LabelPrintData> inputList)

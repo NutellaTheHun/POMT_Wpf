@@ -3,6 +3,7 @@ using Petsi.Events.ReportEvents;
 using Petsi.Services;
 using Petsi.Units;
 using Petsi.Utils;
+using SystemLogging.Service;
 
 namespace Petsi.Reports.TableBuilder
 {
@@ -36,7 +37,7 @@ namespace Petsi.Reports.TableBuilder
 
             if (listFormat == null)
             {
-                SystemLogger.LogStatus("TableBackListPie GetActiveBacklistPieTemplate returned an empty list");
+                Logger.LogStatus("TableBackListPie GetActiveBacklistPieTemplate returned an empty list");
                 return;
             }
 

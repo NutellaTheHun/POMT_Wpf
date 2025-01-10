@@ -7,6 +7,7 @@ using Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
 using Petsi.Services;
 using System.Drawing.Printing;
+using SystemLogging.Service;
 
 namespace Petsi.Reports
 {
@@ -88,13 +89,13 @@ namespace Petsi.Reports
                 }
                 else
                 {
-                    SystemLogger.LogStatus($"FinalizeReport {ReportId} Export Success");
+                    Logger.LogStatus($"FinalizeReport {ReportId} Export Success");
                 }
-                SystemLogger.LogStatus($"FinalizeReport {ReportId} Success");
+                Logger.LogStatus($"FinalizeReport {ReportId} Success");
             }
             else
             {
-                SystemLogger.LogWarning($"FinalizeReport {ReportId} Failed, report was 0 worksheets");
+                Logger.LogWarning($"FinalizeReport {ReportId} Failed, report was 0 worksheets");
             }
         }
 
@@ -116,12 +117,12 @@ namespace Petsi.Reports
                 }
                 else
                 {
-                    SystemLogger.LogStatus($"FinalizeReport {ReportId} Export Success");
+                    Logger.LogStatus($"FinalizeReport {ReportId} Export Success");
                 }
             }
             else
             {
-                SystemLogger.LogWarning($"FinalizeReport {ReportId} Failed, report was 0 worksheets");
+                Logger.LogWarning($"FinalizeReport {ReportId} Failed, report was 0 worksheets");
             }
         }
 
@@ -136,7 +137,7 @@ namespace Petsi.Reports
 
         private void PrintReport(string filepathFileName)
         {
-            SystemLogger.LogStatus($"Printing report start");
+            Logger.LogStatus($"Printing report start");
             Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();
             Workbook wb = app.Workbooks.Open(filepathFileName+".xlsx",
                 Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
@@ -168,7 +169,7 @@ namespace Petsi.Reports
 
             app.Quit();
             Marshal.FinalReleaseComObject(app);
-            SystemLogger.LogStatus($"Printing report success");
+            Logger.LogStatus($"Printing report success");
         }
 
 

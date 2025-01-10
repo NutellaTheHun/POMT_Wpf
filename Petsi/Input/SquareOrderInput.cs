@@ -6,6 +6,7 @@ using Petsi.Interfaces;
 using Petsi.Utils;
 using Petsi.Filing;
 using Petsi.Managers;
+using SystemLogging.Service;
 
 namespace Petsi.Input
 {
@@ -375,7 +376,7 @@ namespace Petsi.Input
                     }
                     else
                     {
-                        SystemLogger.LogError("Merch name not matched", "SquareOrderInput ParseOrderLineItem()");
+                        Logger.LogError("Merch name not matched", "SquareOrderInput ParseOrderLineItem()");
                     }
                 }
                 else
@@ -469,9 +470,9 @@ namespace Petsi.Input
             }
             catch (ApiException e)
             {
-                SystemLogger.LogError("Failed to make the request", "AsyncSquareSearchOrders");
-                SystemLogger.LogError($"Response Code: {e.ResponseCode}", "AsyncSquareSearchOrders");
-                SystemLogger.LogError($"Exception: {e.Message}", "AsyncSquareSearchOrders");
+                Logger.LogError("Failed to make the request", "AsyncSquareSearchOrders");
+                Logger.LogError($"Response Code: {e.ResponseCode}", "AsyncSquareSearchOrders");
+                Logger.LogError($"Exception: {e.Message}", "AsyncSquareSearchOrders");
             }
             return result;
         }

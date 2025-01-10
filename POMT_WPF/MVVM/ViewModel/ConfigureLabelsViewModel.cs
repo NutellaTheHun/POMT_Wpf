@@ -8,6 +8,7 @@ using POMT_WPF.Interfaces;
 using POMT_WPF.MVVM.ObsModels;
 using POMT_WPF.MVVM.View;
 using System.Collections.ObjectModel;
+using SystemLogging.Service;
 
 namespace POMT_WPF.MVVM.ViewModel
 {
@@ -92,7 +93,7 @@ namespace POMT_WPF.MVVM.ViewModel
                     }
                     else
                     {
-                        SystemLogger.LogError($"Label Configuration cannot find catalog item in model:{((CatalogItemPetsi)o).ItemName}", "ConfigureLabelsViewModel, RemoveLabMapCommand()");
+                        Logger.LogError($"Label Configuration cannot find catalog item in model:{((CatalogItemPetsi)o).ItemName}", "ConfigureLabelsViewModel, RemoveLabMapCommand()");
                     }
                 }
             }

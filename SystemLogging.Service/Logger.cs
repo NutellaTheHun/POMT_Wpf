@@ -9,7 +9,7 @@ namespace SystemLogging.Service
         private Queue<LogRequest> logQueue;
         private bool _processing;
         private string errorLogFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "petsiDir\\errorLog.txt");
-
+        private string runtimeId;
         private Logger()
         {
             logQueue = new Queue<LogRequest>();
@@ -25,18 +25,21 @@ namespace SystemLogging.Service
             return _instance;
         }
 
+        public static void SetRunTimeId(string id)
+        {
+            Instance().runtimeId = id;
+        }
+
         private class LogRequest
         {
             public string message { get; set; }
             public string logType { get; set; }
             public string? sender { get; set; }
-            public string runtimeId { get; set; }
-            public LogRequest(string message, string logType, string? sender, string runtimeId)
+            public LogRequest(string message, string logType, string? sender)
             {
                 this.message = message;
                 this.sender = sender;
                 this.logType = logType;
-                this.runtimeId = runtimeId;
             }
         }
 
@@ -58,11 +61,11 @@ namespace SystemLogging.Service
                 {
                     if (lr.sender == null)
                     {
-                        File.AppendAllText(_instance.errorLogFilePath, $"{DateTime.Now.ToString()} : {lr.runtimeId} : [{lr.logType}] {lr.message}\n");
+                        File.AppendAllText(_instance.errorLogFilePath, $"{DateTime.Now.ToString()} : {Instance().runtimeId} : [{lr.logType}] {lr.message}\n");
                     }
                     else
                     {
-                        File.AppendAllText(_instance.errorLogFilePath, $"{DateTime.Now.ToString()} : {lr.runtimeId} : [{lr.logType}] {lr.sender} : {lr.message}\n");
+                        File.AppendAllText(_instance.errorLogFilePath, $"{DateTime.Now.ToString()} : {Instance().runtimeId} : [{lr.logType}] {lr.sender} : {lr.message}\n");
                     }
                 }
                 if (Instance().logQueue.Count == 0)
@@ -72,11 +75,11 @@ namespace SystemLogging.Service
             }
         }
 
-        private static void AddLogRequest(string? sender, string message, string logType, string runtimeId)
+        private static void AddLogRequest(string? sender, string message, string logType)
         {
             lock (_lock)
             {
-                Instance().logQueue.Enqueue(new LogRequest(message, logType, sender, runtimeId));
+                Instance().logQueue.Enqueue(new LogRequest(message, logType, sender));
                 if (!Instance()._processing)
                 {
                     ProccessLogRequest();
@@ -84,22 +87,22 @@ namespace SystemLogging.Service
             }
         }
 
-        public static void LogStatus(string message, string runtimeId)
+        public static void LogStatus(string message)
         {
             RefreshLogCheck();
-            AddLogRequest(null, message, "S", runtimeId);
+            AddLogRequest(null, message, "S");
         }
 
-        public static void LogError(string errorMessage, string sender, string runtimeId)
+        public static void LogError(string errorMessage, string sender)
         {
             RefreshLogCheck();
-            AddLogRequest(sender, errorMessage, "E", runtimeId);
+            AddLogRequest(sender, errorMessage, "E");
         }
 
-        public static void LogWarning(string message, string runtimeId)
+        public static void LogWarning(string message)
         {
             RefreshLogCheck();
-            AddLogRequest(null, message, "W", runtimeId);
+            AddLogRequest(null, message, "W");
         }
 
         static int daysUntilRefresh = 7;
