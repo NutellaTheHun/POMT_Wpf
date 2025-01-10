@@ -1,6 +1,9 @@
 ﻿
 namespace Petsi.Utils
 {
+    /// <summary>
+    /// DEPRECIATED, MOVED LOGGING TO SEPARATE PROJECT, NOW WITHIN "SystemLogging.Service"
+    /// </summary>
     public class SystemLogger
     {
         private static SystemLogger _instance;

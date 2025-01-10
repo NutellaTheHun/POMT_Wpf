@@ -21,7 +21,7 @@ namespace POMT_WPF
         public App()
         {
             PetsiConfig config = PetsiConfig.GetInstance();
-            Logger.SetRunTimeId(PetsiConfig.GetInstance().GetVariable(Identifiers.SETTING_ERROR_LOG_PATH));
+            Logger.SetRunTimeId(PetsiConfig.appRuntimeId);
 
             //These three items utilize StartupService, they're initialized first to ensure the registration is smooth
             OrderModelPetsi omp = new OrderModelPetsi();

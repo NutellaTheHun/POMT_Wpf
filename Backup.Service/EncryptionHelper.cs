@@ -1,5 +1,6 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
+using SystemLogging.Service;
 
 namespace Backup.Service
 {
@@ -37,6 +38,7 @@ namespace Backup.Service
             }
             catch (Exception ex)
             {
+                Logger.LogError($"An error occurred during file encryption: {ex.Message}", "BackupService.Encryption");
                 throw new IOException("An error occurred during file encryption.", ex);
             }
         }
@@ -59,6 +61,7 @@ namespace Backup.Service
             byte[] iv = new byte[IvSize];
             if (fileStream.Read(iv, 0, iv.Length) != IvSize)
             {
+                Logger.LogError("The input file is invalid or corrupted (missing IV).", "BackupService.Encryption");
                 throw new InvalidDataException("The input file is invalid or corrupted (missing IV).");
             }
 
@@ -76,6 +79,7 @@ namespace Backup.Service
             }
             catch (Exception ex)
             {
+                Logger.LogError($"An error occurred during file decryption: {ex.Message}", "BackupService.Encryption");
                 throw new IOException("An error occurred during file decryption.", ex);
             }
         }
@@ -87,12 +91,14 @@ namespace Backup.Service
         {
             if (string.IsNullOrWhiteSpace(key))
             {
+                Logger.LogError("Key cannot be null or empty.", "BackupService.Encryption");
                 throw new ArgumentException("Key cannot be null or empty.", nameof(key));
             }
 
             byte[] keyBytes = Encoding.UTF8.GetBytes(key);
             if (keyBytes.Length != KeySize)
             {
+                Logger.LogError($"Key must be {KeySize} bytes long (256-bit).", "BackupService.Encryption");
                 throw new ArgumentException($"Key must be {KeySize} bytes long (256-bit).");
             }
 
@@ -106,6 +112,7 @@ namespace Backup.Service
         {
             if (string.IsNullOrWhiteSpace(filePath))
             {
+                Logger.LogError($"File path cannot be null or empty. {parameterName}", "BackupService.Encryption");
                 throw new ArgumentException("File path cannot be null or empty.", parameterName);
             }
         }

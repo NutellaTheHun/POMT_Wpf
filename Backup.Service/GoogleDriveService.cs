@@ -1,6 +1,7 @@
 ﻿using Google.Apis.Auth.OAuth2;
 using Google.Apis.Drive.v3;
 using Google.Apis.Services;
+using SystemLogging.Service;
 
 namespace Backup.Service
 {
@@ -39,7 +40,7 @@ namespace Backup.Service
                 }
                 catch(Exception e)
                 {
-                    Console.WriteLine($"Error: {e.Message}");
+                    Logger.LogError($"Error: {e.Message}", "BackupService");
                 }
                 
                 Cleanup();
@@ -62,7 +63,7 @@ namespace Backup.Service
             }
             catch (Exception e)
             {
-                Console.WriteLine($"Error uploading file: {e.Message}");
+                Logger.LogError($"Error uploading file: {e.Message}", "BackupService");
                 return false;
             }
 
@@ -85,7 +86,7 @@ namespace Backup.Service
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine($"Error deleting file: {e.Message}");
+                    Logger.LogError($"Error deleting file: {e.Message}", "BackupService");
                 }
             }
         }
@@ -126,8 +127,7 @@ namespace Backup.Service
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine($"Error uploading file: {e.Message}");
-                    throw;
+                    Logger.LogError($"Error uploading file: {e.Message}", "BackupService");
                 }
             }
         }
