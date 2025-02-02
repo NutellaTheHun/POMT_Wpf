@@ -221,6 +221,22 @@ namespace Petsi.Units
             return false;
         }
 
+        /// <summary>
+        /// Given an item variation name, returns its ID
+        /// </summary>
+        /// <param name="variationName">Variation sizes: regular, cutie, small, medium, large (Identifier constants)</param>
+        /// <returns></returns>
+        public string? GetVariationId(string variationName) {
+            foreach ((string variationId, string variationName) entry in VariationList)
+            {
+                if (entry.variationName.ToLower().Contains(variationName.ToLower()))
+                {
+                    return entry.variationId;
+                }
+            }
+            return null;
+        }
+
         public static string GenerateCatalogId()
         {
             return Identifiers.USER_BASED_ID_TAG + Guid.NewGuid().ToString();

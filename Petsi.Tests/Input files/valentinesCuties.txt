@@ -1,0 +1,134 @@
+{
+  "orders": [
+    {
+      "id": "l74yV23CkSeAFu8ddWTQCOTVA2HZY",
+      "location_id": "L33TZWGMCAGX5",
+      "line_items": [
+        {
+          "uid": "933f5f47-e175-1021-3b7e-f502a085d734",
+          "catalog_object_id": "QZO55PUFPFOT4XP64KKAYV3W",
+          "catalog_version": 1727282389017,
+          "quantity": "1",
+          "name": "Valentine's Cutie Pie Gift box",
+          "variation_name": "Regular",
+          "base_price_money": {
+            "amount": 1299,
+            "currency": "USD"
+          },
+          "gross_sales_money": {
+            "amount": 1299,
+            "currency": "USD"
+          },
+          "total_tax_money": {
+            "amount": 0,
+            "currency": "USD"
+          },
+          "total_discount_money": {
+            "amount": 0,
+            "currency": "USD"
+          },
+          "total_money": {
+            "amount": 1299,
+            "currency": "USD"
+          },
+          "variation_total_price_money": {
+            "amount": 1299,
+            "currency": "USD"
+          },
+          "item_type": "ITEM",
+          "pricing_blocklists": {},
+          "total_service_charge_money": {
+            "amount": 0,
+            "currency": "USD"
+          }
+        }
+      ],
+      "fulfillments": [
+        {
+          "uid": "kKWIPAMYk0ZZifWRgWin6B",
+          "type": "PICKUP",
+          "state": "PROPOSED",
+          "pickup_details": {
+            "pickup_at": "2025-02-13T17:13:00.000Z",
+            "placed_at": "2025-02-02T16:44:25.483Z",
+            "recipient": {
+              "display_name": "TEST VALENTINES CUTIE ORDER"
+            }
+          }
+        }
+      ],
+      "created_at": "2025-02-02T16:44:25.483Z",
+      "updated_at": "2025-02-02T16:44:25.483Z",
+      "state": "OPEN",
+      "version": 4,
+      "total_tax_money": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "total_discount_money": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "total_tip_money": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "total_money": {
+        "amount": 40696,
+        "currency": "USD"
+      },
+      "tenders": [
+        {
+          "id": "njkGgmPQA8u8AHZfCJnAlGA1wvKZY",
+          "location_id": "LSM21AC8V66EA",
+          "transaction_id": "l74yV23CkSeAFu8ddWTQCOTVA2HZY",
+          "created_at": "2025-02-02T16:44:25.483Z",
+          "note": "TEST VALENTINES CUTIE ORDER",
+          "amount_money": {
+            "amount": 40696,
+            "currency": "USD"
+          },
+          "type": "OTHER",
+          "payment_id": "njkGgmPQA8u8AHZfCJnAlGA1wvKZY"
+        }
+      ],
+      "total_service_charge_money": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "net_amounts": {
+        "total_money": {
+          "amount": 40696,
+          "currency": "USD"
+        },
+        "tax_money": {
+          "amount": 0,
+          "currency": "USD"
+        },
+        "discount_money": {
+          "amount": 0,
+          "currency": "USD"
+        },
+        "tip_money": {
+          "amount": 0,
+          "currency": "USD"
+        },
+        "service_charge_money": {
+          "amount": 0,
+          "currency": "USD"
+        }
+      },
+      "source": {
+        "name": "Sandbox for sq0idp-4Uw2-7Sy15Umdnct7FTeuQ"
+      },
+      "pricing_options": {
+        "auto_apply_discounts": true,
+        "auto_apply_taxes": true
+      },
+      "net_amount_due_money": {
+        "amount": 0,
+        "currency": "USD"
+      }
+    }
+  ]
+}

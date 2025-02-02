@@ -110,15 +110,15 @@ namespace SystemLogging.Service
         //UPDATE TO TRIM LINES, NOT RESET ENTIRE LOG
         private static void RefreshLogCheck()
         {
-            DateTime creation = File.GetCreationTime(_instance.errorLogFilePath);
+            DateTime creation = File.GetCreationTime(Instance().errorLogFilePath);
             DateTime refreshDate = creation.AddDays(daysUntilRefresh);
             if (DateTime.Today >= refreshDate)
             {
 
                 lock (_lock)
                 {
-                    File.WriteAllText(_instance.errorLogFilePath, String.Empty);
-                    File.SetCreationTime(_instance.errorLogFilePath, DateTime.Today);
+                    File.WriteAllText(Instance().errorLogFilePath, String.Empty);
+                    File.SetCreationTime(Instance().errorLogFilePath, DateTime.Today);
                 }
             }
         }

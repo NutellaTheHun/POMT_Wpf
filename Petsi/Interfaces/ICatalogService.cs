@@ -12,5 +12,6 @@ namespace Petsi.Interfaces
         public string GenerateCatalogId();
         LineItem GetRegularItem(string v1, int v2);
         public List<string> GetItemIdsByCategory(string targetCategoryId);
+        public CatalogItemPetsi GetCatalogItem(string itemName);
     }
 }

@@ -25,7 +25,6 @@ namespace Petsi.Input
         public SquareOrderInput(SquareClientFactory squareClient)
         {
             LoggerOrderIdCount = 0;
-            //SetModel(ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS));
             SetModel(ModelManagerSingleton.GetInstance().GetOrderModel());
             Orders = new List<SquareOrderItem>();
 
@@ -312,6 +311,44 @@ namespace Petsi.Input
                 
                 lineItems.Add(muff);
             }
+            else if(squareOrderlineItem.CatalogObjectId == Identifiers.VALENTINES_CUTIE_BOX)
+            {
+                CatalogItemPetsi catalogCbp = catalogLookup.GetCatalogItem("Chocolate Bourbon Pecan Pie");
+                LineItem cbp = new LineItem();
+                cbp.ItemName = catalogCbp.ItemName;
+                cbp.CatalogObjectId = catalogCbp.CatalogObjectId;
+                cbp.VariationName = Identifiers.SIZE_CUTIE;
+                cbp.VariationId = catalogCbp.GetVariationId(cbp.VariationName);
+                cbp.Quantity = squareOrderlineItem.Quantity;
+                lineItems.Add(cbp);
+
+                CatalogItemPetsi catalogMud = catalogLookup.GetCatalogItem("Mississippi Mud Pie");
+                LineItem mud = new LineItem();
+                mud.ItemName = catalogMud.ItemName;
+                mud.CatalogObjectId = catalogMud.CatalogObjectId;
+                mud.VariationName = Identifiers.SIZE_CUTIE;
+                mud.VariationId = catalogMud.GetVariationId(mud.VariationName);
+                mud.Quantity = squareOrderlineItem.Quantity;
+                lineItems.Add(mud);
+
+                CatalogItemPetsi catalogChoc = catalogLookup.GetCatalogItem("Chocolate Cream Pie");
+                LineItem choc = new LineItem();
+                choc.ItemName = catalogChoc.ItemName;
+                choc.CatalogObjectId = catalogChoc.CatalogObjectId;
+                choc.VariationName = Identifiers.SIZE_CUTIE;
+                choc.VariationId = catalogChoc.GetVariationId(choc.VariationName);
+                choc.Quantity = squareOrderlineItem.Quantity;
+                lineItems.Add(choc);
+
+                CatalogItemPetsi catalogCherry = catalogLookup.GetCatalogItem("Cherry Crumb Pie");
+                LineItem cherry = new LineItem();
+                cherry.ItemName = catalogCherry.ItemName;
+                cherry.CatalogObjectId = catalogCherry.CatalogObjectId;
+                cherry.VariationName = Identifiers.SIZE_CUTIE;
+                cherry.VariationId = catalogCherry.GetVariationId(cherry.VariationName);
+                cherry.Quantity = squareOrderlineItem.Quantity;
+                lineItems.Add(cherry);
+            }
             else if(categoryLookup.GetCategoryId(squareOrderlineItem.CatalogObjectId) == Identifiers.CATEGORY_MERCH)
             {
                 LineItem merch = new LineItem();
@@ -397,6 +434,7 @@ namespace Petsi.Input
             }
 
             //all other "standard" items
+            //Square item's "catalogObjectId" is the variation id
             else
             {
                 LineItem stdli = new LineItem();
