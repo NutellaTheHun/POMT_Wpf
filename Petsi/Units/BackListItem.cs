@@ -176,6 +176,10 @@ namespace Petsi.Units
         {
             return new BackListItem("POTM", Identifiers.CATEGORY_POTM);
         }
+        public static BackListItem CHOCCREAM()
+        {
+            return new BackListItem("C.CREAM", "NRWCGZLCARZ2TARHIGEKZF27");
+        }
         public static BackListItem PARBAKES()//define parbakes?
         {
             return new BackListItem("PARBAKES", Identifiers.CATEGORY_PARBAKE);

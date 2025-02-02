@@ -239,7 +239,32 @@ namespace Petsi.Reports
                 bli.VEG(),
                 bli.PARBAKES()
             };
+        }
 
+        public static List<BackListItem> GetTestValentinesTemplate()
+        {
+            return new List<BackListItem>
+            {
+                bli.MUD(),
+                bli.CBP(),
+                bli.PECAN(),
+                bli.MIX(),
+                bli.PUMP(),
+                bli.SALTY(),
+                bli.SWEEP(),
+                bli.SPP(),
+                bli.CHERRY(),
+                bli.APP_CRUMB(),
+                bli.APC(),
+                bli.APPLE(),
+                bli.BLUE(),
+                bli.POTM(),
+                bli.BACON(),
+                bli.HAM(),
+                bli.VEG(),
+                bli.PARBAKES(),
+                bli.CHOCCREAM()
+            };
         }
 
         public static List<BackListItem> GetTestPastryTemplate()

@@ -100,13 +100,18 @@ namespace Petsi.Units
                         }
                         
                     }
+                    else if (ChannelLineItem.VariationName.Contains(Identifiers.SIZE_CUTIE))
+                    {
+                        variationSizeDict[ChannelLineItem.CatalogObjectId].Amount3 += int.Parse(ChannelLineItem.Quantity);
+                    }
                 }
                 else //create a new item, parse the size and quantity, add to dictionary
                 {
                     PetsiLineItem = new PetsiOrderLineItem();
                     PetsiLineItem.CatalogObjectId = ChannelLineItem.CatalogObjectId;
                     PetsiLineItem.ItemName = ChannelLineItem.ItemName;
-                    PetsiLineItem.Amount3 = 0;
+
+                    //PetsiLineItem.Amount3 = 0; //Why was this being set to 0?
                     PetsiLineItem.IsValid = true;
 
                     if (ChannelLineItem.VariationName.Contains("Small"))
@@ -135,6 +140,10 @@ namespace Petsi.Units
                         PetsiLineItem.AmountRegular = int.Parse(ChannelLineItem.Quantity);
 
                     }
+                    else if (ChannelLineItem.VariationName.Contains("cutie")){
+                        PetsiLineItem.Amount3 = int.Parse(ChannelLineItem.Quantity);
+                    }
+
                     variationSizeDict.Add(ChannelLineItem.CatalogObjectId, PetsiLineItem);
                 }
             }

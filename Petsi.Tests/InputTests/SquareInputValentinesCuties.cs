@@ -86,16 +86,37 @@ namespace Petsi.Tests.InputTests
         }
 
         [Fact]
-        public void SquareValentinesCutiesItemParse()
+        public void BackListSquareValentinesCutiesItemParse()
         {
             DateTime start = DateTime.Parse(dateContext);
             IXLWorkbook result = director.CreatePieBackList(start, null,
                 false, true, true, true, true, true, true, true,
-                "ValentineCuties",
-                BacklistTemplateFormatSelector.GetTestFallPieTemplate()
+                "BackListValentineCutiesTEST",
+                BacklistTemplateFormatSelector.GetTestValentinesTemplate()
                 ).Result;
 
-            XLWorkbook expected = new XLWorkbook("D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\ExpectedCases\\BackListPieMultiDayGeneratedResult.xlsx");
+            XLWorkbook expected = new XLWorkbook("D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\ExpectedCases\\BackListValentineCutiesResult.xlsx");
+            List<string> mismatches = new List<string>();
+            bool eval = ReportComparator.Compare(expected, result, mismatches);
+            if (!eval)
+            {
+                foreach (string ln in mismatches)
+                {
+                    helper.WriteLine(ln);
+                }
+
+            }
+            Assert.True(eval);
+        }
+
+        [Fact]
+        public void FrontListSquareValentinesCutiesItemParse()
+        {
+            DateTime start = DateTime.Parse(dateContext);
+            IXLWorkbook result = director.CreateFrontList(start,
+                false, true, true, true, true, true, true, true, "FrontListValentinesTEST").Result;
+
+            XLWorkbook expected = new XLWorkbook("D:\\Git-Repos\\POMT_WPF\\Petsi.Tests\\ExpectedCases\\FrontListValentinesFrontlistResult.xlsx");
             List<string> mismatches = new List<string>();
             bool eval = ReportComparator.Compare(expected, result, mismatches);
             if (!eval)
