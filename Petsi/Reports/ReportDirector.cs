@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Bibliography;
 using Petsi.Managers;
 using Petsi.Models;
 using Petsi.Reports.DeliveryBuilder;
@@ -33,6 +34,11 @@ namespace Petsi.Reports
                 () => CreatePieBackList(rc.StartDate, rc.EndDate, rc.IsPrint, rc.IsExport, rc.RetailFilter, rc.SquareFilter, rc.WholesaleFilter, rc.SpecialFilter, rc.EzCaterFilter, rc.FarmerFilter, rc.ReportName, rc.Template),
                 nameof(CreatePieBackList),
                 rc.StartDate, rc.EndDate, rc.IsPrint, rc.IsExport, rc.RetailFilter, rc.SquareFilter, rc.WholesaleFilter, rc.SpecialFilter, rc.EzCaterFilter, rc.FarmerFilter, rc.ReportName, rc.Template);
+
+            _printSession.Enqueue(
+                () => CreatePieBackListNotes(rc.StartDate, rc.EndDate, rc.IsPrint, rc.IsExport, rc.RetailFilter, rc.SquareFilter, rc.WholesaleFilter, rc.SpecialFilter, rc.EzCaterFilter, rc.FarmerFilter, rc.ReportName),
+                nameof(CreatePieBackListNotes),
+                rc.StartDate, rc.EndDate, rc.IsPrint, rc.IsExport, rc.RetailFilter, rc.SquareFilter, rc.WholesaleFilter, rc.SpecialFilter, rc.EzCaterFilter, rc.FarmerFilter, rc.ReportName);
         }
         public async void RequestPastryBackList(ReportConfig rc)
         {
@@ -125,23 +131,43 @@ namespace Petsi.Reports
             Logger.LogStatus($"CreatePieBackList start startDate: {targetDate}, end date: {endDate}" +
                 $"-isPrint {isPrint}, -isExport {isExport}, -isRetail {isRetail}, -isSquare {isSquare}, -isWholesale {isWholesale}, -isSpecial {isSpecial}, -isEzCater {isEzCater}, -isFarmer {isFarmer}" );
 
-            Report report = new Report("BackListPie", isPrint, isExport);
-            ReportBuilderBackListPie builder = new ReportBuilderBackListPie(report, template);
+            Report pieReport = new Report("BackListPie", isPrint, isExport);
+            ReportBuilderBackListPie pieListbuilder = new ReportBuilderBackListPie(pieReport, template);
+            
 
             //OrderModelPetsi orderModel = (OrderModelPetsi)ModelManagerSingleton.GetInstance().GetModel(Identifiers.MODEL_ORDERS);
             OrderModelPetsi orderModel = ModelManagerSingleton.GetInstance().GetOrderModel();
 
             if (endDate == null)//if endDate is null, report is for single day, targetDate is used in report header as targetDate
             {
-                builder.BuildReport(await orderModel.GetBackListDataAsync(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), targetDate, endDate);
+                pieListbuilder.BuildReport(await orderModel.GetBackListPieDataAsync(targetDate, endDate, 
+                    isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), targetDate, endDate);
             }
             else //otherwise printing all orders (for testing purposes) or is printing a range, displaying targetDate as a range not implemented yet, make arg param[] dateTime?
             {
                 if (targetDate < endDate)
                 {
-                    builder.BuildReport(await orderModel.GetBackListDataAsync(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), null, null);
+                    pieListbuilder.BuildReport(await orderModel.GetBackListPieDataAsync(targetDate, endDate, 
+                       isRetail , isSquare, isWholesale, isSpecial, isEzCater, isFarmer), null, null);
                 }
             }
+
+            pieReport.FinalizeReport(reportName);
+
+            return pieReport.Wb;
+        }
+
+        public async Task<IXLWorkbook> CreatePieBackListNotes(DateTime? targetDate, DateTime? endDate, bool isPrint, bool isExport, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer, string? reportName)
+        {
+            Logger.LogStatus($"CreatePieBackListNotes start startDate: {targetDate}, end date: {endDate}" +
+                $"-isPrint {isPrint}, -isExport {isExport}, -isRetail {isRetail}, -isSquare {isSquare}, -isWholesale {isWholesale}, -isSpecial {isSpecial}, -isEzCater {isEzCater}, -isFarmer {isFarmer}");
+            
+            Report report = new Report("BackListPieNotes", isPrint, isExport);
+            ReportBuilderBackListNotes builder = new ReportBuilderBackListNotes(report);
+
+            OrderModelPetsi orderModel = ModelManagerSingleton.GetInstance().GetOrderModel();
+
+            builder.BuildReport(await orderModel.GetFrontListDataAsync(targetDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), targetDate, null);
 
             report.FinalizeReport(reportName);
 
@@ -161,13 +187,13 @@ namespace Petsi.Reports
 
             if (endDate == null)//if endDate is null, report is for single day, targetDate is used in report header as targetDate
             {
-                builder.BuildReport(await orderModel.GetBackListDataAsync(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), targetDate, endDate);
+                builder.BuildReport(await orderModel.GetBackListPastryDataAsync(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), targetDate, endDate);
             }
             else //otherwise printing all orders (for testing purposes) or is printing a range, displaying targetDate as a range not implemented yet, make arg param[] dateTime?
             {
                 if (targetDate < endDate)
                 {
-                    builder.BuildReport(await orderModel.GetBackListDataAsync(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), null, null);
+                    builder.BuildReport(await orderModel.GetBackListPastryDataAsync(targetDate, endDate, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer), null, null);
                 }
             }
 

@@ -278,12 +278,82 @@ namespace Petsi.Tests
             };
         }
 
+        public static List<string> GetSpringPieAndFrozenIds()
+        {
+            return new List<string>
+            {
+                // Clapple
+                "XI3XCRCDMPOPILIMWSMPHXGZ",
+
+                // TnB Clapple
+                "AHFXRHWOCHCFDRPSSKDD2CPZ",
+
+                // Vegan Apple
+                "QBZPGPJRNZOG4TKKXLJ3YCCR",
+
+                // TnB Vegan Apple
+                "V6B5DLXDTJ4JI2CFN7BQ7KX6",
+
+                // Mix
+                "LRJGUOIJUGOQULSFVYMS7QNA",
+
+                // TnB Mix
+                "ZWDYSAVNH2PCVLAAQUJRL5AP",
+
+                // V.Mix
+                "VUMTY3Q7442HWKJG22ZTLXL4",
+
+                // TnB V.Mix
+                "NPASBYW5V45MF62BM6ITGN3C",
+
+                // Pecan
+                "Y4RKXZ2QML43POAYWKHB53FE",
+
+                // TnT Pecan
+                "XUEAUP3C2UZYYRFES532IM2J",
+
+                // Cherry
+                "AI3FD2KHMNOM4RXQ323OSVLK",
+
+                // TnB Cherry
+                "JQXOZJE463NJVPODZZUEEJRG",
+
+                // A.Crumb
+                "5FN34FCDEUPFGWZVO5J62MM4",
+
+                // TnB A.Crumb
+                "LE2FIQOLCDELQDOJCH7DMCNK",
+
+                // CBP
+                "UBPPQ6W6QJE2EUNXMXE6CYGY",
+
+                // TnT CBP
+                "AJ4SZ24TZDGTVCBD3IWPZTKO",
+
+                // KL
+                "X2BK7GH32XDCSZHYB6C5S7O6",
+
+                // TnT KL
+                "2UNGL2C72ONASC5IIB2ZLINU",
+
+                // Mud
+                "5EQVRWOQZOVWRXYVMXEEEK42",
+
+                // TnT Mud
+                "7SP3ILKQ5L7DXSLWCL6QAWOK",
+            };
+        }
+
         public static List<string> GetMerchandiseItemIds()
         {
             ICatalogService catalogService = (ICatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
             return catalogService.GetItemIdsByCategory(Identifiers.CATEGORY_MERCH);
         }
 
+        /// <summary>
+        /// Returns "Square", "Wholesale", "Special", "FarmersMarket"
+        /// </summary>
+        /// <returns></returns>
         public static List<string> GetStandardOrderTypes()
         {
             return new List<string>
@@ -293,6 +363,122 @@ namespace Petsi.Tests
                 "Special",
                 "FarmersMarket"
             };
+        }
+
+        /// <summary>
+        /// Returns Coffee break platter, breakfast pastry platter, mini scone sampler, muffin sampler
+        /// </summary>
+        /// <returns></returns>
+        public static List<string> GetPlatterIds()
+        {
+            return new List<string>{
+                Identifiers.COFFEE_BREAK_PLATTER, // sml/med/lrg
+                Identifiers.BREAKFAST_PASTRY_PLATTER, // sml/med/lrg
+                Identifiers.MINI_SCONE_SAMPLER, //only small and large
+                Identifiers.MUFFIN_SAMPLER // only reg
+            };
+        }
+
+        public static List<PetsiOrder> GetPlatterTestOrders(List<string> itemIds, List<string> orderTypes, int orderAmountPerType, DateTime date)
+        {
+            List<PetsiOrder> result = new List<PetsiOrder>();
+
+            int orderCount = 0;
+            string year = date.Year.ToString();
+            string month = date.Month.ToString();
+            string day = date.Day.ToString();
+            int hour = 8;
+            int minute = 10;
+
+            foreach (string orderType in orderTypes)
+            {
+                for (int i = 0; i < orderAmountPerType; i++)
+                {
+                    PetsiOrder order = new PetsiOrder();
+                    order.OrderType = orderType;
+                    order.OrderId = Guid.NewGuid().ToString();
+
+                    order.Recipient = $"{orderType}_{orderCount}";
+                    orderCount++;
+
+                    //order.OrderDueDate = $"{year}-{month}-{day}T{hour}:{minute}:00.000Z";
+                    order.OrderDueDate = $"{month}/{day}/{year} {hour}:{minute}";
+                    hour++;
+                    if (hour == 16) { hour = 8; }
+                    if (minute == 10) { minute = 30; }
+                    else { minute = 10; }
+
+                    if (order.OrderType == "Square")
+                    {
+                        order.IsOneShot = true;
+                        order.IsUserEntered = false;
+                        order.FulfillmentType = "PICKUP";
+                    }
+                    if (order.OrderType == "Special")
+                    {
+                        order.IsOneShot = true;
+                        order.IsUserEntered = true;
+                        order.FulfillmentType = "PICKUP";
+                    }
+                    if (order.OrderType == "Wholesale")
+                    {
+                        order.IsPeriodic = true;
+                        order.IsUserEntered = true;
+                        order.FulfillmentType = "DELIVERY";
+                    }
+                    if (order.OrderType == "FarmersMarket")
+                    {
+                        order.IsPeriodic = true;
+                        order.IsUserEntered = true;
+                        order.FulfillmentType = "PICKUP";
+                    }
+
+                    order.Email = "email_test";
+                    order.DeliveryAddress = "deliveryAddr_test";
+                    order.PhoneNumber = "phoneNum_test";
+
+                    order.LineItems = GeneratePlatterLineItems(itemIds);
+                    result.Add(order);
+                }
+            }
+
+            return result;
+        }
+
+        static List<PetsiOrderLineItem> GeneratePlatterLineItems(List<string> itemIds)
+        {
+            CatalogService cs = (CatalogService)ServiceManagerSingleton.GetInstance().GetService(Identifiers.SERVICE_CATALOG);
+            List<PetsiOrderLineItem> result = new List<PetsiOrderLineItem>();
+            foreach (string itemId in itemIds)
+            {
+                CatalogItemPetsi item = cs.GetCatalogItemById(itemId);
+                /*
+                if (item.VariationExists("Regular")) //CHECK VEGANS, UNBAKED, V UNBAKED
+                {
+                    result.Add(new PetsiOrderLineItem(item.ItemName, itemId, 0, 0, 0, 0, 1));
+                }
+                else
+                {
+                    result.Add(new PetsiOrderLineItem(item.ItemName, itemId, 1, 1, 1, 1, 0));
+                }*/
+                if (itemId == Identifiers.BREAKFAST_PASTRY_PLATTER)
+                {
+                    result.Add(new PetsiOrderLineItem(item.ItemName, itemId, 0, 1, 1, 1, 0));
+                }
+                else if (itemId == Identifiers.COFFEE_BREAK_PLATTER)
+                {
+                    result.Add(new PetsiOrderLineItem(item.ItemName, itemId, 0, 1, 1, 1, 0));
+                }
+                else if (itemId == Identifiers.MINI_SCONE_SAMPLER)
+                {
+                    result.Add(new PetsiOrderLineItem(item.ItemName, itemId, 0, 1, 0, 1, 0));
+                }
+                else if (itemId == Identifiers.MUFFIN_SAMPLER)
+                {
+                    result.Add(new PetsiOrderLineItem(item.ItemName, itemId, 0, 0, 0, 0, 1));
+                }
+            }
+            return result;
         }
     }
 }

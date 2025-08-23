@@ -26,9 +26,9 @@ namespace Petsi.Reports.TableBuilder
             }
             
 
-            bool veganPresent5 = false; //bool unbakedPresent5 = false; bool veganUnbaked5 = false;
-            bool veganPresent8 = false; //bool unbakedPresent8 = false; bool veganUnbaked8 = false;
-            bool veganPresent10 = false; //bool unbakedPresent10 = false; bool veganUnbaked10 = false;
+            bool veganPresent5 = false; bool unbakedPresent5 = false; bool veganUnbaked5 = false;
+            bool veganPresent8 = false; bool unbakedPresent8 = false; bool veganUnbaked8 = false;
+            bool veganPresent10 = false; bool unbakedPresent10 = false; bool veganUnbaked10 = false;
 
             int total3 = 0;
             int total5 = 0;
@@ -85,13 +85,14 @@ namespace Petsi.Reports.TableBuilder
 
                                 itemTracker.Remove(lineItem);
                                 continue;
-                            }/*
+                            }//
                             if(isTakeNBake)
                             {
                                 if (lineItem.Amount3 != 0)  { amount3 = HandleTakeNBakeLineAmount(lineItem.Amount3.ToString(), amount3); }
                                 if (lineItem.Amount5 != 0)  { amount5 = HandleTakeNBakeLineAmount(lineItem.Amount5.ToString(), amount5); unbakedPresent5 = true; }
                                 if (lineItem.Amount8 != 0)  { amount8 = HandleTakeNBakeLineAmount(lineItem.Amount8.ToString(), amount8); unbakedPresent8 = true; }
                                 if (lineItem.Amount10 != 0) { amount10 = HandleTakeNBakeLineAmount(lineItem.Amount10.ToString(), amount10); unbakedPresent10 = true; }
+                                if (lineItem.AmountRegular != 0) { amount10 = HandleTakeNBakeLineAmount(lineItem.AmountRegular.ToString(), amount10); unbakedPresent10 = true; }
 
                                 itemTracker.Remove(lineItem);
                                 continue;
@@ -102,10 +103,11 @@ namespace Petsi.Reports.TableBuilder
                                 if (lineItem.Amount5 != 0)  { amount5 = HandleVeganTakeNBakeLineAmount(lineItem.Amount5.ToString(), amount5); veganUnbaked5 = true; }
                                 if (lineItem.Amount8 != 0)  { amount8 = HandleVeganTakeNBakeLineAmount(lineItem.Amount8.ToString(), amount8); veganUnbaked8 = true; }
                                 if (lineItem.Amount10 != 0) { amount10 = HandleVeganTakeNBakeLineAmount(lineItem.Amount10.ToString(), amount10); veganUnbaked10 = true; }
+                                if (lineItem.AmountRegular != 0) { amount10 = HandleVeganTakeNBakeLineAmount(lineItem.AmountRegular.ToString(), amount10); veganUnbaked10 = true; }
 
                                 itemTracker.Remove(lineItem);
                                 continue;
-                            }*/
+                            }//
                             else
                             {
                                 if (lineItem.Amount3 != 0)  
@@ -262,7 +264,7 @@ namespace Petsi.Reports.TableBuilder
             {
                 isVegan = true;
                 return true;
-            }/*
+            }
             else if(lineItem.IsTakeNBakeTo(BackListItemId))
             {
                 isTakeNBake = true;
@@ -272,7 +274,7 @@ namespace Petsi.Reports.TableBuilder
             {
                 isVeganTakeNBake = true;
                 return true;
-            }*/
+            }
             else if(lineItem.CatalogObjectId == BackListItemId)
             {
                 return true;

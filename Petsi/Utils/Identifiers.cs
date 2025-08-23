@@ -69,6 +69,7 @@ namespace Petsi.Utils
         public const string CATEGORY_POTM = "POTM_ID";
         public const string CATEGORY_PARBAKE = "PARBAKE_ID";
         public const string CATEGORY_TAKENBAKE = "CUAIOOBN27MNTBZNQZHLRUT5";
+        public const string CATEGORY_BOXED_PASTRY = "2VNB6BHLNWNRVN7GEG3I2JQV";
 
         public const string MODIFY_NAME_NOTE_CARD = "Add your note in \"notes\" section in checkout";
         public const string BOX_OF_6 = "Box of 6";
@@ -82,6 +83,46 @@ namespace Petsi.Utils
         public const string BOX_OF_6_BACON_BISCUITS = "UN7KTRBERK2OWISHWS5LOKWT"; //seems to be for chill only
         public const string BOX_OF_6_BLUEBERRY_MUFFINS = "DZEF5HUCVC5LFXIYPMUPKSEM"; //seems to be for chill only
         public const string VALENTINES_CUTIE_BOX = "QZO55PUFPFOT4XP64KKAYV3W";
+
+        public const string BREAKFAST_PASTRY_PLATTER = "G2OMEAX57DYUJ65S5GUOJFUL";
+        public const string COFFEE_BREAK_PLATTER = "3TG4Z4RS6K6SQ5LLDALUBQYI";
+        public const string MINI_SCONE_SAMPLER = "BDFUYW5QD7Q7ORC42MYY67KE";
+        public const string MUFFIN_SAMPLER = "6IFQR5IXYAJYF2NB5VWWJJAR";
+
+        public const string MINI_CURRANT = "userbased-6774ee7d-90b6-49d7-8e20-716c118535ad";
+        public const string CURRANT_SCONE = "userbased-fe4ca24e-7236-433d-8d15-308ebe601f00";
+
+        public const string MINI_LEMON = "userbased-f8c8b566-8711-4d51-8165-50e79bbe9a86";
+        public const string LEMON_SCONE = "userbased-ab7383e1-38f0-46f2-9abc-403a8ddaf538";
+
+        public const string MINI_TRIPLE = "userbased-2feced77-544d-4b20-bdf5-9b683c2f95a0";
+        public const string BERRY_SCONE = "userbased-18b89386-745e-44d0-90cd-fd68f9895bf2";
+
+        public const string MINI_BLUE_MUFFIN = "userbased-9cf79d69-5c60-43c0-9626-11115035106c";
+        public const string BLUE_MUFFIN = "N6XRIRRLZB5Q6LKOGC4ZNZ3W";
+
+        public const string MINI_BANANA_MUFFIN = "userbased-67470a07-fa80-479e-aa0f-47eac0b9106d";
+        public const string BANANA_MUFFIN = "CGYIVCSBBIXQHLMNOP6A45X7";
+
+        public const string DONUT = "TDQ5KTVDPVRZUAGPLPNAOXTE";
+        public const string COFFEE_CAKE = "userbased-ab8da8e0-953b-4362-9b21-c7d43d55c5a3";
+
+        public const string MINI_CC_CHIP = "userbased-bb596cee-0bbf-4a6f-9b5a-5405a16c6c2a";
+        public const string CC_COOKIE = "RJJHBDTUMENI2DLHQAYRDPUB";
+
+        public const string MINI_SNICK = "userbased-5f3df262-6899-4554-b15e-32cc75ef9e3b";
+        public const string SNICK_COOKIE = "CXNP6DDA2TSYGJQPULZEPPK5";
+
+        public const string MINI_GINGER = "userbased-459f3cf5-cf10-4456-9b4c-8bd46c7d5588";
+        public const string GING_COOKIE = "KUJVD7J45N4BG4XGMVHYN7UK";
+
+
+        public const string WALNUT_BROWNIE = "userbased-7502c513-6f9e-43ce-afd0-0047addd3968";
+        public const string RASP_SWIRL_BAR = "userbased-cf183af2-0016-4447-abdf-6e9b318b5270";
+        public const string MINI_TEACAKE = "userbased-29a88e7a-1505-4028-bb30-aac3f0694ed3";
+        
+        public const string CORN_RASP_MUFFIN = "2XFLPIDBCKFVMO4MRAQHELJW";
+        
 
         //Temporary ID for an item when a multiItem match event occurs, is resolved after user intervention window. (NotifyCatalogValidateMultiItemView.cs)
         public const string SOI_MULTI_ITEM_MATCH_EVENT_ID_SIG = "%FIND_NEW_ID"; 

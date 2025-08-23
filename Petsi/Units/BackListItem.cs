@@ -242,6 +242,10 @@ namespace Petsi.Units
         {
             return new BackListItem("BLUE", "N6XRIRRLZB5Q6LKOGC4ZNZ3W");
         }
+        public static BackListItem BANANA_CC()
+        {
+            return new BackListItem("BANANA", "CGYIVCSBBIXQHLMNOP6A45X7");
+        }
         public static BackListItem BUNS()//is this a general term or specifically Sweep Bun?
         {
             return new BackListItem("BUNS", "BCEODGMAXN2FHDWNOOUL66HB");
@@ -294,6 +298,37 @@ namespace Petsi.Units
         {
             return new BackListItem("MEX", "H37PVVMGZDKK6FRCONYIR5HW");
         }
+
+        public static BackListItem VEGAN_CC()
+        {
+            return new BackListItem("VEGAN CCHIP", "");
+        }
+
+        public static BackListItem CROLL()
+        {
+            return new BackListItem("CROLL", "VJZDETTIIAFPWCDRTVHUESWU");
+        }
+
+        public static BackListItem CROLL_3PK()
+        {
+            return new BackListItem("CROLL 3PAK", "L3XUULFNZKBKRWJ3ICG22D6H");
+        }
+
+        public static BackListItem DONUT()
+        {
+            return new BackListItem("DONUT", "TDQ5KTVDPVRZUAGPLPNAOXTE");
+        }
+
+        public static BackListItem COFFEE_CAKE()
+        {
+            return new BackListItem("COFFEE CAKE", "userbased-ab8da8e0-953b-4362-9b21-c7d43d55c5a3");
+        }
+
+        public static BackListItem MINI_TEA_CAKE()
+        {
+            return new BackListItem("MINI TEACAKE", "userbased-29a88e7a-1505-4028-bb30-aac3f0694ed3");
+        }
+
         #endregion PASTRY
     }
 }

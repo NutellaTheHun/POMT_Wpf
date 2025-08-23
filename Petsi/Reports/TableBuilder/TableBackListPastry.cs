@@ -30,21 +30,27 @@ namespace Petsi.Reports.TableBuilder
                 Logger.LogStatus("TableBackListPastry GetActiveBackListPastryTemplate returned an empty list");
                 return;
             }
+            string amountMini;
             string amountReg;
+            
+            //Header
+            AddLine(page, ref _rowIndex, _rootPosition.col, "", "MINI", "REG");
 
             foreach (BackListItem item in listFormat)
             {
+                amountMini = "";
                 amountReg = "";
                 foreach (PetsiOrderLineItem lineItem in items)
                 {
                     if(item.CatalogObjId == lineItem.CatalogObjectId)
                     {
+                        amountMini = lineItem.Amount3.ToString();
                         amountReg = lineItem.AmountRegular.ToString();
                         itemTracker.Remove(lineItem);
                         break;
                     }
                 }
-                AddLine(page, ref _rowIndex, _rootPosition.col, item.PageDisplayName, amountReg);
+                AddLine(page, ref _rowIndex, _rootPosition.col, item.PageDisplayName, amountMini, amountReg);
             }
             if (itemTracker.Count > 0)
             {
@@ -68,13 +74,14 @@ namespace Petsi.Reports.TableBuilder
         }
         protected override void FormatTable(IXLWorksheet page)
         {
-            string tableRange = TableFormat.BuildRange(_rootPosition.row, _rowIndex - 1, "B", "C");
+            string tableRange = TableFormat.BuildRange(_rootPosition.row, _rowIndex - 1, "B", "D");
 
             TableFormat.RangeAllBorders(page, tableRange);
             TableFormat.RangeAlignment(page, "center", tableRange);
             TableFormat.RangeFontSize(page, 18, tableRange);
             TableFormat.ColWidthFitSizeOfText(page, "B");
             TableFormat.ColumnSetPixelLength(page, 8.57, "C");
+            TableFormat.ColumnSetPixelLength(page, 8.57, "D");
         }
     }
 }

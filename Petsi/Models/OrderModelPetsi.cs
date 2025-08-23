@@ -296,6 +296,110 @@ namespace Petsi.Models
             return AggregatePetsiOrders(query.ToList());
         }
 
+        /// <summary>
+        /// Transforms Breakfast Pastry Platter, Coffee Break, mini scone sampler, and muffin sampler to its inner items
+        /// </summary>
+        /// <param name="targetDate"></param>
+        /// <param name="endDate"></param>
+        /// <param name="isRetail"></param>
+        /// <param name="isSquare"></param>
+        /// <param name="isWholesale"></param>
+        /// <param name="isSpecial"></param>
+        /// <param name="isEzCater"></param>
+        /// <param name="isFarmer"></param>
+        /// <returns></returns>
+        public async Task<List<PetsiOrderLineItem>> GetBackListPastryDataAsync(DateTime? targetDate, DateTime? endDate, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer)
+        {
+            List<PetsiOrder> filteredOrders = FilterOrders(Orders, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer);
+
+            IEnumerable<PetsiOrder> query;
+            List<PetsiOrder> periodicOrders = new List<PetsiOrder>();
+            if (targetDate == null) //all data, WARNING WHOLESALE ONLY ONCE CURRENTLY, add ws orders up to max day, or end of week of max day?
+            {
+                query =
+                from order in filteredOrders
+                select order;
+            }
+            else if (endDate == null) //target date
+            {
+                query =
+                from order in filteredOrders
+                where (order.IsPeriodic == true && DateTime.Parse(order.OrderDueDate).DayOfWeek == targetDate.Value.DayOfWeek)  //wholesale/periodic is weekly, so by day of week
+                       ||
+                      (order.IsPeriodic == false && DateTime.Parse(order.OrderDueDate).Date == targetDate.Value.Date)
+                select order;
+            }
+            else //range
+            {
+                //Gather Non-periodic Orders
+                query =
+                from order in filteredOrders
+                where
+                    (order.IsOneShot == true
+                        && DateTime.Parse(order.OrderDueDate).Date >= targetDate.Value.Date
+                        && DateTime.Parse(order.OrderDueDate).Date <= endDate.Value.Date)
+                select order;
+                //Gather periodic orders, fulfilment date of periodic(weekly) orders is only used to get the corresponding day of the week.
+                //To get periodic orders, for each day of the date range, get the orders of that day and add to list
+
+                for (DateTime date = targetDate.Value; date <= endDate; date = date.AddDays(1))
+                {
+                    AccumulatePeriodicOrders(periodicOrders, filteredOrders, date);
+                }
+
+                //combine periodic orders with oneshot orders and return
+                periodicOrders.AddRange(query.ToList());
+                return TransformBoxedItemsAndAggregatePetsiOrders(periodicOrders);
+            }
+            return TransformBoxedItemsAndAggregatePetsiOrders(query.ToList());
+        }
+
+        public async Task<List<PetsiOrderLineItem>> GetBackListPieDataAsync(DateTime? targetDate, DateTime? endDate, bool isRetail, bool isSquare, bool isWholesale, bool isSpecial, bool isEzCater, bool isFarmer)
+        {
+            List<PetsiOrder> filteredOrders = FilterOrders(Orders, isRetail, isSquare, isWholesale, isSpecial, isEzCater, isFarmer);
+
+            IEnumerable<PetsiOrder> query;
+            List<PetsiOrder> periodicOrders = new List<PetsiOrder>();
+            if (targetDate == null) //all data, WARNING WHOLESALE ONLY ONCE CURRENTLY, add ws orders up to max day, or end of week of max day?
+            {
+                query =
+                from order in filteredOrders
+                select order;
+            }
+            else if (endDate == null) //target date
+            {
+                query =
+                from order in filteredOrders
+                where (order.IsPeriodic == true && DateTime.Parse(order.OrderDueDate).DayOfWeek == targetDate.Value.DayOfWeek)  //wholesale/periodic is weekly, so by day of week
+                       ||
+                      (order.IsPeriodic == false && DateTime.Parse(order.OrderDueDate).Date == targetDate.Value.Date)
+                select order;
+            }
+            else //range
+            {
+                //Gather Non-periodic Orders
+                query =
+                from order in filteredOrders
+                where
+                    (order.IsOneShot == true
+                        && DateTime.Parse(order.OrderDueDate).Date >= targetDate.Value.Date
+                        && DateTime.Parse(order.OrderDueDate).Date <= endDate.Value.Date)
+                select order;
+                //Gather periodic orders, fulfilment date of periodic(weekly) orders is only used to get the corresponding day of the week.
+                //To get periodic orders, for each day of the date range, get the orders of that day and add to list
+
+                for (DateTime date = targetDate.Value; date <= endDate; date = date.AddDays(1))
+                {
+                    AccumulatePeriodicOrders(periodicOrders, filteredOrders, date);
+                }
+
+                //combine periodic orders with oneshot orders and return
+                periodicOrders.AddRange(query.ToList());
+                return AggregateAndFilterBacklistPiePetsiOrders(periodicOrders);
+            }
+            return AggregateAndFilterBacklistPiePetsiOrders(query.ToList());
+        }
+
         //Label Service uses it, WS_Day_report still needs day separation tho, and day info
         public List<PetsiOrderLineItem> GetWsDayData(DateTime? targetDate)
         {
@@ -355,6 +459,232 @@ namespace Petsi.Models
             {
                 foreach (PetsiOrderLineItem lineItem in order.LineItems)
                 {
+                    if (aggregate.ContainsKey(lineItem.CatalogObjectId))
+                    {
+                        aggregate[lineItem.CatalogObjectId].Merge(lineItem);
+                    }
+                    else
+                    {
+                        aggregate[lineItem.CatalogObjectId] = new PetsiOrderLineItem(lineItem);
+                    }
+                }
+
+            }
+            return aggregate.Values.ToList();
+        }
+
+        /// <summary>
+        /// <br>
+        ///  - Goes through entire input list and aggregates item quantities into a single item,
+        /// </br>
+        /// 
+        /// <br>
+        ///  - Then checks the aggregate dictionary for specific items that rae container items and translates them to their inner items.
+        /// </br>
+        /// 
+        /// <br>
+        /// - Then re-aggregates the list of inner items back into the dictionary, (to properly merge orders that share the same items as the container items)
+        /// </br>
+        ///
+        /// <br>
+        /// - returns the dictionary values as a list
+        /// </br>
+        /// </summary>
+        /// <param name="orders"></param>
+        /// <returns></returns>
+        private List<PetsiOrderLineItem> TransformBoxedItemsAndAggregatePetsiOrders(List<PetsiOrder> orders)
+        {
+            Dictionary<string, PetsiOrderLineItem> aggregate = new Dictionary<string, PetsiOrderLineItem>();
+
+            foreach (PetsiOrder order in orders)
+            {
+                foreach (PetsiOrderLineItem lineItem in order.LineItems)
+                {
+                    if (aggregate.ContainsKey(lineItem.CatalogObjectId))
+                    {
+                        aggregate[lineItem.CatalogObjectId].Merge(lineItem);
+                    }
+                    else
+                    {
+                        aggregate[lineItem.CatalogObjectId] = new PetsiOrderLineItem(lineItem);
+                    }
+                }
+            }
+
+            List<PetsiOrderLineItem> list = new List<PetsiOrderLineItem>();
+            foreach (PetsiOrderLineItem lineItem in aggregate.Values.ToList())
+            {
+                // Catering Category
+                if(lineItem.CatalogObjectId == Identifiers.BREAKFAST_PASTRY_PLATTER)
+                {
+                    PetsiOrderLineItem currant = new PetsiOrderLineItem("Buttermilk Currant", Identifiers.CURRANT_SCONE, 0, 0, 0, 0, 0);
+                    PetsiOrderLineItem lemon = new PetsiOrderLineItem("Lemon Glaze", Identifiers.LEMON_SCONE, 0, 0, 0, 0, 0);
+                    PetsiOrderLineItem triple = new PetsiOrderLineItem("Triple Berry", Identifiers.BERRY_SCONE, 0, 0, 0, 0, 0);
+                    PetsiOrderLineItem blueMuffin = new PetsiOrderLineItem("Blueberry Muffin", Identifiers.BLUE_MUFFIN, 0, 0, 0, 0, 0);
+                    PetsiOrderLineItem bananaCCMuffin = new PetsiOrderLineItem("Banana Chocolate Chip Muffin", Identifiers.BANANA_MUFFIN, 0, 0, 0, 0, 0);
+                    PetsiOrderLineItem donut = new PetsiOrderLineItem("Donut", Identifiers.DONUT, 0, 0, 0, 0, 0);
+                    PetsiOrderLineItem coffeeCake = new PetsiOrderLineItem("Coffee Cake", Identifiers.COFFEE_CAKE, 0, 0, 0, 0, 0);
+                    if (lineItem.Amount5 > 0)
+                    {
+                        currant.Amount3 += 2 * lineItem.Amount5;
+                        lemon.Amount3 += 2 * lineItem.Amount5;
+                        triple.Amount3 += 2 * lineItem.Amount5;
+                        blueMuffin.Amount3 += 3 * lineItem.Amount5;
+                        bananaCCMuffin.Amount3 += 3 * lineItem.Amount5;
+                        donut.AmountRegular += 6 * lineItem.Amount5;
+                        coffeeCake.AmountRegular += lineItem.Amount5;
+                    }
+                    if(lineItem.Amount8 > 0)
+                    {
+                        currant.Amount3 += 3 * lineItem.Amount8;
+                        lemon.Amount3 += 3 * lineItem.Amount8;
+                        triple.Amount3 += 3 * lineItem.Amount8;
+                        blueMuffin.Amount3 += 4 * lineItem.Amount8;
+                        bananaCCMuffin.Amount3 += 4 * lineItem.Amount8;
+                        donut.AmountRegular += 8 * lineItem.Amount8;
+                        coffeeCake.AmountRegular += lineItem.Amount8;
+                    }
+                    if(lineItem.Amount10 > 0)
+                    {
+                        currant.Amount3 += 4 * lineItem.Amount10;
+                        lemon.Amount3 += 4 * lineItem.Amount10;
+                        triple.Amount3 += 4 * lineItem.Amount10;
+                        blueMuffin.Amount3 += 5 * lineItem.Amount10;
+                        bananaCCMuffin.Amount3 += 5 * lineItem.Amount10;
+                        donut.AmountRegular += 10 * lineItem.Amount10;
+                        coffeeCake.AmountRegular += lineItem.Amount10;
+                    }
+                    list.Add(currant);
+                    list.Add(lemon);
+                    list.Add(triple);
+                    list.Add(blueMuffin);
+                    list.Add(bananaCCMuffin);
+                    list.Add(donut);
+                    list.Add(coffeeCake);
+                }
+                // Catering Category
+                else if (lineItem.CatalogObjectId == Identifiers.COFFEE_BREAK_PLATTER)
+                {
+                    PetsiOrderLineItem chocolateChip = new PetsiOrderLineItem("Chocolate Chip Cookie", Identifiers.CC_COOKIE, 0, 0, 0, 0, 0);
+                    PetsiOrderLineItem snickerdoodle = new PetsiOrderLineItem("Snickerdoodle Cookie", Identifiers.SNICK_COOKIE, 0, 0, 0, 0, 0);
+                    PetsiOrderLineItem ginger = new PetsiOrderLineItem("Ginger Molasses Cookie", Identifiers.GING_COOKIE, 0, 0, 0, 0, 0);
+                    //PetsiOrderLineItem walnutBrownie = new PetsiOrderLineItem("Walnut Brownie", Identifiers.WALNUT_BROWNIE, 0, 0, 0, 0, 0);
+                    //PetsiOrderLineItem raspSwirlBar = new PetsiOrderLineItem("Raspberry Swirl Bar", Identifiers.RASP_SWIRL_BAR, 0, 0, 0, 0, 0);
+                    //PetsiOrderLineItem miniTeaCake = new PetsiOrderLineItem("Mini Tea Cake", Identifiers.MINI_TEACAKE, 0, 0, 0, 0, 0);
+
+                    if (lineItem.Amount5 > 0)
+                    {
+                        chocolateChip.Amount3 += 4 * lineItem.Amount5;
+                        snickerdoodle.Amount3 += 4 * lineItem.Amount5;
+                        ginger.Amount3 += 4 * lineItem.Amount5;
+                        //walnutBrownie.AmountRegular = 3 * lineItem.Amount5;
+                        //raspSwirlBar.AmountRegular = 6 * lineItem.Amount5;
+                        //miniTeaCake.Amount3 = 6 * lineItem.Amount5;
+                    }
+                    if (lineItem.Amount8 > 0)
+                    {
+                        chocolateChip.Amount3 += 6 * lineItem.Amount8;
+                        snickerdoodle.Amount3 += 6 * lineItem.Amount8;
+                        ginger.Amount3 += 6 * lineItem.Amount8;
+                        //walnutBrownie.AmountRegular = 4 * lineItem.Amount8;
+                        //raspSwirlBar.AmountRegular = 8 * lineItem.Amount8;
+                        //miniTeaCake.Amount3 = 8 * lineItem.Amount8;
+                    }
+                    if (lineItem.Amount10 > 0)
+                    {
+                        chocolateChip.Amount3 += 8 * lineItem.Amount10;
+                        snickerdoodle.Amount3 += 8 * lineItem.Amount10;
+                        ginger.Amount3 += 8 * lineItem.Amount10;
+                        //walnutBrownie.AmountRegular = 5 * lineItem.Amount10;
+                        //raspSwirlBar.AmountRegular = 10 * lineItem.Amount10;
+                        //miniTeaCake.Amount3 = 12 * lineItem.Amount10;
+                    }
+                    list.Add(chocolateChip);
+                    list.Add(snickerdoodle);
+                    list.Add(ginger);
+                    //list.Add(walnutBrownie);
+                    //list.Add(raspSwirlBar);
+                    //list.Add(miniTeaCake);
+                }
+                else if (lineItem.CatalogObjectId == Identifiers.MINI_SCONE_SAMPLER)
+                {
+                    PetsiOrderLineItem currant = new PetsiOrderLineItem("Buttermilk Currant", Identifiers.CURRANT_SCONE, 0, 0, 0, 0, 0);
+                    PetsiOrderLineItem lemon = new PetsiOrderLineItem("Lemon Glaze", Identifiers.LEMON_SCONE, 0, 0, 0, 0, 0);
+                    PetsiOrderLineItem triple = new PetsiOrderLineItem("Triple Berry", Identifiers.BERRY_SCONE, 0, 0, 0, 0, 0);
+                    // 15 scones size
+                    if (lineItem.Amount5 > 0)
+                    {
+                        currant.Amount3 += 5 * lineItem.Amount5;
+                        lemon.Amount3 += 5 * lineItem.Amount5;
+                        triple.Amount3 += 5 * lineItem.Amount5;
+                    }
+                    // 30 scones size
+                    if (lineItem.Amount10 > 0)
+                    {
+                        currant.Amount3 += 10 * lineItem.Amount10;
+                        lemon.Amount3 += 10 * lineItem.Amount10;
+                        triple.Amount3 += 10 * lineItem.Amount10;
+                    }
+                    list.Add(currant);
+                    list.Add(lemon);
+                    list.Add(triple);
+                }
+                else if (lineItem.CatalogObjectId == Identifiers.MUFFIN_SAMPLER)
+                {
+                    PetsiOrderLineItem bananaCC = new PetsiOrderLineItem("Banana Chocolate Chip Muffin", Identifiers.BANANA_MUFFIN, 0, 0, 0, 0, 0);
+                    PetsiOrderLineItem cornRasp = new PetsiOrderLineItem("Corn Muffin w Raspberry Jam", Identifiers.CORN_RASP_MUFFIN, 0, 0, 0, 0, 0);
+                    PetsiOrderLineItem blue = new PetsiOrderLineItem("Blueberry Muffin", Identifiers.BLUE_MUFFIN, 0, 0, 0, 0, 0);
+
+                    bananaCC.AmountRegular += lineItem.AmountRegular * 4;
+                    cornRasp.AmountRegular += lineItem.AmountRegular * 4;
+                    blue.AmountRegular += lineItem.AmountRegular * 4;
+
+                    list.Add(bananaCC);
+                    list.Add(cornRasp);
+                    list.Add(blue);
+                }
+                else
+                {
+                    list.Add(lineItem);
+                }
+            }
+            Dictionary<string, PetsiOrderLineItem> secondAggregate = new Dictionary<string, PetsiOrderLineItem>();
+            foreach (PetsiOrderLineItem lineItem in list)
+            {
+                if (secondAggregate.ContainsKey(lineItem.CatalogObjectId))
+                {
+                    secondAggregate[lineItem.CatalogObjectId].Merge(lineItem);
+                }
+                else
+                {
+                    secondAggregate[lineItem.CatalogObjectId] = new PetsiOrderLineItem(lineItem);
+                }
+            }
+
+            return secondAggregate.Values.ToList();
+        }
+
+        /// <summary>
+        /// Aggregates duplicate line items, and also filters out Take n Bake line items from square orders,
+        /// as per buisness logic are to be ignored on the baking list.
+        /// </summary>
+        /// <param name="orders"></param>
+        /// <returns></returns>
+        private List<PetsiOrderLineItem> AggregateAndFilterBacklistPiePetsiOrders(List<PetsiOrder> orders)
+        {
+            Dictionary<string, PetsiOrderLineItem> aggregate = new Dictionary<string, PetsiOrderLineItem>();
+
+            foreach (PetsiOrder order in orders)
+            {
+                foreach (PetsiOrderLineItem lineItem in order.LineItems)
+                {
+                    if(lineItem.ItemName.Contains("Take 'n Bake") || lineItem.ItemName.Contains("Take 'n Thaw"))
+                    {
+                        if(order.OrderType == Identifiers.ORDER_TYPE_SQUARE)
+                        {
+                            continue;
+                        }
+                    }
                     if (aggregate.ContainsKey(lineItem.CatalogObjectId))
                     {
                         aggregate[lineItem.CatalogObjectId].Merge(lineItem);

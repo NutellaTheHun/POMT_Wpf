@@ -151,6 +151,10 @@ namespace Petsi.Services
                 {
                     catalogIdDict.TryAdd(nName, item);
                 }
+                foreach(string alt_catalogId in item.Alt_CatalogObjId)
+                {
+                    catalogIdDict.TryAdd(alt_catalogId, item);
+                }
             }
         }
 

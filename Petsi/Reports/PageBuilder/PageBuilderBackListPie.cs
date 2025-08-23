@@ -46,7 +46,15 @@ namespace Petsi.Reports.PageBuilder
         public override bool IsRelevantItemToList<T>(T item, int lineItemCount)
         {
             PetsiOrderLineItem lineItem = item as PetsiOrderLineItem;
-            if (lineItem.IsCategory(Utils.Identifiers.CATEGORY_PASTRY))
+            if(lineItem.IsCategory(Utils.Identifiers.CATEGORY_PASTRY))
+            {
+                return false;
+            }
+            if (lineItem.IsCategory(Utils.Identifiers.CATEGORY_DRINKS))
+            {
+                return false;
+            }
+            if (lineItem.IsCategory(Utils.Identifiers.CATEGORY_MERCH))
             {
                 return false;
             }

@@ -288,5 +288,33 @@ namespace Petsi.Reports
                 bli.BRIOCHE(),
             };
         }
+
+        public static List<BackListItem> GetTestPastrySamplerTemplate()
+        {
+            return new List<BackListItem>
+            {
+                bli.CURRANT(), // mini curr
+                bli.LEMON_SCONE(), // mini lem
+                bli.TRIPLE(), // mini trip
+                bli.BISCUIT(),
+                bli.FRESH_BLUE(), // mini blue muff
+                bli.CORN(),
+                bli.BANANA_CC(), // mini banana muff
+                bli.BUNS(),
+                bli.CCHIP(), // mini cc
+                bli.SNICK(), // mini snick
+                bli.PB(),
+                bli.GINGER(), // mini ging
+                bli.DSA(),
+                bli.MOCHA(),
+                bli.VEGAN_CC(),
+                bli.SAVORY_CORN(),
+                bli.CROLL(),
+                bli.CROLL_3PK(),
+                bli.DONUT(),
+                bli.COFFEE_CAKE()
+               // bli.MINI_TEA_CAKE(),
+            };
+        }
     }
  }

@@ -143,6 +143,21 @@ namespace Petsi.Input
                 orderIds.Clear();
             }
             while (tempCursor != null);
+
+            //pie day menu
+            do
+            {
+                sor = await AsyncSquareSearchOrders_LocId(squareClient, tempCursor, "LYQRTDKQ75E66");
+                tempCursor = sor.Cursor;
+
+                orderIds.AddRange(sor.OrderEntries.Select(entry => entry.OrderId));
+
+                bror = await AsyncSquareBatchRetrieveOrders_LocId(squareClient, orderIds, "LYQRTDKQ75E66");
+                result.Add(bror);
+
+                orderIds.Clear();
+            }
+            while (tempCursor != null);
             return result;
         }
         public List<SquareOrderItem> BatchOrdersToOrderItems()
@@ -354,13 +369,31 @@ namespace Petsi.Input
                 LineItem merch = new LineItem();
                 if(squareOrderlineItem.VariationName != "Regular")
                 {
+
+                    if(squareOrderlineItem.Name == "Candles")
+                    {
+                        merch.ItemName = squareOrderlineItem.VariationName;
+                        merch.CatalogObjectId = squareOrderlineItem.CatalogObjectId;
+                        merch.VariationId = squareOrderlineItem.CatalogObjectId;
+                        merch.VariationName = "Regular";
+                        merch.Quantity = squareOrderlineItem.Quantity;
+                    }
                     
                      //Creme De Liqueur Ice Cream: 
                      //   --Vanilla Horchata, Pistachio Amaretto, ...
                     
-                    if (squareOrderlineItem.Name == "Creme De Liqueur Ice Cream")
+                    else if (squareOrderlineItem.Name == "Creme De Liqueur Ice Cream")
                     {
                         merch.ItemName = squareOrderlineItem.VariationName;
+                        merch.CatalogObjectId = squareOrderlineItem.CatalogObjectId;
+                        merch.VariationId = squareOrderlineItem.CatalogObjectId;
+                        merch.VariationName = "Regular";
+                        merch.Quantity = squareOrderlineItem.Quantity;
+                    }
+
+                    else if(squareOrderlineItem.Name == "Handmade Greeting Card")
+                    {
+                        merch.ItemName = $"{squareOrderlineItem.VariationName} card";
                         merch.CatalogObjectId = squareOrderlineItem.CatalogObjectId;
                         merch.VariationId = squareOrderlineItem.CatalogObjectId;
                         merch.VariationName = "Regular";
@@ -431,6 +464,48 @@ namespace Petsi.Input
                 }
                 lineItems.Add(merch);
                 ModelManagerSingleton.GetInstance().GetCatalogModel().TryUpdateSquareMerchItem(merch);
+            }
+            else if(squareOrderlineItem.Name == "Mini Scone Sampler Box")
+            {
+                LineItem stdli = new LineItem();
+                stdli.VariationId = squareOrderlineItem.CatalogObjectId;
+                stdli.CatalogObjectId = Identifiers.MINI_SCONE_SAMPLER;
+                stdli.VariationName = squareOrderlineItem.VariationName;
+
+                if (stdli.VariationName.Contains("15 scone"))
+                {
+                    stdli.VariationName = Identifiers.SIZE_SMALL;
+                }
+                else if (stdli.VariationName.Contains("30 scone"))
+                {
+                    stdli.VariationName = Identifiers.SIZE_LARGE;
+                }
+                
+                stdli.ItemName = squareOrderlineItem.Name;
+                stdli.Quantity = squareOrderlineItem.Quantity;
+                lineItems.Add(stdli);
+            }
+            else if(
+                squareOrderlineItem.Name == "Box of Coffee (hot or cold)"
+                ||
+                squareOrderlineItem.Name == "Earl Grey Tea (hot or iced)"
+                ||
+                squareOrderlineItem.Name == "Chai Tea (hot or cold)"
+                ||
+                squareOrderlineItem.Name == "Crimson Berry Tea (hot or iced)"
+                ||
+                squareOrderlineItem.Name == "Chai Tea (hot or iced)"
+                ||
+                squareOrderlineItem.Name == "English Breakfast Tea (hot or iced)")
+            {
+                LineItem stdli = new LineItem();
+                stdli.VariationId = squareOrderlineItem.CatalogObjectId;
+                stdli.CatalogObjectId = catalogLookup.GetCatalogObjectId(stdli.VariationId);
+
+                stdli.VariationName = Identifiers.SIZE_REGULAR;
+                stdli.ItemName = squareOrderlineItem.Name;
+                stdli.Quantity = squareOrderlineItem.Quantity;
+                lineItems.Add(stdli);
             }
 
             //all other "standard" items
